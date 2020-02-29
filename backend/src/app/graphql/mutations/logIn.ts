@@ -40,7 +40,7 @@ export const logIn = mutationField('logIn', {
         ...nullthrows(admin ?? guardian ?? instructor ?? student),
       };
     } catch (e) {
-      console.log(e);
+      console.warn(e);
       throw e;
     }
   },

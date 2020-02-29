@@ -16,7 +16,7 @@
     "postinstall": "yarn gen",
     "start": "ts-node ./src/app/index.ts",
     "seed": "DATABASE_URL='postgres://postgres:password@localhost:5432/postgres' ./node_modules/.bin/tsnd --no-notify --transpileOnly",
-    "test": "./node_modules/.bin/jest",
+    "test": "./node_modules/.bin/jest --detectOpenHandles",
     "tsc": "./node_modules/.bin/tsc --noEmit"
   },
   "dependencies": {
@@ -63,7 +63,9 @@
     "typescript": "^3.8.1-rc"
   },
   "husky": {
-    "hooks": {}
+    "hooks": {
+      "pre-push": "yarn chk"
+    }
   },
   "license": "MIT"
 }

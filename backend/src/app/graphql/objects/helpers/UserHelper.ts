@@ -5,18 +5,17 @@ import prisma from '../../../data/prisma';
 
 export default {
   async user(username: string) {
-    console.log({ username });
-    const user = await prisma.user.findOne({
-      where: { username },
-      include: {
-        admin: true,
-        guardian: true,
-        instructor: true,
-        student: true,
-      },
-    });
-    console.log({ user });
-    return nullthrows(user);
+    return nullthrows(
+      await prisma.user.findOne({
+        where: { username },
+        include: {
+          admin: true,
+          guardian: true,
+          instructor: true,
+          student: true,
+        },
+      }),
+    );
   },
   async role(username: string) {
     const { admin, guardian, instructor, student } = await this.user(username);

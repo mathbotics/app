@@ -29,7 +29,7 @@ const apollo = new ApolloServer({
     } as Context;
   },
   formatError(err: GraphQLError) {
-    console.warn(err.message);
+    console.warn(err);
     throw err;
   },
   schema: applySchemaMiddlewares(
