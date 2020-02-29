@@ -1,0 +1,29 @@
+{
+  "root": true,
+  "rules": {
+    "no-console": "warn",
+    "import/export": "off",
+    "implicit-arrow-linebreak": "off",
+    "import/prefer-default-export": "off",
+    "object-curly-newline": "off",
+    "function-paren-newline": "off"
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
+  "extends": ["airbnb-typescript", "prettier/@typescript-eslint"],
+  "ignorePatterns": ["src/graphql/__generated__"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".ts"]
+      }
+    },
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [".js", ".ts"]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+version: "3"
+
+services:
+  api:
+    container_name: mathbotics_api
+    build:
+      context: ../backend
+      dockerfile: ../docker/api/Dockerfile
+    ports:
+      - 5000:5000
+    env_file: "../backend/.env"
+    depends_on:
+      - postgres
+      - mailhog
+    volumes:
+      - ../backend:/app/
+      - /app/node_modules
+    networks:
+      default:
+        aliases:
+          - api.docker.mathbotics.me
+  web:
+    container_name: mathbotics_web
+    build:
+      context: ../frontend
+      dockerfile: ../docker/web/Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ../frontend:/app/
+      - /app/node_modules
+    depends_on:
+      - api
+    networks:
+      default:
+        aliases:
+          - web.docker.mathbotics.me
+  postgres:
+    container_name: mathbotics_pg
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: password
+    networks:
+      default:
+        aliases:
+          - pg.docker.mathbotics.me
+  mailhog:
+    container_name: mathbotics_mailhog
+    image: mailhog/mailhog:latest
+    ports:
+      - 1025:1025
+      - 8025:8025
