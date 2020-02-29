@@ -12,10 +12,14 @@ type Admin implements User {
 
 type Course {
   id: String!
-  instructors(after: String, before: String, first: Int, last: Int, skip: Int): [Instructor!]!
+  instructors(after: InstructorWhereUniqueInput, before: InstructorWhereUniqueInput, first: Int, last: Int, skip: Int): [Instructor!]!
   name: String!
-  students(after: String, before: String, first: Int, last: Int, skip: Int): [Student!]!
+  students(after: StudentWhereUniqueInput, before: StudentWhereUniqueInput, first: Int, last: Int, skip: Int): [Student!]!
   suggestedLevel: GradeLevel!
+}
+
+input CourseWhereUniqueInput {
+  id: String
 }
 
 enum GradeLevel {
@@ -38,17 +42,27 @@ type Guardian implements User {
   firstName: String!
   id: String!
   lastName: String!
-  students(after: String, before: String, first: Int, last: Int, skip: Int): [Student!]!
+  students(after: StudentWhereUniqueInput, before: StudentWhereUniqueInput, first: Int, last: Int, skip: Int): [Student!]!
   username: String!
 }
 
+input GuardianWhereUniqueInput {
+  email: String
+  id: String
+}
+
 type Instructor implements User {
-  courses(after: String, before: String, first: Int, last: Int, skip: Int): [Course!]!
+  courses(after: CourseWhereUniqueInput, before: CourseWhereUniqueInput, first: Int, last: Int, skip: Int): [Course!]!
   email: String!
   firstName: String!
   id: String!
   lastName: String!
   username: String!
+}
+
+input InstructorWhereUniqueInput {
+  email: String
+  id: String
 }
 
 input LogInInput {
@@ -67,10 +81,14 @@ type Query {
 type Student implements User {
   firstName: String!
   gradeLevel: GradeLevel!
-  guardians(after: String, before: String, first: Int, last: Int, skip: Int): [Guardian!]!
+  guardians(after: GuardianWhereUniqueInput, before: GuardianWhereUniqueInput, first: Int, last: Int, skip: Int): [Guardian!]!
   id: String!
   lastName: String!
   username: String!
+}
+
+input StudentWhereUniqueInput {
+  id: String
 }
 
 interface User {

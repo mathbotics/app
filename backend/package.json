@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "scripts": {
     "chk": "yarn fmt:check && yarn lint && yarn tsc",
     "dev": "tsnd --no-notify --transpileOnly --respawn ./src/app/index.ts",
@@ -21,7 +20,7 @@
     "tsc": "./node_modules/.bin/tsc --noEmit"
   },
   "dependencies": {
-    "@prisma/client": "^2.0.0-preview021",
+    "@prisma/client": "^2.0.0-preview022",
     "apollo-server-express": "^2.10.0",
     "bcrypt": "^3.0.8",
     "cookie-parser": "^1.4.4",
@@ -30,7 +29,7 @@
     "graphql-shield": "^7.0.9",
     "jsonwebtoken": "^8.5.1",
     "nexus": "^0.12.0-rc.9",
-    "nexus-prisma": "^0.9.1",
+    "nexus-prisma": "^0.10.0",
     "nullthrows": "^1.1.1",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0"
@@ -44,6 +43,7 @@
     "@typescript-eslint/eslint-plugin": "^2.7.0",
     "@typescript-eslint/parser": "^2.19.0",
     "apollo-server-testing": "^2.10.0",
+    "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-typescript": "^6.3.1",
     "eslint-config-prettier": "^6.10.0",
@@ -56,7 +56,7 @@
     "jest": "^25.1.0",
     "pg": "^7.18.1",
     "prettier": "^1.19.1",
-    "prisma2": "^2.0.0-preview021",
+    "prisma2": "^2.0.0-preview022",
     "ts-jest": "^25.2.0",
     "ts-node": "^8.6.2",
     "ts-node-dev": "^1.0.0-pre.44",

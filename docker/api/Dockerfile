@@ -6,4 +6,4 @@ COPY . .
 
 RUN yarn
 
-CMD ["yarn", "dev"]
+CMD ["sh", "-c", "yarn migrate:up ; yarn dev"]

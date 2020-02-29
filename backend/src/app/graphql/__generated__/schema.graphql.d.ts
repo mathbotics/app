@@ -19,9 +19,23 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  CourseWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
+  GuardianWhereUniqueInput: { // input type
+    email?: string | null; // String
+    id?: string | null; // String
+  }
+  InstructorWhereUniqueInput: { // input type
+    email?: string | null; // String
+    id?: string | null; // String
+  }
   LogInInput: { // input type
     password: string; // String!
     username: string; // String!
+  }
+  StudentWhereUniqueInput: { // input type
+    id?: string | null; // String
   }
 }
 
@@ -74,7 +88,11 @@ export interface NexusGenRootTypes {
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
+  CourseWhereUniqueInput: NexusGenInputs['CourseWhereUniqueInput'];
+  GuardianWhereUniqueInput: NexusGenInputs['GuardianWhereUniqueInput'];
+  InstructorWhereUniqueInput: NexusGenInputs['InstructorWhereUniqueInput'];
   LogInInput: NexusGenInputs['LogInInput'];
+  StudentWhereUniqueInput: NexusGenInputs['StudentWhereUniqueInput'];
   GradeLevel: NexusGenEnums['GradeLevel'];
 }
 
@@ -133,15 +151,15 @@ export interface NexusGenFieldTypes {
 export interface NexusGenArgTypes {
   Course: {
     instructors: { // args
-      after?: string | null; // String
-      before?: string | null; // String
+      after?: NexusGenInputs['InstructorWhereUniqueInput'] | null; // InstructorWhereUniqueInput
+      before?: NexusGenInputs['InstructorWhereUniqueInput'] | null; // InstructorWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
       skip?: number | null; // Int
     }
     students: { // args
-      after?: string | null; // String
-      before?: string | null; // String
+      after?: NexusGenInputs['StudentWhereUniqueInput'] | null; // StudentWhereUniqueInput
+      before?: NexusGenInputs['StudentWhereUniqueInput'] | null; // StudentWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
       skip?: number | null; // Int
@@ -149,8 +167,8 @@ export interface NexusGenArgTypes {
   }
   Guardian: {
     students: { // args
-      after?: string | null; // String
-      before?: string | null; // String
+      after?: NexusGenInputs['StudentWhereUniqueInput'] | null; // StudentWhereUniqueInput
+      before?: NexusGenInputs['StudentWhereUniqueInput'] | null; // StudentWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
       skip?: number | null; // Int
@@ -158,8 +176,8 @@ export interface NexusGenArgTypes {
   }
   Instructor: {
     courses: { // args
-      after?: string | null; // String
-      before?: string | null; // String
+      after?: NexusGenInputs['CourseWhereUniqueInput'] | null; // CourseWhereUniqueInput
+      before?: NexusGenInputs['CourseWhereUniqueInput'] | null; // CourseWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
       skip?: number | null; // Int
@@ -172,8 +190,8 @@ export interface NexusGenArgTypes {
   }
   Student: {
     guardians: { // args
-      after?: string | null; // String
-      before?: string | null; // String
+      after?: NexusGenInputs['GuardianWhereUniqueInput'] | null; // GuardianWhereUniqueInput
+      before?: NexusGenInputs['GuardianWhereUniqueInput'] | null; // GuardianWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
       skip?: number | null; // Int
@@ -189,7 +207,7 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "Admin" | "Course" | "Guardian" | "Instructor" | "Mutation" | "Query" | "Student";
 
-export type NexusGenInputNames = "LogInInput";
+export type NexusGenInputNames = "CourseWhereUniqueInput" | "GuardianWhereUniqueInput" | "InstructorWhereUniqueInput" | "LogInInput" | "StudentWhereUniqueInput";
 
 export type NexusGenEnumNames = "GradeLevel";
 

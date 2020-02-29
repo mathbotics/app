@@ -22,7 +22,7 @@ const apollo = new ApolloServer({
   tracing: true,
   context({ req, res }: ExpressIntegrationContext) {
     return {
-      viewer: req.user,
+      viewer: req?.user,
       res,
       prisma,
     } as Context;
@@ -58,6 +58,8 @@ const onServerStart = () =>
     `🤖  mathbotics/server started on http://localhost:${PORT}${apollo.graphqlPath}`,
   );
 
-app.listen({ port: PORT }, onServerStart);
+if (NODE_ENV !== 'test') {
+  app.listen({ port: PORT }, onServerStart);
+}
 
 export default apollo;

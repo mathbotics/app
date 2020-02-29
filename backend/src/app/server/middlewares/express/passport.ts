@@ -6,8 +6,6 @@ import prisma from '../../../data/prisma';
 
 const { JWT_SECRET } = process.env;
 
-type Viewer = NexusGen['abstractResolveReturn']['User'];
-
 type TokenPayload = {
   username: string;
 };
