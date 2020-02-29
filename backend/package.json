@@ -63,9 +63,7 @@
     "typescript": "^3.8.1-rc"
   },
   "husky": {
-    "hooks": {
-      "pre-push": "yarn chk"
-    }
+    "hooks": {}
   },
   "license": "MIT"
 }
