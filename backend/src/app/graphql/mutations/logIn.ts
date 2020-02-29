@@ -23,20 +23,25 @@ export const logIn = mutationField('logIn', {
     input: arg({ type: 'LogInInput', required: true }),
   },
   async resolve(_root, { input: { username, password } }) {
-    const {
-      admin,
-      guardian,
-      instructor,
-      student,
-      ...user
-    } = await UserHelper.user(username);
-    const matched = await bcrypt.compare(password, user.password);
-    if (!matched) {
-      throw new AuthenticationError('Incorrect password.');
+    try {
+      const {
+        admin,
+        guardian,
+        instructor,
+        student,
+        ...user
+      } = await UserHelper.user(username);
+      const matched = await bcrypt.compare(password, user.password);
+      if (!matched) {
+        throw new AuthenticationError('Incorrect password.');
+      }
+      return {
+        ...user,
+        ...nullthrows(admin ?? guardian ?? instructor ?? student),
+      };
+    } catch (e) {
+      console.log(e);
+      throw e;
     }
-    return {
-      ...user,
-      ...nullthrows(admin ?? guardian ?? instructor ?? student),
-    };
   },
 });

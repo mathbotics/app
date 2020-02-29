@@ -1,4 +1,5 @@
 import { ApolloServer } from 'apollo-server-express';
+import { GraphQLError } from 'graphql';
 import { makeSchema } from 'nexus';
 import { nexusPrismaPlugin } from 'nexus-prisma';
 import express, { Request, Response } from 'express';
@@ -27,8 +28,8 @@ const apollo = new ApolloServer({
       prisma,
     } as Context;
   },
-  formatError(err: Error) {
-    console.warn(err);
+  formatError(err: GraphQLError) {
+    console.warn(err.message);
     throw err;
   },
   schema: applySchemaMiddlewares(
