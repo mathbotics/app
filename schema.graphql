@@ -72,10 +72,19 @@ input LogInInput {
 
 type Mutation {
   logIn(input: LogInInput!): User!
+  registerUser(input: RegisterUserInput!): User!
 }
 
 type Query {
   viewer: User!
+}
+
+input RegisterUserInput {
+  firstName: String!
+  lastName: String!
+  password: String!
+  token: String!
+  username: String!
 }
 
 type Student implements User {

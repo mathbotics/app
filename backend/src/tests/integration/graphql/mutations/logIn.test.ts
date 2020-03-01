@@ -17,9 +17,9 @@ const LOGIN_MUTATION = gql`
   }
 `;
 
-beforeEach(() => clearDatabase());
+beforeEach(clearDatabase);
 
-afterEach(() => clearDatabase());
+afterEach(clearDatabase);
 
 test('logIn returns instructor with instructor login', async () => {
   const instructor = await InstructorFactory.create();
