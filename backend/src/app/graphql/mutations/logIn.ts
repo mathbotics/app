@@ -1,6 +1,5 @@
 import { AuthenticationError } from 'apollo-server-express';
 import { mutationField, inputObjectType, arg } from 'nexus';
-import nullthrows from 'nullthrows';
 import bcrypt from 'bcrypt';
 
 import UserHelper from '../objects/helpers/UserHelper';
