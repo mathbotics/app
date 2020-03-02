@@ -1,11 +1,11 @@
 import React from "react";
 import { Layout, Alert } from "antd";
 import styled from "styled-components";
-
-import { LogInForm, LogInFormFields } from "../form";
+import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
+import { LogInForm } from "../components/form";
 import { Redirect } from "react-router-dom";
-import { commit as commitLoginMutation } from "../../graphql/mutations/LogInMutation";
-import { LogInMutationResponse } from "../../graphql/mutations/__generated__/LogInMutation.graphql";
+import { commit as commitLoginMutation } from "../graphql/mutations/LogInMutation";
+import { LogInMutationResponse } from "../graphql/mutations/__generated__/LogInMutation.graphql";
 
 const StyledLayout = styled(Layout)`
   height: 100%;
@@ -45,9 +45,14 @@ export const LoginPage = (props: LogInProps): JSX.Element => {
   const onLoginFailure = (error: Error) =>
     setLoginState(AuthState.INVALID_ATTEMPT);
 
-  const handleSubmit = ({ username, password }: LogInFormFields): void => {
+  const onSubmitHandler = ({ username, password }: Store): void => {
     setLoginState(AuthState.AUTHENTICATING);
     commitLoginMutation({ username, password }, onLoginSuccess, onLoginFailure);
+  };
+
+  const onSubmitErrorHandler = (error: ValidateErrorEntity) => {
+    setLoginState(AuthState.INVALID_ATTEMPT);
+    console.log(error);
   };
 
   return (
@@ -63,7 +68,10 @@ export const LoginPage = (props: LogInProps): JSX.Element => {
         )}
 
         <h1>Mathbotics</h1>
-        <LogInForm onSubmit={handleSubmit} />
+        <LogInForm
+          onSubmit={onSubmitHandler}
+          onSubmitError={onSubmitErrorHandler}
+        />
       </Content>
     </StyledLayout>
   );

@@ -3,22 +3,26 @@ import { Form, Button } from "antd";
 import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
 import { FormItem } from "./FormItem";
 
-type LogInFormProps = {
+type RegisterFormProps = {
   onSubmit: (values: Store) => void;
   onSubmitError: (error: ValidateErrorEntity) => void;
 };
 
-export type LogInFormFields = {
+export type RegisterFormFields = {
+  firstName: string;
+  lastName: string;
   username: string;
   password: string;
 };
 
-export const LogInForm = (props: LogInFormProps): JSX.Element => {
+export const RegisterForm = (props: RegisterFormProps): JSX.Element => {
   const [form] = Form.useForm();
   const { setFieldsValue, getFieldValue } = form;
 
   React.useEffect(() => {
     setFieldsValue({
+      firstName: "",
+      lastName: "",
       username: "",
       password: ""
     });
@@ -31,6 +35,20 @@ export const LogInForm = (props: LogInFormProps): JSX.Element => {
       onFinishFailed={props.onSubmitError}
       layout="vertical"
     >
+      <FormItem
+        name="firstName"
+        value={getFieldValue("firstName")}
+        type="text"
+        input="firstName"
+        placeholder="FirstName"
+      />
+      <FormItem
+        name="lastName"
+        value={getFieldValue("lastName")}
+        type="text"
+        input="lastName"
+        placeholder="LastName"
+      />
       <FormItem
         name="username"
         value={getFieldValue("username")}
@@ -48,7 +66,7 @@ export const LogInForm = (props: LogInFormProps): JSX.Element => {
       />
 
       <Button block type="primary" size="large" htmlType="submit">
-        Log in
+        Register
       </Button>
     </Form>
   );

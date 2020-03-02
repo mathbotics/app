@@ -14,7 +14,7 @@ passport.use(
   new JWTStrategy(
     {
       jwtFromRequest: ({ cookies: { jwt } }) => jwt,
-      secretOrKey: nullthrows(JWT_SECRET),
+      secretOrKey: nullthrows(JWT_SECRET, 'JWT_SECRET is null or undefined.'),
     },
     async ({ username }: TokenPayload, done) =>
       done(null, await prisma.user.findOne({ where: { username } })),
