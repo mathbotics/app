@@ -239,7 +239,7 @@ export type NexusGenScalarNames = "Boolean" | "Float" | "ID" | "Int" | "String";
 export type NexusGenUnionNames = never;
 
 export interface NexusGenTypes {
-  context: any;
+  context: {};
   inputTypes: NexusGenInputs;
   rootTypes: NexusGenRootTypes;
   argTypes: NexusGenArgTypes;

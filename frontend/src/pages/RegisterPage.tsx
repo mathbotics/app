@@ -3,9 +3,10 @@ import { Layout, Alert } from "antd";
 import styled from "styled-components";
 import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
 import { RegisterForm } from "../components/form";
-import { Redirect } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import { commit as commitRegisterUserMutation } from "../graphql/mutations/RegisterUserMutation";
 import { RegisterUserMutationResponse } from "../graphql/mutations/__generated__/RegisterUserMutation.graphql";
+import nullthrows from "nullthrows";
 
 const StyledLayout = styled(Layout)`
   height: 100%;
@@ -34,6 +35,7 @@ enum RegisterState {
   VALIDATING
 }
 export const RegisterPage = (props: RegisterProps): JSX.Element => {
+  const { token } = useParams();
   const [registerState, setRegisterState] = React.useState<RegisterState>(
     RegisterState.DEFAULT
   );
@@ -54,7 +56,7 @@ export const RegisterPage = (props: RegisterProps): JSX.Element => {
   }: Store): void => {
     setRegisterState(RegisterState.VALIDATING);
     commitRegisterUserMutation(
-      { firstName, lastName, username, password, token: "jwt" },
+      { firstName, lastName, username, password, token: nullthrows(token) },
       onRegisterSuccess,
       onRegisterFailure
     );

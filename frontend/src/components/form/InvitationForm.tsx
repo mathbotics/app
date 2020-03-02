@@ -2,6 +2,7 @@ import React from "react";
 import { Form, Button } from "antd";
 import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
 import { FormItem } from "./FormItem";
+import { SelectFormItem } from "./SelectFormItem";
 
 type InvitationFormFormProps = {
   onSubmit: (values: Store) => void;
@@ -43,8 +44,16 @@ export const InvitationForm = (props: InvitationFormFormProps): JSX.Element => {
         name="email"
         value={getFieldValue("username")}
         type="text"
-        input="username"
-        placeholder="Username"
+        input="email"
+        placeholder="Email"
+      />
+      <SelectFormItem
+        name="role"
+        options={[
+          { value: "Admin", text: "Admin" },
+          { value: "Instructor", text: "Instructor" }
+        ]}
+        placeholder="Role"
       />
 
       <Button block type="primary" size="large" htmlType="submit">
