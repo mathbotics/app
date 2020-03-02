@@ -16,7 +16,7 @@ const create = async (data?: Partial<AdminCreateArgs['data']>) =>
             firstName: 'Test',
             lastName: 'Test',
             username: 'admin',
-            password: await bcrypt.hash('testpass', 10),
+            password: await bcrypt.hash('admin', 10),
           },
         },
         email: 'admin@test.com',
