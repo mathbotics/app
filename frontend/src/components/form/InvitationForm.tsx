@@ -3,24 +3,32 @@ import { Form, Button } from "antd";
 import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
 import { FormItem } from "./FormItem";
 
-type LogInFormProps = {
+type InvitationFormFormProps = {
   onSubmit: (values: Store) => void;
   onSubmitError: (error: ValidateErrorEntity) => void;
 };
 
-export type LogInFormFields = {
+export type InvitationFormFormFields = {
   username: string;
-  password: string;
+  role: Role;
 };
 
-export const LogInForm = (props: LogInFormProps): JSX.Element => {
+enum Role {
+  ADMIN,
+  GUARDIAN,
+  INSTRUCTOR,
+  STUDENT
+}
+
+export const InvitationForm = (props: InvitationFormFormProps): JSX.Element => {
   const [form] = Form.useForm();
   const { setFieldsValue, getFieldValue } = form;
 
+  // Set default form values
   React.useEffect(() => {
     setFieldsValue({
-      username: "",
-      password: ""
+      email: "",
+      role: Role.INSTRUCTOR
     });
   }, []);
 
@@ -32,23 +40,15 @@ export const LogInForm = (props: LogInFormProps): JSX.Element => {
       layout="vertical"
     >
       <FormItem
-        name="username"
+        name="email"
         value={getFieldValue("username")}
         type="text"
         input="username"
         placeholder="Username"
       />
 
-      <FormItem
-        name="password"
-        value={getFieldValue("password")}
-        type="password"
-        input="password"
-        placeholder="Password"
-      />
-
       <Button block type="primary" size="large" htmlType="submit">
-        Log in
+        Invite
       </Button>
     </Form>
   );

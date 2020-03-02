@@ -1,14 +1,14 @@
 import React from "react";
-import { Icon } from "antd";
+import { MailOutlined, LockOutlined, UserOutlined } from "@ant-design/icons";
 
 export const EmailIcon = () => (
-  <Icon type="mail" style={{ color: "rgba(0,0,0,.25)" }} />
+  <MailOutlined style={{ color: "rgba(0,0,0,.25)" }} />
 );
 
 export const LockIcon = () => (
-  <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+  <LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />
 );
 
 export const UserIcon = () => (
-  <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
+  <UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />
 );
