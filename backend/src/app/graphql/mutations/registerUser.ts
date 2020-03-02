@@ -1,4 +1,5 @@
 import { mutationField, inputObjectType, arg } from 'nexus';
+import bcrypt from 'bcrypt';
 import nullthrows from 'nullthrows';
 import jwt from 'jsonwebtoken';
 
@@ -47,7 +48,14 @@ export const registerUser = mutationField('registerUser', {
           const { user, ...instructor } = nullthrows(
             await (ctx as Context).prisma.instructor.create({
               data: {
-                user: { create: { username, password, firstName, lastName } },
+                user: {
+                  create: {
+                    username,
+                    password: await bcrypt.hash(password, 10),
+                    firstName,
+                    lastName,
+                  },
+                },
                 email: nullthrows(email, 'email is null or endefined'),
               },
               include: { user: true },

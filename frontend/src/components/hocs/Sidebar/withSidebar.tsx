@@ -3,7 +3,8 @@ import { Layout, Menu } from "antd";
 import {
   DashboardOutlined,
   LockOutlined,
-  BookOutlined
+  BookOutlined,
+  UserAddOutlined
 } from "@ant-design/icons";
 import styled from "styled-components";
 import { useHistory, Redirect } from "react-router-dom";
@@ -48,7 +49,8 @@ const menuItemsForViewer = ({ role }: withSidebar_viewer) => {
     case "Admin":
       return [
         { name: "Dashboard", path: "", icon: <DashboardOutlined /> },
-        { name: "Admin", path: "admin", icon: <LockOutlined /> }
+        { name: "Admin", path: "admin", icon: <LockOutlined /> },
+        { name: "Invite", path: "invite", icon: <UserAddOutlined /> }
       ];
     case "Instructor":
       return [

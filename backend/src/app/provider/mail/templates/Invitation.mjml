@@ -8,7 +8,7 @@
         <mj-divider border-color="#7f44f3"></mj-divider>
 
         <mj-text font-size="18px" color="#000" font-weight=2 font-family="Helvetica" letter-spacing="0.5">Welcome to the Mathbotics learning platform! Click the button below to create your account.</mj-text>
-        <mj-button href="{{url}}" font-family="Helvetica" background-color="#7f44f3" color="white" padding="20" inner-padding="500">
+        <mj-button href="{{url}}" padding=20 font-family="Helvetica" background-color="#7f44f3" color="white" inner-padding="500">
           Accept invitation
         </mj-button>
       </mj-column>

@@ -8,13 +8,14 @@ type Props = {
   options: Array<{ value: string; text: string }>;
   placeholder: string;
   value?: string;
+  defaultValue: string;
 };
 
 export const SelectFormItem = (props: Props): JSX.Element => {
   return (
     <Form.Item name={props.name}>
-      <Select placeholder={props.placeholder}>
-        {props.options.map(option => (
+      <Select defaultValue="Test">
+        {props.options.map((option, index) => (
           <Option key={option.value} value={option.value}>
             {option.text}
           </Option>

@@ -21,15 +21,15 @@ enum Role {
   STUDENT
 }
 
-export const InvitationForm = (props: InvitationFormFormProps): JSX.Element => {
+export const CourseCreationForm = (props: any) => {
   const [form] = Form.useForm();
   const { setFieldsValue, getFieldValue } = form;
 
   // Set default form values
   React.useEffect(() => {
     setFieldsValue({
-      email: "",
-      role: Role.INSTRUCTOR
+      name: "",
+      suggestedLevel: ""
     });
   }, []);
 
@@ -42,24 +42,25 @@ export const InvitationForm = (props: InvitationFormFormProps): JSX.Element => {
       style={{ backgroundColor: "white" }}
     >
       <FormItem
-        name="email"
-        value={getFieldValue("username")}
+        name="name"
+        value={getFieldValue("name")}
         type="text"
-        input="email"
-        placeholder="Email"
+        input="courseName"
+        placeholder="Course Name"
       />
+
       <SelectFormItem
-        defaultValue="Instructor"
-        name="role"
+        defaultValue="FIRST"
+        name="gradeLevel"
         options={[
-          { value: "Admin", text: "Admin" },
-          { value: "Instructor", text: "Instructor" }
+          { value: "FIRST", text: "First" },
+          { value: "SECOND", text: "Second" }
         ]}
-        placeholder="Role"
+        placeholder="Grade Level"
       />
 
       <Button block type="primary" size="large" htmlType="submit">
-        Invite
+        Create Course
       </Button>
     </Form>
   );

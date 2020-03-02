@@ -45,7 +45,7 @@ export const sendInvitationEmail = mutationField('sendInvitationEmail', {
 
       const message = {
         from: '"Mathbotics learning platform 🤖" <hello@mathbotics.io>',
-        to: 'invitee@gmail.com',
+        to: email,
         subject:
           'You have been invited to join the Mathbotics learning platform 🤖',
         text: 'Mathbotics invitation',

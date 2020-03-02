@@ -1,5 +1,10 @@
 import React from "react";
-import { MailOutlined, LockOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  MailOutlined,
+  LockOutlined,
+  UserOutlined,
+  BookOutlined
+} from "@ant-design/icons";
 
 export const EmailIcon = () => (
   <MailOutlined style={{ color: "rgba(0,0,0,.25)" }} />
@@ -11,4 +16,8 @@ export const LockIcon = () => (
 
 export const UserIcon = () => (
   <UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />
+);
+
+export const BookIcon = () => (
+  <BookOutlined style={{ color: "rgba(0,0,0,.25)" }} />
 );

@@ -1,6 +1,6 @@
 import { objectType } from 'nexus';
 
-export const Couse = objectType({
+export const Course = objectType({
   name: 'Course',
   definition(t) {
     t.model.id();
@@ -8,5 +8,6 @@ export const Couse = objectType({
     t.model.suggestedLevel();
     t.model.instructors();
     t.model.students();
+    t.model.contents();
   },
 });
