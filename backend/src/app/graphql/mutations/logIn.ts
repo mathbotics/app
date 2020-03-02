@@ -1,6 +1,5 @@
 import { AuthenticationError } from 'apollo-server-express';
 import { mutationField, inputObjectType, arg } from 'nexus';
-import nullthrows from 'nullthrows';
 import bcrypt from 'bcrypt';
 
 import UserHelper from '../objects/helpers/UserHelper';
@@ -24,21 +23,12 @@ export const logIn = mutationField('logIn', {
   },
   async resolve(_root, { input: { username, password } }) {
     try {
-      const {
-        admin,
-        guardian,
-        instructor,
-        student,
-        ...user
-      } = await UserHelper.user(username);
+      const user = await UserHelper.user(username);
       const matched = await bcrypt.compare(password, user.password);
       if (!matched) {
         throw new AuthenticationError('Incorrect password.');
       }
-      return {
-        ...user,
-        ...nullthrows(admin ?? guardian ?? instructor ?? student),
-      };
+      return user;
     } catch (e) {
       console.warn(e);
       throw e;

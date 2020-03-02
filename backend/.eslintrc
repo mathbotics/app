@@ -3,6 +3,7 @@
   "rules": {
     "no-console": "warn",
     "import/export": "off",
+    "no-case-declarations": "off",
     "implicit-arrow-linebreak": "off",
     "import/prefer-default-export": "off",
     "object-curly-newline": "off",
@@ -11,7 +12,7 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "prettier"],
   "extends": ["airbnb-typescript", "prettier/@typescript-eslint"],
-  "ignorePatterns": ["src/graphql/__generated__"],
+  "ignorePatterns": ["src/graphql/__generated__", "*.mjml"],
   "settings": {
     "import/resolver": {
       "node": {

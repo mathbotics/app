@@ -34,6 +34,17 @@ export interface NexusGenInputs {
     password: string; // String!
     username: string; // String!
   }
+  RegisterUserInput: { // input type
+    firstName: string; // String!
+    lastName: string; // String!
+    password: string; // String!
+    token: string; // String!
+    username: string; // String!
+  }
+  SendInvitationEmailInput: { // input type
+    email: string; // String!
+    role: string; // String!
+  }
   StudentWhereUniqueInput: { // input type
     id?: string | null; // String
   }
@@ -92,6 +103,8 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   GuardianWhereUniqueInput: NexusGenInputs['GuardianWhereUniqueInput'];
   InstructorWhereUniqueInput: NexusGenInputs['InstructorWhereUniqueInput'];
   LogInInput: NexusGenInputs['LogInInput'];
+  RegisterUserInput: NexusGenInputs['RegisterUserInput'];
+  SendInvitationEmailInput: NexusGenInputs['SendInvitationEmailInput'];
   StudentWhereUniqueInput: NexusGenInputs['StudentWhereUniqueInput'];
   GradeLevel: NexusGenEnums['GradeLevel'];
 }
@@ -129,6 +142,8 @@ export interface NexusGenFieldTypes {
   }
   Mutation: { // field return type
     logIn: NexusGenRootTypes['User']; // User!
+    registerUser: NexusGenRootTypes['User']; // User!
+    sendInvitationEmail: string; // String!
   }
   Query: { // field return type
     viewer: NexusGenRootTypes['User']; // User!
@@ -187,6 +202,12 @@ export interface NexusGenArgTypes {
     logIn: { // args
       input: NexusGenInputs['LogInInput']; // LogInInput!
     }
+    registerUser: { // args
+      input: NexusGenInputs['RegisterUserInput']; // RegisterUserInput!
+    }
+    sendInvitationEmail: { // args
+      input: NexusGenInputs['SendInvitationEmailInput']; // SendInvitationEmailInput!
+    }
   }
   Student: {
     guardians: { // args
@@ -207,7 +228,7 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "Admin" | "Course" | "Guardian" | "Instructor" | "Mutation" | "Query" | "Student";
 
-export type NexusGenInputNames = "CourseWhereUniqueInput" | "GuardianWhereUniqueInput" | "InstructorWhereUniqueInput" | "LogInInput" | "StudentWhereUniqueInput";
+export type NexusGenInputNames = "CourseWhereUniqueInput" | "GuardianWhereUniqueInput" | "InstructorWhereUniqueInput" | "LogInInput" | "RegisterUserInput" | "SendInvitationEmailInput" | "StudentWhereUniqueInput";
 
 export type NexusGenEnumNames = "GradeLevel";
 
