@@ -10,7 +10,7 @@ export type Message = {
 
 export async function sendMail(message: Message) {
   const transporter = nodemailer.createTransport({
-    host: 'localhost',
+    host: 'mailhog.docker.mathbotics.me',
     port: 1025,
     secure: false,
   });
