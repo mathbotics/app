@@ -1,0 +1,17 @@
+<mjml>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+
+        <mj-image width="150px" src="https://cdn.dribbble.com/users/1769954/screenshots/3656344/robot.png"></mj-image>
+
+        <mj-divider border-color="#7f44f3"></mj-divider>
+
+        <mj-text font-size="18px" color="#000" font-weight=2 font-family="Helvetica" letter-spacing="0.5">Welcome to the Mathbotics learning platform! Click the button below to create your account.</mj-text>
+        <mj-button href="{{url}}" font-family="Helvetica" background-color="#7f44f3" color="white" padding="20" inner-padding="500">
+          Accept invitation
+        </mj-button>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
