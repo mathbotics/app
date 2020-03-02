@@ -3,7 +3,13 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import withSidebar from "./components/hocs/Sidebar/withSidebar";
 
 // Pages
-import { LoginPage, RegisterPage, DashboardPage, NotFoundPage } from "./pages";
+import {
+  LoginPage,
+  RegisterPage,
+  DashboardPage,
+  NotFoundPage,
+  CoursesPage
+} from "./pages";
 
 // Routes
 import ProtectedRoute from "./routes/ProtectedRoute";
@@ -25,7 +31,7 @@ export const App: React.FC = () => {
         <ProtectedRoute
           exact
           path="/courses"
-          component={withSidebar(NotFoundPage)}
+          component={withSidebar(CoursesPage)}
         />
         <ProtectedRoute
           exact

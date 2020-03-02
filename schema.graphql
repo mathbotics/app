@@ -10,7 +10,150 @@ type Admin implements User {
   username: String!
 }
 
+input AdminCreateOneWithoutUserInput {
+  connect: AdminWhereUniqueInput
+  create: AdminCreateWithoutUserInput
+}
+
+input AdminCreateWithoutUserInput {
+  createdAt: DateTime
+  email: String!
+  id: String
+}
+
+input AdminUpdateOneWithoutUserInput {
+  connect: AdminWhereUniqueInput
+  create: AdminCreateWithoutUserInput
+  delete: Boolean
+  disconnect: Boolean
+  update: AdminUpdateWithoutUserDataInput
+  upsert: AdminUpsertWithoutUserInput
+}
+
+input AdminUpdateWithoutUserDataInput {
+  createdAt: DateTime
+  email: String
+  id: String
+}
+
+input AdminUpsertWithoutUserInput {
+  create: AdminCreateWithoutUserInput!
+  update: AdminUpdateWithoutUserDataInput!
+}
+
+input AdminWhereInput {
+  AND: [AdminWhereInput!]
+  createdAt: DateTimeFilter
+  email: StringFilter
+  id: StringFilter
+  NOT: [AdminWhereInput!]
+  OR: [AdminWhereInput!]
+  user: UserWhereInput
+}
+
+input AdminWhereUniqueInput {
+  email: String
+  id: String
+}
+
+type Content {
+  author: String!
+  course: Course
+  id: String!
+  title: String!
+}
+
+input ContentCreateManyWithoutCourseInput {
+  connect: [ContentWhereUniqueInput!]
+  create: [ContentCreateWithoutCourseInput!]
+}
+
+input ContentCreateWithoutCourseInput {
+  author: String!
+  createdAt: DateTime
+  id: String
+  pages: PageCreateManyWithoutContentInput
+  title: String!
+}
+
+input ContentFilter {
+  every: ContentWhereInput
+  none: ContentWhereInput
+  some: ContentWhereInput
+}
+
+input ContentScalarWhereInput {
+  AND: [ContentScalarWhereInput!]
+  author: StringFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  NOT: [ContentScalarWhereInput!]
+  OR: [ContentScalarWhereInput!]
+  pages: PageFilter
+  title: StringFilter
+}
+
+input ContentUpdateManyDataInput {
+  author: String
+  createdAt: DateTime
+  id: String
+  title: String
+}
+
+input ContentUpdateManyWithoutCourseInput {
+  connect: [ContentWhereUniqueInput!]
+  create: [ContentCreateWithoutCourseInput!]
+  delete: [ContentWhereUniqueInput!]
+  deleteMany: [ContentScalarWhereInput!]
+  disconnect: [ContentWhereUniqueInput!]
+  set: [ContentWhereUniqueInput!]
+  update: [ContentUpdateWithWhereUniqueWithoutCourseInput!]
+  updateMany: [ContentUpdateManyWithWhereNestedInput!]
+  upsert: [ContentUpsertWithWhereUniqueWithoutCourseInput!]
+}
+
+input ContentUpdateManyWithWhereNestedInput {
+  data: ContentUpdateManyDataInput!
+  where: ContentScalarWhereInput!
+}
+
+input ContentUpdateWithoutCourseDataInput {
+  author: String
+  createdAt: DateTime
+  id: String
+  pages: PageUpdateManyWithoutContentInput
+  title: String
+}
+
+input ContentUpdateWithWhereUniqueWithoutCourseInput {
+  data: ContentUpdateWithoutCourseDataInput!
+  where: ContentWhereUniqueInput!
+}
+
+input ContentUpsertWithWhereUniqueWithoutCourseInput {
+  create: ContentCreateWithoutCourseInput!
+  update: ContentUpdateWithoutCourseDataInput!
+  where: ContentWhereUniqueInput!
+}
+
+input ContentWhereInput {
+  AND: [ContentWhereInput!]
+  author: StringFilter
+  course: CourseWhereInput
+  createdAt: DateTimeFilter
+  id: StringFilter
+  NOT: [ContentWhereInput!]
+  OR: [ContentWhereInput!]
+  pages: PageFilter
+  title: StringFilter
+}
+
+input ContentWhereUniqueInput {
+  id: String
+}
+
 type Course {
+  contents(after: ContentWhereUniqueInput, before: ContentWhereUniqueInput, first: Int, last: Int, skip: Int): [Content!]!
   id: String!
   instructors(after: InstructorWhereUniqueInput, before: InstructorWhereUniqueInput, first: Int, last: Int, skip: Int): [Instructor!]!
   name: String!
@@ -18,8 +161,177 @@ type Course {
   suggestedLevel: GradeLevel!
 }
 
+input CourseCreateInput {
+  contents: ContentCreateManyWithoutCourseInput
+  createdAt: DateTime
+  id: String
+  instructors: InstructorCreateManyWithoutCoursesInput
+  name: String!
+  students: StudentCreateManyWithoutCoursesInput
+  suggestedLevel: GradeLevel!
+}
+
+input CourseCreateManyWithoutInstructorsInput {
+  connect: [CourseWhereUniqueInput!]
+  create: [CourseCreateWithoutInstructorsInput!]
+}
+
+input CourseCreateManyWithoutStudentsInput {
+  connect: [CourseWhereUniqueInput!]
+  create: [CourseCreateWithoutStudentsInput!]
+}
+
+input CourseCreateWithoutInstructorsInput {
+  contents: ContentCreateManyWithoutCourseInput
+  createdAt: DateTime
+  id: String
+  name: String!
+  students: StudentCreateManyWithoutCoursesInput
+  suggestedLevel: GradeLevel!
+}
+
+input CourseCreateWithoutStudentsInput {
+  contents: ContentCreateManyWithoutCourseInput
+  createdAt: DateTime
+  id: String
+  instructors: InstructorCreateManyWithoutCoursesInput
+  name: String!
+  suggestedLevel: GradeLevel!
+}
+
+input CourseFilter {
+  every: CourseWhereInput
+  none: CourseWhereInput
+  some: CourseWhereInput
+}
+
+input CourseScalarWhereInput {
+  AND: [CourseScalarWhereInput!]
+  contents: ContentFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  instructors: InstructorFilter
+  name: StringFilter
+  NOT: [CourseScalarWhereInput!]
+  OR: [CourseScalarWhereInput!]
+  students: StudentFilter
+  suggestedLevel: GradeLevel
+}
+
+input CourseUpdateInput {
+  contents: ContentUpdateManyWithoutCourseInput
+  createdAt: DateTime
+  id: String
+  instructors: InstructorUpdateManyWithoutCoursesInput
+  name: String
+  students: StudentUpdateManyWithoutCoursesInput
+  suggestedLevel: GradeLevel
+}
+
+input CourseUpdateManyDataInput {
+  createdAt: DateTime
+  id: String
+  name: String
+  suggestedLevel: GradeLevel
+}
+
+input CourseUpdateManyWithoutInstructorsInput {
+  connect: [CourseWhereUniqueInput!]
+  create: [CourseCreateWithoutInstructorsInput!]
+  delete: [CourseWhereUniqueInput!]
+  deleteMany: [CourseScalarWhereInput!]
+  disconnect: [CourseWhereUniqueInput!]
+  set: [CourseWhereUniqueInput!]
+  update: [CourseUpdateWithWhereUniqueWithoutInstructorsInput!]
+  updateMany: [CourseUpdateManyWithWhereNestedInput!]
+  upsert: [CourseUpsertWithWhereUniqueWithoutInstructorsInput!]
+}
+
+input CourseUpdateManyWithoutStudentsInput {
+  connect: [CourseWhereUniqueInput!]
+  create: [CourseCreateWithoutStudentsInput!]
+  delete: [CourseWhereUniqueInput!]
+  deleteMany: [CourseScalarWhereInput!]
+  disconnect: [CourseWhereUniqueInput!]
+  set: [CourseWhereUniqueInput!]
+  update: [CourseUpdateWithWhereUniqueWithoutStudentsInput!]
+  updateMany: [CourseUpdateManyWithWhereNestedInput!]
+  upsert: [CourseUpsertWithWhereUniqueWithoutStudentsInput!]
+}
+
+input CourseUpdateManyWithWhereNestedInput {
+  data: CourseUpdateManyDataInput!
+  where: CourseScalarWhereInput!
+}
+
+input CourseUpdateWithoutInstructorsDataInput {
+  contents: ContentUpdateManyWithoutCourseInput
+  createdAt: DateTime
+  id: String
+  name: String
+  students: StudentUpdateManyWithoutCoursesInput
+  suggestedLevel: GradeLevel
+}
+
+input CourseUpdateWithoutStudentsDataInput {
+  contents: ContentUpdateManyWithoutCourseInput
+  createdAt: DateTime
+  id: String
+  instructors: InstructorUpdateManyWithoutCoursesInput
+  name: String
+  suggestedLevel: GradeLevel
+}
+
+input CourseUpdateWithWhereUniqueWithoutInstructorsInput {
+  data: CourseUpdateWithoutInstructorsDataInput!
+  where: CourseWhereUniqueInput!
+}
+
+input CourseUpdateWithWhereUniqueWithoutStudentsInput {
+  data: CourseUpdateWithoutStudentsDataInput!
+  where: CourseWhereUniqueInput!
+}
+
+input CourseUpsertWithWhereUniqueWithoutInstructorsInput {
+  create: CourseCreateWithoutInstructorsInput!
+  update: CourseUpdateWithoutInstructorsDataInput!
+  where: CourseWhereUniqueInput!
+}
+
+input CourseUpsertWithWhereUniqueWithoutStudentsInput {
+  create: CourseCreateWithoutStudentsInput!
+  update: CourseUpdateWithoutStudentsDataInput!
+  where: CourseWhereUniqueInput!
+}
+
+input CourseWhereInput {
+  AND: [CourseWhereInput!]
+  contents: ContentFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  instructors: InstructorFilter
+  name: StringFilter
+  NOT: [CourseWhereInput!]
+  OR: [CourseWhereInput!]
+  students: StudentFilter
+  suggestedLevel: GradeLevel
+}
+
 input CourseWhereUniqueInput {
   id: String
+}
+
+scalar DateTime
+
+input DateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: DateTime
+  notIn: [DateTime!]
 }
 
 enum GradeLevel {
@@ -46,6 +358,119 @@ type Guardian implements User {
   username: String!
 }
 
+input GuardianCreateManyWithoutStudentsInput {
+  connect: [GuardianWhereUniqueInput!]
+  create: [GuardianCreateWithoutStudentsInput!]
+}
+
+input GuardianCreateOneWithoutUserInput {
+  connect: GuardianWhereUniqueInput
+  create: GuardianCreateWithoutUserInput
+}
+
+input GuardianCreateWithoutStudentsInput {
+  createdAt: DateTime
+  email: String!
+  id: String
+  user: UserCreateOneWithoutGuardianInput!
+}
+
+input GuardianCreateWithoutUserInput {
+  createdAt: DateTime
+  email: String!
+  id: String
+  students: StudentCreateManyWithoutGuardiansInput
+}
+
+input GuardianFilter {
+  every: GuardianWhereInput
+  none: GuardianWhereInput
+  some: GuardianWhereInput
+}
+
+input GuardianScalarWhereInput {
+  AND: [GuardianScalarWhereInput!]
+  createdAt: DateTimeFilter
+  email: StringFilter
+  id: StringFilter
+  NOT: [GuardianScalarWhereInput!]
+  OR: [GuardianScalarWhereInput!]
+  students: StudentFilter
+}
+
+input GuardianUpdateManyDataInput {
+  createdAt: DateTime
+  email: String
+  id: String
+}
+
+input GuardianUpdateManyWithoutStudentsInput {
+  connect: [GuardianWhereUniqueInput!]
+  create: [GuardianCreateWithoutStudentsInput!]
+  delete: [GuardianWhereUniqueInput!]
+  deleteMany: [GuardianScalarWhereInput!]
+  disconnect: [GuardianWhereUniqueInput!]
+  set: [GuardianWhereUniqueInput!]
+  update: [GuardianUpdateWithWhereUniqueWithoutStudentsInput!]
+  updateMany: [GuardianUpdateManyWithWhereNestedInput!]
+  upsert: [GuardianUpsertWithWhereUniqueWithoutStudentsInput!]
+}
+
+input GuardianUpdateManyWithWhereNestedInput {
+  data: GuardianUpdateManyDataInput!
+  where: GuardianScalarWhereInput!
+}
+
+input GuardianUpdateOneWithoutUserInput {
+  connect: GuardianWhereUniqueInput
+  create: GuardianCreateWithoutUserInput
+  delete: Boolean
+  disconnect: Boolean
+  update: GuardianUpdateWithoutUserDataInput
+  upsert: GuardianUpsertWithoutUserInput
+}
+
+input GuardianUpdateWithoutStudentsDataInput {
+  createdAt: DateTime
+  email: String
+  id: String
+  user: UserUpdateOneRequiredWithoutGuardianInput
+}
+
+input GuardianUpdateWithoutUserDataInput {
+  createdAt: DateTime
+  email: String
+  id: String
+  students: StudentUpdateManyWithoutGuardiansInput
+}
+
+input GuardianUpdateWithWhereUniqueWithoutStudentsInput {
+  data: GuardianUpdateWithoutStudentsDataInput!
+  where: GuardianWhereUniqueInput!
+}
+
+input GuardianUpsertWithoutUserInput {
+  create: GuardianCreateWithoutUserInput!
+  update: GuardianUpdateWithoutUserDataInput!
+}
+
+input GuardianUpsertWithWhereUniqueWithoutStudentsInput {
+  create: GuardianCreateWithoutStudentsInput!
+  update: GuardianUpdateWithoutStudentsDataInput!
+  where: GuardianWhereUniqueInput!
+}
+
+input GuardianWhereInput {
+  AND: [GuardianWhereInput!]
+  createdAt: DateTimeFilter
+  email: StringFilter
+  id: StringFilter
+  NOT: [GuardianWhereInput!]
+  OR: [GuardianWhereInput!]
+  students: StudentFilter
+  user: UserWhereInput
+}
+
 input GuardianWhereUniqueInput {
   email: String
   id: String
@@ -57,7 +482,121 @@ type Instructor implements User {
   firstName: String!
   id: String!
   lastName: String!
+  user: User!
   username: String!
+}
+
+input InstructorCreateManyWithoutCoursesInput {
+  connect: [InstructorWhereUniqueInput!]
+  create: [InstructorCreateWithoutCoursesInput!]
+}
+
+input InstructorCreateOneWithoutUserInput {
+  connect: InstructorWhereUniqueInput
+  create: InstructorCreateWithoutUserInput
+}
+
+input InstructorCreateWithoutCoursesInput {
+  createdAt: DateTime
+  email: String!
+  id: String
+  user: UserCreateOneWithoutInstructorInput!
+}
+
+input InstructorCreateWithoutUserInput {
+  courses: CourseCreateManyWithoutInstructorsInput
+  createdAt: DateTime
+  email: String!
+  id: String
+}
+
+input InstructorFilter {
+  every: InstructorWhereInput
+  none: InstructorWhereInput
+  some: InstructorWhereInput
+}
+
+input InstructorScalarWhereInput {
+  AND: [InstructorScalarWhereInput!]
+  courses: CourseFilter
+  createdAt: DateTimeFilter
+  email: StringFilter
+  id: StringFilter
+  NOT: [InstructorScalarWhereInput!]
+  OR: [InstructorScalarWhereInput!]
+}
+
+input InstructorUpdateManyDataInput {
+  createdAt: DateTime
+  email: String
+  id: String
+}
+
+input InstructorUpdateManyWithoutCoursesInput {
+  connect: [InstructorWhereUniqueInput!]
+  create: [InstructorCreateWithoutCoursesInput!]
+  delete: [InstructorWhereUniqueInput!]
+  deleteMany: [InstructorScalarWhereInput!]
+  disconnect: [InstructorWhereUniqueInput!]
+  set: [InstructorWhereUniqueInput!]
+  update: [InstructorUpdateWithWhereUniqueWithoutCoursesInput!]
+  updateMany: [InstructorUpdateManyWithWhereNestedInput!]
+  upsert: [InstructorUpsertWithWhereUniqueWithoutCoursesInput!]
+}
+
+input InstructorUpdateManyWithWhereNestedInput {
+  data: InstructorUpdateManyDataInput!
+  where: InstructorScalarWhereInput!
+}
+
+input InstructorUpdateOneWithoutUserInput {
+  connect: InstructorWhereUniqueInput
+  create: InstructorCreateWithoutUserInput
+  delete: Boolean
+  disconnect: Boolean
+  update: InstructorUpdateWithoutUserDataInput
+  upsert: InstructorUpsertWithoutUserInput
+}
+
+input InstructorUpdateWithoutCoursesDataInput {
+  createdAt: DateTime
+  email: String
+  id: String
+  user: UserUpdateOneRequiredWithoutInstructorInput
+}
+
+input InstructorUpdateWithoutUserDataInput {
+  courses: CourseUpdateManyWithoutInstructorsInput
+  createdAt: DateTime
+  email: String
+  id: String
+}
+
+input InstructorUpdateWithWhereUniqueWithoutCoursesInput {
+  data: InstructorUpdateWithoutCoursesDataInput!
+  where: InstructorWhereUniqueInput!
+}
+
+input InstructorUpsertWithoutUserInput {
+  create: InstructorCreateWithoutUserInput!
+  update: InstructorUpdateWithoutUserDataInput!
+}
+
+input InstructorUpsertWithWhereUniqueWithoutCoursesInput {
+  create: InstructorCreateWithoutCoursesInput!
+  update: InstructorUpdateWithoutCoursesDataInput!
+  where: InstructorWhereUniqueInput!
+}
+
+input InstructorWhereInput {
+  AND: [InstructorWhereInput!]
+  courses: CourseFilter
+  createdAt: DateTimeFilter
+  email: StringFilter
+  id: StringFilter
+  NOT: [InstructorWhereInput!]
+  OR: [InstructorWhereInput!]
+  user: UserWhereInput
 }
 
 input InstructorWhereUniqueInput {
@@ -71,12 +610,95 @@ input LogInInput {
 }
 
 type Mutation {
+  createOneCourse(data: CourseCreateInput!): Course!
   logIn(input: LogInInput!): User!
   registerUser(input: RegisterUserInput!): User!
   sendInvitationEmail(input: SendInvitationEmailInput!): String!
+  updateOneCourse(data: CourseUpdateInput!, where: CourseWhereUniqueInput!): Course
+}
+
+input PageCreateManyWithoutContentInput {
+  connect: [PageWhereUniqueInput!]
+  create: [PageCreateWithoutContentInput!]
+}
+
+input PageCreateWithoutContentInput {
+  createdAt: DateTime
+  data: String!
+  id: String
+}
+
+input PageFilter {
+  every: PageWhereInput
+  none: PageWhereInput
+  some: PageWhereInput
+}
+
+input PageScalarWhereInput {
+  AND: [PageScalarWhereInput!]
+  createdAt: DateTimeFilter
+  data: StringFilter
+  id: StringFilter
+  NOT: [PageScalarWhereInput!]
+  OR: [PageScalarWhereInput!]
+}
+
+input PageUpdateManyDataInput {
+  createdAt: DateTime
+  data: String
+  id: String
+}
+
+input PageUpdateManyWithoutContentInput {
+  connect: [PageWhereUniqueInput!]
+  create: [PageCreateWithoutContentInput!]
+  delete: [PageWhereUniqueInput!]
+  deleteMany: [PageScalarWhereInput!]
+  disconnect: [PageWhereUniqueInput!]
+  set: [PageWhereUniqueInput!]
+  update: [PageUpdateWithWhereUniqueWithoutContentInput!]
+  updateMany: [PageUpdateManyWithWhereNestedInput!]
+  upsert: [PageUpsertWithWhereUniqueWithoutContentInput!]
+}
+
+input PageUpdateManyWithWhereNestedInput {
+  data: PageUpdateManyDataInput!
+  where: PageScalarWhereInput!
+}
+
+input PageUpdateWithoutContentDataInput {
+  createdAt: DateTime
+  data: String
+  id: String
+}
+
+input PageUpdateWithWhereUniqueWithoutContentInput {
+  data: PageUpdateWithoutContentDataInput!
+  where: PageWhereUniqueInput!
+}
+
+input PageUpsertWithWhereUniqueWithoutContentInput {
+  create: PageCreateWithoutContentInput!
+  update: PageUpdateWithoutContentDataInput!
+  where: PageWhereUniqueInput!
+}
+
+input PageWhereInput {
+  AND: [PageWhereInput!]
+  content: ContentWhereInput
+  createdAt: DateTimeFilter
+  data: StringFilter
+  id: StringFilter
+  NOT: [PageWhereInput!]
+  OR: [PageWhereInput!]
+}
+
+input PageWhereUniqueInput {
+  id: String
 }
 
 type Query {
+  courses(after: CourseWhereUniqueInput, before: CourseWhereUniqueInput, first: Int, last: Int, skip: Int, where: CourseWhereInput): [Course!]!
   viewer: User!
 }
 
@@ -93,6 +715,20 @@ input SendInvitationEmailInput {
   role: String!
 }
 
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
 type Student implements User {
   firstName: String!
   gradeLevel: GradeLevel!
@@ -100,6 +736,169 @@ type Student implements User {
   id: String!
   lastName: String!
   username: String!
+}
+
+input StudentCreateManyWithoutCoursesInput {
+  connect: [StudentWhereUniqueInput!]
+  create: [StudentCreateWithoutCoursesInput!]
+}
+
+input StudentCreateManyWithoutGuardiansInput {
+  connect: [StudentWhereUniqueInput!]
+  create: [StudentCreateWithoutGuardiansInput!]
+}
+
+input StudentCreateOneWithoutUserInput {
+  connect: StudentWhereUniqueInput
+  create: StudentCreateWithoutUserInput
+}
+
+input StudentCreateWithoutCoursesInput {
+  createdAt: DateTime
+  gradeLevel: GradeLevel!
+  guardians: GuardianCreateManyWithoutStudentsInput
+  id: String
+  user: UserCreateOneWithoutStudentInput!
+}
+
+input StudentCreateWithoutGuardiansInput {
+  courses: CourseCreateManyWithoutStudentsInput
+  createdAt: DateTime
+  gradeLevel: GradeLevel!
+  id: String
+  user: UserCreateOneWithoutStudentInput!
+}
+
+input StudentCreateWithoutUserInput {
+  courses: CourseCreateManyWithoutStudentsInput
+  createdAt: DateTime
+  gradeLevel: GradeLevel!
+  guardians: GuardianCreateManyWithoutStudentsInput
+  id: String
+}
+
+input StudentFilter {
+  every: StudentWhereInput
+  none: StudentWhereInput
+  some: StudentWhereInput
+}
+
+input StudentScalarWhereInput {
+  AND: [StudentScalarWhereInput!]
+  courses: CourseFilter
+  createdAt: DateTimeFilter
+  gradeLevel: GradeLevel
+  guardians: GuardianFilter
+  id: StringFilter
+  NOT: [StudentScalarWhereInput!]
+  OR: [StudentScalarWhereInput!]
+}
+
+input StudentUpdateManyDataInput {
+  createdAt: DateTime
+  gradeLevel: GradeLevel
+  id: String
+}
+
+input StudentUpdateManyWithoutCoursesInput {
+  connect: [StudentWhereUniqueInput!]
+  create: [StudentCreateWithoutCoursesInput!]
+  delete: [StudentWhereUniqueInput!]
+  deleteMany: [StudentScalarWhereInput!]
+  disconnect: [StudentWhereUniqueInput!]
+  set: [StudentWhereUniqueInput!]
+  update: [StudentUpdateWithWhereUniqueWithoutCoursesInput!]
+  updateMany: [StudentUpdateManyWithWhereNestedInput!]
+  upsert: [StudentUpsertWithWhereUniqueWithoutCoursesInput!]
+}
+
+input StudentUpdateManyWithoutGuardiansInput {
+  connect: [StudentWhereUniqueInput!]
+  create: [StudentCreateWithoutGuardiansInput!]
+  delete: [StudentWhereUniqueInput!]
+  deleteMany: [StudentScalarWhereInput!]
+  disconnect: [StudentWhereUniqueInput!]
+  set: [StudentWhereUniqueInput!]
+  update: [StudentUpdateWithWhereUniqueWithoutGuardiansInput!]
+  updateMany: [StudentUpdateManyWithWhereNestedInput!]
+  upsert: [StudentUpsertWithWhereUniqueWithoutGuardiansInput!]
+}
+
+input StudentUpdateManyWithWhereNestedInput {
+  data: StudentUpdateManyDataInput!
+  where: StudentScalarWhereInput!
+}
+
+input StudentUpdateOneWithoutUserInput {
+  connect: StudentWhereUniqueInput
+  create: StudentCreateWithoutUserInput
+  delete: Boolean
+  disconnect: Boolean
+  update: StudentUpdateWithoutUserDataInput
+  upsert: StudentUpsertWithoutUserInput
+}
+
+input StudentUpdateWithoutCoursesDataInput {
+  createdAt: DateTime
+  gradeLevel: GradeLevel
+  guardians: GuardianUpdateManyWithoutStudentsInput
+  id: String
+  user: UserUpdateOneRequiredWithoutStudentInput
+}
+
+input StudentUpdateWithoutGuardiansDataInput {
+  courses: CourseUpdateManyWithoutStudentsInput
+  createdAt: DateTime
+  gradeLevel: GradeLevel
+  id: String
+  user: UserUpdateOneRequiredWithoutStudentInput
+}
+
+input StudentUpdateWithoutUserDataInput {
+  courses: CourseUpdateManyWithoutStudentsInput
+  createdAt: DateTime
+  gradeLevel: GradeLevel
+  guardians: GuardianUpdateManyWithoutStudentsInput
+  id: String
+}
+
+input StudentUpdateWithWhereUniqueWithoutCoursesInput {
+  data: StudentUpdateWithoutCoursesDataInput!
+  where: StudentWhereUniqueInput!
+}
+
+input StudentUpdateWithWhereUniqueWithoutGuardiansInput {
+  data: StudentUpdateWithoutGuardiansDataInput!
+  where: StudentWhereUniqueInput!
+}
+
+input StudentUpsertWithoutUserInput {
+  create: StudentCreateWithoutUserInput!
+  update: StudentUpdateWithoutUserDataInput!
+}
+
+input StudentUpsertWithWhereUniqueWithoutCoursesInput {
+  create: StudentCreateWithoutCoursesInput!
+  update: StudentUpdateWithoutCoursesDataInput!
+  where: StudentWhereUniqueInput!
+}
+
+input StudentUpsertWithWhereUniqueWithoutGuardiansInput {
+  create: StudentCreateWithoutGuardiansInput!
+  update: StudentUpdateWithoutGuardiansDataInput!
+  where: StudentWhereUniqueInput!
+}
+
+input StudentWhereInput {
+  AND: [StudentWhereInput!]
+  courses: CourseFilter
+  createdAt: DateTimeFilter
+  gradeLevel: GradeLevel
+  guardians: GuardianFilter
+  id: StringFilter
+  NOT: [StudentWhereInput!]
+  OR: [StudentWhereInput!]
+  user: UserWhereInput
 }
 
 input StudentWhereUniqueInput {
@@ -110,4 +909,141 @@ interface User {
   firstName: String!
   lastName: String!
   username: String!
+}
+
+input UserCreateOneWithoutGuardianInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutGuardianInput
+}
+
+input UserCreateOneWithoutInstructorInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutInstructorInput
+}
+
+input UserCreateOneWithoutStudentInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutStudentInput
+}
+
+input UserCreateWithoutGuardianInput {
+  admin: AdminCreateOneWithoutUserInput
+  firstName: String!
+  id: String
+  instructor: InstructorCreateOneWithoutUserInput
+  lastName: String!
+  password: String!
+  student: StudentCreateOneWithoutUserInput
+  username: String!
+}
+
+input UserCreateWithoutInstructorInput {
+  admin: AdminCreateOneWithoutUserInput
+  firstName: String!
+  guardian: GuardianCreateOneWithoutUserInput
+  id: String
+  lastName: String!
+  password: String!
+  student: StudentCreateOneWithoutUserInput
+  username: String!
+}
+
+input UserCreateWithoutStudentInput {
+  admin: AdminCreateOneWithoutUserInput
+  firstName: String!
+  guardian: GuardianCreateOneWithoutUserInput
+  id: String
+  instructor: InstructorCreateOneWithoutUserInput
+  lastName: String!
+  password: String!
+  username: String!
+}
+
+input UserUpdateOneRequiredWithoutGuardianInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutGuardianInput
+  update: UserUpdateWithoutGuardianDataInput
+  upsert: UserUpsertWithoutGuardianInput
+}
+
+input UserUpdateOneRequiredWithoutInstructorInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutInstructorInput
+  update: UserUpdateWithoutInstructorDataInput
+  upsert: UserUpsertWithoutInstructorInput
+}
+
+input UserUpdateOneRequiredWithoutStudentInput {
+  connect: UserWhereUniqueInput
+  create: UserCreateWithoutStudentInput
+  update: UserUpdateWithoutStudentDataInput
+  upsert: UserUpsertWithoutStudentInput
+}
+
+input UserUpdateWithoutGuardianDataInput {
+  admin: AdminUpdateOneWithoutUserInput
+  firstName: String
+  id: String
+  instructor: InstructorUpdateOneWithoutUserInput
+  lastName: String
+  password: String
+  student: StudentUpdateOneWithoutUserInput
+  username: String
+}
+
+input UserUpdateWithoutInstructorDataInput {
+  admin: AdminUpdateOneWithoutUserInput
+  firstName: String
+  guardian: GuardianUpdateOneWithoutUserInput
+  id: String
+  lastName: String
+  password: String
+  student: StudentUpdateOneWithoutUserInput
+  username: String
+}
+
+input UserUpdateWithoutStudentDataInput {
+  admin: AdminUpdateOneWithoutUserInput
+  firstName: String
+  guardian: GuardianUpdateOneWithoutUserInput
+  id: String
+  instructor: InstructorUpdateOneWithoutUserInput
+  lastName: String
+  password: String
+  username: String
+}
+
+input UserUpsertWithoutGuardianInput {
+  create: UserCreateWithoutGuardianInput!
+  update: UserUpdateWithoutGuardianDataInput!
+}
+
+input UserUpsertWithoutInstructorInput {
+  create: UserCreateWithoutInstructorInput!
+  update: UserUpdateWithoutInstructorDataInput!
+}
+
+input UserUpsertWithoutStudentInput {
+  create: UserCreateWithoutStudentInput!
+  update: UserUpdateWithoutStudentDataInput!
+}
+
+input UserWhereInput {
+  admin: AdminWhereInput
+  AND: [UserWhereInput!]
+  firstName: StringFilter
+  guardian: GuardianWhereInput
+  id: StringFilter
+  instructor: InstructorWhereInput
+  lastName: StringFilter
+  NOT: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  password: StringFilter
+  student: StudentWhereInput
+  username: StringFilter
+}
+
+input UserWhereUniqueInput {
+  id: String
+  username: String
 }

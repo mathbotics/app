@@ -1,15 +1,12 @@
 import React from "react";
-import { Layout } from "antd";
+import { Typography } from "antd";
 import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
-import styled from "styled-components";
 
 import { commit as commitSendInvitationEmail } from "../graphql/mutations/SendInvitationEmailMutation";
 import { InvitationForm } from "../components/form";
 import { SendInvitationEmailMutationResponse } from "../graphql/mutations/__generated__/SendInvitationEmailMutation.graphql";
 
-const StyledLayout = styled(Layout)`
-  height: 100%;
-`;
+const { Title } = Typography;
 
 enum InvitationState {
   DEFAULT,
@@ -47,12 +44,13 @@ export const InvitationPage = () => {
   };
 
   return (
-    <StyledLayout>
-      <h1>Invite User</h1>
+    <>
+      <Title level={2}>Invite User</Title>
+
       <InvitationForm
         onSubmit={onSubmitHandler}
         onSubmitError={onSubmitErrorHandler}
       />
-    </StyledLayout>
+    </>
   );
 };
