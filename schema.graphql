@@ -73,6 +73,7 @@ input LogInInput {
 type Mutation {
   logIn(input: LogInInput!): User!
   registerUser(input: RegisterUserInput!): User!
+  sendInvitationEmail(input: SendInvitationEmailInput!): String!
 }
 
 type Query {
@@ -85,6 +86,11 @@ input RegisterUserInput {
   password: String!
   token: String!
   username: String!
+}
+
+input SendInvitationEmailInput {
+  email: String!
+  role: String!
 }
 
 type Student implements User {
