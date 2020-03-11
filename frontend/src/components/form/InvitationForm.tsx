@@ -4,12 +4,12 @@ import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
 import { FormItem } from "./FormItem";
 import { SelectFormItem } from "./SelectFormItem";
 
-type InvitationFormFormProps = {
+type InvitationFormProps = {
   onSubmit: (values: Store) => void;
   onSubmitError: (error: ValidateErrorEntity) => void;
 };
 
-export type InvitationFormFormFields = {
+export type InvitationFormFields = {
   username: string;
   role: Role;
 };
@@ -21,17 +21,19 @@ enum Role {
   STUDENT
 }
 
-export const InvitationForm = (props: InvitationFormFormProps): JSX.Element => {
+export const InvitationForm = (props: InvitationFormProps): JSX.Element => {
   const [form] = Form.useForm();
   const { setFieldsValue, getFieldValue } = form;
 
   // Set default form values
-  React.useEffect(() => {
-    setFieldsValue({
-      email: "",
-      role: Role.INSTRUCTOR
-    });
-  }, []);
+  React.useEffect(
+    () =>
+      setFieldsValue({
+        email: "",
+        role: Role.INSTRUCTOR
+      }),
+    []
+  );
 
   return (
     <Form
@@ -52,8 +54,8 @@ export const InvitationForm = (props: InvitationFormFormProps): JSX.Element => {
         defaultValue="Instructor"
         name="role"
         options={[
-          { value: "Admin", text: "Admin" },
-          { value: "Instructor", text: "Instructor" }
+          { value: Role.ADMIN, text: "Admin" },
+          { value: Role.INSTRUCTOR, text: "Instructor" }
         ]}
         placeholder="Role"
       />
