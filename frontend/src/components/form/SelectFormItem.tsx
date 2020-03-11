@@ -5,9 +5,9 @@ const { Option } = Select;
 
 type Props = {
   name: string;
-  options: Array<{ value: string; text: string }>;
+  options: Array<{ value: string | number; text: string }>;
   placeholder: string;
-  value?: string;
+  value?: string | number;
   defaultValue: string;
 };
 

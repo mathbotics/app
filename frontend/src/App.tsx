@@ -7,8 +7,8 @@ import {
   LoginPage,
   RegisterPage,
   DashboardPage,
-  NotFoundPage,
-  CoursesPage
+  NotFoundPage
+  // CoursesPage
 } from "./pages";
 
 // Routes
@@ -28,11 +28,11 @@ export const App: React.FC = () => {
           allowedRoles={["Admin"]}
           component={withSidebar(NotFoundPage)}
         />
-        <ProtectedRoute
+        {/* <ProtectedRoute
           exact
           path="/courses"
           component={withSidebar(CoursesPage)}
-        />
+        /> */}
         <ProtectedRoute
           exact
           path="/invite"
