@@ -15,10 +15,10 @@ export type InvitationFormFields = {
 };
 
 enum Role {
-  ADMIN,
-  GUARDIAN,
-  INSTRUCTOR,
-  STUDENT
+  ADMIN = "Admin",
+  GUARDIAN = "Guardian",
+  INSTRUCTOR = "Instructor",
+  STUDENT = "Student"
 }
 
 export const InvitationForm = (props: InvitationFormProps): JSX.Element => {
