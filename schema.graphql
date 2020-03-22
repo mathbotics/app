@@ -56,6 +56,296 @@ input AdminWhereUniqueInput {
   id: String
 }
 
+union Block = MultipleChoiceQuestionBlock | TextBlock
+
+input BlockCreateManyWithoutMultipleChoiceQuestionBlockInput {
+  connect: [BlockWhereUniqueInput!]
+  create: [BlockCreateWithoutMultipleChoiceQuestionBlockInput!]
+}
+
+input BlockCreateOneWithoutHalfSlidesImplementingInput {
+  connect: BlockWhereUniqueInput
+  create: BlockCreateWithoutHalfSlidesImplementingInput
+}
+
+input BlockCreateOneWithoutHalfSlidesInput {
+  connect: BlockWhereUniqueInput
+  create: BlockCreateWithoutHalfSlidesInput
+}
+
+input BlockCreateOneWithoutQuarterSlidesImplementingInput {
+  connect: BlockWhereUniqueInput
+  create: BlockCreateWithoutQuarterSlidesImplementingInput
+}
+
+input BlockCreateOneWithoutQuarterSlidesInput {
+  connect: BlockWhereUniqueInput
+  create: BlockCreateWithoutQuarterSlidesInput
+}
+
+input BlockCreateOneWithoutSingleSlidesInput {
+  connect: BlockWhereUniqueInput
+  create: BlockCreateWithoutSingleSlidesInput
+}
+
+input BlockCreateWithoutHalfSlidesImplementingInput {
+  halfSlides: HalfSlideCreateManyWithoutFirstHalfBlockInput
+  id: String
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput
+  quarterSlides: QuarterSlideCreateManyWithoutMainBlockInput
+  quarterSlidesImplementing: QuarterSlideCreateManyWithoutSideBlockInput
+  singleSlides: SingleSlideCreateManyWithoutBlockInput
+  textBlock: TextBlockCreateOneWithoutBlocksInput
+}
+
+input BlockCreateWithoutHalfSlidesInput {
+  halfSlidesImplementing: HalfSlideCreateManyWithoutSecondHalfBlockInput
+  id: String
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput
+  quarterSlides: QuarterSlideCreateManyWithoutMainBlockInput
+  quarterSlidesImplementing: QuarterSlideCreateManyWithoutSideBlockInput
+  singleSlides: SingleSlideCreateManyWithoutBlockInput
+  textBlock: TextBlockCreateOneWithoutBlocksInput
+}
+
+input BlockCreateWithoutMultipleChoiceQuestionBlockInput {
+  halfSlides: HalfSlideCreateManyWithoutFirstHalfBlockInput
+  halfSlidesImplementing: HalfSlideCreateManyWithoutSecondHalfBlockInput
+  id: String
+  quarterSlides: QuarterSlideCreateManyWithoutMainBlockInput
+  quarterSlidesImplementing: QuarterSlideCreateManyWithoutSideBlockInput
+  singleSlides: SingleSlideCreateManyWithoutBlockInput
+  textBlock: TextBlockCreateOneWithoutBlocksInput
+}
+
+input BlockCreateWithoutQuarterSlidesImplementingInput {
+  halfSlides: HalfSlideCreateManyWithoutFirstHalfBlockInput
+  halfSlidesImplementing: HalfSlideCreateManyWithoutSecondHalfBlockInput
+  id: String
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput
+  quarterSlides: QuarterSlideCreateManyWithoutMainBlockInput
+  singleSlides: SingleSlideCreateManyWithoutBlockInput
+  textBlock: TextBlockCreateOneWithoutBlocksInput
+}
+
+input BlockCreateWithoutQuarterSlidesInput {
+  halfSlides: HalfSlideCreateManyWithoutFirstHalfBlockInput
+  halfSlidesImplementing: HalfSlideCreateManyWithoutSecondHalfBlockInput
+  id: String
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput
+  quarterSlidesImplementing: QuarterSlideCreateManyWithoutSideBlockInput
+  singleSlides: SingleSlideCreateManyWithoutBlockInput
+  textBlock: TextBlockCreateOneWithoutBlocksInput
+}
+
+input BlockCreateWithoutSingleSlidesInput {
+  halfSlides: HalfSlideCreateManyWithoutFirstHalfBlockInput
+  halfSlidesImplementing: HalfSlideCreateManyWithoutSecondHalfBlockInput
+  id: String
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput
+  quarterSlides: QuarterSlideCreateManyWithoutMainBlockInput
+  quarterSlidesImplementing: QuarterSlideCreateManyWithoutSideBlockInput
+  textBlock: TextBlockCreateOneWithoutBlocksInput
+}
+
+input BlockFilter {
+  every: BlockWhereInput
+  none: BlockWhereInput
+  some: BlockWhereInput
+}
+
+input BlockScalarWhereInput {
+  AND: [BlockScalarWhereInput!]
+  halfSlides: HalfSlideFilter
+  halfSlidesImplementing: HalfSlideFilter
+  id: StringFilter
+  NOT: [BlockScalarWhereInput!]
+  OR: [BlockScalarWhereInput!]
+  quarterSlides: QuarterSlideFilter
+  quarterSlidesImplementing: QuarterSlideFilter
+  singleSlides: SingleSlideFilter
+}
+
+input BlockUpdateManyDataInput {
+  id: String
+}
+
+input BlockUpdateManyWithoutMultipleChoiceQuestionBlockInput {
+  connect: [BlockWhereUniqueInput!]
+  create: [BlockCreateWithoutMultipleChoiceQuestionBlockInput!]
+  delete: [BlockWhereUniqueInput!]
+  deleteMany: [BlockScalarWhereInput!]
+  disconnect: [BlockWhereUniqueInput!]
+  set: [BlockWhereUniqueInput!]
+  update: [BlockUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput!]
+  updateMany: [BlockUpdateManyWithWhereNestedInput!]
+  upsert: [BlockUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput!]
+}
+
+input BlockUpdateManyWithWhereNestedInput {
+  data: BlockUpdateManyDataInput!
+  where: BlockScalarWhereInput!
+}
+
+input BlockUpdateOneWithoutHalfSlidesImplementingInput {
+  connect: BlockWhereUniqueInput
+  create: BlockCreateWithoutHalfSlidesImplementingInput
+  delete: Boolean
+  disconnect: Boolean
+  update: BlockUpdateWithoutHalfSlidesImplementingDataInput
+  upsert: BlockUpsertWithoutHalfSlidesImplementingInput
+}
+
+input BlockUpdateOneWithoutHalfSlidesInput {
+  connect: BlockWhereUniqueInput
+  create: BlockCreateWithoutHalfSlidesInput
+  delete: Boolean
+  disconnect: Boolean
+  update: BlockUpdateWithoutHalfSlidesDataInput
+  upsert: BlockUpsertWithoutHalfSlidesInput
+}
+
+input BlockUpdateOneWithoutQuarterSlidesImplementingInput {
+  connect: BlockWhereUniqueInput
+  create: BlockCreateWithoutQuarterSlidesImplementingInput
+  delete: Boolean
+  disconnect: Boolean
+  update: BlockUpdateWithoutQuarterSlidesImplementingDataInput
+  upsert: BlockUpsertWithoutQuarterSlidesImplementingInput
+}
+
+input BlockUpdateOneWithoutQuarterSlidesInput {
+  connect: BlockWhereUniqueInput
+  create: BlockCreateWithoutQuarterSlidesInput
+  delete: Boolean
+  disconnect: Boolean
+  update: BlockUpdateWithoutQuarterSlidesDataInput
+  upsert: BlockUpsertWithoutQuarterSlidesInput
+}
+
+input BlockUpdateOneWithoutSingleSlidesInput {
+  connect: BlockWhereUniqueInput
+  create: BlockCreateWithoutSingleSlidesInput
+  delete: Boolean
+  disconnect: Boolean
+  update: BlockUpdateWithoutSingleSlidesDataInput
+  upsert: BlockUpsertWithoutSingleSlidesInput
+}
+
+input BlockUpdateWithoutHalfSlidesDataInput {
+  halfSlidesImplementing: HalfSlideUpdateManyWithoutSecondHalfBlockInput
+  id: String
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput
+  quarterSlides: QuarterSlideUpdateManyWithoutMainBlockInput
+  quarterSlidesImplementing: QuarterSlideUpdateManyWithoutSideBlockInput
+  singleSlides: SingleSlideUpdateManyWithoutBlockInput
+  textBlock: TextBlockUpdateOneWithoutBlocksInput
+}
+
+input BlockUpdateWithoutHalfSlidesImplementingDataInput {
+  halfSlides: HalfSlideUpdateManyWithoutFirstHalfBlockInput
+  id: String
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput
+  quarterSlides: QuarterSlideUpdateManyWithoutMainBlockInput
+  quarterSlidesImplementing: QuarterSlideUpdateManyWithoutSideBlockInput
+  singleSlides: SingleSlideUpdateManyWithoutBlockInput
+  textBlock: TextBlockUpdateOneWithoutBlocksInput
+}
+
+input BlockUpdateWithoutMultipleChoiceQuestionBlockDataInput {
+  halfSlides: HalfSlideUpdateManyWithoutFirstHalfBlockInput
+  halfSlidesImplementing: HalfSlideUpdateManyWithoutSecondHalfBlockInput
+  id: String
+  quarterSlides: QuarterSlideUpdateManyWithoutMainBlockInput
+  quarterSlidesImplementing: QuarterSlideUpdateManyWithoutSideBlockInput
+  singleSlides: SingleSlideUpdateManyWithoutBlockInput
+  textBlock: TextBlockUpdateOneWithoutBlocksInput
+}
+
+input BlockUpdateWithoutQuarterSlidesDataInput {
+  halfSlides: HalfSlideUpdateManyWithoutFirstHalfBlockInput
+  halfSlidesImplementing: HalfSlideUpdateManyWithoutSecondHalfBlockInput
+  id: String
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput
+  quarterSlidesImplementing: QuarterSlideUpdateManyWithoutSideBlockInput
+  singleSlides: SingleSlideUpdateManyWithoutBlockInput
+  textBlock: TextBlockUpdateOneWithoutBlocksInput
+}
+
+input BlockUpdateWithoutQuarterSlidesImplementingDataInput {
+  halfSlides: HalfSlideUpdateManyWithoutFirstHalfBlockInput
+  halfSlidesImplementing: HalfSlideUpdateManyWithoutSecondHalfBlockInput
+  id: String
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput
+  quarterSlides: QuarterSlideUpdateManyWithoutMainBlockInput
+  singleSlides: SingleSlideUpdateManyWithoutBlockInput
+  textBlock: TextBlockUpdateOneWithoutBlocksInput
+}
+
+input BlockUpdateWithoutSingleSlidesDataInput {
+  halfSlides: HalfSlideUpdateManyWithoutFirstHalfBlockInput
+  halfSlidesImplementing: HalfSlideUpdateManyWithoutSecondHalfBlockInput
+  id: String
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput
+  quarterSlides: QuarterSlideUpdateManyWithoutMainBlockInput
+  quarterSlidesImplementing: QuarterSlideUpdateManyWithoutSideBlockInput
+  textBlock: TextBlockUpdateOneWithoutBlocksInput
+}
+
+input BlockUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput {
+  data: BlockUpdateWithoutMultipleChoiceQuestionBlockDataInput!
+  where: BlockWhereUniqueInput!
+}
+
+input BlockUpsertWithoutHalfSlidesImplementingInput {
+  create: BlockCreateWithoutHalfSlidesImplementingInput!
+  update: BlockUpdateWithoutHalfSlidesImplementingDataInput!
+}
+
+input BlockUpsertWithoutHalfSlidesInput {
+  create: BlockCreateWithoutHalfSlidesInput!
+  update: BlockUpdateWithoutHalfSlidesDataInput!
+}
+
+input BlockUpsertWithoutQuarterSlidesImplementingInput {
+  create: BlockCreateWithoutQuarterSlidesImplementingInput!
+  update: BlockUpdateWithoutQuarterSlidesImplementingDataInput!
+}
+
+input BlockUpsertWithoutQuarterSlidesInput {
+  create: BlockCreateWithoutQuarterSlidesInput!
+  update: BlockUpdateWithoutQuarterSlidesDataInput!
+}
+
+input BlockUpsertWithoutSingleSlidesInput {
+  create: BlockCreateWithoutSingleSlidesInput!
+  update: BlockUpdateWithoutSingleSlidesDataInput!
+}
+
+input BlockUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput {
+  create: BlockCreateWithoutMultipleChoiceQuestionBlockInput!
+  update: BlockUpdateWithoutMultipleChoiceQuestionBlockDataInput!
+  where: BlockWhereUniqueInput!
+}
+
+input BlockWhereInput {
+  AND: [BlockWhereInput!]
+  halfSlides: HalfSlideFilter
+  halfSlidesImplementing: HalfSlideFilter
+  id: StringFilter
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockWhereInput
+  NOT: [BlockWhereInput!]
+  OR: [BlockWhereInput!]
+  quarterSlides: QuarterSlideFilter
+  quarterSlidesImplementing: QuarterSlideFilter
+  singleSlides: SingleSlideFilter
+  textBlock: TextBlockWhereInput
+}
+
+input BlockWhereUniqueInput {
+  id: String
+}
+
 type Content {
   author: String!
   course: Course
@@ -153,11 +443,10 @@ input ContentWhereUniqueInput {
 }
 
 type Course {
-  contents(after: ContentWhereUniqueInput, before: ContentWhereUniqueInput, first: Int, last: Int, skip: Int): [Content!]!
   id: String!
   instructors(after: InstructorWhereUniqueInput, before: InstructorWhereUniqueInput, first: Int, last: Int, skip: Int): [Instructor!]!
+  lessonPlan: LessonPlan!
   name: String!
-  students(after: StudentWhereUniqueInput, before: StudentWhereUniqueInput, first: Int, last: Int, skip: Int): [Student!]!
   suggestedLevel: GradeLevel!
 }
 
@@ -166,6 +455,7 @@ input CourseCreateInput {
   createdAt: DateTime
   id: String
   instructors: InstructorCreateManyWithoutCoursesInput
+  lessonPlan: LessonPlanCreateOneWithoutCourseInput!
   name: String!
   students: StudentCreateManyWithoutCoursesInput
   suggestedLevel: GradeLevel!
@@ -181,10 +471,26 @@ input CourseCreateManyWithoutStudentsInput {
   create: [CourseCreateWithoutStudentsInput!]
 }
 
+input CourseCreateOneWithoutLessonPlanInput {
+  connect: CourseWhereUniqueInput
+  create: CourseCreateWithoutLessonPlanInput
+}
+
 input CourseCreateWithoutInstructorsInput {
   contents: ContentCreateManyWithoutCourseInput
   createdAt: DateTime
   id: String
+  lessonPlan: LessonPlanCreateOneWithoutCourseInput!
+  name: String!
+  students: StudentCreateManyWithoutCoursesInput
+  suggestedLevel: GradeLevel!
+}
+
+input CourseCreateWithoutLessonPlanInput {
+  contents: ContentCreateManyWithoutCourseInput
+  createdAt: DateTime
+  id: String
+  instructors: InstructorCreateManyWithoutCoursesInput
   name: String!
   students: StudentCreateManyWithoutCoursesInput
   suggestedLevel: GradeLevel!
@@ -195,6 +501,7 @@ input CourseCreateWithoutStudentsInput {
   createdAt: DateTime
   id: String
   instructors: InstructorCreateManyWithoutCoursesInput
+  lessonPlan: LessonPlanCreateOneWithoutCourseInput!
   name: String!
   suggestedLevel: GradeLevel!
 }
@@ -223,6 +530,7 @@ input CourseUpdateInput {
   createdAt: DateTime
   id: String
   instructors: InstructorUpdateManyWithoutCoursesInput
+  lessonPlan: LessonPlanUpdateOneRequiredWithoutCourseInput
   name: String
   students: StudentUpdateManyWithoutCoursesInput
   suggestedLevel: GradeLevel
@@ -264,10 +572,28 @@ input CourseUpdateManyWithWhereNestedInput {
   where: CourseScalarWhereInput!
 }
 
+input CourseUpdateOneRequiredWithoutLessonPlanInput {
+  connect: CourseWhereUniqueInput
+  create: CourseCreateWithoutLessonPlanInput
+  update: CourseUpdateWithoutLessonPlanDataInput
+  upsert: CourseUpsertWithoutLessonPlanInput
+}
+
 input CourseUpdateWithoutInstructorsDataInput {
   contents: ContentUpdateManyWithoutCourseInput
   createdAt: DateTime
   id: String
+  lessonPlan: LessonPlanUpdateOneRequiredWithoutCourseInput
+  name: String
+  students: StudentUpdateManyWithoutCoursesInput
+  suggestedLevel: GradeLevel
+}
+
+input CourseUpdateWithoutLessonPlanDataInput {
+  contents: ContentUpdateManyWithoutCourseInput
+  createdAt: DateTime
+  id: String
+  instructors: InstructorUpdateManyWithoutCoursesInput
   name: String
   students: StudentUpdateManyWithoutCoursesInput
   suggestedLevel: GradeLevel
@@ -278,6 +604,7 @@ input CourseUpdateWithoutStudentsDataInput {
   createdAt: DateTime
   id: String
   instructors: InstructorUpdateManyWithoutCoursesInput
+  lessonPlan: LessonPlanUpdateOneRequiredWithoutCourseInput
   name: String
   suggestedLevel: GradeLevel
 }
@@ -290,6 +617,11 @@ input CourseUpdateWithWhereUniqueWithoutInstructorsInput {
 input CourseUpdateWithWhereUniqueWithoutStudentsInput {
   data: CourseUpdateWithoutStudentsDataInput!
   where: CourseWhereUniqueInput!
+}
+
+input CourseUpsertWithoutLessonPlanInput {
+  create: CourseCreateWithoutLessonPlanInput!
+  update: CourseUpdateWithoutLessonPlanDataInput!
 }
 
 input CourseUpsertWithWhereUniqueWithoutInstructorsInput {
@@ -310,6 +642,7 @@ input CourseWhereInput {
   createdAt: DateTimeFilter
   id: StringFilter
   instructors: InstructorFilter
+  lessonPlan: LessonPlanWhereInput
   name: StringFilter
   NOT: [CourseWhereInput!]
   OR: [CourseWhereInput!]
@@ -319,6 +652,10 @@ input CourseWhereInput {
 
 input CourseWhereUniqueInput {
   id: String
+}
+
+input CreateSlideInput {
+  slideType: String!
 }
 
 scalar DateTime
@@ -476,13 +813,166 @@ input GuardianWhereUniqueInput {
   id: String
 }
 
+type HalfSlide {
+  firstHalfBlock: Block!
+  id: String!
+  secondHalfBlock: Block!
+}
+
+input HalfSlideCreateManyWithoutFirstHalfBlockInput {
+  connect: [HalfSlideWhereUniqueInput!]
+  create: [HalfSlideCreateWithoutFirstHalfBlockInput!]
+}
+
+input HalfSlideCreateManyWithoutSecondHalfBlockInput {
+  connect: [HalfSlideWhereUniqueInput!]
+  create: [HalfSlideCreateWithoutSecondHalfBlockInput!]
+}
+
+input HalfSlideCreateOneWithoutSlidesInput {
+  connect: HalfSlideWhereUniqueInput
+  create: HalfSlideCreateWithoutSlidesInput
+}
+
+input HalfSlideCreateWithoutFirstHalfBlockInput {
+  id: String
+  secondHalfBlock: BlockCreateOneWithoutHalfSlidesImplementingInput
+  slides: SlideCreateManyWithoutHalfSlideInput
+}
+
+input HalfSlideCreateWithoutSecondHalfBlockInput {
+  firstHalfBlock: BlockCreateOneWithoutHalfSlidesInput
+  id: String
+  slides: SlideCreateManyWithoutHalfSlideInput
+}
+
+input HalfSlideCreateWithoutSlidesInput {
+  firstHalfBlock: BlockCreateOneWithoutHalfSlidesInput
+  id: String
+  secondHalfBlock: BlockCreateOneWithoutHalfSlidesImplementingInput
+}
+
+input HalfSlideFilter {
+  every: HalfSlideWhereInput
+  none: HalfSlideWhereInput
+  some: HalfSlideWhereInput
+}
+
+input HalfSlideScalarWhereInput {
+  AND: [HalfSlideScalarWhereInput!]
+  id: StringFilter
+  NOT: [HalfSlideScalarWhereInput!]
+  OR: [HalfSlideScalarWhereInput!]
+  slides: SlideFilter
+}
+
+input HalfSlideUpdateManyDataInput {
+  id: String
+}
+
+input HalfSlideUpdateManyWithoutFirstHalfBlockInput {
+  connect: [HalfSlideWhereUniqueInput!]
+  create: [HalfSlideCreateWithoutFirstHalfBlockInput!]
+  delete: [HalfSlideWhereUniqueInput!]
+  deleteMany: [HalfSlideScalarWhereInput!]
+  disconnect: [HalfSlideWhereUniqueInput!]
+  set: [HalfSlideWhereUniqueInput!]
+  update: [HalfSlideUpdateWithWhereUniqueWithoutFirstHalfBlockInput!]
+  updateMany: [HalfSlideUpdateManyWithWhereNestedInput!]
+  upsert: [HalfSlideUpsertWithWhereUniqueWithoutFirstHalfBlockInput!]
+}
+
+input HalfSlideUpdateManyWithoutSecondHalfBlockInput {
+  connect: [HalfSlideWhereUniqueInput!]
+  create: [HalfSlideCreateWithoutSecondHalfBlockInput!]
+  delete: [HalfSlideWhereUniqueInput!]
+  deleteMany: [HalfSlideScalarWhereInput!]
+  disconnect: [HalfSlideWhereUniqueInput!]
+  set: [HalfSlideWhereUniqueInput!]
+  update: [HalfSlideUpdateWithWhereUniqueWithoutSecondHalfBlockInput!]
+  updateMany: [HalfSlideUpdateManyWithWhereNestedInput!]
+  upsert: [HalfSlideUpsertWithWhereUniqueWithoutSecondHalfBlockInput!]
+}
+
+input HalfSlideUpdateManyWithWhereNestedInput {
+  data: HalfSlideUpdateManyDataInput!
+  where: HalfSlideScalarWhereInput!
+}
+
+input HalfSlideUpdateOneWithoutSlidesInput {
+  connect: HalfSlideWhereUniqueInput
+  create: HalfSlideCreateWithoutSlidesInput
+  delete: Boolean
+  disconnect: Boolean
+  update: HalfSlideUpdateWithoutSlidesDataInput
+  upsert: HalfSlideUpsertWithoutSlidesInput
+}
+
+input HalfSlideUpdateWithoutFirstHalfBlockDataInput {
+  id: String
+  secondHalfBlock: BlockUpdateOneWithoutHalfSlidesImplementingInput
+  slides: SlideUpdateManyWithoutHalfSlideInput
+}
+
+input HalfSlideUpdateWithoutSecondHalfBlockDataInput {
+  firstHalfBlock: BlockUpdateOneWithoutHalfSlidesInput
+  id: String
+  slides: SlideUpdateManyWithoutHalfSlideInput
+}
+
+input HalfSlideUpdateWithoutSlidesDataInput {
+  firstHalfBlock: BlockUpdateOneWithoutHalfSlidesInput
+  id: String
+  secondHalfBlock: BlockUpdateOneWithoutHalfSlidesImplementingInput
+}
+
+input HalfSlideUpdateWithWhereUniqueWithoutFirstHalfBlockInput {
+  data: HalfSlideUpdateWithoutFirstHalfBlockDataInput!
+  where: HalfSlideWhereUniqueInput!
+}
+
+input HalfSlideUpdateWithWhereUniqueWithoutSecondHalfBlockInput {
+  data: HalfSlideUpdateWithoutSecondHalfBlockDataInput!
+  where: HalfSlideWhereUniqueInput!
+}
+
+input HalfSlideUpsertWithoutSlidesInput {
+  create: HalfSlideCreateWithoutSlidesInput!
+  update: HalfSlideUpdateWithoutSlidesDataInput!
+}
+
+input HalfSlideUpsertWithWhereUniqueWithoutFirstHalfBlockInput {
+  create: HalfSlideCreateWithoutFirstHalfBlockInput!
+  update: HalfSlideUpdateWithoutFirstHalfBlockDataInput!
+  where: HalfSlideWhereUniqueInput!
+}
+
+input HalfSlideUpsertWithWhereUniqueWithoutSecondHalfBlockInput {
+  create: HalfSlideCreateWithoutSecondHalfBlockInput!
+  update: HalfSlideUpdateWithoutSecondHalfBlockDataInput!
+  where: HalfSlideWhereUniqueInput!
+}
+
+input HalfSlideWhereInput {
+  AND: [HalfSlideWhereInput!]
+  firstHalfBlock: BlockWhereInput
+  id: StringFilter
+  NOT: [HalfSlideWhereInput!]
+  OR: [HalfSlideWhereInput!]
+  secondHalfBlock: BlockWhereInput
+  slides: SlideFilter
+}
+
+input HalfSlideWhereUniqueInput {
+  id: String
+}
+
 type Instructor implements User {
   courses(after: CourseWhereUniqueInput, before: CourseWhereUniqueInput, first: Int, last: Int, skip: Int): [Course!]!
   email: String!
   firstName: String!
   id: String!
   lastName: String!
-  user: User!
   username: String!
 }
 
@@ -604,17 +1094,697 @@ input InstructorWhereUniqueInput {
   id: String
 }
 
+type Lesson {
+  id: String!
+  slides: [Slide!]!
+  title: String!
+}
+
+input LessonCreateInput {
+  id: String
+  lessonPlan: LessonPlanCreateOneWithoutLessonsInput
+  slides: SlideCreateManyWithoutLessonInput
+  title: String!
+}
+
+input LessonCreateManyWithoutLessonPlanInput {
+  connect: [LessonWhereUniqueInput!]
+  create: [LessonCreateWithoutLessonPlanInput!]
+}
+
+input LessonCreateOneWithoutSlidesInput {
+  connect: LessonWhereUniqueInput
+  create: LessonCreateWithoutSlidesInput
+}
+
+input LessonCreateWithoutLessonPlanInput {
+  id: String
+  slides: SlideCreateManyWithoutLessonInput
+  title: String!
+}
+
+input LessonCreateWithoutSlidesInput {
+  id: String
+  lessonPlan: LessonPlanCreateOneWithoutLessonsInput
+  title: String!
+}
+
+input LessonFilter {
+  every: LessonWhereInput
+  none: LessonWhereInput
+  some: LessonWhereInput
+}
+
+type LessonPlan {
+  id: String!
+  lessons(after: LessonWhereUniqueInput, before: LessonWhereUniqueInput, first: Int, last: Int, skip: Int): [Lesson!]!
+}
+
+input LessonPlanCreateOneWithoutCourseInput {
+  connect: LessonPlanWhereUniqueInput
+  create: LessonPlanCreateWithoutCourseInput
+}
+
+input LessonPlanCreateOneWithoutLessonsInput {
+  connect: LessonPlanWhereUniqueInput
+  create: LessonPlanCreateWithoutLessonsInput
+}
+
+input LessonPlanCreateWithoutCourseInput {
+  id: String
+  lessons: LessonCreateManyWithoutLessonPlanInput
+}
+
+input LessonPlanCreateWithoutLessonsInput {
+  course: CourseCreateOneWithoutLessonPlanInput!
+  id: String
+}
+
+input LessonPlanUpdateOneRequiredWithoutCourseInput {
+  connect: LessonPlanWhereUniqueInput
+  create: LessonPlanCreateWithoutCourseInput
+  update: LessonPlanUpdateWithoutCourseDataInput
+  upsert: LessonPlanUpsertWithoutCourseInput
+}
+
+input LessonPlanUpdateOneWithoutLessonsInput {
+  connect: LessonPlanWhereUniqueInput
+  create: LessonPlanCreateWithoutLessonsInput
+  delete: Boolean
+  disconnect: Boolean
+  update: LessonPlanUpdateWithoutLessonsDataInput
+  upsert: LessonPlanUpsertWithoutLessonsInput
+}
+
+input LessonPlanUpdateWithoutCourseDataInput {
+  id: String
+  lessons: LessonUpdateManyWithoutLessonPlanInput
+}
+
+input LessonPlanUpdateWithoutLessonsDataInput {
+  course: CourseUpdateOneRequiredWithoutLessonPlanInput
+  id: String
+}
+
+input LessonPlanUpsertWithoutCourseInput {
+  create: LessonPlanCreateWithoutCourseInput!
+  update: LessonPlanUpdateWithoutCourseDataInput!
+}
+
+input LessonPlanUpsertWithoutLessonsInput {
+  create: LessonPlanCreateWithoutLessonsInput!
+  update: LessonPlanUpdateWithoutLessonsDataInput!
+}
+
+input LessonPlanWhereInput {
+  AND: [LessonPlanWhereInput!]
+  course: CourseWhereInput
+  id: StringFilter
+  lessons: LessonFilter
+  NOT: [LessonPlanWhereInput!]
+  OR: [LessonPlanWhereInput!]
+}
+
+input LessonPlanWhereUniqueInput {
+  id: String
+}
+
+input LessonScalarWhereInput {
+  AND: [LessonScalarWhereInput!]
+  id: StringFilter
+  NOT: [LessonScalarWhereInput!]
+  OR: [LessonScalarWhereInput!]
+  slides: SlideFilter
+  title: StringFilter
+}
+
+input LessonUpdateManyDataInput {
+  id: String
+  title: String
+}
+
+input LessonUpdateManyWithoutLessonPlanInput {
+  connect: [LessonWhereUniqueInput!]
+  create: [LessonCreateWithoutLessonPlanInput!]
+  delete: [LessonWhereUniqueInput!]
+  deleteMany: [LessonScalarWhereInput!]
+  disconnect: [LessonWhereUniqueInput!]
+  set: [LessonWhereUniqueInput!]
+  update: [LessonUpdateWithWhereUniqueWithoutLessonPlanInput!]
+  updateMany: [LessonUpdateManyWithWhereNestedInput!]
+  upsert: [LessonUpsertWithWhereUniqueWithoutLessonPlanInput!]
+}
+
+input LessonUpdateManyWithWhereNestedInput {
+  data: LessonUpdateManyDataInput!
+  where: LessonScalarWhereInput!
+}
+
+input LessonUpdateOneWithoutSlidesInput {
+  connect: LessonWhereUniqueInput
+  create: LessonCreateWithoutSlidesInput
+  delete: Boolean
+  disconnect: Boolean
+  update: LessonUpdateWithoutSlidesDataInput
+  upsert: LessonUpsertWithoutSlidesInput
+}
+
+input LessonUpdateWithoutLessonPlanDataInput {
+  id: String
+  slides: SlideUpdateManyWithoutLessonInput
+  title: String
+}
+
+input LessonUpdateWithoutSlidesDataInput {
+  id: String
+  lessonPlan: LessonPlanUpdateOneWithoutLessonsInput
+  title: String
+}
+
+input LessonUpdateWithWhereUniqueWithoutLessonPlanInput {
+  data: LessonUpdateWithoutLessonPlanDataInput!
+  where: LessonWhereUniqueInput!
+}
+
+input LessonUpsertWithoutSlidesInput {
+  create: LessonCreateWithoutSlidesInput!
+  update: LessonUpdateWithoutSlidesDataInput!
+}
+
+input LessonUpsertWithWhereUniqueWithoutLessonPlanInput {
+  create: LessonCreateWithoutLessonPlanInput!
+  update: LessonUpdateWithoutLessonPlanDataInput!
+  where: LessonWhereUniqueInput!
+}
+
+input LessonWhereInput {
+  AND: [LessonWhereInput!]
+  id: StringFilter
+  lessonPlan: LessonPlanWhereInput
+  NOT: [LessonWhereInput!]
+  OR: [LessonWhereInput!]
+  slides: SlideFilter
+  title: StringFilter
+}
+
+input LessonWhereUniqueInput {
+  id: String
+}
+
 input LogInInput {
   password: String!
   username: String!
 }
 
+type MultipleChoiceQuestionBlock {
+  choices(after: MultipleChoiceQuestionChoiceWhereUniqueInput, before: MultipleChoiceQuestionChoiceWhereUniqueInput, first: Int, last: Int, skip: Int): [MultipleChoiceQuestionChoice!]!
+  correctChoice: MultipleChoiceQuestionChoice!
+  id: String!
+  text: String!
+}
+
+input MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput {
+  connect: MultipleChoiceQuestionBlockWhereUniqueInput
+  create: MultipleChoiceQuestionBlockCreateWithoutBlocksInput
+}
+
+input MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput {
+  connect: MultipleChoiceQuestionBlockWhereUniqueInput
+  create: MultipleChoiceQuestionBlockCreateWithoutChoicesInput
+}
+
+input MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput {
+  connect: MultipleChoiceQuestionBlockWhereUniqueInput
+  create: MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput
+}
+
+input MultipleChoiceQuestionBlockCreateOneWithoutResponsesInput {
+  connect: MultipleChoiceQuestionBlockWhereUniqueInput
+  create: MultipleChoiceQuestionBlockCreateWithoutResponsesInput
+}
+
+input MultipleChoiceQuestionBlockCreateWithoutBlocksInput {
+  choices: MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput
+  correctChoice: MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput!
+  id: String
+  responses: MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput
+  text: String!
+}
+
+input MultipleChoiceQuestionBlockCreateWithoutChoicesInput {
+  blocks: BlockCreateManyWithoutMultipleChoiceQuestionBlockInput
+  correctChoice: MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput!
+  id: String
+  responses: MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput
+  text: String!
+}
+
+input MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput {
+  blocks: BlockCreateManyWithoutMultipleChoiceQuestionBlockInput
+  choices: MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput
+  id: String
+  responses: MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput
+  text: String!
+}
+
+input MultipleChoiceQuestionBlockCreateWithoutResponsesInput {
+  blocks: BlockCreateManyWithoutMultipleChoiceQuestionBlockInput
+  choices: MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput
+  correctChoice: MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput!
+  id: String
+  text: String!
+}
+
+input MultipleChoiceQuestionBlockUpdateOneRequiredWithoutCorrectChoiceInput {
+  connect: MultipleChoiceQuestionBlockWhereUniqueInput
+  create: MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput
+  update: MultipleChoiceQuestionBlockUpdateWithoutCorrectChoiceDataInput
+  upsert: MultipleChoiceQuestionBlockUpsertWithoutCorrectChoiceInput
+}
+
+input MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput {
+  connect: MultipleChoiceQuestionBlockWhereUniqueInput
+  create: MultipleChoiceQuestionBlockCreateWithoutBlocksInput
+  delete: Boolean
+  disconnect: Boolean
+  update: MultipleChoiceQuestionBlockUpdateWithoutBlocksDataInput
+  upsert: MultipleChoiceQuestionBlockUpsertWithoutBlocksInput
+}
+
+input MultipleChoiceQuestionBlockUpdateOneWithoutChoicesInput {
+  connect: MultipleChoiceQuestionBlockWhereUniqueInput
+  create: MultipleChoiceQuestionBlockCreateWithoutChoicesInput
+  delete: Boolean
+  disconnect: Boolean
+  update: MultipleChoiceQuestionBlockUpdateWithoutChoicesDataInput
+  upsert: MultipleChoiceQuestionBlockUpsertWithoutChoicesInput
+}
+
+input MultipleChoiceQuestionBlockUpdateOneWithoutResponsesInput {
+  connect: MultipleChoiceQuestionBlockWhereUniqueInput
+  create: MultipleChoiceQuestionBlockCreateWithoutResponsesInput
+  delete: Boolean
+  disconnect: Boolean
+  update: MultipleChoiceQuestionBlockUpdateWithoutResponsesDataInput
+  upsert: MultipleChoiceQuestionBlockUpsertWithoutResponsesInput
+}
+
+input MultipleChoiceQuestionBlockUpdateWithoutBlocksDataInput {
+  choices: MultipleChoiceQuestionChoiceUpdateManyWithoutMultipleChoiceQuestionBlockInput
+  correctChoice: MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutQuestionInput
+  id: String
+  responses: MultipleChoiceQuestionResponseUpdateManyWithoutMultipleChoiceQuestionBlockInput
+  text: String
+}
+
+input MultipleChoiceQuestionBlockUpdateWithoutChoicesDataInput {
+  blocks: BlockUpdateManyWithoutMultipleChoiceQuestionBlockInput
+  correctChoice: MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutQuestionInput
+  id: String
+  responses: MultipleChoiceQuestionResponseUpdateManyWithoutMultipleChoiceQuestionBlockInput
+  text: String
+}
+
+input MultipleChoiceQuestionBlockUpdateWithoutCorrectChoiceDataInput {
+  blocks: BlockUpdateManyWithoutMultipleChoiceQuestionBlockInput
+  choices: MultipleChoiceQuestionChoiceUpdateManyWithoutMultipleChoiceQuestionBlockInput
+  id: String
+  responses: MultipleChoiceQuestionResponseUpdateManyWithoutMultipleChoiceQuestionBlockInput
+  text: String
+}
+
+input MultipleChoiceQuestionBlockUpdateWithoutResponsesDataInput {
+  blocks: BlockUpdateManyWithoutMultipleChoiceQuestionBlockInput
+  choices: MultipleChoiceQuestionChoiceUpdateManyWithoutMultipleChoiceQuestionBlockInput
+  correctChoice: MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutQuestionInput
+  id: String
+  text: String
+}
+
+input MultipleChoiceQuestionBlockUpsertWithoutBlocksInput {
+  create: MultipleChoiceQuestionBlockCreateWithoutBlocksInput!
+  update: MultipleChoiceQuestionBlockUpdateWithoutBlocksDataInput!
+}
+
+input MultipleChoiceQuestionBlockUpsertWithoutChoicesInput {
+  create: MultipleChoiceQuestionBlockCreateWithoutChoicesInput!
+  update: MultipleChoiceQuestionBlockUpdateWithoutChoicesDataInput!
+}
+
+input MultipleChoiceQuestionBlockUpsertWithoutCorrectChoiceInput {
+  create: MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput!
+  update: MultipleChoiceQuestionBlockUpdateWithoutCorrectChoiceDataInput!
+}
+
+input MultipleChoiceQuestionBlockUpsertWithoutResponsesInput {
+  create: MultipleChoiceQuestionBlockCreateWithoutResponsesInput!
+  update: MultipleChoiceQuestionBlockUpdateWithoutResponsesDataInput!
+}
+
+input MultipleChoiceQuestionBlockWhereInput {
+  AND: [MultipleChoiceQuestionBlockWhereInput!]
+  blocks: BlockFilter
+  choices: MultipleChoiceQuestionChoiceFilter
+  correctChoice: MultipleChoiceQuestionChoiceWhereInput
+  id: StringFilter
+  NOT: [MultipleChoiceQuestionBlockWhereInput!]
+  OR: [MultipleChoiceQuestionBlockWhereInput!]
+  responses: MultipleChoiceQuestionResponseFilter
+  text: StringFilter
+}
+
+input MultipleChoiceQuestionBlockWhereUniqueInput {
+  id: String
+}
+
+type MultipleChoiceQuestionChoice {
+  id: String!
+  question: MultipleChoiceQuestionBlock!
+  text: String!
+}
+
+input MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput {
+  connect: [MultipleChoiceQuestionChoiceWhereUniqueInput!]
+  create: [MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput!]
+}
+
+input MultipleChoiceQuestionChoiceCreateOneWithoutMultipleChoiceQuestionResponsesInput {
+  connect: MultipleChoiceQuestionChoiceWhereUniqueInput
+  create: MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput
+}
+
+input MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput {
+  connect: MultipleChoiceQuestionChoiceWhereUniqueInput
+  create: MultipleChoiceQuestionChoiceCreateWithoutQuestionInput
+}
+
+input MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput {
+  id: String
+  multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput
+  question: MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput!
+  text: String!
+}
+
+input MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput {
+  id: String
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput
+  question: MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput!
+  text: String!
+}
+
+input MultipleChoiceQuestionChoiceCreateWithoutQuestionInput {
+  id: String
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput
+  multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput
+  text: String!
+}
+
+input MultipleChoiceQuestionChoiceFilter {
+  every: MultipleChoiceQuestionChoiceWhereInput
+  none: MultipleChoiceQuestionChoiceWhereInput
+  some: MultipleChoiceQuestionChoiceWhereInput
+}
+
+input MultipleChoiceQuestionChoiceScalarWhereInput {
+  AND: [MultipleChoiceQuestionChoiceScalarWhereInput!]
+  id: StringFilter
+  multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseFilter
+  NOT: [MultipleChoiceQuestionChoiceScalarWhereInput!]
+  OR: [MultipleChoiceQuestionChoiceScalarWhereInput!]
+  text: StringFilter
+}
+
+input MultipleChoiceQuestionChoiceUpdateManyDataInput {
+  id: String
+  text: String
+}
+
+input MultipleChoiceQuestionChoiceUpdateManyWithoutMultipleChoiceQuestionBlockInput {
+  connect: [MultipleChoiceQuestionChoiceWhereUniqueInput!]
+  create: [MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput!]
+  delete: [MultipleChoiceQuestionChoiceWhereUniqueInput!]
+  deleteMany: [MultipleChoiceQuestionChoiceScalarWhereInput!]
+  disconnect: [MultipleChoiceQuestionChoiceWhereUniqueInput!]
+  set: [MultipleChoiceQuestionChoiceWhereUniqueInput!]
+  update: [MultipleChoiceQuestionChoiceUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput!]
+  updateMany: [MultipleChoiceQuestionChoiceUpdateManyWithWhereNestedInput!]
+  upsert: [MultipleChoiceQuestionChoiceUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput!]
+}
+
+input MultipleChoiceQuestionChoiceUpdateManyWithWhereNestedInput {
+  data: MultipleChoiceQuestionChoiceUpdateManyDataInput!
+  where: MultipleChoiceQuestionChoiceScalarWhereInput!
+}
+
+input MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput {
+  connect: MultipleChoiceQuestionChoiceWhereUniqueInput
+  create: MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput
+  update: MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionResponsesDataInput
+  upsert: MultipleChoiceQuestionChoiceUpsertWithoutMultipleChoiceQuestionResponsesInput
+}
+
+input MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutQuestionInput {
+  connect: MultipleChoiceQuestionChoiceWhereUniqueInput
+  create: MultipleChoiceQuestionChoiceCreateWithoutQuestionInput
+  update: MultipleChoiceQuestionChoiceUpdateWithoutQuestionDataInput
+  upsert: MultipleChoiceQuestionChoiceUpsertWithoutQuestionInput
+}
+
+input MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionBlockDataInput {
+  id: String
+  multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseUpdateManyWithoutChoiceInput
+  question: MultipleChoiceQuestionBlockUpdateOneRequiredWithoutCorrectChoiceInput
+  text: String
+}
+
+input MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionResponsesDataInput {
+  id: String
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockUpdateOneWithoutChoicesInput
+  question: MultipleChoiceQuestionBlockUpdateOneRequiredWithoutCorrectChoiceInput
+  text: String
+}
+
+input MultipleChoiceQuestionChoiceUpdateWithoutQuestionDataInput {
+  id: String
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockUpdateOneWithoutChoicesInput
+  multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseUpdateManyWithoutChoiceInput
+  text: String
+}
+
+input MultipleChoiceQuestionChoiceUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput {
+  data: MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionBlockDataInput!
+  where: MultipleChoiceQuestionChoiceWhereUniqueInput!
+}
+
+input MultipleChoiceQuestionChoiceUpsertWithoutMultipleChoiceQuestionResponsesInput {
+  create: MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput!
+  update: MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionResponsesDataInput!
+}
+
+input MultipleChoiceQuestionChoiceUpsertWithoutQuestionInput {
+  create: MultipleChoiceQuestionChoiceCreateWithoutQuestionInput!
+  update: MultipleChoiceQuestionChoiceUpdateWithoutQuestionDataInput!
+}
+
+input MultipleChoiceQuestionChoiceUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput {
+  create: MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput!
+  update: MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionBlockDataInput!
+  where: MultipleChoiceQuestionChoiceWhereUniqueInput!
+}
+
+input MultipleChoiceQuestionChoiceWhereInput {
+  AND: [MultipleChoiceQuestionChoiceWhereInput!]
+  id: StringFilter
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockWhereInput
+  multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseFilter
+  NOT: [MultipleChoiceQuestionChoiceWhereInput!]
+  OR: [MultipleChoiceQuestionChoiceWhereInput!]
+  question: MultipleChoiceQuestionBlockWhereInput
+  text: StringFilter
+}
+
+input MultipleChoiceQuestionChoiceWhereUniqueInput {
+  id: String
+}
+
+input MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput {
+  connect: [MultipleChoiceQuestionResponseWhereUniqueInput!]
+  create: [MultipleChoiceQuestionResponseCreateWithoutChoiceInput!]
+}
+
+input MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput {
+  connect: [MultipleChoiceQuestionResponseWhereUniqueInput!]
+  create: [MultipleChoiceQuestionResponseCreateWithoutMultipleChoiceQuestionBlockInput!]
+}
+
+input MultipleChoiceQuestionResponseCreateManyWithoutStudentInput {
+  connect: [MultipleChoiceQuestionResponseWhereUniqueInput!]
+  create: [MultipleChoiceQuestionResponseCreateWithoutStudentInput!]
+}
+
+input MultipleChoiceQuestionResponseCreateWithoutChoiceInput {
+  id: String
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockCreateOneWithoutResponsesInput
+  student: StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput!
+}
+
+input MultipleChoiceQuestionResponseCreateWithoutMultipleChoiceQuestionBlockInput {
+  choice: MultipleChoiceQuestionChoiceCreateOneWithoutMultipleChoiceQuestionResponsesInput!
+  id: String
+  student: StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput!
+}
+
+input MultipleChoiceQuestionResponseCreateWithoutStudentInput {
+  choice: MultipleChoiceQuestionChoiceCreateOneWithoutMultipleChoiceQuestionResponsesInput!
+  id: String
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockCreateOneWithoutResponsesInput
+}
+
+input MultipleChoiceQuestionResponseFilter {
+  every: MultipleChoiceQuestionResponseWhereInput
+  none: MultipleChoiceQuestionResponseWhereInput
+  some: MultipleChoiceQuestionResponseWhereInput
+}
+
+input MultipleChoiceQuestionResponseScalarWhereInput {
+  AND: [MultipleChoiceQuestionResponseScalarWhereInput!]
+  id: StringFilter
+  NOT: [MultipleChoiceQuestionResponseScalarWhereInput!]
+  OR: [MultipleChoiceQuestionResponseScalarWhereInput!]
+}
+
+input MultipleChoiceQuestionResponseUpdateManyDataInput {
+  id: String
+}
+
+input MultipleChoiceQuestionResponseUpdateManyWithoutChoiceInput {
+  connect: [MultipleChoiceQuestionResponseWhereUniqueInput!]
+  create: [MultipleChoiceQuestionResponseCreateWithoutChoiceInput!]
+  delete: [MultipleChoiceQuestionResponseWhereUniqueInput!]
+  deleteMany: [MultipleChoiceQuestionResponseScalarWhereInput!]
+  disconnect: [MultipleChoiceQuestionResponseWhereUniqueInput!]
+  set: [MultipleChoiceQuestionResponseWhereUniqueInput!]
+  update: [MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutChoiceInput!]
+  updateMany: [MultipleChoiceQuestionResponseUpdateManyWithWhereNestedInput!]
+  upsert: [MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutChoiceInput!]
+}
+
+input MultipleChoiceQuestionResponseUpdateManyWithoutMultipleChoiceQuestionBlockInput {
+  connect: [MultipleChoiceQuestionResponseWhereUniqueInput!]
+  create: [MultipleChoiceQuestionResponseCreateWithoutMultipleChoiceQuestionBlockInput!]
+  delete: [MultipleChoiceQuestionResponseWhereUniqueInput!]
+  deleteMany: [MultipleChoiceQuestionResponseScalarWhereInput!]
+  disconnect: [MultipleChoiceQuestionResponseWhereUniqueInput!]
+  set: [MultipleChoiceQuestionResponseWhereUniqueInput!]
+  update: [MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput!]
+  updateMany: [MultipleChoiceQuestionResponseUpdateManyWithWhereNestedInput!]
+  upsert: [MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput!]
+}
+
+input MultipleChoiceQuestionResponseUpdateManyWithoutStudentInput {
+  connect: [MultipleChoiceQuestionResponseWhereUniqueInput!]
+  create: [MultipleChoiceQuestionResponseCreateWithoutStudentInput!]
+  delete: [MultipleChoiceQuestionResponseWhereUniqueInput!]
+  deleteMany: [MultipleChoiceQuestionResponseScalarWhereInput!]
+  disconnect: [MultipleChoiceQuestionResponseWhereUniqueInput!]
+  set: [MultipleChoiceQuestionResponseWhereUniqueInput!]
+  update: [MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutStudentInput!]
+  updateMany: [MultipleChoiceQuestionResponseUpdateManyWithWhereNestedInput!]
+  upsert: [MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutStudentInput!]
+}
+
+input MultipleChoiceQuestionResponseUpdateManyWithWhereNestedInput {
+  data: MultipleChoiceQuestionResponseUpdateManyDataInput!
+  where: MultipleChoiceQuestionResponseScalarWhereInput!
+}
+
+input MultipleChoiceQuestionResponseUpdateWithoutChoiceDataInput {
+  id: String
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockUpdateOneWithoutResponsesInput
+  student: StudentUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput
+}
+
+input MultipleChoiceQuestionResponseUpdateWithoutMultipleChoiceQuestionBlockDataInput {
+  choice: MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput
+  id: String
+  student: StudentUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput
+}
+
+input MultipleChoiceQuestionResponseUpdateWithoutStudentDataInput {
+  choice: MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput
+  id: String
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockUpdateOneWithoutResponsesInput
+}
+
+input MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutChoiceInput {
+  data: MultipleChoiceQuestionResponseUpdateWithoutChoiceDataInput!
+  where: MultipleChoiceQuestionResponseWhereUniqueInput!
+}
+
+input MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput {
+  data: MultipleChoiceQuestionResponseUpdateWithoutMultipleChoiceQuestionBlockDataInput!
+  where: MultipleChoiceQuestionResponseWhereUniqueInput!
+}
+
+input MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutStudentInput {
+  data: MultipleChoiceQuestionResponseUpdateWithoutStudentDataInput!
+  where: MultipleChoiceQuestionResponseWhereUniqueInput!
+}
+
+input MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutChoiceInput {
+  create: MultipleChoiceQuestionResponseCreateWithoutChoiceInput!
+  update: MultipleChoiceQuestionResponseUpdateWithoutChoiceDataInput!
+  where: MultipleChoiceQuestionResponseWhereUniqueInput!
+}
+
+input MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput {
+  create: MultipleChoiceQuestionResponseCreateWithoutMultipleChoiceQuestionBlockInput!
+  update: MultipleChoiceQuestionResponseUpdateWithoutMultipleChoiceQuestionBlockDataInput!
+  where: MultipleChoiceQuestionResponseWhereUniqueInput!
+}
+
+input MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutStudentInput {
+  create: MultipleChoiceQuestionResponseCreateWithoutStudentInput!
+  update: MultipleChoiceQuestionResponseUpdateWithoutStudentDataInput!
+  where: MultipleChoiceQuestionResponseWhereUniqueInput!
+}
+
+input MultipleChoiceQuestionResponseWhereInput {
+  AND: [MultipleChoiceQuestionResponseWhereInput!]
+  choice: MultipleChoiceQuestionChoiceWhereInput
+  id: StringFilter
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockWhereInput
+  NOT: [MultipleChoiceQuestionResponseWhereInput!]
+  OR: [MultipleChoiceQuestionResponseWhereInput!]
+  student: StudentWhereInput
+}
+
+input MultipleChoiceQuestionResponseWhereUniqueInput {
+  id: String
+}
+
 type Mutation {
   createOneCourse(data: CourseCreateInput!): Course!
+  createOneLesson(data: LessonCreateInput!): Lesson!
+  createSlide(input: CreateSlideInput!): Slide!
   logIn(input: LogInInput!): User!
   registerUser(input: RegisterUserInput!): User!
   sendInvitationEmail(input: SendInvitationEmailInput!): String!
   updateOneCourse(data: CourseUpdateInput!, where: CourseWhereUniqueInput!): Course
+}
+
+input NullableStringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: String
+  notIn: [String!]
+  startsWith: String
 }
 
 input PageCreateManyWithoutContentInput {
@@ -697,6 +1867,160 @@ input PageWhereUniqueInput {
   id: String
 }
 
+type QuarterSlide {
+  id: String!
+  mainBlock: Block!
+  sideBlock: Block!
+}
+
+input QuarterSlideCreateManyWithoutMainBlockInput {
+  connect: [QuarterSlideWhereUniqueInput!]
+  create: [QuarterSlideCreateWithoutMainBlockInput!]
+}
+
+input QuarterSlideCreateManyWithoutSideBlockInput {
+  connect: [QuarterSlideWhereUniqueInput!]
+  create: [QuarterSlideCreateWithoutSideBlockInput!]
+}
+
+input QuarterSlideCreateOneWithoutSlidesInput {
+  connect: QuarterSlideWhereUniqueInput
+  create: QuarterSlideCreateWithoutSlidesInput
+}
+
+input QuarterSlideCreateWithoutMainBlockInput {
+  id: String
+  sideBlock: BlockCreateOneWithoutQuarterSlidesImplementingInput
+  slides: SlideCreateManyWithoutQuarterSlideInput
+}
+
+input QuarterSlideCreateWithoutSideBlockInput {
+  id: String
+  mainBlock: BlockCreateOneWithoutQuarterSlidesInput
+  slides: SlideCreateManyWithoutQuarterSlideInput
+}
+
+input QuarterSlideCreateWithoutSlidesInput {
+  id: String
+  mainBlock: BlockCreateOneWithoutQuarterSlidesInput
+  sideBlock: BlockCreateOneWithoutQuarterSlidesImplementingInput
+}
+
+input QuarterSlideFilter {
+  every: QuarterSlideWhereInput
+  none: QuarterSlideWhereInput
+  some: QuarterSlideWhereInput
+}
+
+input QuarterSlideScalarWhereInput {
+  AND: [QuarterSlideScalarWhereInput!]
+  id: StringFilter
+  NOT: [QuarterSlideScalarWhereInput!]
+  OR: [QuarterSlideScalarWhereInput!]
+  slides: SlideFilter
+}
+
+input QuarterSlideUpdateManyDataInput {
+  id: String
+}
+
+input QuarterSlideUpdateManyWithoutMainBlockInput {
+  connect: [QuarterSlideWhereUniqueInput!]
+  create: [QuarterSlideCreateWithoutMainBlockInput!]
+  delete: [QuarterSlideWhereUniqueInput!]
+  deleteMany: [QuarterSlideScalarWhereInput!]
+  disconnect: [QuarterSlideWhereUniqueInput!]
+  set: [QuarterSlideWhereUniqueInput!]
+  update: [QuarterSlideUpdateWithWhereUniqueWithoutMainBlockInput!]
+  updateMany: [QuarterSlideUpdateManyWithWhereNestedInput!]
+  upsert: [QuarterSlideUpsertWithWhereUniqueWithoutMainBlockInput!]
+}
+
+input QuarterSlideUpdateManyWithoutSideBlockInput {
+  connect: [QuarterSlideWhereUniqueInput!]
+  create: [QuarterSlideCreateWithoutSideBlockInput!]
+  delete: [QuarterSlideWhereUniqueInput!]
+  deleteMany: [QuarterSlideScalarWhereInput!]
+  disconnect: [QuarterSlideWhereUniqueInput!]
+  set: [QuarterSlideWhereUniqueInput!]
+  update: [QuarterSlideUpdateWithWhereUniqueWithoutSideBlockInput!]
+  updateMany: [QuarterSlideUpdateManyWithWhereNestedInput!]
+  upsert: [QuarterSlideUpsertWithWhereUniqueWithoutSideBlockInput!]
+}
+
+input QuarterSlideUpdateManyWithWhereNestedInput {
+  data: QuarterSlideUpdateManyDataInput!
+  where: QuarterSlideScalarWhereInput!
+}
+
+input QuarterSlideUpdateOneWithoutSlidesInput {
+  connect: QuarterSlideWhereUniqueInput
+  create: QuarterSlideCreateWithoutSlidesInput
+  delete: Boolean
+  disconnect: Boolean
+  update: QuarterSlideUpdateWithoutSlidesDataInput
+  upsert: QuarterSlideUpsertWithoutSlidesInput
+}
+
+input QuarterSlideUpdateWithoutMainBlockDataInput {
+  id: String
+  sideBlock: BlockUpdateOneWithoutQuarterSlidesImplementingInput
+  slides: SlideUpdateManyWithoutQuarterSlideInput
+}
+
+input QuarterSlideUpdateWithoutSideBlockDataInput {
+  id: String
+  mainBlock: BlockUpdateOneWithoutQuarterSlidesInput
+  slides: SlideUpdateManyWithoutQuarterSlideInput
+}
+
+input QuarterSlideUpdateWithoutSlidesDataInput {
+  id: String
+  mainBlock: BlockUpdateOneWithoutQuarterSlidesInput
+  sideBlock: BlockUpdateOneWithoutQuarterSlidesImplementingInput
+}
+
+input QuarterSlideUpdateWithWhereUniqueWithoutMainBlockInput {
+  data: QuarterSlideUpdateWithoutMainBlockDataInput!
+  where: QuarterSlideWhereUniqueInput!
+}
+
+input QuarterSlideUpdateWithWhereUniqueWithoutSideBlockInput {
+  data: QuarterSlideUpdateWithoutSideBlockDataInput!
+  where: QuarterSlideWhereUniqueInput!
+}
+
+input QuarterSlideUpsertWithoutSlidesInput {
+  create: QuarterSlideCreateWithoutSlidesInput!
+  update: QuarterSlideUpdateWithoutSlidesDataInput!
+}
+
+input QuarterSlideUpsertWithWhereUniqueWithoutMainBlockInput {
+  create: QuarterSlideCreateWithoutMainBlockInput!
+  update: QuarterSlideUpdateWithoutMainBlockDataInput!
+  where: QuarterSlideWhereUniqueInput!
+}
+
+input QuarterSlideUpsertWithWhereUniqueWithoutSideBlockInput {
+  create: QuarterSlideCreateWithoutSideBlockInput!
+  update: QuarterSlideUpdateWithoutSideBlockDataInput!
+  where: QuarterSlideWhereUniqueInput!
+}
+
+input QuarterSlideWhereInput {
+  AND: [QuarterSlideWhereInput!]
+  id: StringFilter
+  mainBlock: BlockWhereInput
+  NOT: [QuarterSlideWhereInput!]
+  OR: [QuarterSlideWhereInput!]
+  sideBlock: BlockWhereInput
+  slides: SlideFilter
+}
+
+input QuarterSlideWhereUniqueInput {
+  id: String
+}
+
 type Query {
   courses(after: CourseWhereUniqueInput, before: CourseWhereUniqueInput, first: Int, last: Int, skip: Int, where: CourseWhereInput): [Course!]!
   viewer: User!
@@ -713,6 +2037,321 @@ input RegisterUserInput {
 input SendInvitationEmailInput {
   email: String!
   role: String!
+}
+
+type SingleSlide {
+  block: Block!
+  id: String!
+}
+
+input SingleSlideCreateManyWithoutBlockInput {
+  connect: [SingleSlideWhereUniqueInput!]
+  create: [SingleSlideCreateWithoutBlockInput!]
+}
+
+input SingleSlideCreateOneWithoutSlidesInput {
+  connect: SingleSlideWhereUniqueInput
+  create: SingleSlideCreateWithoutSlidesInput
+}
+
+input SingleSlideCreateWithoutBlockInput {
+  id: String
+  slides: SlideCreateManyWithoutSingleSlideInput
+}
+
+input SingleSlideCreateWithoutSlidesInput {
+  block: BlockCreateOneWithoutSingleSlidesInput
+  id: String
+}
+
+input SingleSlideFilter {
+  every: SingleSlideWhereInput
+  none: SingleSlideWhereInput
+  some: SingleSlideWhereInput
+}
+
+input SingleSlideScalarWhereInput {
+  AND: [SingleSlideScalarWhereInput!]
+  id: StringFilter
+  NOT: [SingleSlideScalarWhereInput!]
+  OR: [SingleSlideScalarWhereInput!]
+  slides: SlideFilter
+}
+
+input SingleSlideUpdateManyDataInput {
+  id: String
+}
+
+input SingleSlideUpdateManyWithoutBlockInput {
+  connect: [SingleSlideWhereUniqueInput!]
+  create: [SingleSlideCreateWithoutBlockInput!]
+  delete: [SingleSlideWhereUniqueInput!]
+  deleteMany: [SingleSlideScalarWhereInput!]
+  disconnect: [SingleSlideWhereUniqueInput!]
+  set: [SingleSlideWhereUniqueInput!]
+  update: [SingleSlideUpdateWithWhereUniqueWithoutBlockInput!]
+  updateMany: [SingleSlideUpdateManyWithWhereNestedInput!]
+  upsert: [SingleSlideUpsertWithWhereUniqueWithoutBlockInput!]
+}
+
+input SingleSlideUpdateManyWithWhereNestedInput {
+  data: SingleSlideUpdateManyDataInput!
+  where: SingleSlideScalarWhereInput!
+}
+
+input SingleSlideUpdateOneWithoutSlidesInput {
+  connect: SingleSlideWhereUniqueInput
+  create: SingleSlideCreateWithoutSlidesInput
+  delete: Boolean
+  disconnect: Boolean
+  update: SingleSlideUpdateWithoutSlidesDataInput
+  upsert: SingleSlideUpsertWithoutSlidesInput
+}
+
+input SingleSlideUpdateWithoutBlockDataInput {
+  id: String
+  slides: SlideUpdateManyWithoutSingleSlideInput
+}
+
+input SingleSlideUpdateWithoutSlidesDataInput {
+  block: BlockUpdateOneWithoutSingleSlidesInput
+  id: String
+}
+
+input SingleSlideUpdateWithWhereUniqueWithoutBlockInput {
+  data: SingleSlideUpdateWithoutBlockDataInput!
+  where: SingleSlideWhereUniqueInput!
+}
+
+input SingleSlideUpsertWithoutSlidesInput {
+  create: SingleSlideCreateWithoutSlidesInput!
+  update: SingleSlideUpdateWithoutSlidesDataInput!
+}
+
+input SingleSlideUpsertWithWhereUniqueWithoutBlockInput {
+  create: SingleSlideCreateWithoutBlockInput!
+  update: SingleSlideUpdateWithoutBlockDataInput!
+  where: SingleSlideWhereUniqueInput!
+}
+
+input SingleSlideWhereInput {
+  AND: [SingleSlideWhereInput!]
+  block: BlockWhereInput
+  id: StringFilter
+  NOT: [SingleSlideWhereInput!]
+  OR: [SingleSlideWhereInput!]
+  slides: SlideFilter
+}
+
+input SingleSlideWhereUniqueInput {
+  id: String
+}
+
+union Slide = HalfSlide | QuarterSlide | SingleSlide
+
+input SlideCreateManyWithoutHalfSlideInput {
+  connect: [SlideWhereUniqueInput!]
+  create: [SlideCreateWithoutHalfSlideInput!]
+}
+
+input SlideCreateManyWithoutLessonInput {
+  connect: [SlideWhereUniqueInput!]
+  create: [SlideCreateWithoutLessonInput!]
+}
+
+input SlideCreateManyWithoutQuarterSlideInput {
+  connect: [SlideWhereUniqueInput!]
+  create: [SlideCreateWithoutQuarterSlideInput!]
+}
+
+input SlideCreateManyWithoutSingleSlideInput {
+  connect: [SlideWhereUniqueInput!]
+  create: [SlideCreateWithoutSingleSlideInput!]
+}
+
+input SlideCreateWithoutHalfSlideInput {
+  id: String
+  lesson: LessonCreateOneWithoutSlidesInput
+  quarterSlide: QuarterSlideCreateOneWithoutSlidesInput
+  singleSlide: SingleSlideCreateOneWithoutSlidesInput
+}
+
+input SlideCreateWithoutLessonInput {
+  halfSlide: HalfSlideCreateOneWithoutSlidesInput
+  id: String
+  quarterSlide: QuarterSlideCreateOneWithoutSlidesInput
+  singleSlide: SingleSlideCreateOneWithoutSlidesInput
+}
+
+input SlideCreateWithoutQuarterSlideInput {
+  halfSlide: HalfSlideCreateOneWithoutSlidesInput
+  id: String
+  lesson: LessonCreateOneWithoutSlidesInput
+  singleSlide: SingleSlideCreateOneWithoutSlidesInput
+}
+
+input SlideCreateWithoutSingleSlideInput {
+  halfSlide: HalfSlideCreateOneWithoutSlidesInput
+  id: String
+  lesson: LessonCreateOneWithoutSlidesInput
+  quarterSlide: QuarterSlideCreateOneWithoutSlidesInput
+}
+
+input SlideFilter {
+  every: SlideWhereInput
+  none: SlideWhereInput
+  some: SlideWhereInput
+}
+
+input SlideScalarWhereInput {
+  AND: [SlideScalarWhereInput!]
+  id: StringFilter
+  NOT: [SlideScalarWhereInput!]
+  OR: [SlideScalarWhereInput!]
+}
+
+input SlideUpdateManyDataInput {
+  id: String
+}
+
+input SlideUpdateManyWithoutHalfSlideInput {
+  connect: [SlideWhereUniqueInput!]
+  create: [SlideCreateWithoutHalfSlideInput!]
+  delete: [SlideWhereUniqueInput!]
+  deleteMany: [SlideScalarWhereInput!]
+  disconnect: [SlideWhereUniqueInput!]
+  set: [SlideWhereUniqueInput!]
+  update: [SlideUpdateWithWhereUniqueWithoutHalfSlideInput!]
+  updateMany: [SlideUpdateManyWithWhereNestedInput!]
+  upsert: [SlideUpsertWithWhereUniqueWithoutHalfSlideInput!]
+}
+
+input SlideUpdateManyWithoutLessonInput {
+  connect: [SlideWhereUniqueInput!]
+  create: [SlideCreateWithoutLessonInput!]
+  delete: [SlideWhereUniqueInput!]
+  deleteMany: [SlideScalarWhereInput!]
+  disconnect: [SlideWhereUniqueInput!]
+  set: [SlideWhereUniqueInput!]
+  update: [SlideUpdateWithWhereUniqueWithoutLessonInput!]
+  updateMany: [SlideUpdateManyWithWhereNestedInput!]
+  upsert: [SlideUpsertWithWhereUniqueWithoutLessonInput!]
+}
+
+input SlideUpdateManyWithoutQuarterSlideInput {
+  connect: [SlideWhereUniqueInput!]
+  create: [SlideCreateWithoutQuarterSlideInput!]
+  delete: [SlideWhereUniqueInput!]
+  deleteMany: [SlideScalarWhereInput!]
+  disconnect: [SlideWhereUniqueInput!]
+  set: [SlideWhereUniqueInput!]
+  update: [SlideUpdateWithWhereUniqueWithoutQuarterSlideInput!]
+  updateMany: [SlideUpdateManyWithWhereNestedInput!]
+  upsert: [SlideUpsertWithWhereUniqueWithoutQuarterSlideInput!]
+}
+
+input SlideUpdateManyWithoutSingleSlideInput {
+  connect: [SlideWhereUniqueInput!]
+  create: [SlideCreateWithoutSingleSlideInput!]
+  delete: [SlideWhereUniqueInput!]
+  deleteMany: [SlideScalarWhereInput!]
+  disconnect: [SlideWhereUniqueInput!]
+  set: [SlideWhereUniqueInput!]
+  update: [SlideUpdateWithWhereUniqueWithoutSingleSlideInput!]
+  updateMany: [SlideUpdateManyWithWhereNestedInput!]
+  upsert: [SlideUpsertWithWhereUniqueWithoutSingleSlideInput!]
+}
+
+input SlideUpdateManyWithWhereNestedInput {
+  data: SlideUpdateManyDataInput!
+  where: SlideScalarWhereInput!
+}
+
+input SlideUpdateWithoutHalfSlideDataInput {
+  id: String
+  lesson: LessonUpdateOneWithoutSlidesInput
+  quarterSlide: QuarterSlideUpdateOneWithoutSlidesInput
+  singleSlide: SingleSlideUpdateOneWithoutSlidesInput
+}
+
+input SlideUpdateWithoutLessonDataInput {
+  halfSlide: HalfSlideUpdateOneWithoutSlidesInput
+  id: String
+  quarterSlide: QuarterSlideUpdateOneWithoutSlidesInput
+  singleSlide: SingleSlideUpdateOneWithoutSlidesInput
+}
+
+input SlideUpdateWithoutQuarterSlideDataInput {
+  halfSlide: HalfSlideUpdateOneWithoutSlidesInput
+  id: String
+  lesson: LessonUpdateOneWithoutSlidesInput
+  singleSlide: SingleSlideUpdateOneWithoutSlidesInput
+}
+
+input SlideUpdateWithoutSingleSlideDataInput {
+  halfSlide: HalfSlideUpdateOneWithoutSlidesInput
+  id: String
+  lesson: LessonUpdateOneWithoutSlidesInput
+  quarterSlide: QuarterSlideUpdateOneWithoutSlidesInput
+}
+
+input SlideUpdateWithWhereUniqueWithoutHalfSlideInput {
+  data: SlideUpdateWithoutHalfSlideDataInput!
+  where: SlideWhereUniqueInput!
+}
+
+input SlideUpdateWithWhereUniqueWithoutLessonInput {
+  data: SlideUpdateWithoutLessonDataInput!
+  where: SlideWhereUniqueInput!
+}
+
+input SlideUpdateWithWhereUniqueWithoutQuarterSlideInput {
+  data: SlideUpdateWithoutQuarterSlideDataInput!
+  where: SlideWhereUniqueInput!
+}
+
+input SlideUpdateWithWhereUniqueWithoutSingleSlideInput {
+  data: SlideUpdateWithoutSingleSlideDataInput!
+  where: SlideWhereUniqueInput!
+}
+
+input SlideUpsertWithWhereUniqueWithoutHalfSlideInput {
+  create: SlideCreateWithoutHalfSlideInput!
+  update: SlideUpdateWithoutHalfSlideDataInput!
+  where: SlideWhereUniqueInput!
+}
+
+input SlideUpsertWithWhereUniqueWithoutLessonInput {
+  create: SlideCreateWithoutLessonInput!
+  update: SlideUpdateWithoutLessonDataInput!
+  where: SlideWhereUniqueInput!
+}
+
+input SlideUpsertWithWhereUniqueWithoutQuarterSlideInput {
+  create: SlideCreateWithoutQuarterSlideInput!
+  update: SlideUpdateWithoutQuarterSlideDataInput!
+  where: SlideWhereUniqueInput!
+}
+
+input SlideUpsertWithWhereUniqueWithoutSingleSlideInput {
+  create: SlideCreateWithoutSingleSlideInput!
+  update: SlideUpdateWithoutSingleSlideDataInput!
+  where: SlideWhereUniqueInput!
+}
+
+input SlideWhereInput {
+  AND: [SlideWhereInput!]
+  halfSlide: HalfSlideWhereInput
+  id: StringFilter
+  lesson: LessonWhereInput
+  NOT: [SlideWhereInput!]
+  OR: [SlideWhereInput!]
+  quarterSlide: QuarterSlideWhereInput
+  singleSlide: SingleSlideWhereInput
+}
+
+input SlideWhereUniqueInput {
+  id: String
 }
 
 input StringFilter {
@@ -748,6 +2387,11 @@ input StudentCreateManyWithoutGuardiansInput {
   create: [StudentCreateWithoutGuardiansInput!]
 }
 
+input StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput {
+  connect: StudentWhereUniqueInput
+  create: StudentCreateWithoutMultipleChoiceQuestionResponsesInput
+}
+
 input StudentCreateOneWithoutUserInput {
   connect: StudentWhereUniqueInput
   create: StudentCreateWithoutUserInput
@@ -758,6 +2402,7 @@ input StudentCreateWithoutCoursesInput {
   gradeLevel: GradeLevel!
   guardians: GuardianCreateManyWithoutStudentsInput
   id: String
+  multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseCreateManyWithoutStudentInput
   user: UserCreateOneWithoutStudentInput!
 }
 
@@ -765,6 +2410,16 @@ input StudentCreateWithoutGuardiansInput {
   courses: CourseCreateManyWithoutStudentsInput
   createdAt: DateTime
   gradeLevel: GradeLevel!
+  id: String
+  multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseCreateManyWithoutStudentInput
+  user: UserCreateOneWithoutStudentInput!
+}
+
+input StudentCreateWithoutMultipleChoiceQuestionResponsesInput {
+  courses: CourseCreateManyWithoutStudentsInput
+  createdAt: DateTime
+  gradeLevel: GradeLevel!
+  guardians: GuardianCreateManyWithoutStudentsInput
   id: String
   user: UserCreateOneWithoutStudentInput!
 }
@@ -775,6 +2430,7 @@ input StudentCreateWithoutUserInput {
   gradeLevel: GradeLevel!
   guardians: GuardianCreateManyWithoutStudentsInput
   id: String
+  multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseCreateManyWithoutStudentInput
 }
 
 input StudentFilter {
@@ -790,6 +2446,7 @@ input StudentScalarWhereInput {
   gradeLevel: GradeLevel
   guardians: GuardianFilter
   id: StringFilter
+  multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseFilter
   NOT: [StudentScalarWhereInput!]
   OR: [StudentScalarWhereInput!]
 }
@@ -829,6 +2486,13 @@ input StudentUpdateManyWithWhereNestedInput {
   where: StudentScalarWhereInput!
 }
 
+input StudentUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput {
+  connect: StudentWhereUniqueInput
+  create: StudentCreateWithoutMultipleChoiceQuestionResponsesInput
+  update: StudentUpdateWithoutMultipleChoiceQuestionResponsesDataInput
+  upsert: StudentUpsertWithoutMultipleChoiceQuestionResponsesInput
+}
+
 input StudentUpdateOneWithoutUserInput {
   connect: StudentWhereUniqueInput
   create: StudentCreateWithoutUserInput
@@ -843,6 +2507,7 @@ input StudentUpdateWithoutCoursesDataInput {
   gradeLevel: GradeLevel
   guardians: GuardianUpdateManyWithoutStudentsInput
   id: String
+  multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseUpdateManyWithoutStudentInput
   user: UserUpdateOneRequiredWithoutStudentInput
 }
 
@@ -850,6 +2515,16 @@ input StudentUpdateWithoutGuardiansDataInput {
   courses: CourseUpdateManyWithoutStudentsInput
   createdAt: DateTime
   gradeLevel: GradeLevel
+  id: String
+  multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseUpdateManyWithoutStudentInput
+  user: UserUpdateOneRequiredWithoutStudentInput
+}
+
+input StudentUpdateWithoutMultipleChoiceQuestionResponsesDataInput {
+  courses: CourseUpdateManyWithoutStudentsInput
+  createdAt: DateTime
+  gradeLevel: GradeLevel
+  guardians: GuardianUpdateManyWithoutStudentsInput
   id: String
   user: UserUpdateOneRequiredWithoutStudentInput
 }
@@ -860,6 +2535,7 @@ input StudentUpdateWithoutUserDataInput {
   gradeLevel: GradeLevel
   guardians: GuardianUpdateManyWithoutStudentsInput
   id: String
+  multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseUpdateManyWithoutStudentInput
 }
 
 input StudentUpdateWithWhereUniqueWithoutCoursesInput {
@@ -870,6 +2546,11 @@ input StudentUpdateWithWhereUniqueWithoutCoursesInput {
 input StudentUpdateWithWhereUniqueWithoutGuardiansInput {
   data: StudentUpdateWithoutGuardiansDataInput!
   where: StudentWhereUniqueInput!
+}
+
+input StudentUpsertWithoutMultipleChoiceQuestionResponsesInput {
+  create: StudentCreateWithoutMultipleChoiceQuestionResponsesInput!
+  update: StudentUpdateWithoutMultipleChoiceQuestionResponsesDataInput!
 }
 
 input StudentUpsertWithoutUserInput {
@@ -896,6 +2577,7 @@ input StudentWhereInput {
   gradeLevel: GradeLevel
   guardians: GuardianFilter
   id: StringFilter
+  multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseFilter
   NOT: [StudentWhereInput!]
   OR: [StudentWhereInput!]
   user: UserWhereInput
@@ -905,8 +2587,60 @@ input StudentWhereUniqueInput {
   id: String
 }
 
+type TextBlock {
+  body: String
+  id: String!
+  title: String
+}
+
+input TextBlockCreateOneWithoutBlocksInput {
+  connect: TextBlockWhereUniqueInput
+  create: TextBlockCreateWithoutBlocksInput
+}
+
+input TextBlockCreateWithoutBlocksInput {
+  body: String
+  id: String
+  title: String
+}
+
+input TextBlockUpdateOneWithoutBlocksInput {
+  connect: TextBlockWhereUniqueInput
+  create: TextBlockCreateWithoutBlocksInput
+  delete: Boolean
+  disconnect: Boolean
+  update: TextBlockUpdateWithoutBlocksDataInput
+  upsert: TextBlockUpsertWithoutBlocksInput
+}
+
+input TextBlockUpdateWithoutBlocksDataInput {
+  body: String
+  id: String
+  title: String
+}
+
+input TextBlockUpsertWithoutBlocksInput {
+  create: TextBlockCreateWithoutBlocksInput!
+  update: TextBlockUpdateWithoutBlocksDataInput!
+}
+
+input TextBlockWhereInput {
+  AND: [TextBlockWhereInput!]
+  blocks: BlockFilter
+  body: NullableStringFilter
+  id: StringFilter
+  NOT: [TextBlockWhereInput!]
+  OR: [TextBlockWhereInput!]
+  title: NullableStringFilter
+}
+
+input TextBlockWhereUniqueInput {
+  id: String
+}
+
 interface User {
   firstName: String!
+  id: String!
   lastName: String!
   username: String!
 }
