@@ -10,9 +10,7 @@ export const SingleSlide = objectType({
     t.field('block', {
       type: 'Block',
       async resolve({ id }) {
-        const {
-          block: { textBlock, multipleChoiceQuestionBlock },
-        } = nullthrows(
+        const { block } = nullthrows(
           await prisma.singleSlide.findOne({
             where: { id },
             include: {
@@ -24,7 +22,7 @@ export const SingleSlide = objectType({
           'SingleSlide not found',
         );
         return nullthrows(
-          textBlock ?? multipleChoiceQuestionBlock,
+          block?.textBlock ?? block?.multipleChoiceQuestionBlock,
           'No block found.',
         );
       },

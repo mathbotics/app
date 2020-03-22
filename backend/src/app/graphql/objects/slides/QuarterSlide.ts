@@ -9,9 +9,7 @@ export const QuarterSlide = objectType({
     t.field('mainBlock', {
       type: 'Block',
       async resolve({ id }) {
-        const {
-          mainBlock: { textBlock, multipleChoiceQuestionBlock },
-        } = nullthrows(
+        const { mainBlock } = nullthrows(
           await prisma.quarterSlide.findOne({
             where: { id },
             include: {
@@ -23,7 +21,7 @@ export const QuarterSlide = objectType({
           'QuarterSlide not found',
         );
         return nullthrows(
-          textBlock ?? multipleChoiceQuestionBlock,
+          mainBlock?.textBlock ?? mainBlock?.multipleChoiceQuestionBlock,
           'No block found.',
         );
       },
@@ -31,9 +29,7 @@ export const QuarterSlide = objectType({
     t.field('sideBlock', {
       type: 'Block',
       async resolve({ id }) {
-        const {
-          sideBlock: { textBlock, multipleChoiceQuestionBlock },
-        } = nullthrows(
+        const { sideBlock } = nullthrows(
           await prisma.quarterSlide.findOne({
             where: { id },
             include: {
@@ -45,7 +41,7 @@ export const QuarterSlide = objectType({
           'QuarterSlide not found',
         );
         return nullthrows(
-          textBlock ?? multipleChoiceQuestionBlock,
+          sideBlock?.textBlock ?? sideBlock?.multipleChoiceQuestionBlock,
           'No block found.',
         );
       },

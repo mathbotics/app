@@ -9,9 +9,7 @@ export const HalfSlide = objectType({
     t.field('firstHalfBlock', {
       type: 'Block',
       async resolve({ id }) {
-        const {
-          firstHalfBlock: { textBlock, multipleChoiceQuestionBlock },
-        } = nullthrows(
+        const { firstHalfBlock } = nullthrows(
           await prisma.halfSlide.findOne({
             where: { id },
             include: {
@@ -23,7 +21,8 @@ export const HalfSlide = objectType({
           'HalfSlide not found',
         );
         return nullthrows(
-          textBlock ?? multipleChoiceQuestionBlock,
+          firstHalfBlock?.textBlock ??
+            firstHalfBlock?.multipleChoiceQuestionBlock,
           'No block found.',
         );
       },
@@ -31,9 +30,7 @@ export const HalfSlide = objectType({
     t.field('secondHalfBlock', {
       type: 'Block',
       async resolve({ id }) {
-        const {
-          secondHalfBlock: { textBlock, multipleChoiceQuestionBlock },
-        } = nullthrows(
+        const { secondHalfBlock } = nullthrows(
           await prisma.halfSlide.findOne({
             where: { id },
             include: {
@@ -45,7 +42,8 @@ export const HalfSlide = objectType({
           'HalfSlide not found',
         );
         return nullthrows(
-          textBlock ?? multipleChoiceQuestionBlock,
+          secondHalfBlock?.textBlock ??
+            secondHalfBlock?.multipleChoiceQuestionBlock,
           'No block found.',
         );
       },
