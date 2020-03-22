@@ -3,7 +3,8 @@ import {
   MailOutlined,
   LockOutlined,
   UserOutlined,
-  BookOutlined
+  BookOutlined,
+  BarsOutlined
 } from "@ant-design/icons";
 
 export const EmailIcon = () => (
@@ -20,4 +21,8 @@ export const UserIcon = () => (
 
 export const BookIcon = () => (
   <BookOutlined style={{ color: "rgba(0,0,0,.25)" }} />
+);
+
+export const BarsIcon = () => (
+  <BarsOutlined style={{ color: "rgba(0,0,0,.25)" }} />
 );
