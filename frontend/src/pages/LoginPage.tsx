@@ -38,9 +38,8 @@ export const LoginPage = (props: LogInProps): JSX.Element => {
     AuthState.DEFAULT
   );
 
-  const onLoginSuccess = (response: LogInMutationResponse) => {
+  const onLoginSuccess = (response: LogInMutationResponse) =>
     setLoginState(AuthState.AUTHENTICATED);
-  };
 
   const onLoginFailure = (error: Error) =>
     setLoginState(AuthState.INVALID_ATTEMPT);

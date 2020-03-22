@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { graphql } from "babel-plugin-relay/macro";
 import { createFragmentContainer } from "react-relay";
 import { Typography } from "antd";
 
 import { Dashboard_dashboard } from "./__generated__/Dashboard_dashboard.graphql";
+
+import { MultipleChoice } from "../block/multiple-choice";
 
 const { Title } = Typography;
 
@@ -16,10 +18,24 @@ const Dashboard = ({
     viewer: { firstName, lastName }
   }
 }: Props) => {
+  const [selected, setSelected] = useState<number>(1);
   return (
     <>
       <Title level={2}>
         Hey there, {firstName} {lastName}!
+        <MultipleChoice
+          text={"Small pipi?"}
+          onChange={(value: number) => setSelected(value)}
+          selected={selected}
+          choices={[
+            { value: "YES", text: "yes" },
+            { value: "YES", text: "yes" },
+            { value: "YES", text: "yes" },
+            { value: "YES", text: "yes" },
+            { value: "YES", text: "yes" },
+            { value: "YES", text: "yes" }
+          ]}
+        />
       </Title>
     </>
   );
