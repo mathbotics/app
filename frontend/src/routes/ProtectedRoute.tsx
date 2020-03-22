@@ -9,7 +9,7 @@ import nullthrows from "nullthrows";
 
 import { ProtectedRouteQueryResponse } from "./__generated__/ProtectedRouteQuery.graphql";
 import { ProtectedRoute_viewer } from "./__generated__/ProtectedRoute_viewer.graphql";
-import NotFoundPage from "../components/pages/NotFoundPage";
+import { NotFoundPage } from "../pages/";
 
 const ViewerQuery = graphql`
   query ProtectedRouteQuery {

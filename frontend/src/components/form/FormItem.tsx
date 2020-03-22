@@ -1,19 +1,22 @@
 import React from "react";
 import { Form, Input } from "antd";
-import { EmailIcon, LockIcon, UserIcon } from "./";
+import { EmailIcon, LockIcon, UserIcon, BookIcon } from "./";
 
 type FormItemProps = {
+  name: string;
+  value: string;
   type: string;
   input: keyof FormRulesType;
   placeholder: string;
-  decorator: Function;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 type FormRulesType = {
+  firstName: GenericFormRuleType;
+  lastName: GenericFormRuleType;
   email: GenericFormRuleType;
   password: GenericFormRuleType;
   username: GenericFormRuleType;
+  courseName: GenericFormRuleType;
 };
 
 type FormRuleType = {
@@ -27,6 +30,14 @@ type GenericFormRuleType = {
 };
 
 const FormRules: FormRulesType = {
+  firstName: {
+    rules: [{ required: true, message: "Please input your First Name." }],
+    icon: <UserIcon />
+  },
+  lastName: {
+    rules: [{ required: true, message: "Please input your Last Name." }],
+    icon: <UserIcon />
+  },
   email: {
     rules: [{ required: true, message: "Please input your email." }],
     icon: <EmailIcon />
@@ -38,24 +49,22 @@ const FormRules: FormRulesType = {
   password: {
     rules: [{ required: true, message: "Please input your password." }],
     icon: <LockIcon />
+  },
+  courseName: {
+    rules: [{ required: true, message: "Please input your course name." }],
+    icon: <BookIcon />
   }
 };
 
 export const FormItem = (props: FormItemProps): JSX.Element => {
   return (
-    <Form.Item>
-      {props.decorator(
-        props.type,
-        FormRules[props.input]
-      )(
-        <Input
-          name={props.input}
-          prefix={FormRules[props.input]["icon"]}
-          placeholder={props.placeholder}
-          onChange={props.onChange}
-          type={props.type}
-        />
-      )}
+    <Form.Item name={props.name} rules={FormRules[props.input].rules}>
+      <Input
+        prefix={FormRules[props.input].icon}
+        type={props.type}
+        placeholder={props.placeholder}
+        value={props.value}
+      />
     </Form.Item>
   );
 };

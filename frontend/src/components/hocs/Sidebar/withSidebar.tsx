@@ -1,5 +1,11 @@
 import React from "react";
-import { Layout, Menu, Icon } from "antd";
+import { Layout, Menu } from "antd";
+import {
+  DashboardOutlined,
+  LockOutlined,
+  BookOutlined,
+  UserAddOutlined
+} from "@ant-design/icons";
 import styled from "styled-components";
 import { useHistory, Redirect } from "react-router-dom";
 import { graphql } from "babel-plugin-relay/macro";
@@ -22,7 +28,7 @@ const Logo = styled.div`
 type SidebarItem = {
   name: string;
   path: string;
-  iconType: string;
+  icon: JSX.Element;
 };
 
 const ViewerQuery = graphql`
@@ -42,21 +48,22 @@ const menuItemsForViewer = ({ role }: withSidebar_viewer) => {
   switch (role) {
     case "Admin":
       return [
-        { name: "Dashboard", path: "", iconType: "dashboard" },
-        { name: "Admin", path: "admin", iconType: "lock" }
+        { name: "Dashboard", path: "", icon: <DashboardOutlined /> },
+        { name: "Admin", path: "admin", icon: <LockOutlined /> },
+        { name: "Invite", path: "invite", icon: <UserAddOutlined /> }
       ];
     case "Instructor":
       return [
-        { name: "Dashboard", path: "", iconType: "dashboard" },
-        { name: "Courses", path: "courses", iconType: "book" }
+        { name: "Dashboard", path: "", icon: <DashboardOutlined /> },
+        { name: "Courses", path: "courses", icon: <BookOutlined /> }
       ];
     case "Student":
       return [
-        { name: "Dashboard", path: "", iconType: "dashboard" },
-        { name: "Courses", path: "courses", iconType: "book" }
+        { name: "Dashboard", path: "", icon: <DashboardOutlined /> },
+        { name: "Courses", path: "courses", icon: <BookOutlined /> }
       ];
     default:
-      return [{ name: "Dashboard", path: "", iconType: "dashboard" }];
+      return [{ name: "Dashboard", path: "", icon: <DashboardOutlined /> }];
   }
 };
 
@@ -92,7 +99,7 @@ const Sidebar = createFragmentContainer(
             >
               {items.map((item, i) => (
                 <Menu.Item onClick={() => onClickMenuItem(item)} key={i}>
-                  <Icon type={item.iconType} />
+                  {item.icon}
                   <span>{item.name}</span>
                 </Menu.Item>
               ))}

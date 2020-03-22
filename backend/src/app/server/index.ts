@@ -37,7 +37,7 @@ const apollo = new ApolloServer({
       plugins: [nexusPrismaPlugin()],
       shouldGenerateArtifacts: NODE_ENV !== 'production',
       outputs: {
-        schema: path.join(__dirname, '../../../../schema.graphql'),
+        schema: path.join(__dirname, '../../../schema.graphql'),
         typegen: path.join(
           __dirname,
           '../graphql/__generated__/schema.graphql.d.ts',

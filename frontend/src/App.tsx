@@ -3,17 +3,24 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import withSidebar from "./components/hocs/Sidebar/withSidebar";
 
 // Pages
-import { LoginPage, DashboardPage } from "./components/pages";
+import {
+  LoginPage,
+  RegisterPage,
+  DashboardPage,
+  NotFoundPage
+  // CoursesPage
+} from "./pages";
 
 // Routes
 import ProtectedRoute from "./routes/ProtectedRoute";
-import NotFoundPage from "./components/pages/NotFoundPage";
+import { InvitationPage } from "./pages/InvitationPage";
 
 export const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/login" component={LoginPage} />
+        <Route path="/register/:token" component={RegisterPage} />
         <ProtectedRoute exact path="/" component={withSidebar(DashboardPage)} />
         <ProtectedRoute
           exact
@@ -21,10 +28,16 @@ export const App: React.FC = () => {
           allowedRoles={["Admin"]}
           component={withSidebar(NotFoundPage)}
         />
-        <ProtectedRoute
+        {/* <ProtectedRoute
           exact
           path="/courses"
-          component={withSidebar(NotFoundPage)}
+          component={withSidebar(CoursesPage)}
+        /> */}
+        <ProtectedRoute
+          exact
+          path="/invite"
+          allowedRoles={["Admin"]}
+          component={withSidebar(InvitationPage)}
         />
         <Route component={NotFoundPage} />
       </Switch>

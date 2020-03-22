@@ -13,7 +13,7 @@ type LogInResolver = (
   args: LogInArgs,
   context: Context,
   info: any,
-) => Promise<NexusGen['fieldTypes']['Mutation']['logIn']>;
+) => Promise<NexusGen['fieldTypes']['User']>;
 
 export default {
   Mutation: {
@@ -24,13 +24,10 @@ export default {
       context: Context,
       info: {},
     ) {
-      const { username, ...user } = await resolve(parent, args, context, info);
+      const { id, ...user } = await resolve(parent, args, context, info);
       const token = jwt.sign(
         {
-          username: nullthrows(
-            username,
-            'username cannot be null or undefined.',
-          ),
+          id: nullthrows(id, 'id cannot be null or undefined.'),
         },
         nullthrows(JWT_SECRET, 'JWT_SECRET cannot be null or undefined.'),
       );
@@ -39,7 +36,7 @@ export default {
           httpOnly: true,
         });
       }
-      return { username, ...user };
+      return { id, ...user };
     },
   },
 } as IMiddlewareFieldMap;
