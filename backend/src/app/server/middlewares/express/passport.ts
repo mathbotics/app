@@ -2,12 +2,12 @@ import { Strategy as JWTStrategy } from 'passport-jwt';
 import nullthrows from 'nullthrows';
 import passport from 'passport';
 
-import prisma from '../../../data/prisma';
+import UserHelper from '../../../graphql/objects/users/helpers/UserHelper';
 
 const { JWT_SECRET } = process.env;
 
 type TokenPayload = {
-  username: string;
+  id: string;
 };
 
 passport.use(
@@ -16,8 +16,8 @@ passport.use(
       jwtFromRequest: ({ cookies: { jwt } }) => jwt,
       secretOrKey: nullthrows(JWT_SECRET, 'JWT_SECRET is null or undefined.'),
     },
-    async ({ username }: TokenPayload, done) =>
-      done(null, await prisma.user.findOne({ where: { username } })),
+    async ({ id }: TokenPayload, done) =>
+      done(null, await UserHelper.implementation(id)),
   ),
 );
 passport.initialize();

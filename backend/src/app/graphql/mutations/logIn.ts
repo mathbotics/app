@@ -1,8 +1,9 @@
 import { AuthenticationError } from 'apollo-server-express';
 import { mutationField, inputObjectType, arg } from 'nexus';
-import bcrypt from 'bcrypt';
+import nullthrows from 'nullthrows';
+import { compare } from 'bcrypt';
 
-import UserHelper from '../objects/helpers/UserHelper';
+import prisma from '../../data/prisma';
 
 export const LogInInput = inputObjectType({
   name: 'LogInInput',
@@ -23,12 +24,27 @@ export const logIn = mutationField('logIn', {
   },
   async resolve(_root, { input: { username, password } }) {
     try {
-      const user = await UserHelper.user(username);
-      const matched = await bcrypt.compare(password, user.password);
+      const user = nullthrows(
+        await prisma.user.findOne({
+          where: { username },
+          include: {
+            admin: true,
+            guardian: true,
+            instructor: true,
+            student: true,
+          },
+        }),
+        'User not found',
+      );
+      const matched = await compare(password, user.password);
       if (!matched) {
         throw new AuthenticationError('Incorrect password.');
       }
-      return user;
+      const { admin, guardian, instructor, student } = user;
+      return nullthrows(
+        admin ?? guardian ?? instructor ?? student,
+        'User relationship is null.',
+      );
     } catch (e) {
       console.warn(e);
       throw e;

@@ -1,0 +1,35 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "UpdateField",
+      "model": "SingleSlide",
+      "field": "block",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "QuarterSlide",
+      "field": "mainBlock",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "QuarterSlide",
+      "field": "sideBlock",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "HalfSlide",
+      "field": "firstHalfBlock",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "HalfSlide",
+      "field": "secondHalfBlock",
+      "arity": "Optional"
+    }
+  ]
+}

@@ -1,0 +1,786 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateModel",
+      "model": "MultipleChoiceQuestionBlock"
+    },
+    {
+      "tag": "CreateField",
+      "model": "MultipleChoiceQuestionBlock",
+      "field": "id",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "MultipleChoiceQuestionBlock",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "MultipleChoiceQuestionBlock",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "MultipleChoiceQuestionBlock",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "cuid()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "MultipleChoiceQuestionBlock",
+      "field": "text",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "MultipleChoiceQuestionBlock",
+      "field": "choices",
+      "type": "MultipleChoiceQuestionChoice",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "MultipleChoiceQuestionBlock",
+          "field": "choices"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "MultipleChoiceQuestionBlock",
+          "field": "choices"
+        },
+        "directive": "relation"
+      },
+      "argument": "",
+      "value": "\"MultipleChoiceQuestionToAvailableMultipleChoiceQuestionChoice\""
+    },
+    {
+      "tag": "CreateField",
+      "model": "MultipleChoiceQuestionBlock",
+      "field": "correctChoice",
+      "type": "MultipleChoiceQuestionChoice",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "MultipleChoiceQuestionBlock",
+      "field": "responses",
+      "type": "MultipleChoiceQuestionResponse",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "MultipleChoiceQuestionResponse"
+    },
+    {
+      "tag": "CreateField",
+      "model": "MultipleChoiceQuestionResponse",
+      "field": "id",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "MultipleChoiceQuestionResponse",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "MultipleChoiceQuestionResponse",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "MultipleChoiceQuestionResponse",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "cuid()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "MultipleChoiceQuestionResponse",
+      "field": "choice",
+      "type": "MultipleChoiceQuestionChoice",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "MultipleChoiceQuestionResponse",
+      "field": "student",
+      "type": "Student",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "MultipleChoiceQuestionChoice"
+    },
+    {
+      "tag": "CreateField",
+      "model": "MultipleChoiceQuestionChoice",
+      "field": "id",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "MultipleChoiceQuestionChoice",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "MultipleChoiceQuestionChoice",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "MultipleChoiceQuestionChoice",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "cuid()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "MultipleChoiceQuestionChoice",
+      "field": "text",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "MultipleChoiceQuestionChoice",
+      "field": "question",
+      "type": "MultipleChoiceQuestionBlock",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "Slide"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Slide",
+      "field": "id",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Slide",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Slide",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Slide",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "cuid()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Slide",
+      "field": "singleSlide",
+      "type": "SingleSlide",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Slide",
+      "field": "quarterSlide",
+      "type": "QuarterSlide",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Slide",
+      "field": "halfSlide",
+      "type": "HalfSlide",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "SingleSlide"
+    },
+    {
+      "tag": "CreateField",
+      "model": "SingleSlide",
+      "field": "id",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "SingleSlide",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "SingleSlide",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "SingleSlide",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "cuid()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "SingleSlide",
+      "field": "block",
+      "type": "Block",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "QuarterSlide"
+    },
+    {
+      "tag": "CreateField",
+      "model": "QuarterSlide",
+      "field": "id",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "QuarterSlide",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "QuarterSlide",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "QuarterSlide",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "cuid()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "QuarterSlide",
+      "field": "mainBlock",
+      "type": "Block",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "QuarterSlide",
+          "field": "mainBlock"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "QuarterSlide",
+          "field": "mainBlock"
+        },
+        "directive": "relation"
+      },
+      "argument": "",
+      "value": "\"QuarterSlideToMainBlock\""
+    },
+    {
+      "tag": "CreateField",
+      "model": "QuarterSlide",
+      "field": "sideBlock",
+      "type": "Block",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "HalfSlide"
+    },
+    {
+      "tag": "CreateField",
+      "model": "HalfSlide",
+      "field": "id",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "HalfSlide",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "HalfSlide",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "HalfSlide",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "cuid()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "HalfSlide",
+      "field": "firstHalfBlock",
+      "type": "Block",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "HalfSlide",
+          "field": "firstHalfBlock"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "HalfSlide",
+          "field": "firstHalfBlock"
+        },
+        "directive": "relation"
+      },
+      "argument": "",
+      "value": "\"HalfSlideToFirstHalfBlock\""
+    },
+    {
+      "tag": "CreateField",
+      "model": "HalfSlide",
+      "field": "secondHalfBlock",
+      "type": "Block",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "Block"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Block",
+      "field": "id",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Block",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Block",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Block",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "cuid()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Block",
+      "field": "multipleChoiceQuestionBlock",
+      "type": "MultipleChoiceQuestionBlock",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Block",
+      "field": "textBlock",
+      "type": "TextBlock",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Block",
+      "field": "halfSlidesImplementing",
+      "type": "HalfSlide",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Block",
+      "field": "quarterSlidesImplementing",
+      "type": "QuarterSlide",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "TextBlock"
+    },
+    {
+      "tag": "CreateField",
+      "model": "TextBlock",
+      "field": "id",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "TextBlock",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "TextBlock",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "TextBlock",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "cuid()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "TextBlock",
+      "field": "title",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "TextBlock",
+      "field": "body",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "Lesson"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Lesson",
+      "field": "id",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Lesson",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Lesson",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Lesson",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "cuid()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Lesson",
+      "field": "title",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Lesson",
+      "field": "slides",
+      "type": "Slide",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "LessonPlan"
+    },
+    {
+      "tag": "CreateField",
+      "model": "LessonPlan",
+      "field": "id",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "LessonPlan",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "LessonPlan",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "LessonPlan",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "cuid()"
+    },
+    {
+      "tag": "CreateField",
+      "model": "LessonPlan",
+      "field": "lessons",
+      "type": "Lesson",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "LessonPlan",
+      "field": "course",
+      "type": "Course",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Course",
+      "field": "lessonPlan",
+      "type": "LessonPlan",
+      "arity": "Required"
+    }
+  ]
+}

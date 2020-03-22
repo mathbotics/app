@@ -26,7 +26,7 @@ test('logIn returns instructor with instructor login', async () => {
   const { data } = await mutate({
     mutation: LOGIN_MUTATION,
     variables: {
-      input: { username: instructor.user.username, password: 'testpass' },
+      input: { username: instructor.user.username, password: 'instructor' },
     },
   });
   expect(data?.logIn.username).toBe(instructor.user.username);
@@ -38,7 +38,7 @@ test('logIn returns admin with admin login', async () => {
   const { data } = await mutate({
     mutation: LOGIN_MUTATION,
     variables: {
-      input: { username: admin.user.username, password: 'testpass' },
+      input: { username: admin.user.username, password: 'admin' },
     },
   });
   expect(data?.logIn.username).toBe(admin.user.username);

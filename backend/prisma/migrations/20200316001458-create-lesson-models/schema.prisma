@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 model Content {
@@ -110,19 +110,19 @@ model Slide {
 
 model SingleSlide {
   id    String @id @default(cuid())
-  block Block?
+  block Block
 }
 
 model QuarterSlide {
   id        String @id @default(cuid())
-  mainBlock Block?  @relation("QuarterSlideToMainBlock")
-  sideBlock Block?
+  mainBlock Block  @relation("QuarterSlideToMainBlock")
+  sideBlock Block
 }
 
 model HalfSlide {
   id              String @id @default(cuid())
-  firstHalfBlock  Block?  @relation("HalfSlideToFirstHalfBlock")
-  secondHalfBlock Block?
+  firstHalfBlock  Block  @relation("HalfSlideToFirstHalfBlock")
+  secondHalfBlock Block
 }
 
 model Block {

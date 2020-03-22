@@ -7,7 +7,5 @@ export const Instructor = objectType({
     t.model.id();
     t.model.email();
     t.model.courses();
-    // @ts-ignore
-    t.model.user();
   },
 });

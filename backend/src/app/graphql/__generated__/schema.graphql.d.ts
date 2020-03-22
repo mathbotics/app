@@ -24,7 +24,7 @@ export interface NexusGenInputs {
     create?: NexusGenInputs['AdminCreateWithoutUserInput'] | null; // AdminCreateWithoutUserInput
   }
   AdminCreateWithoutUserInput: { // input type
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     email: string; // String!
     id?: string | null; // String
   }
@@ -37,7 +37,7 @@ export interface NexusGenInputs {
     upsert?: NexusGenInputs['AdminUpsertWithoutUserInput'] | null; // AdminUpsertWithoutUserInput
   }
   AdminUpdateWithoutUserDataInput: { // input type
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     email?: string | null; // String
     id?: string | null; // String
   }
@@ -58,13 +58,264 @@ export interface NexusGenInputs {
     email?: string | null; // String
     id?: string | null; // String
   }
+  BlockCreateManyWithoutMultipleChoiceQuestionBlockInput: { // input type
+    connect?: NexusGenInputs['BlockWhereUniqueInput'][] | null; // [BlockWhereUniqueInput!]
+    create?: NexusGenInputs['BlockCreateWithoutMultipleChoiceQuestionBlockInput'][] | null; // [BlockCreateWithoutMultipleChoiceQuestionBlockInput!]
+  }
+  BlockCreateOneWithoutHalfSlidesImplementingInput: { // input type
+    connect?: NexusGenInputs['BlockWhereUniqueInput'] | null; // BlockWhereUniqueInput
+    create?: NexusGenInputs['BlockCreateWithoutHalfSlidesImplementingInput'] | null; // BlockCreateWithoutHalfSlidesImplementingInput
+  }
+  BlockCreateOneWithoutHalfSlidesInput: { // input type
+    connect?: NexusGenInputs['BlockWhereUniqueInput'] | null; // BlockWhereUniqueInput
+    create?: NexusGenInputs['BlockCreateWithoutHalfSlidesInput'] | null; // BlockCreateWithoutHalfSlidesInput
+  }
+  BlockCreateOneWithoutQuarterSlidesImplementingInput: { // input type
+    connect?: NexusGenInputs['BlockWhereUniqueInput'] | null; // BlockWhereUniqueInput
+    create?: NexusGenInputs['BlockCreateWithoutQuarterSlidesImplementingInput'] | null; // BlockCreateWithoutQuarterSlidesImplementingInput
+  }
+  BlockCreateOneWithoutQuarterSlidesInput: { // input type
+    connect?: NexusGenInputs['BlockWhereUniqueInput'] | null; // BlockWhereUniqueInput
+    create?: NexusGenInputs['BlockCreateWithoutQuarterSlidesInput'] | null; // BlockCreateWithoutQuarterSlidesInput
+  }
+  BlockCreateOneWithoutSingleSlidesInput: { // input type
+    connect?: NexusGenInputs['BlockWhereUniqueInput'] | null; // BlockWhereUniqueInput
+    create?: NexusGenInputs['BlockCreateWithoutSingleSlidesInput'] | null; // BlockCreateWithoutSingleSlidesInput
+  }
+  BlockCreateWithoutHalfSlidesImplementingInput: { // input type
+    halfSlides?: NexusGenInputs['HalfSlideCreateManyWithoutFirstHalfBlockInput'] | null; // HalfSlideCreateManyWithoutFirstHalfBlockInput
+    id?: string | null; // String
+    multipleChoiceQuestionBlock?: NexusGenInputs['MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput'] | null; // MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput
+    quarterSlides?: NexusGenInputs['QuarterSlideCreateManyWithoutMainBlockInput'] | null; // QuarterSlideCreateManyWithoutMainBlockInput
+    quarterSlidesImplementing?: NexusGenInputs['QuarterSlideCreateManyWithoutSideBlockInput'] | null; // QuarterSlideCreateManyWithoutSideBlockInput
+    singleSlides?: NexusGenInputs['SingleSlideCreateManyWithoutBlockInput'] | null; // SingleSlideCreateManyWithoutBlockInput
+    textBlock?: NexusGenInputs['TextBlockCreateOneWithoutBlocksInput'] | null; // TextBlockCreateOneWithoutBlocksInput
+  }
+  BlockCreateWithoutHalfSlidesInput: { // input type
+    halfSlidesImplementing?: NexusGenInputs['HalfSlideCreateManyWithoutSecondHalfBlockInput'] | null; // HalfSlideCreateManyWithoutSecondHalfBlockInput
+    id?: string | null; // String
+    multipleChoiceQuestionBlock?: NexusGenInputs['MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput'] | null; // MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput
+    quarterSlides?: NexusGenInputs['QuarterSlideCreateManyWithoutMainBlockInput'] | null; // QuarterSlideCreateManyWithoutMainBlockInput
+    quarterSlidesImplementing?: NexusGenInputs['QuarterSlideCreateManyWithoutSideBlockInput'] | null; // QuarterSlideCreateManyWithoutSideBlockInput
+    singleSlides?: NexusGenInputs['SingleSlideCreateManyWithoutBlockInput'] | null; // SingleSlideCreateManyWithoutBlockInput
+    textBlock?: NexusGenInputs['TextBlockCreateOneWithoutBlocksInput'] | null; // TextBlockCreateOneWithoutBlocksInput
+  }
+  BlockCreateWithoutMultipleChoiceQuestionBlockInput: { // input type
+    halfSlides?: NexusGenInputs['HalfSlideCreateManyWithoutFirstHalfBlockInput'] | null; // HalfSlideCreateManyWithoutFirstHalfBlockInput
+    halfSlidesImplementing?: NexusGenInputs['HalfSlideCreateManyWithoutSecondHalfBlockInput'] | null; // HalfSlideCreateManyWithoutSecondHalfBlockInput
+    id?: string | null; // String
+    quarterSlides?: NexusGenInputs['QuarterSlideCreateManyWithoutMainBlockInput'] | null; // QuarterSlideCreateManyWithoutMainBlockInput
+    quarterSlidesImplementing?: NexusGenInputs['QuarterSlideCreateManyWithoutSideBlockInput'] | null; // QuarterSlideCreateManyWithoutSideBlockInput
+    singleSlides?: NexusGenInputs['SingleSlideCreateManyWithoutBlockInput'] | null; // SingleSlideCreateManyWithoutBlockInput
+    textBlock?: NexusGenInputs['TextBlockCreateOneWithoutBlocksInput'] | null; // TextBlockCreateOneWithoutBlocksInput
+  }
+  BlockCreateWithoutQuarterSlidesImplementingInput: { // input type
+    halfSlides?: NexusGenInputs['HalfSlideCreateManyWithoutFirstHalfBlockInput'] | null; // HalfSlideCreateManyWithoutFirstHalfBlockInput
+    halfSlidesImplementing?: NexusGenInputs['HalfSlideCreateManyWithoutSecondHalfBlockInput'] | null; // HalfSlideCreateManyWithoutSecondHalfBlockInput
+    id?: string | null; // String
+    multipleChoiceQuestionBlock?: NexusGenInputs['MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput'] | null; // MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput
+    quarterSlides?: NexusGenInputs['QuarterSlideCreateManyWithoutMainBlockInput'] | null; // QuarterSlideCreateManyWithoutMainBlockInput
+    singleSlides?: NexusGenInputs['SingleSlideCreateManyWithoutBlockInput'] | null; // SingleSlideCreateManyWithoutBlockInput
+    textBlock?: NexusGenInputs['TextBlockCreateOneWithoutBlocksInput'] | null; // TextBlockCreateOneWithoutBlocksInput
+  }
+  BlockCreateWithoutQuarterSlidesInput: { // input type
+    halfSlides?: NexusGenInputs['HalfSlideCreateManyWithoutFirstHalfBlockInput'] | null; // HalfSlideCreateManyWithoutFirstHalfBlockInput
+    halfSlidesImplementing?: NexusGenInputs['HalfSlideCreateManyWithoutSecondHalfBlockInput'] | null; // HalfSlideCreateManyWithoutSecondHalfBlockInput
+    id?: string | null; // String
+    multipleChoiceQuestionBlock?: NexusGenInputs['MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput'] | null; // MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput
+    quarterSlidesImplementing?: NexusGenInputs['QuarterSlideCreateManyWithoutSideBlockInput'] | null; // QuarterSlideCreateManyWithoutSideBlockInput
+    singleSlides?: NexusGenInputs['SingleSlideCreateManyWithoutBlockInput'] | null; // SingleSlideCreateManyWithoutBlockInput
+    textBlock?: NexusGenInputs['TextBlockCreateOneWithoutBlocksInput'] | null; // TextBlockCreateOneWithoutBlocksInput
+  }
+  BlockCreateWithoutSingleSlidesInput: { // input type
+    halfSlides?: NexusGenInputs['HalfSlideCreateManyWithoutFirstHalfBlockInput'] | null; // HalfSlideCreateManyWithoutFirstHalfBlockInput
+    halfSlidesImplementing?: NexusGenInputs['HalfSlideCreateManyWithoutSecondHalfBlockInput'] | null; // HalfSlideCreateManyWithoutSecondHalfBlockInput
+    id?: string | null; // String
+    multipleChoiceQuestionBlock?: NexusGenInputs['MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput'] | null; // MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput
+    quarterSlides?: NexusGenInputs['QuarterSlideCreateManyWithoutMainBlockInput'] | null; // QuarterSlideCreateManyWithoutMainBlockInput
+    quarterSlidesImplementing?: NexusGenInputs['QuarterSlideCreateManyWithoutSideBlockInput'] | null; // QuarterSlideCreateManyWithoutSideBlockInput
+    textBlock?: NexusGenInputs['TextBlockCreateOneWithoutBlocksInput'] | null; // TextBlockCreateOneWithoutBlocksInput
+  }
+  BlockFilter: { // input type
+    every?: NexusGenInputs['BlockWhereInput'] | null; // BlockWhereInput
+    none?: NexusGenInputs['BlockWhereInput'] | null; // BlockWhereInput
+    some?: NexusGenInputs['BlockWhereInput'] | null; // BlockWhereInput
+  }
+  BlockScalarWhereInput: { // input type
+    AND?: NexusGenInputs['BlockScalarWhereInput'][] | null; // [BlockScalarWhereInput!]
+    halfSlides?: NexusGenInputs['HalfSlideFilter'] | null; // HalfSlideFilter
+    halfSlidesImplementing?: NexusGenInputs['HalfSlideFilter'] | null; // HalfSlideFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['BlockScalarWhereInput'][] | null; // [BlockScalarWhereInput!]
+    OR?: NexusGenInputs['BlockScalarWhereInput'][] | null; // [BlockScalarWhereInput!]
+    quarterSlides?: NexusGenInputs['QuarterSlideFilter'] | null; // QuarterSlideFilter
+    quarterSlidesImplementing?: NexusGenInputs['QuarterSlideFilter'] | null; // QuarterSlideFilter
+    singleSlides?: NexusGenInputs['SingleSlideFilter'] | null; // SingleSlideFilter
+  }
+  BlockUpdateManyDataInput: { // input type
+    id?: string | null; // String
+  }
+  BlockUpdateManyWithWhereNestedInput: { // input type
+    data: NexusGenInputs['BlockUpdateManyDataInput']; // BlockUpdateManyDataInput!
+    where: NexusGenInputs['BlockScalarWhereInput']; // BlockScalarWhereInput!
+  }
+  BlockUpdateManyWithoutMultipleChoiceQuestionBlockInput: { // input type
+    connect?: NexusGenInputs['BlockWhereUniqueInput'][] | null; // [BlockWhereUniqueInput!]
+    create?: NexusGenInputs['BlockCreateWithoutMultipleChoiceQuestionBlockInput'][] | null; // [BlockCreateWithoutMultipleChoiceQuestionBlockInput!]
+    delete?: NexusGenInputs['BlockWhereUniqueInput'][] | null; // [BlockWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['BlockScalarWhereInput'][] | null; // [BlockScalarWhereInput!]
+    disconnect?: NexusGenInputs['BlockWhereUniqueInput'][] | null; // [BlockWhereUniqueInput!]
+    set?: NexusGenInputs['BlockWhereUniqueInput'][] | null; // [BlockWhereUniqueInput!]
+    update?: NexusGenInputs['BlockUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput'][] | null; // [BlockUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput!]
+    updateMany?: NexusGenInputs['BlockUpdateManyWithWhereNestedInput'][] | null; // [BlockUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['BlockUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput'][] | null; // [BlockUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput!]
+  }
+  BlockUpdateOneWithoutHalfSlidesImplementingInput: { // input type
+    connect?: NexusGenInputs['BlockWhereUniqueInput'] | null; // BlockWhereUniqueInput
+    create?: NexusGenInputs['BlockCreateWithoutHalfSlidesImplementingInput'] | null; // BlockCreateWithoutHalfSlidesImplementingInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['BlockUpdateWithoutHalfSlidesImplementingDataInput'] | null; // BlockUpdateWithoutHalfSlidesImplementingDataInput
+    upsert?: NexusGenInputs['BlockUpsertWithoutHalfSlidesImplementingInput'] | null; // BlockUpsertWithoutHalfSlidesImplementingInput
+  }
+  BlockUpdateOneWithoutHalfSlidesInput: { // input type
+    connect?: NexusGenInputs['BlockWhereUniqueInput'] | null; // BlockWhereUniqueInput
+    create?: NexusGenInputs['BlockCreateWithoutHalfSlidesInput'] | null; // BlockCreateWithoutHalfSlidesInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['BlockUpdateWithoutHalfSlidesDataInput'] | null; // BlockUpdateWithoutHalfSlidesDataInput
+    upsert?: NexusGenInputs['BlockUpsertWithoutHalfSlidesInput'] | null; // BlockUpsertWithoutHalfSlidesInput
+  }
+  BlockUpdateOneWithoutQuarterSlidesImplementingInput: { // input type
+    connect?: NexusGenInputs['BlockWhereUniqueInput'] | null; // BlockWhereUniqueInput
+    create?: NexusGenInputs['BlockCreateWithoutQuarterSlidesImplementingInput'] | null; // BlockCreateWithoutQuarterSlidesImplementingInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['BlockUpdateWithoutQuarterSlidesImplementingDataInput'] | null; // BlockUpdateWithoutQuarterSlidesImplementingDataInput
+    upsert?: NexusGenInputs['BlockUpsertWithoutQuarterSlidesImplementingInput'] | null; // BlockUpsertWithoutQuarterSlidesImplementingInput
+  }
+  BlockUpdateOneWithoutQuarterSlidesInput: { // input type
+    connect?: NexusGenInputs['BlockWhereUniqueInput'] | null; // BlockWhereUniqueInput
+    create?: NexusGenInputs['BlockCreateWithoutQuarterSlidesInput'] | null; // BlockCreateWithoutQuarterSlidesInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['BlockUpdateWithoutQuarterSlidesDataInput'] | null; // BlockUpdateWithoutQuarterSlidesDataInput
+    upsert?: NexusGenInputs['BlockUpsertWithoutQuarterSlidesInput'] | null; // BlockUpsertWithoutQuarterSlidesInput
+  }
+  BlockUpdateOneWithoutSingleSlidesInput: { // input type
+    connect?: NexusGenInputs['BlockWhereUniqueInput'] | null; // BlockWhereUniqueInput
+    create?: NexusGenInputs['BlockCreateWithoutSingleSlidesInput'] | null; // BlockCreateWithoutSingleSlidesInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['BlockUpdateWithoutSingleSlidesDataInput'] | null; // BlockUpdateWithoutSingleSlidesDataInput
+    upsert?: NexusGenInputs['BlockUpsertWithoutSingleSlidesInput'] | null; // BlockUpsertWithoutSingleSlidesInput
+  }
+  BlockUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput: { // input type
+    data: NexusGenInputs['BlockUpdateWithoutMultipleChoiceQuestionBlockDataInput']; // BlockUpdateWithoutMultipleChoiceQuestionBlockDataInput!
+    where: NexusGenInputs['BlockWhereUniqueInput']; // BlockWhereUniqueInput!
+  }
+  BlockUpdateWithoutHalfSlidesDataInput: { // input type
+    halfSlidesImplementing?: NexusGenInputs['HalfSlideUpdateManyWithoutSecondHalfBlockInput'] | null; // HalfSlideUpdateManyWithoutSecondHalfBlockInput
+    id?: string | null; // String
+    multipleChoiceQuestionBlock?: NexusGenInputs['MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput'] | null; // MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput
+    quarterSlides?: NexusGenInputs['QuarterSlideUpdateManyWithoutMainBlockInput'] | null; // QuarterSlideUpdateManyWithoutMainBlockInput
+    quarterSlidesImplementing?: NexusGenInputs['QuarterSlideUpdateManyWithoutSideBlockInput'] | null; // QuarterSlideUpdateManyWithoutSideBlockInput
+    singleSlides?: NexusGenInputs['SingleSlideUpdateManyWithoutBlockInput'] | null; // SingleSlideUpdateManyWithoutBlockInput
+    textBlock?: NexusGenInputs['TextBlockUpdateOneWithoutBlocksInput'] | null; // TextBlockUpdateOneWithoutBlocksInput
+  }
+  BlockUpdateWithoutHalfSlidesImplementingDataInput: { // input type
+    halfSlides?: NexusGenInputs['HalfSlideUpdateManyWithoutFirstHalfBlockInput'] | null; // HalfSlideUpdateManyWithoutFirstHalfBlockInput
+    id?: string | null; // String
+    multipleChoiceQuestionBlock?: NexusGenInputs['MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput'] | null; // MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput
+    quarterSlides?: NexusGenInputs['QuarterSlideUpdateManyWithoutMainBlockInput'] | null; // QuarterSlideUpdateManyWithoutMainBlockInput
+    quarterSlidesImplementing?: NexusGenInputs['QuarterSlideUpdateManyWithoutSideBlockInput'] | null; // QuarterSlideUpdateManyWithoutSideBlockInput
+    singleSlides?: NexusGenInputs['SingleSlideUpdateManyWithoutBlockInput'] | null; // SingleSlideUpdateManyWithoutBlockInput
+    textBlock?: NexusGenInputs['TextBlockUpdateOneWithoutBlocksInput'] | null; // TextBlockUpdateOneWithoutBlocksInput
+  }
+  BlockUpdateWithoutMultipleChoiceQuestionBlockDataInput: { // input type
+    halfSlides?: NexusGenInputs['HalfSlideUpdateManyWithoutFirstHalfBlockInput'] | null; // HalfSlideUpdateManyWithoutFirstHalfBlockInput
+    halfSlidesImplementing?: NexusGenInputs['HalfSlideUpdateManyWithoutSecondHalfBlockInput'] | null; // HalfSlideUpdateManyWithoutSecondHalfBlockInput
+    id?: string | null; // String
+    quarterSlides?: NexusGenInputs['QuarterSlideUpdateManyWithoutMainBlockInput'] | null; // QuarterSlideUpdateManyWithoutMainBlockInput
+    quarterSlidesImplementing?: NexusGenInputs['QuarterSlideUpdateManyWithoutSideBlockInput'] | null; // QuarterSlideUpdateManyWithoutSideBlockInput
+    singleSlides?: NexusGenInputs['SingleSlideUpdateManyWithoutBlockInput'] | null; // SingleSlideUpdateManyWithoutBlockInput
+    textBlock?: NexusGenInputs['TextBlockUpdateOneWithoutBlocksInput'] | null; // TextBlockUpdateOneWithoutBlocksInput
+  }
+  BlockUpdateWithoutQuarterSlidesDataInput: { // input type
+    halfSlides?: NexusGenInputs['HalfSlideUpdateManyWithoutFirstHalfBlockInput'] | null; // HalfSlideUpdateManyWithoutFirstHalfBlockInput
+    halfSlidesImplementing?: NexusGenInputs['HalfSlideUpdateManyWithoutSecondHalfBlockInput'] | null; // HalfSlideUpdateManyWithoutSecondHalfBlockInput
+    id?: string | null; // String
+    multipleChoiceQuestionBlock?: NexusGenInputs['MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput'] | null; // MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput
+    quarterSlidesImplementing?: NexusGenInputs['QuarterSlideUpdateManyWithoutSideBlockInput'] | null; // QuarterSlideUpdateManyWithoutSideBlockInput
+    singleSlides?: NexusGenInputs['SingleSlideUpdateManyWithoutBlockInput'] | null; // SingleSlideUpdateManyWithoutBlockInput
+    textBlock?: NexusGenInputs['TextBlockUpdateOneWithoutBlocksInput'] | null; // TextBlockUpdateOneWithoutBlocksInput
+  }
+  BlockUpdateWithoutQuarterSlidesImplementingDataInput: { // input type
+    halfSlides?: NexusGenInputs['HalfSlideUpdateManyWithoutFirstHalfBlockInput'] | null; // HalfSlideUpdateManyWithoutFirstHalfBlockInput
+    halfSlidesImplementing?: NexusGenInputs['HalfSlideUpdateManyWithoutSecondHalfBlockInput'] | null; // HalfSlideUpdateManyWithoutSecondHalfBlockInput
+    id?: string | null; // String
+    multipleChoiceQuestionBlock?: NexusGenInputs['MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput'] | null; // MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput
+    quarterSlides?: NexusGenInputs['QuarterSlideUpdateManyWithoutMainBlockInput'] | null; // QuarterSlideUpdateManyWithoutMainBlockInput
+    singleSlides?: NexusGenInputs['SingleSlideUpdateManyWithoutBlockInput'] | null; // SingleSlideUpdateManyWithoutBlockInput
+    textBlock?: NexusGenInputs['TextBlockUpdateOneWithoutBlocksInput'] | null; // TextBlockUpdateOneWithoutBlocksInput
+  }
+  BlockUpdateWithoutSingleSlidesDataInput: { // input type
+    halfSlides?: NexusGenInputs['HalfSlideUpdateManyWithoutFirstHalfBlockInput'] | null; // HalfSlideUpdateManyWithoutFirstHalfBlockInput
+    halfSlidesImplementing?: NexusGenInputs['HalfSlideUpdateManyWithoutSecondHalfBlockInput'] | null; // HalfSlideUpdateManyWithoutSecondHalfBlockInput
+    id?: string | null; // String
+    multipleChoiceQuestionBlock?: NexusGenInputs['MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput'] | null; // MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput
+    quarterSlides?: NexusGenInputs['QuarterSlideUpdateManyWithoutMainBlockInput'] | null; // QuarterSlideUpdateManyWithoutMainBlockInput
+    quarterSlidesImplementing?: NexusGenInputs['QuarterSlideUpdateManyWithoutSideBlockInput'] | null; // QuarterSlideUpdateManyWithoutSideBlockInput
+    textBlock?: NexusGenInputs['TextBlockUpdateOneWithoutBlocksInput'] | null; // TextBlockUpdateOneWithoutBlocksInput
+  }
+  BlockUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput: { // input type
+    create: NexusGenInputs['BlockCreateWithoutMultipleChoiceQuestionBlockInput']; // BlockCreateWithoutMultipleChoiceQuestionBlockInput!
+    update: NexusGenInputs['BlockUpdateWithoutMultipleChoiceQuestionBlockDataInput']; // BlockUpdateWithoutMultipleChoiceQuestionBlockDataInput!
+    where: NexusGenInputs['BlockWhereUniqueInput']; // BlockWhereUniqueInput!
+  }
+  BlockUpsertWithoutHalfSlidesImplementingInput: { // input type
+    create: NexusGenInputs['BlockCreateWithoutHalfSlidesImplementingInput']; // BlockCreateWithoutHalfSlidesImplementingInput!
+    update: NexusGenInputs['BlockUpdateWithoutHalfSlidesImplementingDataInput']; // BlockUpdateWithoutHalfSlidesImplementingDataInput!
+  }
+  BlockUpsertWithoutHalfSlidesInput: { // input type
+    create: NexusGenInputs['BlockCreateWithoutHalfSlidesInput']; // BlockCreateWithoutHalfSlidesInput!
+    update: NexusGenInputs['BlockUpdateWithoutHalfSlidesDataInput']; // BlockUpdateWithoutHalfSlidesDataInput!
+  }
+  BlockUpsertWithoutQuarterSlidesImplementingInput: { // input type
+    create: NexusGenInputs['BlockCreateWithoutQuarterSlidesImplementingInput']; // BlockCreateWithoutQuarterSlidesImplementingInput!
+    update: NexusGenInputs['BlockUpdateWithoutQuarterSlidesImplementingDataInput']; // BlockUpdateWithoutQuarterSlidesImplementingDataInput!
+  }
+  BlockUpsertWithoutQuarterSlidesInput: { // input type
+    create: NexusGenInputs['BlockCreateWithoutQuarterSlidesInput']; // BlockCreateWithoutQuarterSlidesInput!
+    update: NexusGenInputs['BlockUpdateWithoutQuarterSlidesDataInput']; // BlockUpdateWithoutQuarterSlidesDataInput!
+  }
+  BlockUpsertWithoutSingleSlidesInput: { // input type
+    create: NexusGenInputs['BlockCreateWithoutSingleSlidesInput']; // BlockCreateWithoutSingleSlidesInput!
+    update: NexusGenInputs['BlockUpdateWithoutSingleSlidesDataInput']; // BlockUpdateWithoutSingleSlidesDataInput!
+  }
+  BlockWhereInput: { // input type
+    AND?: NexusGenInputs['BlockWhereInput'][] | null; // [BlockWhereInput!]
+    halfSlides?: NexusGenInputs['HalfSlideFilter'] | null; // HalfSlideFilter
+    halfSlidesImplementing?: NexusGenInputs['HalfSlideFilter'] | null; // HalfSlideFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    multipleChoiceQuestionBlock?: NexusGenInputs['MultipleChoiceQuestionBlockWhereInput'] | null; // MultipleChoiceQuestionBlockWhereInput
+    NOT?: NexusGenInputs['BlockWhereInput'][] | null; // [BlockWhereInput!]
+    OR?: NexusGenInputs['BlockWhereInput'][] | null; // [BlockWhereInput!]
+    quarterSlides?: NexusGenInputs['QuarterSlideFilter'] | null; // QuarterSlideFilter
+    quarterSlidesImplementing?: NexusGenInputs['QuarterSlideFilter'] | null; // QuarterSlideFilter
+    singleSlides?: NexusGenInputs['SingleSlideFilter'] | null; // SingleSlideFilter
+    textBlock?: NexusGenInputs['TextBlockWhereInput'] | null; // TextBlockWhereInput
+  }
+  BlockWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
   ContentCreateManyWithoutCourseInput: { // input type
     connect?: NexusGenInputs['ContentWhereUniqueInput'][] | null; // [ContentWhereUniqueInput!]
     create?: NexusGenInputs['ContentCreateWithoutCourseInput'][] | null; // [ContentCreateWithoutCourseInput!]
   }
   ContentCreateWithoutCourseInput: { // input type
     author: string; // String!
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     id?: string | null; // String
     pages?: NexusGenInputs['PageCreateManyWithoutContentInput'] | null; // PageCreateManyWithoutContentInput
     title: string; // String!
@@ -86,7 +337,7 @@ export interface NexusGenInputs {
   }
   ContentUpdateManyDataInput: { // input type
     author?: string | null; // String
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     id?: string | null; // String
     title?: string | null; // String
   }
@@ -111,7 +362,7 @@ export interface NexusGenInputs {
   }
   ContentUpdateWithoutCourseDataInput: { // input type
     author?: string | null; // String
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     id?: string | null; // String
     pages?: NexusGenInputs['PageUpdateManyWithoutContentInput'] | null; // PageUpdateManyWithoutContentInput
     title?: string | null; // String
@@ -137,9 +388,10 @@ export interface NexusGenInputs {
   }
   CourseCreateInput: { // input type
     contents?: NexusGenInputs['ContentCreateManyWithoutCourseInput'] | null; // ContentCreateManyWithoutCourseInput
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     id?: string | null; // String
     instructors?: NexusGenInputs['InstructorCreateManyWithoutCoursesInput'] | null; // InstructorCreateManyWithoutCoursesInput
+    lessonPlan: NexusGenInputs['LessonPlanCreateOneWithoutCourseInput']; // LessonPlanCreateOneWithoutCourseInput!
     name: string; // String!
     students?: NexusGenInputs['StudentCreateManyWithoutCoursesInput'] | null; // StudentCreateManyWithoutCoursesInput
     suggestedLevel: NexusGenEnums['GradeLevel']; // GradeLevel!
@@ -152,19 +404,34 @@ export interface NexusGenInputs {
     connect?: NexusGenInputs['CourseWhereUniqueInput'][] | null; // [CourseWhereUniqueInput!]
     create?: NexusGenInputs['CourseCreateWithoutStudentsInput'][] | null; // [CourseCreateWithoutStudentsInput!]
   }
+  CourseCreateOneWithoutLessonPlanInput: { // input type
+    connect?: NexusGenInputs['CourseWhereUniqueInput'] | null; // CourseWhereUniqueInput
+    create?: NexusGenInputs['CourseCreateWithoutLessonPlanInput'] | null; // CourseCreateWithoutLessonPlanInput
+  }
   CourseCreateWithoutInstructorsInput: { // input type
     contents?: NexusGenInputs['ContentCreateManyWithoutCourseInput'] | null; // ContentCreateManyWithoutCourseInput
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     id?: string | null; // String
+    lessonPlan: NexusGenInputs['LessonPlanCreateOneWithoutCourseInput']; // LessonPlanCreateOneWithoutCourseInput!
+    name: string; // String!
+    students?: NexusGenInputs['StudentCreateManyWithoutCoursesInput'] | null; // StudentCreateManyWithoutCoursesInput
+    suggestedLevel: NexusGenEnums['GradeLevel']; // GradeLevel!
+  }
+  CourseCreateWithoutLessonPlanInput: { // input type
+    contents?: NexusGenInputs['ContentCreateManyWithoutCourseInput'] | null; // ContentCreateManyWithoutCourseInput
+    createdAt?: Date | null; // DateTime
+    id?: string | null; // String
+    instructors?: NexusGenInputs['InstructorCreateManyWithoutCoursesInput'] | null; // InstructorCreateManyWithoutCoursesInput
     name: string; // String!
     students?: NexusGenInputs['StudentCreateManyWithoutCoursesInput'] | null; // StudentCreateManyWithoutCoursesInput
     suggestedLevel: NexusGenEnums['GradeLevel']; // GradeLevel!
   }
   CourseCreateWithoutStudentsInput: { // input type
     contents?: NexusGenInputs['ContentCreateManyWithoutCourseInput'] | null; // ContentCreateManyWithoutCourseInput
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     id?: string | null; // String
     instructors?: NexusGenInputs['InstructorCreateManyWithoutCoursesInput'] | null; // InstructorCreateManyWithoutCoursesInput
+    lessonPlan: NexusGenInputs['LessonPlanCreateOneWithoutCourseInput']; // LessonPlanCreateOneWithoutCourseInput!
     name: string; // String!
     suggestedLevel: NexusGenEnums['GradeLevel']; // GradeLevel!
   }
@@ -187,15 +454,16 @@ export interface NexusGenInputs {
   }
   CourseUpdateInput: { // input type
     contents?: NexusGenInputs['ContentUpdateManyWithoutCourseInput'] | null; // ContentUpdateManyWithoutCourseInput
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     id?: string | null; // String
     instructors?: NexusGenInputs['InstructorUpdateManyWithoutCoursesInput'] | null; // InstructorUpdateManyWithoutCoursesInput
+    lessonPlan?: NexusGenInputs['LessonPlanUpdateOneRequiredWithoutCourseInput'] | null; // LessonPlanUpdateOneRequiredWithoutCourseInput
     name?: string | null; // String
     students?: NexusGenInputs['StudentUpdateManyWithoutCoursesInput'] | null; // StudentUpdateManyWithoutCoursesInput
     suggestedLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
   }
   CourseUpdateManyDataInput: { // input type
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     id?: string | null; // String
     name?: string | null; // String
     suggestedLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
@@ -226,6 +494,12 @@ export interface NexusGenInputs {
     updateMany?: NexusGenInputs['CourseUpdateManyWithWhereNestedInput'][] | null; // [CourseUpdateManyWithWhereNestedInput!]
     upsert?: NexusGenInputs['CourseUpsertWithWhereUniqueWithoutStudentsInput'][] | null; // [CourseUpsertWithWhereUniqueWithoutStudentsInput!]
   }
+  CourseUpdateOneRequiredWithoutLessonPlanInput: { // input type
+    connect?: NexusGenInputs['CourseWhereUniqueInput'] | null; // CourseWhereUniqueInput
+    create?: NexusGenInputs['CourseCreateWithoutLessonPlanInput'] | null; // CourseCreateWithoutLessonPlanInput
+    update?: NexusGenInputs['CourseUpdateWithoutLessonPlanDataInput'] | null; // CourseUpdateWithoutLessonPlanDataInput
+    upsert?: NexusGenInputs['CourseUpsertWithoutLessonPlanInput'] | null; // CourseUpsertWithoutLessonPlanInput
+  }
   CourseUpdateWithWhereUniqueWithoutInstructorsInput: { // input type
     data: NexusGenInputs['CourseUpdateWithoutInstructorsDataInput']; // CourseUpdateWithoutInstructorsDataInput!
     where: NexusGenInputs['CourseWhereUniqueInput']; // CourseWhereUniqueInput!
@@ -236,17 +510,28 @@ export interface NexusGenInputs {
   }
   CourseUpdateWithoutInstructorsDataInput: { // input type
     contents?: NexusGenInputs['ContentUpdateManyWithoutCourseInput'] | null; // ContentUpdateManyWithoutCourseInput
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     id?: string | null; // String
+    lessonPlan?: NexusGenInputs['LessonPlanUpdateOneRequiredWithoutCourseInput'] | null; // LessonPlanUpdateOneRequiredWithoutCourseInput
+    name?: string | null; // String
+    students?: NexusGenInputs['StudentUpdateManyWithoutCoursesInput'] | null; // StudentUpdateManyWithoutCoursesInput
+    suggestedLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
+  }
+  CourseUpdateWithoutLessonPlanDataInput: { // input type
+    contents?: NexusGenInputs['ContentUpdateManyWithoutCourseInput'] | null; // ContentUpdateManyWithoutCourseInput
+    createdAt?: Date | null; // DateTime
+    id?: string | null; // String
+    instructors?: NexusGenInputs['InstructorUpdateManyWithoutCoursesInput'] | null; // InstructorUpdateManyWithoutCoursesInput
     name?: string | null; // String
     students?: NexusGenInputs['StudentUpdateManyWithoutCoursesInput'] | null; // StudentUpdateManyWithoutCoursesInput
     suggestedLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
   }
   CourseUpdateWithoutStudentsDataInput: { // input type
     contents?: NexusGenInputs['ContentUpdateManyWithoutCourseInput'] | null; // ContentUpdateManyWithoutCourseInput
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     id?: string | null; // String
     instructors?: NexusGenInputs['InstructorUpdateManyWithoutCoursesInput'] | null; // InstructorUpdateManyWithoutCoursesInput
+    lessonPlan?: NexusGenInputs['LessonPlanUpdateOneRequiredWithoutCourseInput'] | null; // LessonPlanUpdateOneRequiredWithoutCourseInput
     name?: string | null; // String
     suggestedLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
   }
@@ -260,12 +545,17 @@ export interface NexusGenInputs {
     update: NexusGenInputs['CourseUpdateWithoutStudentsDataInput']; // CourseUpdateWithoutStudentsDataInput!
     where: NexusGenInputs['CourseWhereUniqueInput']; // CourseWhereUniqueInput!
   }
+  CourseUpsertWithoutLessonPlanInput: { // input type
+    create: NexusGenInputs['CourseCreateWithoutLessonPlanInput']; // CourseCreateWithoutLessonPlanInput!
+    update: NexusGenInputs['CourseUpdateWithoutLessonPlanDataInput']; // CourseUpdateWithoutLessonPlanDataInput!
+  }
   CourseWhereInput: { // input type
     AND?: NexusGenInputs['CourseWhereInput'][] | null; // [CourseWhereInput!]
     contents?: NexusGenInputs['ContentFilter'] | null; // ContentFilter
     createdAt?: NexusGenInputs['DateTimeFilter'] | null; // DateTimeFilter
     id?: NexusGenInputs['StringFilter'] | null; // StringFilter
     instructors?: NexusGenInputs['InstructorFilter'] | null; // InstructorFilter
+    lessonPlan?: NexusGenInputs['LessonPlanWhereInput'] | null; // LessonPlanWhereInput
     name?: NexusGenInputs['StringFilter'] | null; // StringFilter
     NOT?: NexusGenInputs['CourseWhereInput'][] | null; // [CourseWhereInput!]
     OR?: NexusGenInputs['CourseWhereInput'][] | null; // [CourseWhereInput!]
@@ -275,15 +565,18 @@ export interface NexusGenInputs {
   CourseWhereUniqueInput: { // input type
     id?: string | null; // String
   }
+  CreateSlideInput: { // input type
+    slideType: string; // String!
+  }
   DateTimeFilter: { // input type
-    equals?: any | null; // DateTime
-    gt?: any | null; // DateTime
-    gte?: any | null; // DateTime
-    in?: any[] | null; // [DateTime!]
-    lt?: any | null; // DateTime
-    lte?: any | null; // DateTime
-    not?: any | null; // DateTime
-    notIn?: any[] | null; // [DateTime!]
+    equals?: Date | null; // DateTime
+    gt?: Date | null; // DateTime
+    gte?: Date | null; // DateTime
+    in?: Date[] | null; // [DateTime!]
+    lt?: Date | null; // DateTime
+    lte?: Date | null; // DateTime
+    not?: Date | null; // DateTime
+    notIn?: Date[] | null; // [DateTime!]
   }
   GuardianCreateManyWithoutStudentsInput: { // input type
     connect?: NexusGenInputs['GuardianWhereUniqueInput'][] | null; // [GuardianWhereUniqueInput!]
@@ -294,13 +587,13 @@ export interface NexusGenInputs {
     create?: NexusGenInputs['GuardianCreateWithoutUserInput'] | null; // GuardianCreateWithoutUserInput
   }
   GuardianCreateWithoutStudentsInput: { // input type
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     email: string; // String!
     id?: string | null; // String
     user: NexusGenInputs['UserCreateOneWithoutGuardianInput']; // UserCreateOneWithoutGuardianInput!
   }
   GuardianCreateWithoutUserInput: { // input type
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     email: string; // String!
     id?: string | null; // String
     students?: NexusGenInputs['StudentCreateManyWithoutGuardiansInput'] | null; // StudentCreateManyWithoutGuardiansInput
@@ -320,7 +613,7 @@ export interface NexusGenInputs {
     students?: NexusGenInputs['StudentFilter'] | null; // StudentFilter
   }
   GuardianUpdateManyDataInput: { // input type
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     email?: string | null; // String
     id?: string | null; // String
   }
@@ -352,13 +645,13 @@ export interface NexusGenInputs {
     where: NexusGenInputs['GuardianWhereUniqueInput']; // GuardianWhereUniqueInput!
   }
   GuardianUpdateWithoutStudentsDataInput: { // input type
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     email?: string | null; // String
     id?: string | null; // String
     user?: NexusGenInputs['UserUpdateOneRequiredWithoutGuardianInput'] | null; // UserUpdateOneRequiredWithoutGuardianInput
   }
   GuardianUpdateWithoutUserDataInput: { // input type
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     email?: string | null; // String
     id?: string | null; // String
     students?: NexusGenInputs['StudentUpdateManyWithoutGuardiansInput'] | null; // StudentUpdateManyWithoutGuardiansInput
@@ -386,6 +679,131 @@ export interface NexusGenInputs {
     email?: string | null; // String
     id?: string | null; // String
   }
+  HalfSlideCreateManyWithoutFirstHalfBlockInput: { // input type
+    connect?: NexusGenInputs['HalfSlideWhereUniqueInput'][] | null; // [HalfSlideWhereUniqueInput!]
+    create?: NexusGenInputs['HalfSlideCreateWithoutFirstHalfBlockInput'][] | null; // [HalfSlideCreateWithoutFirstHalfBlockInput!]
+  }
+  HalfSlideCreateManyWithoutSecondHalfBlockInput: { // input type
+    connect?: NexusGenInputs['HalfSlideWhereUniqueInput'][] | null; // [HalfSlideWhereUniqueInput!]
+    create?: NexusGenInputs['HalfSlideCreateWithoutSecondHalfBlockInput'][] | null; // [HalfSlideCreateWithoutSecondHalfBlockInput!]
+  }
+  HalfSlideCreateOneWithoutSlidesInput: { // input type
+    connect?: NexusGenInputs['HalfSlideWhereUniqueInput'] | null; // HalfSlideWhereUniqueInput
+    create?: NexusGenInputs['HalfSlideCreateWithoutSlidesInput'] | null; // HalfSlideCreateWithoutSlidesInput
+  }
+  HalfSlideCreateWithoutFirstHalfBlockInput: { // input type
+    id?: string | null; // String
+    secondHalfBlock?: NexusGenInputs['BlockCreateOneWithoutHalfSlidesImplementingInput'] | null; // BlockCreateOneWithoutHalfSlidesImplementingInput
+    slides?: NexusGenInputs['SlideCreateManyWithoutHalfSlideInput'] | null; // SlideCreateManyWithoutHalfSlideInput
+  }
+  HalfSlideCreateWithoutSecondHalfBlockInput: { // input type
+    firstHalfBlock?: NexusGenInputs['BlockCreateOneWithoutHalfSlidesInput'] | null; // BlockCreateOneWithoutHalfSlidesInput
+    id?: string | null; // String
+    slides?: NexusGenInputs['SlideCreateManyWithoutHalfSlideInput'] | null; // SlideCreateManyWithoutHalfSlideInput
+  }
+  HalfSlideCreateWithoutSlidesInput: { // input type
+    firstHalfBlock?: NexusGenInputs['BlockCreateOneWithoutHalfSlidesInput'] | null; // BlockCreateOneWithoutHalfSlidesInput
+    id?: string | null; // String
+    secondHalfBlock?: NexusGenInputs['BlockCreateOneWithoutHalfSlidesImplementingInput'] | null; // BlockCreateOneWithoutHalfSlidesImplementingInput
+  }
+  HalfSlideFilter: { // input type
+    every?: NexusGenInputs['HalfSlideWhereInput'] | null; // HalfSlideWhereInput
+    none?: NexusGenInputs['HalfSlideWhereInput'] | null; // HalfSlideWhereInput
+    some?: NexusGenInputs['HalfSlideWhereInput'] | null; // HalfSlideWhereInput
+  }
+  HalfSlideScalarWhereInput: { // input type
+    AND?: NexusGenInputs['HalfSlideScalarWhereInput'][] | null; // [HalfSlideScalarWhereInput!]
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['HalfSlideScalarWhereInput'][] | null; // [HalfSlideScalarWhereInput!]
+    OR?: NexusGenInputs['HalfSlideScalarWhereInput'][] | null; // [HalfSlideScalarWhereInput!]
+    slides?: NexusGenInputs['SlideFilter'] | null; // SlideFilter
+  }
+  HalfSlideUpdateManyDataInput: { // input type
+    id?: string | null; // String
+  }
+  HalfSlideUpdateManyWithWhereNestedInput: { // input type
+    data: NexusGenInputs['HalfSlideUpdateManyDataInput']; // HalfSlideUpdateManyDataInput!
+    where: NexusGenInputs['HalfSlideScalarWhereInput']; // HalfSlideScalarWhereInput!
+  }
+  HalfSlideUpdateManyWithoutFirstHalfBlockInput: { // input type
+    connect?: NexusGenInputs['HalfSlideWhereUniqueInput'][] | null; // [HalfSlideWhereUniqueInput!]
+    create?: NexusGenInputs['HalfSlideCreateWithoutFirstHalfBlockInput'][] | null; // [HalfSlideCreateWithoutFirstHalfBlockInput!]
+    delete?: NexusGenInputs['HalfSlideWhereUniqueInput'][] | null; // [HalfSlideWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['HalfSlideScalarWhereInput'][] | null; // [HalfSlideScalarWhereInput!]
+    disconnect?: NexusGenInputs['HalfSlideWhereUniqueInput'][] | null; // [HalfSlideWhereUniqueInput!]
+    set?: NexusGenInputs['HalfSlideWhereUniqueInput'][] | null; // [HalfSlideWhereUniqueInput!]
+    update?: NexusGenInputs['HalfSlideUpdateWithWhereUniqueWithoutFirstHalfBlockInput'][] | null; // [HalfSlideUpdateWithWhereUniqueWithoutFirstHalfBlockInput!]
+    updateMany?: NexusGenInputs['HalfSlideUpdateManyWithWhereNestedInput'][] | null; // [HalfSlideUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['HalfSlideUpsertWithWhereUniqueWithoutFirstHalfBlockInput'][] | null; // [HalfSlideUpsertWithWhereUniqueWithoutFirstHalfBlockInput!]
+  }
+  HalfSlideUpdateManyWithoutSecondHalfBlockInput: { // input type
+    connect?: NexusGenInputs['HalfSlideWhereUniqueInput'][] | null; // [HalfSlideWhereUniqueInput!]
+    create?: NexusGenInputs['HalfSlideCreateWithoutSecondHalfBlockInput'][] | null; // [HalfSlideCreateWithoutSecondHalfBlockInput!]
+    delete?: NexusGenInputs['HalfSlideWhereUniqueInput'][] | null; // [HalfSlideWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['HalfSlideScalarWhereInput'][] | null; // [HalfSlideScalarWhereInput!]
+    disconnect?: NexusGenInputs['HalfSlideWhereUniqueInput'][] | null; // [HalfSlideWhereUniqueInput!]
+    set?: NexusGenInputs['HalfSlideWhereUniqueInput'][] | null; // [HalfSlideWhereUniqueInput!]
+    update?: NexusGenInputs['HalfSlideUpdateWithWhereUniqueWithoutSecondHalfBlockInput'][] | null; // [HalfSlideUpdateWithWhereUniqueWithoutSecondHalfBlockInput!]
+    updateMany?: NexusGenInputs['HalfSlideUpdateManyWithWhereNestedInput'][] | null; // [HalfSlideUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['HalfSlideUpsertWithWhereUniqueWithoutSecondHalfBlockInput'][] | null; // [HalfSlideUpsertWithWhereUniqueWithoutSecondHalfBlockInput!]
+  }
+  HalfSlideUpdateOneWithoutSlidesInput: { // input type
+    connect?: NexusGenInputs['HalfSlideWhereUniqueInput'] | null; // HalfSlideWhereUniqueInput
+    create?: NexusGenInputs['HalfSlideCreateWithoutSlidesInput'] | null; // HalfSlideCreateWithoutSlidesInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['HalfSlideUpdateWithoutSlidesDataInput'] | null; // HalfSlideUpdateWithoutSlidesDataInput
+    upsert?: NexusGenInputs['HalfSlideUpsertWithoutSlidesInput'] | null; // HalfSlideUpsertWithoutSlidesInput
+  }
+  HalfSlideUpdateWithWhereUniqueWithoutFirstHalfBlockInput: { // input type
+    data: NexusGenInputs['HalfSlideUpdateWithoutFirstHalfBlockDataInput']; // HalfSlideUpdateWithoutFirstHalfBlockDataInput!
+    where: NexusGenInputs['HalfSlideWhereUniqueInput']; // HalfSlideWhereUniqueInput!
+  }
+  HalfSlideUpdateWithWhereUniqueWithoutSecondHalfBlockInput: { // input type
+    data: NexusGenInputs['HalfSlideUpdateWithoutSecondHalfBlockDataInput']; // HalfSlideUpdateWithoutSecondHalfBlockDataInput!
+    where: NexusGenInputs['HalfSlideWhereUniqueInput']; // HalfSlideWhereUniqueInput!
+  }
+  HalfSlideUpdateWithoutFirstHalfBlockDataInput: { // input type
+    id?: string | null; // String
+    secondHalfBlock?: NexusGenInputs['BlockUpdateOneWithoutHalfSlidesImplementingInput'] | null; // BlockUpdateOneWithoutHalfSlidesImplementingInput
+    slides?: NexusGenInputs['SlideUpdateManyWithoutHalfSlideInput'] | null; // SlideUpdateManyWithoutHalfSlideInput
+  }
+  HalfSlideUpdateWithoutSecondHalfBlockDataInput: { // input type
+    firstHalfBlock?: NexusGenInputs['BlockUpdateOneWithoutHalfSlidesInput'] | null; // BlockUpdateOneWithoutHalfSlidesInput
+    id?: string | null; // String
+    slides?: NexusGenInputs['SlideUpdateManyWithoutHalfSlideInput'] | null; // SlideUpdateManyWithoutHalfSlideInput
+  }
+  HalfSlideUpdateWithoutSlidesDataInput: { // input type
+    firstHalfBlock?: NexusGenInputs['BlockUpdateOneWithoutHalfSlidesInput'] | null; // BlockUpdateOneWithoutHalfSlidesInput
+    id?: string | null; // String
+    secondHalfBlock?: NexusGenInputs['BlockUpdateOneWithoutHalfSlidesImplementingInput'] | null; // BlockUpdateOneWithoutHalfSlidesImplementingInput
+  }
+  HalfSlideUpsertWithWhereUniqueWithoutFirstHalfBlockInput: { // input type
+    create: NexusGenInputs['HalfSlideCreateWithoutFirstHalfBlockInput']; // HalfSlideCreateWithoutFirstHalfBlockInput!
+    update: NexusGenInputs['HalfSlideUpdateWithoutFirstHalfBlockDataInput']; // HalfSlideUpdateWithoutFirstHalfBlockDataInput!
+    where: NexusGenInputs['HalfSlideWhereUniqueInput']; // HalfSlideWhereUniqueInput!
+  }
+  HalfSlideUpsertWithWhereUniqueWithoutSecondHalfBlockInput: { // input type
+    create: NexusGenInputs['HalfSlideCreateWithoutSecondHalfBlockInput']; // HalfSlideCreateWithoutSecondHalfBlockInput!
+    update: NexusGenInputs['HalfSlideUpdateWithoutSecondHalfBlockDataInput']; // HalfSlideUpdateWithoutSecondHalfBlockDataInput!
+    where: NexusGenInputs['HalfSlideWhereUniqueInput']; // HalfSlideWhereUniqueInput!
+  }
+  HalfSlideUpsertWithoutSlidesInput: { // input type
+    create: NexusGenInputs['HalfSlideCreateWithoutSlidesInput']; // HalfSlideCreateWithoutSlidesInput!
+    update: NexusGenInputs['HalfSlideUpdateWithoutSlidesDataInput']; // HalfSlideUpdateWithoutSlidesDataInput!
+  }
+  HalfSlideWhereInput: { // input type
+    AND?: NexusGenInputs['HalfSlideWhereInput'][] | null; // [HalfSlideWhereInput!]
+    firstHalfBlock?: NexusGenInputs['BlockWhereInput'] | null; // BlockWhereInput
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['HalfSlideWhereInput'][] | null; // [HalfSlideWhereInput!]
+    OR?: NexusGenInputs['HalfSlideWhereInput'][] | null; // [HalfSlideWhereInput!]
+    secondHalfBlock?: NexusGenInputs['BlockWhereInput'] | null; // BlockWhereInput
+    slides?: NexusGenInputs['SlideFilter'] | null; // SlideFilter
+  }
+  HalfSlideWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
   InstructorCreateManyWithoutCoursesInput: { // input type
     connect?: NexusGenInputs['InstructorWhereUniqueInput'][] | null; // [InstructorWhereUniqueInput!]
     create?: NexusGenInputs['InstructorCreateWithoutCoursesInput'][] | null; // [InstructorCreateWithoutCoursesInput!]
@@ -395,14 +813,14 @@ export interface NexusGenInputs {
     create?: NexusGenInputs['InstructorCreateWithoutUserInput'] | null; // InstructorCreateWithoutUserInput
   }
   InstructorCreateWithoutCoursesInput: { // input type
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     email: string; // String!
     id?: string | null; // String
     user: NexusGenInputs['UserCreateOneWithoutInstructorInput']; // UserCreateOneWithoutInstructorInput!
   }
   InstructorCreateWithoutUserInput: { // input type
     courses?: NexusGenInputs['CourseCreateManyWithoutInstructorsInput'] | null; // CourseCreateManyWithoutInstructorsInput
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     email: string; // String!
     id?: string | null; // String
   }
@@ -421,7 +839,7 @@ export interface NexusGenInputs {
     OR?: NexusGenInputs['InstructorScalarWhereInput'][] | null; // [InstructorScalarWhereInput!]
   }
   InstructorUpdateManyDataInput: { // input type
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     email?: string | null; // String
     id?: string | null; // String
   }
@@ -453,14 +871,14 @@ export interface NexusGenInputs {
     where: NexusGenInputs['InstructorWhereUniqueInput']; // InstructorWhereUniqueInput!
   }
   InstructorUpdateWithoutCoursesDataInput: { // input type
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     email?: string | null; // String
     id?: string | null; // String
     user?: NexusGenInputs['UserUpdateOneRequiredWithoutInstructorInput'] | null; // UserUpdateOneRequiredWithoutInstructorInput
   }
   InstructorUpdateWithoutUserDataInput: { // input type
     courses?: NexusGenInputs['CourseUpdateManyWithoutInstructorsInput'] | null; // CourseUpdateManyWithoutInstructorsInput
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     email?: string | null; // String
     id?: string | null; // String
   }
@@ -487,16 +905,571 @@ export interface NexusGenInputs {
     email?: string | null; // String
     id?: string | null; // String
   }
+  LessonCreateInput: { // input type
+    id?: string | null; // String
+    lessonPlan?: NexusGenInputs['LessonPlanCreateOneWithoutLessonsInput'] | null; // LessonPlanCreateOneWithoutLessonsInput
+    slides?: NexusGenInputs['SlideCreateManyWithoutLessonInput'] | null; // SlideCreateManyWithoutLessonInput
+    title: string; // String!
+  }
+  LessonCreateManyWithoutLessonPlanInput: { // input type
+    connect?: NexusGenInputs['LessonWhereUniqueInput'][] | null; // [LessonWhereUniqueInput!]
+    create?: NexusGenInputs['LessonCreateWithoutLessonPlanInput'][] | null; // [LessonCreateWithoutLessonPlanInput!]
+  }
+  LessonCreateOneWithoutSlidesInput: { // input type
+    connect?: NexusGenInputs['LessonWhereUniqueInput'] | null; // LessonWhereUniqueInput
+    create?: NexusGenInputs['LessonCreateWithoutSlidesInput'] | null; // LessonCreateWithoutSlidesInput
+  }
+  LessonCreateWithoutLessonPlanInput: { // input type
+    id?: string | null; // String
+    slides?: NexusGenInputs['SlideCreateManyWithoutLessonInput'] | null; // SlideCreateManyWithoutLessonInput
+    title: string; // String!
+  }
+  LessonCreateWithoutSlidesInput: { // input type
+    id?: string | null; // String
+    lessonPlan?: NexusGenInputs['LessonPlanCreateOneWithoutLessonsInput'] | null; // LessonPlanCreateOneWithoutLessonsInput
+    title: string; // String!
+  }
+  LessonFilter: { // input type
+    every?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    none?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    some?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+  }
+  LessonPlanCreateOneWithoutCourseInput: { // input type
+    connect?: NexusGenInputs['LessonPlanWhereUniqueInput'] | null; // LessonPlanWhereUniqueInput
+    create?: NexusGenInputs['LessonPlanCreateWithoutCourseInput'] | null; // LessonPlanCreateWithoutCourseInput
+  }
+  LessonPlanCreateOneWithoutLessonsInput: { // input type
+    connect?: NexusGenInputs['LessonPlanWhereUniqueInput'] | null; // LessonPlanWhereUniqueInput
+    create?: NexusGenInputs['LessonPlanCreateWithoutLessonsInput'] | null; // LessonPlanCreateWithoutLessonsInput
+  }
+  LessonPlanCreateWithoutCourseInput: { // input type
+    id?: string | null; // String
+    lessons?: NexusGenInputs['LessonCreateManyWithoutLessonPlanInput'] | null; // LessonCreateManyWithoutLessonPlanInput
+  }
+  LessonPlanCreateWithoutLessonsInput: { // input type
+    course: NexusGenInputs['CourseCreateOneWithoutLessonPlanInput']; // CourseCreateOneWithoutLessonPlanInput!
+    id?: string | null; // String
+  }
+  LessonPlanUpdateOneRequiredWithoutCourseInput: { // input type
+    connect?: NexusGenInputs['LessonPlanWhereUniqueInput'] | null; // LessonPlanWhereUniqueInput
+    create?: NexusGenInputs['LessonPlanCreateWithoutCourseInput'] | null; // LessonPlanCreateWithoutCourseInput
+    update?: NexusGenInputs['LessonPlanUpdateWithoutCourseDataInput'] | null; // LessonPlanUpdateWithoutCourseDataInput
+    upsert?: NexusGenInputs['LessonPlanUpsertWithoutCourseInput'] | null; // LessonPlanUpsertWithoutCourseInput
+  }
+  LessonPlanUpdateOneWithoutLessonsInput: { // input type
+    connect?: NexusGenInputs['LessonPlanWhereUniqueInput'] | null; // LessonPlanWhereUniqueInput
+    create?: NexusGenInputs['LessonPlanCreateWithoutLessonsInput'] | null; // LessonPlanCreateWithoutLessonsInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['LessonPlanUpdateWithoutLessonsDataInput'] | null; // LessonPlanUpdateWithoutLessonsDataInput
+    upsert?: NexusGenInputs['LessonPlanUpsertWithoutLessonsInput'] | null; // LessonPlanUpsertWithoutLessonsInput
+  }
+  LessonPlanUpdateWithoutCourseDataInput: { // input type
+    id?: string | null; // String
+    lessons?: NexusGenInputs['LessonUpdateManyWithoutLessonPlanInput'] | null; // LessonUpdateManyWithoutLessonPlanInput
+  }
+  LessonPlanUpdateWithoutLessonsDataInput: { // input type
+    course?: NexusGenInputs['CourseUpdateOneRequiredWithoutLessonPlanInput'] | null; // CourseUpdateOneRequiredWithoutLessonPlanInput
+    id?: string | null; // String
+  }
+  LessonPlanUpsertWithoutCourseInput: { // input type
+    create: NexusGenInputs['LessonPlanCreateWithoutCourseInput']; // LessonPlanCreateWithoutCourseInput!
+    update: NexusGenInputs['LessonPlanUpdateWithoutCourseDataInput']; // LessonPlanUpdateWithoutCourseDataInput!
+  }
+  LessonPlanUpsertWithoutLessonsInput: { // input type
+    create: NexusGenInputs['LessonPlanCreateWithoutLessonsInput']; // LessonPlanCreateWithoutLessonsInput!
+    update: NexusGenInputs['LessonPlanUpdateWithoutLessonsDataInput']; // LessonPlanUpdateWithoutLessonsDataInput!
+  }
+  LessonPlanWhereInput: { // input type
+    AND?: NexusGenInputs['LessonPlanWhereInput'][] | null; // [LessonPlanWhereInput!]
+    course?: NexusGenInputs['CourseWhereInput'] | null; // CourseWhereInput
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lessons?: NexusGenInputs['LessonFilter'] | null; // LessonFilter
+    NOT?: NexusGenInputs['LessonPlanWhereInput'][] | null; // [LessonPlanWhereInput!]
+    OR?: NexusGenInputs['LessonPlanWhereInput'][] | null; // [LessonPlanWhereInput!]
+  }
+  LessonPlanWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
+  LessonScalarWhereInput: { // input type
+    AND?: NexusGenInputs['LessonScalarWhereInput'][] | null; // [LessonScalarWhereInput!]
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['LessonScalarWhereInput'][] | null; // [LessonScalarWhereInput!]
+    OR?: NexusGenInputs['LessonScalarWhereInput'][] | null; // [LessonScalarWhereInput!]
+    slides?: NexusGenInputs['SlideFilter'] | null; // SlideFilter
+    title?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  LessonUpdateManyDataInput: { // input type
+    id?: string | null; // String
+    title?: string | null; // String
+  }
+  LessonUpdateManyWithWhereNestedInput: { // input type
+    data: NexusGenInputs['LessonUpdateManyDataInput']; // LessonUpdateManyDataInput!
+    where: NexusGenInputs['LessonScalarWhereInput']; // LessonScalarWhereInput!
+  }
+  LessonUpdateManyWithoutLessonPlanInput: { // input type
+    connect?: NexusGenInputs['LessonWhereUniqueInput'][] | null; // [LessonWhereUniqueInput!]
+    create?: NexusGenInputs['LessonCreateWithoutLessonPlanInput'][] | null; // [LessonCreateWithoutLessonPlanInput!]
+    delete?: NexusGenInputs['LessonWhereUniqueInput'][] | null; // [LessonWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['LessonScalarWhereInput'][] | null; // [LessonScalarWhereInput!]
+    disconnect?: NexusGenInputs['LessonWhereUniqueInput'][] | null; // [LessonWhereUniqueInput!]
+    set?: NexusGenInputs['LessonWhereUniqueInput'][] | null; // [LessonWhereUniqueInput!]
+    update?: NexusGenInputs['LessonUpdateWithWhereUniqueWithoutLessonPlanInput'][] | null; // [LessonUpdateWithWhereUniqueWithoutLessonPlanInput!]
+    updateMany?: NexusGenInputs['LessonUpdateManyWithWhereNestedInput'][] | null; // [LessonUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['LessonUpsertWithWhereUniqueWithoutLessonPlanInput'][] | null; // [LessonUpsertWithWhereUniqueWithoutLessonPlanInput!]
+  }
+  LessonUpdateOneWithoutSlidesInput: { // input type
+    connect?: NexusGenInputs['LessonWhereUniqueInput'] | null; // LessonWhereUniqueInput
+    create?: NexusGenInputs['LessonCreateWithoutSlidesInput'] | null; // LessonCreateWithoutSlidesInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['LessonUpdateWithoutSlidesDataInput'] | null; // LessonUpdateWithoutSlidesDataInput
+    upsert?: NexusGenInputs['LessonUpsertWithoutSlidesInput'] | null; // LessonUpsertWithoutSlidesInput
+  }
+  LessonUpdateWithWhereUniqueWithoutLessonPlanInput: { // input type
+    data: NexusGenInputs['LessonUpdateWithoutLessonPlanDataInput']; // LessonUpdateWithoutLessonPlanDataInput!
+    where: NexusGenInputs['LessonWhereUniqueInput']; // LessonWhereUniqueInput!
+  }
+  LessonUpdateWithoutLessonPlanDataInput: { // input type
+    id?: string | null; // String
+    slides?: NexusGenInputs['SlideUpdateManyWithoutLessonInput'] | null; // SlideUpdateManyWithoutLessonInput
+    title?: string | null; // String
+  }
+  LessonUpdateWithoutSlidesDataInput: { // input type
+    id?: string | null; // String
+    lessonPlan?: NexusGenInputs['LessonPlanUpdateOneWithoutLessonsInput'] | null; // LessonPlanUpdateOneWithoutLessonsInput
+    title?: string | null; // String
+  }
+  LessonUpsertWithWhereUniqueWithoutLessonPlanInput: { // input type
+    create: NexusGenInputs['LessonCreateWithoutLessonPlanInput']; // LessonCreateWithoutLessonPlanInput!
+    update: NexusGenInputs['LessonUpdateWithoutLessonPlanDataInput']; // LessonUpdateWithoutLessonPlanDataInput!
+    where: NexusGenInputs['LessonWhereUniqueInput']; // LessonWhereUniqueInput!
+  }
+  LessonUpsertWithoutSlidesInput: { // input type
+    create: NexusGenInputs['LessonCreateWithoutSlidesInput']; // LessonCreateWithoutSlidesInput!
+    update: NexusGenInputs['LessonUpdateWithoutSlidesDataInput']; // LessonUpdateWithoutSlidesDataInput!
+  }
+  LessonWhereInput: { // input type
+    AND?: NexusGenInputs['LessonWhereInput'][] | null; // [LessonWhereInput!]
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lessonPlan?: NexusGenInputs['LessonPlanWhereInput'] | null; // LessonPlanWhereInput
+    NOT?: NexusGenInputs['LessonWhereInput'][] | null; // [LessonWhereInput!]
+    OR?: NexusGenInputs['LessonWhereInput'][] | null; // [LessonWhereInput!]
+    slides?: NexusGenInputs['SlideFilter'] | null; // SlideFilter
+    title?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  LessonWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
   LogInInput: { // input type
     password: string; // String!
     username: string; // String!
+  }
+  MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput: { // input type
+    connect?: NexusGenInputs['MultipleChoiceQuestionBlockWhereUniqueInput'] | null; // MultipleChoiceQuestionBlockWhereUniqueInput
+    create?: NexusGenInputs['MultipleChoiceQuestionBlockCreateWithoutBlocksInput'] | null; // MultipleChoiceQuestionBlockCreateWithoutBlocksInput
+  }
+  MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput: { // input type
+    connect?: NexusGenInputs['MultipleChoiceQuestionBlockWhereUniqueInput'] | null; // MultipleChoiceQuestionBlockWhereUniqueInput
+    create?: NexusGenInputs['MultipleChoiceQuestionBlockCreateWithoutChoicesInput'] | null; // MultipleChoiceQuestionBlockCreateWithoutChoicesInput
+  }
+  MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput: { // input type
+    connect?: NexusGenInputs['MultipleChoiceQuestionBlockWhereUniqueInput'] | null; // MultipleChoiceQuestionBlockWhereUniqueInput
+    create?: NexusGenInputs['MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput'] | null; // MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput
+  }
+  MultipleChoiceQuestionBlockCreateOneWithoutResponsesInput: { // input type
+    connect?: NexusGenInputs['MultipleChoiceQuestionBlockWhereUniqueInput'] | null; // MultipleChoiceQuestionBlockWhereUniqueInput
+    create?: NexusGenInputs['MultipleChoiceQuestionBlockCreateWithoutResponsesInput'] | null; // MultipleChoiceQuestionBlockCreateWithoutResponsesInput
+  }
+  MultipleChoiceQuestionBlockCreateWithoutBlocksInput: { // input type
+    choices?: NexusGenInputs['MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput'] | null; // MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput
+    correctChoice: NexusGenInputs['MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput']; // MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput!
+    id?: string | null; // String
+    responses?: NexusGenInputs['MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput'] | null; // MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput
+    text: string; // String!
+  }
+  MultipleChoiceQuestionBlockCreateWithoutChoicesInput: { // input type
+    blocks?: NexusGenInputs['BlockCreateManyWithoutMultipleChoiceQuestionBlockInput'] | null; // BlockCreateManyWithoutMultipleChoiceQuestionBlockInput
+    correctChoice: NexusGenInputs['MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput']; // MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput!
+    id?: string | null; // String
+    responses?: NexusGenInputs['MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput'] | null; // MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput
+    text: string; // String!
+  }
+  MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput: { // input type
+    blocks?: NexusGenInputs['BlockCreateManyWithoutMultipleChoiceQuestionBlockInput'] | null; // BlockCreateManyWithoutMultipleChoiceQuestionBlockInput
+    choices?: NexusGenInputs['MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput'] | null; // MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput
+    id?: string | null; // String
+    responses?: NexusGenInputs['MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput'] | null; // MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput
+    text: string; // String!
+  }
+  MultipleChoiceQuestionBlockCreateWithoutResponsesInput: { // input type
+    blocks?: NexusGenInputs['BlockCreateManyWithoutMultipleChoiceQuestionBlockInput'] | null; // BlockCreateManyWithoutMultipleChoiceQuestionBlockInput
+    choices?: NexusGenInputs['MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput'] | null; // MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput
+    correctChoice: NexusGenInputs['MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput']; // MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput!
+    id?: string | null; // String
+    text: string; // String!
+  }
+  MultipleChoiceQuestionBlockUpdateOneRequiredWithoutCorrectChoiceInput: { // input type
+    connect?: NexusGenInputs['MultipleChoiceQuestionBlockWhereUniqueInput'] | null; // MultipleChoiceQuestionBlockWhereUniqueInput
+    create?: NexusGenInputs['MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput'] | null; // MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput
+    update?: NexusGenInputs['MultipleChoiceQuestionBlockUpdateWithoutCorrectChoiceDataInput'] | null; // MultipleChoiceQuestionBlockUpdateWithoutCorrectChoiceDataInput
+    upsert?: NexusGenInputs['MultipleChoiceQuestionBlockUpsertWithoutCorrectChoiceInput'] | null; // MultipleChoiceQuestionBlockUpsertWithoutCorrectChoiceInput
+  }
+  MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput: { // input type
+    connect?: NexusGenInputs['MultipleChoiceQuestionBlockWhereUniqueInput'] | null; // MultipleChoiceQuestionBlockWhereUniqueInput
+    create?: NexusGenInputs['MultipleChoiceQuestionBlockCreateWithoutBlocksInput'] | null; // MultipleChoiceQuestionBlockCreateWithoutBlocksInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['MultipleChoiceQuestionBlockUpdateWithoutBlocksDataInput'] | null; // MultipleChoiceQuestionBlockUpdateWithoutBlocksDataInput
+    upsert?: NexusGenInputs['MultipleChoiceQuestionBlockUpsertWithoutBlocksInput'] | null; // MultipleChoiceQuestionBlockUpsertWithoutBlocksInput
+  }
+  MultipleChoiceQuestionBlockUpdateOneWithoutChoicesInput: { // input type
+    connect?: NexusGenInputs['MultipleChoiceQuestionBlockWhereUniqueInput'] | null; // MultipleChoiceQuestionBlockWhereUniqueInput
+    create?: NexusGenInputs['MultipleChoiceQuestionBlockCreateWithoutChoicesInput'] | null; // MultipleChoiceQuestionBlockCreateWithoutChoicesInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['MultipleChoiceQuestionBlockUpdateWithoutChoicesDataInput'] | null; // MultipleChoiceQuestionBlockUpdateWithoutChoicesDataInput
+    upsert?: NexusGenInputs['MultipleChoiceQuestionBlockUpsertWithoutChoicesInput'] | null; // MultipleChoiceQuestionBlockUpsertWithoutChoicesInput
+  }
+  MultipleChoiceQuestionBlockUpdateOneWithoutResponsesInput: { // input type
+    connect?: NexusGenInputs['MultipleChoiceQuestionBlockWhereUniqueInput'] | null; // MultipleChoiceQuestionBlockWhereUniqueInput
+    create?: NexusGenInputs['MultipleChoiceQuestionBlockCreateWithoutResponsesInput'] | null; // MultipleChoiceQuestionBlockCreateWithoutResponsesInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['MultipleChoiceQuestionBlockUpdateWithoutResponsesDataInput'] | null; // MultipleChoiceQuestionBlockUpdateWithoutResponsesDataInput
+    upsert?: NexusGenInputs['MultipleChoiceQuestionBlockUpsertWithoutResponsesInput'] | null; // MultipleChoiceQuestionBlockUpsertWithoutResponsesInput
+  }
+  MultipleChoiceQuestionBlockUpdateWithoutBlocksDataInput: { // input type
+    choices?: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateManyWithoutMultipleChoiceQuestionBlockInput'] | null; // MultipleChoiceQuestionChoiceUpdateManyWithoutMultipleChoiceQuestionBlockInput
+    correctChoice?: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutQuestionInput'] | null; // MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutQuestionInput
+    id?: string | null; // String
+    responses?: NexusGenInputs['MultipleChoiceQuestionResponseUpdateManyWithoutMultipleChoiceQuestionBlockInput'] | null; // MultipleChoiceQuestionResponseUpdateManyWithoutMultipleChoiceQuestionBlockInput
+    text?: string | null; // String
+  }
+  MultipleChoiceQuestionBlockUpdateWithoutChoicesDataInput: { // input type
+    blocks?: NexusGenInputs['BlockUpdateManyWithoutMultipleChoiceQuestionBlockInput'] | null; // BlockUpdateManyWithoutMultipleChoiceQuestionBlockInput
+    correctChoice?: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutQuestionInput'] | null; // MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutQuestionInput
+    id?: string | null; // String
+    responses?: NexusGenInputs['MultipleChoiceQuestionResponseUpdateManyWithoutMultipleChoiceQuestionBlockInput'] | null; // MultipleChoiceQuestionResponseUpdateManyWithoutMultipleChoiceQuestionBlockInput
+    text?: string | null; // String
+  }
+  MultipleChoiceQuestionBlockUpdateWithoutCorrectChoiceDataInput: { // input type
+    blocks?: NexusGenInputs['BlockUpdateManyWithoutMultipleChoiceQuestionBlockInput'] | null; // BlockUpdateManyWithoutMultipleChoiceQuestionBlockInput
+    choices?: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateManyWithoutMultipleChoiceQuestionBlockInput'] | null; // MultipleChoiceQuestionChoiceUpdateManyWithoutMultipleChoiceQuestionBlockInput
+    id?: string | null; // String
+    responses?: NexusGenInputs['MultipleChoiceQuestionResponseUpdateManyWithoutMultipleChoiceQuestionBlockInput'] | null; // MultipleChoiceQuestionResponseUpdateManyWithoutMultipleChoiceQuestionBlockInput
+    text?: string | null; // String
+  }
+  MultipleChoiceQuestionBlockUpdateWithoutResponsesDataInput: { // input type
+    blocks?: NexusGenInputs['BlockUpdateManyWithoutMultipleChoiceQuestionBlockInput'] | null; // BlockUpdateManyWithoutMultipleChoiceQuestionBlockInput
+    choices?: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateManyWithoutMultipleChoiceQuestionBlockInput'] | null; // MultipleChoiceQuestionChoiceUpdateManyWithoutMultipleChoiceQuestionBlockInput
+    correctChoice?: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutQuestionInput'] | null; // MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutQuestionInput
+    id?: string | null; // String
+    text?: string | null; // String
+  }
+  MultipleChoiceQuestionBlockUpsertWithoutBlocksInput: { // input type
+    create: NexusGenInputs['MultipleChoiceQuestionBlockCreateWithoutBlocksInput']; // MultipleChoiceQuestionBlockCreateWithoutBlocksInput!
+    update: NexusGenInputs['MultipleChoiceQuestionBlockUpdateWithoutBlocksDataInput']; // MultipleChoiceQuestionBlockUpdateWithoutBlocksDataInput!
+  }
+  MultipleChoiceQuestionBlockUpsertWithoutChoicesInput: { // input type
+    create: NexusGenInputs['MultipleChoiceQuestionBlockCreateWithoutChoicesInput']; // MultipleChoiceQuestionBlockCreateWithoutChoicesInput!
+    update: NexusGenInputs['MultipleChoiceQuestionBlockUpdateWithoutChoicesDataInput']; // MultipleChoiceQuestionBlockUpdateWithoutChoicesDataInput!
+  }
+  MultipleChoiceQuestionBlockUpsertWithoutCorrectChoiceInput: { // input type
+    create: NexusGenInputs['MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput']; // MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput!
+    update: NexusGenInputs['MultipleChoiceQuestionBlockUpdateWithoutCorrectChoiceDataInput']; // MultipleChoiceQuestionBlockUpdateWithoutCorrectChoiceDataInput!
+  }
+  MultipleChoiceQuestionBlockUpsertWithoutResponsesInput: { // input type
+    create: NexusGenInputs['MultipleChoiceQuestionBlockCreateWithoutResponsesInput']; // MultipleChoiceQuestionBlockCreateWithoutResponsesInput!
+    update: NexusGenInputs['MultipleChoiceQuestionBlockUpdateWithoutResponsesDataInput']; // MultipleChoiceQuestionBlockUpdateWithoutResponsesDataInput!
+  }
+  MultipleChoiceQuestionBlockWhereInput: { // input type
+    AND?: NexusGenInputs['MultipleChoiceQuestionBlockWhereInput'][] | null; // [MultipleChoiceQuestionBlockWhereInput!]
+    blocks?: NexusGenInputs['BlockFilter'] | null; // BlockFilter
+    choices?: NexusGenInputs['MultipleChoiceQuestionChoiceFilter'] | null; // MultipleChoiceQuestionChoiceFilter
+    correctChoice?: NexusGenInputs['MultipleChoiceQuestionChoiceWhereInput'] | null; // MultipleChoiceQuestionChoiceWhereInput
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['MultipleChoiceQuestionBlockWhereInput'][] | null; // [MultipleChoiceQuestionBlockWhereInput!]
+    OR?: NexusGenInputs['MultipleChoiceQuestionBlockWhereInput'][] | null; // [MultipleChoiceQuestionBlockWhereInput!]
+    responses?: NexusGenInputs['MultipleChoiceQuestionResponseFilter'] | null; // MultipleChoiceQuestionResponseFilter
+    text?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  MultipleChoiceQuestionBlockWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
+  MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput: { // input type
+    connect?: NexusGenInputs['MultipleChoiceQuestionChoiceWhereUniqueInput'][] | null; // [MultipleChoiceQuestionChoiceWhereUniqueInput!]
+    create?: NexusGenInputs['MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput'][] | null; // [MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput!]
+  }
+  MultipleChoiceQuestionChoiceCreateOneWithoutMultipleChoiceQuestionResponsesInput: { // input type
+    connect?: NexusGenInputs['MultipleChoiceQuestionChoiceWhereUniqueInput'] | null; // MultipleChoiceQuestionChoiceWhereUniqueInput
+    create?: NexusGenInputs['MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput'] | null; // MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput
+  }
+  MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput: { // input type
+    connect?: NexusGenInputs['MultipleChoiceQuestionChoiceWhereUniqueInput'] | null; // MultipleChoiceQuestionChoiceWhereUniqueInput
+    create?: NexusGenInputs['MultipleChoiceQuestionChoiceCreateWithoutQuestionInput'] | null; // MultipleChoiceQuestionChoiceCreateWithoutQuestionInput
+  }
+  MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput: { // input type
+    id?: string | null; // String
+    multipleChoiceQuestionResponses?: NexusGenInputs['MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput'] | null; // MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput
+    question: NexusGenInputs['MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput']; // MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput!
+    text: string; // String!
+  }
+  MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput: { // input type
+    id?: string | null; // String
+    multipleChoiceQuestionBlock?: NexusGenInputs['MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput'] | null; // MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput
+    question: NexusGenInputs['MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput']; // MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput!
+    text: string; // String!
+  }
+  MultipleChoiceQuestionChoiceCreateWithoutQuestionInput: { // input type
+    id?: string | null; // String
+    multipleChoiceQuestionBlock?: NexusGenInputs['MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput'] | null; // MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput
+    multipleChoiceQuestionResponses?: NexusGenInputs['MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput'] | null; // MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput
+    text: string; // String!
+  }
+  MultipleChoiceQuestionChoiceFilter: { // input type
+    every?: NexusGenInputs['MultipleChoiceQuestionChoiceWhereInput'] | null; // MultipleChoiceQuestionChoiceWhereInput
+    none?: NexusGenInputs['MultipleChoiceQuestionChoiceWhereInput'] | null; // MultipleChoiceQuestionChoiceWhereInput
+    some?: NexusGenInputs['MultipleChoiceQuestionChoiceWhereInput'] | null; // MultipleChoiceQuestionChoiceWhereInput
+  }
+  MultipleChoiceQuestionChoiceScalarWhereInput: { // input type
+    AND?: NexusGenInputs['MultipleChoiceQuestionChoiceScalarWhereInput'][] | null; // [MultipleChoiceQuestionChoiceScalarWhereInput!]
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    multipleChoiceQuestionResponses?: NexusGenInputs['MultipleChoiceQuestionResponseFilter'] | null; // MultipleChoiceQuestionResponseFilter
+    NOT?: NexusGenInputs['MultipleChoiceQuestionChoiceScalarWhereInput'][] | null; // [MultipleChoiceQuestionChoiceScalarWhereInput!]
+    OR?: NexusGenInputs['MultipleChoiceQuestionChoiceScalarWhereInput'][] | null; // [MultipleChoiceQuestionChoiceScalarWhereInput!]
+    text?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  MultipleChoiceQuestionChoiceUpdateManyDataInput: { // input type
+    id?: string | null; // String
+    text?: string | null; // String
+  }
+  MultipleChoiceQuestionChoiceUpdateManyWithWhereNestedInput: { // input type
+    data: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateManyDataInput']; // MultipleChoiceQuestionChoiceUpdateManyDataInput!
+    where: NexusGenInputs['MultipleChoiceQuestionChoiceScalarWhereInput']; // MultipleChoiceQuestionChoiceScalarWhereInput!
+  }
+  MultipleChoiceQuestionChoiceUpdateManyWithoutMultipleChoiceQuestionBlockInput: { // input type
+    connect?: NexusGenInputs['MultipleChoiceQuestionChoiceWhereUniqueInput'][] | null; // [MultipleChoiceQuestionChoiceWhereUniqueInput!]
+    create?: NexusGenInputs['MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput'][] | null; // [MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput!]
+    delete?: NexusGenInputs['MultipleChoiceQuestionChoiceWhereUniqueInput'][] | null; // [MultipleChoiceQuestionChoiceWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['MultipleChoiceQuestionChoiceScalarWhereInput'][] | null; // [MultipleChoiceQuestionChoiceScalarWhereInput!]
+    disconnect?: NexusGenInputs['MultipleChoiceQuestionChoiceWhereUniqueInput'][] | null; // [MultipleChoiceQuestionChoiceWhereUniqueInput!]
+    set?: NexusGenInputs['MultipleChoiceQuestionChoiceWhereUniqueInput'][] | null; // [MultipleChoiceQuestionChoiceWhereUniqueInput!]
+    update?: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput'][] | null; // [MultipleChoiceQuestionChoiceUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput!]
+    updateMany?: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateManyWithWhereNestedInput'][] | null; // [MultipleChoiceQuestionChoiceUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['MultipleChoiceQuestionChoiceUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput'][] | null; // [MultipleChoiceQuestionChoiceUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput!]
+  }
+  MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput: { // input type
+    connect?: NexusGenInputs['MultipleChoiceQuestionChoiceWhereUniqueInput'] | null; // MultipleChoiceQuestionChoiceWhereUniqueInput
+    create?: NexusGenInputs['MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput'] | null; // MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput
+    update?: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionResponsesDataInput'] | null; // MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionResponsesDataInput
+    upsert?: NexusGenInputs['MultipleChoiceQuestionChoiceUpsertWithoutMultipleChoiceQuestionResponsesInput'] | null; // MultipleChoiceQuestionChoiceUpsertWithoutMultipleChoiceQuestionResponsesInput
+  }
+  MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutQuestionInput: { // input type
+    connect?: NexusGenInputs['MultipleChoiceQuestionChoiceWhereUniqueInput'] | null; // MultipleChoiceQuestionChoiceWhereUniqueInput
+    create?: NexusGenInputs['MultipleChoiceQuestionChoiceCreateWithoutQuestionInput'] | null; // MultipleChoiceQuestionChoiceCreateWithoutQuestionInput
+    update?: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateWithoutQuestionDataInput'] | null; // MultipleChoiceQuestionChoiceUpdateWithoutQuestionDataInput
+    upsert?: NexusGenInputs['MultipleChoiceQuestionChoiceUpsertWithoutQuestionInput'] | null; // MultipleChoiceQuestionChoiceUpsertWithoutQuestionInput
+  }
+  MultipleChoiceQuestionChoiceUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput: { // input type
+    data: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionBlockDataInput']; // MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionBlockDataInput!
+    where: NexusGenInputs['MultipleChoiceQuestionChoiceWhereUniqueInput']; // MultipleChoiceQuestionChoiceWhereUniqueInput!
+  }
+  MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionBlockDataInput: { // input type
+    id?: string | null; // String
+    multipleChoiceQuestionResponses?: NexusGenInputs['MultipleChoiceQuestionResponseUpdateManyWithoutChoiceInput'] | null; // MultipleChoiceQuestionResponseUpdateManyWithoutChoiceInput
+    question?: NexusGenInputs['MultipleChoiceQuestionBlockUpdateOneRequiredWithoutCorrectChoiceInput'] | null; // MultipleChoiceQuestionBlockUpdateOneRequiredWithoutCorrectChoiceInput
+    text?: string | null; // String
+  }
+  MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionResponsesDataInput: { // input type
+    id?: string | null; // String
+    multipleChoiceQuestionBlock?: NexusGenInputs['MultipleChoiceQuestionBlockUpdateOneWithoutChoicesInput'] | null; // MultipleChoiceQuestionBlockUpdateOneWithoutChoicesInput
+    question?: NexusGenInputs['MultipleChoiceQuestionBlockUpdateOneRequiredWithoutCorrectChoiceInput'] | null; // MultipleChoiceQuestionBlockUpdateOneRequiredWithoutCorrectChoiceInput
+    text?: string | null; // String
+  }
+  MultipleChoiceQuestionChoiceUpdateWithoutQuestionDataInput: { // input type
+    id?: string | null; // String
+    multipleChoiceQuestionBlock?: NexusGenInputs['MultipleChoiceQuestionBlockUpdateOneWithoutChoicesInput'] | null; // MultipleChoiceQuestionBlockUpdateOneWithoutChoicesInput
+    multipleChoiceQuestionResponses?: NexusGenInputs['MultipleChoiceQuestionResponseUpdateManyWithoutChoiceInput'] | null; // MultipleChoiceQuestionResponseUpdateManyWithoutChoiceInput
+    text?: string | null; // String
+  }
+  MultipleChoiceQuestionChoiceUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput: { // input type
+    create: NexusGenInputs['MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput']; // MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput!
+    update: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionBlockDataInput']; // MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionBlockDataInput!
+    where: NexusGenInputs['MultipleChoiceQuestionChoiceWhereUniqueInput']; // MultipleChoiceQuestionChoiceWhereUniqueInput!
+  }
+  MultipleChoiceQuestionChoiceUpsertWithoutMultipleChoiceQuestionResponsesInput: { // input type
+    create: NexusGenInputs['MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput']; // MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput!
+    update: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionResponsesDataInput']; // MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionResponsesDataInput!
+  }
+  MultipleChoiceQuestionChoiceUpsertWithoutQuestionInput: { // input type
+    create: NexusGenInputs['MultipleChoiceQuestionChoiceCreateWithoutQuestionInput']; // MultipleChoiceQuestionChoiceCreateWithoutQuestionInput!
+    update: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateWithoutQuestionDataInput']; // MultipleChoiceQuestionChoiceUpdateWithoutQuestionDataInput!
+  }
+  MultipleChoiceQuestionChoiceWhereInput: { // input type
+    AND?: NexusGenInputs['MultipleChoiceQuestionChoiceWhereInput'][] | null; // [MultipleChoiceQuestionChoiceWhereInput!]
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    multipleChoiceQuestionBlock?: NexusGenInputs['MultipleChoiceQuestionBlockWhereInput'] | null; // MultipleChoiceQuestionBlockWhereInput
+    multipleChoiceQuestionResponses?: NexusGenInputs['MultipleChoiceQuestionResponseFilter'] | null; // MultipleChoiceQuestionResponseFilter
+    NOT?: NexusGenInputs['MultipleChoiceQuestionChoiceWhereInput'][] | null; // [MultipleChoiceQuestionChoiceWhereInput!]
+    OR?: NexusGenInputs['MultipleChoiceQuestionChoiceWhereInput'][] | null; // [MultipleChoiceQuestionChoiceWhereInput!]
+    question?: NexusGenInputs['MultipleChoiceQuestionBlockWhereInput'] | null; // MultipleChoiceQuestionBlockWhereInput
+    text?: NexusGenInputs['StringFilter'] | null; // StringFilter
+  }
+  MultipleChoiceQuestionChoiceWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
+  MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput: { // input type
+    connect?: NexusGenInputs['MultipleChoiceQuestionResponseWhereUniqueInput'][] | null; // [MultipleChoiceQuestionResponseWhereUniqueInput!]
+    create?: NexusGenInputs['MultipleChoiceQuestionResponseCreateWithoutChoiceInput'][] | null; // [MultipleChoiceQuestionResponseCreateWithoutChoiceInput!]
+  }
+  MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput: { // input type
+    connect?: NexusGenInputs['MultipleChoiceQuestionResponseWhereUniqueInput'][] | null; // [MultipleChoiceQuestionResponseWhereUniqueInput!]
+    create?: NexusGenInputs['MultipleChoiceQuestionResponseCreateWithoutMultipleChoiceQuestionBlockInput'][] | null; // [MultipleChoiceQuestionResponseCreateWithoutMultipleChoiceQuestionBlockInput!]
+  }
+  MultipleChoiceQuestionResponseCreateManyWithoutStudentInput: { // input type
+    connect?: NexusGenInputs['MultipleChoiceQuestionResponseWhereUniqueInput'][] | null; // [MultipleChoiceQuestionResponseWhereUniqueInput!]
+    create?: NexusGenInputs['MultipleChoiceQuestionResponseCreateWithoutStudentInput'][] | null; // [MultipleChoiceQuestionResponseCreateWithoutStudentInput!]
+  }
+  MultipleChoiceQuestionResponseCreateWithoutChoiceInput: { // input type
+    id?: string | null; // String
+    multipleChoiceQuestionBlock?: NexusGenInputs['MultipleChoiceQuestionBlockCreateOneWithoutResponsesInput'] | null; // MultipleChoiceQuestionBlockCreateOneWithoutResponsesInput
+    student: NexusGenInputs['StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput']; // StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput!
+  }
+  MultipleChoiceQuestionResponseCreateWithoutMultipleChoiceQuestionBlockInput: { // input type
+    choice: NexusGenInputs['MultipleChoiceQuestionChoiceCreateOneWithoutMultipleChoiceQuestionResponsesInput']; // MultipleChoiceQuestionChoiceCreateOneWithoutMultipleChoiceQuestionResponsesInput!
+    id?: string | null; // String
+    student: NexusGenInputs['StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput']; // StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput!
+  }
+  MultipleChoiceQuestionResponseCreateWithoutStudentInput: { // input type
+    choice: NexusGenInputs['MultipleChoiceQuestionChoiceCreateOneWithoutMultipleChoiceQuestionResponsesInput']; // MultipleChoiceQuestionChoiceCreateOneWithoutMultipleChoiceQuestionResponsesInput!
+    id?: string | null; // String
+    multipleChoiceQuestionBlock?: NexusGenInputs['MultipleChoiceQuestionBlockCreateOneWithoutResponsesInput'] | null; // MultipleChoiceQuestionBlockCreateOneWithoutResponsesInput
+  }
+  MultipleChoiceQuestionResponseFilter: { // input type
+    every?: NexusGenInputs['MultipleChoiceQuestionResponseWhereInput'] | null; // MultipleChoiceQuestionResponseWhereInput
+    none?: NexusGenInputs['MultipleChoiceQuestionResponseWhereInput'] | null; // MultipleChoiceQuestionResponseWhereInput
+    some?: NexusGenInputs['MultipleChoiceQuestionResponseWhereInput'] | null; // MultipleChoiceQuestionResponseWhereInput
+  }
+  MultipleChoiceQuestionResponseScalarWhereInput: { // input type
+    AND?: NexusGenInputs['MultipleChoiceQuestionResponseScalarWhereInput'][] | null; // [MultipleChoiceQuestionResponseScalarWhereInput!]
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['MultipleChoiceQuestionResponseScalarWhereInput'][] | null; // [MultipleChoiceQuestionResponseScalarWhereInput!]
+    OR?: NexusGenInputs['MultipleChoiceQuestionResponseScalarWhereInput'][] | null; // [MultipleChoiceQuestionResponseScalarWhereInput!]
+  }
+  MultipleChoiceQuestionResponseUpdateManyDataInput: { // input type
+    id?: string | null; // String
+  }
+  MultipleChoiceQuestionResponseUpdateManyWithWhereNestedInput: { // input type
+    data: NexusGenInputs['MultipleChoiceQuestionResponseUpdateManyDataInput']; // MultipleChoiceQuestionResponseUpdateManyDataInput!
+    where: NexusGenInputs['MultipleChoiceQuestionResponseScalarWhereInput']; // MultipleChoiceQuestionResponseScalarWhereInput!
+  }
+  MultipleChoiceQuestionResponseUpdateManyWithoutChoiceInput: { // input type
+    connect?: NexusGenInputs['MultipleChoiceQuestionResponseWhereUniqueInput'][] | null; // [MultipleChoiceQuestionResponseWhereUniqueInput!]
+    create?: NexusGenInputs['MultipleChoiceQuestionResponseCreateWithoutChoiceInput'][] | null; // [MultipleChoiceQuestionResponseCreateWithoutChoiceInput!]
+    delete?: NexusGenInputs['MultipleChoiceQuestionResponseWhereUniqueInput'][] | null; // [MultipleChoiceQuestionResponseWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['MultipleChoiceQuestionResponseScalarWhereInput'][] | null; // [MultipleChoiceQuestionResponseScalarWhereInput!]
+    disconnect?: NexusGenInputs['MultipleChoiceQuestionResponseWhereUniqueInput'][] | null; // [MultipleChoiceQuestionResponseWhereUniqueInput!]
+    set?: NexusGenInputs['MultipleChoiceQuestionResponseWhereUniqueInput'][] | null; // [MultipleChoiceQuestionResponseWhereUniqueInput!]
+    update?: NexusGenInputs['MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutChoiceInput'][] | null; // [MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutChoiceInput!]
+    updateMany?: NexusGenInputs['MultipleChoiceQuestionResponseUpdateManyWithWhereNestedInput'][] | null; // [MultipleChoiceQuestionResponseUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutChoiceInput'][] | null; // [MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutChoiceInput!]
+  }
+  MultipleChoiceQuestionResponseUpdateManyWithoutMultipleChoiceQuestionBlockInput: { // input type
+    connect?: NexusGenInputs['MultipleChoiceQuestionResponseWhereUniqueInput'][] | null; // [MultipleChoiceQuestionResponseWhereUniqueInput!]
+    create?: NexusGenInputs['MultipleChoiceQuestionResponseCreateWithoutMultipleChoiceQuestionBlockInput'][] | null; // [MultipleChoiceQuestionResponseCreateWithoutMultipleChoiceQuestionBlockInput!]
+    delete?: NexusGenInputs['MultipleChoiceQuestionResponseWhereUniqueInput'][] | null; // [MultipleChoiceQuestionResponseWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['MultipleChoiceQuestionResponseScalarWhereInput'][] | null; // [MultipleChoiceQuestionResponseScalarWhereInput!]
+    disconnect?: NexusGenInputs['MultipleChoiceQuestionResponseWhereUniqueInput'][] | null; // [MultipleChoiceQuestionResponseWhereUniqueInput!]
+    set?: NexusGenInputs['MultipleChoiceQuestionResponseWhereUniqueInput'][] | null; // [MultipleChoiceQuestionResponseWhereUniqueInput!]
+    update?: NexusGenInputs['MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput'][] | null; // [MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput!]
+    updateMany?: NexusGenInputs['MultipleChoiceQuestionResponseUpdateManyWithWhereNestedInput'][] | null; // [MultipleChoiceQuestionResponseUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput'][] | null; // [MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput!]
+  }
+  MultipleChoiceQuestionResponseUpdateManyWithoutStudentInput: { // input type
+    connect?: NexusGenInputs['MultipleChoiceQuestionResponseWhereUniqueInput'][] | null; // [MultipleChoiceQuestionResponseWhereUniqueInput!]
+    create?: NexusGenInputs['MultipleChoiceQuestionResponseCreateWithoutStudentInput'][] | null; // [MultipleChoiceQuestionResponseCreateWithoutStudentInput!]
+    delete?: NexusGenInputs['MultipleChoiceQuestionResponseWhereUniqueInput'][] | null; // [MultipleChoiceQuestionResponseWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['MultipleChoiceQuestionResponseScalarWhereInput'][] | null; // [MultipleChoiceQuestionResponseScalarWhereInput!]
+    disconnect?: NexusGenInputs['MultipleChoiceQuestionResponseWhereUniqueInput'][] | null; // [MultipleChoiceQuestionResponseWhereUniqueInput!]
+    set?: NexusGenInputs['MultipleChoiceQuestionResponseWhereUniqueInput'][] | null; // [MultipleChoiceQuestionResponseWhereUniqueInput!]
+    update?: NexusGenInputs['MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutStudentInput'][] | null; // [MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutStudentInput!]
+    updateMany?: NexusGenInputs['MultipleChoiceQuestionResponseUpdateManyWithWhereNestedInput'][] | null; // [MultipleChoiceQuestionResponseUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutStudentInput'][] | null; // [MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutStudentInput!]
+  }
+  MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutChoiceInput: { // input type
+    data: NexusGenInputs['MultipleChoiceQuestionResponseUpdateWithoutChoiceDataInput']; // MultipleChoiceQuestionResponseUpdateWithoutChoiceDataInput!
+    where: NexusGenInputs['MultipleChoiceQuestionResponseWhereUniqueInput']; // MultipleChoiceQuestionResponseWhereUniqueInput!
+  }
+  MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput: { // input type
+    data: NexusGenInputs['MultipleChoiceQuestionResponseUpdateWithoutMultipleChoiceQuestionBlockDataInput']; // MultipleChoiceQuestionResponseUpdateWithoutMultipleChoiceQuestionBlockDataInput!
+    where: NexusGenInputs['MultipleChoiceQuestionResponseWhereUniqueInput']; // MultipleChoiceQuestionResponseWhereUniqueInput!
+  }
+  MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutStudentInput: { // input type
+    data: NexusGenInputs['MultipleChoiceQuestionResponseUpdateWithoutStudentDataInput']; // MultipleChoiceQuestionResponseUpdateWithoutStudentDataInput!
+    where: NexusGenInputs['MultipleChoiceQuestionResponseWhereUniqueInput']; // MultipleChoiceQuestionResponseWhereUniqueInput!
+  }
+  MultipleChoiceQuestionResponseUpdateWithoutChoiceDataInput: { // input type
+    id?: string | null; // String
+    multipleChoiceQuestionBlock?: NexusGenInputs['MultipleChoiceQuestionBlockUpdateOneWithoutResponsesInput'] | null; // MultipleChoiceQuestionBlockUpdateOneWithoutResponsesInput
+    student?: NexusGenInputs['StudentUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput'] | null; // StudentUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput
+  }
+  MultipleChoiceQuestionResponseUpdateWithoutMultipleChoiceQuestionBlockDataInput: { // input type
+    choice?: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput'] | null; // MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput
+    id?: string | null; // String
+    student?: NexusGenInputs['StudentUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput'] | null; // StudentUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput
+  }
+  MultipleChoiceQuestionResponseUpdateWithoutStudentDataInput: { // input type
+    choice?: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput'] | null; // MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput
+    id?: string | null; // String
+    multipleChoiceQuestionBlock?: NexusGenInputs['MultipleChoiceQuestionBlockUpdateOneWithoutResponsesInput'] | null; // MultipleChoiceQuestionBlockUpdateOneWithoutResponsesInput
+  }
+  MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutChoiceInput: { // input type
+    create: NexusGenInputs['MultipleChoiceQuestionResponseCreateWithoutChoiceInput']; // MultipleChoiceQuestionResponseCreateWithoutChoiceInput!
+    update: NexusGenInputs['MultipleChoiceQuestionResponseUpdateWithoutChoiceDataInput']; // MultipleChoiceQuestionResponseUpdateWithoutChoiceDataInput!
+    where: NexusGenInputs['MultipleChoiceQuestionResponseWhereUniqueInput']; // MultipleChoiceQuestionResponseWhereUniqueInput!
+  }
+  MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput: { // input type
+    create: NexusGenInputs['MultipleChoiceQuestionResponseCreateWithoutMultipleChoiceQuestionBlockInput']; // MultipleChoiceQuestionResponseCreateWithoutMultipleChoiceQuestionBlockInput!
+    update: NexusGenInputs['MultipleChoiceQuestionResponseUpdateWithoutMultipleChoiceQuestionBlockDataInput']; // MultipleChoiceQuestionResponseUpdateWithoutMultipleChoiceQuestionBlockDataInput!
+    where: NexusGenInputs['MultipleChoiceQuestionResponseWhereUniqueInput']; // MultipleChoiceQuestionResponseWhereUniqueInput!
+  }
+  MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutStudentInput: { // input type
+    create: NexusGenInputs['MultipleChoiceQuestionResponseCreateWithoutStudentInput']; // MultipleChoiceQuestionResponseCreateWithoutStudentInput!
+    update: NexusGenInputs['MultipleChoiceQuestionResponseUpdateWithoutStudentDataInput']; // MultipleChoiceQuestionResponseUpdateWithoutStudentDataInput!
+    where: NexusGenInputs['MultipleChoiceQuestionResponseWhereUniqueInput']; // MultipleChoiceQuestionResponseWhereUniqueInput!
+  }
+  MultipleChoiceQuestionResponseWhereInput: { // input type
+    AND?: NexusGenInputs['MultipleChoiceQuestionResponseWhereInput'][] | null; // [MultipleChoiceQuestionResponseWhereInput!]
+    choice?: NexusGenInputs['MultipleChoiceQuestionChoiceWhereInput'] | null; // MultipleChoiceQuestionChoiceWhereInput
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    multipleChoiceQuestionBlock?: NexusGenInputs['MultipleChoiceQuestionBlockWhereInput'] | null; // MultipleChoiceQuestionBlockWhereInput
+    NOT?: NexusGenInputs['MultipleChoiceQuestionResponseWhereInput'][] | null; // [MultipleChoiceQuestionResponseWhereInput!]
+    OR?: NexusGenInputs['MultipleChoiceQuestionResponseWhereInput'][] | null; // [MultipleChoiceQuestionResponseWhereInput!]
+    student?: NexusGenInputs['StudentWhereInput'] | null; // StudentWhereInput
+  }
+  MultipleChoiceQuestionResponseWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
+  NullableStringFilter: { // input type
+    contains?: string | null; // String
+    endsWith?: string | null; // String
+    equals?: string | null; // String
+    gt?: string | null; // String
+    gte?: string | null; // String
+    in?: string[] | null; // [String!]
+    lt?: string | null; // String
+    lte?: string | null; // String
+    not?: string | null; // String
+    notIn?: string[] | null; // [String!]
+    startsWith?: string | null; // String
   }
   PageCreateManyWithoutContentInput: { // input type
     connect?: NexusGenInputs['PageWhereUniqueInput'][] | null; // [PageWhereUniqueInput!]
     create?: NexusGenInputs['PageCreateWithoutContentInput'][] | null; // [PageCreateWithoutContentInput!]
   }
   PageCreateWithoutContentInput: { // input type
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     data: string; // String!
     id?: string | null; // String
   }
@@ -514,7 +1487,7 @@ export interface NexusGenInputs {
     OR?: NexusGenInputs['PageScalarWhereInput'][] | null; // [PageScalarWhereInput!]
   }
   PageUpdateManyDataInput: { // input type
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     data?: string | null; // String
     id?: string | null; // String
   }
@@ -538,7 +1511,7 @@ export interface NexusGenInputs {
     where: NexusGenInputs['PageWhereUniqueInput']; // PageWhereUniqueInput!
   }
   PageUpdateWithoutContentDataInput: { // input type
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     data?: string | null; // String
     id?: string | null; // String
   }
@@ -559,6 +1532,131 @@ export interface NexusGenInputs {
   PageWhereUniqueInput: { // input type
     id?: string | null; // String
   }
+  QuarterSlideCreateManyWithoutMainBlockInput: { // input type
+    connect?: NexusGenInputs['QuarterSlideWhereUniqueInput'][] | null; // [QuarterSlideWhereUniqueInput!]
+    create?: NexusGenInputs['QuarterSlideCreateWithoutMainBlockInput'][] | null; // [QuarterSlideCreateWithoutMainBlockInput!]
+  }
+  QuarterSlideCreateManyWithoutSideBlockInput: { // input type
+    connect?: NexusGenInputs['QuarterSlideWhereUniqueInput'][] | null; // [QuarterSlideWhereUniqueInput!]
+    create?: NexusGenInputs['QuarterSlideCreateWithoutSideBlockInput'][] | null; // [QuarterSlideCreateWithoutSideBlockInput!]
+  }
+  QuarterSlideCreateOneWithoutSlidesInput: { // input type
+    connect?: NexusGenInputs['QuarterSlideWhereUniqueInput'] | null; // QuarterSlideWhereUniqueInput
+    create?: NexusGenInputs['QuarterSlideCreateWithoutSlidesInput'] | null; // QuarterSlideCreateWithoutSlidesInput
+  }
+  QuarterSlideCreateWithoutMainBlockInput: { // input type
+    id?: string | null; // String
+    sideBlock?: NexusGenInputs['BlockCreateOneWithoutQuarterSlidesImplementingInput'] | null; // BlockCreateOneWithoutQuarterSlidesImplementingInput
+    slides?: NexusGenInputs['SlideCreateManyWithoutQuarterSlideInput'] | null; // SlideCreateManyWithoutQuarterSlideInput
+  }
+  QuarterSlideCreateWithoutSideBlockInput: { // input type
+    id?: string | null; // String
+    mainBlock?: NexusGenInputs['BlockCreateOneWithoutQuarterSlidesInput'] | null; // BlockCreateOneWithoutQuarterSlidesInput
+    slides?: NexusGenInputs['SlideCreateManyWithoutQuarterSlideInput'] | null; // SlideCreateManyWithoutQuarterSlideInput
+  }
+  QuarterSlideCreateWithoutSlidesInput: { // input type
+    id?: string | null; // String
+    mainBlock?: NexusGenInputs['BlockCreateOneWithoutQuarterSlidesInput'] | null; // BlockCreateOneWithoutQuarterSlidesInput
+    sideBlock?: NexusGenInputs['BlockCreateOneWithoutQuarterSlidesImplementingInput'] | null; // BlockCreateOneWithoutQuarterSlidesImplementingInput
+  }
+  QuarterSlideFilter: { // input type
+    every?: NexusGenInputs['QuarterSlideWhereInput'] | null; // QuarterSlideWhereInput
+    none?: NexusGenInputs['QuarterSlideWhereInput'] | null; // QuarterSlideWhereInput
+    some?: NexusGenInputs['QuarterSlideWhereInput'] | null; // QuarterSlideWhereInput
+  }
+  QuarterSlideScalarWhereInput: { // input type
+    AND?: NexusGenInputs['QuarterSlideScalarWhereInput'][] | null; // [QuarterSlideScalarWhereInput!]
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['QuarterSlideScalarWhereInput'][] | null; // [QuarterSlideScalarWhereInput!]
+    OR?: NexusGenInputs['QuarterSlideScalarWhereInput'][] | null; // [QuarterSlideScalarWhereInput!]
+    slides?: NexusGenInputs['SlideFilter'] | null; // SlideFilter
+  }
+  QuarterSlideUpdateManyDataInput: { // input type
+    id?: string | null; // String
+  }
+  QuarterSlideUpdateManyWithWhereNestedInput: { // input type
+    data: NexusGenInputs['QuarterSlideUpdateManyDataInput']; // QuarterSlideUpdateManyDataInput!
+    where: NexusGenInputs['QuarterSlideScalarWhereInput']; // QuarterSlideScalarWhereInput!
+  }
+  QuarterSlideUpdateManyWithoutMainBlockInput: { // input type
+    connect?: NexusGenInputs['QuarterSlideWhereUniqueInput'][] | null; // [QuarterSlideWhereUniqueInput!]
+    create?: NexusGenInputs['QuarterSlideCreateWithoutMainBlockInput'][] | null; // [QuarterSlideCreateWithoutMainBlockInput!]
+    delete?: NexusGenInputs['QuarterSlideWhereUniqueInput'][] | null; // [QuarterSlideWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['QuarterSlideScalarWhereInput'][] | null; // [QuarterSlideScalarWhereInput!]
+    disconnect?: NexusGenInputs['QuarterSlideWhereUniqueInput'][] | null; // [QuarterSlideWhereUniqueInput!]
+    set?: NexusGenInputs['QuarterSlideWhereUniqueInput'][] | null; // [QuarterSlideWhereUniqueInput!]
+    update?: NexusGenInputs['QuarterSlideUpdateWithWhereUniqueWithoutMainBlockInput'][] | null; // [QuarterSlideUpdateWithWhereUniqueWithoutMainBlockInput!]
+    updateMany?: NexusGenInputs['QuarterSlideUpdateManyWithWhereNestedInput'][] | null; // [QuarterSlideUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['QuarterSlideUpsertWithWhereUniqueWithoutMainBlockInput'][] | null; // [QuarterSlideUpsertWithWhereUniqueWithoutMainBlockInput!]
+  }
+  QuarterSlideUpdateManyWithoutSideBlockInput: { // input type
+    connect?: NexusGenInputs['QuarterSlideWhereUniqueInput'][] | null; // [QuarterSlideWhereUniqueInput!]
+    create?: NexusGenInputs['QuarterSlideCreateWithoutSideBlockInput'][] | null; // [QuarterSlideCreateWithoutSideBlockInput!]
+    delete?: NexusGenInputs['QuarterSlideWhereUniqueInput'][] | null; // [QuarterSlideWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['QuarterSlideScalarWhereInput'][] | null; // [QuarterSlideScalarWhereInput!]
+    disconnect?: NexusGenInputs['QuarterSlideWhereUniqueInput'][] | null; // [QuarterSlideWhereUniqueInput!]
+    set?: NexusGenInputs['QuarterSlideWhereUniqueInput'][] | null; // [QuarterSlideWhereUniqueInput!]
+    update?: NexusGenInputs['QuarterSlideUpdateWithWhereUniqueWithoutSideBlockInput'][] | null; // [QuarterSlideUpdateWithWhereUniqueWithoutSideBlockInput!]
+    updateMany?: NexusGenInputs['QuarterSlideUpdateManyWithWhereNestedInput'][] | null; // [QuarterSlideUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['QuarterSlideUpsertWithWhereUniqueWithoutSideBlockInput'][] | null; // [QuarterSlideUpsertWithWhereUniqueWithoutSideBlockInput!]
+  }
+  QuarterSlideUpdateOneWithoutSlidesInput: { // input type
+    connect?: NexusGenInputs['QuarterSlideWhereUniqueInput'] | null; // QuarterSlideWhereUniqueInput
+    create?: NexusGenInputs['QuarterSlideCreateWithoutSlidesInput'] | null; // QuarterSlideCreateWithoutSlidesInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['QuarterSlideUpdateWithoutSlidesDataInput'] | null; // QuarterSlideUpdateWithoutSlidesDataInput
+    upsert?: NexusGenInputs['QuarterSlideUpsertWithoutSlidesInput'] | null; // QuarterSlideUpsertWithoutSlidesInput
+  }
+  QuarterSlideUpdateWithWhereUniqueWithoutMainBlockInput: { // input type
+    data: NexusGenInputs['QuarterSlideUpdateWithoutMainBlockDataInput']; // QuarterSlideUpdateWithoutMainBlockDataInput!
+    where: NexusGenInputs['QuarterSlideWhereUniqueInput']; // QuarterSlideWhereUniqueInput!
+  }
+  QuarterSlideUpdateWithWhereUniqueWithoutSideBlockInput: { // input type
+    data: NexusGenInputs['QuarterSlideUpdateWithoutSideBlockDataInput']; // QuarterSlideUpdateWithoutSideBlockDataInput!
+    where: NexusGenInputs['QuarterSlideWhereUniqueInput']; // QuarterSlideWhereUniqueInput!
+  }
+  QuarterSlideUpdateWithoutMainBlockDataInput: { // input type
+    id?: string | null; // String
+    sideBlock?: NexusGenInputs['BlockUpdateOneWithoutQuarterSlidesImplementingInput'] | null; // BlockUpdateOneWithoutQuarterSlidesImplementingInput
+    slides?: NexusGenInputs['SlideUpdateManyWithoutQuarterSlideInput'] | null; // SlideUpdateManyWithoutQuarterSlideInput
+  }
+  QuarterSlideUpdateWithoutSideBlockDataInput: { // input type
+    id?: string | null; // String
+    mainBlock?: NexusGenInputs['BlockUpdateOneWithoutQuarterSlidesInput'] | null; // BlockUpdateOneWithoutQuarterSlidesInput
+    slides?: NexusGenInputs['SlideUpdateManyWithoutQuarterSlideInput'] | null; // SlideUpdateManyWithoutQuarterSlideInput
+  }
+  QuarterSlideUpdateWithoutSlidesDataInput: { // input type
+    id?: string | null; // String
+    mainBlock?: NexusGenInputs['BlockUpdateOneWithoutQuarterSlidesInput'] | null; // BlockUpdateOneWithoutQuarterSlidesInput
+    sideBlock?: NexusGenInputs['BlockUpdateOneWithoutQuarterSlidesImplementingInput'] | null; // BlockUpdateOneWithoutQuarterSlidesImplementingInput
+  }
+  QuarterSlideUpsertWithWhereUniqueWithoutMainBlockInput: { // input type
+    create: NexusGenInputs['QuarterSlideCreateWithoutMainBlockInput']; // QuarterSlideCreateWithoutMainBlockInput!
+    update: NexusGenInputs['QuarterSlideUpdateWithoutMainBlockDataInput']; // QuarterSlideUpdateWithoutMainBlockDataInput!
+    where: NexusGenInputs['QuarterSlideWhereUniqueInput']; // QuarterSlideWhereUniqueInput!
+  }
+  QuarterSlideUpsertWithWhereUniqueWithoutSideBlockInput: { // input type
+    create: NexusGenInputs['QuarterSlideCreateWithoutSideBlockInput']; // QuarterSlideCreateWithoutSideBlockInput!
+    update: NexusGenInputs['QuarterSlideUpdateWithoutSideBlockDataInput']; // QuarterSlideUpdateWithoutSideBlockDataInput!
+    where: NexusGenInputs['QuarterSlideWhereUniqueInput']; // QuarterSlideWhereUniqueInput!
+  }
+  QuarterSlideUpsertWithoutSlidesInput: { // input type
+    create: NexusGenInputs['QuarterSlideCreateWithoutSlidesInput']; // QuarterSlideCreateWithoutSlidesInput!
+    update: NexusGenInputs['QuarterSlideUpdateWithoutSlidesDataInput']; // QuarterSlideUpdateWithoutSlidesDataInput!
+  }
+  QuarterSlideWhereInput: { // input type
+    AND?: NexusGenInputs['QuarterSlideWhereInput'][] | null; // [QuarterSlideWhereInput!]
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    mainBlock?: NexusGenInputs['BlockWhereInput'] | null; // BlockWhereInput
+    NOT?: NexusGenInputs['QuarterSlideWhereInput'][] | null; // [QuarterSlideWhereInput!]
+    OR?: NexusGenInputs['QuarterSlideWhereInput'][] | null; // [QuarterSlideWhereInput!]
+    sideBlock?: NexusGenInputs['BlockWhereInput'] | null; // BlockWhereInput
+    slides?: NexusGenInputs['SlideFilter'] | null; // SlideFilter
+  }
+  QuarterSlideWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
   RegisterUserInput: { // input type
     firstName: string; // String!
     lastName: string; // String!
@@ -569,6 +1667,267 @@ export interface NexusGenInputs {
   SendInvitationEmailInput: { // input type
     email: string; // String!
     role: string; // String!
+  }
+  SingleSlideCreateManyWithoutBlockInput: { // input type
+    connect?: NexusGenInputs['SingleSlideWhereUniqueInput'][] | null; // [SingleSlideWhereUniqueInput!]
+    create?: NexusGenInputs['SingleSlideCreateWithoutBlockInput'][] | null; // [SingleSlideCreateWithoutBlockInput!]
+  }
+  SingleSlideCreateOneWithoutSlidesInput: { // input type
+    connect?: NexusGenInputs['SingleSlideWhereUniqueInput'] | null; // SingleSlideWhereUniqueInput
+    create?: NexusGenInputs['SingleSlideCreateWithoutSlidesInput'] | null; // SingleSlideCreateWithoutSlidesInput
+  }
+  SingleSlideCreateWithoutBlockInput: { // input type
+    id?: string | null; // String
+    slides?: NexusGenInputs['SlideCreateManyWithoutSingleSlideInput'] | null; // SlideCreateManyWithoutSingleSlideInput
+  }
+  SingleSlideCreateWithoutSlidesInput: { // input type
+    block?: NexusGenInputs['BlockCreateOneWithoutSingleSlidesInput'] | null; // BlockCreateOneWithoutSingleSlidesInput
+    id?: string | null; // String
+  }
+  SingleSlideFilter: { // input type
+    every?: NexusGenInputs['SingleSlideWhereInput'] | null; // SingleSlideWhereInput
+    none?: NexusGenInputs['SingleSlideWhereInput'] | null; // SingleSlideWhereInput
+    some?: NexusGenInputs['SingleSlideWhereInput'] | null; // SingleSlideWhereInput
+  }
+  SingleSlideScalarWhereInput: { // input type
+    AND?: NexusGenInputs['SingleSlideScalarWhereInput'][] | null; // [SingleSlideScalarWhereInput!]
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['SingleSlideScalarWhereInput'][] | null; // [SingleSlideScalarWhereInput!]
+    OR?: NexusGenInputs['SingleSlideScalarWhereInput'][] | null; // [SingleSlideScalarWhereInput!]
+    slides?: NexusGenInputs['SlideFilter'] | null; // SlideFilter
+  }
+  SingleSlideUpdateManyDataInput: { // input type
+    id?: string | null; // String
+  }
+  SingleSlideUpdateManyWithWhereNestedInput: { // input type
+    data: NexusGenInputs['SingleSlideUpdateManyDataInput']; // SingleSlideUpdateManyDataInput!
+    where: NexusGenInputs['SingleSlideScalarWhereInput']; // SingleSlideScalarWhereInput!
+  }
+  SingleSlideUpdateManyWithoutBlockInput: { // input type
+    connect?: NexusGenInputs['SingleSlideWhereUniqueInput'][] | null; // [SingleSlideWhereUniqueInput!]
+    create?: NexusGenInputs['SingleSlideCreateWithoutBlockInput'][] | null; // [SingleSlideCreateWithoutBlockInput!]
+    delete?: NexusGenInputs['SingleSlideWhereUniqueInput'][] | null; // [SingleSlideWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['SingleSlideScalarWhereInput'][] | null; // [SingleSlideScalarWhereInput!]
+    disconnect?: NexusGenInputs['SingleSlideWhereUniqueInput'][] | null; // [SingleSlideWhereUniqueInput!]
+    set?: NexusGenInputs['SingleSlideWhereUniqueInput'][] | null; // [SingleSlideWhereUniqueInput!]
+    update?: NexusGenInputs['SingleSlideUpdateWithWhereUniqueWithoutBlockInput'][] | null; // [SingleSlideUpdateWithWhereUniqueWithoutBlockInput!]
+    updateMany?: NexusGenInputs['SingleSlideUpdateManyWithWhereNestedInput'][] | null; // [SingleSlideUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['SingleSlideUpsertWithWhereUniqueWithoutBlockInput'][] | null; // [SingleSlideUpsertWithWhereUniqueWithoutBlockInput!]
+  }
+  SingleSlideUpdateOneWithoutSlidesInput: { // input type
+    connect?: NexusGenInputs['SingleSlideWhereUniqueInput'] | null; // SingleSlideWhereUniqueInput
+    create?: NexusGenInputs['SingleSlideCreateWithoutSlidesInput'] | null; // SingleSlideCreateWithoutSlidesInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['SingleSlideUpdateWithoutSlidesDataInput'] | null; // SingleSlideUpdateWithoutSlidesDataInput
+    upsert?: NexusGenInputs['SingleSlideUpsertWithoutSlidesInput'] | null; // SingleSlideUpsertWithoutSlidesInput
+  }
+  SingleSlideUpdateWithWhereUniqueWithoutBlockInput: { // input type
+    data: NexusGenInputs['SingleSlideUpdateWithoutBlockDataInput']; // SingleSlideUpdateWithoutBlockDataInput!
+    where: NexusGenInputs['SingleSlideWhereUniqueInput']; // SingleSlideWhereUniqueInput!
+  }
+  SingleSlideUpdateWithoutBlockDataInput: { // input type
+    id?: string | null; // String
+    slides?: NexusGenInputs['SlideUpdateManyWithoutSingleSlideInput'] | null; // SlideUpdateManyWithoutSingleSlideInput
+  }
+  SingleSlideUpdateWithoutSlidesDataInput: { // input type
+    block?: NexusGenInputs['BlockUpdateOneWithoutSingleSlidesInput'] | null; // BlockUpdateOneWithoutSingleSlidesInput
+    id?: string | null; // String
+  }
+  SingleSlideUpsertWithWhereUniqueWithoutBlockInput: { // input type
+    create: NexusGenInputs['SingleSlideCreateWithoutBlockInput']; // SingleSlideCreateWithoutBlockInput!
+    update: NexusGenInputs['SingleSlideUpdateWithoutBlockDataInput']; // SingleSlideUpdateWithoutBlockDataInput!
+    where: NexusGenInputs['SingleSlideWhereUniqueInput']; // SingleSlideWhereUniqueInput!
+  }
+  SingleSlideUpsertWithoutSlidesInput: { // input type
+    create: NexusGenInputs['SingleSlideCreateWithoutSlidesInput']; // SingleSlideCreateWithoutSlidesInput!
+    update: NexusGenInputs['SingleSlideUpdateWithoutSlidesDataInput']; // SingleSlideUpdateWithoutSlidesDataInput!
+  }
+  SingleSlideWhereInput: { // input type
+    AND?: NexusGenInputs['SingleSlideWhereInput'][] | null; // [SingleSlideWhereInput!]
+    block?: NexusGenInputs['BlockWhereInput'] | null; // BlockWhereInput
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['SingleSlideWhereInput'][] | null; // [SingleSlideWhereInput!]
+    OR?: NexusGenInputs['SingleSlideWhereInput'][] | null; // [SingleSlideWhereInput!]
+    slides?: NexusGenInputs['SlideFilter'] | null; // SlideFilter
+  }
+  SingleSlideWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
+  SlideCreateManyWithoutHalfSlideInput: { // input type
+    connect?: NexusGenInputs['SlideWhereUniqueInput'][] | null; // [SlideWhereUniqueInput!]
+    create?: NexusGenInputs['SlideCreateWithoutHalfSlideInput'][] | null; // [SlideCreateWithoutHalfSlideInput!]
+  }
+  SlideCreateManyWithoutLessonInput: { // input type
+    connect?: NexusGenInputs['SlideWhereUniqueInput'][] | null; // [SlideWhereUniqueInput!]
+    create?: NexusGenInputs['SlideCreateWithoutLessonInput'][] | null; // [SlideCreateWithoutLessonInput!]
+  }
+  SlideCreateManyWithoutQuarterSlideInput: { // input type
+    connect?: NexusGenInputs['SlideWhereUniqueInput'][] | null; // [SlideWhereUniqueInput!]
+    create?: NexusGenInputs['SlideCreateWithoutQuarterSlideInput'][] | null; // [SlideCreateWithoutQuarterSlideInput!]
+  }
+  SlideCreateManyWithoutSingleSlideInput: { // input type
+    connect?: NexusGenInputs['SlideWhereUniqueInput'][] | null; // [SlideWhereUniqueInput!]
+    create?: NexusGenInputs['SlideCreateWithoutSingleSlideInput'][] | null; // [SlideCreateWithoutSingleSlideInput!]
+  }
+  SlideCreateWithoutHalfSlideInput: { // input type
+    id?: string | null; // String
+    lesson?: NexusGenInputs['LessonCreateOneWithoutSlidesInput'] | null; // LessonCreateOneWithoutSlidesInput
+    quarterSlide?: NexusGenInputs['QuarterSlideCreateOneWithoutSlidesInput'] | null; // QuarterSlideCreateOneWithoutSlidesInput
+    singleSlide?: NexusGenInputs['SingleSlideCreateOneWithoutSlidesInput'] | null; // SingleSlideCreateOneWithoutSlidesInput
+  }
+  SlideCreateWithoutLessonInput: { // input type
+    halfSlide?: NexusGenInputs['HalfSlideCreateOneWithoutSlidesInput'] | null; // HalfSlideCreateOneWithoutSlidesInput
+    id?: string | null; // String
+    quarterSlide?: NexusGenInputs['QuarterSlideCreateOneWithoutSlidesInput'] | null; // QuarterSlideCreateOneWithoutSlidesInput
+    singleSlide?: NexusGenInputs['SingleSlideCreateOneWithoutSlidesInput'] | null; // SingleSlideCreateOneWithoutSlidesInput
+  }
+  SlideCreateWithoutQuarterSlideInput: { // input type
+    halfSlide?: NexusGenInputs['HalfSlideCreateOneWithoutSlidesInput'] | null; // HalfSlideCreateOneWithoutSlidesInput
+    id?: string | null; // String
+    lesson?: NexusGenInputs['LessonCreateOneWithoutSlidesInput'] | null; // LessonCreateOneWithoutSlidesInput
+    singleSlide?: NexusGenInputs['SingleSlideCreateOneWithoutSlidesInput'] | null; // SingleSlideCreateOneWithoutSlidesInput
+  }
+  SlideCreateWithoutSingleSlideInput: { // input type
+    halfSlide?: NexusGenInputs['HalfSlideCreateOneWithoutSlidesInput'] | null; // HalfSlideCreateOneWithoutSlidesInput
+    id?: string | null; // String
+    lesson?: NexusGenInputs['LessonCreateOneWithoutSlidesInput'] | null; // LessonCreateOneWithoutSlidesInput
+    quarterSlide?: NexusGenInputs['QuarterSlideCreateOneWithoutSlidesInput'] | null; // QuarterSlideCreateOneWithoutSlidesInput
+  }
+  SlideFilter: { // input type
+    every?: NexusGenInputs['SlideWhereInput'] | null; // SlideWhereInput
+    none?: NexusGenInputs['SlideWhereInput'] | null; // SlideWhereInput
+    some?: NexusGenInputs['SlideWhereInput'] | null; // SlideWhereInput
+  }
+  SlideScalarWhereInput: { // input type
+    AND?: NexusGenInputs['SlideScalarWhereInput'][] | null; // [SlideScalarWhereInput!]
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['SlideScalarWhereInput'][] | null; // [SlideScalarWhereInput!]
+    OR?: NexusGenInputs['SlideScalarWhereInput'][] | null; // [SlideScalarWhereInput!]
+  }
+  SlideUpdateManyDataInput: { // input type
+    id?: string | null; // String
+  }
+  SlideUpdateManyWithWhereNestedInput: { // input type
+    data: NexusGenInputs['SlideUpdateManyDataInput']; // SlideUpdateManyDataInput!
+    where: NexusGenInputs['SlideScalarWhereInput']; // SlideScalarWhereInput!
+  }
+  SlideUpdateManyWithoutHalfSlideInput: { // input type
+    connect?: NexusGenInputs['SlideWhereUniqueInput'][] | null; // [SlideWhereUniqueInput!]
+    create?: NexusGenInputs['SlideCreateWithoutHalfSlideInput'][] | null; // [SlideCreateWithoutHalfSlideInput!]
+    delete?: NexusGenInputs['SlideWhereUniqueInput'][] | null; // [SlideWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['SlideScalarWhereInput'][] | null; // [SlideScalarWhereInput!]
+    disconnect?: NexusGenInputs['SlideWhereUniqueInput'][] | null; // [SlideWhereUniqueInput!]
+    set?: NexusGenInputs['SlideWhereUniqueInput'][] | null; // [SlideWhereUniqueInput!]
+    update?: NexusGenInputs['SlideUpdateWithWhereUniqueWithoutHalfSlideInput'][] | null; // [SlideUpdateWithWhereUniqueWithoutHalfSlideInput!]
+    updateMany?: NexusGenInputs['SlideUpdateManyWithWhereNestedInput'][] | null; // [SlideUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['SlideUpsertWithWhereUniqueWithoutHalfSlideInput'][] | null; // [SlideUpsertWithWhereUniqueWithoutHalfSlideInput!]
+  }
+  SlideUpdateManyWithoutLessonInput: { // input type
+    connect?: NexusGenInputs['SlideWhereUniqueInput'][] | null; // [SlideWhereUniqueInput!]
+    create?: NexusGenInputs['SlideCreateWithoutLessonInput'][] | null; // [SlideCreateWithoutLessonInput!]
+    delete?: NexusGenInputs['SlideWhereUniqueInput'][] | null; // [SlideWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['SlideScalarWhereInput'][] | null; // [SlideScalarWhereInput!]
+    disconnect?: NexusGenInputs['SlideWhereUniqueInput'][] | null; // [SlideWhereUniqueInput!]
+    set?: NexusGenInputs['SlideWhereUniqueInput'][] | null; // [SlideWhereUniqueInput!]
+    update?: NexusGenInputs['SlideUpdateWithWhereUniqueWithoutLessonInput'][] | null; // [SlideUpdateWithWhereUniqueWithoutLessonInput!]
+    updateMany?: NexusGenInputs['SlideUpdateManyWithWhereNestedInput'][] | null; // [SlideUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['SlideUpsertWithWhereUniqueWithoutLessonInput'][] | null; // [SlideUpsertWithWhereUniqueWithoutLessonInput!]
+  }
+  SlideUpdateManyWithoutQuarterSlideInput: { // input type
+    connect?: NexusGenInputs['SlideWhereUniqueInput'][] | null; // [SlideWhereUniqueInput!]
+    create?: NexusGenInputs['SlideCreateWithoutQuarterSlideInput'][] | null; // [SlideCreateWithoutQuarterSlideInput!]
+    delete?: NexusGenInputs['SlideWhereUniqueInput'][] | null; // [SlideWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['SlideScalarWhereInput'][] | null; // [SlideScalarWhereInput!]
+    disconnect?: NexusGenInputs['SlideWhereUniqueInput'][] | null; // [SlideWhereUniqueInput!]
+    set?: NexusGenInputs['SlideWhereUniqueInput'][] | null; // [SlideWhereUniqueInput!]
+    update?: NexusGenInputs['SlideUpdateWithWhereUniqueWithoutQuarterSlideInput'][] | null; // [SlideUpdateWithWhereUniqueWithoutQuarterSlideInput!]
+    updateMany?: NexusGenInputs['SlideUpdateManyWithWhereNestedInput'][] | null; // [SlideUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['SlideUpsertWithWhereUniqueWithoutQuarterSlideInput'][] | null; // [SlideUpsertWithWhereUniqueWithoutQuarterSlideInput!]
+  }
+  SlideUpdateManyWithoutSingleSlideInput: { // input type
+    connect?: NexusGenInputs['SlideWhereUniqueInput'][] | null; // [SlideWhereUniqueInput!]
+    create?: NexusGenInputs['SlideCreateWithoutSingleSlideInput'][] | null; // [SlideCreateWithoutSingleSlideInput!]
+    delete?: NexusGenInputs['SlideWhereUniqueInput'][] | null; // [SlideWhereUniqueInput!]
+    deleteMany?: NexusGenInputs['SlideScalarWhereInput'][] | null; // [SlideScalarWhereInput!]
+    disconnect?: NexusGenInputs['SlideWhereUniqueInput'][] | null; // [SlideWhereUniqueInput!]
+    set?: NexusGenInputs['SlideWhereUniqueInput'][] | null; // [SlideWhereUniqueInput!]
+    update?: NexusGenInputs['SlideUpdateWithWhereUniqueWithoutSingleSlideInput'][] | null; // [SlideUpdateWithWhereUniqueWithoutSingleSlideInput!]
+    updateMany?: NexusGenInputs['SlideUpdateManyWithWhereNestedInput'][] | null; // [SlideUpdateManyWithWhereNestedInput!]
+    upsert?: NexusGenInputs['SlideUpsertWithWhereUniqueWithoutSingleSlideInput'][] | null; // [SlideUpsertWithWhereUniqueWithoutSingleSlideInput!]
+  }
+  SlideUpdateWithWhereUniqueWithoutHalfSlideInput: { // input type
+    data: NexusGenInputs['SlideUpdateWithoutHalfSlideDataInput']; // SlideUpdateWithoutHalfSlideDataInput!
+    where: NexusGenInputs['SlideWhereUniqueInput']; // SlideWhereUniqueInput!
+  }
+  SlideUpdateWithWhereUniqueWithoutLessonInput: { // input type
+    data: NexusGenInputs['SlideUpdateWithoutLessonDataInput']; // SlideUpdateWithoutLessonDataInput!
+    where: NexusGenInputs['SlideWhereUniqueInput']; // SlideWhereUniqueInput!
+  }
+  SlideUpdateWithWhereUniqueWithoutQuarterSlideInput: { // input type
+    data: NexusGenInputs['SlideUpdateWithoutQuarterSlideDataInput']; // SlideUpdateWithoutQuarterSlideDataInput!
+    where: NexusGenInputs['SlideWhereUniqueInput']; // SlideWhereUniqueInput!
+  }
+  SlideUpdateWithWhereUniqueWithoutSingleSlideInput: { // input type
+    data: NexusGenInputs['SlideUpdateWithoutSingleSlideDataInput']; // SlideUpdateWithoutSingleSlideDataInput!
+    where: NexusGenInputs['SlideWhereUniqueInput']; // SlideWhereUniqueInput!
+  }
+  SlideUpdateWithoutHalfSlideDataInput: { // input type
+    id?: string | null; // String
+    lesson?: NexusGenInputs['LessonUpdateOneWithoutSlidesInput'] | null; // LessonUpdateOneWithoutSlidesInput
+    quarterSlide?: NexusGenInputs['QuarterSlideUpdateOneWithoutSlidesInput'] | null; // QuarterSlideUpdateOneWithoutSlidesInput
+    singleSlide?: NexusGenInputs['SingleSlideUpdateOneWithoutSlidesInput'] | null; // SingleSlideUpdateOneWithoutSlidesInput
+  }
+  SlideUpdateWithoutLessonDataInput: { // input type
+    halfSlide?: NexusGenInputs['HalfSlideUpdateOneWithoutSlidesInput'] | null; // HalfSlideUpdateOneWithoutSlidesInput
+    id?: string | null; // String
+    quarterSlide?: NexusGenInputs['QuarterSlideUpdateOneWithoutSlidesInput'] | null; // QuarterSlideUpdateOneWithoutSlidesInput
+    singleSlide?: NexusGenInputs['SingleSlideUpdateOneWithoutSlidesInput'] | null; // SingleSlideUpdateOneWithoutSlidesInput
+  }
+  SlideUpdateWithoutQuarterSlideDataInput: { // input type
+    halfSlide?: NexusGenInputs['HalfSlideUpdateOneWithoutSlidesInput'] | null; // HalfSlideUpdateOneWithoutSlidesInput
+    id?: string | null; // String
+    lesson?: NexusGenInputs['LessonUpdateOneWithoutSlidesInput'] | null; // LessonUpdateOneWithoutSlidesInput
+    singleSlide?: NexusGenInputs['SingleSlideUpdateOneWithoutSlidesInput'] | null; // SingleSlideUpdateOneWithoutSlidesInput
+  }
+  SlideUpdateWithoutSingleSlideDataInput: { // input type
+    halfSlide?: NexusGenInputs['HalfSlideUpdateOneWithoutSlidesInput'] | null; // HalfSlideUpdateOneWithoutSlidesInput
+    id?: string | null; // String
+    lesson?: NexusGenInputs['LessonUpdateOneWithoutSlidesInput'] | null; // LessonUpdateOneWithoutSlidesInput
+    quarterSlide?: NexusGenInputs['QuarterSlideUpdateOneWithoutSlidesInput'] | null; // QuarterSlideUpdateOneWithoutSlidesInput
+  }
+  SlideUpsertWithWhereUniqueWithoutHalfSlideInput: { // input type
+    create: NexusGenInputs['SlideCreateWithoutHalfSlideInput']; // SlideCreateWithoutHalfSlideInput!
+    update: NexusGenInputs['SlideUpdateWithoutHalfSlideDataInput']; // SlideUpdateWithoutHalfSlideDataInput!
+    where: NexusGenInputs['SlideWhereUniqueInput']; // SlideWhereUniqueInput!
+  }
+  SlideUpsertWithWhereUniqueWithoutLessonInput: { // input type
+    create: NexusGenInputs['SlideCreateWithoutLessonInput']; // SlideCreateWithoutLessonInput!
+    update: NexusGenInputs['SlideUpdateWithoutLessonDataInput']; // SlideUpdateWithoutLessonDataInput!
+    where: NexusGenInputs['SlideWhereUniqueInput']; // SlideWhereUniqueInput!
+  }
+  SlideUpsertWithWhereUniqueWithoutQuarterSlideInput: { // input type
+    create: NexusGenInputs['SlideCreateWithoutQuarterSlideInput']; // SlideCreateWithoutQuarterSlideInput!
+    update: NexusGenInputs['SlideUpdateWithoutQuarterSlideDataInput']; // SlideUpdateWithoutQuarterSlideDataInput!
+    where: NexusGenInputs['SlideWhereUniqueInput']; // SlideWhereUniqueInput!
+  }
+  SlideUpsertWithWhereUniqueWithoutSingleSlideInput: { // input type
+    create: NexusGenInputs['SlideCreateWithoutSingleSlideInput']; // SlideCreateWithoutSingleSlideInput!
+    update: NexusGenInputs['SlideUpdateWithoutSingleSlideDataInput']; // SlideUpdateWithoutSingleSlideDataInput!
+    where: NexusGenInputs['SlideWhereUniqueInput']; // SlideWhereUniqueInput!
+  }
+  SlideWhereInput: { // input type
+    AND?: NexusGenInputs['SlideWhereInput'][] | null; // [SlideWhereInput!]
+    halfSlide?: NexusGenInputs['HalfSlideWhereInput'] | null; // HalfSlideWhereInput
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    lesson?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    NOT?: NexusGenInputs['SlideWhereInput'][] | null; // [SlideWhereInput!]
+    OR?: NexusGenInputs['SlideWhereInput'][] | null; // [SlideWhereInput!]
+    quarterSlide?: NexusGenInputs['QuarterSlideWhereInput'] | null; // QuarterSlideWhereInput
+    singleSlide?: NexusGenInputs['SingleSlideWhereInput'] | null; // SingleSlideWhereInput
+  }
+  SlideWhereUniqueInput: { // input type
+    id?: string | null; // String
   }
   StringFilter: { // input type
     contains?: string | null; // String
@@ -591,30 +1950,45 @@ export interface NexusGenInputs {
     connect?: NexusGenInputs['StudentWhereUniqueInput'][] | null; // [StudentWhereUniqueInput!]
     create?: NexusGenInputs['StudentCreateWithoutGuardiansInput'][] | null; // [StudentCreateWithoutGuardiansInput!]
   }
+  StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput: { // input type
+    connect?: NexusGenInputs['StudentWhereUniqueInput'] | null; // StudentWhereUniqueInput
+    create?: NexusGenInputs['StudentCreateWithoutMultipleChoiceQuestionResponsesInput'] | null; // StudentCreateWithoutMultipleChoiceQuestionResponsesInput
+  }
   StudentCreateOneWithoutUserInput: { // input type
     connect?: NexusGenInputs['StudentWhereUniqueInput'] | null; // StudentWhereUniqueInput
     create?: NexusGenInputs['StudentCreateWithoutUserInput'] | null; // StudentCreateWithoutUserInput
   }
   StudentCreateWithoutCoursesInput: { // input type
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     gradeLevel: NexusGenEnums['GradeLevel']; // GradeLevel!
     guardians?: NexusGenInputs['GuardianCreateManyWithoutStudentsInput'] | null; // GuardianCreateManyWithoutStudentsInput
     id?: string | null; // String
+    multipleChoiceQuestionResponses?: NexusGenInputs['MultipleChoiceQuestionResponseCreateManyWithoutStudentInput'] | null; // MultipleChoiceQuestionResponseCreateManyWithoutStudentInput
     user: NexusGenInputs['UserCreateOneWithoutStudentInput']; // UserCreateOneWithoutStudentInput!
   }
   StudentCreateWithoutGuardiansInput: { // input type
     courses?: NexusGenInputs['CourseCreateManyWithoutStudentsInput'] | null; // CourseCreateManyWithoutStudentsInput
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     gradeLevel: NexusGenEnums['GradeLevel']; // GradeLevel!
+    id?: string | null; // String
+    multipleChoiceQuestionResponses?: NexusGenInputs['MultipleChoiceQuestionResponseCreateManyWithoutStudentInput'] | null; // MultipleChoiceQuestionResponseCreateManyWithoutStudentInput
+    user: NexusGenInputs['UserCreateOneWithoutStudentInput']; // UserCreateOneWithoutStudentInput!
+  }
+  StudentCreateWithoutMultipleChoiceQuestionResponsesInput: { // input type
+    courses?: NexusGenInputs['CourseCreateManyWithoutStudentsInput'] | null; // CourseCreateManyWithoutStudentsInput
+    createdAt?: Date | null; // DateTime
+    gradeLevel: NexusGenEnums['GradeLevel']; // GradeLevel!
+    guardians?: NexusGenInputs['GuardianCreateManyWithoutStudentsInput'] | null; // GuardianCreateManyWithoutStudentsInput
     id?: string | null; // String
     user: NexusGenInputs['UserCreateOneWithoutStudentInput']; // UserCreateOneWithoutStudentInput!
   }
   StudentCreateWithoutUserInput: { // input type
     courses?: NexusGenInputs['CourseCreateManyWithoutStudentsInput'] | null; // CourseCreateManyWithoutStudentsInput
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     gradeLevel: NexusGenEnums['GradeLevel']; // GradeLevel!
     guardians?: NexusGenInputs['GuardianCreateManyWithoutStudentsInput'] | null; // GuardianCreateManyWithoutStudentsInput
     id?: string | null; // String
+    multipleChoiceQuestionResponses?: NexusGenInputs['MultipleChoiceQuestionResponseCreateManyWithoutStudentInput'] | null; // MultipleChoiceQuestionResponseCreateManyWithoutStudentInput
   }
   StudentFilter: { // input type
     every?: NexusGenInputs['StudentWhereInput'] | null; // StudentWhereInput
@@ -628,11 +2002,12 @@ export interface NexusGenInputs {
     gradeLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
     guardians?: NexusGenInputs['GuardianFilter'] | null; // GuardianFilter
     id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    multipleChoiceQuestionResponses?: NexusGenInputs['MultipleChoiceQuestionResponseFilter'] | null; // MultipleChoiceQuestionResponseFilter
     NOT?: NexusGenInputs['StudentScalarWhereInput'][] | null; // [StudentScalarWhereInput!]
     OR?: NexusGenInputs['StudentScalarWhereInput'][] | null; // [StudentScalarWhereInput!]
   }
   StudentUpdateManyDataInput: { // input type
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     gradeLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
     id?: string | null; // String
   }
@@ -662,6 +2037,12 @@ export interface NexusGenInputs {
     updateMany?: NexusGenInputs['StudentUpdateManyWithWhereNestedInput'][] | null; // [StudentUpdateManyWithWhereNestedInput!]
     upsert?: NexusGenInputs['StudentUpsertWithWhereUniqueWithoutGuardiansInput'][] | null; // [StudentUpsertWithWhereUniqueWithoutGuardiansInput!]
   }
+  StudentUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput: { // input type
+    connect?: NexusGenInputs['StudentWhereUniqueInput'] | null; // StudentWhereUniqueInput
+    create?: NexusGenInputs['StudentCreateWithoutMultipleChoiceQuestionResponsesInput'] | null; // StudentCreateWithoutMultipleChoiceQuestionResponsesInput
+    update?: NexusGenInputs['StudentUpdateWithoutMultipleChoiceQuestionResponsesDataInput'] | null; // StudentUpdateWithoutMultipleChoiceQuestionResponsesDataInput
+    upsert?: NexusGenInputs['StudentUpsertWithoutMultipleChoiceQuestionResponsesInput'] | null; // StudentUpsertWithoutMultipleChoiceQuestionResponsesInput
+  }
   StudentUpdateOneWithoutUserInput: { // input type
     connect?: NexusGenInputs['StudentWhereUniqueInput'] | null; // StudentWhereUniqueInput
     create?: NexusGenInputs['StudentCreateWithoutUserInput'] | null; // StudentCreateWithoutUserInput
@@ -679,25 +2060,36 @@ export interface NexusGenInputs {
     where: NexusGenInputs['StudentWhereUniqueInput']; // StudentWhereUniqueInput!
   }
   StudentUpdateWithoutCoursesDataInput: { // input type
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     gradeLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
     guardians?: NexusGenInputs['GuardianUpdateManyWithoutStudentsInput'] | null; // GuardianUpdateManyWithoutStudentsInput
     id?: string | null; // String
+    multipleChoiceQuestionResponses?: NexusGenInputs['MultipleChoiceQuestionResponseUpdateManyWithoutStudentInput'] | null; // MultipleChoiceQuestionResponseUpdateManyWithoutStudentInput
     user?: NexusGenInputs['UserUpdateOneRequiredWithoutStudentInput'] | null; // UserUpdateOneRequiredWithoutStudentInput
   }
   StudentUpdateWithoutGuardiansDataInput: { // input type
     courses?: NexusGenInputs['CourseUpdateManyWithoutStudentsInput'] | null; // CourseUpdateManyWithoutStudentsInput
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     gradeLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
+    id?: string | null; // String
+    multipleChoiceQuestionResponses?: NexusGenInputs['MultipleChoiceQuestionResponseUpdateManyWithoutStudentInput'] | null; // MultipleChoiceQuestionResponseUpdateManyWithoutStudentInput
+    user?: NexusGenInputs['UserUpdateOneRequiredWithoutStudentInput'] | null; // UserUpdateOneRequiredWithoutStudentInput
+  }
+  StudentUpdateWithoutMultipleChoiceQuestionResponsesDataInput: { // input type
+    courses?: NexusGenInputs['CourseUpdateManyWithoutStudentsInput'] | null; // CourseUpdateManyWithoutStudentsInput
+    createdAt?: Date | null; // DateTime
+    gradeLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
+    guardians?: NexusGenInputs['GuardianUpdateManyWithoutStudentsInput'] | null; // GuardianUpdateManyWithoutStudentsInput
     id?: string | null; // String
     user?: NexusGenInputs['UserUpdateOneRequiredWithoutStudentInput'] | null; // UserUpdateOneRequiredWithoutStudentInput
   }
   StudentUpdateWithoutUserDataInput: { // input type
     courses?: NexusGenInputs['CourseUpdateManyWithoutStudentsInput'] | null; // CourseUpdateManyWithoutStudentsInput
-    createdAt?: any | null; // DateTime
+    createdAt?: Date | null; // DateTime
     gradeLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
     guardians?: NexusGenInputs['GuardianUpdateManyWithoutStudentsInput'] | null; // GuardianUpdateManyWithoutStudentsInput
     id?: string | null; // String
+    multipleChoiceQuestionResponses?: NexusGenInputs['MultipleChoiceQuestionResponseUpdateManyWithoutStudentInput'] | null; // MultipleChoiceQuestionResponseUpdateManyWithoutStudentInput
   }
   StudentUpsertWithWhereUniqueWithoutCoursesInput: { // input type
     create: NexusGenInputs['StudentCreateWithoutCoursesInput']; // StudentCreateWithoutCoursesInput!
@@ -708,6 +2100,10 @@ export interface NexusGenInputs {
     create: NexusGenInputs['StudentCreateWithoutGuardiansInput']; // StudentCreateWithoutGuardiansInput!
     update: NexusGenInputs['StudentUpdateWithoutGuardiansDataInput']; // StudentUpdateWithoutGuardiansDataInput!
     where: NexusGenInputs['StudentWhereUniqueInput']; // StudentWhereUniqueInput!
+  }
+  StudentUpsertWithoutMultipleChoiceQuestionResponsesInput: { // input type
+    create: NexusGenInputs['StudentCreateWithoutMultipleChoiceQuestionResponsesInput']; // StudentCreateWithoutMultipleChoiceQuestionResponsesInput!
+    update: NexusGenInputs['StudentUpdateWithoutMultipleChoiceQuestionResponsesDataInput']; // StudentUpdateWithoutMultipleChoiceQuestionResponsesDataInput!
   }
   StudentUpsertWithoutUserInput: { // input type
     create: NexusGenInputs['StudentCreateWithoutUserInput']; // StudentCreateWithoutUserInput!
@@ -720,11 +2116,50 @@ export interface NexusGenInputs {
     gradeLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
     guardians?: NexusGenInputs['GuardianFilter'] | null; // GuardianFilter
     id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    multipleChoiceQuestionResponses?: NexusGenInputs['MultipleChoiceQuestionResponseFilter'] | null; // MultipleChoiceQuestionResponseFilter
     NOT?: NexusGenInputs['StudentWhereInput'][] | null; // [StudentWhereInput!]
     OR?: NexusGenInputs['StudentWhereInput'][] | null; // [StudentWhereInput!]
     user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
   }
   StudentWhereUniqueInput: { // input type
+    id?: string | null; // String
+  }
+  TextBlockCreateOneWithoutBlocksInput: { // input type
+    connect?: NexusGenInputs['TextBlockWhereUniqueInput'] | null; // TextBlockWhereUniqueInput
+    create?: NexusGenInputs['TextBlockCreateWithoutBlocksInput'] | null; // TextBlockCreateWithoutBlocksInput
+  }
+  TextBlockCreateWithoutBlocksInput: { // input type
+    body?: string | null; // String
+    id?: string | null; // String
+    title?: string | null; // String
+  }
+  TextBlockUpdateOneWithoutBlocksInput: { // input type
+    connect?: NexusGenInputs['TextBlockWhereUniqueInput'] | null; // TextBlockWhereUniqueInput
+    create?: NexusGenInputs['TextBlockCreateWithoutBlocksInput'] | null; // TextBlockCreateWithoutBlocksInput
+    delete?: boolean | null; // Boolean
+    disconnect?: boolean | null; // Boolean
+    update?: NexusGenInputs['TextBlockUpdateWithoutBlocksDataInput'] | null; // TextBlockUpdateWithoutBlocksDataInput
+    upsert?: NexusGenInputs['TextBlockUpsertWithoutBlocksInput'] | null; // TextBlockUpsertWithoutBlocksInput
+  }
+  TextBlockUpdateWithoutBlocksDataInput: { // input type
+    body?: string | null; // String
+    id?: string | null; // String
+    title?: string | null; // String
+  }
+  TextBlockUpsertWithoutBlocksInput: { // input type
+    create: NexusGenInputs['TextBlockCreateWithoutBlocksInput']; // TextBlockCreateWithoutBlocksInput!
+    update: NexusGenInputs['TextBlockUpdateWithoutBlocksDataInput']; // TextBlockUpdateWithoutBlocksDataInput!
+  }
+  TextBlockWhereInput: { // input type
+    AND?: NexusGenInputs['TextBlockWhereInput'][] | null; // [TextBlockWhereInput!]
+    blocks?: NexusGenInputs['BlockFilter'] | null; // BlockFilter
+    body?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
+    id?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    NOT?: NexusGenInputs['TextBlockWhereInput'][] | null; // [TextBlockWhereInput!]
+    OR?: NexusGenInputs['TextBlockWhereInput'][] | null; // [TextBlockWhereInput!]
+    title?: NexusGenInputs['NullableStringFilter'] | null; // NullableStringFilter
+  }
+  TextBlockWhereUniqueInput: { // input type
     id?: string | null; // String
   }
   UserCreateOneWithoutGuardianInput: { // input type
@@ -856,10 +2291,7 @@ export interface NexusGenEnums {
 export interface NexusGenRootTypes {
   Admin: { // root type
     email: string; // String!
-    firstName: string; // String!
     id: string; // String!
-    lastName: string; // String!
-    username: string; // String!
   }
   Content: { // root type
     author: string; // String!
@@ -873,34 +2305,56 @@ export interface NexusGenRootTypes {
   }
   Guardian: { // root type
     email: string; // String!
-    firstName: string; // String!
     id: string; // String!
-    lastName: string; // String!
-    username: string; // String!
+  }
+  HalfSlide: { // root type
+    id: string; // String!
   }
   Instructor: { // root type
     email: string; // String!
-    firstName: string; // String!
     id: string; // String!
-    lastName: string; // String!
-    username: string; // String!
+  }
+  Lesson: { // root type
+    id: string; // String!
+    title: string; // String!
+  }
+  LessonPlan: { // root type
+    id: string; // String!
+  }
+  MultipleChoiceQuestionBlock: { // root type
+    id: string; // String!
+    text: string; // String!
+  }
+  MultipleChoiceQuestionChoice: { // root type
+    id: string; // String!
+    text: string; // String!
   }
   Mutation: {};
+  QuarterSlide: { // root type
+    id: string; // String!
+  }
   Query: {};
+  SingleSlide: { // root type
+    id: string; // String!
+  }
   Student: { // root type
-    firstName: string; // String!
     gradeLevel: NexusGenEnums['GradeLevel']; // GradeLevel!
     id: string; // String!
-    lastName: string; // String!
-    username: string; // String!
   }
-  User: NexusGenRootTypes['Instructor'] | NexusGenRootTypes['Student'] | NexusGenRootTypes['Guardian'] | NexusGenRootTypes['Admin'];
+  TextBlock: { // root type
+    body?: string | null; // String
+    id: string; // String!
+    title?: string | null; // String
+  }
+  User: NexusGenRootTypes['Instructor'] | NexusGenRootTypes['Admin'] | NexusGenRootTypes['Guardian'] | NexusGenRootTypes['Student'];
   String: string;
   Int: number;
   Float: number;
   Boolean: boolean;
   ID: string;
-  DateTime: any;
+  DateTime: Date;
+  Block: NexusGenRootTypes['MultipleChoiceQuestionBlock'] | NexusGenRootTypes['TextBlock'];
+  Slide: NexusGenRootTypes['HalfSlide'] | NexusGenRootTypes['QuarterSlide'] | NexusGenRootTypes['SingleSlide'];
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
@@ -911,6 +2365,43 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   AdminUpsertWithoutUserInput: NexusGenInputs['AdminUpsertWithoutUserInput'];
   AdminWhereInput: NexusGenInputs['AdminWhereInput'];
   AdminWhereUniqueInput: NexusGenInputs['AdminWhereUniqueInput'];
+  BlockCreateManyWithoutMultipleChoiceQuestionBlockInput: NexusGenInputs['BlockCreateManyWithoutMultipleChoiceQuestionBlockInput'];
+  BlockCreateOneWithoutHalfSlidesImplementingInput: NexusGenInputs['BlockCreateOneWithoutHalfSlidesImplementingInput'];
+  BlockCreateOneWithoutHalfSlidesInput: NexusGenInputs['BlockCreateOneWithoutHalfSlidesInput'];
+  BlockCreateOneWithoutQuarterSlidesImplementingInput: NexusGenInputs['BlockCreateOneWithoutQuarterSlidesImplementingInput'];
+  BlockCreateOneWithoutQuarterSlidesInput: NexusGenInputs['BlockCreateOneWithoutQuarterSlidesInput'];
+  BlockCreateOneWithoutSingleSlidesInput: NexusGenInputs['BlockCreateOneWithoutSingleSlidesInput'];
+  BlockCreateWithoutHalfSlidesImplementingInput: NexusGenInputs['BlockCreateWithoutHalfSlidesImplementingInput'];
+  BlockCreateWithoutHalfSlidesInput: NexusGenInputs['BlockCreateWithoutHalfSlidesInput'];
+  BlockCreateWithoutMultipleChoiceQuestionBlockInput: NexusGenInputs['BlockCreateWithoutMultipleChoiceQuestionBlockInput'];
+  BlockCreateWithoutQuarterSlidesImplementingInput: NexusGenInputs['BlockCreateWithoutQuarterSlidesImplementingInput'];
+  BlockCreateWithoutQuarterSlidesInput: NexusGenInputs['BlockCreateWithoutQuarterSlidesInput'];
+  BlockCreateWithoutSingleSlidesInput: NexusGenInputs['BlockCreateWithoutSingleSlidesInput'];
+  BlockFilter: NexusGenInputs['BlockFilter'];
+  BlockScalarWhereInput: NexusGenInputs['BlockScalarWhereInput'];
+  BlockUpdateManyDataInput: NexusGenInputs['BlockUpdateManyDataInput'];
+  BlockUpdateManyWithWhereNestedInput: NexusGenInputs['BlockUpdateManyWithWhereNestedInput'];
+  BlockUpdateManyWithoutMultipleChoiceQuestionBlockInput: NexusGenInputs['BlockUpdateManyWithoutMultipleChoiceQuestionBlockInput'];
+  BlockUpdateOneWithoutHalfSlidesImplementingInput: NexusGenInputs['BlockUpdateOneWithoutHalfSlidesImplementingInput'];
+  BlockUpdateOneWithoutHalfSlidesInput: NexusGenInputs['BlockUpdateOneWithoutHalfSlidesInput'];
+  BlockUpdateOneWithoutQuarterSlidesImplementingInput: NexusGenInputs['BlockUpdateOneWithoutQuarterSlidesImplementingInput'];
+  BlockUpdateOneWithoutQuarterSlidesInput: NexusGenInputs['BlockUpdateOneWithoutQuarterSlidesInput'];
+  BlockUpdateOneWithoutSingleSlidesInput: NexusGenInputs['BlockUpdateOneWithoutSingleSlidesInput'];
+  BlockUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput: NexusGenInputs['BlockUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput'];
+  BlockUpdateWithoutHalfSlidesDataInput: NexusGenInputs['BlockUpdateWithoutHalfSlidesDataInput'];
+  BlockUpdateWithoutHalfSlidesImplementingDataInput: NexusGenInputs['BlockUpdateWithoutHalfSlidesImplementingDataInput'];
+  BlockUpdateWithoutMultipleChoiceQuestionBlockDataInput: NexusGenInputs['BlockUpdateWithoutMultipleChoiceQuestionBlockDataInput'];
+  BlockUpdateWithoutQuarterSlidesDataInput: NexusGenInputs['BlockUpdateWithoutQuarterSlidesDataInput'];
+  BlockUpdateWithoutQuarterSlidesImplementingDataInput: NexusGenInputs['BlockUpdateWithoutQuarterSlidesImplementingDataInput'];
+  BlockUpdateWithoutSingleSlidesDataInput: NexusGenInputs['BlockUpdateWithoutSingleSlidesDataInput'];
+  BlockUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput: NexusGenInputs['BlockUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput'];
+  BlockUpsertWithoutHalfSlidesImplementingInput: NexusGenInputs['BlockUpsertWithoutHalfSlidesImplementingInput'];
+  BlockUpsertWithoutHalfSlidesInput: NexusGenInputs['BlockUpsertWithoutHalfSlidesInput'];
+  BlockUpsertWithoutQuarterSlidesImplementingInput: NexusGenInputs['BlockUpsertWithoutQuarterSlidesImplementingInput'];
+  BlockUpsertWithoutQuarterSlidesInput: NexusGenInputs['BlockUpsertWithoutQuarterSlidesInput'];
+  BlockUpsertWithoutSingleSlidesInput: NexusGenInputs['BlockUpsertWithoutSingleSlidesInput'];
+  BlockWhereInput: NexusGenInputs['BlockWhereInput'];
+  BlockWhereUniqueInput: NexusGenInputs['BlockWhereUniqueInput'];
   ContentCreateManyWithoutCourseInput: NexusGenInputs['ContentCreateManyWithoutCourseInput'];
   ContentCreateWithoutCourseInput: NexusGenInputs['ContentCreateWithoutCourseInput'];
   ContentFilter: NexusGenInputs['ContentFilter'];
@@ -926,7 +2417,9 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   CourseCreateInput: NexusGenInputs['CourseCreateInput'];
   CourseCreateManyWithoutInstructorsInput: NexusGenInputs['CourseCreateManyWithoutInstructorsInput'];
   CourseCreateManyWithoutStudentsInput: NexusGenInputs['CourseCreateManyWithoutStudentsInput'];
+  CourseCreateOneWithoutLessonPlanInput: NexusGenInputs['CourseCreateOneWithoutLessonPlanInput'];
   CourseCreateWithoutInstructorsInput: NexusGenInputs['CourseCreateWithoutInstructorsInput'];
+  CourseCreateWithoutLessonPlanInput: NexusGenInputs['CourseCreateWithoutLessonPlanInput'];
   CourseCreateWithoutStudentsInput: NexusGenInputs['CourseCreateWithoutStudentsInput'];
   CourseFilter: NexusGenInputs['CourseFilter'];
   CourseScalarWhereInput: NexusGenInputs['CourseScalarWhereInput'];
@@ -935,14 +2428,18 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   CourseUpdateManyWithWhereNestedInput: NexusGenInputs['CourseUpdateManyWithWhereNestedInput'];
   CourseUpdateManyWithoutInstructorsInput: NexusGenInputs['CourseUpdateManyWithoutInstructorsInput'];
   CourseUpdateManyWithoutStudentsInput: NexusGenInputs['CourseUpdateManyWithoutStudentsInput'];
+  CourseUpdateOneRequiredWithoutLessonPlanInput: NexusGenInputs['CourseUpdateOneRequiredWithoutLessonPlanInput'];
   CourseUpdateWithWhereUniqueWithoutInstructorsInput: NexusGenInputs['CourseUpdateWithWhereUniqueWithoutInstructorsInput'];
   CourseUpdateWithWhereUniqueWithoutStudentsInput: NexusGenInputs['CourseUpdateWithWhereUniqueWithoutStudentsInput'];
   CourseUpdateWithoutInstructorsDataInput: NexusGenInputs['CourseUpdateWithoutInstructorsDataInput'];
+  CourseUpdateWithoutLessonPlanDataInput: NexusGenInputs['CourseUpdateWithoutLessonPlanDataInput'];
   CourseUpdateWithoutStudentsDataInput: NexusGenInputs['CourseUpdateWithoutStudentsDataInput'];
   CourseUpsertWithWhereUniqueWithoutInstructorsInput: NexusGenInputs['CourseUpsertWithWhereUniqueWithoutInstructorsInput'];
   CourseUpsertWithWhereUniqueWithoutStudentsInput: NexusGenInputs['CourseUpsertWithWhereUniqueWithoutStudentsInput'];
+  CourseUpsertWithoutLessonPlanInput: NexusGenInputs['CourseUpsertWithoutLessonPlanInput'];
   CourseWhereInput: NexusGenInputs['CourseWhereInput'];
   CourseWhereUniqueInput: NexusGenInputs['CourseWhereUniqueInput'];
+  CreateSlideInput: NexusGenInputs['CreateSlideInput'];
   DateTimeFilter: NexusGenInputs['DateTimeFilter'];
   GuardianCreateManyWithoutStudentsInput: NexusGenInputs['GuardianCreateManyWithoutStudentsInput'];
   GuardianCreateOneWithoutUserInput: NexusGenInputs['GuardianCreateOneWithoutUserInput'];
@@ -961,6 +2458,29 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   GuardianUpsertWithoutUserInput: NexusGenInputs['GuardianUpsertWithoutUserInput'];
   GuardianWhereInput: NexusGenInputs['GuardianWhereInput'];
   GuardianWhereUniqueInput: NexusGenInputs['GuardianWhereUniqueInput'];
+  HalfSlideCreateManyWithoutFirstHalfBlockInput: NexusGenInputs['HalfSlideCreateManyWithoutFirstHalfBlockInput'];
+  HalfSlideCreateManyWithoutSecondHalfBlockInput: NexusGenInputs['HalfSlideCreateManyWithoutSecondHalfBlockInput'];
+  HalfSlideCreateOneWithoutSlidesInput: NexusGenInputs['HalfSlideCreateOneWithoutSlidesInput'];
+  HalfSlideCreateWithoutFirstHalfBlockInput: NexusGenInputs['HalfSlideCreateWithoutFirstHalfBlockInput'];
+  HalfSlideCreateWithoutSecondHalfBlockInput: NexusGenInputs['HalfSlideCreateWithoutSecondHalfBlockInput'];
+  HalfSlideCreateWithoutSlidesInput: NexusGenInputs['HalfSlideCreateWithoutSlidesInput'];
+  HalfSlideFilter: NexusGenInputs['HalfSlideFilter'];
+  HalfSlideScalarWhereInput: NexusGenInputs['HalfSlideScalarWhereInput'];
+  HalfSlideUpdateManyDataInput: NexusGenInputs['HalfSlideUpdateManyDataInput'];
+  HalfSlideUpdateManyWithWhereNestedInput: NexusGenInputs['HalfSlideUpdateManyWithWhereNestedInput'];
+  HalfSlideUpdateManyWithoutFirstHalfBlockInput: NexusGenInputs['HalfSlideUpdateManyWithoutFirstHalfBlockInput'];
+  HalfSlideUpdateManyWithoutSecondHalfBlockInput: NexusGenInputs['HalfSlideUpdateManyWithoutSecondHalfBlockInput'];
+  HalfSlideUpdateOneWithoutSlidesInput: NexusGenInputs['HalfSlideUpdateOneWithoutSlidesInput'];
+  HalfSlideUpdateWithWhereUniqueWithoutFirstHalfBlockInput: NexusGenInputs['HalfSlideUpdateWithWhereUniqueWithoutFirstHalfBlockInput'];
+  HalfSlideUpdateWithWhereUniqueWithoutSecondHalfBlockInput: NexusGenInputs['HalfSlideUpdateWithWhereUniqueWithoutSecondHalfBlockInput'];
+  HalfSlideUpdateWithoutFirstHalfBlockDataInput: NexusGenInputs['HalfSlideUpdateWithoutFirstHalfBlockDataInput'];
+  HalfSlideUpdateWithoutSecondHalfBlockDataInput: NexusGenInputs['HalfSlideUpdateWithoutSecondHalfBlockDataInput'];
+  HalfSlideUpdateWithoutSlidesDataInput: NexusGenInputs['HalfSlideUpdateWithoutSlidesDataInput'];
+  HalfSlideUpsertWithWhereUniqueWithoutFirstHalfBlockInput: NexusGenInputs['HalfSlideUpsertWithWhereUniqueWithoutFirstHalfBlockInput'];
+  HalfSlideUpsertWithWhereUniqueWithoutSecondHalfBlockInput: NexusGenInputs['HalfSlideUpsertWithWhereUniqueWithoutSecondHalfBlockInput'];
+  HalfSlideUpsertWithoutSlidesInput: NexusGenInputs['HalfSlideUpsertWithoutSlidesInput'];
+  HalfSlideWhereInput: NexusGenInputs['HalfSlideWhereInput'];
+  HalfSlideWhereUniqueInput: NexusGenInputs['HalfSlideWhereUniqueInput'];
   InstructorCreateManyWithoutCoursesInput: NexusGenInputs['InstructorCreateManyWithoutCoursesInput'];
   InstructorCreateOneWithoutUserInput: NexusGenInputs['InstructorCreateOneWithoutUserInput'];
   InstructorCreateWithoutCoursesInput: NexusGenInputs['InstructorCreateWithoutCoursesInput'];
@@ -978,7 +2498,106 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   InstructorUpsertWithoutUserInput: NexusGenInputs['InstructorUpsertWithoutUserInput'];
   InstructorWhereInput: NexusGenInputs['InstructorWhereInput'];
   InstructorWhereUniqueInput: NexusGenInputs['InstructorWhereUniqueInput'];
+  LessonCreateInput: NexusGenInputs['LessonCreateInput'];
+  LessonCreateManyWithoutLessonPlanInput: NexusGenInputs['LessonCreateManyWithoutLessonPlanInput'];
+  LessonCreateOneWithoutSlidesInput: NexusGenInputs['LessonCreateOneWithoutSlidesInput'];
+  LessonCreateWithoutLessonPlanInput: NexusGenInputs['LessonCreateWithoutLessonPlanInput'];
+  LessonCreateWithoutSlidesInput: NexusGenInputs['LessonCreateWithoutSlidesInput'];
+  LessonFilter: NexusGenInputs['LessonFilter'];
+  LessonPlanCreateOneWithoutCourseInput: NexusGenInputs['LessonPlanCreateOneWithoutCourseInput'];
+  LessonPlanCreateOneWithoutLessonsInput: NexusGenInputs['LessonPlanCreateOneWithoutLessonsInput'];
+  LessonPlanCreateWithoutCourseInput: NexusGenInputs['LessonPlanCreateWithoutCourseInput'];
+  LessonPlanCreateWithoutLessonsInput: NexusGenInputs['LessonPlanCreateWithoutLessonsInput'];
+  LessonPlanUpdateOneRequiredWithoutCourseInput: NexusGenInputs['LessonPlanUpdateOneRequiredWithoutCourseInput'];
+  LessonPlanUpdateOneWithoutLessonsInput: NexusGenInputs['LessonPlanUpdateOneWithoutLessonsInput'];
+  LessonPlanUpdateWithoutCourseDataInput: NexusGenInputs['LessonPlanUpdateWithoutCourseDataInput'];
+  LessonPlanUpdateWithoutLessonsDataInput: NexusGenInputs['LessonPlanUpdateWithoutLessonsDataInput'];
+  LessonPlanUpsertWithoutCourseInput: NexusGenInputs['LessonPlanUpsertWithoutCourseInput'];
+  LessonPlanUpsertWithoutLessonsInput: NexusGenInputs['LessonPlanUpsertWithoutLessonsInput'];
+  LessonPlanWhereInput: NexusGenInputs['LessonPlanWhereInput'];
+  LessonPlanWhereUniqueInput: NexusGenInputs['LessonPlanWhereUniqueInput'];
+  LessonScalarWhereInput: NexusGenInputs['LessonScalarWhereInput'];
+  LessonUpdateManyDataInput: NexusGenInputs['LessonUpdateManyDataInput'];
+  LessonUpdateManyWithWhereNestedInput: NexusGenInputs['LessonUpdateManyWithWhereNestedInput'];
+  LessonUpdateManyWithoutLessonPlanInput: NexusGenInputs['LessonUpdateManyWithoutLessonPlanInput'];
+  LessonUpdateOneWithoutSlidesInput: NexusGenInputs['LessonUpdateOneWithoutSlidesInput'];
+  LessonUpdateWithWhereUniqueWithoutLessonPlanInput: NexusGenInputs['LessonUpdateWithWhereUniqueWithoutLessonPlanInput'];
+  LessonUpdateWithoutLessonPlanDataInput: NexusGenInputs['LessonUpdateWithoutLessonPlanDataInput'];
+  LessonUpdateWithoutSlidesDataInput: NexusGenInputs['LessonUpdateWithoutSlidesDataInput'];
+  LessonUpsertWithWhereUniqueWithoutLessonPlanInput: NexusGenInputs['LessonUpsertWithWhereUniqueWithoutLessonPlanInput'];
+  LessonUpsertWithoutSlidesInput: NexusGenInputs['LessonUpsertWithoutSlidesInput'];
+  LessonWhereInput: NexusGenInputs['LessonWhereInput'];
+  LessonWhereUniqueInput: NexusGenInputs['LessonWhereUniqueInput'];
   LogInInput: NexusGenInputs['LogInInput'];
+  MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput: NexusGenInputs['MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput'];
+  MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput: NexusGenInputs['MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput'];
+  MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput: NexusGenInputs['MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput'];
+  MultipleChoiceQuestionBlockCreateOneWithoutResponsesInput: NexusGenInputs['MultipleChoiceQuestionBlockCreateOneWithoutResponsesInput'];
+  MultipleChoiceQuestionBlockCreateWithoutBlocksInput: NexusGenInputs['MultipleChoiceQuestionBlockCreateWithoutBlocksInput'];
+  MultipleChoiceQuestionBlockCreateWithoutChoicesInput: NexusGenInputs['MultipleChoiceQuestionBlockCreateWithoutChoicesInput'];
+  MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput: NexusGenInputs['MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput'];
+  MultipleChoiceQuestionBlockCreateWithoutResponsesInput: NexusGenInputs['MultipleChoiceQuestionBlockCreateWithoutResponsesInput'];
+  MultipleChoiceQuestionBlockUpdateOneRequiredWithoutCorrectChoiceInput: NexusGenInputs['MultipleChoiceQuestionBlockUpdateOneRequiredWithoutCorrectChoiceInput'];
+  MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput: NexusGenInputs['MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput'];
+  MultipleChoiceQuestionBlockUpdateOneWithoutChoicesInput: NexusGenInputs['MultipleChoiceQuestionBlockUpdateOneWithoutChoicesInput'];
+  MultipleChoiceQuestionBlockUpdateOneWithoutResponsesInput: NexusGenInputs['MultipleChoiceQuestionBlockUpdateOneWithoutResponsesInput'];
+  MultipleChoiceQuestionBlockUpdateWithoutBlocksDataInput: NexusGenInputs['MultipleChoiceQuestionBlockUpdateWithoutBlocksDataInput'];
+  MultipleChoiceQuestionBlockUpdateWithoutChoicesDataInput: NexusGenInputs['MultipleChoiceQuestionBlockUpdateWithoutChoicesDataInput'];
+  MultipleChoiceQuestionBlockUpdateWithoutCorrectChoiceDataInput: NexusGenInputs['MultipleChoiceQuestionBlockUpdateWithoutCorrectChoiceDataInput'];
+  MultipleChoiceQuestionBlockUpdateWithoutResponsesDataInput: NexusGenInputs['MultipleChoiceQuestionBlockUpdateWithoutResponsesDataInput'];
+  MultipleChoiceQuestionBlockUpsertWithoutBlocksInput: NexusGenInputs['MultipleChoiceQuestionBlockUpsertWithoutBlocksInput'];
+  MultipleChoiceQuestionBlockUpsertWithoutChoicesInput: NexusGenInputs['MultipleChoiceQuestionBlockUpsertWithoutChoicesInput'];
+  MultipleChoiceQuestionBlockUpsertWithoutCorrectChoiceInput: NexusGenInputs['MultipleChoiceQuestionBlockUpsertWithoutCorrectChoiceInput'];
+  MultipleChoiceQuestionBlockUpsertWithoutResponsesInput: NexusGenInputs['MultipleChoiceQuestionBlockUpsertWithoutResponsesInput'];
+  MultipleChoiceQuestionBlockWhereInput: NexusGenInputs['MultipleChoiceQuestionBlockWhereInput'];
+  MultipleChoiceQuestionBlockWhereUniqueInput: NexusGenInputs['MultipleChoiceQuestionBlockWhereUniqueInput'];
+  MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput: NexusGenInputs['MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput'];
+  MultipleChoiceQuestionChoiceCreateOneWithoutMultipleChoiceQuestionResponsesInput: NexusGenInputs['MultipleChoiceQuestionChoiceCreateOneWithoutMultipleChoiceQuestionResponsesInput'];
+  MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput: NexusGenInputs['MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput'];
+  MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput: NexusGenInputs['MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput'];
+  MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput: NexusGenInputs['MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput'];
+  MultipleChoiceQuestionChoiceCreateWithoutQuestionInput: NexusGenInputs['MultipleChoiceQuestionChoiceCreateWithoutQuestionInput'];
+  MultipleChoiceQuestionChoiceFilter: NexusGenInputs['MultipleChoiceQuestionChoiceFilter'];
+  MultipleChoiceQuestionChoiceScalarWhereInput: NexusGenInputs['MultipleChoiceQuestionChoiceScalarWhereInput'];
+  MultipleChoiceQuestionChoiceUpdateManyDataInput: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateManyDataInput'];
+  MultipleChoiceQuestionChoiceUpdateManyWithWhereNestedInput: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateManyWithWhereNestedInput'];
+  MultipleChoiceQuestionChoiceUpdateManyWithoutMultipleChoiceQuestionBlockInput: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateManyWithoutMultipleChoiceQuestionBlockInput'];
+  MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput'];
+  MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutQuestionInput: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutQuestionInput'];
+  MultipleChoiceQuestionChoiceUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput'];
+  MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionBlockDataInput: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionBlockDataInput'];
+  MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionResponsesDataInput: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionResponsesDataInput'];
+  MultipleChoiceQuestionChoiceUpdateWithoutQuestionDataInput: NexusGenInputs['MultipleChoiceQuestionChoiceUpdateWithoutQuestionDataInput'];
+  MultipleChoiceQuestionChoiceUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput: NexusGenInputs['MultipleChoiceQuestionChoiceUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput'];
+  MultipleChoiceQuestionChoiceUpsertWithoutMultipleChoiceQuestionResponsesInput: NexusGenInputs['MultipleChoiceQuestionChoiceUpsertWithoutMultipleChoiceQuestionResponsesInput'];
+  MultipleChoiceQuestionChoiceUpsertWithoutQuestionInput: NexusGenInputs['MultipleChoiceQuestionChoiceUpsertWithoutQuestionInput'];
+  MultipleChoiceQuestionChoiceWhereInput: NexusGenInputs['MultipleChoiceQuestionChoiceWhereInput'];
+  MultipleChoiceQuestionChoiceWhereUniqueInput: NexusGenInputs['MultipleChoiceQuestionChoiceWhereUniqueInput'];
+  MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput: NexusGenInputs['MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput'];
+  MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput: NexusGenInputs['MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput'];
+  MultipleChoiceQuestionResponseCreateManyWithoutStudentInput: NexusGenInputs['MultipleChoiceQuestionResponseCreateManyWithoutStudentInput'];
+  MultipleChoiceQuestionResponseCreateWithoutChoiceInput: NexusGenInputs['MultipleChoiceQuestionResponseCreateWithoutChoiceInput'];
+  MultipleChoiceQuestionResponseCreateWithoutMultipleChoiceQuestionBlockInput: NexusGenInputs['MultipleChoiceQuestionResponseCreateWithoutMultipleChoiceQuestionBlockInput'];
+  MultipleChoiceQuestionResponseCreateWithoutStudentInput: NexusGenInputs['MultipleChoiceQuestionResponseCreateWithoutStudentInput'];
+  MultipleChoiceQuestionResponseFilter: NexusGenInputs['MultipleChoiceQuestionResponseFilter'];
+  MultipleChoiceQuestionResponseScalarWhereInput: NexusGenInputs['MultipleChoiceQuestionResponseScalarWhereInput'];
+  MultipleChoiceQuestionResponseUpdateManyDataInput: NexusGenInputs['MultipleChoiceQuestionResponseUpdateManyDataInput'];
+  MultipleChoiceQuestionResponseUpdateManyWithWhereNestedInput: NexusGenInputs['MultipleChoiceQuestionResponseUpdateManyWithWhereNestedInput'];
+  MultipleChoiceQuestionResponseUpdateManyWithoutChoiceInput: NexusGenInputs['MultipleChoiceQuestionResponseUpdateManyWithoutChoiceInput'];
+  MultipleChoiceQuestionResponseUpdateManyWithoutMultipleChoiceQuestionBlockInput: NexusGenInputs['MultipleChoiceQuestionResponseUpdateManyWithoutMultipleChoiceQuestionBlockInput'];
+  MultipleChoiceQuestionResponseUpdateManyWithoutStudentInput: NexusGenInputs['MultipleChoiceQuestionResponseUpdateManyWithoutStudentInput'];
+  MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutChoiceInput: NexusGenInputs['MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutChoiceInput'];
+  MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput: NexusGenInputs['MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput'];
+  MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutStudentInput: NexusGenInputs['MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutStudentInput'];
+  MultipleChoiceQuestionResponseUpdateWithoutChoiceDataInput: NexusGenInputs['MultipleChoiceQuestionResponseUpdateWithoutChoiceDataInput'];
+  MultipleChoiceQuestionResponseUpdateWithoutMultipleChoiceQuestionBlockDataInput: NexusGenInputs['MultipleChoiceQuestionResponseUpdateWithoutMultipleChoiceQuestionBlockDataInput'];
+  MultipleChoiceQuestionResponseUpdateWithoutStudentDataInput: NexusGenInputs['MultipleChoiceQuestionResponseUpdateWithoutStudentDataInput'];
+  MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutChoiceInput: NexusGenInputs['MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutChoiceInput'];
+  MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput: NexusGenInputs['MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput'];
+  MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutStudentInput: NexusGenInputs['MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutStudentInput'];
+  MultipleChoiceQuestionResponseWhereInput: NexusGenInputs['MultipleChoiceQuestionResponseWhereInput'];
+  MultipleChoiceQuestionResponseWhereUniqueInput: NexusGenInputs['MultipleChoiceQuestionResponseWhereUniqueInput'];
+  NullableStringFilter: NexusGenInputs['NullableStringFilter'];
   PageCreateManyWithoutContentInput: NexusGenInputs['PageCreateManyWithoutContentInput'];
   PageCreateWithoutContentInput: NexusGenInputs['PageCreateWithoutContentInput'];
   PageFilter: NexusGenInputs['PageFilter'];
@@ -991,14 +2610,86 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   PageUpsertWithWhereUniqueWithoutContentInput: NexusGenInputs['PageUpsertWithWhereUniqueWithoutContentInput'];
   PageWhereInput: NexusGenInputs['PageWhereInput'];
   PageWhereUniqueInput: NexusGenInputs['PageWhereUniqueInput'];
+  QuarterSlideCreateManyWithoutMainBlockInput: NexusGenInputs['QuarterSlideCreateManyWithoutMainBlockInput'];
+  QuarterSlideCreateManyWithoutSideBlockInput: NexusGenInputs['QuarterSlideCreateManyWithoutSideBlockInput'];
+  QuarterSlideCreateOneWithoutSlidesInput: NexusGenInputs['QuarterSlideCreateOneWithoutSlidesInput'];
+  QuarterSlideCreateWithoutMainBlockInput: NexusGenInputs['QuarterSlideCreateWithoutMainBlockInput'];
+  QuarterSlideCreateWithoutSideBlockInput: NexusGenInputs['QuarterSlideCreateWithoutSideBlockInput'];
+  QuarterSlideCreateWithoutSlidesInput: NexusGenInputs['QuarterSlideCreateWithoutSlidesInput'];
+  QuarterSlideFilter: NexusGenInputs['QuarterSlideFilter'];
+  QuarterSlideScalarWhereInput: NexusGenInputs['QuarterSlideScalarWhereInput'];
+  QuarterSlideUpdateManyDataInput: NexusGenInputs['QuarterSlideUpdateManyDataInput'];
+  QuarterSlideUpdateManyWithWhereNestedInput: NexusGenInputs['QuarterSlideUpdateManyWithWhereNestedInput'];
+  QuarterSlideUpdateManyWithoutMainBlockInput: NexusGenInputs['QuarterSlideUpdateManyWithoutMainBlockInput'];
+  QuarterSlideUpdateManyWithoutSideBlockInput: NexusGenInputs['QuarterSlideUpdateManyWithoutSideBlockInput'];
+  QuarterSlideUpdateOneWithoutSlidesInput: NexusGenInputs['QuarterSlideUpdateOneWithoutSlidesInput'];
+  QuarterSlideUpdateWithWhereUniqueWithoutMainBlockInput: NexusGenInputs['QuarterSlideUpdateWithWhereUniqueWithoutMainBlockInput'];
+  QuarterSlideUpdateWithWhereUniqueWithoutSideBlockInput: NexusGenInputs['QuarterSlideUpdateWithWhereUniqueWithoutSideBlockInput'];
+  QuarterSlideUpdateWithoutMainBlockDataInput: NexusGenInputs['QuarterSlideUpdateWithoutMainBlockDataInput'];
+  QuarterSlideUpdateWithoutSideBlockDataInput: NexusGenInputs['QuarterSlideUpdateWithoutSideBlockDataInput'];
+  QuarterSlideUpdateWithoutSlidesDataInput: NexusGenInputs['QuarterSlideUpdateWithoutSlidesDataInput'];
+  QuarterSlideUpsertWithWhereUniqueWithoutMainBlockInput: NexusGenInputs['QuarterSlideUpsertWithWhereUniqueWithoutMainBlockInput'];
+  QuarterSlideUpsertWithWhereUniqueWithoutSideBlockInput: NexusGenInputs['QuarterSlideUpsertWithWhereUniqueWithoutSideBlockInput'];
+  QuarterSlideUpsertWithoutSlidesInput: NexusGenInputs['QuarterSlideUpsertWithoutSlidesInput'];
+  QuarterSlideWhereInput: NexusGenInputs['QuarterSlideWhereInput'];
+  QuarterSlideWhereUniqueInput: NexusGenInputs['QuarterSlideWhereUniqueInput'];
   RegisterUserInput: NexusGenInputs['RegisterUserInput'];
   SendInvitationEmailInput: NexusGenInputs['SendInvitationEmailInput'];
+  SingleSlideCreateManyWithoutBlockInput: NexusGenInputs['SingleSlideCreateManyWithoutBlockInput'];
+  SingleSlideCreateOneWithoutSlidesInput: NexusGenInputs['SingleSlideCreateOneWithoutSlidesInput'];
+  SingleSlideCreateWithoutBlockInput: NexusGenInputs['SingleSlideCreateWithoutBlockInput'];
+  SingleSlideCreateWithoutSlidesInput: NexusGenInputs['SingleSlideCreateWithoutSlidesInput'];
+  SingleSlideFilter: NexusGenInputs['SingleSlideFilter'];
+  SingleSlideScalarWhereInput: NexusGenInputs['SingleSlideScalarWhereInput'];
+  SingleSlideUpdateManyDataInput: NexusGenInputs['SingleSlideUpdateManyDataInput'];
+  SingleSlideUpdateManyWithWhereNestedInput: NexusGenInputs['SingleSlideUpdateManyWithWhereNestedInput'];
+  SingleSlideUpdateManyWithoutBlockInput: NexusGenInputs['SingleSlideUpdateManyWithoutBlockInput'];
+  SingleSlideUpdateOneWithoutSlidesInput: NexusGenInputs['SingleSlideUpdateOneWithoutSlidesInput'];
+  SingleSlideUpdateWithWhereUniqueWithoutBlockInput: NexusGenInputs['SingleSlideUpdateWithWhereUniqueWithoutBlockInput'];
+  SingleSlideUpdateWithoutBlockDataInput: NexusGenInputs['SingleSlideUpdateWithoutBlockDataInput'];
+  SingleSlideUpdateWithoutSlidesDataInput: NexusGenInputs['SingleSlideUpdateWithoutSlidesDataInput'];
+  SingleSlideUpsertWithWhereUniqueWithoutBlockInput: NexusGenInputs['SingleSlideUpsertWithWhereUniqueWithoutBlockInput'];
+  SingleSlideUpsertWithoutSlidesInput: NexusGenInputs['SingleSlideUpsertWithoutSlidesInput'];
+  SingleSlideWhereInput: NexusGenInputs['SingleSlideWhereInput'];
+  SingleSlideWhereUniqueInput: NexusGenInputs['SingleSlideWhereUniqueInput'];
+  SlideCreateManyWithoutHalfSlideInput: NexusGenInputs['SlideCreateManyWithoutHalfSlideInput'];
+  SlideCreateManyWithoutLessonInput: NexusGenInputs['SlideCreateManyWithoutLessonInput'];
+  SlideCreateManyWithoutQuarterSlideInput: NexusGenInputs['SlideCreateManyWithoutQuarterSlideInput'];
+  SlideCreateManyWithoutSingleSlideInput: NexusGenInputs['SlideCreateManyWithoutSingleSlideInput'];
+  SlideCreateWithoutHalfSlideInput: NexusGenInputs['SlideCreateWithoutHalfSlideInput'];
+  SlideCreateWithoutLessonInput: NexusGenInputs['SlideCreateWithoutLessonInput'];
+  SlideCreateWithoutQuarterSlideInput: NexusGenInputs['SlideCreateWithoutQuarterSlideInput'];
+  SlideCreateWithoutSingleSlideInput: NexusGenInputs['SlideCreateWithoutSingleSlideInput'];
+  SlideFilter: NexusGenInputs['SlideFilter'];
+  SlideScalarWhereInput: NexusGenInputs['SlideScalarWhereInput'];
+  SlideUpdateManyDataInput: NexusGenInputs['SlideUpdateManyDataInput'];
+  SlideUpdateManyWithWhereNestedInput: NexusGenInputs['SlideUpdateManyWithWhereNestedInput'];
+  SlideUpdateManyWithoutHalfSlideInput: NexusGenInputs['SlideUpdateManyWithoutHalfSlideInput'];
+  SlideUpdateManyWithoutLessonInput: NexusGenInputs['SlideUpdateManyWithoutLessonInput'];
+  SlideUpdateManyWithoutQuarterSlideInput: NexusGenInputs['SlideUpdateManyWithoutQuarterSlideInput'];
+  SlideUpdateManyWithoutSingleSlideInput: NexusGenInputs['SlideUpdateManyWithoutSingleSlideInput'];
+  SlideUpdateWithWhereUniqueWithoutHalfSlideInput: NexusGenInputs['SlideUpdateWithWhereUniqueWithoutHalfSlideInput'];
+  SlideUpdateWithWhereUniqueWithoutLessonInput: NexusGenInputs['SlideUpdateWithWhereUniqueWithoutLessonInput'];
+  SlideUpdateWithWhereUniqueWithoutQuarterSlideInput: NexusGenInputs['SlideUpdateWithWhereUniqueWithoutQuarterSlideInput'];
+  SlideUpdateWithWhereUniqueWithoutSingleSlideInput: NexusGenInputs['SlideUpdateWithWhereUniqueWithoutSingleSlideInput'];
+  SlideUpdateWithoutHalfSlideDataInput: NexusGenInputs['SlideUpdateWithoutHalfSlideDataInput'];
+  SlideUpdateWithoutLessonDataInput: NexusGenInputs['SlideUpdateWithoutLessonDataInput'];
+  SlideUpdateWithoutQuarterSlideDataInput: NexusGenInputs['SlideUpdateWithoutQuarterSlideDataInput'];
+  SlideUpdateWithoutSingleSlideDataInput: NexusGenInputs['SlideUpdateWithoutSingleSlideDataInput'];
+  SlideUpsertWithWhereUniqueWithoutHalfSlideInput: NexusGenInputs['SlideUpsertWithWhereUniqueWithoutHalfSlideInput'];
+  SlideUpsertWithWhereUniqueWithoutLessonInput: NexusGenInputs['SlideUpsertWithWhereUniqueWithoutLessonInput'];
+  SlideUpsertWithWhereUniqueWithoutQuarterSlideInput: NexusGenInputs['SlideUpsertWithWhereUniqueWithoutQuarterSlideInput'];
+  SlideUpsertWithWhereUniqueWithoutSingleSlideInput: NexusGenInputs['SlideUpsertWithWhereUniqueWithoutSingleSlideInput'];
+  SlideWhereInput: NexusGenInputs['SlideWhereInput'];
+  SlideWhereUniqueInput: NexusGenInputs['SlideWhereUniqueInput'];
   StringFilter: NexusGenInputs['StringFilter'];
   StudentCreateManyWithoutCoursesInput: NexusGenInputs['StudentCreateManyWithoutCoursesInput'];
   StudentCreateManyWithoutGuardiansInput: NexusGenInputs['StudentCreateManyWithoutGuardiansInput'];
+  StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput: NexusGenInputs['StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput'];
   StudentCreateOneWithoutUserInput: NexusGenInputs['StudentCreateOneWithoutUserInput'];
   StudentCreateWithoutCoursesInput: NexusGenInputs['StudentCreateWithoutCoursesInput'];
   StudentCreateWithoutGuardiansInput: NexusGenInputs['StudentCreateWithoutGuardiansInput'];
+  StudentCreateWithoutMultipleChoiceQuestionResponsesInput: NexusGenInputs['StudentCreateWithoutMultipleChoiceQuestionResponsesInput'];
   StudentCreateWithoutUserInput: NexusGenInputs['StudentCreateWithoutUserInput'];
   StudentFilter: NexusGenInputs['StudentFilter'];
   StudentScalarWhereInput: NexusGenInputs['StudentScalarWhereInput'];
@@ -1006,17 +2697,27 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   StudentUpdateManyWithWhereNestedInput: NexusGenInputs['StudentUpdateManyWithWhereNestedInput'];
   StudentUpdateManyWithoutCoursesInput: NexusGenInputs['StudentUpdateManyWithoutCoursesInput'];
   StudentUpdateManyWithoutGuardiansInput: NexusGenInputs['StudentUpdateManyWithoutGuardiansInput'];
+  StudentUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput: NexusGenInputs['StudentUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput'];
   StudentUpdateOneWithoutUserInput: NexusGenInputs['StudentUpdateOneWithoutUserInput'];
   StudentUpdateWithWhereUniqueWithoutCoursesInput: NexusGenInputs['StudentUpdateWithWhereUniqueWithoutCoursesInput'];
   StudentUpdateWithWhereUniqueWithoutGuardiansInput: NexusGenInputs['StudentUpdateWithWhereUniqueWithoutGuardiansInput'];
   StudentUpdateWithoutCoursesDataInput: NexusGenInputs['StudentUpdateWithoutCoursesDataInput'];
   StudentUpdateWithoutGuardiansDataInput: NexusGenInputs['StudentUpdateWithoutGuardiansDataInput'];
+  StudentUpdateWithoutMultipleChoiceQuestionResponsesDataInput: NexusGenInputs['StudentUpdateWithoutMultipleChoiceQuestionResponsesDataInput'];
   StudentUpdateWithoutUserDataInput: NexusGenInputs['StudentUpdateWithoutUserDataInput'];
   StudentUpsertWithWhereUniqueWithoutCoursesInput: NexusGenInputs['StudentUpsertWithWhereUniqueWithoutCoursesInput'];
   StudentUpsertWithWhereUniqueWithoutGuardiansInput: NexusGenInputs['StudentUpsertWithWhereUniqueWithoutGuardiansInput'];
+  StudentUpsertWithoutMultipleChoiceQuestionResponsesInput: NexusGenInputs['StudentUpsertWithoutMultipleChoiceQuestionResponsesInput'];
   StudentUpsertWithoutUserInput: NexusGenInputs['StudentUpsertWithoutUserInput'];
   StudentWhereInput: NexusGenInputs['StudentWhereInput'];
   StudentWhereUniqueInput: NexusGenInputs['StudentWhereUniqueInput'];
+  TextBlockCreateOneWithoutBlocksInput: NexusGenInputs['TextBlockCreateOneWithoutBlocksInput'];
+  TextBlockCreateWithoutBlocksInput: NexusGenInputs['TextBlockCreateWithoutBlocksInput'];
+  TextBlockUpdateOneWithoutBlocksInput: NexusGenInputs['TextBlockUpdateOneWithoutBlocksInput'];
+  TextBlockUpdateWithoutBlocksDataInput: NexusGenInputs['TextBlockUpdateWithoutBlocksDataInput'];
+  TextBlockUpsertWithoutBlocksInput: NexusGenInputs['TextBlockUpsertWithoutBlocksInput'];
+  TextBlockWhereInput: NexusGenInputs['TextBlockWhereInput'];
+  TextBlockWhereUniqueInput: NexusGenInputs['TextBlockWhereUniqueInput'];
   UserCreateOneWithoutGuardianInput: NexusGenInputs['UserCreateOneWithoutGuardianInput'];
   UserCreateOneWithoutInstructorInput: NexusGenInputs['UserCreateOneWithoutInstructorInput'];
   UserCreateOneWithoutStudentInput: NexusGenInputs['UserCreateOneWithoutStudentInput'];
@@ -1052,11 +2753,10 @@ export interface NexusGenFieldTypes {
     title: string; // String!
   }
   Course: { // field return type
-    contents: NexusGenRootTypes['Content'][]; // [Content!]!
     id: string; // String!
     instructors: NexusGenRootTypes['Instructor'][]; // [Instructor!]!
+    lessonPlan: NexusGenRootTypes['LessonPlan']; // LessonPlan!
     name: string; // String!
-    students: NexusGenRootTypes['Student'][]; // [Student!]!
     suggestedLevel: NexusGenEnums['GradeLevel']; // GradeLevel!
   }
   Guardian: { // field return type
@@ -1067,25 +2767,60 @@ export interface NexusGenFieldTypes {
     students: NexusGenRootTypes['Student'][]; // [Student!]!
     username: string; // String!
   }
+  HalfSlide: { // field return type
+    firstHalfBlock: NexusGenRootTypes['Block']; // Block!
+    id: string; // String!
+    secondHalfBlock: NexusGenRootTypes['Block']; // Block!
+  }
   Instructor: { // field return type
     courses: NexusGenRootTypes['Course'][]; // [Course!]!
     email: string; // String!
     firstName: string; // String!
     id: string; // String!
     lastName: string; // String!
-    user: NexusGenRootTypes['User']; // User!
     username: string; // String!
+  }
+  Lesson: { // field return type
+    id: string; // String!
+    slides: NexusGenRootTypes['Slide'][]; // [Slide!]!
+    title: string; // String!
+  }
+  LessonPlan: { // field return type
+    id: string; // String!
+    lessons: NexusGenRootTypes['Lesson'][]; // [Lesson!]!
+  }
+  MultipleChoiceQuestionBlock: { // field return type
+    choices: NexusGenRootTypes['MultipleChoiceQuestionChoice'][]; // [MultipleChoiceQuestionChoice!]!
+    correctChoice: NexusGenRootTypes['MultipleChoiceQuestionChoice']; // MultipleChoiceQuestionChoice!
+    id: string; // String!
+    text: string; // String!
+  }
+  MultipleChoiceQuestionChoice: { // field return type
+    id: string; // String!
+    question: NexusGenRootTypes['MultipleChoiceQuestionBlock']; // MultipleChoiceQuestionBlock!
+    text: string; // String!
   }
   Mutation: { // field return type
     createOneCourse: NexusGenRootTypes['Course']; // Course!
+    createOneLesson: NexusGenRootTypes['Lesson']; // Lesson!
+    createSlide: NexusGenRootTypes['Slide']; // Slide!
     logIn: NexusGenRootTypes['User']; // User!
     registerUser: NexusGenRootTypes['User']; // User!
     sendInvitationEmail: string; // String!
     updateOneCourse: NexusGenRootTypes['Course'] | null; // Course
   }
+  QuarterSlide: { // field return type
+    id: string; // String!
+    mainBlock: NexusGenRootTypes['Block']; // Block!
+    sideBlock: NexusGenRootTypes['Block']; // Block!
+  }
   Query: { // field return type
     courses: NexusGenRootTypes['Course'][]; // [Course!]!
     viewer: NexusGenRootTypes['User']; // User!
+  }
+  SingleSlide: { // field return type
+    block: NexusGenRootTypes['Block']; // Block!
+    id: string; // String!
   }
   Student: { // field return type
     firstName: string; // String!
@@ -1095,8 +2830,14 @@ export interface NexusGenFieldTypes {
     lastName: string; // String!
     username: string; // String!
   }
+  TextBlock: { // field return type
+    body: string | null; // String
+    id: string; // String!
+    title: string | null; // String
+  }
   User: { // field return type
     firstName: string; // String!
+    id: string; // String!
     lastName: string; // String!
     username: string; // String!
   }
@@ -1104,23 +2845,9 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenArgTypes {
   Course: {
-    contents: { // args
-      after?: NexusGenInputs['ContentWhereUniqueInput'] | null; // ContentWhereUniqueInput
-      before?: NexusGenInputs['ContentWhereUniqueInput'] | null; // ContentWhereUniqueInput
-      first?: number | null; // Int
-      last?: number | null; // Int
-      skip?: number | null; // Int
-    }
     instructors: { // args
       after?: NexusGenInputs['InstructorWhereUniqueInput'] | null; // InstructorWhereUniqueInput
       before?: NexusGenInputs['InstructorWhereUniqueInput'] | null; // InstructorWhereUniqueInput
-      first?: number | null; // Int
-      last?: number | null; // Int
-      skip?: number | null; // Int
-    }
-    students: { // args
-      after?: NexusGenInputs['StudentWhereUniqueInput'] | null; // StudentWhereUniqueInput
-      before?: NexusGenInputs['StudentWhereUniqueInput'] | null; // StudentWhereUniqueInput
       first?: number | null; // Int
       last?: number | null; // Int
       skip?: number | null; // Int
@@ -1144,9 +2871,33 @@ export interface NexusGenArgTypes {
       skip?: number | null; // Int
     }
   }
+  LessonPlan: {
+    lessons: { // args
+      after?: NexusGenInputs['LessonWhereUniqueInput'] | null; // LessonWhereUniqueInput
+      before?: NexusGenInputs['LessonWhereUniqueInput'] | null; // LessonWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+      skip?: number | null; // Int
+    }
+  }
+  MultipleChoiceQuestionBlock: {
+    choices: { // args
+      after?: NexusGenInputs['MultipleChoiceQuestionChoiceWhereUniqueInput'] | null; // MultipleChoiceQuestionChoiceWhereUniqueInput
+      before?: NexusGenInputs['MultipleChoiceQuestionChoiceWhereUniqueInput'] | null; // MultipleChoiceQuestionChoiceWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+      skip?: number | null; // Int
+    }
+  }
   Mutation: {
     createOneCourse: { // args
       data: NexusGenInputs['CourseCreateInput']; // CourseCreateInput!
+    }
+    createOneLesson: { // args
+      data: NexusGenInputs['LessonCreateInput']; // LessonCreateInput!
+    }
+    createSlide: { // args
+      input: NexusGenInputs['CreateSlideInput']; // CreateSlideInput!
     }
     logIn: { // args
       input: NexusGenInputs['LogInInput']; // LogInInput!
@@ -1184,14 +2935,16 @@ export interface NexusGenArgTypes {
 }
 
 export interface NexusGenAbstractResolveReturnTypes {
-  User: "Instructor" | "Student" | "Guardian" | "Admin"
+  Block: "MultipleChoiceQuestionBlock" | "TextBlock"
+  Slide: "HalfSlide" | "QuarterSlide" | "SingleSlide"
+  User: "Instructor" | "Admin" | "Guardian" | "Student"
 }
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Admin" | "Content" | "Course" | "Guardian" | "Instructor" | "Mutation" | "Query" | "Student";
+export type NexusGenObjectNames = "Admin" | "Content" | "Course" | "Guardian" | "HalfSlide" | "Instructor" | "Lesson" | "LessonPlan" | "MultipleChoiceQuestionBlock" | "MultipleChoiceQuestionChoice" | "Mutation" | "QuarterSlide" | "Query" | "SingleSlide" | "Student" | "TextBlock";
 
-export type NexusGenInputNames = "AdminCreateOneWithoutUserInput" | "AdminCreateWithoutUserInput" | "AdminUpdateOneWithoutUserInput" | "AdminUpdateWithoutUserDataInput" | "AdminUpsertWithoutUserInput" | "AdminWhereInput" | "AdminWhereUniqueInput" | "ContentCreateManyWithoutCourseInput" | "ContentCreateWithoutCourseInput" | "ContentFilter" | "ContentScalarWhereInput" | "ContentUpdateManyDataInput" | "ContentUpdateManyWithWhereNestedInput" | "ContentUpdateManyWithoutCourseInput" | "ContentUpdateWithWhereUniqueWithoutCourseInput" | "ContentUpdateWithoutCourseDataInput" | "ContentUpsertWithWhereUniqueWithoutCourseInput" | "ContentWhereInput" | "ContentWhereUniqueInput" | "CourseCreateInput" | "CourseCreateManyWithoutInstructorsInput" | "CourseCreateManyWithoutStudentsInput" | "CourseCreateWithoutInstructorsInput" | "CourseCreateWithoutStudentsInput" | "CourseFilter" | "CourseScalarWhereInput" | "CourseUpdateInput" | "CourseUpdateManyDataInput" | "CourseUpdateManyWithWhereNestedInput" | "CourseUpdateManyWithoutInstructorsInput" | "CourseUpdateManyWithoutStudentsInput" | "CourseUpdateWithWhereUniqueWithoutInstructorsInput" | "CourseUpdateWithWhereUniqueWithoutStudentsInput" | "CourseUpdateWithoutInstructorsDataInput" | "CourseUpdateWithoutStudentsDataInput" | "CourseUpsertWithWhereUniqueWithoutInstructorsInput" | "CourseUpsertWithWhereUniqueWithoutStudentsInput" | "CourseWhereInput" | "CourseWhereUniqueInput" | "DateTimeFilter" | "GuardianCreateManyWithoutStudentsInput" | "GuardianCreateOneWithoutUserInput" | "GuardianCreateWithoutStudentsInput" | "GuardianCreateWithoutUserInput" | "GuardianFilter" | "GuardianScalarWhereInput" | "GuardianUpdateManyDataInput" | "GuardianUpdateManyWithWhereNestedInput" | "GuardianUpdateManyWithoutStudentsInput" | "GuardianUpdateOneWithoutUserInput" | "GuardianUpdateWithWhereUniqueWithoutStudentsInput" | "GuardianUpdateWithoutStudentsDataInput" | "GuardianUpdateWithoutUserDataInput" | "GuardianUpsertWithWhereUniqueWithoutStudentsInput" | "GuardianUpsertWithoutUserInput" | "GuardianWhereInput" | "GuardianWhereUniqueInput" | "InstructorCreateManyWithoutCoursesInput" | "InstructorCreateOneWithoutUserInput" | "InstructorCreateWithoutCoursesInput" | "InstructorCreateWithoutUserInput" | "InstructorFilter" | "InstructorScalarWhereInput" | "InstructorUpdateManyDataInput" | "InstructorUpdateManyWithWhereNestedInput" | "InstructorUpdateManyWithoutCoursesInput" | "InstructorUpdateOneWithoutUserInput" | "InstructorUpdateWithWhereUniqueWithoutCoursesInput" | "InstructorUpdateWithoutCoursesDataInput" | "InstructorUpdateWithoutUserDataInput" | "InstructorUpsertWithWhereUniqueWithoutCoursesInput" | "InstructorUpsertWithoutUserInput" | "InstructorWhereInput" | "InstructorWhereUniqueInput" | "LogInInput" | "PageCreateManyWithoutContentInput" | "PageCreateWithoutContentInput" | "PageFilter" | "PageScalarWhereInput" | "PageUpdateManyDataInput" | "PageUpdateManyWithWhereNestedInput" | "PageUpdateManyWithoutContentInput" | "PageUpdateWithWhereUniqueWithoutContentInput" | "PageUpdateWithoutContentDataInput" | "PageUpsertWithWhereUniqueWithoutContentInput" | "PageWhereInput" | "PageWhereUniqueInput" | "RegisterUserInput" | "SendInvitationEmailInput" | "StringFilter" | "StudentCreateManyWithoutCoursesInput" | "StudentCreateManyWithoutGuardiansInput" | "StudentCreateOneWithoutUserInput" | "StudentCreateWithoutCoursesInput" | "StudentCreateWithoutGuardiansInput" | "StudentCreateWithoutUserInput" | "StudentFilter" | "StudentScalarWhereInput" | "StudentUpdateManyDataInput" | "StudentUpdateManyWithWhereNestedInput" | "StudentUpdateManyWithoutCoursesInput" | "StudentUpdateManyWithoutGuardiansInput" | "StudentUpdateOneWithoutUserInput" | "StudentUpdateWithWhereUniqueWithoutCoursesInput" | "StudentUpdateWithWhereUniqueWithoutGuardiansInput" | "StudentUpdateWithoutCoursesDataInput" | "StudentUpdateWithoutGuardiansDataInput" | "StudentUpdateWithoutUserDataInput" | "StudentUpsertWithWhereUniqueWithoutCoursesInput" | "StudentUpsertWithWhereUniqueWithoutGuardiansInput" | "StudentUpsertWithoutUserInput" | "StudentWhereInput" | "StudentWhereUniqueInput" | "UserCreateOneWithoutGuardianInput" | "UserCreateOneWithoutInstructorInput" | "UserCreateOneWithoutStudentInput" | "UserCreateWithoutGuardianInput" | "UserCreateWithoutInstructorInput" | "UserCreateWithoutStudentInput" | "UserUpdateOneRequiredWithoutGuardianInput" | "UserUpdateOneRequiredWithoutInstructorInput" | "UserUpdateOneRequiredWithoutStudentInput" | "UserUpdateWithoutGuardianDataInput" | "UserUpdateWithoutInstructorDataInput" | "UserUpdateWithoutStudentDataInput" | "UserUpsertWithoutGuardianInput" | "UserUpsertWithoutInstructorInput" | "UserUpsertWithoutStudentInput" | "UserWhereInput" | "UserWhereUniqueInput";
+export type NexusGenInputNames = "AdminCreateOneWithoutUserInput" | "AdminCreateWithoutUserInput" | "AdminUpdateOneWithoutUserInput" | "AdminUpdateWithoutUserDataInput" | "AdminUpsertWithoutUserInput" | "AdminWhereInput" | "AdminWhereUniqueInput" | "BlockCreateManyWithoutMultipleChoiceQuestionBlockInput" | "BlockCreateOneWithoutHalfSlidesImplementingInput" | "BlockCreateOneWithoutHalfSlidesInput" | "BlockCreateOneWithoutQuarterSlidesImplementingInput" | "BlockCreateOneWithoutQuarterSlidesInput" | "BlockCreateOneWithoutSingleSlidesInput" | "BlockCreateWithoutHalfSlidesImplementingInput" | "BlockCreateWithoutHalfSlidesInput" | "BlockCreateWithoutMultipleChoiceQuestionBlockInput" | "BlockCreateWithoutQuarterSlidesImplementingInput" | "BlockCreateWithoutQuarterSlidesInput" | "BlockCreateWithoutSingleSlidesInput" | "BlockFilter" | "BlockScalarWhereInput" | "BlockUpdateManyDataInput" | "BlockUpdateManyWithWhereNestedInput" | "BlockUpdateManyWithoutMultipleChoiceQuestionBlockInput" | "BlockUpdateOneWithoutHalfSlidesImplementingInput" | "BlockUpdateOneWithoutHalfSlidesInput" | "BlockUpdateOneWithoutQuarterSlidesImplementingInput" | "BlockUpdateOneWithoutQuarterSlidesInput" | "BlockUpdateOneWithoutSingleSlidesInput" | "BlockUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput" | "BlockUpdateWithoutHalfSlidesDataInput" | "BlockUpdateWithoutHalfSlidesImplementingDataInput" | "BlockUpdateWithoutMultipleChoiceQuestionBlockDataInput" | "BlockUpdateWithoutQuarterSlidesDataInput" | "BlockUpdateWithoutQuarterSlidesImplementingDataInput" | "BlockUpdateWithoutSingleSlidesDataInput" | "BlockUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput" | "BlockUpsertWithoutHalfSlidesImplementingInput" | "BlockUpsertWithoutHalfSlidesInput" | "BlockUpsertWithoutQuarterSlidesImplementingInput" | "BlockUpsertWithoutQuarterSlidesInput" | "BlockUpsertWithoutSingleSlidesInput" | "BlockWhereInput" | "BlockWhereUniqueInput" | "ContentCreateManyWithoutCourseInput" | "ContentCreateWithoutCourseInput" | "ContentFilter" | "ContentScalarWhereInput" | "ContentUpdateManyDataInput" | "ContentUpdateManyWithWhereNestedInput" | "ContentUpdateManyWithoutCourseInput" | "ContentUpdateWithWhereUniqueWithoutCourseInput" | "ContentUpdateWithoutCourseDataInput" | "ContentUpsertWithWhereUniqueWithoutCourseInput" | "ContentWhereInput" | "ContentWhereUniqueInput" | "CourseCreateInput" | "CourseCreateManyWithoutInstructorsInput" | "CourseCreateManyWithoutStudentsInput" | "CourseCreateOneWithoutLessonPlanInput" | "CourseCreateWithoutInstructorsInput" | "CourseCreateWithoutLessonPlanInput" | "CourseCreateWithoutStudentsInput" | "CourseFilter" | "CourseScalarWhereInput" | "CourseUpdateInput" | "CourseUpdateManyDataInput" | "CourseUpdateManyWithWhereNestedInput" | "CourseUpdateManyWithoutInstructorsInput" | "CourseUpdateManyWithoutStudentsInput" | "CourseUpdateOneRequiredWithoutLessonPlanInput" | "CourseUpdateWithWhereUniqueWithoutInstructorsInput" | "CourseUpdateWithWhereUniqueWithoutStudentsInput" | "CourseUpdateWithoutInstructorsDataInput" | "CourseUpdateWithoutLessonPlanDataInput" | "CourseUpdateWithoutStudentsDataInput" | "CourseUpsertWithWhereUniqueWithoutInstructorsInput" | "CourseUpsertWithWhereUniqueWithoutStudentsInput" | "CourseUpsertWithoutLessonPlanInput" | "CourseWhereInput" | "CourseWhereUniqueInput" | "CreateSlideInput" | "DateTimeFilter" | "GuardianCreateManyWithoutStudentsInput" | "GuardianCreateOneWithoutUserInput" | "GuardianCreateWithoutStudentsInput" | "GuardianCreateWithoutUserInput" | "GuardianFilter" | "GuardianScalarWhereInput" | "GuardianUpdateManyDataInput" | "GuardianUpdateManyWithWhereNestedInput" | "GuardianUpdateManyWithoutStudentsInput" | "GuardianUpdateOneWithoutUserInput" | "GuardianUpdateWithWhereUniqueWithoutStudentsInput" | "GuardianUpdateWithoutStudentsDataInput" | "GuardianUpdateWithoutUserDataInput" | "GuardianUpsertWithWhereUniqueWithoutStudentsInput" | "GuardianUpsertWithoutUserInput" | "GuardianWhereInput" | "GuardianWhereUniqueInput" | "HalfSlideCreateManyWithoutFirstHalfBlockInput" | "HalfSlideCreateManyWithoutSecondHalfBlockInput" | "HalfSlideCreateOneWithoutSlidesInput" | "HalfSlideCreateWithoutFirstHalfBlockInput" | "HalfSlideCreateWithoutSecondHalfBlockInput" | "HalfSlideCreateWithoutSlidesInput" | "HalfSlideFilter" | "HalfSlideScalarWhereInput" | "HalfSlideUpdateManyDataInput" | "HalfSlideUpdateManyWithWhereNestedInput" | "HalfSlideUpdateManyWithoutFirstHalfBlockInput" | "HalfSlideUpdateManyWithoutSecondHalfBlockInput" | "HalfSlideUpdateOneWithoutSlidesInput" | "HalfSlideUpdateWithWhereUniqueWithoutFirstHalfBlockInput" | "HalfSlideUpdateWithWhereUniqueWithoutSecondHalfBlockInput" | "HalfSlideUpdateWithoutFirstHalfBlockDataInput" | "HalfSlideUpdateWithoutSecondHalfBlockDataInput" | "HalfSlideUpdateWithoutSlidesDataInput" | "HalfSlideUpsertWithWhereUniqueWithoutFirstHalfBlockInput" | "HalfSlideUpsertWithWhereUniqueWithoutSecondHalfBlockInput" | "HalfSlideUpsertWithoutSlidesInput" | "HalfSlideWhereInput" | "HalfSlideWhereUniqueInput" | "InstructorCreateManyWithoutCoursesInput" | "InstructorCreateOneWithoutUserInput" | "InstructorCreateWithoutCoursesInput" | "InstructorCreateWithoutUserInput" | "InstructorFilter" | "InstructorScalarWhereInput" | "InstructorUpdateManyDataInput" | "InstructorUpdateManyWithWhereNestedInput" | "InstructorUpdateManyWithoutCoursesInput" | "InstructorUpdateOneWithoutUserInput" | "InstructorUpdateWithWhereUniqueWithoutCoursesInput" | "InstructorUpdateWithoutCoursesDataInput" | "InstructorUpdateWithoutUserDataInput" | "InstructorUpsertWithWhereUniqueWithoutCoursesInput" | "InstructorUpsertWithoutUserInput" | "InstructorWhereInput" | "InstructorWhereUniqueInput" | "LessonCreateInput" | "LessonCreateManyWithoutLessonPlanInput" | "LessonCreateOneWithoutSlidesInput" | "LessonCreateWithoutLessonPlanInput" | "LessonCreateWithoutSlidesInput" | "LessonFilter" | "LessonPlanCreateOneWithoutCourseInput" | "LessonPlanCreateOneWithoutLessonsInput" | "LessonPlanCreateWithoutCourseInput" | "LessonPlanCreateWithoutLessonsInput" | "LessonPlanUpdateOneRequiredWithoutCourseInput" | "LessonPlanUpdateOneWithoutLessonsInput" | "LessonPlanUpdateWithoutCourseDataInput" | "LessonPlanUpdateWithoutLessonsDataInput" | "LessonPlanUpsertWithoutCourseInput" | "LessonPlanUpsertWithoutLessonsInput" | "LessonPlanWhereInput" | "LessonPlanWhereUniqueInput" | "LessonScalarWhereInput" | "LessonUpdateManyDataInput" | "LessonUpdateManyWithWhereNestedInput" | "LessonUpdateManyWithoutLessonPlanInput" | "LessonUpdateOneWithoutSlidesInput" | "LessonUpdateWithWhereUniqueWithoutLessonPlanInput" | "LessonUpdateWithoutLessonPlanDataInput" | "LessonUpdateWithoutSlidesDataInput" | "LessonUpsertWithWhereUniqueWithoutLessonPlanInput" | "LessonUpsertWithoutSlidesInput" | "LessonWhereInput" | "LessonWhereUniqueInput" | "LogInInput" | "MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput" | "MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput" | "MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput" | "MultipleChoiceQuestionBlockCreateOneWithoutResponsesInput" | "MultipleChoiceQuestionBlockCreateWithoutBlocksInput" | "MultipleChoiceQuestionBlockCreateWithoutChoicesInput" | "MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput" | "MultipleChoiceQuestionBlockCreateWithoutResponsesInput" | "MultipleChoiceQuestionBlockUpdateOneRequiredWithoutCorrectChoiceInput" | "MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput" | "MultipleChoiceQuestionBlockUpdateOneWithoutChoicesInput" | "MultipleChoiceQuestionBlockUpdateOneWithoutResponsesInput" | "MultipleChoiceQuestionBlockUpdateWithoutBlocksDataInput" | "MultipleChoiceQuestionBlockUpdateWithoutChoicesDataInput" | "MultipleChoiceQuestionBlockUpdateWithoutCorrectChoiceDataInput" | "MultipleChoiceQuestionBlockUpdateWithoutResponsesDataInput" | "MultipleChoiceQuestionBlockUpsertWithoutBlocksInput" | "MultipleChoiceQuestionBlockUpsertWithoutChoicesInput" | "MultipleChoiceQuestionBlockUpsertWithoutCorrectChoiceInput" | "MultipleChoiceQuestionBlockUpsertWithoutResponsesInput" | "MultipleChoiceQuestionBlockWhereInput" | "MultipleChoiceQuestionBlockWhereUniqueInput" | "MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionChoiceCreateOneWithoutMultipleChoiceQuestionResponsesInput" | "MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput" | "MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput" | "MultipleChoiceQuestionChoiceCreateWithoutQuestionInput" | "MultipleChoiceQuestionChoiceFilter" | "MultipleChoiceQuestionChoiceScalarWhereInput" | "MultipleChoiceQuestionChoiceUpdateManyDataInput" | "MultipleChoiceQuestionChoiceUpdateManyWithWhereNestedInput" | "MultipleChoiceQuestionChoiceUpdateManyWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput" | "MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutQuestionInput" | "MultipleChoiceQuestionChoiceUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionBlockDataInput" | "MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionResponsesDataInput" | "MultipleChoiceQuestionChoiceUpdateWithoutQuestionDataInput" | "MultipleChoiceQuestionChoiceUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionChoiceUpsertWithoutMultipleChoiceQuestionResponsesInput" | "MultipleChoiceQuestionChoiceUpsertWithoutQuestionInput" | "MultipleChoiceQuestionChoiceWhereInput" | "MultipleChoiceQuestionChoiceWhereUniqueInput" | "MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput" | "MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionResponseCreateManyWithoutStudentInput" | "MultipleChoiceQuestionResponseCreateWithoutChoiceInput" | "MultipleChoiceQuestionResponseCreateWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionResponseCreateWithoutStudentInput" | "MultipleChoiceQuestionResponseFilter" | "MultipleChoiceQuestionResponseScalarWhereInput" | "MultipleChoiceQuestionResponseUpdateManyDataInput" | "MultipleChoiceQuestionResponseUpdateManyWithWhereNestedInput" | "MultipleChoiceQuestionResponseUpdateManyWithoutChoiceInput" | "MultipleChoiceQuestionResponseUpdateManyWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionResponseUpdateManyWithoutStudentInput" | "MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutChoiceInput" | "MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutStudentInput" | "MultipleChoiceQuestionResponseUpdateWithoutChoiceDataInput" | "MultipleChoiceQuestionResponseUpdateWithoutMultipleChoiceQuestionBlockDataInput" | "MultipleChoiceQuestionResponseUpdateWithoutStudentDataInput" | "MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutChoiceInput" | "MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutStudentInput" | "MultipleChoiceQuestionResponseWhereInput" | "MultipleChoiceQuestionResponseWhereUniqueInput" | "NullableStringFilter" | "PageCreateManyWithoutContentInput" | "PageCreateWithoutContentInput" | "PageFilter" | "PageScalarWhereInput" | "PageUpdateManyDataInput" | "PageUpdateManyWithWhereNestedInput" | "PageUpdateManyWithoutContentInput" | "PageUpdateWithWhereUniqueWithoutContentInput" | "PageUpdateWithoutContentDataInput" | "PageUpsertWithWhereUniqueWithoutContentInput" | "PageWhereInput" | "PageWhereUniqueInput" | "QuarterSlideCreateManyWithoutMainBlockInput" | "QuarterSlideCreateManyWithoutSideBlockInput" | "QuarterSlideCreateOneWithoutSlidesInput" | "QuarterSlideCreateWithoutMainBlockInput" | "QuarterSlideCreateWithoutSideBlockInput" | "QuarterSlideCreateWithoutSlidesInput" | "QuarterSlideFilter" | "QuarterSlideScalarWhereInput" | "QuarterSlideUpdateManyDataInput" | "QuarterSlideUpdateManyWithWhereNestedInput" | "QuarterSlideUpdateManyWithoutMainBlockInput" | "QuarterSlideUpdateManyWithoutSideBlockInput" | "QuarterSlideUpdateOneWithoutSlidesInput" | "QuarterSlideUpdateWithWhereUniqueWithoutMainBlockInput" | "QuarterSlideUpdateWithWhereUniqueWithoutSideBlockInput" | "QuarterSlideUpdateWithoutMainBlockDataInput" | "QuarterSlideUpdateWithoutSideBlockDataInput" | "QuarterSlideUpdateWithoutSlidesDataInput" | "QuarterSlideUpsertWithWhereUniqueWithoutMainBlockInput" | "QuarterSlideUpsertWithWhereUniqueWithoutSideBlockInput" | "QuarterSlideUpsertWithoutSlidesInput" | "QuarterSlideWhereInput" | "QuarterSlideWhereUniqueInput" | "RegisterUserInput" | "SendInvitationEmailInput" | "SingleSlideCreateManyWithoutBlockInput" | "SingleSlideCreateOneWithoutSlidesInput" | "SingleSlideCreateWithoutBlockInput" | "SingleSlideCreateWithoutSlidesInput" | "SingleSlideFilter" | "SingleSlideScalarWhereInput" | "SingleSlideUpdateManyDataInput" | "SingleSlideUpdateManyWithWhereNestedInput" | "SingleSlideUpdateManyWithoutBlockInput" | "SingleSlideUpdateOneWithoutSlidesInput" | "SingleSlideUpdateWithWhereUniqueWithoutBlockInput" | "SingleSlideUpdateWithoutBlockDataInput" | "SingleSlideUpdateWithoutSlidesDataInput" | "SingleSlideUpsertWithWhereUniqueWithoutBlockInput" | "SingleSlideUpsertWithoutSlidesInput" | "SingleSlideWhereInput" | "SingleSlideWhereUniqueInput" | "SlideCreateManyWithoutHalfSlideInput" | "SlideCreateManyWithoutLessonInput" | "SlideCreateManyWithoutQuarterSlideInput" | "SlideCreateManyWithoutSingleSlideInput" | "SlideCreateWithoutHalfSlideInput" | "SlideCreateWithoutLessonInput" | "SlideCreateWithoutQuarterSlideInput" | "SlideCreateWithoutSingleSlideInput" | "SlideFilter" | "SlideScalarWhereInput" | "SlideUpdateManyDataInput" | "SlideUpdateManyWithWhereNestedInput" | "SlideUpdateManyWithoutHalfSlideInput" | "SlideUpdateManyWithoutLessonInput" | "SlideUpdateManyWithoutQuarterSlideInput" | "SlideUpdateManyWithoutSingleSlideInput" | "SlideUpdateWithWhereUniqueWithoutHalfSlideInput" | "SlideUpdateWithWhereUniqueWithoutLessonInput" | "SlideUpdateWithWhereUniqueWithoutQuarterSlideInput" | "SlideUpdateWithWhereUniqueWithoutSingleSlideInput" | "SlideUpdateWithoutHalfSlideDataInput" | "SlideUpdateWithoutLessonDataInput" | "SlideUpdateWithoutQuarterSlideDataInput" | "SlideUpdateWithoutSingleSlideDataInput" | "SlideUpsertWithWhereUniqueWithoutHalfSlideInput" | "SlideUpsertWithWhereUniqueWithoutLessonInput" | "SlideUpsertWithWhereUniqueWithoutQuarterSlideInput" | "SlideUpsertWithWhereUniqueWithoutSingleSlideInput" | "SlideWhereInput" | "SlideWhereUniqueInput" | "StringFilter" | "StudentCreateManyWithoutCoursesInput" | "StudentCreateManyWithoutGuardiansInput" | "StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput" | "StudentCreateOneWithoutUserInput" | "StudentCreateWithoutCoursesInput" | "StudentCreateWithoutGuardiansInput" | "StudentCreateWithoutMultipleChoiceQuestionResponsesInput" | "StudentCreateWithoutUserInput" | "StudentFilter" | "StudentScalarWhereInput" | "StudentUpdateManyDataInput" | "StudentUpdateManyWithWhereNestedInput" | "StudentUpdateManyWithoutCoursesInput" | "StudentUpdateManyWithoutGuardiansInput" | "StudentUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput" | "StudentUpdateOneWithoutUserInput" | "StudentUpdateWithWhereUniqueWithoutCoursesInput" | "StudentUpdateWithWhereUniqueWithoutGuardiansInput" | "StudentUpdateWithoutCoursesDataInput" | "StudentUpdateWithoutGuardiansDataInput" | "StudentUpdateWithoutMultipleChoiceQuestionResponsesDataInput" | "StudentUpdateWithoutUserDataInput" | "StudentUpsertWithWhereUniqueWithoutCoursesInput" | "StudentUpsertWithWhereUniqueWithoutGuardiansInput" | "StudentUpsertWithoutMultipleChoiceQuestionResponsesInput" | "StudentUpsertWithoutUserInput" | "StudentWhereInput" | "StudentWhereUniqueInput" | "TextBlockCreateOneWithoutBlocksInput" | "TextBlockCreateWithoutBlocksInput" | "TextBlockUpdateOneWithoutBlocksInput" | "TextBlockUpdateWithoutBlocksDataInput" | "TextBlockUpsertWithoutBlocksInput" | "TextBlockWhereInput" | "TextBlockWhereUniqueInput" | "UserCreateOneWithoutGuardianInput" | "UserCreateOneWithoutInstructorInput" | "UserCreateOneWithoutStudentInput" | "UserCreateWithoutGuardianInput" | "UserCreateWithoutInstructorInput" | "UserCreateWithoutStudentInput" | "UserUpdateOneRequiredWithoutGuardianInput" | "UserUpdateOneRequiredWithoutInstructorInput" | "UserUpdateOneRequiredWithoutStudentInput" | "UserUpdateWithoutGuardianDataInput" | "UserUpdateWithoutInstructorDataInput" | "UserUpdateWithoutStudentDataInput" | "UserUpsertWithoutGuardianInput" | "UserUpsertWithoutInstructorInput" | "UserUpsertWithoutStudentInput" | "UserWhereInput" | "UserWhereUniqueInput";
 
 export type NexusGenEnumNames = "GradeLevel";
 
@@ -1199,10 +2952,10 @@ export type NexusGenInterfaceNames = "User";
 
 export type NexusGenScalarNames = "Boolean" | "DateTime" | "Float" | "ID" | "Int" | "String";
 
-export type NexusGenUnionNames = never;
+export type NexusGenUnionNames = "Block" | "Slide";
 
 export interface NexusGenTypes {
-  context: any;
+  context: {};
   inputTypes: NexusGenInputs;
   rootTypes: NexusGenRootTypes;
   argTypes: NexusGenArgTypes;
