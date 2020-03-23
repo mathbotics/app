@@ -1,15 +1,38 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash c628d92acae8a45441506a15a171263f */
+/* @relayHash 69eee5cf48f17ff8e30c2d515dd32ce1 */
 
 import { ConcreteRequest } from "relay-runtime";
-export type GradeLevel = "%future added value" | "EIGHTH" | "ELEVENTH" | "FIFTH" | "FIRST" | "FOURTH" | "NINTH" | "SECOND" | "SEVENTH" | "SIXTH" | "TENTH" | "THIRD" | "TWELFTH" | "%future added value";
-export type CourseCreateInput = {
+export type GradeLevel = "EIGHTH" | "ELEVENTH" | "FIFTH" | "FIRST" | "FOURTH" | "NINTH" | "SECOND" | "SEVENTH" | "SIXTH" | "TENTH" | "THIRD" | "TWELFTH" | "%future added value";
+export type LessonCreateInput = {
+    id?: string | null;
+    lessonPlan?: LessonPlanCreateOneWithoutLessonsInput | null;
+    slides?: SlideCreateManyWithoutLessonInput | null;
+    title: string;
+};
+export type LessonPlanCreateOneWithoutLessonsInput = {
+    connect?: LessonPlanWhereUniqueInput | null;
+    create?: LessonPlanCreateWithoutLessonsInput | null;
+};
+export type LessonPlanWhereUniqueInput = {
+    id?: string | null;
+};
+export type LessonPlanCreateWithoutLessonsInput = {
+    course: CourseCreateOneWithoutLessonPlanInput;
+    id?: string | null;
+};
+export type CourseCreateOneWithoutLessonPlanInput = {
+    connect?: CourseWhereUniqueInput | null;
+    create?: CourseCreateWithoutLessonPlanInput | null;
+};
+export type CourseWhereUniqueInput = {
+    id?: string | null;
+};
+export type CourseCreateWithoutLessonPlanInput = {
     contents?: ContentCreateManyWithoutCourseInput | null;
     createdAt?: unknown | null;
     id?: string | null;
     instructors?: InstructorCreateManyWithoutCoursesInput | null;
-    lessonPlan: LessonPlanCreateOneWithoutCourseInput;
     name: string;
     students?: StudentCreateManyWithoutCoursesInput | null;
     suggestedLevel: GradeLevel;
@@ -118,9 +141,6 @@ export type CourseCreateManyWithoutStudentsInput = {
     connect?: Array<CourseWhereUniqueInput> | null;
     create?: Array<CourseCreateWithoutStudentsInput> | null;
 };
-export type CourseWhereUniqueInput = {
-    id?: string | null;
-};
 export type CourseCreateWithoutStudentsInput = {
     contents?: ContentCreateManyWithoutCourseInput | null;
     createdAt?: unknown | null;
@@ -133,9 +153,6 @@ export type CourseCreateWithoutStudentsInput = {
 export type LessonPlanCreateOneWithoutCourseInput = {
     connect?: LessonPlanWhereUniqueInput | null;
     create?: LessonPlanCreateWithoutCourseInput | null;
-};
-export type LessonPlanWhereUniqueInput = {
-    id?: string | null;
 };
 export type LessonPlanCreateWithoutCourseInput = {
     id?: string | null;
@@ -222,37 +239,272 @@ export type LessonCreateWithoutSlidesInput = {
     lessonPlan?: LessonPlanCreateOneWithoutLessonsInput | null;
     title: string;
 };
-export type LessonPlanCreateOneWithoutLessonsInput = {
-    connect?: LessonPlanWhereUniqueInput | null;
-    create?: LessonPlanCreateWithoutLessonsInput | null;
+export type QuarterSlideCreateOneWithoutSlidesInput = {
+    connect?: QuarterSlideWhereUniqueInput | null;
+    create?: QuarterSlideCreateWithoutSlidesInput | null;
 };
-export type LessonPlanCreateWithoutLessonsInput = {
-    course: CourseCreateOneWithoutLessonPlanInput;
+export type QuarterSlideWhereUniqueInput = {
     id?: string | null;
 };
-export type CourseCreateOneWithoutLessonPlanInput = {
-    connect?: CourseWhereUniqueInput | null;
-    create?: CourseCreateWithoutLessonPlanInput | null;
-};
-export type CourseCreateWithoutLessonPlanInput = {
-    contents?: ContentCreateManyWithoutCourseInput | null;
-    createdAt?: unknown | null;
+export type QuarterSlideCreateWithoutSlidesInput = {
     id?: string | null;
-    instructors?: InstructorCreateManyWithoutCoursesInput | null;
-    name: string;
-    students?: StudentCreateManyWithoutCoursesInput | null;
-    suggestedLevel: GradeLevel;
+    mainBlock?: BlockCreateOneWithoutQuarterSlidesInput | null;
+    sideBlock?: BlockCreateOneWithoutQuarterSlidesImplementingInput | null;
 };
-export type StudentCreateManyWithoutCoursesInput = {
-    connect?: Array<StudentWhereUniqueInput> | null;
-    create?: Array<StudentCreateWithoutCoursesInput> | null;
+export type BlockCreateOneWithoutQuarterSlidesInput = {
+    connect?: BlockWhereUniqueInput | null;
+    create?: BlockCreateWithoutQuarterSlidesInput | null;
 };
-export type StudentCreateWithoutCoursesInput = {
+export type BlockCreateWithoutQuarterSlidesInput = {
+    halfSlides?: HalfSlideCreateManyWithoutFirstHalfBlockInput | null;
+    halfSlidesImplementing?: HalfSlideCreateManyWithoutSecondHalfBlockInput | null;
+    id?: string | null;
+    multipleChoiceQuestionBlock?: MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput | null;
+    quarterSlidesImplementing?: QuarterSlideCreateManyWithoutSideBlockInput | null;
+    singleSlides?: SingleSlideCreateManyWithoutBlockInput | null;
+    textBlock?: TextBlockCreateOneWithoutBlocksInput | null;
+};
+export type HalfSlideCreateManyWithoutFirstHalfBlockInput = {
+    connect?: Array<HalfSlideWhereUniqueInput> | null;
+    create?: Array<HalfSlideCreateWithoutFirstHalfBlockInput> | null;
+};
+export type HalfSlideCreateWithoutFirstHalfBlockInput = {
+    id?: string | null;
+    secondHalfBlock?: BlockCreateOneWithoutHalfSlidesImplementingInput | null;
+    slides?: SlideCreateManyWithoutHalfSlideInput | null;
+};
+export type BlockCreateOneWithoutHalfSlidesImplementingInput = {
+    connect?: BlockWhereUniqueInput | null;
+    create?: BlockCreateWithoutHalfSlidesImplementingInput | null;
+};
+export type BlockCreateWithoutHalfSlidesImplementingInput = {
+    halfSlides?: HalfSlideCreateManyWithoutFirstHalfBlockInput | null;
+    id?: string | null;
+    multipleChoiceQuestionBlock?: MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput | null;
+    quarterSlides?: QuarterSlideCreateManyWithoutMainBlockInput | null;
+    quarterSlidesImplementing?: QuarterSlideCreateManyWithoutSideBlockInput | null;
+    singleSlides?: SingleSlideCreateManyWithoutBlockInput | null;
+    textBlock?: TextBlockCreateOneWithoutBlocksInput | null;
+};
+export type MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput = {
+    connect?: MultipleChoiceQuestionBlockWhereUniqueInput | null;
+    create?: MultipleChoiceQuestionBlockCreateWithoutBlocksInput | null;
+};
+export type MultipleChoiceQuestionBlockWhereUniqueInput = {
+    id?: string | null;
+};
+export type MultipleChoiceQuestionBlockCreateWithoutBlocksInput = {
+    choices?: MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
+    correctChoice: MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput;
+    id?: string | null;
+    responses?: MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
+    text: string;
+};
+export type MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput = {
+    connect?: Array<MultipleChoiceQuestionChoiceWhereUniqueInput> | null;
+    create?: Array<MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput> | null;
+};
+export type MultipleChoiceQuestionChoiceWhereUniqueInput = {
+    id?: string | null;
+};
+export type MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput = {
+    id?: string | null;
+    multipleChoiceQuestionResponses?: MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput | null;
+    question: MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput;
+    text: string;
+};
+export type MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput = {
+    connect?: Array<MultipleChoiceQuestionResponseWhereUniqueInput> | null;
+    create?: Array<MultipleChoiceQuestionResponseCreateWithoutChoiceInput> | null;
+};
+export type MultipleChoiceQuestionResponseWhereUniqueInput = {
+    id?: string | null;
+};
+export type MultipleChoiceQuestionResponseCreateWithoutChoiceInput = {
+    id?: string | null;
+    multipleChoiceQuestionBlock?: MultipleChoiceQuestionBlockCreateOneWithoutResponsesInput | null;
+    student: StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput;
+};
+export type MultipleChoiceQuestionBlockCreateOneWithoutResponsesInput = {
+    connect?: MultipleChoiceQuestionBlockWhereUniqueInput | null;
+    create?: MultipleChoiceQuestionBlockCreateWithoutResponsesInput | null;
+};
+export type MultipleChoiceQuestionBlockCreateWithoutResponsesInput = {
+    blocks?: BlockCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
+    choices?: MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
+    correctChoice: MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput;
+    id?: string | null;
+    text: string;
+};
+export type BlockCreateManyWithoutMultipleChoiceQuestionBlockInput = {
+    connect?: Array<BlockWhereUniqueInput> | null;
+    create?: Array<BlockCreateWithoutMultipleChoiceQuestionBlockInput> | null;
+};
+export type BlockCreateWithoutMultipleChoiceQuestionBlockInput = {
+    halfSlides?: HalfSlideCreateManyWithoutFirstHalfBlockInput | null;
+    halfSlidesImplementing?: HalfSlideCreateManyWithoutSecondHalfBlockInput | null;
+    id?: string | null;
+    quarterSlides?: QuarterSlideCreateManyWithoutMainBlockInput | null;
+    quarterSlidesImplementing?: QuarterSlideCreateManyWithoutSideBlockInput | null;
+    singleSlides?: SingleSlideCreateManyWithoutBlockInput | null;
+    textBlock?: TextBlockCreateOneWithoutBlocksInput | null;
+};
+export type QuarterSlideCreateManyWithoutMainBlockInput = {
+    connect?: Array<QuarterSlideWhereUniqueInput> | null;
+    create?: Array<QuarterSlideCreateWithoutMainBlockInput> | null;
+};
+export type QuarterSlideCreateWithoutMainBlockInput = {
+    id?: string | null;
+    sideBlock?: BlockCreateOneWithoutQuarterSlidesImplementingInput | null;
+    slides?: SlideCreateManyWithoutQuarterSlideInput | null;
+};
+export type BlockCreateOneWithoutQuarterSlidesImplementingInput = {
+    connect?: BlockWhereUniqueInput | null;
+    create?: BlockCreateWithoutQuarterSlidesImplementingInput | null;
+};
+export type BlockCreateWithoutQuarterSlidesImplementingInput = {
+    halfSlides?: HalfSlideCreateManyWithoutFirstHalfBlockInput | null;
+    halfSlidesImplementing?: HalfSlideCreateManyWithoutSecondHalfBlockInput | null;
+    id?: string | null;
+    multipleChoiceQuestionBlock?: MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput | null;
+    quarterSlides?: QuarterSlideCreateManyWithoutMainBlockInput | null;
+    singleSlides?: SingleSlideCreateManyWithoutBlockInput | null;
+    textBlock?: TextBlockCreateOneWithoutBlocksInput | null;
+};
+export type SingleSlideCreateManyWithoutBlockInput = {
+    connect?: Array<SingleSlideWhereUniqueInput> | null;
+    create?: Array<SingleSlideCreateWithoutBlockInput> | null;
+};
+export type SingleSlideWhereUniqueInput = {
+    id?: string | null;
+};
+export type SingleSlideCreateWithoutBlockInput = {
+    id?: string | null;
+    slides?: SlideCreateManyWithoutSingleSlideInput | null;
+};
+export type SlideCreateManyWithoutSingleSlideInput = {
+    connect?: Array<SlideWhereUniqueInput> | null;
+    create?: Array<SlideCreateWithoutSingleSlideInput> | null;
+};
+export type SlideCreateWithoutSingleSlideInput = {
+    halfSlide?: HalfSlideCreateOneWithoutSlidesInput | null;
+    id?: string | null;
+    lesson?: LessonCreateOneWithoutSlidesInput | null;
+    quarterSlide?: QuarterSlideCreateOneWithoutSlidesInput | null;
+};
+export type TextBlockCreateOneWithoutBlocksInput = {
+    connect?: TextBlockWhereUniqueInput | null;
+    create?: TextBlockCreateWithoutBlocksInput | null;
+};
+export type TextBlockWhereUniqueInput = {
+    id?: string | null;
+};
+export type TextBlockCreateWithoutBlocksInput = {
+    body?: string | null;
+    id?: string | null;
+    title?: string | null;
+};
+export type SlideCreateManyWithoutQuarterSlideInput = {
+    connect?: Array<SlideWhereUniqueInput> | null;
+    create?: Array<SlideCreateWithoutQuarterSlideInput> | null;
+};
+export type SlideCreateWithoutQuarterSlideInput = {
+    halfSlide?: HalfSlideCreateOneWithoutSlidesInput | null;
+    id?: string | null;
+    lesson?: LessonCreateOneWithoutSlidesInput | null;
+    singleSlide?: SingleSlideCreateOneWithoutSlidesInput | null;
+};
+export type SingleSlideCreateOneWithoutSlidesInput = {
+    connect?: SingleSlideWhereUniqueInput | null;
+    create?: SingleSlideCreateWithoutSlidesInput | null;
+};
+export type SingleSlideCreateWithoutSlidesInput = {
+    block?: BlockCreateOneWithoutSingleSlidesInput | null;
+    id?: string | null;
+};
+export type BlockCreateOneWithoutSingleSlidesInput = {
+    connect?: BlockWhereUniqueInput | null;
+    create?: BlockCreateWithoutSingleSlidesInput | null;
+};
+export type BlockCreateWithoutSingleSlidesInput = {
+    halfSlides?: HalfSlideCreateManyWithoutFirstHalfBlockInput | null;
+    halfSlidesImplementing?: HalfSlideCreateManyWithoutSecondHalfBlockInput | null;
+    id?: string | null;
+    multipleChoiceQuestionBlock?: MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput | null;
+    quarterSlides?: QuarterSlideCreateManyWithoutMainBlockInput | null;
+    quarterSlidesImplementing?: QuarterSlideCreateManyWithoutSideBlockInput | null;
+    textBlock?: TextBlockCreateOneWithoutBlocksInput | null;
+};
+export type QuarterSlideCreateManyWithoutSideBlockInput = {
+    connect?: Array<QuarterSlideWhereUniqueInput> | null;
+    create?: Array<QuarterSlideCreateWithoutSideBlockInput> | null;
+};
+export type QuarterSlideCreateWithoutSideBlockInput = {
+    id?: string | null;
+    mainBlock?: BlockCreateOneWithoutQuarterSlidesInput | null;
+    slides?: SlideCreateManyWithoutQuarterSlideInput | null;
+};
+export type MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput = {
+    connect?: MultipleChoiceQuestionChoiceWhereUniqueInput | null;
+    create?: MultipleChoiceQuestionChoiceCreateWithoutQuestionInput | null;
+};
+export type MultipleChoiceQuestionChoiceCreateWithoutQuestionInput = {
+    id?: string | null;
+    multipleChoiceQuestionBlock?: MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput | null;
+    multipleChoiceQuestionResponses?: MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput | null;
+    text: string;
+};
+export type MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput = {
+    connect?: MultipleChoiceQuestionBlockWhereUniqueInput | null;
+    create?: MultipleChoiceQuestionBlockCreateWithoutChoicesInput | null;
+};
+export type MultipleChoiceQuestionBlockCreateWithoutChoicesInput = {
+    blocks?: BlockCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
+    correctChoice: MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput;
+    id?: string | null;
+    responses?: MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
+    text: string;
+};
+export type MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput = {
+    connect?: Array<MultipleChoiceQuestionResponseWhereUniqueInput> | null;
+    create?: Array<MultipleChoiceQuestionResponseCreateWithoutMultipleChoiceQuestionBlockInput> | null;
+};
+export type MultipleChoiceQuestionResponseCreateWithoutMultipleChoiceQuestionBlockInput = {
+    choice: MultipleChoiceQuestionChoiceCreateOneWithoutMultipleChoiceQuestionResponsesInput;
+    id?: string | null;
+    student: StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput;
+};
+export type MultipleChoiceQuestionChoiceCreateOneWithoutMultipleChoiceQuestionResponsesInput = {
+    connect?: MultipleChoiceQuestionChoiceWhereUniqueInput | null;
+    create?: MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput | null;
+};
+export type MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput = {
+    id?: string | null;
+    multipleChoiceQuestionBlock?: MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput | null;
+    question: MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput;
+    text: string;
+};
+export type MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput = {
+    connect?: MultipleChoiceQuestionBlockWhereUniqueInput | null;
+    create?: MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput | null;
+};
+export type MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput = {
+    blocks?: BlockCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
+    choices?: MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
+    id?: string | null;
+    responses?: MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
+    text: string;
+};
+export type StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput = {
+    connect?: StudentWhereUniqueInput | null;
+    create?: StudentCreateWithoutMultipleChoiceQuestionResponsesInput | null;
+};
+export type StudentCreateWithoutMultipleChoiceQuestionResponsesInput = {
+    courses?: CourseCreateManyWithoutStudentsInput | null;
     createdAt?: unknown | null;
     gradeLevel: GradeLevel;
     guardians?: GuardianCreateManyWithoutStudentsInput | null;
     id?: string | null;
-    multipleChoiceQuestionResponses?: MultipleChoiceQuestionResponseCreateManyWithoutStudentInput | null;
     user: UserCreateOneWithoutStudentInput;
 };
 export type GuardianCreateManyWithoutStudentsInput = {
@@ -302,154 +554,26 @@ export type CourseCreateWithoutInstructorsInput = {
     students?: StudentCreateManyWithoutCoursesInput | null;
     suggestedLevel: GradeLevel;
 };
-export type StudentCreateOneWithoutUserInput = {
-    connect?: StudentWhereUniqueInput | null;
-    create?: StudentCreateWithoutUserInput | null;
+export type StudentCreateManyWithoutCoursesInput = {
+    connect?: Array<StudentWhereUniqueInput> | null;
+    create?: Array<StudentCreateWithoutCoursesInput> | null;
 };
-export type StudentCreateWithoutUserInput = {
-    courses?: CourseCreateManyWithoutStudentsInput | null;
+export type StudentCreateWithoutCoursesInput = {
     createdAt?: unknown | null;
     gradeLevel: GradeLevel;
     guardians?: GuardianCreateManyWithoutStudentsInput | null;
     id?: string | null;
     multipleChoiceQuestionResponses?: MultipleChoiceQuestionResponseCreateManyWithoutStudentInput | null;
+    user: UserCreateOneWithoutStudentInput;
 };
 export type MultipleChoiceQuestionResponseCreateManyWithoutStudentInput = {
     connect?: Array<MultipleChoiceQuestionResponseWhereUniqueInput> | null;
     create?: Array<MultipleChoiceQuestionResponseCreateWithoutStudentInput> | null;
 };
-export type MultipleChoiceQuestionResponseWhereUniqueInput = {
-    id?: string | null;
-};
 export type MultipleChoiceQuestionResponseCreateWithoutStudentInput = {
     choice: MultipleChoiceQuestionChoiceCreateOneWithoutMultipleChoiceQuestionResponsesInput;
     id?: string | null;
     multipleChoiceQuestionBlock?: MultipleChoiceQuestionBlockCreateOneWithoutResponsesInput | null;
-};
-export type MultipleChoiceQuestionChoiceCreateOneWithoutMultipleChoiceQuestionResponsesInput = {
-    connect?: MultipleChoiceQuestionChoiceWhereUniqueInput | null;
-    create?: MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput | null;
-};
-export type MultipleChoiceQuestionChoiceWhereUniqueInput = {
-    id?: string | null;
-};
-export type MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput = {
-    id?: string | null;
-    multipleChoiceQuestionBlock?: MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput | null;
-    question: MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput;
-    text: string;
-};
-export type MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput = {
-    connect?: MultipleChoiceQuestionBlockWhereUniqueInput | null;
-    create?: MultipleChoiceQuestionBlockCreateWithoutChoicesInput | null;
-};
-export type MultipleChoiceQuestionBlockWhereUniqueInput = {
-    id?: string | null;
-};
-export type MultipleChoiceQuestionBlockCreateWithoutChoicesInput = {
-    blocks?: BlockCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
-    correctChoice: MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput;
-    id?: string | null;
-    responses?: MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
-    text: string;
-};
-export type BlockCreateManyWithoutMultipleChoiceQuestionBlockInput = {
-    connect?: Array<BlockWhereUniqueInput> | null;
-    create?: Array<BlockCreateWithoutMultipleChoiceQuestionBlockInput> | null;
-};
-export type BlockCreateWithoutMultipleChoiceQuestionBlockInput = {
-    halfSlides?: HalfSlideCreateManyWithoutFirstHalfBlockInput | null;
-    halfSlidesImplementing?: HalfSlideCreateManyWithoutSecondHalfBlockInput | null;
-    id?: string | null;
-    quarterSlides?: QuarterSlideCreateManyWithoutMainBlockInput | null;
-    quarterSlidesImplementing?: QuarterSlideCreateManyWithoutSideBlockInput | null;
-    singleSlides?: SingleSlideCreateManyWithoutBlockInput | null;
-    textBlock?: TextBlockCreateOneWithoutBlocksInput | null;
-};
-export type HalfSlideCreateManyWithoutFirstHalfBlockInput = {
-    connect?: Array<HalfSlideWhereUniqueInput> | null;
-    create?: Array<HalfSlideCreateWithoutFirstHalfBlockInput> | null;
-};
-export type HalfSlideCreateWithoutFirstHalfBlockInput = {
-    id?: string | null;
-    secondHalfBlock?: BlockCreateOneWithoutHalfSlidesImplementingInput | null;
-    slides?: SlideCreateManyWithoutHalfSlideInput | null;
-};
-export type BlockCreateOneWithoutHalfSlidesImplementingInput = {
-    connect?: BlockWhereUniqueInput | null;
-    create?: BlockCreateWithoutHalfSlidesImplementingInput | null;
-};
-export type BlockCreateWithoutHalfSlidesImplementingInput = {
-    halfSlides?: HalfSlideCreateManyWithoutFirstHalfBlockInput | null;
-    id?: string | null;
-    multipleChoiceQuestionBlock?: MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput | null;
-    quarterSlides?: QuarterSlideCreateManyWithoutMainBlockInput | null;
-    quarterSlidesImplementing?: QuarterSlideCreateManyWithoutSideBlockInput | null;
-    singleSlides?: SingleSlideCreateManyWithoutBlockInput | null;
-    textBlock?: TextBlockCreateOneWithoutBlocksInput | null;
-};
-export type MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput = {
-    connect?: MultipleChoiceQuestionBlockWhereUniqueInput | null;
-    create?: MultipleChoiceQuestionBlockCreateWithoutBlocksInput | null;
-};
-export type MultipleChoiceQuestionBlockCreateWithoutBlocksInput = {
-    choices?: MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
-    correctChoice: MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput;
-    id?: string | null;
-    responses?: MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
-    text: string;
-};
-export type MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput = {
-    connect?: Array<MultipleChoiceQuestionChoiceWhereUniqueInput> | null;
-    create?: Array<MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput> | null;
-};
-export type MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput = {
-    id?: string | null;
-    multipleChoiceQuestionResponses?: MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput | null;
-    question: MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput;
-    text: string;
-};
-export type MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput = {
-    connect?: Array<MultipleChoiceQuestionResponseWhereUniqueInput> | null;
-    create?: Array<MultipleChoiceQuestionResponseCreateWithoutChoiceInput> | null;
-};
-export type MultipleChoiceQuestionResponseCreateWithoutChoiceInput = {
-    id?: string | null;
-    multipleChoiceQuestionBlock?: MultipleChoiceQuestionBlockCreateOneWithoutResponsesInput | null;
-    student: StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput;
-};
-export type MultipleChoiceQuestionBlockCreateOneWithoutResponsesInput = {
-    connect?: MultipleChoiceQuestionBlockWhereUniqueInput | null;
-    create?: MultipleChoiceQuestionBlockCreateWithoutResponsesInput | null;
-};
-export type MultipleChoiceQuestionBlockCreateWithoutResponsesInput = {
-    blocks?: BlockCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
-    choices?: MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
-    correctChoice: MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput;
-    id?: string | null;
-    text: string;
-};
-export type MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput = {
-    connect?: MultipleChoiceQuestionChoiceWhereUniqueInput | null;
-    create?: MultipleChoiceQuestionChoiceCreateWithoutQuestionInput | null;
-};
-export type MultipleChoiceQuestionChoiceCreateWithoutQuestionInput = {
-    id?: string | null;
-    multipleChoiceQuestionBlock?: MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput | null;
-    multipleChoiceQuestionResponses?: MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput | null;
-    text: string;
-};
-export type StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput = {
-    connect?: StudentWhereUniqueInput | null;
-    create?: StudentCreateWithoutMultipleChoiceQuestionResponsesInput | null;
-};
-export type StudentCreateWithoutMultipleChoiceQuestionResponsesInput = {
-    courses?: CourseCreateManyWithoutStudentsInput | null;
-    createdAt?: unknown | null;
-    gradeLevel: GradeLevel;
-    guardians?: GuardianCreateManyWithoutStudentsInput | null;
-    id?: string | null;
-    user: UserCreateOneWithoutStudentInput;
 };
 export type UserCreateOneWithoutStudentInput = {
     connect?: UserWhereUniqueInput | null;
@@ -465,169 +589,39 @@ export type UserCreateWithoutStudentInput = {
     password: string;
     username: string;
 };
-export type MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput = {
-    connect?: MultipleChoiceQuestionBlockWhereUniqueInput | null;
-    create?: MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput | null;
+export type StudentCreateOneWithoutUserInput = {
+    connect?: StudentWhereUniqueInput | null;
+    create?: StudentCreateWithoutUserInput | null;
 };
-export type MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput = {
-    blocks?: BlockCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
-    choices?: MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
+export type StudentCreateWithoutUserInput = {
+    courses?: CourseCreateManyWithoutStudentsInput | null;
+    createdAt?: unknown | null;
+    gradeLevel: GradeLevel;
+    guardians?: GuardianCreateManyWithoutStudentsInput | null;
     id?: string | null;
-    responses?: MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
-    text: string;
+    multipleChoiceQuestionResponses?: MultipleChoiceQuestionResponseCreateManyWithoutStudentInput | null;
 };
-export type MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput = {
-    connect?: Array<MultipleChoiceQuestionResponseWhereUniqueInput> | null;
-    create?: Array<MultipleChoiceQuestionResponseCreateWithoutMultipleChoiceQuestionBlockInput> | null;
+export type CreateOneLessonMutationVariables = {
+    data: LessonCreateInput;
 };
-export type MultipleChoiceQuestionResponseCreateWithoutMultipleChoiceQuestionBlockInput = {
-    choice: MultipleChoiceQuestionChoiceCreateOneWithoutMultipleChoiceQuestionResponsesInput;
-    id?: string | null;
-    student: StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput;
-};
-export type QuarterSlideCreateManyWithoutMainBlockInput = {
-    connect?: Array<QuarterSlideWhereUniqueInput> | null;
-    create?: Array<QuarterSlideCreateWithoutMainBlockInput> | null;
-};
-export type QuarterSlideWhereUniqueInput = {
-    id?: string | null;
-};
-export type QuarterSlideCreateWithoutMainBlockInput = {
-    id?: string | null;
-    sideBlock?: BlockCreateOneWithoutQuarterSlidesImplementingInput | null;
-    slides?: SlideCreateManyWithoutQuarterSlideInput | null;
-};
-export type BlockCreateOneWithoutQuarterSlidesImplementingInput = {
-    connect?: BlockWhereUniqueInput | null;
-    create?: BlockCreateWithoutQuarterSlidesImplementingInput | null;
-};
-export type BlockCreateWithoutQuarterSlidesImplementingInput = {
-    halfSlides?: HalfSlideCreateManyWithoutFirstHalfBlockInput | null;
-    halfSlidesImplementing?: HalfSlideCreateManyWithoutSecondHalfBlockInput | null;
-    id?: string | null;
-    multipleChoiceQuestionBlock?: MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput | null;
-    quarterSlides?: QuarterSlideCreateManyWithoutMainBlockInput | null;
-    singleSlides?: SingleSlideCreateManyWithoutBlockInput | null;
-    textBlock?: TextBlockCreateOneWithoutBlocksInput | null;
-};
-export type SingleSlideCreateManyWithoutBlockInput = {
-    connect?: Array<SingleSlideWhereUniqueInput> | null;
-    create?: Array<SingleSlideCreateWithoutBlockInput> | null;
-};
-export type SingleSlideWhereUniqueInput = {
-    id?: string | null;
-};
-export type SingleSlideCreateWithoutBlockInput = {
-    id?: string | null;
-    slides?: SlideCreateManyWithoutSingleSlideInput | null;
-};
-export type SlideCreateManyWithoutSingleSlideInput = {
-    connect?: Array<SlideWhereUniqueInput> | null;
-    create?: Array<SlideCreateWithoutSingleSlideInput> | null;
-};
-export type SlideCreateWithoutSingleSlideInput = {
-    halfSlide?: HalfSlideCreateOneWithoutSlidesInput | null;
-    id?: string | null;
-    lesson?: LessonCreateOneWithoutSlidesInput | null;
-    quarterSlide?: QuarterSlideCreateOneWithoutSlidesInput | null;
-};
-export type QuarterSlideCreateOneWithoutSlidesInput = {
-    connect?: QuarterSlideWhereUniqueInput | null;
-    create?: QuarterSlideCreateWithoutSlidesInput | null;
-};
-export type QuarterSlideCreateWithoutSlidesInput = {
-    id?: string | null;
-    mainBlock?: BlockCreateOneWithoutQuarterSlidesInput | null;
-    sideBlock?: BlockCreateOneWithoutQuarterSlidesImplementingInput | null;
-};
-export type BlockCreateOneWithoutQuarterSlidesInput = {
-    connect?: BlockWhereUniqueInput | null;
-    create?: BlockCreateWithoutQuarterSlidesInput | null;
-};
-export type BlockCreateWithoutQuarterSlidesInput = {
-    halfSlides?: HalfSlideCreateManyWithoutFirstHalfBlockInput | null;
-    halfSlidesImplementing?: HalfSlideCreateManyWithoutSecondHalfBlockInput | null;
-    id?: string | null;
-    multipleChoiceQuestionBlock?: MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput | null;
-    quarterSlidesImplementing?: QuarterSlideCreateManyWithoutSideBlockInput | null;
-    singleSlides?: SingleSlideCreateManyWithoutBlockInput | null;
-    textBlock?: TextBlockCreateOneWithoutBlocksInput | null;
-};
-export type QuarterSlideCreateManyWithoutSideBlockInput = {
-    connect?: Array<QuarterSlideWhereUniqueInput> | null;
-    create?: Array<QuarterSlideCreateWithoutSideBlockInput> | null;
-};
-export type QuarterSlideCreateWithoutSideBlockInput = {
-    id?: string | null;
-    mainBlock?: BlockCreateOneWithoutQuarterSlidesInput | null;
-    slides?: SlideCreateManyWithoutQuarterSlideInput | null;
-};
-export type SlideCreateManyWithoutQuarterSlideInput = {
-    connect?: Array<SlideWhereUniqueInput> | null;
-    create?: Array<SlideCreateWithoutQuarterSlideInput> | null;
-};
-export type SlideCreateWithoutQuarterSlideInput = {
-    halfSlide?: HalfSlideCreateOneWithoutSlidesInput | null;
-    id?: string | null;
-    lesson?: LessonCreateOneWithoutSlidesInput | null;
-    singleSlide?: SingleSlideCreateOneWithoutSlidesInput | null;
-};
-export type SingleSlideCreateOneWithoutSlidesInput = {
-    connect?: SingleSlideWhereUniqueInput | null;
-    create?: SingleSlideCreateWithoutSlidesInput | null;
-};
-export type SingleSlideCreateWithoutSlidesInput = {
-    block?: BlockCreateOneWithoutSingleSlidesInput | null;
-    id?: string | null;
-};
-export type BlockCreateOneWithoutSingleSlidesInput = {
-    connect?: BlockWhereUniqueInput | null;
-    create?: BlockCreateWithoutSingleSlidesInput | null;
-};
-export type BlockCreateWithoutSingleSlidesInput = {
-    halfSlides?: HalfSlideCreateManyWithoutFirstHalfBlockInput | null;
-    halfSlidesImplementing?: HalfSlideCreateManyWithoutSecondHalfBlockInput | null;
-    id?: string | null;
-    multipleChoiceQuestionBlock?: MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput | null;
-    quarterSlides?: QuarterSlideCreateManyWithoutMainBlockInput | null;
-    quarterSlidesImplementing?: QuarterSlideCreateManyWithoutSideBlockInput | null;
-    textBlock?: TextBlockCreateOneWithoutBlocksInput | null;
-};
-export type TextBlockCreateOneWithoutBlocksInput = {
-    connect?: TextBlockWhereUniqueInput | null;
-    create?: TextBlockCreateWithoutBlocksInput | null;
-};
-export type TextBlockWhereUniqueInput = {
-    id?: string | null;
-};
-export type TextBlockCreateWithoutBlocksInput = {
-    body?: string | null;
-    id?: string | null;
-    title?: string | null;
-};
-export type CreateOneCourseMutationVariables = {
-    data: CourseCreateInput;
-};
-export type CreateOneCourseMutationResponse = {
-    readonly createOneCourse: {
+export type CreateOneLessonMutationResponse = {
+    readonly createOneLesson: {
         readonly id: string;
-        readonly suggestedLevel: GradeLevel;
     };
 };
-export type CreateOneCourseMutation = {
-    readonly response: CreateOneCourseMutationResponse;
-    readonly variables: CreateOneCourseMutationVariables;
+export type CreateOneLessonMutation = {
+    readonly response: CreateOneLessonMutationResponse;
+    readonly variables: CreateOneLessonMutationVariables;
 };
 
 
 
 /*
-mutation CreateOneCourseMutation(
-  $data: CourseCreateInput!
+mutation CreateOneLessonMutation(
+  $data: LessonCreateInput!
 ) {
-  createOneCourse(data: $data) {
+  createOneLesson(data: $data) {
     id
-    suggestedLevel
   }
 }
 */
@@ -637,7 +631,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "data",
-    "type": "CourseCreateInput!",
+    "type": "LessonCreateInput!",
     "defaultValue": null
   }
 ],
@@ -645,7 +639,7 @@ v1 = [
   {
     "kind": "LinkedField",
     "alias": null,
-    "name": "createOneCourse",
+    "name": "createOneLesson",
     "storageKey": null,
     "args": [
       {
@@ -654,20 +648,13 @@ v1 = [
         "variableName": "data"
       }
     ],
-    "concreteType": "Course",
+    "concreteType": "Lesson",
     "plural": false,
     "selections": [
       {
         "kind": "ScalarField",
         "alias": null,
         "name": "id",
-        "args": null,
-        "storageKey": null
-      },
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "suggestedLevel",
         "args": null,
         "storageKey": null
       }
@@ -678,7 +665,7 @@ return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "CreateOneCourseMutation",
+    "name": "CreateOneLessonMutation",
     "type": "Mutation",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
@@ -686,18 +673,18 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "CreateOneCourseMutation",
+    "name": "CreateOneLessonMutation",
     "argumentDefinitions": (v0/*: any*/),
     "selections": (v1/*: any*/)
   },
   "params": {
     "operationKind": "mutation",
-    "name": "CreateOneCourseMutation",
+    "name": "CreateOneLessonMutation",
     "id": null,
-    "text": "mutation CreateOneCourseMutation(\n  $data: CourseCreateInput!\n) {\n  createOneCourse(data: $data) {\n    id\n    suggestedLevel\n  }\n}\n",
+    "text": "mutation CreateOneLessonMutation(\n  $data: LessonCreateInput!\n) {\n  createOneLesson(data: $data) {\n    id\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = 'bbd33a4a0e764321efb2c53a25168b1e';
+(node as any).hash = '0c47d2f616b15888b660242c5bc128e1';
 export default node;
