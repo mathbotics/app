@@ -19,6 +19,27 @@ const LessonPreviewWrapper = styled(Layout.Content)`
   }
 `;
 
+const LessonPreviewCard = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  flex-direction: column;
+  padding: 15px 25px;
+  height: 200px;
+`;
+
+const LessonPreviewCardHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom: 10px;
+`;
+
 type LessonPreviewProps = {
   lesson: LessonPreview_lesson;
   onClick: any;
@@ -29,41 +50,18 @@ const LessonPreview = ({
 }: LessonPreviewProps) => {
   return (
     <LessonPreviewWrapper>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "end",
-          flexDirection: "column",
-          padding: "15px 25px"
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            width: "100%"
-          }}
-        >
-          <Tooltip title={title}>
-            <p
-              style={{
-                fontSize: "20px",
-                fontWeight: 700,
-                textOverflow: "ellipsis",
-                overflow: "hidden",
-                whiteSpace: "nowrap"
-              }}
-            >
-              {title}
-            </p>
-          </Tooltip>
+      <LessonPreviewCard>
+        <LessonPreviewCardHeader>
+          <Tooltip title={title}>{title}</Tooltip>
           <Tooltip title={"Edit lesson"}>
-            <Button style={{ border: "none" }} onClick={() => onClick(id)}>
+            <Button
+              style={{ border: "none", background: "transparent" }}
+              onClick={() => onClick(id)}
+            >
               <EditOutlined />
             </Button>
           </Tooltip>
-        </div>
+        </LessonPreviewCardHeader>
         <Tooltip title={"Recommended grade level for this lesson"}>
           <p>
             <b>Suggested grade level:</b> 8th grade
@@ -75,7 +73,7 @@ const LessonPreview = ({
           </p>
         </Tooltip>
         <p>Slides: 0</p>
-      </div>
+      </LessonPreviewCard>
     </LessonPreviewWrapper>
   );
 };

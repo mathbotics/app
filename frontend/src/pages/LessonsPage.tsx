@@ -86,10 +86,10 @@ export const Lessons = (props: PageProps): JSX.Element => {
       )}
 
       <LessonsWrapper>
-        {props.lessons.map((lesson, i) => (
+        {props.lessons.map((lesson, index: number) => (
           <LessonPreview
             lesson={lesson}
-            key={i}
+            key={index}
             onClick={(lessonId: string) =>
               history.push(`/lessons/${lessonId}/slides`)
             }
