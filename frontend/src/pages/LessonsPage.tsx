@@ -66,7 +66,7 @@ const LessonPreview = ({
               {title}
             </h1>
           </Tooltip>
-          <Button style={{ border: "none" }}>
+          <Button style={{ border: "none" }} onClick={onClick}>
             <EditOutlined />
           </Button>
         </div>
