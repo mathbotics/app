@@ -20,7 +20,7 @@ export const CreateCoursePage = (props: CreateCoursePageProps) => {
 
   const onSubmitHandler = ({ name, suggestedLevel }: Store): void => {
     commitCreateOneCourse(
-      { name, suggestedLevel },
+      { name, suggestedLevel, lessonPlan: { create: {} } },
       onInvitationSuccess,
       onInvitationFailure
     );

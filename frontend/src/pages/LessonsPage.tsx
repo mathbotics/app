@@ -4,6 +4,9 @@ import { ClockCircleOutlined, EditOutlined } from "@ant-design/icons";
 import { CreateLessonForm } from "../components/form";
 import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
 import styled from "styled-components";
+import { commit as commitCreateOneLessonMutation } from "../graphql/mutations/CreateOneLessonMutation";
+import { CreateOneLessonMutationResponse } from "../graphql/mutations/__generated__/CreateOneLessonMutation.graphql";
+import { graphql } from "babel-plugin-relay/macro";
 
 const { Title } = Typography;
 
@@ -119,28 +122,25 @@ enum PageState {
 export const LessonsPage = (props: PageProps): JSX.Element => {
   const [pageState, setPageState] = useState<PageState>(PageState.Default);
 
-  // const onCreateLessonMutationSuccess = (
-  //   response: CreateLessonMutationResponse
-  // ) => setPageState(PageState.CreateLessonSuccess);
+  const onCreateLessonMutationSuccess = (
+    response: CreateOneLessonMutationResponse
+  ) => {
+    console.log({ id: response.createOneLesson.id });
+    setPageState(PageState.CreateLessonSuccess);
+  };
 
-  // const onCreateLessonMutationFailure = (error: Error) => {
-  //   setPageState(PageState.CreateLessonError);
-  //   console.log(error);
-  // };
+  const onCreateLessonMutationFailure = (error: Error) => {
+    setPageState(PageState.CreateLessonError);
+    console.log(error);
+  };
 
   const onCreateLessonHandler = ({ title }: Store): void => {
     setPageState(PageState.CreatingLesson);
-
-    /*
-      Here you'll have title just import mutation from graphql
-      Should look something like below
-      Handlers are commeneted out above
-    */
-    // commitCreateLessonMutation(
-    //   { title },
-    //   onCreateLessonMutationSuccess,
-    //   onCreateLessonMutationFailure
-    // );
+    commitCreateOneLessonMutation(
+      { data: { title } },
+      onCreateLessonMutationSuccess,
+      onCreateLessonMutationFailure
+    );
   };
 
   const onCreateLessonErrorHandler = (error: ValidateErrorEntity) => {
