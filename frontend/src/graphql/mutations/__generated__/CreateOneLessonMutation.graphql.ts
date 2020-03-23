@@ -1,8 +1,9 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 69eee5cf48f17ff8e30c2d515dd32ce1 */
+/* @relayHash 385b8dc6b131c7b6b2829ee720f9376d */
 
 import { ConcreteRequest } from "relay-runtime";
+import { FragmentRefs } from "relay-runtime";
 export type GradeLevel = "EIGHTH" | "ELEVENTH" | "FIFTH" | "FIRST" | "FOURTH" | "NINTH" | "SECOND" | "SEVENTH" | "SIXTH" | "TENTH" | "THIRD" | "TWELFTH" | "%future added value";
 export type LessonCreateInput = {
     id?: string | null;
@@ -607,6 +608,7 @@ export type CreateOneLessonMutationVariables = {
 export type CreateOneLessonMutationResponse = {
     readonly createOneLesson: {
         readonly id: string;
+        readonly " $fragmentRefs": FragmentRefs<"LessonPreview_lesson">;
     };
 };
 export type CreateOneLessonMutation = {
@@ -622,7 +624,13 @@ mutation CreateOneLessonMutation(
 ) {
   createOneLesson(data: $data) {
     id
+    ...LessonPreview_lesson
   }
+}
+
+fragment LessonPreview_lesson on Lesson {
+  id
+  title
 }
 */
 
@@ -637,30 +645,18 @@ var v0 = [
 ],
 v1 = [
   {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "createOneLesson",
-    "storageKey": null,
-    "args": [
-      {
-        "kind": "Variable",
-        "name": "data",
-        "variableName": "data"
-      }
-    ],
-    "concreteType": "Lesson",
-    "plural": false,
-    "selections": [
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "id",
-        "args": null,
-        "storageKey": null
-      }
-    ]
+    "kind": "Variable",
+    "name": "data",
+    "variableName": "data"
   }
-];
+],
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
 return {
   "kind": "Request",
   "fragment": {
@@ -669,22 +665,60 @@ return {
     "type": "Mutation",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "createOneLesson",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "Lesson",
+        "plural": false,
+        "selections": [
+          (v2/*: any*/),
+          {
+            "kind": "FragmentSpread",
+            "name": "LessonPreview_lesson",
+            "args": null
+          }
+        ]
+      }
+    ]
   },
   "operation": {
     "kind": "Operation",
     "name": "CreateOneLessonMutation",
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "createOneLesson",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "Lesson",
+        "plural": false,
+        "selections": [
+          (v2/*: any*/),
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "title",
+            "args": null,
+            "storageKey": null
+          }
+        ]
+      }
+    ]
   },
   "params": {
     "operationKind": "mutation",
     "name": "CreateOneLessonMutation",
     "id": null,
-    "text": "mutation CreateOneLessonMutation(\n  $data: LessonCreateInput!\n) {\n  createOneLesson(data: $data) {\n    id\n  }\n}\n",
+    "text": "mutation CreateOneLessonMutation(\n  $data: LessonCreateInput!\n) {\n  createOneLesson(data: $data) {\n    id\n    ...LessonPreview_lesson\n  }\n}\n\nfragment LessonPreview_lesson on Lesson {\n  id\n  title\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '0c47d2f616b15888b660242c5bc128e1';
+(node as any).hash = '1b76a0d7241f209afc54f23bbe139cfe';
 export default node;

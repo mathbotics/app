@@ -1,24 +1,15 @@
 import React, { useState } from "react";
-import { Typography, Button, Modal, Alert, Layout, Tooltip } from "antd";
-import { ClockCircleOutlined, EditOutlined } from "@ant-design/icons";
-import { CreateLessonForm } from "../components/form";
-import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
+import { Typography, Button, Alert, Layout } from "antd";
 import styled from "styled-components";
-import { commit as commitCreateOneLessonMutation } from "../graphql/mutations/CreateOneLessonMutation";
-import { CreateOneLessonMutationResponse } from "../graphql/mutations/__generated__/CreateOneLessonMutation.graphql";
+
 import { graphql } from "babel-plugin-relay/macro";
+import LessonPreview from "../components/lessons/LessonPreview";
+import { environment } from "../graphql/relay";
+import { LessonsPageQueryResponse } from "./__generated__/LessonsPageQuery.graphql";
+import { QueryRenderer } from "react-relay";
+import CreateLessonModalRefetch from "../components/lessons/CreateLessonModalRefetch";
 
 const { Title } = Typography;
-
-const LessonPreviewWrapper = styled(Layout.Content)`
-  height: auto;
-  width: 400px;
-  border: 1px solid #ccc;
-  margin: 20px;
-  :hover {
-    color: inherit;
-  }
-`;
 
 const LessonsWrapper = styled(Layout.Content)`
   display: flex;
@@ -26,92 +17,17 @@ const LessonsWrapper = styled(Layout.Content)`
   flex-wrap: wrap;
 `;
 
-type LessonPreviewProps = {
-  id: string;
-  title: string;
-  slideCount: number;
-  onClick: any;
-};
-const LessonPreview = ({
-  id,
-  title,
-  slideCount,
-  onClick
-}: LessonPreviewProps) => {
-  return (
-    <LessonPreviewWrapper>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "end",
-          flexDirection: "column",
-          padding: "15px 25px"
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            width: "100%"
-          }}
-        >
-          <Tooltip title={title}>
-            <h1
-              style={{
-                fontSize: "30px",
-                fontWeight: 700,
-                textOverflow: "ellipsis",
-                overflow: "hidden",
-                whiteSpace: "nowrap"
-              }}
-            >
-              {title}
-            </h1>
-          </Tooltip>
-          <Button style={{ border: "none" }} onClick={onClick}>
-            <EditOutlined />
-          </Button>
-        </div>
-        <p>
-          <b>Suggested grade level:</b> 8th grade
-        </p>
-        <p>
-          <ClockCircleOutlined /> 15min
-        </p>
+const LessonsPageQuery = graphql`
+  query LessonsPageQuery {
+    lessons {
+      ...LessonPreview_lesson
+    }
+  }
+`;
 
-        <p>Slides: {slideCount}</p>
-      </div>
-    </LessonPreviewWrapper>
-  );
+type PageProps = {
+  lessons: LessonsPageQueryResponse["lessons"];
 };
-
-type ModalProps = {
-  title: string;
-  visible: boolean;
-  onSubmit: any;
-  onSubmitError: any;
-  onCancel: any;
-};
-const CreateLessonModal = ({
-  title,
-  visible,
-  onSubmit,
-  onSubmitError,
-  onCancel
-}: ModalProps) => (
-  <Modal
-    visible={visible}
-    title={title}
-    onOk={onSubmit}
-    onCancel={onCancel}
-    footer={[]}
-  >
-    <CreateLessonForm onSubmit={onSubmit} onSubmitError={onSubmitError} />
-  </Modal>
-);
-
-type PageProps = {};
 enum PageState {
   Default,
   CreateLesson,
@@ -119,34 +35,10 @@ enum PageState {
   CreateLessonSuccess,
   CreateLessonError
 }
-export const LessonsPage = (props: PageProps): JSX.Element => {
+export const Lessons = (props: PageProps): JSX.Element => {
   const [pageState, setPageState] = useState<PageState>(PageState.Default);
 
-  const onCreateLessonMutationSuccess = (
-    response: CreateOneLessonMutationResponse
-  ) => {
-    console.log({ id: response.createOneLesson.id });
-    setPageState(PageState.CreateLessonSuccess);
-  };
-
-  const onCreateLessonMutationFailure = (error: Error) => {
-    setPageState(PageState.CreateLessonError);
-    console.log(error);
-  };
-
-  const onCreateLessonHandler = ({ title }: Store): void => {
-    setPageState(PageState.CreatingLesson);
-    commitCreateOneLessonMutation(
-      { data: { title } },
-      onCreateLessonMutationSuccess,
-      onCreateLessonMutationFailure
-    );
-  };
-
-  const onCreateLessonErrorHandler = (error: ValidateErrorEntity) => {
-    setPageState(PageState.CreateLessonError);
-    console.log(error);
-  };
+  const CreateLessonModal = CreateLessonModalRefetch(LessonsPageQuery);
 
   return (
     <>
@@ -182,33 +74,36 @@ export const LessonsPage = (props: PageProps): JSX.Element => {
         <CreateLessonModal
           title="Create a lesson"
           visible={pageState === PageState.CreateLesson}
-          onSubmit={onCreateLessonHandler}
-          onSubmitError={onCreateLessonErrorHandler}
+          onSubmitSuccess={() => setPageState(PageState.CreateLessonSuccess)}
+          onSubmitError={(e: Error) => {
+            console.log(e);
+            setPageState(PageState.CreateLessonError);
+          }}
           onCancel={() => setPageState(PageState.Default)}
         />
       )}
 
       <LessonsWrapper>
-        <LessonPreview
-          id="0"
-          title="NodeJS read files"
-          slideCount={0}
-          onClick={() => console.log("clicked")}
-        />
-
-        <LessonPreview
-          id="0"
-          title="NodeJS read files"
-          slideCount={0}
-          onClick={() => console.log("clicked")}
-        />
-        <LessonPreview
-          id="0"
-          title="NodeJS read filessaidiaoshdiasndnfia"
-          slideCount={0}
-          onClick={() => console.log("clicked")}
-        />
+        {props.lessons.map((lesson, i) => (
+          <LessonPreview
+            lesson={lesson}
+            key={i}
+            onClick={() => console.log("hi")}
+          />
+        ))}
       </LessonsWrapper>
     </>
   );
 };
+
+export const LessonsPage = () => (
+  <QueryRenderer
+    environment={environment}
+    variables={{}}
+    query={LessonsPageQuery}
+    render={({ props, error }) =>
+      !error &&
+      props && <Lessons lessons={(props as LessonsPageQueryResponse).lessons} />
+    }
+  />
+);

@@ -6,11 +6,13 @@ import {
   LessonCreateInput,
   CreateOneLessonMutationVariables
 } from "./__generated__/CreateOneLessonMutation.graphql";
+import { update } from "relay-runtime/lib/handlers/connection/ConnectionHandler";
 
 const mutation = graphql`
   mutation CreateOneLessonMutation($data: LessonCreateInput!) {
     createOneLesson(data: $data) {
       id
+      ...LessonPreview_lesson
     }
   }
 `;
