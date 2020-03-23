@@ -6,5 +6,6 @@ export const query = extendType({
   type: 'Query',
   definition(t) {
     t.crud.courses({ filtering: true });
+    t.crud.lessons({ filtering: true });
   },
 });

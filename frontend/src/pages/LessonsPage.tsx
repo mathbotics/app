@@ -4,6 +4,7 @@ import { CreateLessonForm } from "../components/form";
 import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
 import { commit as commitCreateOneLessonMutation } from "../graphql/mutations/CreateOneLessonMutation";
 import { CreateOneLessonMutationResponse } from "../graphql/mutations/__generated__/CreateOneLessonMutation.graphql";
+import { graphql } from "babel-plugin-relay/macro";
 
 const { Title } = Typography;
 
