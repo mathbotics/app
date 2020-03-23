@@ -24,7 +24,6 @@ const Logo = styled.div`
   height: 32px;
   color: white;
   margin: 16px;
-  overflow-x: hidden;
 `;
 
 type SidebarItem = {

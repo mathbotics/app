@@ -8,11 +8,14 @@ import { LessonPreview_lesson } from "./__generated__/LessonPreview_lesson.graph
 
 const LessonPreviewWrapper = styled(Layout.Content)`
   height: auto;
-  width: 400px;
+  min-width: 400px;
+  max-width: 400px;
   border: 1px solid #ccc;
   margin: 20px;
+  transition: all 0.15s ease-in-out;
   :hover {
     color: inherit;
+    transform: scale(1.02);
   }
 `;
 
@@ -43,9 +46,9 @@ const LessonPreview = ({
           }}
         >
           <Tooltip title={title}>
-            <h1
+            <p
               style={{
-                fontSize: "30px",
+                fontSize: "20px",
                 fontWeight: 700,
                 textOverflow: "ellipsis",
                 overflow: "hidden",
@@ -53,19 +56,24 @@ const LessonPreview = ({
               }}
             >
               {title}
-            </h1>
+            </p>
           </Tooltip>
-          <Button style={{ border: "none" }} onClick={onClick}>
-            <EditOutlined />
-          </Button>
+          <Tooltip title={"Edit lesson"}>
+            <Button style={{ border: "none" }} onClick={() => onClick(id)}>
+              <EditOutlined />
+            </Button>
+          </Tooltip>
         </div>
-        <p>
-          <b>Suggested grade level:</b> 8th grade
-        </p>
-        <p>
-          <ClockCircleOutlined /> 15min
-        </p>
-
+        <Tooltip title={"Recommended grade level for this lesson"}>
+          <p>
+            <b>Suggested grade level:</b> 8th grade
+          </p>
+        </Tooltip>
+        <Tooltip title={`Lesson completion time`}>
+          <p>
+            <ClockCircleOutlined /> 15min
+          </p>
+        </Tooltip>
         <p>Slides: 0</p>
       </div>
     </LessonPreviewWrapper>

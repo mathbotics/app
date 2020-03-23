@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Typography, Button, Alert, Layout } from "antd";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 import { graphql } from "babel-plugin-relay/macro";
@@ -36,6 +37,7 @@ enum PageState {
   CreateLessonError
 }
 export const Lessons = (props: PageProps): JSX.Element => {
+  const history = useHistory();
   const [pageState, setPageState] = useState<PageState>(PageState.Default);
 
   const CreateLessonModal = CreateLessonModalRefetch(LessonsPageQuery);
@@ -88,7 +90,9 @@ export const Lessons = (props: PageProps): JSX.Element => {
           <LessonPreview
             lesson={lesson}
             key={i}
-            onClick={() => console.log("hi")}
+            onClick={(lessonId: string) =>
+              history.push(`/lessons/${lessonId}/slides`)
+            }
           />
         ))}
       </LessonsWrapper>
