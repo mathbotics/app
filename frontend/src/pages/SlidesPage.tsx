@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Button, Modal } from "antd";
+import { Typography, Button, Modal, Layout, Tooltip } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 
@@ -13,18 +13,23 @@ const SlidesWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-const SlideCard = styled(Button)`
+const SlideCard = styled(Layout.Content)`
   width: 380px;
   height: 250px;
   background-color: white;
-  border: 1.35px solid #002140;
-  border-radius: 5px;
+  border: 1.35px solid #ccc;
   font-weight: 600;
 
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  :hover {
+    color: #40a9ff;
+    border: 1.35px solid #40a9ff;
+    cursor: pointer;
+  }
 `;
 
 const SlideCardWrapper = styled.div`
@@ -33,9 +38,11 @@ const SlideCardWrapper = styled.div`
 
 const CreateSlideCard = (props: any) => {
   return (
-    <SlideCard>
-      <PlusOutlined style={{ fontSize: "40px" }} />
-    </SlideCard>
+    <Tooltip title="Create a slide">
+      <SlideCard>
+        <PlusOutlined style={{ fontSize: "40px" }} />
+      </SlideCard>
+    </Tooltip>
   );
 };
 

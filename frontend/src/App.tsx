@@ -9,12 +9,12 @@ import {
   DashboardPage,
   NotFoundPage,
   LessonsPage,
-  SlidesPage
+  SlidesPage,
+  AdminPage
 } from "./pages";
 
 // Routes
 import ProtectedRoute from "./routes/ProtectedRoute";
-import { InvitationPage } from "./pages/InvitationPage";
 
 export const App: React.FC = () => {
   return (
@@ -27,7 +27,7 @@ export const App: React.FC = () => {
           exact
           path="/admin"
           allowedRoles={["Admin"]}
-          component={withSidebar(NotFoundPage)}
+          component={withSidebar(AdminPage)}
         />
         <ProtectedRoute
           exact
@@ -40,12 +40,6 @@ export const App: React.FC = () => {
           path="/lessons/:lessonId/slides"
           allowedRoles={["Admin", "Instructor"]}
           component={withSidebar(SlidesPage)}
-        />
-        <ProtectedRoute
-          exact
-          path="/invite"
-          allowedRoles={["Admin"]}
-          component={withSidebar(InvitationPage)}
         />
         <Route component={NotFoundPage} />
       </Switch>

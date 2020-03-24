@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Typography, Button, Alert, Layout } from "antd";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 import { graphql } from "babel-plugin-relay/macro";
@@ -36,6 +37,7 @@ enum PageState {
   CreateLessonError
 }
 export const Lessons = (props: PageProps): JSX.Element => {
+  const history = useHistory();
   const [pageState, setPageState] = useState<PageState>(PageState.Default);
   return (
     <>
@@ -82,11 +84,13 @@ export const Lessons = (props: PageProps): JSX.Element => {
       )}
 
       <LessonsWrapper>
-        {props.lessons.map((lesson, i) => (
+        {props.lessons.map((lesson, index: number) => (
           <LessonPreview
             lesson={lesson}
-            key={i}
-            onClick={() => console.log("hi")}
+            key={index}
+            onClick={(lessonId: string) =>
+              history.push(`/lessons/${lessonId}/slides`)
+            }
           />
         ))}
       </LessonsWrapper>

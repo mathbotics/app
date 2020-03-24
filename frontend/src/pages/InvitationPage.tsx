@@ -1,12 +1,17 @@
 import React from "react";
-import { Typography } from "antd";
+import { Typography, Layout } from "antd";
 import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
 
 import { commit as commitSendInvitationEmail } from "../graphql/mutations/SendInvitationEmailMutation";
 import { InvitationForm } from "../components/form";
 import { SendInvitationEmailMutationResponse } from "../graphql/mutations/__generated__/SendInvitationEmailMutation.graphql";
+import styled from "styled-components";
 
 const { Title } = Typography;
+
+const Wrapper = styled(Layout.Content)`
+  width: 400px;
+`;
 
 enum InvitationState {
   DEFAULT,
@@ -15,7 +20,8 @@ enum InvitationState {
   VALIDATING
 }
 
-export const InvitationPage = () => {
+type Props = {};
+export const InvitationPage = (props: Props) => {
   const [invitationState, setInvitationState] = React.useState<InvitationState>(
     InvitationState.DEFAULT
   );
@@ -44,13 +50,13 @@ export const InvitationPage = () => {
   };
 
   return (
-    <>
+    <Wrapper>
       <Title level={2}>Invite User</Title>
 
       <InvitationForm
         onSubmit={onSubmitHandler}
         onSubmitError={onSubmitErrorHandler}
       />
-    </>
+    </Wrapper>
   );
 };

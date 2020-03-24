@@ -8,12 +8,36 @@ import { LessonPreview_lesson } from "./__generated__/LessonPreview_lesson.graph
 
 const LessonPreviewWrapper = styled(Layout.Content)`
   height: auto;
-  width: 400px;
+  min-width: 400px;
+  max-width: 400px;
   border: 1px solid #ccc;
   margin: 20px;
+  transition: all 0.15s ease-in-out;
   :hover {
     color: inherit;
+    transform: scale(1.02);
   }
+`;
+
+const LessonPreviewCard = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  flex-direction: column;
+  padding: 15px 25px;
+  height: 200px;
+`;
+
+const LessonPreviewCardHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom: 10px;
 `;
 
 type LessonPreviewProps = {
@@ -26,48 +50,30 @@ const LessonPreview = ({
 }: LessonPreviewProps) => {
   return (
     <LessonPreviewWrapper>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "end",
-          flexDirection: "column",
-          padding: "15px 25px"
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            width: "100%"
-          }}
-        >
-          <Tooltip title={title}>
-            <h1
-              style={{
-                fontSize: "30px",
-                fontWeight: 700,
-                textOverflow: "ellipsis",
-                overflow: "hidden",
-                whiteSpace: "nowrap"
-              }}
+      <LessonPreviewCard>
+        <LessonPreviewCardHeader>
+          <Tooltip title={title}>{title}</Tooltip>
+          <Tooltip title={"Edit lesson"}>
+            <Button
+              style={{ border: "none", background: "transparent" }}
+              onClick={() => onClick(id)}
             >
-              {title}
-            </h1>
+              <EditOutlined />
+            </Button>
           </Tooltip>
-          <Button style={{ border: "none" }} onClick={onClick}>
-            <EditOutlined />
-          </Button>
-        </div>
-        <p>
-          <b>Suggested grade level:</b> 8th grade
-        </p>
-        <p>
-          <ClockCircleOutlined /> 15min
-        </p>
-
+        </LessonPreviewCardHeader>
+        <Tooltip title={"Recommended grade level for this lesson"}>
+          <p>
+            <b>Suggested grade level:</b> 8th grade
+          </p>
+        </Tooltip>
+        <Tooltip title={`Lesson completion time`}>
+          <p>
+            <ClockCircleOutlined /> 15min
+          </p>
+        </Tooltip>
         <p>Slides: 0</p>
-      </div>
+      </LessonPreviewCard>
     </LessonPreviewWrapper>
   );
 };
