@@ -5,8 +5,7 @@ import {
   LockOutlined,
   BookOutlined,
   UserAddOutlined,
-  AppstoreOutlined,
-  DiffOutlined
+  AppstoreOutlined
 } from "@ant-design/icons";
 import styled from "styled-components";
 import { useHistory, Redirect } from "react-router-dom";
@@ -51,8 +50,7 @@ const menuItemsForViewer = ({ role }: withSidebar_viewer) => {
       return [
         { name: "Dashboard", path: "", icon: <DashboardOutlined /> },
         { name: "Admin", path: "admin", icon: <LockOutlined /> },
-        { name: "Lessons", path: "lessons", icon: <AppstoreOutlined /> },
-        { name: "Invite", path: "invite", icon: <UserAddOutlined /> }
+        { name: "Lessons", path: "lessons", icon: <AppstoreOutlined /> }
       ];
     case "Instructor":
       return [

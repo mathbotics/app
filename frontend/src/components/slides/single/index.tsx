@@ -4,6 +4,6 @@ type Block = {};
 type SlideProps = {
   blocks: Block;
 };
-export function Slide({ blocks }: SlideProps) {
+export function SingleSlide({ blocks }: SlideProps) {
   return <></>;
 }
