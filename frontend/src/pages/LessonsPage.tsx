@@ -4,10 +4,10 @@ import styled from "styled-components";
 
 import { graphql } from "babel-plugin-relay/macro";
 import LessonPreview from "../components/lessons/LessonPreview";
-import { environment } from "../graphql/relay";
+import { environment, getRootQueryDataID } from "../graphql/relay";
 import { LessonsPageQueryResponse } from "./__generated__/LessonsPageQuery.graphql";
 import { QueryRenderer } from "react-relay";
-import CreateLessonModalRefetch from "../components/lessons/CreateLessonModalRefetch";
+import CreateLessonModal from "../components/lessons/CreateLessonModal";
 
 const { Title } = Typography;
 
@@ -37,9 +37,6 @@ enum PageState {
 }
 export const Lessons = (props: PageProps): JSX.Element => {
   const [pageState, setPageState] = useState<PageState>(PageState.Default);
-
-  const CreateLessonModal = CreateLessonModalRefetch(LessonsPageQuery);
-
   return (
     <>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -73,6 +70,7 @@ export const Lessons = (props: PageProps): JSX.Element => {
       {pageState === PageState.CreateLesson && (
         <CreateLessonModal
           title="Create a lesson"
+          rootDataID={getRootQueryDataID(LessonsPageQuery, {})}
           visible={pageState === PageState.CreateLesson}
           onSubmitSuccess={() => setPageState(PageState.CreateLessonSuccess)}
           onSubmitError={(e: Error) => {

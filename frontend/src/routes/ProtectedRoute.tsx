@@ -2,7 +2,6 @@ import React from "react";
 import { Spin } from "antd";
 import { Route, Redirect } from "react-router-dom";
 import { graphql } from "babel-plugin-relay/macro";
-import { environment } from "../graphql/relay";
 import { createFragmentContainer } from "react-relay";
 import QueryLookupRenderer from "relay-query-lookup-renderer";
 import nullthrows from "nullthrows";
@@ -10,6 +9,7 @@ import nullthrows from "nullthrows";
 import { ProtectedRouteQueryResponse } from "./__generated__/ProtectedRouteQuery.graphql";
 import { ProtectedRoute_viewer } from "./__generated__/ProtectedRoute_viewer.graphql";
 import { NotFoundPage } from "../pages/";
+import { environment } from "../graphql/relay";
 
 const ViewerQuery = graphql`
   query ProtectedRouteQuery {

@@ -5,7 +5,12 @@ import {
   Store,
   QueryResponseCache,
   FetchFunction,
-  GraphQLResponse
+  GraphQLResponse,
+  GraphQLTaggedNode,
+  createOperationDescriptor,
+  getRequest,
+  Variables,
+  DataID
 } from "relay-runtime";
 
 const oneMinute = 60 * 1000;
@@ -47,9 +52,15 @@ const fetchQuery: FetchFunction = async (operation, variables) => {
   return json;
 };
 
-const environment = new Environment({
+export const environment = new Environment({
   network: Network.create(fetchQuery),
   store: new Store(new RecordSource())
 });
 
-export { environment };
+export const getRootQueryDataID = (
+  query: GraphQLTaggedNode,
+  variables: Variables
+) =>
+  environment.lookup(
+    createOperationDescriptor(getRequest(query), variables).fragment
+  ).selector.dataID;
