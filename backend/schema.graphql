@@ -187,37 +187,47 @@ input BlockUpdateManyWithWhereNestedInput {
   where: BlockScalarWhereInput!
 }
 
-input BlockUpdateOneRequiredWithoutHalfSlidesImplementingInput {
+input BlockUpdateOneWithoutHalfSlidesImplementingInput {
   connect: BlockWhereUniqueInput
   create: BlockCreateWithoutHalfSlidesImplementingInput
+  delete: Boolean
+  disconnect: Boolean
   update: BlockUpdateWithoutHalfSlidesImplementingDataInput
   upsert: BlockUpsertWithoutHalfSlidesImplementingInput
 }
 
-input BlockUpdateOneRequiredWithoutHalfSlidesInput {
+input BlockUpdateOneWithoutHalfSlidesInput {
   connect: BlockWhereUniqueInput
   create: BlockCreateWithoutHalfSlidesInput
+  delete: Boolean
+  disconnect: Boolean
   update: BlockUpdateWithoutHalfSlidesDataInput
   upsert: BlockUpsertWithoutHalfSlidesInput
 }
 
-input BlockUpdateOneRequiredWithoutQuarterSlidesImplementingInput {
+input BlockUpdateOneWithoutQuarterSlidesImplementingInput {
   connect: BlockWhereUniqueInput
   create: BlockCreateWithoutQuarterSlidesImplementingInput
+  delete: Boolean
+  disconnect: Boolean
   update: BlockUpdateWithoutQuarterSlidesImplementingDataInput
   upsert: BlockUpsertWithoutQuarterSlidesImplementingInput
 }
 
-input BlockUpdateOneRequiredWithoutQuarterSlidesInput {
+input BlockUpdateOneWithoutQuarterSlidesInput {
   connect: BlockWhereUniqueInput
   create: BlockCreateWithoutQuarterSlidesInput
+  delete: Boolean
+  disconnect: Boolean
   update: BlockUpdateWithoutQuarterSlidesDataInput
   upsert: BlockUpsertWithoutQuarterSlidesInput
 }
 
-input BlockUpdateOneRequiredWithoutSingleSlidesInput {
+input BlockUpdateOneWithoutSingleSlidesInput {
   connect: BlockWhereUniqueInput
   create: BlockCreateWithoutSingleSlidesInput
+  delete: Boolean
+  disconnect: Boolean
   update: BlockUpdateWithoutSingleSlidesDataInput
   upsert: BlockUpsertWithoutSingleSlidesInput
 }
@@ -433,11 +443,10 @@ input ContentWhereUniqueInput {
 }
 
 type Course {
-  contents(after: ContentWhereUniqueInput, before: ContentWhereUniqueInput, first: Int, last: Int, skip: Int): [Content!]!
   id: String!
   instructors(after: InstructorWhereUniqueInput, before: InstructorWhereUniqueInput, first: Int, last: Int, skip: Int): [Instructor!]!
+  lessonPlan: LessonPlan!
   name: String!
-  students(after: StudentWhereUniqueInput, before: StudentWhereUniqueInput, first: Int, last: Int, skip: Int): [Student!]!
   suggestedLevel: GradeLevel!
 }
 
@@ -645,6 +654,10 @@ input CourseWhereUniqueInput {
   id: String
 }
 
+input CreateSlideInput {
+  slideType: String!
+}
+
 scalar DateTime
 
 input DateTimeFilter {
@@ -823,20 +836,20 @@ input HalfSlideCreateOneWithoutSlidesInput {
 
 input HalfSlideCreateWithoutFirstHalfBlockInput {
   id: String
-  secondHalfBlock: BlockCreateOneWithoutHalfSlidesImplementingInput!
+  secondHalfBlock: BlockCreateOneWithoutHalfSlidesImplementingInput
   slides: SlideCreateManyWithoutHalfSlideInput
 }
 
 input HalfSlideCreateWithoutSecondHalfBlockInput {
-  firstHalfBlock: BlockCreateOneWithoutHalfSlidesInput!
+  firstHalfBlock: BlockCreateOneWithoutHalfSlidesInput
   id: String
   slides: SlideCreateManyWithoutHalfSlideInput
 }
 
 input HalfSlideCreateWithoutSlidesInput {
-  firstHalfBlock: BlockCreateOneWithoutHalfSlidesInput!
+  firstHalfBlock: BlockCreateOneWithoutHalfSlidesInput
   id: String
-  secondHalfBlock: BlockCreateOneWithoutHalfSlidesImplementingInput!
+  secondHalfBlock: BlockCreateOneWithoutHalfSlidesImplementingInput
 }
 
 input HalfSlideFilter {
@@ -897,20 +910,20 @@ input HalfSlideUpdateOneWithoutSlidesInput {
 
 input HalfSlideUpdateWithoutFirstHalfBlockDataInput {
   id: String
-  secondHalfBlock: BlockUpdateOneRequiredWithoutHalfSlidesImplementingInput
+  secondHalfBlock: BlockUpdateOneWithoutHalfSlidesImplementingInput
   slides: SlideUpdateManyWithoutHalfSlideInput
 }
 
 input HalfSlideUpdateWithoutSecondHalfBlockDataInput {
-  firstHalfBlock: BlockUpdateOneRequiredWithoutHalfSlidesInput
+  firstHalfBlock: BlockUpdateOneWithoutHalfSlidesInput
   id: String
   slides: SlideUpdateManyWithoutHalfSlideInput
 }
 
 input HalfSlideUpdateWithoutSlidesDataInput {
-  firstHalfBlock: BlockUpdateOneRequiredWithoutHalfSlidesInput
+  firstHalfBlock: BlockUpdateOneWithoutHalfSlidesInput
   id: String
-  secondHalfBlock: BlockUpdateOneRequiredWithoutHalfSlidesImplementingInput
+  secondHalfBlock: BlockUpdateOneWithoutHalfSlidesImplementingInput
 }
 
 input HalfSlideUpdateWithWhereUniqueWithoutFirstHalfBlockInput {
@@ -1087,6 +1100,13 @@ type Lesson {
   title: String!
 }
 
+input LessonCreateInput {
+  id: String
+  lessonPlan: LessonPlanCreateOneWithoutLessonsInput
+  slides: SlideCreateManyWithoutLessonInput
+  title: String!
+}
+
 input LessonCreateManyWithoutLessonPlanInput {
   connect: [LessonWhereUniqueInput!]
   create: [LessonCreateWithoutLessonPlanInput!]
@@ -1113,6 +1133,11 @@ input LessonFilter {
   every: LessonWhereInput
   none: LessonWhereInput
   some: LessonWhereInput
+}
+
+type LessonPlan {
+  id: String!
+  lessons(after: LessonWhereUniqueInput, before: LessonWhereUniqueInput, first: Int, last: Int, skip: Int): [Lesson!]!
 }
 
 input LessonPlanCreateOneWithoutCourseInput {
@@ -1740,6 +1765,8 @@ input MultipleChoiceQuestionResponseWhereUniqueInput {
 
 type Mutation {
   createOneCourse(data: CourseCreateInput!): Course!
+  createOneLesson(data: LessonCreateInput!): Lesson!
+  createSlide(input: CreateSlideInput!): Slide!
   logIn(input: LogInInput!): User!
   registerUser(input: RegisterUserInput!): User!
   sendInvitationEmail(input: SendInvitationEmailInput!): String!
@@ -1863,20 +1890,20 @@ input QuarterSlideCreateOneWithoutSlidesInput {
 
 input QuarterSlideCreateWithoutMainBlockInput {
   id: String
-  sideBlock: BlockCreateOneWithoutQuarterSlidesImplementingInput!
+  sideBlock: BlockCreateOneWithoutQuarterSlidesImplementingInput
   slides: SlideCreateManyWithoutQuarterSlideInput
 }
 
 input QuarterSlideCreateWithoutSideBlockInput {
   id: String
-  mainBlock: BlockCreateOneWithoutQuarterSlidesInput!
+  mainBlock: BlockCreateOneWithoutQuarterSlidesInput
   slides: SlideCreateManyWithoutQuarterSlideInput
 }
 
 input QuarterSlideCreateWithoutSlidesInput {
   id: String
-  mainBlock: BlockCreateOneWithoutQuarterSlidesInput!
-  sideBlock: BlockCreateOneWithoutQuarterSlidesImplementingInput!
+  mainBlock: BlockCreateOneWithoutQuarterSlidesInput
+  sideBlock: BlockCreateOneWithoutQuarterSlidesImplementingInput
 }
 
 input QuarterSlideFilter {
@@ -1937,20 +1964,20 @@ input QuarterSlideUpdateOneWithoutSlidesInput {
 
 input QuarterSlideUpdateWithoutMainBlockDataInput {
   id: String
-  sideBlock: BlockUpdateOneRequiredWithoutQuarterSlidesImplementingInput
+  sideBlock: BlockUpdateOneWithoutQuarterSlidesImplementingInput
   slides: SlideUpdateManyWithoutQuarterSlideInput
 }
 
 input QuarterSlideUpdateWithoutSideBlockDataInput {
   id: String
-  mainBlock: BlockUpdateOneRequiredWithoutQuarterSlidesInput
+  mainBlock: BlockUpdateOneWithoutQuarterSlidesInput
   slides: SlideUpdateManyWithoutQuarterSlideInput
 }
 
 input QuarterSlideUpdateWithoutSlidesDataInput {
   id: String
-  mainBlock: BlockUpdateOneRequiredWithoutQuarterSlidesInput
-  sideBlock: BlockUpdateOneRequiredWithoutQuarterSlidesImplementingInput
+  mainBlock: BlockUpdateOneWithoutQuarterSlidesInput
+  sideBlock: BlockUpdateOneWithoutQuarterSlidesImplementingInput
 }
 
 input QuarterSlideUpdateWithWhereUniqueWithoutMainBlockInput {
@@ -1996,6 +2023,7 @@ input QuarterSlideWhereUniqueInput {
 
 type Query {
   courses(after: CourseWhereUniqueInput, before: CourseWhereUniqueInput, first: Int, last: Int, skip: Int, where: CourseWhereInput): [Course!]!
+  lessons(after: LessonWhereUniqueInput, before: LessonWhereUniqueInput, first: Int, last: Int, skip: Int, where: LessonWhereInput): [Lesson!]!
   viewer: User!
 }
 
@@ -2033,7 +2061,7 @@ input SingleSlideCreateWithoutBlockInput {
 }
 
 input SingleSlideCreateWithoutSlidesInput {
-  block: BlockCreateOneWithoutSingleSlidesInput!
+  block: BlockCreateOneWithoutSingleSlidesInput
   id: String
 }
 
@@ -2087,7 +2115,7 @@ input SingleSlideUpdateWithoutBlockDataInput {
 }
 
 input SingleSlideUpdateWithoutSlidesDataInput {
-  block: BlockUpdateOneRequiredWithoutSingleSlidesInput
+  block: BlockUpdateOneWithoutSingleSlidesInput
   id: String
 }
 

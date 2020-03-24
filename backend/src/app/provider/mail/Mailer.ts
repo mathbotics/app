@@ -1,5 +1,7 @@
 import nodemailer from 'nodemailer';
 
+const { MAIL_HOST, MAIL_PORT } = process.env;
+
 export type Message = {
   from: string;
   to: string;
@@ -10,8 +12,8 @@ export type Message = {
 
 export async function sendMail(message: Message) {
   const transporter = nodemailer.createTransport({
-    host: 'mailhog.docker.mathbotics.me',
-    port: 1025,
+    host: MAIL_HOST ?? 'mailhog.docker.mathbotics.me',
+    port: Number(MAIL_PORT ?? 1025),
     secure: false,
   });
 

@@ -29,20 +29,22 @@ export const sendInvitationEmail = mutationField('sendInvitationEmail', {
   },
   async resolve(_root, { input: { email, role } }) {
     try {
-      const token = jwt.sign(
-        { email, role },
-        nullthrows(JWT_SECRET, 'JWT_SECRET is null or undefined'),
+      const { html } = mjml(
+        (
+          await fs.readFile(
+            path.join(
+              __dirname,
+              '../../provider/mail/templates/Invitation.mjml',
+            ),
+          )
+        ).toString('utf8'),
       );
-
-      const url = `http://localhost:3000/register/${token}`;
-
-      const data: Buffer = await fs.readFile(
-        path.join(__dirname, '../../provider/mail/templates/Invitation.mjml'),
-      );
-
-      const { html } = mjml(data.toString('utf8'));
       const template = Handlebars.compile(html);
 
+      const url = `http://localhost:3000/register/${jwt.sign(
+        { email, role },
+        nullthrows(JWT_SECRET, 'JWT_SECRET is null or undefined'),
+      )}`;
       const message = {
         from: '"Mathbotics learning platform 🤖" <hello@mathbotics.io>',
         to: email,
