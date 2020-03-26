@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Typography, Button, Modal, Layout, Tooltip } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import styled from "styled-components";
+import {
+  GenericSlide as Slide,
+  Type as SlideType
+} from "../components/slides/GenericSlide";
 
 const { Title } = Typography;
 
@@ -46,6 +50,20 @@ const CreateSlideCard = (props: any) => {
   );
 };
 
+const ModalBodyWrapper = styled(Layout.Content)`
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+`;
+const ModalSlideWrapper = styled.div`
+  width: 300px;
+  height: 200px !important;
+`;
+type ModalPreviewSlideType = {
+  type: SlideType;
+  title: string;
+  description: string;
+};
 type ModalProps = {
   title: string;
   visible: boolean;
@@ -57,15 +75,61 @@ const CreateSlideModal = ({
   visible,
   onSubmit,
   onCancel
-}: ModalProps) => (
-  <Modal visible={visible} title={title} onOk={onSubmit} onCancel={onCancel}>
-    <p>Some contents...</p>
-  </Modal>
-);
+}: ModalProps) => {
+  const [selected, setSelected] = useState<number>();
+  const previewSlides: ModalPreviewSlideType[] = [
+    {
+      type: SlideType.SINGLE,
+      title: "Single Slide",
+      description:
+        "A single slide, perfect for a single piece of content like and image or some reading material."
+    },
+    {
+      type: SlideType.HALF,
+      title: "Half Slide",
+      description:
+        "A slide made for 2 pieces of content. Great for some context on the left and interactive material on the right."
+    }
+  ];
+
+  return (
+    <Modal
+      width={1100}
+      visible={visible}
+      title={title}
+      onOk={onSubmit}
+      onCancel={onCancel}
+    >
+      <ModalBodyWrapper>
+        {previewSlides.map(
+          ({ type, title, description }: ModalPreviewSlideType, index) => (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                flexDirection: "column",
+                margin: "20px"
+              }}
+            >
+              <ModalSlideWrapper key={index} onClick={() => setSelected(index)}>
+                <Slide preview selected={index == selected} type={type} />
+              </ModalSlideWrapper>
+              <h3 style={{ marginTop: "10px" }}>
+                <u>{title}</u>
+              </h3>
+              <p style={{ width: 300, marginTop: "5px" }}>{description}</p>
+            </div>
+          )
+        )}
+      </ModalBodyWrapper>
+    </Modal>
+  );
+};
 
 enum PageState {
   Default,
-  CreateSlide
+  CreateSlide,
+  EditSlide
 }
 type SlidesPageProps = {};
 export const SlidesPage = (props: SlidesPageProps): JSX.Element => {
@@ -89,7 +153,7 @@ export const SlidesPage = (props: SlidesPageProps): JSX.Element => {
 
       {pageState === PageState.CreateSlide && (
         <CreateSlideModal
-          title="Choose a layout"
+          title="Choose a slide layout"
           visible={pageState === PageState.CreateSlide}
           onSubmit={() => console.log("Submitted")}
           onCancel={() => setPageState(PageState.Default)}

@@ -12,7 +12,10 @@ export type CreateLessonFormFields = {
   title: string;
 };
 
-export const CreateLessonForm = (props: FormProps): JSX.Element => {
+export const CreateLessonForm = ({
+  onSubmit,
+  onSubmitError
+}: FormProps): JSX.Element => {
   const [form] = Form.useForm();
   const { setFieldsValue, getFieldValue } = form;
 
@@ -25,8 +28,8 @@ export const CreateLessonForm = (props: FormProps): JSX.Element => {
   return (
     <Form
       form={form}
-      onFinish={props.onSubmit}
-      onFinishFailed={props.onSubmitError}
+      onFinish={onSubmit}
+      onFinishFailed={onSubmitError}
       layout="vertical"
     >
       <p>

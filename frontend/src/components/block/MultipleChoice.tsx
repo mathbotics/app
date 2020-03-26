@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Radio } from "antd";
+import { Radio, Layout } from "antd";
 import { RadioChangeEvent } from "antd/lib/radio";
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
+`;
 
 type QuestionProps = {
   text: string;
@@ -14,10 +19,13 @@ const Question = ({ text }: QuestionProps) => {
 
 type MultipleChoiceChoiceProps = {
   index: number;
-  value: string;
-  text: string;
+  value?: string;
+  text?: string;
 };
-const MultipleChoiceChoice = ({ text, index }: MultipleChoiceChoiceProps) => {
+const MultipleChoiceChoice = ({
+  text,
+  index
+}: MultipleChoiceChoiceProps): JSX.Element => {
   const radioStyle = {
     display: "block",
     height: "30px",
@@ -30,12 +38,12 @@ const MultipleChoiceChoice = ({ text, index }: MultipleChoiceChoiceProps) => {
   );
 };
 
-type MultipleChoiceGroupProps = {
+export type MultipleChoiceGroupProps = {
   onChange: (e: RadioChangeEvent) => void;
   choices: Array<{ value: string; text: string }>;
   selected: number;
 };
-const MultipleChoiceGroup = ({
+export const MultipleChoiceGroup = ({
   choices,
   selected,
   onChange
@@ -54,21 +62,21 @@ const MultipleChoiceGroup = ({
   );
 };
 
-type MultipleChoiceProps = {
+export type MultipleChoiceProps = {
   text: string;
   choices: Array<{ value: string; text: string }>;
   selected: number;
   onChange: (value: number) => void;
 };
+
 export const MultipleChoice = ({
   text,
   choices,
   selected,
   onChange
 }: MultipleChoiceProps) => {
-  const multipleChoiceHandler = (e: RadioChangeEvent) => {
-    console.log(e.target.value);
-    onChange(e.target.value);
+  const multipleChoiceHandler = ({ target }: RadioChangeEvent) => {
+    onChange(target.value);
   };
   return (
     <Wrapper>

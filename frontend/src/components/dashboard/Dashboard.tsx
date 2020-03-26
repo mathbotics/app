@@ -5,8 +5,6 @@ import { Typography } from "antd";
 
 import { Dashboard_dashboard } from "./__generated__/Dashboard_dashboard.graphql";
 
-import { MultipleChoice } from "../block/multiple-choice";
-
 const { Title } = Typography;
 
 type Props = {
@@ -23,19 +21,6 @@ const Dashboard = ({
     <>
       <Title level={2}>
         Hey there, {firstName} {lastName}!
-        <MultipleChoice
-          text={"Small pipi?"}
-          onChange={(value: number) => setSelected(value)}
-          selected={selected}
-          choices={[
-            { value: "YES", text: "yes" },
-            { value: "YES", text: "yes" },
-            { value: "YES", text: "yes" },
-            { value: "YES", text: "yes" },
-            { value: "YES", text: "yes" },
-            { value: "YES", text: "yes" }
-          ]}
-        />
       </Title>
     </>
   );

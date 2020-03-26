@@ -6,3 +6,4 @@ export * from "./CoursesPage";
 export * from "./LessonsPage";
 export * from "./SlidesPage";
 export * from "./AdminPage";
+export * from "./SlideEditorPage";

@@ -10,7 +10,8 @@ import {
   NotFoundPage,
   LessonsPage,
   SlidesPage,
-  AdminPage
+  AdminPage,
+  SlideEditorPage
 } from "./pages";
 
 // Routes
@@ -40,6 +41,12 @@ export const App: React.FC = () => {
           path="/lessons/:lessonId/slides"
           allowedRoles={["Admin", "Instructor"]}
           component={withSidebar(SlidesPage)}
+        />
+        <ProtectedRoute
+          exact
+          path="/lessons/:lessonId/slides/:slideId"
+          allowedRoles={["Admin"]}
+          component={withSidebar(SlideEditorPage)}
         />
         <Route component={NotFoundPage} />
       </Switch>
