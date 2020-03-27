@@ -1,43 +1,32 @@
 import React from "react";
-import { Button, Layout, Tooltip } from "antd";
+import { Button, Layout, Tooltip, Typography } from "antd";
 import { ClockCircleOutlined, EditOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 import { createFragmentContainer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
 import { LessonPreview_lesson } from "./__generated__/LessonPreview_lesson.graphql";
 
+const { Title } = Typography;
+
 const LessonPreviewWrapper = styled(Layout.Content)`
-  height: auto;
-  min-width: 400px;
-  max-width: 400px;
-  border: 1px solid #ccc;
-  margin: 20px;
+  border: solid 1px #e8e9eb;
+  background-color: #f9f9f9;
+  margin: 5px 0px;
   transition: all 0.15s ease-in-out;
+  width: 100%;
   :hover {
+    cursor: pointer;
     color: inherit;
-    transform: scale(1.02);
   }
 `;
 
 const LessonPreviewCard = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: end;
-  flex-direction: column;
-  padding: 15px 25px;
-  height: 200px;
-`;
-
-const LessonPreviewCardHeader = styled.div`
-  display: flex;
   justify-content: space-between;
-  width: 100%;
-  font-size: 20px;
-  font-weight: 700;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  margin-bottom: 10px;
+  align-items: end;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px 40px;
 `;
 
 type LessonPreviewProps = {
@@ -51,28 +40,62 @@ const LessonPreview = ({
   return (
     <LessonPreviewWrapper>
       <LessonPreviewCard>
-        <LessonPreviewCardHeader>
-          <Tooltip title={title}>{title}</Tooltip>
-          <Tooltip title={"Edit lesson"}>
-            <Button
-              style={{ border: "none", background: "transparent" }}
-              onClick={() => onClick(id)}
-            >
-              <EditOutlined />
-            </Button>
+        <div
+          style={{
+            width: "400px",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+            overflow: "hidden"
+          }}
+        >
+          <Tooltip title={title}>
+            <Title level={4} style={{ margin: "0" }}>
+              {title}
+            </Title>
           </Tooltip>
-        </LessonPreviewCardHeader>
-        <Tooltip title={"Recommended grade level for this lesson"}>
-          <p>
+        </div>
+        <div
+          style={{
+            width: 250,
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+            overflow: "hidden"
+          }}
+        >
+          <Tooltip title={"Recommended grade level for this lesson"}>
             <b>Suggested grade level:</b> 8th grade
-          </p>
-        </Tooltip>
-        <Tooltip title={`Lesson completion time`}>
-          <p>
+          </Tooltip>
+        </div>
+        <div
+          style={{
+            width: 150,
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+            overflow: "hidden"
+          }}
+        >
+          <Tooltip title={`Lesson completion time`}>
             <ClockCircleOutlined /> 15min
-          </p>
+          </Tooltip>
+        </div>
+        <div
+          style={{
+            width: 150,
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+            overflow: "hidden"
+          }}
+        >
+          0 Slides
+        </div>
+        <Tooltip title={"Edit lesson"}>
+          <Button
+            style={{ border: "none", background: "transparent" }}
+            onClick={() => onClick(id)}
+          >
+            <EditOutlined />
+          </Button>
         </Tooltip>
-        <p>Slides: 0</p>
       </LessonPreviewCard>
     </LessonPreviewWrapper>
   );

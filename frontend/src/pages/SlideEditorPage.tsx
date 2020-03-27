@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Layout, Typography, Modal, Alert } from "antd";
+import { Layout, Typography, Modal, Alert, Button } from "antd";
 import { Slide as SingleSlide } from "../components/slides/SingleSlide";
 import styled from "styled-components";
 import { MultipleChoice, MultipleChoiceEdit } from "../components/block";
@@ -13,39 +13,10 @@ const SlideWrapper = styled(Layout.Content)`
   display: flex;
   flex-direction: row;
   height: 80vh;
-  margin: 15px;
-  border-radius: 5px;
-  border: 1px solid red;
+  border-radius: 2px;
+  border: 1px solid #ccc;
   border: ${({ editing }: SlideWrapperProps) => editing && "2px solid #7e7e7e"};
 `;
-
-// FORM
-type EditSlideFormProps = {};
-const EditSlideForm = (props: EditSlideFormProps) => {
-  return <div>form</div>;
-};
-
-// MODAL
-type ModalProps = {
-  title: string;
-  onSubmitSuccess: () => void;
-  onSubmitError: (e: any) => void;
-  onCancel: () => void;
-};
-const EditSlideModal = ({
-  title,
-  onSubmitSuccess,
-  onSubmitError,
-  onCancel
-}: ModalProps) => {
-  const onSubmit = ({ title }: Store) => console.log(title);
-
-  return (
-    <Modal visible={true} title={title} onCancel={onCancel} footer={[]}>
-      <EditSlideForm />
-    </Modal>
-  );
-};
 
 enum PageState {
   Preview,
@@ -71,22 +42,17 @@ export const SlideEditorPage = (props: Props) => {
 
   useEffect(() => {
     let form = {
-      text: "Small pipi?kfnmopasnfopmapfinapsnmf",
+      text: "Your question goes here?",
       selected: 1,
       choices: [
-        { value: "YES", text: "yes" },
-        { value: "YES", text: "yes" },
-        { value: "YES", text: "yes" },
-        { value: "YES", text: "yes" },
-        { value: "YES", text: "yes" },
-        { value: "YES", text: "yes" }
+        { value: "A", text: "No" },
+        { value: "A", text: "Yes" }
       ]
     };
 
     setMultipleChoiceForm(form);
   }, []);
 
-  console.log(multipleChoiceForm.selected);
   return (
     <Wrapper>
       <Title level={2}>Slide editor</Title>
@@ -99,10 +65,7 @@ export const SlideEditorPage = (props: Props) => {
         />
       )}
 
-      <SlideWrapper
-        onClick={() => setPageState(PageState.Editing)}
-        editing={pageState == PageState.Editing}
-      >
+      <SlideWrapper editing={pageState == PageState.Editing}>
         <SingleSlide
           Block={
             <MultipleChoice
@@ -117,7 +80,16 @@ export const SlideEditorPage = (props: Props) => {
               choices={multipleChoiceForm.choices}
             />
           }
-        />
+        >
+          <Button
+            onClick={() => setPageState(PageState.Editing)}
+            type={"primary"}
+            size={"large"}
+          >
+            Update content
+          </Button>
+        </SingleSlide>
+
         {pageState == PageState.Editing && (
           <SingleSlide
             Block={

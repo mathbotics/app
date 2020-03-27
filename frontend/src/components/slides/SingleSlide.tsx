@@ -1,5 +1,6 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styled from "styled-components";
+import { Button } from "antd";
 import { FileImageOutlined } from "@ant-design/icons";
 import { MultipleChoice, MultipleChoiceEdit } from "../block";
 
@@ -33,12 +34,15 @@ type Props = {
   Block?: BlockComponent;
   preview?: boolean;
   selected?: boolean;
+  children?: ReactNode;
+  style?: any;
 };
-export function Slide({ Block, preview, selected }: Props) {
+export function Slide({ Block, preview, selected, children }: Props) {
   return (
     <Wrapper preview={preview} selected={selected}>
       {!preview && (Block ?? "No block provided")}
       {preview && <FileImageOutlined style={{ fontSize: 50 }} />}
+      {children}
     </Wrapper>
   );
 }

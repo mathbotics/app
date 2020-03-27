@@ -14,7 +14,7 @@ type QuestionProps = {
   text: string;
 };
 const Question = ({ text }: QuestionProps) => {
-  return <h1>{text}</h1>;
+  return <h1 style={{ width: "300px" }}>{text}</h1>;
 };
 
 type MultipleChoiceChoiceProps = {
