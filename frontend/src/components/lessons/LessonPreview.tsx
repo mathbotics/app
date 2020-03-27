@@ -49,9 +49,7 @@ const LessonPreview = ({
           }}
         >
           <Tooltip title={title}>
-            <Title level={4} style={{ margin: "0" }}>
-              {title}
-            </Title>
+            <p style={{ margin: "0", fontWeight: 700 }}>{title}</p>
           </Tooltip>
         </div>
         <div
