@@ -67,7 +67,7 @@ type ModalPreviewSlideType = {
 type ModalProps = {
   title: string;
   visible: boolean;
-  onSubmit: any;
+  onSubmit: (type: SlideType) => void;
   onCancel: any;
 };
 const CreateSlideModal = ({
@@ -76,7 +76,8 @@ const CreateSlideModal = ({
   onSubmit,
   onCancel
 }: ModalProps) => {
-  const [selected, setSelected] = useState<number>();
+  const [selected, setSelected] = useState<SlideType>(SlideType.UNKNOWN);
+
   const previewSlides: ModalPreviewSlideType[] = [
     {
       type: SlideType.SINGLE,
@@ -97,12 +98,15 @@ const CreateSlideModal = ({
       width={1100}
       visible={visible}
       title={title}
-      onOk={onSubmit}
+      onOk={() => onSubmit(selected)}
       onCancel={onCancel}
     >
       <ModalBodyWrapper>
         {previewSlides.map(
-          ({ type, title, description }: ModalPreviewSlideType, index) => (
+          (
+            { type, title, description }: ModalPreviewSlideType,
+            index: number
+          ) => (
             <div
               style={{
                 display: "flex",
@@ -111,8 +115,8 @@ const CreateSlideModal = ({
                 margin: "20px"
               }}
             >
-              <ModalSlideWrapper key={index} onClick={() => setSelected(index)}>
-                <Slide preview selected={index == selected} type={type} />
+              <ModalSlideWrapper key={index} onClick={() => setSelected(type)}>
+                <Slide preview selected={type === selected} type={type} />
               </ModalSlideWrapper>
               <h3 style={{ marginTop: "10px" }}>
                 <u>{title}</u>
@@ -140,6 +144,7 @@ export const SlidesPage = (props: SlidesPageProps): JSX.Element => {
   return (
     <>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
+        {/* Would like to load in the title of the lesson to display below */}
         <Title level={2}>Slides</Title>
 
         <Button
@@ -155,7 +160,10 @@ export const SlidesPage = (props: SlidesPageProps): JSX.Element => {
         <CreateSlideModal
           title="Choose a slide layout"
           visible={pageState === PageState.CreateSlide}
-          onSubmit={() => console.log("Submitted")}
+          onSubmit={(type: SlideType) => {
+            console.log(`Intent to create slide with type ${type}`);
+            setPageState(PageState.Default);
+          }}
           onCancel={() => setPageState(PageState.Default)}
         />
       )}

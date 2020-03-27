@@ -2,8 +2,9 @@ import React, { ReactNode } from "react";
 import { Slide as SingleSlide } from "./SingleSlide";
 import { Slide as HalfSlide } from "./HalfSlide";
 export enum Type {
-  SINGLE,
-  HALF
+  SINGLE = "SINGLE",
+  HALF = "HALF",
+  UNKNOWN = "UNKNOWN"
 }
 type Props = {
   type: Type;
