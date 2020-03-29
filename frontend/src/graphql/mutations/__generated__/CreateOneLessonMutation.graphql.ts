@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 385b8dc6b131c7b6b2829ee720f9376d */
+/* @relayHash 8c6f52f28916057cd5e3ad20687edb86 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -183,6 +183,7 @@ export type SlideCreateWithoutLessonInput = {
     id?: string | null;
     quarterSlide?: QuarterSlideCreateOneWithoutSlidesInput | null;
     singleSlide?: SingleSlideCreateOneWithoutSlidesInput | null;
+    title: string;
 };
 export type HalfSlideCreateOneWithoutSlidesInput = {
     connect?: HalfSlideWhereUniqueInput | null;
@@ -192,9 +193,9 @@ export type HalfSlideWhereUniqueInput = {
     id?: string | null;
 };
 export type HalfSlideCreateWithoutSlidesInput = {
-    firstHalfBlock?: BlockCreateOneWithoutHalfSlidesInput | null;
+    firstHalfBlock: BlockCreateOneWithoutHalfSlidesInput;
     id?: string | null;
-    secondHalfBlock?: BlockCreateOneWithoutHalfSlidesImplementingInput | null;
+    secondHalfBlock: BlockCreateOneWithoutHalfSlidesImplementingInput;
 };
 export type BlockCreateOneWithoutHalfSlidesInput = {
     connect?: BlockWhereUniqueInput | null;
@@ -217,7 +218,7 @@ export type HalfSlideCreateManyWithoutSecondHalfBlockInput = {
     create?: Array<HalfSlideCreateWithoutSecondHalfBlockInput> | null;
 };
 export type HalfSlideCreateWithoutSecondHalfBlockInput = {
-    firstHalfBlock?: BlockCreateOneWithoutHalfSlidesInput | null;
+    firstHalfBlock: BlockCreateOneWithoutHalfSlidesInput;
     id?: string | null;
     slides?: SlideCreateManyWithoutHalfSlideInput | null;
 };
@@ -230,6 +231,7 @@ export type SlideCreateWithoutHalfSlideInput = {
     lesson?: LessonCreateOneWithoutSlidesInput | null;
     quarterSlide?: QuarterSlideCreateOneWithoutSlidesInput | null;
     singleSlide?: SingleSlideCreateOneWithoutSlidesInput | null;
+    title: string;
 };
 export type LessonCreateOneWithoutSlidesInput = {
     connect?: LessonWhereUniqueInput | null;
@@ -249,8 +251,8 @@ export type QuarterSlideWhereUniqueInput = {
 };
 export type QuarterSlideCreateWithoutSlidesInput = {
     id?: string | null;
-    mainBlock?: BlockCreateOneWithoutQuarterSlidesInput | null;
-    sideBlock?: BlockCreateOneWithoutQuarterSlidesImplementingInput | null;
+    mainBlock: BlockCreateOneWithoutQuarterSlidesInput;
+    sideBlock: BlockCreateOneWithoutQuarterSlidesImplementingInput;
 };
 export type BlockCreateOneWithoutQuarterSlidesInput = {
     connect?: BlockWhereUniqueInput | null;
@@ -271,7 +273,7 @@ export type HalfSlideCreateManyWithoutFirstHalfBlockInput = {
 };
 export type HalfSlideCreateWithoutFirstHalfBlockInput = {
     id?: string | null;
-    secondHalfBlock?: BlockCreateOneWithoutHalfSlidesImplementingInput | null;
+    secondHalfBlock: BlockCreateOneWithoutHalfSlidesImplementingInput;
     slides?: SlideCreateManyWithoutHalfSlideInput | null;
 };
 export type BlockCreateOneWithoutHalfSlidesImplementingInput = {
@@ -356,7 +358,7 @@ export type QuarterSlideCreateManyWithoutMainBlockInput = {
 };
 export type QuarterSlideCreateWithoutMainBlockInput = {
     id?: string | null;
-    sideBlock?: BlockCreateOneWithoutQuarterSlidesImplementingInput | null;
+    sideBlock: BlockCreateOneWithoutQuarterSlidesImplementingInput;
     slides?: SlideCreateManyWithoutQuarterSlideInput | null;
 };
 export type BlockCreateOneWithoutQuarterSlidesImplementingInput = {
@@ -392,6 +394,7 @@ export type SlideCreateWithoutSingleSlideInput = {
     id?: string | null;
     lesson?: LessonCreateOneWithoutSlidesInput | null;
     quarterSlide?: QuarterSlideCreateOneWithoutSlidesInput | null;
+    title: string;
 };
 export type TextBlockCreateOneWithoutBlocksInput = {
     connect?: TextBlockWhereUniqueInput | null;
@@ -401,9 +404,9 @@ export type TextBlockWhereUniqueInput = {
     id?: string | null;
 };
 export type TextBlockCreateWithoutBlocksInput = {
-    body?: string | null;
+    body: string;
     id?: string | null;
-    title?: string | null;
+    title: string;
 };
 export type SlideCreateManyWithoutQuarterSlideInput = {
     connect?: Array<SlideWhereUniqueInput> | null;
@@ -414,13 +417,14 @@ export type SlideCreateWithoutQuarterSlideInput = {
     id?: string | null;
     lesson?: LessonCreateOneWithoutSlidesInput | null;
     singleSlide?: SingleSlideCreateOneWithoutSlidesInput | null;
+    title: string;
 };
 export type SingleSlideCreateOneWithoutSlidesInput = {
     connect?: SingleSlideWhereUniqueInput | null;
     create?: SingleSlideCreateWithoutSlidesInput | null;
 };
 export type SingleSlideCreateWithoutSlidesInput = {
-    block?: BlockCreateOneWithoutSingleSlidesInput | null;
+    block: BlockCreateOneWithoutSingleSlidesInput;
     id?: string | null;
 };
 export type BlockCreateOneWithoutSingleSlidesInput = {
@@ -442,7 +446,7 @@ export type QuarterSlideCreateManyWithoutSideBlockInput = {
 };
 export type QuarterSlideCreateWithoutSideBlockInput = {
     id?: string | null;
-    mainBlock?: BlockCreateOneWithoutQuarterSlidesInput | null;
+    mainBlock: BlockCreateOneWithoutQuarterSlidesInput;
     slides?: SlideCreateManyWithoutQuarterSlideInput | null;
 };
 export type MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput = {

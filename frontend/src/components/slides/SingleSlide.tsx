@@ -1,7 +1,12 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styled from "styled-components";
+import { Button } from "antd";
 import { FileImageOutlined } from "@ant-design/icons";
+import { graphql } from "babel-plugin-relay/macro";
+
 import { MultipleChoice, MultipleChoiceEdit } from "../block";
+import { createFragmentContainer } from "react-relay";
+import { SingleSlide_singleSlide } from "./__generated__/SingleSlide_singleSlide.graphql";
 
 type WrapperProps = { preview?: boolean; selected?: boolean };
 const Wrapper = styled.div`
@@ -30,15 +35,25 @@ type BlockComponent = React.ReactElement<
   typeof MultipleChoice | typeof MultipleChoiceEdit
 >;
 type Props = {
+  singleSlide?: SingleSlide_singleSlide;
   Block?: BlockComponent;
   preview?: boolean;
   selected?: boolean;
+  children?: ReactNode;
+  style?: any;
 };
-export function Slide({ Block, preview, selected }: Props) {
-  return (
-    <Wrapper preview={preview} selected={selected}>
-      {!preview && (Block ?? "No block provided")}
-      {preview && <FileImageOutlined style={{ fontSize: 50 }} />}
-    </Wrapper>
-  );
-}
+const SingleSlide = ({ Block, preview, selected, children }: Props) => (
+  <Wrapper preview={preview} selected={selected}>
+    {!preview && (Block ?? "No block provided")}
+    {preview && <FileImageOutlined style={{ fontSize: 50 }} />}
+    {children}
+  </Wrapper>
+);
+
+export default createFragmentContainer(SingleSlide, {
+  singleSlide: graphql`
+    fragment SingleSlide_singleSlide on SingleSlide {
+      id
+    }
+  `
+});

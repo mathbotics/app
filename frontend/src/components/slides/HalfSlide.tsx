@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { UnorderedListOutlined, AlignLeftOutlined } from "@ant-design/icons";
+import { graphql } from "babel-plugin-relay/macro";
+
 import { MultipleChoice, MultipleChoiceEdit } from "../block";
+import { createFragmentContainer } from "react-relay";
+import { HalfSlide_halfSlide } from "./__generated__/HalfSlide_halfSlide.graphql";
 
 const BlockAWrapper = styled.div`
   display: flex;
@@ -45,29 +49,36 @@ type BlockComponent = React.ReactElement<
   typeof MultipleChoice | typeof MultipleChoiceEdit
 >;
 type Props = {
+  halfSlide?: HalfSlide_halfSlide;
   BlockA?: BlockComponent;
   BlockB?: BlockComponent;
   preview?: boolean;
   selected?: boolean;
 };
-export function Slide({ BlockA, BlockB, preview, selected }: Props) {
-  return (
-    <Wrapper preview={preview} selected={selected}>
-      <BlockAWrapper>
-        {preview ? (
-          <AlignLeftOutlined style={{ fontSize: 50 }} />
-        ) : (
-          BlockB ?? "No block provided"
-        )}
-      </BlockAWrapper>
+const HalfSlide = ({ BlockA, BlockB, preview, selected }: Props) => (
+  <Wrapper preview={preview} selected={selected}>
+    <BlockAWrapper>
+      {preview ? (
+        <AlignLeftOutlined style={{ fontSize: 50 }} />
+      ) : (
+        BlockB ?? "No block provided"
+      )}
+    </BlockAWrapper>
 
-      <BlockBWrapper>
-        {preview ? (
-          <UnorderedListOutlined style={{ fontSize: 50 }} />
-        ) : (
-          BlockB ?? "No block provided"
-        )}
-      </BlockBWrapper>
-    </Wrapper>
-  );
-}
+    <BlockBWrapper>
+      {preview ? (
+        <UnorderedListOutlined style={{ fontSize: 50 }} />
+      ) : (
+        BlockB ?? "No block provided"
+      )}
+    </BlockBWrapper>
+  </Wrapper>
+);
+
+export default createFragmentContainer(HalfSlide, {
+  halfSlide: graphql`
+    fragment HalfSlide_halfSlide on HalfSlide {
+      id
+    }
+  `
+});

@@ -40,9 +40,18 @@ export const Lessons = (props: PageProps): JSX.Element => {
   const history = useHistory();
   const [pageState, setPageState] = useState<PageState>(PageState.Default);
   return (
-    <>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <Title level={2}>Lessons</Title>
+    <div style={{ padding: "0px 45px" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          height: "150px",
+          alignItems: "flex-start",
+          color: "white",
+          flexDirection: "column"
+        }}
+      >
+        <Title level={1}>Lesson Catalogue</Title>
         <Button
           type="primary"
           onClick={() => setPageState(PageState.CreateLesson)}
@@ -94,7 +103,7 @@ export const Lessons = (props: PageProps): JSX.Element => {
           />
         ))}
       </LessonsWrapper>
-    </>
+    </div>
   );
 };
 

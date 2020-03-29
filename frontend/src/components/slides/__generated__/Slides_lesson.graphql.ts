@@ -4,7 +4,9 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type Slides_lesson = {
+    readonly id: string;
     readonly title: string;
+    readonly " $fragmentRefs": FragmentRefs<"SlidesSidebar_lesson">;
     readonly " $refType": "Slides_lesson";
 };
 export type Slides_lesson$data = Slides_lesson;
@@ -25,11 +27,23 @@ const node: ReaderFragment = {
     {
       "kind": "ScalarField",
       "alias": null,
+      "name": "id",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
       "name": "title",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "SlidesSidebar_lesson",
+      "args": null
     }
   ]
 };
-(node as any).hash = 'c98414c933b29dfdbe92f1fe0d7acec9';
+(node as any).hash = '5ca702db6b76ef4893d47a47e0c29642';
 export default node;

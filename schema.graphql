@@ -656,6 +656,7 @@ input CourseWhereUniqueInput {
 }
 
 input CreateSlideInput {
+  lessonId: String!
   slideType: String!
   title: String!
 }
@@ -1300,7 +1301,7 @@ input LogInInput {
 }
 
 type MultipleChoiceQuestionBlock {
-  choices(after: MultipleChoiceQuestionChoiceWhereUniqueInput, before: MultipleChoiceQuestionChoiceWhereUniqueInput, first: Int, last: Int, skip: Int): [MultipleChoiceQuestionChoice!]!
+  choice: [MultipleChoiceQuestionChoice!]!
   correctChoice: MultipleChoiceQuestionChoice!
   id: String!
   text: String!

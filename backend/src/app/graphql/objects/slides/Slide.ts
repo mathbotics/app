@@ -9,6 +9,7 @@ export const Slide = interfaceType({
     t.model.id();
     t.model.title();
     t.resolveType(async ({ id }) => {
+      console.log(id);
       const { singleSlide, halfSlide, quarterSlide } = nullthrows(
         await prisma.slide.findOne({
           where: { id },

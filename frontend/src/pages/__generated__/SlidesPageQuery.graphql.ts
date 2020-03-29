@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 40a362618e547693c927f7924cddf648 */
+/* @relayHash ca0caa50bd5a0ee4383c306c4c704a4b */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -31,8 +31,38 @@ query SlidesPageQuery(
   }
 }
 
-fragment Slides_lesson on Lesson {
+fragment HalfSlide_halfSlide on HalfSlide {
+  id
+}
+
+fragment SingleSlide_singleSlide on SingleSlide {
+  id
+}
+
+fragment Slide_slide on Slide {
+  __typename
   title
+  ... on SingleSlide {
+    ...SingleSlide_singleSlide
+  }
+  ... on HalfSlide {
+    ...HalfSlide_halfSlide
+  }
+}
+
+fragment SlidesSidebar_lesson on Lesson {
+  title
+  slides {
+    __typename
+    id
+    ...Slide_slide
+  }
+}
+
+fragment Slides_lesson on Lesson {
+  id
+  title
+  ...SlidesSidebar_lesson
 }
 */
 
@@ -51,7 +81,21 @@ v1 = [
     "name": "where",
     "variableName": "where"
   }
-];
+],
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "title",
+  "args": null,
+  "storageKey": null
+};
 return {
   "kind": "Request",
   "fragment": {
@@ -93,12 +137,27 @@ return {
         "concreteType": "Lesson",
         "plural": false,
         "selections": [
+          (v2/*: any*/),
+          (v3/*: any*/),
           {
-            "kind": "ScalarField",
+            "kind": "LinkedField",
             "alias": null,
-            "name": "title",
+            "name": "slides",
+            "storageKey": null,
             "args": null,
-            "storageKey": null
+            "concreteType": null,
+            "plural": true,
+            "selections": [
+              (v2/*: any*/),
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "__typename",
+                "args": null,
+                "storageKey": null
+              },
+              (v3/*: any*/)
+            ]
           }
         ]
       }
@@ -108,7 +167,7 @@ return {
     "operationKind": "query",
     "name": "SlidesPageQuery",
     "id": null,
-    "text": "query SlidesPageQuery(\n  $where: LessonWhereUniqueInput!\n) {\n  lesson(where: $where) {\n    ...Slides_lesson\n  }\n}\n\nfragment Slides_lesson on Lesson {\n  title\n}\n",
+    "text": "query SlidesPageQuery(\n  $where: LessonWhereUniqueInput!\n) {\n  lesson(where: $where) {\n    ...Slides_lesson\n  }\n}\n\nfragment HalfSlide_halfSlide on HalfSlide {\n  id\n}\n\nfragment SingleSlide_singleSlide on SingleSlide {\n  id\n}\n\nfragment Slide_slide on Slide {\n  __typename\n  title\n  ... on SingleSlide {\n    ...SingleSlide_singleSlide\n  }\n  ... on HalfSlide {\n    ...HalfSlide_halfSlide\n  }\n}\n\nfragment SlidesSidebar_lesson on Lesson {\n  title\n  slides {\n    __typename\n    id\n    ...Slide_slide\n  }\n}\n\nfragment Slides_lesson on Lesson {\n  id\n  title\n  ...SlidesSidebar_lesson\n}\n",
     "metadata": {}
   }
 };

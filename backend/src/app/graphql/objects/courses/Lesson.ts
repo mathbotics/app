@@ -27,11 +27,14 @@ export const Lesson = objectType({
           }),
           'Lesson not found',
         );
-        return slides.map(({ singleSlide, halfSlide, quarterSlide }) =>
-          nullthrows(
-            singleSlide ?? halfSlide ?? quarterSlide,
-            'Slide not found',
-          ),
+        return slides.map(
+          ({ singleSlide, halfSlide, quarterSlide, ...parentSlide }) => ({
+            ...nullthrows(
+              singleSlide ?? halfSlide ?? quarterSlide,
+              'Slide not found',
+            ),
+            ...parentSlide,
+          }),
         );
       },
     });
