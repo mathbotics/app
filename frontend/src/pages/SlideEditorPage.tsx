@@ -4,6 +4,7 @@ import { Slide as SingleSlide } from "../components/slides/SingleSlide";
 import styled from "styled-components";
 import { MultipleChoice, MultipleChoiceEdit } from "../components/block";
 import { Store } from "rc-field-form/lib/interface";
+import { SlidesSidebar } from "../components/hocs/Sidebar/withSlidesSidebar";
 
 const { Title } = Typography;
 
