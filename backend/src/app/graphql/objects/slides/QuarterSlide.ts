@@ -5,23 +5,34 @@ import prisma from '../../../data/prisma';
 export const QuarterSlide = objectType({
   name: 'QuarterSlide',
   definition(t) {
-    t.model.id();
+    t.implements('Slide');
     t.field('mainBlock', {
       type: 'Block',
       async resolve({ id }) {
-        const { mainBlock } = nullthrows(
-          await prisma.quarterSlide.findOne({
+        const { quarterSlide } = nullthrows(
+          await prisma.slide.findOne({
             where: { id },
             include: {
-              mainBlock: {
-                include: { textBlock: true, multipleChoiceQuestionBlock: true },
+              quarterSlide: {
+                include: {
+                  mainBlock: {
+                    include: {
+                      textBlock: true,
+                      multipleChoiceQuestionBlock: true,
+                    },
+                  },
+                },
               },
             },
           }),
           'QuarterSlide not found',
         );
+        const { textBlock, multipleChoiceQuestionBlock } = nullthrows(
+          quarterSlide?.mainBlock,
+          'mainBlock not found',
+        );
         return nullthrows(
-          mainBlock?.textBlock ?? mainBlock?.multipleChoiceQuestionBlock,
+          textBlock ?? multipleChoiceQuestionBlock,
           'No block found.',
         );
       },
@@ -29,19 +40,30 @@ export const QuarterSlide = objectType({
     t.field('sideBlock', {
       type: 'Block',
       async resolve({ id }) {
-        const { sideBlock } = nullthrows(
-          await prisma.quarterSlide.findOne({
+        const { quarterSlide } = nullthrows(
+          await prisma.slide.findOne({
             where: { id },
             include: {
-              sideBlock: {
-                include: { textBlock: true, multipleChoiceQuestionBlock: true },
+              quarterSlide: {
+                include: {
+                  sideBlock: {
+                    include: {
+                      textBlock: true,
+                      multipleChoiceQuestionBlock: true,
+                    },
+                  },
+                },
               },
             },
           }),
           'QuarterSlide not found',
         );
+        const { textBlock, multipleChoiceQuestionBlock } = nullthrows(
+          quarterSlide?.sideBlock,
+          'sideBlock not found',
+        );
         return nullthrows(
-          sideBlock?.textBlock ?? sideBlock?.multipleChoiceQuestionBlock,
+          textBlock ?? multipleChoiceQuestionBlock,
           'No block found.',
         );
       },

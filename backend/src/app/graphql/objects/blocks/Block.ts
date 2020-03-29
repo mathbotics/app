@@ -1,4 +1,6 @@
 import { unionType } from 'nexus';
+import nullthrows from 'nullthrows';
+
 import prisma from '../../../data/prisma';
 
 export const Block = unionType({
@@ -6,10 +8,16 @@ export const Block = unionType({
   definition(t) {
     t.members('MultipleChoiceQuestionBlock', 'TextBlock');
     t.resolveType(async ({ id }) => {
-      const [multipleChoiceQuestionBlock, textBlock] = await Promise.all([
-        prisma.multipleChoiceQuestionBlock.findOne({ where: { id } }),
-        prisma.textBlock.findOne({ where: { id } }),
-      ]);
+      const { multipleChoiceQuestionBlock, textBlock } = nullthrows(
+        await prisma.block.findOne({
+          where: { id },
+          include: {
+            multipleChoiceQuestionBlock: true,
+            textBlock: true,
+          },
+        }),
+        'Block not found',
+      );
       if (multipleChoiceQuestionBlock) {
         return 'MultipleChoiceQuestionBlock';
       }

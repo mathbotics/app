@@ -1,16 +1,21 @@
-import { unionType } from 'nexus';
+import { interfaceType } from 'nexus';
+import nullthrows from 'nullthrows';
+
 import prisma from '../../../data/prisma';
 
-export const Slide = unionType({
+export const Slide = interfaceType({
   name: 'Slide',
   definition(t) {
-    t.members('SingleSlide', 'HalfSlide', 'QuarterSlide');
+    t.model.id();
+    t.model.title();
     t.resolveType(async ({ id }) => {
-      const [singleSlide, halfSlide, quarterSlide] = await Promise.all([
-        prisma.singleSlide.findOne({ where: { id } }),
-        prisma.halfSlide.findOne({ where: { id } }),
-        prisma.quarterSlide.findOne({ where: { id } }),
-      ]);
+      const { singleSlide, halfSlide, quarterSlide } = nullthrows(
+        await prisma.slide.findOne({
+          where: { id },
+          include: { singleSlide: true, halfSlide: true, quarterSlide: true },
+        }),
+        'Slide not found',
+      );
       if (singleSlide) {
         return 'SingleSlide';
       }

@@ -11,5 +11,7 @@ export const mutation = extendType({
     t.crud.createOneCourse();
     t.crud.updateOneCourse();
     t.crud.createOneLesson();
+    // @ts-ignore
+    t.crud.updateOneBlock();
   },
 });

@@ -6,23 +6,34 @@ import prisma from '../../../data/prisma';
 export const SingleSlide = objectType({
   name: 'SingleSlide',
   definition(t) {
-    t.model.id();
+    t.implements('Slide');
     t.field('block', {
       type: 'Block',
       async resolve({ id }) {
-        const { block } = nullthrows(
-          await prisma.singleSlide.findOne({
+        const { singleSlide } = nullthrows(
+          await prisma.slide.findOne({
             where: { id },
             include: {
-              block: {
-                include: { textBlock: true, multipleChoiceQuestionBlock: true },
+              singleSlide: {
+                include: {
+                  block: {
+                    include: {
+                      textBlock: true,
+                      multipleChoiceQuestionBlock: true,
+                    },
+                  },
+                },
               },
             },
           }),
           'SingleSlide not found',
         );
+        const { textBlock, multipleChoiceQuestionBlock } = nullthrows(
+          singleSlide?.block,
+          'Block not found',
+        );
         return nullthrows(
-          block?.textBlock ?? block?.multipleChoiceQuestionBlock,
+          textBlock ?? multipleChoiceQuestionBlock,
           'No block found.',
         );
       },

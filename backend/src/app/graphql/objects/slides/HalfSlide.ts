@@ -5,24 +5,34 @@ import prisma from '../../../data/prisma';
 export const HalfSlide = objectType({
   name: 'HalfSlide',
   definition(t) {
-    t.model.id();
+    t.implements('Slide');
     t.field('firstHalfBlock', {
       type: 'Block',
       async resolve({ id }) {
-        const { firstHalfBlock } = nullthrows(
-          await prisma.halfSlide.findOne({
+        const { halfSlide } = nullthrows(
+          await prisma.slide.findOne({
             where: { id },
             include: {
-              firstHalfBlock: {
-                include: { textBlock: true, multipleChoiceQuestionBlock: true },
+              halfSlide: {
+                include: {
+                  firstHalfBlock: {
+                    include: {
+                      textBlock: true,
+                      multipleChoiceQuestionBlock: true,
+                    },
+                  },
+                },
               },
             },
           }),
           'HalfSlide not found',
         );
+        const { multipleChoiceQuestionBlock, textBlock } = nullthrows(
+          halfSlide?.firstHalfBlock,
+          'Block not found',
+        );
         return nullthrows(
-          firstHalfBlock?.textBlock ??
-            firstHalfBlock?.multipleChoiceQuestionBlock,
+          textBlock ?? multipleChoiceQuestionBlock,
           'No block found.',
         );
       },
@@ -30,20 +40,30 @@ export const HalfSlide = objectType({
     t.field('secondHalfBlock', {
       type: 'Block',
       async resolve({ id }) {
-        const { secondHalfBlock } = nullthrows(
-          await prisma.halfSlide.findOne({
+        const { halfSlide } = nullthrows(
+          await prisma.slide.findOne({
             where: { id },
             include: {
-              secondHalfBlock: {
-                include: { textBlock: true, multipleChoiceQuestionBlock: true },
+              halfSlide: {
+                include: {
+                  secondHalfBlock: {
+                    include: {
+                      textBlock: true,
+                      multipleChoiceQuestionBlock: true,
+                    },
+                  },
+                },
               },
             },
           }),
           'HalfSlide not found',
         );
+        const { multipleChoiceQuestionBlock, textBlock } = nullthrows(
+          halfSlide?.secondHalfBlock,
+          'Block not found',
+        );
         return nullthrows(
-          secondHalfBlock?.textBlock ??
-            secondHalfBlock?.multipleChoiceQuestionBlock,
+          textBlock ?? multipleChoiceQuestionBlock,
           'No block found.',
         );
       },

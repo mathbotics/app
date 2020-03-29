@@ -103,6 +103,7 @@ model MultipleChoiceQuestionChoice {
 
 model Slide {
   id           String        @id @default(cuid())
+  title        String
   singleSlide  SingleSlide?
   quarterSlide QuarterSlide?
   halfSlide    HalfSlide?
@@ -110,19 +111,19 @@ model Slide {
 
 model SingleSlide {
   id    String @id @default(cuid())
-  block Block?
+  block Block
 }
 
 model QuarterSlide {
   id        String @id @default(cuid())
-  mainBlock Block?  @relation("QuarterSlideToMainBlock")
-  sideBlock Block?
+  mainBlock Block  @relation("QuarterSlideToMainBlock")
+  sideBlock Block
 }
 
 model HalfSlide {
   id              String @id @default(cuid())
-  firstHalfBlock  Block?  @relation("HalfSlideToFirstHalfBlock")
-  secondHalfBlock Block?
+  firstHalfBlock  Block  @relation("HalfSlideToFirstHalfBlock")
+  secondHalfBlock Block
 }
 
 model Block {
@@ -135,8 +136,8 @@ model Block {
 
 model TextBlock {
   id    String  @id @default(cuid())
-  title String?
-  body  String?
+  title String
+  body  String
 }
 
 model Lesson {
