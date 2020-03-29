@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash bc85de15421dd3daa42833d86ad01c4d */
+/* @relayHash fcc6e49203ed2eea852394d6d101e0c3 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -9,7 +9,6 @@ export type LessonsPageQueryResponse = {
     readonly lessons: ReadonlyArray<{
         readonly " $fragmentRefs": FragmentRefs<"LessonPreview_lesson">;
     }>;
-    readonly " $fragmentRefs": FragmentRefs<"CreateLessonModalRefetch_test">;
 };
 export type LessonsPageQuery = {
     readonly response: LessonsPageQueryResponse;
@@ -20,16 +19,8 @@ export type LessonsPageQuery = {
 
 /*
 query LessonsPageQuery {
-  ...CreateLessonModalRefetch_test
   lessons {
     ...LessonPreview_lesson
-  }
-}
-
-fragment CreateLessonModalRefetch_test on Query {
-  lessons {
-    id
-    title
   }
 }
 
@@ -63,11 +54,6 @@ const node: ConcreteRequest = {
             "args": null
           }
         ]
-      },
-      {
-        "kind": "FragmentSpread",
-        "name": "CreateLessonModalRefetch_test",
-        "args": null
       }
     ]
   },
@@ -107,9 +93,9 @@ const node: ConcreteRequest = {
     "operationKind": "query",
     "name": "LessonsPageQuery",
     "id": null,
-    "text": "query LessonsPageQuery {\n  ...CreateLessonModalRefetch_test\n  lessons {\n    ...LessonPreview_lesson\n  }\n}\n\nfragment CreateLessonModalRefetch_test on Query {\n  lessons {\n    id\n    title\n  }\n}\n\nfragment LessonPreview_lesson on Lesson {\n  id\n  title\n}\n",
+    "text": "query LessonsPageQuery {\n  lessons {\n    ...LessonPreview_lesson\n  }\n}\n\nfragment LessonPreview_lesson on Lesson {\n  id\n  title\n}\n",
     "metadata": {}
   }
 };
-(node as any).hash = '4aceb23baf7c5b5c96ef70ce63c33388';
+(node as any).hash = '8dc4e14a71751cbfe1a1665307726506';
 export default node;

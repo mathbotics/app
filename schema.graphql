@@ -166,6 +166,17 @@ input BlockScalarWhereInput {
   singleSlides: SingleSlideFilter
 }
 
+input BlockUpdateInput {
+  halfSlides: HalfSlideUpdateManyWithoutFirstHalfBlockInput
+  halfSlidesImplementing: HalfSlideUpdateManyWithoutSecondHalfBlockInput
+  id: String
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput
+  quarterSlides: QuarterSlideUpdateManyWithoutMainBlockInput
+  quarterSlidesImplementing: QuarterSlideUpdateManyWithoutSideBlockInput
+  singleSlides: SingleSlideUpdateManyWithoutBlockInput
+  textBlock: TextBlockUpdateOneWithoutBlocksInput
+}
+
 input BlockUpdateManyDataInput {
   id: String
 }
@@ -187,47 +198,37 @@ input BlockUpdateManyWithWhereNestedInput {
   where: BlockScalarWhereInput!
 }
 
-input BlockUpdateOneWithoutHalfSlidesImplementingInput {
+input BlockUpdateOneRequiredWithoutHalfSlidesImplementingInput {
   connect: BlockWhereUniqueInput
   create: BlockCreateWithoutHalfSlidesImplementingInput
-  delete: Boolean
-  disconnect: Boolean
   update: BlockUpdateWithoutHalfSlidesImplementingDataInput
   upsert: BlockUpsertWithoutHalfSlidesImplementingInput
 }
 
-input BlockUpdateOneWithoutHalfSlidesInput {
+input BlockUpdateOneRequiredWithoutHalfSlidesInput {
   connect: BlockWhereUniqueInput
   create: BlockCreateWithoutHalfSlidesInput
-  delete: Boolean
-  disconnect: Boolean
   update: BlockUpdateWithoutHalfSlidesDataInput
   upsert: BlockUpsertWithoutHalfSlidesInput
 }
 
-input BlockUpdateOneWithoutQuarterSlidesImplementingInput {
+input BlockUpdateOneRequiredWithoutQuarterSlidesImplementingInput {
   connect: BlockWhereUniqueInput
   create: BlockCreateWithoutQuarterSlidesImplementingInput
-  delete: Boolean
-  disconnect: Boolean
   update: BlockUpdateWithoutQuarterSlidesImplementingDataInput
   upsert: BlockUpsertWithoutQuarterSlidesImplementingInput
 }
 
-input BlockUpdateOneWithoutQuarterSlidesInput {
+input BlockUpdateOneRequiredWithoutQuarterSlidesInput {
   connect: BlockWhereUniqueInput
   create: BlockCreateWithoutQuarterSlidesInput
-  delete: Boolean
-  disconnect: Boolean
   update: BlockUpdateWithoutQuarterSlidesDataInput
   upsert: BlockUpsertWithoutQuarterSlidesInput
 }
 
-input BlockUpdateOneWithoutSingleSlidesInput {
+input BlockUpdateOneRequiredWithoutSingleSlidesInput {
   connect: BlockWhereUniqueInput
   create: BlockCreateWithoutSingleSlidesInput
-  delete: Boolean
-  disconnect: Boolean
   update: BlockUpdateWithoutSingleSlidesDataInput
   upsert: BlockUpsertWithoutSingleSlidesInput
 }
@@ -656,6 +657,7 @@ input CourseWhereUniqueInput {
 
 input CreateSlideInput {
   slideType: String!
+  title: String!
 }
 
 scalar DateTime
@@ -813,10 +815,11 @@ input GuardianWhereUniqueInput {
   id: String
 }
 
-type HalfSlide {
+type HalfSlide implements Slide {
   firstHalfBlock: Block!
   id: String!
   secondHalfBlock: Block!
+  title: String!
 }
 
 input HalfSlideCreateManyWithoutFirstHalfBlockInput {
@@ -836,20 +839,20 @@ input HalfSlideCreateOneWithoutSlidesInput {
 
 input HalfSlideCreateWithoutFirstHalfBlockInput {
   id: String
-  secondHalfBlock: BlockCreateOneWithoutHalfSlidesImplementingInput
+  secondHalfBlock: BlockCreateOneWithoutHalfSlidesImplementingInput!
   slides: SlideCreateManyWithoutHalfSlideInput
 }
 
 input HalfSlideCreateWithoutSecondHalfBlockInput {
-  firstHalfBlock: BlockCreateOneWithoutHalfSlidesInput
+  firstHalfBlock: BlockCreateOneWithoutHalfSlidesInput!
   id: String
   slides: SlideCreateManyWithoutHalfSlideInput
 }
 
 input HalfSlideCreateWithoutSlidesInput {
-  firstHalfBlock: BlockCreateOneWithoutHalfSlidesInput
+  firstHalfBlock: BlockCreateOneWithoutHalfSlidesInput!
   id: String
-  secondHalfBlock: BlockCreateOneWithoutHalfSlidesImplementingInput
+  secondHalfBlock: BlockCreateOneWithoutHalfSlidesImplementingInput!
 }
 
 input HalfSlideFilter {
@@ -910,20 +913,20 @@ input HalfSlideUpdateOneWithoutSlidesInput {
 
 input HalfSlideUpdateWithoutFirstHalfBlockDataInput {
   id: String
-  secondHalfBlock: BlockUpdateOneWithoutHalfSlidesImplementingInput
+  secondHalfBlock: BlockUpdateOneRequiredWithoutHalfSlidesImplementingInput
   slides: SlideUpdateManyWithoutHalfSlideInput
 }
 
 input HalfSlideUpdateWithoutSecondHalfBlockDataInput {
-  firstHalfBlock: BlockUpdateOneWithoutHalfSlidesInput
+  firstHalfBlock: BlockUpdateOneRequiredWithoutHalfSlidesInput
   id: String
   slides: SlideUpdateManyWithoutHalfSlideInput
 }
 
 input HalfSlideUpdateWithoutSlidesDataInput {
-  firstHalfBlock: BlockUpdateOneWithoutHalfSlidesInput
+  firstHalfBlock: BlockUpdateOneRequiredWithoutHalfSlidesInput
   id: String
-  secondHalfBlock: BlockUpdateOneWithoutHalfSlidesImplementingInput
+  secondHalfBlock: BlockUpdateOneRequiredWithoutHalfSlidesImplementingInput
 }
 
 input HalfSlideUpdateWithWhereUniqueWithoutFirstHalfBlockInput {
@@ -1770,21 +1773,8 @@ type Mutation {
   logIn(input: LogInInput!): User!
   registerUser(input: RegisterUserInput!): User!
   sendInvitationEmail(input: SendInvitationEmailInput!): String!
+  updateOneBlock(data: BlockUpdateInput!, where: BlockWhereUniqueInput!): Block
   updateOneCourse(data: CourseUpdateInput!, where: CourseWhereUniqueInput!): Course
-}
-
-input NullableStringFilter {
-  contains: String
-  endsWith: String
-  equals: String
-  gt: String
-  gte: String
-  in: [String!]
-  lt: String
-  lte: String
-  not: String
-  notIn: [String!]
-  startsWith: String
 }
 
 input PageCreateManyWithoutContentInput {
@@ -1867,10 +1857,11 @@ input PageWhereUniqueInput {
   id: String
 }
 
-type QuarterSlide {
+type QuarterSlide implements Slide {
   id: String!
   mainBlock: Block!
   sideBlock: Block!
+  title: String!
 }
 
 input QuarterSlideCreateManyWithoutMainBlockInput {
@@ -1890,20 +1881,20 @@ input QuarterSlideCreateOneWithoutSlidesInput {
 
 input QuarterSlideCreateWithoutMainBlockInput {
   id: String
-  sideBlock: BlockCreateOneWithoutQuarterSlidesImplementingInput
+  sideBlock: BlockCreateOneWithoutQuarterSlidesImplementingInput!
   slides: SlideCreateManyWithoutQuarterSlideInput
 }
 
 input QuarterSlideCreateWithoutSideBlockInput {
   id: String
-  mainBlock: BlockCreateOneWithoutQuarterSlidesInput
+  mainBlock: BlockCreateOneWithoutQuarterSlidesInput!
   slides: SlideCreateManyWithoutQuarterSlideInput
 }
 
 input QuarterSlideCreateWithoutSlidesInput {
   id: String
-  mainBlock: BlockCreateOneWithoutQuarterSlidesInput
-  sideBlock: BlockCreateOneWithoutQuarterSlidesImplementingInput
+  mainBlock: BlockCreateOneWithoutQuarterSlidesInput!
+  sideBlock: BlockCreateOneWithoutQuarterSlidesImplementingInput!
 }
 
 input QuarterSlideFilter {
@@ -1964,20 +1955,20 @@ input QuarterSlideUpdateOneWithoutSlidesInput {
 
 input QuarterSlideUpdateWithoutMainBlockDataInput {
   id: String
-  sideBlock: BlockUpdateOneWithoutQuarterSlidesImplementingInput
+  sideBlock: BlockUpdateOneRequiredWithoutQuarterSlidesImplementingInput
   slides: SlideUpdateManyWithoutQuarterSlideInput
 }
 
 input QuarterSlideUpdateWithoutSideBlockDataInput {
   id: String
-  mainBlock: BlockUpdateOneWithoutQuarterSlidesInput
+  mainBlock: BlockUpdateOneRequiredWithoutQuarterSlidesInput
   slides: SlideUpdateManyWithoutQuarterSlideInput
 }
 
 input QuarterSlideUpdateWithoutSlidesDataInput {
   id: String
-  mainBlock: BlockUpdateOneWithoutQuarterSlidesInput
-  sideBlock: BlockUpdateOneWithoutQuarterSlidesImplementingInput
+  mainBlock: BlockUpdateOneRequiredWithoutQuarterSlidesInput
+  sideBlock: BlockUpdateOneRequiredWithoutQuarterSlidesImplementingInput
 }
 
 input QuarterSlideUpdateWithWhereUniqueWithoutMainBlockInput {
@@ -2023,6 +2014,7 @@ input QuarterSlideWhereUniqueInput {
 
 type Query {
   courses(after: CourseWhereUniqueInput, before: CourseWhereUniqueInput, first: Int, last: Int, skip: Int, where: CourseWhereInput): [Course!]!
+  lesson(where: LessonWhereUniqueInput!): Lesson
   lessons(after: LessonWhereUniqueInput, before: LessonWhereUniqueInput, first: Int, last: Int, skip: Int, where: LessonWhereInput): [Lesson!]!
   viewer: User!
 }
@@ -2040,9 +2032,10 @@ input SendInvitationEmailInput {
   role: String!
 }
 
-type SingleSlide {
+type SingleSlide implements Slide {
   block: Block!
   id: String!
+  title: String!
 }
 
 input SingleSlideCreateManyWithoutBlockInput {
@@ -2061,7 +2054,7 @@ input SingleSlideCreateWithoutBlockInput {
 }
 
 input SingleSlideCreateWithoutSlidesInput {
-  block: BlockCreateOneWithoutSingleSlidesInput
+  block: BlockCreateOneWithoutSingleSlidesInput!
   id: String
 }
 
@@ -2115,7 +2108,7 @@ input SingleSlideUpdateWithoutBlockDataInput {
 }
 
 input SingleSlideUpdateWithoutSlidesDataInput {
-  block: BlockUpdateOneWithoutSingleSlidesInput
+  block: BlockUpdateOneRequiredWithoutSingleSlidesInput
   id: String
 }
 
@@ -2148,7 +2141,10 @@ input SingleSlideWhereUniqueInput {
   id: String
 }
 
-union Slide = HalfSlide | QuarterSlide | SingleSlide
+interface Slide {
+  id: String!
+  title: String!
+}
 
 input SlideCreateManyWithoutHalfSlideInput {
   connect: [SlideWhereUniqueInput!]
@@ -2175,6 +2171,7 @@ input SlideCreateWithoutHalfSlideInput {
   lesson: LessonCreateOneWithoutSlidesInput
   quarterSlide: QuarterSlideCreateOneWithoutSlidesInput
   singleSlide: SingleSlideCreateOneWithoutSlidesInput
+  title: String!
 }
 
 input SlideCreateWithoutLessonInput {
@@ -2182,6 +2179,7 @@ input SlideCreateWithoutLessonInput {
   id: String
   quarterSlide: QuarterSlideCreateOneWithoutSlidesInput
   singleSlide: SingleSlideCreateOneWithoutSlidesInput
+  title: String!
 }
 
 input SlideCreateWithoutQuarterSlideInput {
@@ -2189,6 +2187,7 @@ input SlideCreateWithoutQuarterSlideInput {
   id: String
   lesson: LessonCreateOneWithoutSlidesInput
   singleSlide: SingleSlideCreateOneWithoutSlidesInput
+  title: String!
 }
 
 input SlideCreateWithoutSingleSlideInput {
@@ -2196,6 +2195,7 @@ input SlideCreateWithoutSingleSlideInput {
   id: String
   lesson: LessonCreateOneWithoutSlidesInput
   quarterSlide: QuarterSlideCreateOneWithoutSlidesInput
+  title: String!
 }
 
 input SlideFilter {
@@ -2209,10 +2209,12 @@ input SlideScalarWhereInput {
   id: StringFilter
   NOT: [SlideScalarWhereInput!]
   OR: [SlideScalarWhereInput!]
+  title: StringFilter
 }
 
 input SlideUpdateManyDataInput {
   id: String
+  title: String
 }
 
 input SlideUpdateManyWithoutHalfSlideInput {
@@ -2273,6 +2275,7 @@ input SlideUpdateWithoutHalfSlideDataInput {
   lesson: LessonUpdateOneWithoutSlidesInput
   quarterSlide: QuarterSlideUpdateOneWithoutSlidesInput
   singleSlide: SingleSlideUpdateOneWithoutSlidesInput
+  title: String
 }
 
 input SlideUpdateWithoutLessonDataInput {
@@ -2280,6 +2283,7 @@ input SlideUpdateWithoutLessonDataInput {
   id: String
   quarterSlide: QuarterSlideUpdateOneWithoutSlidesInput
   singleSlide: SingleSlideUpdateOneWithoutSlidesInput
+  title: String
 }
 
 input SlideUpdateWithoutQuarterSlideDataInput {
@@ -2287,6 +2291,7 @@ input SlideUpdateWithoutQuarterSlideDataInput {
   id: String
   lesson: LessonUpdateOneWithoutSlidesInput
   singleSlide: SingleSlideUpdateOneWithoutSlidesInput
+  title: String
 }
 
 input SlideUpdateWithoutSingleSlideDataInput {
@@ -2294,6 +2299,7 @@ input SlideUpdateWithoutSingleSlideDataInput {
   id: String
   lesson: LessonUpdateOneWithoutSlidesInput
   quarterSlide: QuarterSlideUpdateOneWithoutSlidesInput
+  title: String
 }
 
 input SlideUpdateWithWhereUniqueWithoutHalfSlideInput {
@@ -2349,6 +2355,7 @@ input SlideWhereInput {
   OR: [SlideWhereInput!]
   quarterSlide: QuarterSlideWhereInput
   singleSlide: SingleSlideWhereInput
+  title: StringFilter
 }
 
 input SlideWhereUniqueInput {
@@ -2589,9 +2596,9 @@ input StudentWhereUniqueInput {
 }
 
 type TextBlock {
-  body: String
+  body: String!
   id: String!
-  title: String
+  title: String!
 }
 
 input TextBlockCreateOneWithoutBlocksInput {
@@ -2600,9 +2607,9 @@ input TextBlockCreateOneWithoutBlocksInput {
 }
 
 input TextBlockCreateWithoutBlocksInput {
-  body: String
+  body: String!
   id: String
-  title: String
+  title: String!
 }
 
 input TextBlockUpdateOneWithoutBlocksInput {
@@ -2628,11 +2635,11 @@ input TextBlockUpsertWithoutBlocksInput {
 input TextBlockWhereInput {
   AND: [TextBlockWhereInput!]
   blocks: BlockFilter
-  body: NullableStringFilter
+  body: StringFilter
   id: StringFilter
   NOT: [TextBlockWhereInput!]
   OR: [TextBlockWhereInput!]
-  title: NullableStringFilter
+  title: StringFilter
 }
 
 input TextBlockWhereUniqueInput {
