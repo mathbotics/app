@@ -166,17 +166,6 @@ input BlockScalarWhereInput {
   singleSlides: SingleSlideFilter
 }
 
-input BlockUpdateInput {
-  halfSlides: HalfSlideUpdateManyWithoutFirstHalfBlockInput
-  halfSlidesImplementing: HalfSlideUpdateManyWithoutSecondHalfBlockInput
-  id: String
-  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput
-  quarterSlides: QuarterSlideUpdateManyWithoutMainBlockInput
-  quarterSlidesImplementing: QuarterSlideUpdateManyWithoutSideBlockInput
-  singleSlides: SingleSlideUpdateManyWithoutBlockInput
-  textBlock: TextBlockUpdateOneWithoutBlocksInput
-}
-
 input BlockUpdateManyDataInput {
   id: String
 }
@@ -345,6 +334,16 @@ input BlockWhereInput {
 
 input BlockWhereUniqueInput {
   id: String
+}
+
+input BooleanFilter {
+  equals: Boolean
+  not: Boolean
+}
+
+input ChoiceInput {
+  correct: Boolean!
+  text: String!
 }
 
 type Content {
@@ -1301,8 +1300,7 @@ input LogInInput {
 }
 
 type MultipleChoiceQuestionBlock {
-  choice: [MultipleChoiceQuestionChoice!]!
-  correctChoice: MultipleChoiceQuestionChoice!
+  choices: [MultipleChoiceQuestionChoice!]!
   id: String!
   text: String!
 }
@@ -1317,11 +1315,6 @@ input MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput {
   create: MultipleChoiceQuestionBlockCreateWithoutChoicesInput
 }
 
-input MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput {
-  connect: MultipleChoiceQuestionBlockWhereUniqueInput
-  create: MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput
-}
-
 input MultipleChoiceQuestionBlockCreateOneWithoutResponsesInput {
   connect: MultipleChoiceQuestionBlockWhereUniqueInput
   create: MultipleChoiceQuestionBlockCreateWithoutResponsesInput
@@ -1329,7 +1322,6 @@ input MultipleChoiceQuestionBlockCreateOneWithoutResponsesInput {
 
 input MultipleChoiceQuestionBlockCreateWithoutBlocksInput {
   choices: MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput
-  correctChoice: MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput!
   id: String
   responses: MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput
   text: String!
@@ -1337,15 +1329,6 @@ input MultipleChoiceQuestionBlockCreateWithoutBlocksInput {
 
 input MultipleChoiceQuestionBlockCreateWithoutChoicesInput {
   blocks: BlockCreateManyWithoutMultipleChoiceQuestionBlockInput
-  correctChoice: MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput!
-  id: String
-  responses: MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput
-  text: String!
-}
-
-input MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput {
-  blocks: BlockCreateManyWithoutMultipleChoiceQuestionBlockInput
-  choices: MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput
   id: String
   responses: MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput
   text: String!
@@ -1354,16 +1337,8 @@ input MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput {
 input MultipleChoiceQuestionBlockCreateWithoutResponsesInput {
   blocks: BlockCreateManyWithoutMultipleChoiceQuestionBlockInput
   choices: MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput
-  correctChoice: MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput!
   id: String
   text: String!
-}
-
-input MultipleChoiceQuestionBlockUpdateOneRequiredWithoutCorrectChoiceInput {
-  connect: MultipleChoiceQuestionBlockWhereUniqueInput
-  create: MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput
-  update: MultipleChoiceQuestionBlockUpdateWithoutCorrectChoiceDataInput
-  upsert: MultipleChoiceQuestionBlockUpsertWithoutCorrectChoiceInput
 }
 
 input MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput {
@@ -1395,7 +1370,6 @@ input MultipleChoiceQuestionBlockUpdateOneWithoutResponsesInput {
 
 input MultipleChoiceQuestionBlockUpdateWithoutBlocksDataInput {
   choices: MultipleChoiceQuestionChoiceUpdateManyWithoutMultipleChoiceQuestionBlockInput
-  correctChoice: MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutQuestionInput
   id: String
   responses: MultipleChoiceQuestionResponseUpdateManyWithoutMultipleChoiceQuestionBlockInput
   text: String
@@ -1403,15 +1377,6 @@ input MultipleChoiceQuestionBlockUpdateWithoutBlocksDataInput {
 
 input MultipleChoiceQuestionBlockUpdateWithoutChoicesDataInput {
   blocks: BlockUpdateManyWithoutMultipleChoiceQuestionBlockInput
-  correctChoice: MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutQuestionInput
-  id: String
-  responses: MultipleChoiceQuestionResponseUpdateManyWithoutMultipleChoiceQuestionBlockInput
-  text: String
-}
-
-input MultipleChoiceQuestionBlockUpdateWithoutCorrectChoiceDataInput {
-  blocks: BlockUpdateManyWithoutMultipleChoiceQuestionBlockInput
-  choices: MultipleChoiceQuestionChoiceUpdateManyWithoutMultipleChoiceQuestionBlockInput
   id: String
   responses: MultipleChoiceQuestionResponseUpdateManyWithoutMultipleChoiceQuestionBlockInput
   text: String
@@ -1420,7 +1385,6 @@ input MultipleChoiceQuestionBlockUpdateWithoutCorrectChoiceDataInput {
 input MultipleChoiceQuestionBlockUpdateWithoutResponsesDataInput {
   blocks: BlockUpdateManyWithoutMultipleChoiceQuestionBlockInput
   choices: MultipleChoiceQuestionChoiceUpdateManyWithoutMultipleChoiceQuestionBlockInput
-  correctChoice: MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutQuestionInput
   id: String
   text: String
 }
@@ -1435,11 +1399,6 @@ input MultipleChoiceQuestionBlockUpsertWithoutChoicesInput {
   update: MultipleChoiceQuestionBlockUpdateWithoutChoicesDataInput!
 }
 
-input MultipleChoiceQuestionBlockUpsertWithoutCorrectChoiceInput {
-  create: MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput!
-  update: MultipleChoiceQuestionBlockUpdateWithoutCorrectChoiceDataInput!
-}
-
 input MultipleChoiceQuestionBlockUpsertWithoutResponsesInput {
   create: MultipleChoiceQuestionBlockCreateWithoutResponsesInput!
   update: MultipleChoiceQuestionBlockUpdateWithoutResponsesDataInput!
@@ -1449,7 +1408,6 @@ input MultipleChoiceQuestionBlockWhereInput {
   AND: [MultipleChoiceQuestionBlockWhereInput!]
   blocks: BlockFilter
   choices: MultipleChoiceQuestionChoiceFilter
-  correctChoice: MultipleChoiceQuestionChoiceWhereInput
   id: StringFilter
   NOT: [MultipleChoiceQuestionBlockWhereInput!]
   OR: [MultipleChoiceQuestionBlockWhereInput!]
@@ -1462,8 +1420,8 @@ input MultipleChoiceQuestionBlockWhereUniqueInput {
 }
 
 type MultipleChoiceQuestionChoice {
+  correct: Boolean!
   id: String!
-  question: MultipleChoiceQuestionBlock!
   text: String!
 }
 
@@ -1477,29 +1435,17 @@ input MultipleChoiceQuestionChoiceCreateOneWithoutMultipleChoiceQuestionResponse
   create: MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput
 }
 
-input MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput {
-  connect: MultipleChoiceQuestionChoiceWhereUniqueInput
-  create: MultipleChoiceQuestionChoiceCreateWithoutQuestionInput
-}
-
 input MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput {
+  correct: Boolean!
   id: String
   multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput
-  question: MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput!
   text: String!
 }
 
 input MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput {
+  correct: Boolean!
   id: String
   multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput
-  question: MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput!
-  text: String!
-}
-
-input MultipleChoiceQuestionChoiceCreateWithoutQuestionInput {
-  id: String
-  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput
-  multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput
   text: String!
 }
 
@@ -1511,6 +1457,7 @@ input MultipleChoiceQuestionChoiceFilter {
 
 input MultipleChoiceQuestionChoiceScalarWhereInput {
   AND: [MultipleChoiceQuestionChoiceScalarWhereInput!]
+  correct: BooleanFilter
   id: StringFilter
   multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseFilter
   NOT: [MultipleChoiceQuestionChoiceScalarWhereInput!]
@@ -1519,6 +1466,7 @@ input MultipleChoiceQuestionChoiceScalarWhereInput {
 }
 
 input MultipleChoiceQuestionChoiceUpdateManyDataInput {
+  correct: Boolean
   id: String
   text: String
 }
@@ -1547,31 +1495,17 @@ input MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutMultipleChoiceQuestion
   upsert: MultipleChoiceQuestionChoiceUpsertWithoutMultipleChoiceQuestionResponsesInput
 }
 
-input MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutQuestionInput {
-  connect: MultipleChoiceQuestionChoiceWhereUniqueInput
-  create: MultipleChoiceQuestionChoiceCreateWithoutQuestionInput
-  update: MultipleChoiceQuestionChoiceUpdateWithoutQuestionDataInput
-  upsert: MultipleChoiceQuestionChoiceUpsertWithoutQuestionInput
-}
-
 input MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionBlockDataInput {
+  correct: Boolean
   id: String
   multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseUpdateManyWithoutChoiceInput
-  question: MultipleChoiceQuestionBlockUpdateOneRequiredWithoutCorrectChoiceInput
   text: String
 }
 
 input MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionResponsesDataInput {
+  correct: Boolean
   id: String
   multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockUpdateOneWithoutChoicesInput
-  question: MultipleChoiceQuestionBlockUpdateOneRequiredWithoutCorrectChoiceInput
-  text: String
-}
-
-input MultipleChoiceQuestionChoiceUpdateWithoutQuestionDataInput {
-  id: String
-  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockUpdateOneWithoutChoicesInput
-  multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseUpdateManyWithoutChoiceInput
   text: String
 }
 
@@ -1585,11 +1519,6 @@ input MultipleChoiceQuestionChoiceUpsertWithoutMultipleChoiceQuestionResponsesIn
   update: MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionResponsesDataInput!
 }
 
-input MultipleChoiceQuestionChoiceUpsertWithoutQuestionInput {
-  create: MultipleChoiceQuestionChoiceCreateWithoutQuestionInput!
-  update: MultipleChoiceQuestionChoiceUpdateWithoutQuestionDataInput!
-}
-
 input MultipleChoiceQuestionChoiceUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput {
   create: MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput!
   update: MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionBlockDataInput!
@@ -1598,12 +1527,12 @@ input MultipleChoiceQuestionChoiceUpsertWithWhereUniqueWithoutMultipleChoiceQues
 
 input MultipleChoiceQuestionChoiceWhereInput {
   AND: [MultipleChoiceQuestionChoiceWhereInput!]
+  correct: BooleanFilter
   id: StringFilter
   multipleChoiceQuestionBlock: MultipleChoiceQuestionBlockWhereInput
   multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseFilter
   NOT: [MultipleChoiceQuestionChoiceWhereInput!]
   OR: [MultipleChoiceQuestionChoiceWhereInput!]
-  question: MultipleChoiceQuestionBlockWhereInput
   text: StringFilter
 }
 
@@ -1774,7 +1703,8 @@ type Mutation {
   logIn(input: LogInInput!): User!
   registerUser(input: RegisterUserInput!): User!
   sendInvitationEmail(input: SendInvitationEmailInput!): String!
-  updateOneBlock(data: BlockUpdateInput!, where: BlockWhereUniqueInput!): Block
+  updateBlockToMultipleChoiceBlock(input: UpdateBlockToMultipleChoiceBlockInput!): MultipleChoiceQuestionBlock!
+  updateBlockToTextBlock(input: UpdateBlockToTextBlockInput!): TextBlock!
   updateOneCourse(data: CourseUpdateInput!, where: CourseWhereUniqueInput!): Course
 }
 
@@ -2645,6 +2575,18 @@ input TextBlockWhereInput {
 
 input TextBlockWhereUniqueInput {
   id: String
+}
+
+input UpdateBlockToMultipleChoiceBlockInput {
+  blockId: String!
+  choices: [ChoiceInput!]!
+  questionText: String!
+}
+
+input UpdateBlockToTextBlockInput {
+  blockId: String!
+  body: String!
+  title: String!
 }
 
 interface User {

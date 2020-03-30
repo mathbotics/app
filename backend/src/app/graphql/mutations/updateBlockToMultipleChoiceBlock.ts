@@ -1,7 +1,7 @@
 import { inputObjectType, mutationField, arg } from 'nexus';
+import nullthrows from 'nullthrows';
 
 import prisma from '../../data/prisma';
-import nullthrows from 'nullthrows';
 
 export const ChoiceInput = inputObjectType({
   name: 'ChoiceInput',
