@@ -21,6 +21,10 @@ code {
     monospace;
 }
 
-.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-  background-color: white !important;
+html {
+  overflow: scroll;
+}
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
 }

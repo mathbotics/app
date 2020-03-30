@@ -26,7 +26,8 @@ type ModalProps = {
   title: string;
   lessonId: string;
   visible: boolean;
-  onSubmit: (type: SlideType) => void;
+  onCreateSlideSuccess: () => void;
+  onCreateSlideError: (e: Error) => void;
   onCancel: any;
 };
 
@@ -34,13 +35,14 @@ export default ({
   title,
   visible,
   lessonId,
-  onSubmit,
+  onCreateSlideSuccess,
+  onCreateSlideError,
   onCancel
 }: ModalProps) => {
   const [selected, setSelected] = useState<SlideType>("SingleSlide");
 
-  const onCreateSlideSuccess = () => console.log("poop");
-  const onCreateSlideError = (e: Error) => console.log(e);
+  const onCreateSlideMutationSuccess = () => onCreateSlideSuccess();
+  const onCreateSlideMutationError = (e: Error) => onCreateSlideError(e);
 
   const poop = "poop";
 
@@ -69,8 +71,8 @@ export default ({
           {
             input: { lessonId, title: poop, slideType: selected }
           },
-          onCreateSlideSuccess,
-          onCreateSlideError,
+          onCreateSlideMutationSuccess,
+          onCreateSlideMutationError,
           lessonId
         )
       }
@@ -83,6 +85,7 @@ export default ({
             index: number
           ) => (
             <div
+              key={index}
               style={{
                 display: "flex",
                 alignItems: "flex-start",

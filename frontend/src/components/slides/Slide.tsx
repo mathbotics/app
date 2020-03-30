@@ -4,7 +4,6 @@ import HalfSlide from "./HalfSlide";
 import { createFragmentContainer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
 import { Slide_slide } from "./__generated__/Slide_slide.graphql";
-import { SingleSlide_singleSlide } from "./__generated__/SingleSlide_singleSlide.graphql";
 
 type Props = {
   type?: Slide_slide["__typename"];
@@ -12,6 +11,7 @@ type Props = {
   children?: ReactNode;
   preview?: boolean;
   selected?: boolean;
+  style?: any;
 };
 const Slide = ({ slide, type, children, preview, selected }: Props) => {
   switch (slide?.__typename ?? type) {

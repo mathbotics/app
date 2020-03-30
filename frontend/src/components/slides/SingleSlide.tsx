@@ -1,6 +1,5 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components";
-import { Button } from "antd";
 import { FileImageOutlined } from "@ant-design/icons";
 import { graphql } from "babel-plugin-relay/macro";
 
@@ -12,12 +11,11 @@ type WrapperProps = { preview?: boolean; selected?: boolean };
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  border-radius: 2px;
+  border-radius: 5px;
   justify-content: center;
   align-items: center;
   display: flex;
-  border: ${({ preview }: WrapperProps) =>
-    preview ? "1px solid #7e7e7e" : "1px solid #ccc"};
+  border: ${({ preview }: WrapperProps) => preview && "1px solid #ccc"};
   transition: all 0.15s ease-in-out;
   background-color: ${({ selected, preview }: WrapperProps) =>
     selected && preview && "#1990ff"};
