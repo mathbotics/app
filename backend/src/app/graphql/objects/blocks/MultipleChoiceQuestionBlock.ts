@@ -20,7 +20,7 @@ export const MultipleChoiceQuestionBlock = objectType({
         return text;
       },
     });
-    t.list.field('choice', {
+    t.list.field('choices', {
       type: 'MultipleChoiceQuestionChoice',
       async resolve({ id }) {
         const { multipleChoiceQuestionBlock } = nullthrows(
@@ -38,26 +38,6 @@ export const MultipleChoiceQuestionBlock = objectType({
         );
         const { choices } = nullthrows(multipleChoiceQuestionBlock);
         return choices;
-      },
-    });
-    t.field('correctChoice', {
-      type: 'MultipleChoiceQuestionChoice',
-      async resolve({ id }) {
-        const { multipleChoiceQuestionBlock } = nullthrows(
-          await prisma.block.findOne({
-            where: { id },
-            include: {
-              multipleChoiceQuestionBlock: {
-                include: {
-                  correctChoice: true,
-                },
-              },
-            },
-          }),
-          'No block found',
-        );
-        const { correctChoice } = nullthrows(multipleChoiceQuestionBlock);
-        return correctChoice;
       },
     });
   },

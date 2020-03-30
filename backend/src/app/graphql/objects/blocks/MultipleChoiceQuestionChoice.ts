@@ -5,6 +5,6 @@ export const MultipleChoiceQuestionChoice = objectType({
   definition(t) {
     t.model.id();
     t.model.text();
-    t.model.question();
+    t.model.correct();
   },
 });

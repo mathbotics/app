@@ -4,6 +4,8 @@ export * from './logIn';
 export * from './registerUser';
 export * from './sendInvitationEmail';
 export * from './createSlide';
+export * from './updateBlockToMultipleChoiceBlock';
+export * from './updateBlockToTextBlock';
 
 export const mutation = extendType({
   type: 'Mutation',
@@ -11,7 +13,5 @@ export const mutation = extendType({
     t.crud.createOneCourse();
     t.crud.updateOneCourse();
     t.crud.createOneLesson();
-    // @ts-ignore
-    t.crud.updateOneBlock();
   },
 });
