@@ -10,8 +10,6 @@ import { createFragmentContainer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
 import { LessonPreview_lesson } from "./__generated__/LessonPreview_lesson.graphql";
 
-const { Title } = Typography;
-
 type LessonPreviewProps = {
   lesson: LessonPreview_lesson;
   onClick: any;
