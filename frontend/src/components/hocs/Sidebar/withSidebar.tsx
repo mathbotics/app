@@ -4,7 +4,8 @@ import {
   DashboardOutlined,
   LockOutlined,
   BookOutlined,
-  AppstoreOutlined
+  AppstoreOutlined,
+  LogoutOutlined
 } from "@ant-design/icons";
 import styled from "styled-components";
 import { useHistory, Redirect } from "react-router-dom";
@@ -113,6 +114,13 @@ const Sidebar = createFragmentContainer(
                 <span>{item.name}</span>
               </Menu.Item>
             ))}
+
+            <Menu.Item
+              onClick={() => console.log("Need log out mutation here")}
+            >
+              <LogoutOutlined style={{ fontWeight: "bold" }} />
+              <span>Logout</span>
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout>
