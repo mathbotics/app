@@ -20,7 +20,6 @@ type ExpressIntegrationContext = {
 
 const app = express();
 const apollo = new ApolloServer({
-  tracing: true,
   context({ req, res }: ExpressIntegrationContext) {
     return {
       viewer: req?.user,

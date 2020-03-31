@@ -26,6 +26,9 @@ const Slides = (props: SlidesProps): JSX.Element => {
   const [pageState, setPageState] = React.useState<PageState>(
     PageState.Default
   );
+  const [previewSlideId, setPreviewSlideId] = React.useState<string>(
+    props.lesson.slides[0]?.id
+  );
   return (
     <Layout>
       {/* The is the left most item which is the sidebar
@@ -42,11 +45,11 @@ const Slides = (props: SlidesProps): JSX.Element => {
       {/* This Is the layout containing the preview for 
       the current block being selected. On the right is the editor sidebar
       with the form to edit this preview */}
-      <EditorSlidePreview onClick={(block: any) => console.log(block)} />
+      <EditorSlidePreview slide={slide} />
 
       {/* Editor sider is what display the controls to 
         edit the actial slides. It will return an onEditSuccess*/}
-      {pageState == PageState.EditBlock && <EditorEditBlockSidebar />}
+      {pageState === PageState.EditBlock && <EditorEditBlockSidebar />}
 
       {/* Create a slide Modal is the pop up to create a slide.
         This Modal pops up when the sidebar
@@ -73,6 +76,10 @@ export default createFragmentContainer(Slides, {
       id
       title
       ...SlidesSidebar_lesson
+      slides {
+        id
+        ...EditorSlidePreview_slide
+      }
     }
   `
 });
