@@ -9,29 +9,23 @@ type Props = {
 };
 export const EditorSlidePreview = ({ onSelectBlock }: Props) => {
   return (
-    <Layout>
-      <Content
+    <Content style={{ margin: "10px", height: "auto" }}>
+      <div
+        onClick={() => onSelectBlock("ye")}
         style={{
-          margin: "16px 16px"
+          padding: 24,
+          background: "#fff",
+          minHeight: "80vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
         }}
       >
-        <div
-          onClick={() => onSelectBlock("ye")}
-          style={{
-            padding: 24,
-            background: "#fff",
-            minHeight: "80vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center"
-          }}
-        >
-          <Result
-            icon={<SmileOutlined />}
-            title="Get started by creating a slide!"
-          />
-        </div>
-      </Content>
-    </Layout>
+        <Result
+          icon={<SmileOutlined />}
+          title="Get started by creating a slide!"
+        />
+      </div>
+    </Content>
   );
 };
