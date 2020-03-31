@@ -6,6 +6,7 @@ import { LogInForm } from "../components/form";
 import { Redirect } from "react-router-dom";
 import { commit as commitLoginMutation } from "../graphql/mutations/LogInMutation";
 import { LogInMutationResponse } from "../graphql/mutations/__generated__/LogInMutation.graphql";
+import { AppLogo } from "../components/icons";
 
 const StyledLayout = styled(Layout)`
   height: 100%;
@@ -66,7 +67,8 @@ export const LoginPage = (props: LogInProps): JSX.Element => {
           />
         )}
 
-        <h1>Mathbotics</h1>
+        <AppLogo height="150px" />
+        <h3>Mathbotics learning platform</h3>
         <LogInForm
           onSubmit={onSubmitHandler}
           onSubmitError={onSubmitErrorHandler}

@@ -48,7 +48,7 @@ export const LogInForm = (props: LogInFormProps): JSX.Element => {
       />
 
       <Button block type="primary" size="large" htmlType="submit">
-        Log in
+        <b>Go</b>
       </Button>
     </Form>
   );
