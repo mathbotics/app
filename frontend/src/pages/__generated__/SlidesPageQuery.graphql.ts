@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash ca0caa50bd5a0ee4383c306c4c704a4b */
+/* @relayHash 665137974330f7ca48c79a110074c5c9 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -31,12 +31,37 @@ query SlidesPageQuery(
   }
 }
 
+fragment EditBlockSidebar_block on Block {
+  ... on MultipleChoiceQuestionBlock {
+    id
+  }
+  ... on TextBlock {
+    id
+  }
+}
+
+fragment EditorSlidePreview_slide on Slide {
+  ...Slide_slide
+}
+
 fragment HalfSlide_halfSlide on HalfSlide {
   id
+  firstHalfBlock {
+    __typename
+    ...EditBlockSidebar_block
+  }
+  secondHalfBlock {
+    __typename
+    ...EditBlockSidebar_block
+  }
 }
 
 fragment SingleSlide_singleSlide on SingleSlide {
   id
+  block {
+    __typename
+    ...EditBlockSidebar_block
+  }
 }
 
 fragment Slide_slide on Slide {
@@ -63,6 +88,11 @@ fragment Slides_lesson on Lesson {
   id
   title
   ...SlidesSidebar_lesson
+  slides {
+    __typename
+    id
+    ...EditorSlidePreview_slide
+  }
 }
 */
 
@@ -95,7 +125,30 @@ v3 = {
   "name": "title",
   "args": null,
   "storageKey": null
-};
+},
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "__typename",
+  "args": null,
+  "storageKey": null
+},
+v5 = [
+  (v2/*: any*/)
+],
+v6 = [
+  (v4/*: any*/),
+  {
+    "kind": "InlineFragment",
+    "type": "MultipleChoiceQuestionBlock",
+    "selections": (v5/*: any*/)
+  },
+  {
+    "kind": "InlineFragment",
+    "type": "TextBlock",
+    "selections": (v5/*: any*/)
+  }
+];
 return {
   "kind": "Request",
   "fragment": {
@@ -149,14 +202,50 @@ return {
             "plural": true,
             "selections": [
               (v2/*: any*/),
+              (v4/*: any*/),
+              (v3/*: any*/),
               {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "__typename",
-                "args": null,
-                "storageKey": null
+                "kind": "InlineFragment",
+                "type": "SingleSlide",
+                "selections": [
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "block",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": null,
+                    "plural": false,
+                    "selections": (v6/*: any*/)
+                  }
+                ]
               },
-              (v3/*: any*/)
+              {
+                "kind": "InlineFragment",
+                "type": "HalfSlide",
+                "selections": [
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "firstHalfBlock",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": null,
+                    "plural": false,
+                    "selections": (v6/*: any*/)
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "secondHalfBlock",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": null,
+                    "plural": false,
+                    "selections": (v6/*: any*/)
+                  }
+                ]
+              }
             ]
           }
         ]
@@ -167,7 +256,7 @@ return {
     "operationKind": "query",
     "name": "SlidesPageQuery",
     "id": null,
-    "text": "query SlidesPageQuery(\n  $where: LessonWhereUniqueInput!\n) {\n  lesson(where: $where) {\n    ...Slides_lesson\n  }\n}\n\nfragment HalfSlide_halfSlide on HalfSlide {\n  id\n}\n\nfragment SingleSlide_singleSlide on SingleSlide {\n  id\n}\n\nfragment Slide_slide on Slide {\n  __typename\n  title\n  ... on SingleSlide {\n    ...SingleSlide_singleSlide\n  }\n  ... on HalfSlide {\n    ...HalfSlide_halfSlide\n  }\n}\n\nfragment SlidesSidebar_lesson on Lesson {\n  title\n  slides {\n    __typename\n    id\n    ...Slide_slide\n  }\n}\n\nfragment Slides_lesson on Lesson {\n  id\n  title\n  ...SlidesSidebar_lesson\n}\n",
+    "text": "query SlidesPageQuery(\n  $where: LessonWhereUniqueInput!\n) {\n  lesson(where: $where) {\n    ...Slides_lesson\n  }\n}\n\nfragment EditBlockSidebar_block on Block {\n  ... on MultipleChoiceQuestionBlock {\n    id\n  }\n  ... on TextBlock {\n    id\n  }\n}\n\nfragment EditorSlidePreview_slide on Slide {\n  ...Slide_slide\n}\n\nfragment HalfSlide_halfSlide on HalfSlide {\n  id\n  firstHalfBlock {\n    __typename\n    ...EditBlockSidebar_block\n  }\n  secondHalfBlock {\n    __typename\n    ...EditBlockSidebar_block\n  }\n}\n\nfragment SingleSlide_singleSlide on SingleSlide {\n  id\n  block {\n    __typename\n    ...EditBlockSidebar_block\n  }\n}\n\nfragment Slide_slide on Slide {\n  __typename\n  title\n  ... on SingleSlide {\n    ...SingleSlide_singleSlide\n  }\n  ... on HalfSlide {\n    ...HalfSlide_halfSlide\n  }\n}\n\nfragment SlidesSidebar_lesson on Lesson {\n  title\n  slides {\n    __typename\n    id\n    ...Slide_slide\n  }\n}\n\nfragment Slides_lesson on Lesson {\n  id\n  title\n  ...SlidesSidebar_lesson\n  slides {\n    __typename\n    id\n    ...EditorSlidePreview_slide\n  }\n}\n",
     "metadata": {}
   }
 };

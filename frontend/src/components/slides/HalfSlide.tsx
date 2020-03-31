@@ -6,6 +6,7 @@ import { graphql } from "babel-plugin-relay/macro";
 import { MultipleChoice, MultipleChoiceEdit } from "../block";
 import { createFragmentContainer } from "react-relay";
 import { HalfSlide_halfSlide } from "./__generated__/HalfSlide_halfSlide.graphql";
+import { Block } from "../../types/Block";
 
 const BlockAWrapper = styled.div`
   display: flex;
@@ -53,6 +54,7 @@ type Props = {
   BlockB?: BlockComponent;
   preview?: boolean;
   selected?: boolean;
+  onSelectBlock?: (block: Block) => void;
 };
 const HalfSlide = ({ BlockA, BlockB, preview, selected }: Props) => (
   <Wrapper preview={preview} selected={selected}>
@@ -78,6 +80,12 @@ export default createFragmentContainer(HalfSlide, {
   halfSlide: graphql`
     fragment HalfSlide_halfSlide on HalfSlide {
       id
+      firstHalfBlock {
+        ...EditBlockSidebar_block
+      }
+      secondHalfBlock {
+        ...EditBlockSidebar_block
+      }
     }
   `
 });

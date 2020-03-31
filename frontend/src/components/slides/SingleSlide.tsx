@@ -6,6 +6,7 @@ import { graphql } from "babel-plugin-relay/macro";
 import { MultipleChoice, MultipleChoiceEdit } from "../block";
 import { createFragmentContainer } from "react-relay";
 import { SingleSlide_singleSlide } from "./__generated__/SingleSlide_singleSlide.graphql";
+import { Block } from "../../types/Block";
 
 type WrapperProps = { preview?: boolean; selected?: boolean };
 const Wrapper = styled.div`
@@ -39,6 +40,7 @@ type Props = {
   selected?: boolean;
   children?: ReactNode;
   style?: any;
+  onSelectBlock?: (block: Block) => void;
 };
 const SingleSlide = ({ Block, preview, selected, children }: Props) => (
   <Wrapper preview={preview} selected={selected}>
@@ -52,6 +54,9 @@ export default createFragmentContainer(SingleSlide, {
   singleSlide: graphql`
     fragment SingleSlide_singleSlide on SingleSlide {
       id
+      block {
+        ...EditBlockSidebar_block
+      }
     }
   `
 });

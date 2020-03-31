@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash bdef1e70536b7f48a954b54da6d3c70a */
+/* @relayHash 1bf0797bc67549a2cf9925ed950a71d9 */
 
 import { ConcreteRequest } from "relay-runtime";
 export type GradeLevel = "%future added value" | "EIGHTH" | "ELEVENTH" | "FIFTH" | "FIRST" | "FOURTH" | "NINTH" | "SECOND" | "SEVENTH" | "SIXTH" | "TENTH" | "THIRD" | "TWELFTH" | "%future added value";
@@ -336,9 +336,9 @@ export type MultipleChoiceQuestionChoiceWhereUniqueInput = {
     id?: string | null;
 };
 export type MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput = {
+    correct: boolean;
     id?: string | null;
     multipleChoiceQuestionBlock?: MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput | null;
-    question: MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput;
     text: string;
 };
 export type MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput = {
@@ -350,7 +350,6 @@ export type MultipleChoiceQuestionBlockWhereUniqueInput = {
 };
 export type MultipleChoiceQuestionBlockCreateWithoutChoicesInput = {
     blocks?: BlockCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
-    correctChoice: MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput;
     id?: string | null;
     responses?: MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
     text: string;
@@ -396,7 +395,6 @@ export type MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput = {
 };
 export type MultipleChoiceQuestionBlockCreateWithoutBlocksInput = {
     choices?: MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
-    correctChoice: MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput;
     id?: string | null;
     responses?: MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
     text: string;
@@ -406,9 +404,9 @@ export type MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionB
     create?: Array<MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput> | null;
 };
 export type MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput = {
+    correct: boolean;
     id?: string | null;
     multipleChoiceQuestionResponses?: MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput | null;
-    question: MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput;
     text: string;
 };
 export type MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput = {
@@ -427,18 +425,7 @@ export type MultipleChoiceQuestionBlockCreateOneWithoutResponsesInput = {
 export type MultipleChoiceQuestionBlockCreateWithoutResponsesInput = {
     blocks?: BlockCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
     choices?: MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
-    correctChoice: MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput;
     id?: string | null;
-    text: string;
-};
-export type MultipleChoiceQuestionChoiceCreateOneWithoutQuestionInput = {
-    connect?: MultipleChoiceQuestionChoiceWhereUniqueInput | null;
-    create?: MultipleChoiceQuestionChoiceCreateWithoutQuestionInput | null;
-};
-export type MultipleChoiceQuestionChoiceCreateWithoutQuestionInput = {
-    id?: string | null;
-    multipleChoiceQuestionBlock?: MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput | null;
-    multipleChoiceQuestionResponses?: MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput | null;
     text: string;
 };
 export type StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput = {
@@ -466,17 +453,6 @@ export type UserCreateWithoutStudentInput = {
     lastName: string;
     password: string;
     username: string;
-};
-export type MultipleChoiceQuestionBlockCreateOneWithoutCorrectChoiceInput = {
-    connect?: MultipleChoiceQuestionBlockWhereUniqueInput | null;
-    create?: MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput | null;
-};
-export type MultipleChoiceQuestionBlockCreateWithoutCorrectChoiceInput = {
-    blocks?: BlockCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
-    choices?: MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
-    id?: string | null;
-    responses?: MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput | null;
-    text: string;
 };
 export type MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput = {
     connect?: Array<MultipleChoiceQuestionResponseWhereUniqueInput> | null;

@@ -4,6 +4,7 @@ import HalfSlide from "./HalfSlide";
 import { createFragmentContainer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
 import { Slide_slide } from "./__generated__/Slide_slide.graphql";
+import { Block } from "../../types/Block";
 
 type Props = {
   type?: Slide_slide["__typename"];
@@ -12,13 +13,21 @@ type Props = {
   preview?: boolean;
   selected?: boolean;
   style?: any;
+  onSelectBlock?: (block: Block) => void;
 };
-const Slide = ({ slide, type, children, preview, selected }: Props) => {
+const Slide = ({
+  slide,
+  type,
+  children,
+  preview,
+  selected,
+  onSelectBlock
+}: Props) => {
   switch (slide?.__typename ?? type) {
     case "SingleSlide":
       return (
         <SingleSlide
-          // @ts-ignore
+          onSelectBlock={onSelectBlock}
           singleSlide={slide}
           preview={preview}
           selected={selected}
@@ -26,8 +35,12 @@ const Slide = ({ slide, type, children, preview, selected }: Props) => {
       );
     case "HalfSlide":
       return (
-        // @ts-ignore
-        <HalfSlide halfSlide={slide} preview={preview} selected={selected} />
+        <HalfSlide
+          onSelectBlock={onSelectBlock}
+          halfSlide={slide}
+          preview={preview}
+          selected={selected}
+        />
       );
     default:
       return <div>Slide not implement{children}</div>;

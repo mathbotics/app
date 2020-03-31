@@ -5,6 +5,9 @@ import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type SingleSlide_singleSlide = {
     readonly id: string;
+    readonly block: {
+        readonly " $fragmentRefs": FragmentRefs<"EditBlockSidebar_block">;
+    };
     readonly " $refType": "SingleSlide_singleSlide";
 };
 export type SingleSlide_singleSlide$data = SingleSlide_singleSlide;
@@ -28,8 +31,24 @@ const node: ReaderFragment = {
       "name": "id",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "block",
+      "storageKey": null,
+      "args": null,
+      "concreteType": null,
+      "plural": false,
+      "selections": [
+        {
+          "kind": "FragmentSpread",
+          "name": "EditBlockSidebar_block",
+          "args": null
+        }
+      ]
     }
   ]
 };
-(node as any).hash = '7166a5b4fe0c1500c938e2fa695d7c3c';
+(node as any).hash = 'c2ee427223cbd6f339b356a5e6140932';
 export default node;
