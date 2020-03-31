@@ -11,20 +11,22 @@ const MenuItem = styled(Menu.Item)`
   width: 100% !important;
   height: 100% !important;
   padding: 5px 15px !important;
+  background-color: #ffffff !important;
 `;
 
 const SlideCard = styled(Layout.Content)`
-  height: 250px;
+  height: 190px;
   background-color: white;
-  border: 1.35px solid #ccc;
+  border-radius: 5px;
   font-weight: 600;
+  color: #646464;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   :hover {
     color: #40a9ff;
-    border: 1.35px solid #40a9ff;
+    border: 1px solid #40a9ff;
     cursor: pointer;
   }
 `;
@@ -40,7 +42,8 @@ const SidebarHeader = ({ title }: SidebarHeaderProps) => (
         fontWeight: 500,
         whiteSpace: "nowrap",
         overflow: "hidden",
-        textOverflow: "ellipsis"
+        textOverflow: "ellipsis",
+        paddingLeft: "24px"
       }}
     >
       <BookOutlined /> {title}
@@ -51,7 +54,7 @@ const SidebarHeader = ({ title }: SidebarHeaderProps) => (
 const CreateSlideCard = (props: any) => {
   return (
     <Tooltip title="Create a slide">
-      <SlideCard>
+      <SlideCard style={{ border: "1px solid #ccc" }}>
         <PlusOutlined style={{ fontSize: "40px" }} />
       </SlideCard>
     </Tooltip>
@@ -72,32 +75,35 @@ type Props = {
 const SlidesSidebar = ({ lesson, onCreate, onEdit }: Props) => {
   const [selected, setSelected] = useState<number>(-1);
   return (
-    <Layout style={{ height: "94vh" }}>
-      <Sider
-        width={400}
-        theme="light"
-        style={{ height: "100%", overflow: "auto" }}
-      >
-        <SidebarHeader title={lesson.title} />
-        <Menu
-          defaultSelectedKeys={[selected.toString()]}
-          mode="inline"
-          style={{ padding: "0px !important" }}
-        >
-          {/* This is the add slide which should always show up on top */}
-          <MenuItem key={-1} onClick={() => onCreate()}>
-            <CreateSlideCard />
-          </MenuItem>
+    <Sider width={300} theme="light" style={{ overflow: "auto" }}>
+      <SidebarHeader title={lesson.title} />
+      <Menu defaultSelectedKeys={[selected.toString()]} mode="inline">
+        {/* This is the add slide which should always show up on top */}
+        <MenuItem key={-1} onClick={() => onCreate()}>
+          <CreateSlideCard />
+        </MenuItem>
 
-          {/* This is the rest of the slides */}
-          {lesson.slides.map((slide, index) => (
-            <MenuItem key={index} onClick={() => onEdit(slide.id)}>
-              <Slide preview slide={slide} />
-            </MenuItem>
-          ))}
-        </Menu>
-      </Sider>
-    </Layout>
+        {/* This is the rest of the slides */}
+        {lesson.slides.map((slide, index) => (
+          <MenuItem key={index} onClick={() => onEdit(slide.id)}>
+            <div style={{ display: "flex" }}>
+              <h1
+                style={{
+                  margin: "auto",
+                  paddingRight: "20px",
+                  fontWeight: "bolder"
+                }}
+              >
+                {index + 1}
+              </h1>
+              <SlideCard>
+                <Slide preview slide={slide} />
+              </SlideCard>
+            </div>
+          </MenuItem>
+        ))}
+      </Menu>
+    </Sider>
   );
 };
 

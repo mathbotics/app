@@ -15,11 +15,7 @@ type Props = {
 };
 const EditorSlidePreview = ({ onSelectBlock, slide }: Props) => (
   <Layout>
-    <Content
-      style={{
-        margin: "16px 16px"
-      }}
-    >
+    <Content style={{ margin: "10px", height: "auto" }}>
       {slide ? (
         <Slide slide={slide} />
       ) : (
