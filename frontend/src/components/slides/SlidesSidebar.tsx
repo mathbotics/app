@@ -73,7 +73,8 @@ type Props = {
   onEdit: (id: string) => void;
 };
 const SlidesSidebar = ({ lesson, onCreate, onEdit }: Props) => {
-  const [selected, setSelected] = useState<number>(-1);
+  const [selected, setSelected] = useState<string>("");
+
   return (
     <Sider width={300} theme="light" style={{ overflow: "auto" }}>
       <SidebarHeader title={lesson.title} />
@@ -84,8 +85,14 @@ const SlidesSidebar = ({ lesson, onCreate, onEdit }: Props) => {
         </MenuItem>
 
         {/* This is the rest of the slides */}
-        {lesson.slides.map((slide, index) => (
-          <MenuItem key={index} onClick={() => onEdit(slide.id)}>
+        {lesson.slides.map((slide, index: number) => (
+          <MenuItem
+            key={index}
+            onClick={() => {
+              onEdit(slide.id);
+              setSelected(slide.id);
+            }}
+          >
             <div style={{ display: "flex" }}>
               <h1
                 style={{
@@ -97,7 +104,7 @@ const SlidesSidebar = ({ lesson, onCreate, onEdit }: Props) => {
                 {index + 1}
               </h1>
               <SlideCard>
-                <Slide preview slide={slide} />
+                <Slide preview selected={slide.id === selected} slide={slide} />
               </SlideCard>
             </div>
           </MenuItem>
