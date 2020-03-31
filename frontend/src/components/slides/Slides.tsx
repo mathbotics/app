@@ -1,15 +1,14 @@
 import React from "react";
 import { Layout } from "antd";
-import EditorSlidesSidebar from "./EditorSlidesSidebar";
+import SlidesSidebar from "./SlidesSidebar";
 import { createFragmentContainer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
 import { Slides_lesson } from "./__generated__/Slides_lesson.graphql";
 import CreateSlideModal from "./CreateSlideModal";
-import { EditorEditBlockSidebar } from "./EditorEditBlockSidebar";
-import { EditorSlidePreview } from "./EditorSlidePreview";
-import styled from "styled-components";
+import EditBlockSidebar from "./EditBlockSidebar";
+import EditorSlidePreview from "./EditorSlidePreview";
+import { Block } from "../../types/Block";
 
-const { Content } = Layout;
 enum PageState {
   Default,
   CreateSlide,
@@ -26,34 +25,28 @@ const Slides = (props: SlidesProps): JSX.Element => {
   const [pageState, setPageState] = React.useState<PageState>(
     PageState.Default
   );
-  const [previewSlideId, setPreviewSlideId] = React.useState<string>(
-    props.lesson.slides[0]?.id
-  );
+  const [selectedSlideId, setSelectedSlideId] = React.useState<
+    string | undefined
+  >(props.lesson.slides[0]?.id);
+  const [selectedBlock, setSelectedBlock] = React.useState<any>(null);
+
   return (
     <Layout>
-      {/* The is the left most item which is the sidebar
-      displaying all the slides which a lesson contains*/}
-      <EditorSlidesSidebar
+      <SlidesSidebar
         lesson={props.lesson}
         onCreate={() => setPageState(PageState.CreateSlide)}
-        onEdit={(id: any) => {
+        onEdit={(id: string) => {
           setPageState(PageState.EditSlide);
-          console.log(id);
+          setSelectedSlideId(id);
         }}
       />
-
-      {/* This Is the layout containing the preview for 
-      the current block being selected. On the right is the editor sidebar
-      with the form to edit this preview */}
-      <EditorSlidePreview slide={slide} />
-
-      {/* Editor sider is what display the controls to 
-        edit the actial slides. It will return an onEditSuccess*/}
-      {pageState === PageState.EditBlock && <EditorEditBlockSidebar />}
-
-      {/* Create a slide Modal is the pop up to create a slide.
-        This Modal pops up when the sidebar
-        item get selected triggering a onCrate intent */}
+      <EditorSlidePreview
+        slide={props.lesson.slides.find(({ id }) => id === selectedSlideId)}
+        onSelectBlock={(block: Block) => setSelectedBlock(block)}
+      />
+      {pageState === PageState.EditBlock && (
+        <EditBlockSidebar block={selectedBlock} />
+      )}
       {pageState === PageState.CreateSlide && (
         <CreateSlideModal
           lessonId={props.lesson.id}
