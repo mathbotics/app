@@ -56,7 +56,7 @@ input AdminWhereUniqueInput {
   id: String
 }
 
-union Block = MultipleChoiceQuestionBlock | TextBlock
+union Block = EmptyBlock | MultipleChoiceQuestionBlock | TextBlock
 
 input BlockCreateManyWithoutMultipleChoiceQuestionBlockInput {
   connect: [BlockWhereUniqueInput!]
@@ -671,6 +671,10 @@ input DateTimeFilter {
   lte: DateTime
   not: DateTime
   notIn: [DateTime!]
+}
+
+type EmptyBlock {
+  id: String!
 }
 
 enum GradeLevel {
@@ -2527,9 +2531,9 @@ input StudentWhereUniqueInput {
 }
 
 type TextBlock {
-  body: String
+  body: String!
   id: String!
-  title: String
+  title: String!
 }
 
 input TextBlockCreateOneWithoutBlocksInput {

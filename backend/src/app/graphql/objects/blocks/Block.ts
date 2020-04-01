@@ -6,7 +6,7 @@ import prisma from '../../../data/prisma';
 export const Block = unionType({
   name: 'Block',
   definition(t) {
-    t.members('MultipleChoiceQuestionBlock', 'TextBlock');
+    t.members('MultipleChoiceQuestionBlock', 'TextBlock', 'EmptyBlock');
     t.resolveType(async ({ id }) => {
       const { multipleChoiceQuestionBlock, textBlock } = nullthrows(
         await prisma.block.findOne({

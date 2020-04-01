@@ -7,7 +7,6 @@ export const TextBlock = objectType({
   definition(t) {
     t.string('id');
     t.string('title', {
-      nullable: true,
       async resolve({ id }) {
         const { textBlock } = nullthrows(
           await prisma.block.findOne({
@@ -16,11 +15,10 @@ export const TextBlock = objectType({
           }),
           'Block not found.',
         );
-        return textBlock?.title ?? null;
+        return nullthrows(textBlock?.title);
       },
     });
     t.string('body', {
-      nullable: true,
       async resolve({ id }) {
         const { textBlock } = nullthrows(
           await prisma.block.findOne({
@@ -29,7 +27,7 @@ export const TextBlock = objectType({
           }),
           'Block not found.',
         );
-        return textBlock?.body ?? null;
+        return nullthrows(textBlock?.body);
       },
     });
   },
