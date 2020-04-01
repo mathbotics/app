@@ -14,7 +14,6 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
-  border: ${({ preview }: WrapperProps) => preview && "1px solid #ccc"};
   transition: all 0.15s ease-in-out;
   background-color: ${({ selected, preview }: WrapperProps) =>
     selected && preview ? "#1990ff" : "#fff"};
@@ -22,7 +21,6 @@ const Wrapper = styled.div`
     selected && preview && "white"};
   :hover {
     cursor: ${({ preview }: WrapperProps) => preview && "pointer"};
-    border: ${({ preview }: WrapperProps) => preview && "1px solid #f3f3f3cc"};
     background-color: ${({ preview }: WrapperProps) => preview && "#1990ff"};
     color: ${({ preview }: WrapperProps) => preview && "white"};
   }

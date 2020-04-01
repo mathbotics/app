@@ -1,9 +1,12 @@
 import React from "react";
+import { Typography } from "antd";
 import styled from "styled-components";
 import { graphql } from "babel-plugin-relay/macro";
 import { createFragmentContainer } from "react-relay";
 import { MultipleChoiceQuestionBlock_block } from "./__generated__/MultipleChoiceQuestionBlock_block.graphql";
 import MultipleChoiceGroup from "./MultipleChoiceGroup";
+
+const { Title } = Typography;
 
 const Wrapper = styled.div`
   display: flex;
@@ -13,7 +16,13 @@ const Wrapper = styled.div`
 `;
 
 const Question = ({ text }: { text: string }) => {
-  return <h1 style={{ width: "300px" }}>{text}</h1>;
+  return (
+    <div
+      style={{ width: "350px", overflowWrap: "break-word", color: "#646464" }}
+    >
+      <Title level={2}>{text}</Title>
+    </div>
+  );
 };
 
 export type MultipleChoiceProps = { block: MultipleChoiceQuestionBlock_block };

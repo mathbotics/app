@@ -4,26 +4,29 @@ import { RadioChangeEvent } from "antd/lib/radio";
 import { graphql } from "babel-plugin-relay/macro";
 import { createFragmentContainer } from "react-relay";
 import { MultipleChoiceGroup_block } from "./__generated__/MultipleChoiceGroup_block.graphql";
+import style from "styled-components";
 
 type MultipleChoiceChoiceProps = {
-  index: number;
+  id: string;
   value?: string;
   text?: string;
 };
 const MultipleChoiceChoice = ({
   text,
-  index
+  id
 }: MultipleChoiceChoiceProps): JSX.Element => {
-  const radioStyle = {
-    display: "block",
-    height: "30px",
-    lineHeight: "30px"
-  };
-  return (
-    <Radio style={radioStyle} value={index}>
-      {text}
-    </Radio>
-  );
+  const RadioButton = style(Radio)`
+  display: block;
+  height: 30px;
+  line-height: 30px;
+  background-color: #f0f2f5;
+  width: 300px;
+  border-radius: 5px;
+  padding: 10px;
+  height: auto;
+  margin: 10px 0px;
+  `;
+  return <RadioButton value={id}>{text}</RadioButton>;
 };
 
 export type MultipleChoiceGroupProps = {
@@ -41,9 +44,9 @@ export type MultipleChoiceGroupProps = {
 type Props = { block: MultipleChoiceGroup_block };
 const MultipleChoiceGroup = ({ block }: Props) => {
   return (
-    <Radio.Group onChange={(e: any) => console.log(e)} value={""}>
-      {block.choices.map(({ id, text }, index) => (
-        <MultipleChoiceChoice key={id} index={index} value={id} text={text} />
+    <Radio.Group onChange={(e: any) => console.log(e.target.value)} value={""}>
+      {block.choices.map(({ id, text }, index: number) => (
+        <MultipleChoiceChoice key={id} id={id} value={id} text={text} />
       ))}
     </Radio.Group>
   );

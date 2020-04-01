@@ -43,7 +43,7 @@ const SidebarHeader = ({ title }: SidebarHeaderProps) => (
         whiteSpace: "nowrap",
         overflow: "hidden",
         textOverflow: "ellipsis",
-        paddingLeft: "24px"
+        paddingLeft: "15px"
       }}
     >
       <BookOutlined /> {title}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { UnorderedListOutlined, AlignLeftOutlined } from "@ant-design/icons";
 import { graphql } from "babel-plugin-relay/macro";
@@ -8,48 +8,40 @@ import { HalfSlide_halfSlide } from "./__generated__/HalfSlide_halfSlide.graphql
 import { Block as BlockType } from "../../types/Block";
 import Block from "../block/Block";
 
+type BlockWrapperProps = { preview?: boolean };
 const BlockAWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 50%;
-  margin: 0px 2px 0px 0px;
-  border-radius: 5px;
-
-  :hover {
-    cursor: pointer;
-  }
+  width: 49.5%;
+  overflow: hidden;
+  background-color: ${({ preview }: BlockWrapperProps) => !preview && "white"};
 `;
+
 const BlockBWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
   height: 100%;
-  width: 50%;
-  margin: 0px 0px 0px 2px;
-  border-radius: 5px;
-  :hover {
-    cursor: pointer;
-  }
+  width: 49.5%;
+  background-color: ${({ preview }: BlockWrapperProps) => !preview && "white"};
 `;
 
 type WrapperProps = { preview?: boolean; selected?: boolean };
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   display: flex;
-  border: ${({ preview }: WrapperProps) => preview && "1px solid #ccc"};
   transition: all 0.15s ease-in-out;
   background-color: ${({ selected, preview }: WrapperProps) =>
     selected && preview && "#1990ff"};
   color: ${({ selected, preview }: WrapperProps) =>
     selected && preview && "white"};
   :hover {
-    cursor: ${({ preview }: WrapperProps) => preview && "pointer"};
-    border: ${({ preview }: WrapperProps) => preview && "1px solid #f3f3f3cc"};
     background-color: ${({ preview }: WrapperProps) => preview && "#1990ff"};
     color: ${({ preview }: WrapperProps) => preview && "white"};
   }
@@ -68,14 +60,16 @@ type Props = {
   BlockB?: BlockComponent;
   preview?: boolean;
   selected?: boolean;
+  selectedBlock?: any;
   onSelectBlock?: (block: BlockType) => void;
 };
-const HalfSlide = ({ halfSlide, BlockA, BlockB, preview, selected }: Props) => {
-  const { Default, BlockASelected, BlockBSelected } = ComponentState;
-  const [state, setState] = useState<ComponentState>(Default);
+const HalfSlide = ({ halfSlide, preview, selected }: Props) => {
   return (
     <Wrapper preview={preview} selected={selected}>
-      <BlockAWrapper onClick={() => setState(BlockASelected)}>
+      <BlockAWrapper
+        preview={preview}
+        onClick={() => console.log(halfSlide?.firstHalfBlock)}
+      >
         {preview ? (
           <AlignLeftOutlined style={{ fontSize: 50 }} />
         ) : (
@@ -84,7 +78,10 @@ const HalfSlide = ({ halfSlide, BlockA, BlockB, preview, selected }: Props) => {
         )}
       </BlockAWrapper>
 
-      <BlockBWrapper onClick={() => setState(BlockBSelected)}>
+      <BlockBWrapper
+        preview={preview}
+        onClick={() => console.log(halfSlide?.secondHalfBlock)}
+      >
         {preview ? (
           <UnorderedListOutlined style={{ fontSize: 50 }} />
         ) : (

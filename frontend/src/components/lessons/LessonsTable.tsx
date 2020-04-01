@@ -9,6 +9,10 @@ import { useHistory } from "react-router-dom";
 
 const columns: ColumnsType<any> = [
   {
+    title: "",
+    dataIndex: "index"
+  },
+  {
     title: "Lessons Title",
     dataIndex: "title"
   },
@@ -71,6 +75,7 @@ const columns: ColumnsType<any> = [
 ];
 
 type TableItem = {
+  index: number;
   key: number;
   title: string;
   level?: number;
@@ -92,10 +97,11 @@ const LessonsTable = ({ lessons: { lessons } }: Props) => {
   useEffect(() => {
     setData(
       lessons.map(({ id, title, slides }, index: number) => ({
+        index: index + 1,
         key: index,
         title,
-        level: 0,
-        time: "",
+        level: 9,
+        time: "15 min",
         slide_count: slides.length,
         edit_button: (
           <EditOutlined

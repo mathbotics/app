@@ -5,9 +5,7 @@ import { graphql } from "babel-plugin-relay/macro";
 import { EditBlockSidebar_block } from "./__generated__/EditBlockSidebar_block.graphql";
 
 const { Sider } = Layout;
-type Props = {
-  block?: EditBlockSidebar_block;
-};
+type Props = { block?: EditBlockSidebar_block };
 const EditBlockSidebar = (props: Props) => {
   return (
     <Layout>

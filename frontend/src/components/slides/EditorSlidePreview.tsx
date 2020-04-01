@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Result } from "antd";
+import { Result } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
 import { createFragmentContainer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
@@ -8,33 +8,46 @@ import { Block } from "../../types/Block";
 import Slide from "./Slide";
 import styled from "styled-components";
 
-const { Content } = Layout;
-
-const Wrapper = styled(Layout.Content)`
-  height: 100%;
-  padding: 10px;
-`;
-
 type Props = {
   onSelectBlock: (block: Block) => void; // This onClick should return a block to edit
   slide?: EditorSlidePreview_slide;
+  selectedBlock?: Block;
 };
-const EditorSlidePreview = ({ onSelectBlock, slide }: Props) => (
-  <Layout>
-    <Content style={{ margin: "10px", height: "auto" }}>
-      {slide ? (
-        <Wrapper>
-          <Slide slide={slide} />
-        </Wrapper>
-      ) : (
+const EditorSlidePreview = ({ onSelectBlock, selectedBlock, slide }: Props) => (
+  <Wrapper>
+    {slide ? (
+      <Slide preview={false} slide={slide} selectedBlock={selectedBlock} />
+    ) : (
+      <div
+        style={{
+          backgroundColor: "white",
+          borderRadius: "5px",
+          width: "100%",
+          height: "100%",
+          overflow: "hidden",
+          justifyContent: "center",
+          alignItems: "center",
+          display: "flex"
+        }}
+      >
         <Result
+          style={{ display: "inline-block" }}
           icon={<SmileOutlined />}
           title="Get started by creating a slide!"
         />
-      )}
-    </Content>
-  </Layout>
+      </div>
+    )}
+  </Wrapper>
 );
+
+const Wrapper = styled.div`
+  height: inherit;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+`;
 
 export default createFragmentContainer(EditorSlidePreview, {
   slide: graphql`

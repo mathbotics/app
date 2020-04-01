@@ -2,7 +2,7 @@ import React from "react";
 import { graphql } from "babel-plugin-relay/macro";
 import { createFragmentContainer } from "react-relay";
 import { Block_block } from "./__generated__/Block_block.graphql";
-import MultipleChoiceQuestionBlock from "./MultipleChoiceQuestionBlock";
+import MultipleChoiceQuestionBlock from "./multiple_choice/MultipleChoiceQuestionBlock";
 
 type Props = { block: Block_block };
 const Block = ({ block }: Props) => {

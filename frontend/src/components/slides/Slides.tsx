@@ -28,10 +28,10 @@ const Slides = (props: SlidesProps): JSX.Element => {
   const [selectedSlideId, setSelectedSlideId] = React.useState<
     string | undefined
   >(props.lesson.slides[0]?.id);
-  const [selectedBlock, setSelectedBlock] = React.useState<any>(null);
+  const [selectedBlock, setSelectedBlock] = React.useState<Block>();
 
   return (
-    <Layout>
+    <Layout style={{ height: "92vh" }}>
       <SlidesSidebar
         lesson={props.lesson}
         onCreate={() => setPageState(PageState.CreateSlide)}
@@ -43,6 +43,7 @@ const Slides = (props: SlidesProps): JSX.Element => {
       <EditorSlidePreview
         slide={props.lesson.slides.find(({ id }) => id === selectedSlideId)}
         onSelectBlock={(block: Block) => setSelectedBlock(block)}
+        selectedBlock={selectedBlock}
       />
       {pageState === PageState.EditBlock && (
         <EditBlockSidebar block={selectedBlock} />
