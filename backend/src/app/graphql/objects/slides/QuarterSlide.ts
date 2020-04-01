@@ -27,14 +27,15 @@ export const QuarterSlide = objectType({
           }),
           'QuarterSlide not found',
         );
-        const { textBlock, multipleChoiceQuestionBlock } = nullthrows(
+        const mainBlock = nullthrows(
           quarterSlide?.mainBlock,
-          'mainBlock not found',
+          'Block not found',
         );
-        return nullthrows(
-          textBlock ?? multipleChoiceQuestionBlock,
-          'No block found.',
-        );
+        const { multipleChoiceQuestionBlock, textBlock } = mainBlock;
+        return {
+          ...(textBlock ?? multipleChoiceQuestionBlock),
+          ...mainBlock,
+        };
       },
     });
     t.field('sideBlock', {
@@ -58,14 +59,15 @@ export const QuarterSlide = objectType({
           }),
           'QuarterSlide not found',
         );
-        const { textBlock, multipleChoiceQuestionBlock } = nullthrows(
+        const sideBlock = nullthrows(
           quarterSlide?.sideBlock,
-          'sideBlock not found',
+          'Block not found',
         );
-        return nullthrows(
-          textBlock ?? multipleChoiceQuestionBlock,
-          'No block found.',
-        );
+        const { multipleChoiceQuestionBlock, textBlock } = sideBlock;
+        return {
+          ...(textBlock ?? multipleChoiceQuestionBlock),
+          ...sideBlock,
+        };
       },
     });
   },

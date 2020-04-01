@@ -27,14 +27,15 @@ export const HalfSlide = objectType({
           }),
           'HalfSlide not found',
         );
-        const { multipleChoiceQuestionBlock, textBlock } = nullthrows(
+        const firstHalfBlock = nullthrows(
           halfSlide?.firstHalfBlock,
           'Block not found',
         );
-        return nullthrows(
-          textBlock ?? multipleChoiceQuestionBlock,
-          'No block found.',
-        );
+        const { multipleChoiceQuestionBlock, textBlock } = firstHalfBlock;
+        return {
+          ...(textBlock ?? multipleChoiceQuestionBlock),
+          ...firstHalfBlock,
+        };
       },
     });
     t.field('secondHalfBlock', {
@@ -58,14 +59,15 @@ export const HalfSlide = objectType({
           }),
           'HalfSlide not found',
         );
-        const { multipleChoiceQuestionBlock, textBlock } = nullthrows(
+        const secondHalfBlock = nullthrows(
           halfSlide?.secondHalfBlock,
           'Block not found',
         );
-        return nullthrows(
-          textBlock ?? multipleChoiceQuestionBlock,
-          'No block found.',
-        );
+        const { multipleChoiceQuestionBlock, textBlock } = secondHalfBlock;
+        return {
+          ...(textBlock ?? multipleChoiceQuestionBlock),
+          ...secondHalfBlock,
+        };
       },
     });
   },

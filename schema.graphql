@@ -1302,7 +1302,7 @@ input LogInInput {
 type MultipleChoiceQuestionBlock {
   choices: [MultipleChoiceQuestionChoice!]!
   id: String!
-  text: String!
+  text: String
 }
 
 input MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput {
@@ -2527,9 +2527,9 @@ input StudentWhereUniqueInput {
 }
 
 type TextBlock {
-  body: String!
+  body: String
   id: String!
-  title: String!
+  title: String
 }
 
 input TextBlockCreateOneWithoutBlocksInput {

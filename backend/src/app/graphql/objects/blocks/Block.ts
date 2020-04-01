@@ -24,7 +24,7 @@ export const Block = unionType({
       if (textBlock) {
         return 'TextBlock';
       }
-      throw new Error('Unimplemented block.');
+      return 'TextBlock';
     });
   },
 });

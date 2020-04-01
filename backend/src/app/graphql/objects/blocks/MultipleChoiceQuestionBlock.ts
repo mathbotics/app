@@ -8,6 +8,7 @@ export const MultipleChoiceQuestionBlock = objectType({
   definition(t) {
     t.string('id');
     t.string('text', {
+      nullable: true,
       async resolve({ id }) {
         const { multipleChoiceQuestionBlock } = nullthrows(
           await prisma.block.findOne({
@@ -36,8 +37,7 @@ export const MultipleChoiceQuestionBlock = objectType({
           }),
           'No block found',
         );
-        const { choices } = nullthrows(multipleChoiceQuestionBlock);
-        return choices;
+        return multipleChoiceQuestionBlock?.choices ?? [];
       },
     });
   },

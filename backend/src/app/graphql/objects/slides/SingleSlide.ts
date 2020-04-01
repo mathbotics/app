@@ -28,14 +28,12 @@ export const SingleSlide = objectType({
           }),
           'SingleSlide not found',
         );
-        const { textBlock, multipleChoiceQuestionBlock } = nullthrows(
-          singleSlide?.block,
-          'Block not found',
-        );
-        return nullthrows(
-          textBlock ?? multipleChoiceQuestionBlock,
-          'No block found.',
-        );
+        const block = nullthrows(singleSlide?.block, 'Block not found');
+        const { multipleChoiceQuestionBlock, textBlock } = block;
+        return {
+          ...(textBlock ?? multipleChoiceQuestionBlock),
+          ...block,
+        };
       },
     });
   },
