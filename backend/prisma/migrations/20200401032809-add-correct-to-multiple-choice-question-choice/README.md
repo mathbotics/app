@@ -1,6 +1,6 @@
-# Migration `20200401032923-ajhdk-add-correct`
+# Migration `20200401032809-add-correct-to-multiple-choice-question-choice`
 
-This migration has been generated at 4/1/2020, 3:29:23 AM.
+This migration has been generated at 4/1/2020, 3:28:09 AM.
 You can check out the [state of the schema](./schema.prisma) after the migration.
 
 ## Database Steps
@@ -18,7 +18,7 @@ ALTER TABLE "public"."MultipleChoiceQuestionChoice" ADD COLUMN "correct" boolean
 
 ```diff
 diff --git schema.prisma schema.prisma
-migration 20200329060657-non-nullable-blocks..20200401032923-ajhdk-add-correct
+migration 20200329060657-non-nullable-blocks..20200401032809-add-correct-to-multiple-choice-question-choice
 --- datamodel.dml
 +++ datamodel.dml
 @@ -3,9 +3,9 @@
