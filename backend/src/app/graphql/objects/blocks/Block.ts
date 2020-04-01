@@ -24,7 +24,7 @@ export const Block = unionType({
       if (textBlock) {
         return 'TextBlock';
       }
-      return 'TextBlock';
+      return 'EmptyBlock';
     });
   },
 });
