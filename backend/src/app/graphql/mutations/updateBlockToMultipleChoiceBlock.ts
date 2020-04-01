@@ -36,6 +36,7 @@ export const updateBlockToMultipleChoiceBlock = mutationField(
     async resolve(_root, { input: { blockId, choices, questionText } }) {
       const {
         multipleChoiceQuestionBlock,
+        textBlock,
         ...parentBlock
       } = await prisma.block.update({
         where: { id: blockId },
@@ -48,14 +49,15 @@ export const updateBlockToMultipleChoiceBlock = mutationField(
               },
             },
           },
-          textBlock: {
-            delete: true,
-          },
         },
         include: {
           multipleChoiceQuestionBlock: true,
+          textBlock: true,
         },
       });
+      if (textBlock) {
+        await prisma.textBlock.delete({ where: { id: textBlock.id } });
+      }
       return {
         ...nullthrows(
           multipleChoiceQuestionBlock,

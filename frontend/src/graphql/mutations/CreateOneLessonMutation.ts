@@ -8,6 +8,10 @@ const mutation = graphql`
   mutation CreateOneLessonMutation($data: LessonCreateInput!) {
     createOneLesson(data: $data) {
       id
+      title
+      slides {
+        id
+      }
       ...LessonPreview_lesson
     }
   }

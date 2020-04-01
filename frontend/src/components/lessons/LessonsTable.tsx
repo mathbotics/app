@@ -90,8 +90,8 @@ const LessonsTable = ({ lessons: { lessons } }: Props) => {
   let history = useHistory();
   const [data, setData] = useState<ColumnsType<TableItem>>();
   useEffect(() => {
-    const tmp: TableItem[] = lessons.map(
-      ({ id, title, slides }, index: number) => ({
+    setData(
+      lessons.map(({ id, title, slides }, index: number) => ({
         key: index,
         title,
         level: 0,
@@ -103,10 +103,9 @@ const LessonsTable = ({ lessons: { lessons } }: Props) => {
             onClick={() => history.push(`/lessons/${id}/slides`)}
           />
         )
-      })
+      }))
     );
-    setData(tmp);
-  }, []);
+  }, [lessons]);
   return <Table columns={columns} dataSource={data} onChange={onChange} />;
 };
 

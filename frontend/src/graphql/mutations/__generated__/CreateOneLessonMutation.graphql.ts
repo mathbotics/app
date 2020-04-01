@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash c12d4ddf0436483646f6dddf421b63cb */
+/* @relayHash f0fba60dc8a520eebd2620700d37d192 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -588,6 +588,10 @@ export type CreateOneLessonMutationVariables = {
 export type CreateOneLessonMutationResponse = {
     readonly createOneLesson: {
         readonly id: string;
+        readonly title: string;
+        readonly slides: ReadonlyArray<{
+            readonly id: string;
+        }>;
         readonly " $fragmentRefs": FragmentRefs<"LessonPreview_lesson">;
     };
 };
@@ -604,6 +608,11 @@ mutation CreateOneLessonMutation(
 ) {
   createOneLesson(data: $data) {
     id
+    title
+    slides {
+      __typename
+      id
+    }
     ...LessonPreview_lesson
   }
 }
@@ -636,6 +645,13 @@ v2 = {
   "name": "id",
   "args": null,
   "storageKey": null
+},
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "title",
+  "args": null,
+  "storageKey": null
 };
 return {
   "kind": "Request",
@@ -656,6 +672,19 @@ return {
         "plural": false,
         "selections": [
           (v2/*: any*/),
+          (v3/*: any*/),
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "slides",
+            "storageKey": null,
+            "args": null,
+            "concreteType": null,
+            "plural": true,
+            "selections": [
+              (v2/*: any*/)
+            ]
+          },
           {
             "kind": "FragmentSpread",
             "name": "LessonPreview_lesson",
@@ -680,12 +709,25 @@ return {
         "plural": false,
         "selections": [
           (v2/*: any*/),
+          (v3/*: any*/),
           {
-            "kind": "ScalarField",
+            "kind": "LinkedField",
             "alias": null,
-            "name": "title",
+            "name": "slides",
+            "storageKey": null,
             "args": null,
-            "storageKey": null
+            "concreteType": null,
+            "plural": true,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "__typename",
+                "args": null,
+                "storageKey": null
+              },
+              (v2/*: any*/)
+            ]
           }
         ]
       }
@@ -695,10 +737,10 @@ return {
     "operationKind": "mutation",
     "name": "CreateOneLessonMutation",
     "id": null,
-    "text": "mutation CreateOneLessonMutation(\n  $data: LessonCreateInput!\n) {\n  createOneLesson(data: $data) {\n    id\n    ...LessonPreview_lesson\n  }\n}\n\nfragment LessonPreview_lesson on Lesson {\n  id\n  title\n}\n",
+    "text": "mutation CreateOneLessonMutation(\n  $data: LessonCreateInput!\n) {\n  createOneLesson(data: $data) {\n    id\n    title\n    slides {\n      __typename\n      id\n    }\n    ...LessonPreview_lesson\n  }\n}\n\nfragment LessonPreview_lesson on Lesson {\n  id\n  title\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '1b76a0d7241f209afc54f23bbe139cfe';
+(node as any).hash = 'de8159bef6c1e077225f9085d13b4f76';
 export default node;

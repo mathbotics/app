@@ -18,7 +18,11 @@ export const updateBlockToTextBlock = mutationField('updateBlockToTextBlock', {
     input: arg({ type: 'UpdateBlockToTextBlockInput', required: true }),
   },
   async resolve(_root, { input: { blockId, title, body } }) {
-    const { textBlock, ...parentBlock } = await prisma.block.update({
+    const {
+      textBlock,
+      multipleChoiceQuestionBlock,
+      ...parentBlock
+    } = await prisma.block.update({
       where: { id: blockId },
       data: {
         textBlock: {
@@ -27,14 +31,17 @@ export const updateBlockToTextBlock = mutationField('updateBlockToTextBlock', {
             body,
           },
         },
-        multipleChoiceQuestionBlock: {
-          delete: true,
-        },
       },
       include: {
         textBlock: true,
+        multipleChoiceQuestionBlock: true,
       },
     });
+    if (multipleChoiceQuestionBlock) {
+      await prisma.multipleChoiceQuestionBlock.delete({
+        where: { id: multipleChoiceQuestionBlock.id },
+      });
+    }
     return { ...nullthrows(textBlock, 'TextBlock not loaded'), ...parentBlock };
   },
 });
