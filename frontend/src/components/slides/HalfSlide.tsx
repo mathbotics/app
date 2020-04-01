@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { UnorderedListOutlined, AlignLeftOutlined } from "@ant-design/icons";
 import { graphql } from "babel-plugin-relay/macro";
-
-import { MultipleChoice, MultipleChoiceEdit } from "../block";
+import nullthrows from "nullthrows";
 import { createFragmentContainer } from "react-relay";
 import { HalfSlide_halfSlide } from "./__generated__/HalfSlide_halfSlide.graphql";
-import { Block } from "../../types/Block";
+import { Block as BlockType } from "../../types/Block";
+import Block from "../block/Block";
 
 const BlockAWrapper = styled.div`
   display: flex;
@@ -14,6 +14,12 @@ const BlockAWrapper = styled.div`
   align-items: center;
   height: 100%;
   width: 50%;
+  margin: 0px 2px 0px 0px;
+  border-radius: 5px;
+
+  :hover {
+    cursor: pointer;
+  }
 `;
 const BlockBWrapper = styled.div`
   display: flex;
@@ -21,13 +27,17 @@ const BlockBWrapper = styled.div`
   align-items: center;
   height: 100%;
   width: 50%;
+  margin: 0px 0px 0px 2px;
+  border-radius: 5px;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 type WrapperProps = { preview?: boolean; selected?: boolean };
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  border-radius: 5px;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -45,36 +55,46 @@ const Wrapper = styled.div`
   }
 `;
 
-type BlockComponent = React.ReactElement<
-  typeof MultipleChoice | typeof MultipleChoiceEdit
->;
+enum ComponentState {
+  Default,
+  BlockASelected,
+  BlockBSelected
+}
+
+type BlockComponent = React.ReactElement;
 type Props = {
   halfSlide?: HalfSlide_halfSlide;
   BlockA?: BlockComponent;
   BlockB?: BlockComponent;
   preview?: boolean;
   selected?: boolean;
-  onSelectBlock?: (block: Block) => void;
+  onSelectBlock?: (block: BlockType) => void;
 };
-const HalfSlide = ({ BlockA, BlockB, preview, selected }: Props) => (
-  <Wrapper preview={preview} selected={selected}>
-    <BlockAWrapper>
-      {preview ? (
-        <AlignLeftOutlined style={{ fontSize: 50 }} />
-      ) : (
-        BlockB ?? "No block provided"
-      )}
-    </BlockAWrapper>
+const HalfSlide = ({ halfSlide, BlockA, BlockB, preview, selected }: Props) => {
+  const { Default, BlockASelected, BlockBSelected } = ComponentState;
+  const [state, setState] = useState<ComponentState>(Default);
+  return (
+    <Wrapper preview={preview} selected={selected}>
+      <BlockAWrapper onClick={() => setState(BlockASelected)}>
+        {preview ? (
+          <AlignLeftOutlined style={{ fontSize: 50 }} />
+        ) : (
+          <Block block={nullthrows(halfSlide?.firstHalfBlock)} /> ??
+          "No block provided"
+        )}
+      </BlockAWrapper>
 
-    <BlockBWrapper>
-      {preview ? (
-        <UnorderedListOutlined style={{ fontSize: 50 }} />
-      ) : (
-        BlockB ?? "No block provided"
-      )}
-    </BlockBWrapper>
-  </Wrapper>
-);
+      <BlockBWrapper onClick={() => setState(BlockBSelected)}>
+        {preview ? (
+          <UnorderedListOutlined style={{ fontSize: 50 }} />
+        ) : (
+          <Block block={nullthrows(halfSlide?.secondHalfBlock)} /> ??
+          "No block provided"
+        )}
+      </BlockBWrapper>
+    </Wrapper>
+  );
+};
 
 export default createFragmentContainer(HalfSlide, {
   halfSlide: graphql`
@@ -82,9 +102,11 @@ export default createFragmentContainer(HalfSlide, {
       id
       firstHalfBlock {
         ...EditBlockSidebar_block
+        ...Block_block
       }
       secondHalfBlock {
         ...EditBlockSidebar_block
+        ...Block_block
       }
     }
   `

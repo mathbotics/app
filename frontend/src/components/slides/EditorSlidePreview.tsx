@@ -6,8 +6,14 @@ import { graphql } from "babel-plugin-relay/macro";
 import { EditorSlidePreview_slide } from "./__generated__/EditorSlidePreview_slide.graphql";
 import { Block } from "../../types/Block";
 import Slide from "./Slide";
+import styled from "styled-components";
 
 const { Content } = Layout;
+
+const Wrapper = styled(Layout.Content)`
+  height: 100%;
+  padding: 10px;
+`;
 
 type Props = {
   onSelectBlock: (block: Block) => void; // This onClick should return a block to edit
@@ -17,7 +23,9 @@ const EditorSlidePreview = ({ onSelectBlock, slide }: Props) => (
   <Layout>
     <Content style={{ margin: "10px", height: "auto" }}>
       {slide ? (
-        <Slide slide={slide} />
+        <Wrapper>
+          <Slide slide={slide} />
+        </Wrapper>
       ) : (
         <Result
           icon={<SmileOutlined />}

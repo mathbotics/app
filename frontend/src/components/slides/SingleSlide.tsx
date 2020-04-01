@@ -2,8 +2,6 @@ import React, { ReactNode } from "react";
 import styled from "styled-components";
 import { FileImageOutlined } from "@ant-design/icons";
 import { graphql } from "babel-plugin-relay/macro";
-
-import { MultipleChoice, MultipleChoiceEdit } from "../block";
 import { createFragmentContainer } from "react-relay";
 import { SingleSlide_singleSlide } from "./__generated__/SingleSlide_singleSlide.graphql";
 import { Block } from "../../types/Block";
@@ -19,7 +17,7 @@ const Wrapper = styled.div`
   border: ${({ preview }: WrapperProps) => preview && "1px solid #ccc"};
   transition: all 0.15s ease-in-out;
   background-color: ${({ selected, preview }: WrapperProps) =>
-    selected && preview && "#1990ff"};
+    selected && preview ? "#1990ff" : "#fff"};
   color: ${({ selected, preview }: WrapperProps) =>
     selected && preview && "white"};
   :hover {
@@ -30,9 +28,7 @@ const Wrapper = styled.div`
   }
 `;
 
-type BlockComponent = React.ReactElement<
-  typeof MultipleChoice | typeof MultipleChoiceEdit
->;
+type BlockComponent = React.ReactElement;
 type Props = {
   singleSlide?: SingleSlide_singleSlide;
   Block?: BlockComponent;
@@ -56,6 +52,7 @@ export default createFragmentContainer(SingleSlide, {
       id
       block {
         ...EditBlockSidebar_block
+        ...Block_block
       }
     }
   `

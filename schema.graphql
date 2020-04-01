@@ -1306,7 +1306,7 @@ input LogInInput {
 type MultipleChoiceQuestionBlock {
   choices: [MultipleChoiceQuestionChoice!]!
   id: String!
-  text: String
+  text: String!
 }
 
 input MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput {

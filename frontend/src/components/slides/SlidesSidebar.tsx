@@ -73,12 +73,14 @@ type Props = {
   onEdit: (id: string) => void;
 };
 const SlidesSidebar = ({ lesson, onCreate, onEdit }: Props) => {
-  const [selected, setSelected] = useState<string>("");
+  const [selected, setSelected] = useState<string | undefined>(
+    lesson.slides[0]?.id
+  );
 
   return (
     <Sider width={300} theme="light" style={{ overflow: "auto" }}>
       <SidebarHeader title={lesson.title} />
-      <Menu defaultSelectedKeys={[selected.toString()]} mode="inline">
+      <Menu defaultSelectedKeys={[selected?.toString() ?? ""]} mode="inline">
         {/* This is the add slide which should always show up on top */}
         <MenuItem key={-1} onClick={() => onCreate()}>
           <CreateSlideCard />

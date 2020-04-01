@@ -6,7 +6,7 @@ import { FragmentRefs } from "relay-runtime";
 export type SingleSlide_singleSlide = {
     readonly id: string;
     readonly block: {
-        readonly " $fragmentRefs": FragmentRefs<"EditBlockSidebar_block">;
+        readonly " $fragmentRefs": FragmentRefs<"EditBlockSidebar_block" | "Block_block">;
     };
     readonly " $refType": "SingleSlide_singleSlide";
 };
@@ -45,10 +45,15 @@ const node: ReaderFragment = {
           "kind": "FragmentSpread",
           "name": "EditBlockSidebar_block",
           "args": null
+        },
+        {
+          "kind": "FragmentSpread",
+          "name": "Block_block",
+          "args": null
         }
       ]
     }
   ]
 };
-(node as any).hash = 'c2ee427223cbd6f339b356a5e6140932';
+(node as any).hash = '626ac52e7fdf46853cdd5bb74800c533';
 export default node;

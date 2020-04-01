@@ -6,10 +6,10 @@ import { FragmentRefs } from "relay-runtime";
 export type HalfSlide_halfSlide = {
     readonly id: string;
     readonly firstHalfBlock: {
-        readonly " $fragmentRefs": FragmentRefs<"EditBlockSidebar_block">;
+        readonly " $fragmentRefs": FragmentRefs<"EditBlockSidebar_block" | "Block_block">;
     };
     readonly secondHalfBlock: {
-        readonly " $fragmentRefs": FragmentRefs<"EditBlockSidebar_block">;
+        readonly " $fragmentRefs": FragmentRefs<"EditBlockSidebar_block" | "Block_block">;
     };
     readonly " $refType": "HalfSlide_halfSlide";
 };
@@ -26,6 +26,11 @@ var v0 = [
   {
     "kind": "FragmentSpread",
     "name": "EditBlockSidebar_block",
+    "args": null
+  },
+  {
+    "kind": "FragmentSpread",
+    "name": "Block_block",
     "args": null
   }
 ];
@@ -66,5 +71,5 @@ return {
   ]
 };
 })();
-(node as any).hash = '1e6e54199dcf5f9dc572171e4d21fbf0';
+(node as any).hash = 'c56bf210aa4bfd4ff1d406cfef0b12df';
 export default node;

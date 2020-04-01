@@ -1,2 +1,1 @@
-export * from "./MultipleChoice";
-export * from "./MultipleChoiceEdit";
+export * from "./MultipleChoiceQuestionBlock";

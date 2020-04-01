@@ -23,7 +23,7 @@ type SlidesProps = {
 };
 const Slides = (props: SlidesProps): JSX.Element => {
   const [pageState, setPageState] = React.useState<PageState>(
-    PageState.Default
+    PageState.EditSlide
   );
   const [selectedSlideId, setSelectedSlideId] = React.useState<
     string | undefined
@@ -44,7 +44,7 @@ const Slides = (props: SlidesProps): JSX.Element => {
         slide={props.lesson.slides.find(({ id }) => id === selectedSlideId)}
         onSelectBlock={(block: Block) => setSelectedBlock(block)}
       />
-      {pageState === PageState.EditSlide && (
+      {pageState === PageState.EditBlock && (
         <EditBlockSidebar block={selectedBlock} />
       )}
       {pageState === PageState.CreateSlide && (
