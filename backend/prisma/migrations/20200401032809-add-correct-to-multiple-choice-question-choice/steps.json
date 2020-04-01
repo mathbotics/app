@@ -1,0 +1,33 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "DeleteField",
+      "model": "MultipleChoiceQuestionBlock",
+      "field": "correctChoice"
+    },
+    {
+      "tag": "DeleteDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "MultipleChoiceQuestionBlock",
+          "field": "choices"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateField",
+      "model": "MultipleChoiceQuestionChoice",
+      "field": "correct",
+      "type": "Boolean",
+      "arity": "Required"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "MultipleChoiceQuestionChoice",
+      "field": "question"
+    }
+  ]
+}
