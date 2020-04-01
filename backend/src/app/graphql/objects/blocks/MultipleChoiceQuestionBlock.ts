@@ -36,7 +36,8 @@ export const MultipleChoiceQuestionBlock = objectType({
           }),
           'No block found',
         );
-        return multipleChoiceQuestionBlock?.choices ?? [];
+        const { choices } = nullthrows(multipleChoiceQuestionBlock);
+        return choices;
       },
     });
   },
