@@ -7,9 +7,7 @@ import Lessons from "../components/lessons/Lessons";
 
 export const LessonsPageQuery = graphql`
   query LessonsPageQuery {
-    lessons {
-      ...LessonPreview_lesson
-    }
+    ...Lessons_lessons
   }
 `;
 
@@ -19,8 +17,7 @@ export const LessonsPage = () => (
     variables={{}}
     query={LessonsPageQuery}
     render={({ props, error }) =>
-      !error &&
-      props && <Lessons lessons={(props as LessonsPageQueryResponse).lessons} />
+      !error && props && <Lessons lessons={props as LessonsPageQueryResponse} />
     }
   />
 );

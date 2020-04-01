@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Table } from "antd";
 import { ColumnsType } from "antd/lib/table";
-import { LessonsPageQueryResponse } from "../../pages/__generated__/LessonsPageQuery.graphql";
-import { LessonPreview_lesson } from "./__generated__/LessonPreview_lesson.graphql";
+import { EditOutlined } from "@ant-design/icons";
 import { graphql } from "babel-plugin-relay/macro";
 import { createFragmentContainer } from "react-relay";
+import { LessonsTable_lessons } from "./__generated__/LessonsTable_lessons.graphql";
+import { useHistory } from "react-router-dom";
 
 const columns: ColumnsType<any> = [
   {
@@ -53,12 +54,7 @@ const columns: ColumnsType<any> = [
         text: "4th",
         value: "4"
       }
-    ],
-    // specify the condition of filtering result
-    // here is that finding the name started with `value`
-    onFilter: (value, record) => record.name.indexOf(value) === 0,
-    sorter: (a, b) => a.name.length - b.name.length,
-    sortDirections: ["descend"]
+    ]
   },
   {
     title: "Completion time",
@@ -70,7 +66,7 @@ const columns: ColumnsType<any> = [
   },
   {
     title: "",
-    dataIndex: "slide_count"
+    dataIndex: "edit_button"
   }
 ];
 
@@ -80,6 +76,7 @@ type TableItem = {
   level?: number;
   time?: string;
   slide_count?: number;
+  edit_button?: JSX.Element;
 };
 
 function onChange(pagination, filters, sorter, extra) {
@@ -87,18 +84,42 @@ function onChange(pagination, filters, sorter, extra) {
 }
 
 type Props = {
-  lessons: LessonsPageQueryResponse["lessons"];
+  lessons: LessonsTable_lessons;
 };
-const LessonsTable = ({ lessons }: Props) => {
+const LessonsTable = ({ lessons: { lessons } }: Props) => {
+  let history = useHistory();
   const [data, setData] = useState<ColumnsType<TableItem>>();
   useEffect(() => {
-    lessons.map((lesson, index: number) =>
-      console.log(
-        "Need lessons here and store ins tate to pass to Table component from Antd"
-      )
+    const tmp: TableItem[] = lessons.map(
+      ({ id, title, slides }, index: number) => ({
+        key: index,
+        title,
+        level: 0,
+        time: "",
+        slide_count: slides.length,
+        edit_button: (
+          <EditOutlined
+            style={{ fontSize: "18px" }}
+            onClick={() => history.push(`/lessons/${id}/slides`)}
+          />
+        )
+      })
     );
+    setData(tmp);
   }, []);
   return <Table columns={columns} dataSource={data} onChange={onChange} />;
 };
 
-export default LessonsTable;
+export default createFragmentContainer(LessonsTable, {
+  lessons: graphql`
+    fragment LessonsTable_lessons on Query {
+      lessons {
+        id
+        title
+        slides {
+          id
+        }
+      }
+    }
+  `
+});

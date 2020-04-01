@@ -1,44 +1,25 @@
 import React, { useState } from "react";
 import { Typography, Button, Alert, Layout, Tooltip, Menu } from "antd";
-import { PlusOutlined, DownOutlined } from "@ant-design/icons";
-import { useHistory } from "react-router-dom";
+import { PlusOutlined } from "@ant-design/icons";
+import { graphql } from "babel-plugin-relay/macro";
 import { getRootQueryDataID } from "../../graphql/relay";
 import { LessonsPageQuery } from "../../pages/LessonsPage";
-import { LessonsPageQueryResponse } from "../../pages/__generated__/LessonsPageQuery.graphql";
 import CreateLessonModal from "./CreateLessonModal";
 import styled from "styled-components";
 import LessonsTable from "./LessonsTable";
+import { createFragmentContainer } from "react-relay";
+import { Lessons_lessons } from "./__generated__/Lessons_lessons.graphql";
 
 const { Title } = Typography;
 
-type HeaderProps = { onAddLesson: () => void };
-const Header = ({ onAddLesson }: HeaderProps): JSX.Element => {
-  return (
-    <HeaderWrappper>
-      <Title level={1}>Lesson Catalogue</Title>
-      <Tooltip title={"Add a lesson"}>
-        <Button
-          type="primary"
-          shape="circle"
-          icon={<PlusOutlined />}
-          htmlType="submit"
-          size={"large"}
-          onClick={() => onAddLesson()}
-        />
-      </Tooltip>
-    </HeaderWrappper>
-  );
-};
-
-type Props = { lessons: LessonsPageQueryResponse["lessons"] };
+type Props = { lessons: Lessons_lessons };
 enum PageState {
-  Default, // Normal state
+  Default, // Initial/Normal state
   CreateLessonIntent,
   CreateLessonSuccess,
   CreateLessonError
 }
-export default ({ lessons }: Props): JSX.Element => {
-  const history = useHistory();
+const Lessons = ({ lessons }: Props): JSX.Element => {
   const [pageState, setPageState] = useState<PageState>(PageState.Default);
   return (
     <Layout style={{ backgroundColor: "white" }}>
@@ -77,7 +58,7 @@ export default ({ lessons }: Props): JSX.Element => {
           visible={pageState === PageState.CreateLessonIntent}
           onSubmitSuccess={() => setPageState(PageState.CreateLessonSuccess)}
           onSubmitError={(e: Error) => {
-            console.log(e);
+            console.error(e);
             setPageState(PageState.CreateLessonError);
           }}
           onCancel={() => setPageState(PageState.Default)}
@@ -92,3 +73,30 @@ const HeaderWrappper = styled(Layout.Content)`
   justify-content: space-between;
   align-items: center;
 `;
+
+type HeaderProps = { onAddLesson: () => void };
+const Header = ({ onAddLesson }: HeaderProps): JSX.Element => {
+  return (
+    <HeaderWrappper>
+      <Title level={1}>Lesson Catalogue</Title>
+      <Tooltip title={"Add a lesson"}>
+        <Button
+          type="primary"
+          shape="circle"
+          icon={<PlusOutlined />}
+          htmlType="submit"
+          size={"large"}
+          onClick={() => onAddLesson()}
+        />
+      </Tooltip>
+    </HeaderWrappper>
+  );
+};
+
+export default createFragmentContainer(Lessons, {
+  lessons: graphql`
+    fragment Lessons_lessons on Query {
+      ...LessonsTable_lessons
+    }
+  `
+});

@@ -1,14 +1,12 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash fcc6e49203ed2eea852394d6d101e0c3 */
+/* @relayHash 8098e3ac1ce6288159cd80ceeb5e3d39 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type LessonsPageQueryVariables = {};
 export type LessonsPageQueryResponse = {
-    readonly lessons: ReadonlyArray<{
-        readonly " $fragmentRefs": FragmentRefs<"LessonPreview_lesson">;
-    }>;
+    readonly " $fragmentRefs": FragmentRefs<"Lessons_lessons">;
 };
 export type LessonsPageQuery = {
     readonly response: LessonsPageQueryResponse;
@@ -19,18 +17,34 @@ export type LessonsPageQuery = {
 
 /*
 query LessonsPageQuery {
+  ...Lessons_lessons
+}
+
+fragment LessonsTable_lessons on Query {
   lessons {
-    ...LessonPreview_lesson
+    id
+    title
+    slides {
+      __typename
+      id
+    }
   }
 }
 
-fragment LessonPreview_lesson on Lesson {
-  id
-  title
+fragment Lessons_lessons on Query {
+  ...LessonsTable_lessons
 }
 */
 
-const node: ConcreteRequest = {
+const node: ConcreteRequest = (function(){
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
+return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
@@ -40,20 +54,9 @@ const node: ConcreteRequest = {
     "argumentDefinitions": [],
     "selections": [
       {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "lessons",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "Lesson",
-        "plural": true,
-        "selections": [
-          {
-            "kind": "FragmentSpread",
-            "name": "LessonPreview_lesson",
-            "args": null
-          }
-        ]
+        "kind": "FragmentSpread",
+        "name": "Lessons_lessons",
+        "args": null
       }
     ]
   },
@@ -71,19 +74,32 @@ const node: ConcreteRequest = {
         "concreteType": "Lesson",
         "plural": true,
         "selections": [
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "id",
-            "args": null,
-            "storageKey": null
-          },
+          (v0/*: any*/),
           {
             "kind": "ScalarField",
             "alias": null,
             "name": "title",
             "args": null,
             "storageKey": null
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "slides",
+            "storageKey": null,
+            "args": null,
+            "concreteType": null,
+            "plural": true,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "__typename",
+                "args": null,
+                "storageKey": null
+              },
+              (v0/*: any*/)
+            ]
           }
         ]
       }
@@ -93,9 +109,10 @@ const node: ConcreteRequest = {
     "operationKind": "query",
     "name": "LessonsPageQuery",
     "id": null,
-    "text": "query LessonsPageQuery {\n  lessons {\n    ...LessonPreview_lesson\n  }\n}\n\nfragment LessonPreview_lesson on Lesson {\n  id\n  title\n}\n",
+    "text": "query LessonsPageQuery {\n  ...Lessons_lessons\n}\n\nfragment LessonsTable_lessons on Query {\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n    }\n  }\n}\n\nfragment Lessons_lessons on Query {\n  ...LessonsTable_lessons\n}\n",
     "metadata": {}
   }
 };
-(node as any).hash = '8dc4e14a71751cbfe1a1665307726506';
+})();
+(node as any).hash = '15c8f5d1033fe748d3c249a3f317410b';
 export default node;
