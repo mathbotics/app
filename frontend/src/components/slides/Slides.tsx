@@ -44,7 +44,7 @@ const Slides = (props: SlidesProps): JSX.Element => {
         slide={props.lesson.slides.find(({ id }) => id === selectedSlideId)}
         onSelectBlock={(block: Block) => setSelectedBlock(block)}
       />
-      {pageState === PageState.EditBlock && (
+      {pageState === PageState.EditSlide && (
         <EditBlockSidebar block={selectedBlock} />
       )}
       {pageState === PageState.CreateSlide && (

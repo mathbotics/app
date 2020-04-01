@@ -6,12 +6,12 @@ import { EditBlockSidebar_block } from "./__generated__/EditBlockSidebar_block.g
 
 const { Sider } = Layout;
 type Props = {
-  block: EditBlockSidebar_block;
+  block?: EditBlockSidebar_block;
 };
 const EditBlockSidebar = (props: Props) => {
   return (
     <Layout>
-      <Sider></Sider>
+      <Sider theme={"light"} width={300} />
     </Layout>
   );
 };
