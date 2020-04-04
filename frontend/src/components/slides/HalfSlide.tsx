@@ -47,12 +47,6 @@ const Wrapper = styled.div`
   }
 `;
 
-enum ComponentState {
-  Default,
-  BlockASelected,
-  BlockBSelected
-}
-
 type BlockComponent = React.ReactElement;
 type Props = {
   halfSlide?: HalfSlide_halfSlide;
@@ -63,35 +57,37 @@ type Props = {
   selectedBlock?: any;
   onSelectBlock?: (block: BlockType) => void;
 };
-const HalfSlide = ({ halfSlide, preview, selected }: Props) => {
-  return (
-    <Wrapper preview={preview} selected={selected}>
-      <BlockAWrapper
-        preview={preview}
-        onClick={() => console.log(halfSlide?.firstHalfBlock)}
-      >
-        {preview ? (
-          <AlignLeftOutlined style={{ fontSize: 50 }} />
-        ) : (
-          <Block block={nullthrows(halfSlide?.firstHalfBlock)} /> ??
-          "No block provided"
-        )}
-      </BlockAWrapper>
+const HalfSlide = ({ halfSlide, preview, selected }: Props) => (
+  <Wrapper preview={preview} selected={selected}>
+    <BlockAWrapper
+      preview={preview}
+      onClick={() =>
+        !preview && console.log("FirstBlockID: " + halfSlide?.firstHalfBlock)
+      }
+    >
+      {preview ? (
+        <AlignLeftOutlined style={{ fontSize: 50 }} />
+      ) : (
+        <Block block={nullthrows(halfSlide?.firstHalfBlock)} /> ??
+        "No block provided"
+      )}
+    </BlockAWrapper>
 
-      <BlockBWrapper
-        preview={preview}
-        onClick={() => console.log(halfSlide?.secondHalfBlock)}
-      >
-        {preview ? (
-          <UnorderedListOutlined style={{ fontSize: 50 }} />
-        ) : (
-          <Block block={nullthrows(halfSlide?.secondHalfBlock)} /> ??
-          "No block provided"
-        )}
-      </BlockBWrapper>
-    </Wrapper>
-  );
-};
+    <BlockBWrapper
+      preview={preview}
+      onClick={() =>
+        !preview && console.log("SecondBlockID: " + halfSlide?.secondHalfBlock)
+      }
+    >
+      {preview ? (
+        <UnorderedListOutlined style={{ fontSize: 50 }} />
+      ) : (
+        <Block block={nullthrows(halfSlide?.secondHalfBlock)} /> ??
+        "No block provided"
+      )}
+    </BlockBWrapper>
+  </Wrapper>
+);
 
 export default createFragmentContainer(HalfSlide, {
   halfSlide: graphql`
@@ -106,5 +102,5 @@ export default createFragmentContainer(HalfSlide, {
         ...Block_block
       }
     }
-  `
+  `,
 });

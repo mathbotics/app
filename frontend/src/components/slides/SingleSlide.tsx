@@ -32,17 +32,17 @@ type Props = {
   Block?: BlockComponent;
   preview?: boolean;
   selected?: boolean;
-  children?: ReactNode;
-  style?: any;
   onSelectBlock?: (block: Block) => void;
 };
-const SingleSlide = ({ Block, preview, selected, children }: Props) => (
-  <Wrapper preview={preview} selected={selected}>
-    {!preview && (Block ?? "No block provided")}
-    {preview && <FileImageOutlined style={{ fontSize: 50 }} />}
-    {children}
-  </Wrapper>
-);
+const SingleSlide = ({ singleSlide, Block, preview, selected }: Props) => {
+  console.log("Single blockID:", singleSlide?.id);
+  return (
+    <Wrapper preview={preview} selected={selected}>
+      {!preview && (Block ?? "No block provided")}
+      {preview && <FileImageOutlined style={{ fontSize: 50 }} />}
+    </Wrapper>
+  );
+};
 
 export default createFragmentContainer(SingleSlide, {
   singleSlide: graphql`
@@ -53,5 +53,5 @@ export default createFragmentContainer(SingleSlide, {
         ...Block_block
       }
     }
-  `
+  `,
 });

@@ -13,7 +13,6 @@ const Block = ({ block }: Props) => {
     case "TextBlock":
       return <TextBlock block={block} />;
     case "EmptyBlock":
-      console.log(block.id);
       return <div>Block not implemented</div>;
     default:
       return null;

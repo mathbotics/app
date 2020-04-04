@@ -35,7 +35,7 @@ const Slide = ({
   preview,
   selected,
   onSelectBlock,
-  selectedBlock
+  selectedBlock,
 }: Props) => {
   switch (slide?.__typename ?? type) {
     case "SingleSlide":
@@ -78,5 +78,5 @@ export default createFragmentContainer(Slide, {
         ...HalfSlide_halfSlide
       }
     }
-  `
+  `,
 });
