@@ -3,6 +3,7 @@ import { graphql } from "babel-plugin-relay/macro";
 import { createFragmentContainer } from "react-relay";
 import { Block_block } from "./__generated__/Block_block.graphql";
 import MultipleChoiceQuestionBlock from "./multiple_choice/MultipleChoiceQuestionBlock";
+import TextBlock from "./text/TextBlock";
 
 type Props = { block: Block_block };
 const Block = ({ block }: Props) => {
@@ -10,7 +11,7 @@ const Block = ({ block }: Props) => {
     case "MultipleChoiceQuestionBlock":
       return <MultipleChoiceQuestionBlock block={block} />;
     case "TextBlock":
-      return <div>Block not implemented</div>;
+      return <TextBlock block={block} />;
     case "EmptyBlock":
       console.log(block.id);
       return <div>Block not implemented</div>;
@@ -29,10 +30,11 @@ export default createFragmentContainer(Block, {
       }
       ... on TextBlock {
         id
+        ...TextBlock_block
       }
       ... on EmptyBlock {
         id
       }
     }
-  `
+  `,
 });

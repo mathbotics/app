@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash d74fc748a44871770fae2abebfc7eb82 */
+/* @relayHash 1e3eacc61e54943918485744e9cb5e43 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -39,6 +39,7 @@ fragment Block_block on Block {
   }
   ... on TextBlock {
     id
+    ...TextBlock_block
   }
   ... on EmptyBlock {
     id
@@ -125,6 +126,12 @@ fragment Slides_lesson on Lesson {
     ...EditorSlidePreview_slide
   }
 }
+
+fragment TextBlock_block on TextBlock {
+  id
+  title
+  body
+}
 */
 
 const node: ConcreteRequest = (function(){
@@ -172,9 +179,6 @@ v5 = {
   "storageKey": null
 },
 v6 = [
-  (v2/*: any*/)
-],
-v7 = [
   (v4/*: any*/),
   {
     "kind": "InlineFragment",
@@ -207,12 +211,24 @@ v7 = [
   {
     "kind": "InlineFragment",
     "type": "TextBlock",
-    "selections": (v6/*: any*/)
+    "selections": [
+      (v2/*: any*/),
+      (v3/*: any*/),
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "body",
+        "args": null,
+        "storageKey": null
+      }
+    ]
   },
   {
     "kind": "InlineFragment",
     "type": "EmptyBlock",
-    "selections": (v6/*: any*/)
+    "selections": [
+      (v2/*: any*/)
+    ]
   }
 ];
 return {
@@ -282,7 +298,7 @@ return {
                     "args": null,
                     "concreteType": null,
                     "plural": false,
-                    "selections": (v7/*: any*/)
+                    "selections": (v6/*: any*/)
                   }
                 ]
               },
@@ -298,7 +314,7 @@ return {
                     "args": null,
                     "concreteType": null,
                     "plural": false,
-                    "selections": (v7/*: any*/)
+                    "selections": (v6/*: any*/)
                   },
                   {
                     "kind": "LinkedField",
@@ -308,7 +324,7 @@ return {
                     "args": null,
                     "concreteType": null,
                     "plural": false,
-                    "selections": (v7/*: any*/)
+                    "selections": (v6/*: any*/)
                   }
                 ]
               }
@@ -322,7 +338,7 @@ return {
     "operationKind": "query",
     "name": "SlidesPageQuery",
     "id": null,
-    "text": "query SlidesPageQuery(\n  $where: LessonWhereUniqueInput!\n) {\n  lesson(where: $where) {\n    ...Slides_lesson\n  }\n}\n\nfragment Block_block on Block {\n  __typename\n  ... on MultipleChoiceQuestionBlock {\n    id\n    ...MultipleChoiceQuestionBlock_block\n  }\n  ... on TextBlock {\n    id\n  }\n  ... on EmptyBlock {\n    id\n  }\n}\n\nfragment EditBlockSidebar_block on Block {\n  ... on MultipleChoiceQuestionBlock {\n    id\n  }\n  ... on TextBlock {\n    id\n  }\n}\n\nfragment EditorSlidePreview_slide on Slide {\n  ...Slide_slide\n}\n\nfragment HalfSlide_halfSlide on HalfSlide {\n  id\n  firstHalfBlock {\n    __typename\n    ...EditBlockSidebar_block\n    ...Block_block\n  }\n  secondHalfBlock {\n    __typename\n    ...EditBlockSidebar_block\n    ...Block_block\n  }\n}\n\nfragment MultipleChoiceGroup_block on MultipleChoiceQuestionBlock {\n  choices {\n    id\n    text\n    correct\n  }\n}\n\nfragment MultipleChoiceQuestionBlock_block on MultipleChoiceQuestionBlock {\n  __typename\n  text\n  ...MultipleChoiceGroup_block\n}\n\nfragment SingleSlide_singleSlide on SingleSlide {\n  id\n  block {\n    __typename\n    ...EditBlockSidebar_block\n    ...Block_block\n  }\n}\n\nfragment Slide_slide on Slide {\n  __typename\n  title\n  ... on SingleSlide {\n    ...SingleSlide_singleSlide\n  }\n  ... on HalfSlide {\n    ...HalfSlide_halfSlide\n  }\n}\n\nfragment SlidesSidebar_lesson on Lesson {\n  title\n  slides {\n    __typename\n    id\n    ...Slide_slide\n  }\n}\n\nfragment Slides_lesson on Lesson {\n  id\n  title\n  ...SlidesSidebar_lesson\n  slides {\n    __typename\n    id\n    ...EditorSlidePreview_slide\n  }\n}\n",
+    "text": "query SlidesPageQuery(\n  $where: LessonWhereUniqueInput!\n) {\n  lesson(where: $where) {\n    ...Slides_lesson\n  }\n}\n\nfragment Block_block on Block {\n  __typename\n  ... on MultipleChoiceQuestionBlock {\n    id\n    ...MultipleChoiceQuestionBlock_block\n  }\n  ... on TextBlock {\n    id\n    ...TextBlock_block\n  }\n  ... on EmptyBlock {\n    id\n  }\n}\n\nfragment EditBlockSidebar_block on Block {\n  ... on MultipleChoiceQuestionBlock {\n    id\n  }\n  ... on TextBlock {\n    id\n  }\n}\n\nfragment EditorSlidePreview_slide on Slide {\n  ...Slide_slide\n}\n\nfragment HalfSlide_halfSlide on HalfSlide {\n  id\n  firstHalfBlock {\n    __typename\n    ...EditBlockSidebar_block\n    ...Block_block\n  }\n  secondHalfBlock {\n    __typename\n    ...EditBlockSidebar_block\n    ...Block_block\n  }\n}\n\nfragment MultipleChoiceGroup_block on MultipleChoiceQuestionBlock {\n  choices {\n    id\n    text\n    correct\n  }\n}\n\nfragment MultipleChoiceQuestionBlock_block on MultipleChoiceQuestionBlock {\n  __typename\n  text\n  ...MultipleChoiceGroup_block\n}\n\nfragment SingleSlide_singleSlide on SingleSlide {\n  id\n  block {\n    __typename\n    ...EditBlockSidebar_block\n    ...Block_block\n  }\n}\n\nfragment Slide_slide on Slide {\n  __typename\n  title\n  ... on SingleSlide {\n    ...SingleSlide_singleSlide\n  }\n  ... on HalfSlide {\n    ...HalfSlide_halfSlide\n  }\n}\n\nfragment SlidesSidebar_lesson on Lesson {\n  title\n  slides {\n    __typename\n    id\n    ...Slide_slide\n  }\n}\n\nfragment Slides_lesson on Lesson {\n  id\n  title\n  ...SlidesSidebar_lesson\n  slides {\n    __typename\n    id\n    ...EditorSlidePreview_slide\n  }\n}\n\nfragment TextBlock_block on TextBlock {\n  id\n  title\n  body\n}\n",
     "metadata": {}
   }
 };

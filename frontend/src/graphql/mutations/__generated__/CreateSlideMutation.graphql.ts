@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 7fd0aef13868d9410d60528d0ced1f9f */
+/* @relayHash afa8c42372b293678c027dd4cd7e2ab0 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -42,6 +42,7 @@ fragment Block_block on Block {
   }
   ... on TextBlock {
     id
+    ...TextBlock_block
   }
   ... on EmptyBlock {
     id
@@ -104,6 +105,12 @@ fragment Slide_slide on Slide {
     ...HalfSlide_halfSlide
   }
 }
+
+fragment TextBlock_block on TextBlock {
+  id
+  title
+  body
+}
 */
 
 const node: ConcreteRequest = (function(){
@@ -132,28 +139,32 @@ v2 = {
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "title",
   "args": null,
   "storageKey": null
 },
 v4 = {
   "kind": "ScalarField",
   "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v5 = {
+  "kind": "ScalarField",
+  "alias": null,
   "name": "text",
   "args": null,
   "storageKey": null
 },
-v5 = [
-  (v3/*: any*/)
-],
 v6 = [
   (v2/*: any*/),
   {
     "kind": "InlineFragment",
     "type": "MultipleChoiceQuestionBlock",
     "selections": [
-      (v3/*: any*/),
       (v4/*: any*/),
+      (v5/*: any*/),
       {
         "kind": "LinkedField",
         "alias": null,
@@ -163,8 +174,8 @@ v6 = [
         "concreteType": "MultipleChoiceQuestionChoice",
         "plural": true,
         "selections": [
-          (v3/*: any*/),
           (v4/*: any*/),
+          (v5/*: any*/),
           {
             "kind": "ScalarField",
             "alias": null,
@@ -179,12 +190,24 @@ v6 = [
   {
     "kind": "InlineFragment",
     "type": "TextBlock",
-    "selections": (v5/*: any*/)
+    "selections": [
+      (v4/*: any*/),
+      (v3/*: any*/),
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "body",
+        "args": null,
+        "storageKey": null
+      }
+    ]
   },
   {
     "kind": "InlineFragment",
     "type": "EmptyBlock",
-    "selections": (v5/*: any*/)
+    "selections": [
+      (v4/*: any*/)
+    ]
   }
 ];
 return {
@@ -229,18 +252,12 @@ return {
         "plural": false,
         "selections": [
           (v2/*: any*/),
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "title",
-            "args": null,
-            "storageKey": null
-          },
+          (v3/*: any*/),
           {
             "kind": "InlineFragment",
             "type": "SingleSlide",
             "selections": [
-              (v3/*: any*/),
+              (v4/*: any*/),
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -257,7 +274,7 @@ return {
             "kind": "InlineFragment",
             "type": "HalfSlide",
             "selections": [
-              (v3/*: any*/),
+              (v4/*: any*/),
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -288,7 +305,7 @@ return {
     "operationKind": "mutation",
     "name": "CreateSlideMutation",
     "id": null,
-    "text": "mutation CreateSlideMutation(\n  $input: CreateSlideInput!\n) {\n  createSlide(input: $input) {\n    __typename\n    ...Slide_slide\n  }\n}\n\nfragment Block_block on Block {\n  __typename\n  ... on MultipleChoiceQuestionBlock {\n    id\n    ...MultipleChoiceQuestionBlock_block\n  }\n  ... on TextBlock {\n    id\n  }\n  ... on EmptyBlock {\n    id\n  }\n}\n\nfragment EditBlockSidebar_block on Block {\n  ... on MultipleChoiceQuestionBlock {\n    id\n  }\n  ... on TextBlock {\n    id\n  }\n}\n\nfragment HalfSlide_halfSlide on HalfSlide {\n  id\n  firstHalfBlock {\n    __typename\n    ...EditBlockSidebar_block\n    ...Block_block\n  }\n  secondHalfBlock {\n    __typename\n    ...EditBlockSidebar_block\n    ...Block_block\n  }\n}\n\nfragment MultipleChoiceGroup_block on MultipleChoiceQuestionBlock {\n  choices {\n    id\n    text\n    correct\n  }\n}\n\nfragment MultipleChoiceQuestionBlock_block on MultipleChoiceQuestionBlock {\n  __typename\n  text\n  ...MultipleChoiceGroup_block\n}\n\nfragment SingleSlide_singleSlide on SingleSlide {\n  id\n  block {\n    __typename\n    ...EditBlockSidebar_block\n    ...Block_block\n  }\n}\n\nfragment Slide_slide on Slide {\n  __typename\n  title\n  ... on SingleSlide {\n    ...SingleSlide_singleSlide\n  }\n  ... on HalfSlide {\n    ...HalfSlide_halfSlide\n  }\n}\n",
+    "text": "mutation CreateSlideMutation(\n  $input: CreateSlideInput!\n) {\n  createSlide(input: $input) {\n    __typename\n    ...Slide_slide\n  }\n}\n\nfragment Block_block on Block {\n  __typename\n  ... on MultipleChoiceQuestionBlock {\n    id\n    ...MultipleChoiceQuestionBlock_block\n  }\n  ... on TextBlock {\n    id\n    ...TextBlock_block\n  }\n  ... on EmptyBlock {\n    id\n  }\n}\n\nfragment EditBlockSidebar_block on Block {\n  ... on MultipleChoiceQuestionBlock {\n    id\n  }\n  ... on TextBlock {\n    id\n  }\n}\n\nfragment HalfSlide_halfSlide on HalfSlide {\n  id\n  firstHalfBlock {\n    __typename\n    ...EditBlockSidebar_block\n    ...Block_block\n  }\n  secondHalfBlock {\n    __typename\n    ...EditBlockSidebar_block\n    ...Block_block\n  }\n}\n\nfragment MultipleChoiceGroup_block on MultipleChoiceQuestionBlock {\n  choices {\n    id\n    text\n    correct\n  }\n}\n\nfragment MultipleChoiceQuestionBlock_block on MultipleChoiceQuestionBlock {\n  __typename\n  text\n  ...MultipleChoiceGroup_block\n}\n\nfragment SingleSlide_singleSlide on SingleSlide {\n  id\n  block {\n    __typename\n    ...EditBlockSidebar_block\n    ...Block_block\n  }\n}\n\nfragment Slide_slide on Slide {\n  __typename\n  title\n  ... on SingleSlide {\n    ...SingleSlide_singleSlide\n  }\n  ... on HalfSlide {\n    ...HalfSlide_halfSlide\n  }\n}\n\nfragment TextBlock_block on TextBlock {\n  id\n  title\n  body\n}\n",
     "metadata": {}
   }
 };

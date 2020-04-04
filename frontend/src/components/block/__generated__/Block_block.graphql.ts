@@ -11,6 +11,7 @@ export type Block_block = {
 } | {
     readonly __typename: "TextBlock";
     readonly id: string;
+    readonly " $fragmentRefs": FragmentRefs<"TextBlock_block">;
     readonly " $refType": "Block_block";
 } | {
     readonly __typename: "EmptyBlock";
@@ -37,10 +38,7 @@ var v0 = {
   "name": "id",
   "args": null,
   "storageKey": null
-},
-v1 = [
-  (v0/*: any*/)
-];
+};
 return {
   "kind": "Fragment",
   "name": "Block_block",
@@ -70,15 +68,24 @@ return {
     {
       "kind": "InlineFragment",
       "type": "TextBlock",
-      "selections": (v1/*: any*/)
+      "selections": [
+        (v0/*: any*/),
+        {
+          "kind": "FragmentSpread",
+          "name": "TextBlock_block",
+          "args": null
+        }
+      ]
     },
     {
       "kind": "InlineFragment",
       "type": "EmptyBlock",
-      "selections": (v1/*: any*/)
+      "selections": [
+        (v0/*: any*/)
+      ]
     }
   ]
 };
 })();
-(node as any).hash = 'b2cd4d58f7b610828fdbccd27bde0c04';
+(node as any).hash = 'd7aaaad16e41f00cd1740105876ef5fc';
 export default node;
