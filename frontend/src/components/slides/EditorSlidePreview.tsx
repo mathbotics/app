@@ -16,7 +16,12 @@ type Props = {
 const EditorSlidePreview = ({ onSelectBlock, selectedBlock, slide }: Props) => (
   <Wrapper>
     {slide ? (
-      <Slide preview={false} slide={slide} selectedBlock={selectedBlock} />
+      <Slide
+        preview={false}
+        onSelectBlock={onSelectBlock}
+        slide={slide}
+        selectedBlock={selectedBlock}
+      />
     ) : (
       <div
         style={{
@@ -27,7 +32,7 @@ const EditorSlidePreview = ({ onSelectBlock, selectedBlock, slide }: Props) => (
           overflow: "hidden",
           justifyContent: "center",
           alignItems: "center",
-          display: "flex"
+          display: "flex",
         }}
       >
         <Result
@@ -54,5 +59,5 @@ export default createFragmentContainer(EditorSlidePreview, {
     fragment EditorSlidePreview_slide on Slide {
       ...Slide_slide
     }
-  `
+  `,
 });

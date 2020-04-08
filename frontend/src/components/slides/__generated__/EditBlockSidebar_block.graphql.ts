@@ -4,7 +4,19 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type EditBlockSidebar_block = {
-    readonly id?: string;
+    readonly __typename: "MultipleChoiceQuestionBlock";
+    readonly id: string;
+    readonly " $fragmentRefs": FragmentRefs<"EditMultipleChoiceQuestionBlockForm_block">;
+    readonly " $refType": "EditBlockSidebar_block";
+} | {
+    readonly __typename: "TextBlock";
+    readonly id: string;
+    readonly " $fragmentRefs": FragmentRefs<"EditTextBlockForm_block">;
+    readonly " $refType": "EditBlockSidebar_block";
+} | {
+    /*This will never be '%other', but we need some
+    value in case none of the concrete values match.*/
+    readonly __typename: "%other";
     readonly " $refType": "EditBlockSidebar_block";
 };
 export type EditBlockSidebar_block$data = EditBlockSidebar_block;
@@ -16,15 +28,13 @@ export type EditBlockSidebar_block$key = {
 
 
 const node: ReaderFragment = (function(){
-var v0 = [
-  {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "id",
-    "args": null,
-    "storageKey": null
-  }
-];
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
 return {
   "kind": "Fragment",
   "name": "EditBlockSidebar_block",
@@ -33,17 +43,38 @@ return {
   "argumentDefinitions": [],
   "selections": [
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "__typename",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "InlineFragment",
       "type": "MultipleChoiceQuestionBlock",
-      "selections": (v0/*: any*/)
+      "selections": [
+        (v0/*: any*/),
+        {
+          "kind": "FragmentSpread",
+          "name": "EditMultipleChoiceQuestionBlockForm_block",
+          "args": null
+        }
+      ]
     },
     {
       "kind": "InlineFragment",
       "type": "TextBlock",
-      "selections": (v0/*: any*/)
+      "selections": [
+        (v0/*: any*/),
+        {
+          "kind": "FragmentSpread",
+          "name": "EditTextBlockForm_block",
+          "args": null
+        }
+      ]
     }
   ]
 };
 })();
-(node as any).hash = 'eb618c3aefb2f496bc134ac460f87f25';
+(node as any).hash = '074db71ef0c79f29294f062cd5887767';
 export default node;

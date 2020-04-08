@@ -9,7 +9,7 @@ import { Block as BlockType } from "../../types/Block";
 import Block from "../block/Block";
 
 type BlockWrapperProps = { preview?: boolean };
-const BlockAWrapper = styled.div`
+const FirstHalfBlockWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,7 +19,7 @@ const BlockAWrapper = styled.div`
   background-color: ${({ preview }: BlockWrapperProps) => !preview && "white"};
 `;
 
-const BlockBWrapper = styled.div`
+const SecondHalfBlockWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,38 +54,35 @@ type Props = {
   BlockB?: BlockComponent;
   preview?: boolean;
   selected?: boolean;
-  selectedBlock?: any;
   onSelectBlock?: (block: BlockType) => void;
 };
-const HalfSlide = ({ halfSlide, preview, selected }: Props) => (
+const HalfSlide = ({ onSelectBlock, halfSlide, preview, selected }: Props) => (
   <Wrapper preview={preview} selected={selected}>
-    <BlockAWrapper
+    <FirstHalfBlockWrapper
       preview={preview}
       onClick={() =>
-        !preview && console.log("FirstBlockID: " + halfSlide?.firstHalfBlock)
+        onSelectBlock && onSelectBlock(nullthrows(halfSlide?.firstHalfBlock))
       }
     >
       {preview ? (
         <AlignLeftOutlined style={{ fontSize: 50 }} />
       ) : (
-        <Block block={nullthrows(halfSlide?.firstHalfBlock)} /> ??
-        "No block provided"
+        <Block block={nullthrows(halfSlide?.firstHalfBlock)} />
       )}
-    </BlockAWrapper>
+    </FirstHalfBlockWrapper>
 
-    <BlockBWrapper
+    <SecondHalfBlockWrapper
       preview={preview}
       onClick={() =>
-        !preview && console.log("SecondBlockID: " + halfSlide?.secondHalfBlock)
+        onSelectBlock && onSelectBlock(nullthrows(halfSlide?.secondHalfBlock))
       }
     >
       {preview ? (
         <UnorderedListOutlined style={{ fontSize: 50 }} />
       ) : (
-        <Block block={nullthrows(halfSlide?.secondHalfBlock)} /> ??
-        "No block provided"
+        <Block block={nullthrows(halfSlide?.secondHalfBlock)} />
       )}
-    </BlockBWrapper>
+    </SecondHalfBlockWrapper>
   </Wrapper>
 );
 

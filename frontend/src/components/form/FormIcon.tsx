@@ -4,7 +4,7 @@ import {
   LockOutlined,
   UserOutlined,
   BookOutlined,
-  BarsOutlined
+  BarsOutlined,
 } from "@ant-design/icons";
 
 export const EmailIcon = () => (

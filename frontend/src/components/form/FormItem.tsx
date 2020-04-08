@@ -19,6 +19,8 @@ type FormRulesType = {
   username: GenericFormRuleType;
   courseName: GenericFormRuleType;
   lessonTitle: GenericFormRuleType;
+  requiredText: GenericFormRuleType;
+  text: GenericFormRuleType;
 };
 
 type FormRuleType = {
@@ -34,32 +36,42 @@ type GenericFormRuleType = {
 const FormRules: FormRulesType = {
   firstName: {
     rules: [{ required: true, message: "Please input your First Name." }],
-    icon: <UserIcon />
+    icon: <UserIcon />,
   },
   lastName: {
     rules: [{ required: true, message: "Please input your Last Name." }],
-    icon: <UserIcon />
+    icon: <UserIcon />,
   },
   email: {
     rules: [{ required: true, message: "Please input your email." }],
-    icon: <EmailIcon />
+    icon: <EmailIcon />,
   },
   username: {
     rules: [{ required: true, message: "Please input your username." }],
-    icon: <UserIcon />
+    icon: <UserIcon />,
   },
   password: {
     rules: [{ required: true, message: "Please input your password." }],
-    icon: <LockIcon />
+    icon: <LockIcon />,
   },
   courseName: {
     rules: [{ required: true, message: "Please input your course name." }],
-    icon: <BookIcon />
+    icon: <BookIcon />,
   },
   lessonTitle: {
     rules: [{ required: true, message: "Please input title of the lesson." }],
-    icon: <BarsIcon />
-  }
+    icon: <BarsIcon />,
+  },
+  requiredText: {
+    rules: [
+      { required: true, message: "Please fill in this field. Por favor." },
+    ],
+    icon: <BarsIcon />,
+  },
+  text: {
+    rules: [],
+    icon: <BarsIcon />,
+  },
 };
 
 export const FormItem = (props: FormItemProps): JSX.Element => {

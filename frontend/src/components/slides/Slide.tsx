@@ -54,7 +54,6 @@ const Slide = ({
         <Wrapper preview={preview}>
           <HalfSlide
             onSelectBlock={onSelectBlock}
-            selectedBlock={selectedBlock}
             halfSlide={slide}
             preview={preview}
             selected={selected}

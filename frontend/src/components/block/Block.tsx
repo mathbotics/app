@@ -13,9 +13,8 @@ const Block = ({ block }: Props) => {
     case "TextBlock":
       return <TextBlock block={block} />;
     case "EmptyBlock":
-      return <div>Block not implemented</div>;
     default:
-      return null;
+      return <div>Block not implemented</div>;
   }
 };
 

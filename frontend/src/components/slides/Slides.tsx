@@ -8,6 +8,7 @@ import CreateSlideModal from "./CreateSlideModal";
 import EditBlockSidebar from "./EditBlockSidebar";
 import EditorSlidePreview from "./EditorSlidePreview";
 import { Block } from "../../types/Block";
+import nullthrows from "nullthrows";
 
 enum PageState {
   Default,
@@ -15,7 +16,7 @@ enum PageState {
   CreateSlideSucess,
   CreateSlideError,
   EditSlide,
-  EditBlock
+  EditBlock,
 }
 
 type SlidesProps = {
@@ -30,6 +31,12 @@ const Slides = (props: SlidesProps): JSX.Element => {
   >(props.lesson.slides[0]?.id);
   const [selectedBlock, setSelectedBlock] = React.useState<Block>();
 
+  const onSelectBlock = (block: Block) => {
+    console.log("wooo");
+    setSelectedBlock(block);
+    setPageState(PageState.EditBlock);
+  };
+
   return (
     <Layout style={{ height: "92vh" }}>
       <SlidesSidebar
@@ -42,11 +49,11 @@ const Slides = (props: SlidesProps): JSX.Element => {
       />
       <EditorSlidePreview
         slide={props.lesson.slides.find(({ id }) => id === selectedSlideId)}
-        onSelectBlock={(block: Block) => setSelectedBlock(block)}
+        onSelectBlock={onSelectBlock}
         selectedBlock={selectedBlock}
       />
       {pageState === PageState.EditBlock && (
-        <EditBlockSidebar block={selectedBlock} />
+        <EditBlockSidebar block={nullthrows(selectedBlock)} />
       )}
       {pageState === PageState.CreateSlide && (
         <CreateSlideModal
@@ -75,5 +82,5 @@ export default createFragmentContainer(Slides, {
         ...EditorSlidePreview_slide
       }
     }
-  `
+  `,
 });
