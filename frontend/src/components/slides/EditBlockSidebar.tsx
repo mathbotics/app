@@ -2,6 +2,7 @@ import React from "react";
 import { Layout, Select } from "antd";
 import { createFragmentContainer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
+
 import { EditBlockSidebar_block } from "./__generated__/EditBlockSidebar_block.graphql";
 import EditTextBlockForm from "../block/text/EditTextBlockForm";
 import EditMultipleChoiceQuestionBlockForm from "../block/multiple_choice/EditMultipleChoiceQuestionBlockForm";
@@ -34,6 +35,8 @@ const EditBlockSidebar = ({ block }: Props) => {
       {editingBlockTypename ===
         EditingBlockTypename.MultipleChoiceQuestionBlock && (
         <EditMultipleChoiceQuestionBlockForm
+          //@ts-ignore
+          blockId={block.id}
           {...(block.__typename === "MultipleChoiceQuestionBlock"
             ? { block }
             : {})}
@@ -41,6 +44,8 @@ const EditBlockSidebar = ({ block }: Props) => {
       )}
       {editingBlockTypename === EditingBlockTypename.TextBlock && (
         <EditTextBlockForm
+          //@ts-ignore
+          blockId={block.id}
           {...(block.__typename === "TextBlock" ? { block } : {})}
         />
       )}
@@ -59,6 +64,9 @@ export default createFragmentContainer(EditBlockSidebar, {
       ... on TextBlock {
         id
         ...EditTextBlockForm_block
+      }
+      ... on EmptyBlock {
+        id
       }
     }
   `,

@@ -1,15 +1,18 @@
 import React from "react";
 import { Form, Button } from "antd";
-import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
 import { FormItem } from "../../form/FormItem";
 import { createFragmentContainer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
+import { Store } from "rc-field-form/lib/interface";
+
 import { EditTextBlockForm_block } from "./__generated__/EditTextBlockForm_block.graphql";
+import { commit as commitUpdateBlockToTextBlockMutation } from "../../../graphql/mutations/UpdateBlockToTextBlockMutation";
 
 type Props = {
   block?: EditTextBlockForm_block;
+  blockId: string;
 };
-const EditTextBlockForm = ({ block }: Props): JSX.Element => {
+const EditTextBlockForm = ({ block, blockId }: Props): JSX.Element => {
   const [form] = Form.useForm();
   const { setFieldsValue, getFieldValue } = form;
 
@@ -20,7 +23,14 @@ const EditTextBlockForm = ({ block }: Props): JSX.Element => {
     });
   }, []);
 
-  const onSubmit = () => {};
+  const onSubmit = ({ title, body }: Store) =>
+    commitUpdateBlockToTextBlockMutation(
+      { input: { blockId, title, body } },
+      onSubmitSuccess,
+      onSubmitError
+    );
+
+  const onSubmitSuccess = () => {};
   const onSubmitError = () => {};
 
   return (
@@ -34,7 +44,7 @@ const EditTextBlockForm = ({ block }: Props): JSX.Element => {
         name="title"
         value={getFieldValue("title")}
         type="text"
-        input="text" //TODO: CHANGE ME
+        input="text"
         placeholder="Title"
       />
 
@@ -42,7 +52,7 @@ const EditTextBlockForm = ({ block }: Props): JSX.Element => {
         name="body"
         value={getFieldValue("body")}
         type="text"
-        input="text" //TODO: CHANGE ME
+        input="text"
         placeholder="Body"
       />
 

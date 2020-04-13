@@ -14,6 +14,10 @@ export type EditBlockSidebar_block = {
     readonly " $fragmentRefs": FragmentRefs<"EditTextBlockForm_block">;
     readonly " $refType": "EditBlockSidebar_block";
 } | {
+    readonly __typename: "EmptyBlock";
+    readonly id: string;
+    readonly " $refType": "EditBlockSidebar_block";
+} | {
     /*This will never be '%other', but we need some
     value in case none of the concrete values match.*/
     readonly __typename: "%other";
@@ -72,9 +76,16 @@ return {
           "args": null
         }
       ]
+    },
+    {
+      "kind": "InlineFragment",
+      "type": "EmptyBlock",
+      "selections": [
+        (v0/*: any*/)
+      ]
     }
   ]
 };
 })();
-(node as any).hash = '074db71ef0c79f29294f062cd5887767';
+(node as any).hash = 'c239dcf20b3b73cad07ea1f90124ac35';
 export default node;

@@ -1,54 +1,118 @@
 import React from "react";
-import { Form, Button } from "antd";
-import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
-import { FormItem } from "../../form/FormItem";
+import { Input, Button } from "antd";
 import { createFragmentContainer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
+import nullthrows from "nullthrows";
+import cuid from "cuid";
+
 import { EditMultipleChoiceQuestionBlockForm_block } from "./__generated__/EditMultipleChoiceQuestionBlockForm_block.graphql";
-import uuid from "uuid/v4";
+import { commit as commitUpdateBlockToMultipleChoiceBlock } from "../../../graphql/mutations/UpdateBlockToMultipleChoiceBlockMutation";
 
 type Props = {
   block?: EditMultipleChoiceQuestionBlockForm_block;
+  blockId: string;
 };
-const EditMultipleChoiceQuestionBlockForm = ({ block }: Props): JSX.Element => {
+const EditMultipleChoiceQuestionBlockForm = ({
+  block,
+  blockId,
+}: Props): JSX.Element => {
   const [text, setText] = React.useState(block?.text ?? "");
   const [choices, setChoices] = React.useState(block?.choices ?? []);
 
-  const onSubmit = () => {};
-  const onSubmitError = () => {};
+  const onChangeChoiceText = (changedId: string, text: string) => {
+    setChoices(
+      choices.map(({ id, ...choice }) =>
+        id === changedId ? { ...choice, id, text } : { ...choice, id }
+      )
+    );
+  };
 
-  console.log(choices);
+  const onClickRemoveChoice = (idToRemove: string) => {
+    const { correct } = nullthrows(choices.find(({ id }) => id === idToRemove));
+    setChoices(
+      choices
+        .filter(({ id }) => id !== idToRemove)
+        .map((choice, i) =>
+          correct && i === 0 ? { ...choice, correct: true } : choice
+        )
+    );
+  };
+
+  const onClickSetCorrect = (idToSetCorrect: string) => {
+    setChoices(
+      choices.map(({ id, ...choice }) => ({
+        ...choice,
+        id,
+        correct: id === idToSetCorrect,
+      }))
+    );
+  };
+
+  const onClickSave = () => {
+    console.log({ choices, text });
+    commitUpdateBlockToMultipleChoiceBlock(
+      {
+        input: {
+          blockId,
+          questionText: text,
+          choices: [...choices.map(({ id, ...choice }) => ({ ...choice }))],
+        },
+      },
+      onSaveSuccess,
+      onSaveError
+    );
+  };
+
+  const onSaveSuccess = () => {};
+  const onSaveError = (e: Error) => {
+    console.warn(e);
+  };
 
   return (
     <>
-      <FormItem
+      <Input
         name="text"
         value={text}
         type="text"
-        input="text"
+        onChange={({ target: { value } }) => setText(value)}
         placeholder="Question Text"
       />
-      {choices.map(({ text, id }) => (
-        <FormItem
-          key={id}
-          name="choice"
-          type="text"
-          input="requiredText"
-          placeholder="Choice Text"
-          value={text}
-        />
+      {choices.map(({ text, id, correct }) => (
+        <div>
+          <Button onClick={() => onClickSetCorrect(id)} disabled={correct}>
+            Set as correct
+          </Button>
+          <Input
+            key={id}
+            name="choice"
+            type="text"
+            placeholder="Choice Text"
+            onChange={({ target: { value } }) => onChangeChoiceText(id, value)}
+            value={text}
+          />
+          <Button onClick={() => onClickRemoveChoice(id)}>Remove</Button>
+        </div>
       ))}
       <Button
         block
         onClick={() =>
-          setChoices([...choices, { text: "", id: uuid(), correct: false }])
+          setChoices([
+            ...choices,
+            { text: "", id: cuid(), correct: choices.length === 0 },
+          ])
         }
         type="link"
         size="large"
       >
         <b>Add choice</b>
       </Button>
-      <Button block type="primary" size="large" htmlType="submit">
+      <Button
+        onClick={onClickSave}
+        block
+        type="primary"
+        size="large"
+        disabled={choices.length < 1}
+      >
         <b>Save</b>
       </Button>
     </>
