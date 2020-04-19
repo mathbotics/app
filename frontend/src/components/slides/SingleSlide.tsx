@@ -4,7 +4,9 @@ import { FileImageOutlined } from "@ant-design/icons";
 import { graphql } from "babel-plugin-relay/macro";
 import { createFragmentContainer } from "react-relay";
 import { SingleSlide_singleSlide } from "./__generated__/SingleSlide_singleSlide.graphql";
-import { Block } from "../../types/Block";
+import { BlockType } from "../../types/Block";
+import nullthrows from "nullthrows";
+import Block from "../block/Block";
 
 type WrapperProps = { preview?: boolean; selected?: boolean };
 const Wrapper = styled.div`
@@ -26,20 +28,32 @@ const Wrapper = styled.div`
   }
 `;
 
-type BlockComponent = React.ReactElement;
 type Props = {
   singleSlide?: SingleSlide_singleSlide;
-  Block?: BlockComponent;
   preview?: boolean;
   selected?: boolean;
-  onSelectBlock?: (block: Block) => void;
+  onSelectBlock?: (block: BlockType) => void;
 };
-const SingleSlide = ({ singleSlide, Block, preview, selected }: Props) => {
+const SingleSlide = ({
+  singleSlide,
+  onSelectBlock,
+  preview,
+  selected,
+}: Props) => {
   console.log("Single blockID:", singleSlide?.id);
   return (
-    <Wrapper preview={preview} selected={selected}>
-      {!preview && (Block ?? "No block provided")}
-      {preview && <FileImageOutlined style={{ fontSize: 50 }} />}
+    <Wrapper
+      preview={preview}
+      selected={selected}
+      onClick={() =>
+        onSelectBlock && onSelectBlock(nullthrows(singleSlide?.block))
+      }
+    >
+      {preview ? (
+        <FileImageOutlined style={{ fontSize: 50 }} />
+      ) : (
+        <Block block={nullthrows(singleSlide?.block)} />
+      )}
     </Wrapper>
   );
 };
