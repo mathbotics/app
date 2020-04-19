@@ -31,10 +31,12 @@ const Slides = (props: SlidesProps): JSX.Element => {
   >(props.lesson.slides[0]?.id);
   const [selectedBlock, setSelectedBlock] = React.useState<Block>();
 
+  React.useEffect(() => {
+    selectedBlock && setPageState(PageState.EditBlock);
+  }, [selectedBlock]);
+
   const onSelectBlock = (block: Block) => {
-    console.log("wooo");
     setSelectedBlock(block);
-    setPageState(PageState.EditBlock);
   };
 
   return (

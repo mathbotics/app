@@ -4,7 +4,7 @@ import { FileImageOutlined } from "@ant-design/icons";
 import { graphql } from "babel-plugin-relay/macro";
 import { createFragmentContainer } from "react-relay";
 import { SingleSlide_singleSlide } from "./__generated__/SingleSlide_singleSlide.graphql";
-import { BlockType } from "../../types/Block";
+import { Block as BlockType } from "../../types/Block";
 import nullthrows from "nullthrows";
 import Block from "../block/Block";
 
