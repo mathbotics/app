@@ -84,7 +84,7 @@ export const CourseCard = ({
         <CardTitle>{name}</CardTitle>
 
         <Tooltip title="Edit course">
-          <EditButton onClick={() => history.push(`/courses/${id}/lessons`)}>
+          <EditButton onClick={() => history.push(`/courses/${id}/edit`)}>
             <EditOutlined style={{ fontSize: "18px" }} />
           </EditButton>
         </Tooltip>

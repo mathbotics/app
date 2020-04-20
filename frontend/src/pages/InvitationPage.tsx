@@ -17,7 +17,7 @@ enum InvitationState {
   DEFAULT,
   SUCCESS,
   FAILURE,
-  VALIDATING
+  VALIDATING,
 }
 
 type Props = {};
@@ -51,7 +51,9 @@ export const InvitationPage = (props: Props) => {
 
   return (
     <Wrapper>
-      <Title level={2}>Invite User</Title>
+      <Title level={3} style={{ fontWeight: 700 }}>
+        Invite User
+      </Title>
 
       <InvitationForm
         onSubmit={onSubmitHandler}

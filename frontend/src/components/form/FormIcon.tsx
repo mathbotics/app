@@ -5,6 +5,7 @@ import {
   UserOutlined,
   BookOutlined,
   BarsOutlined,
+  AlignLeftOutlined,
 } from "@ant-design/icons";
 
 export const EmailIcon = () => (
@@ -25,4 +26,8 @@ export const BookIcon = () => (
 
 export const BarsIcon = () => (
   <BarsOutlined style={{ color: "rgba(0,0,0,.25)" }} />
+);
+
+export const AlignLeftIcon = () => (
+  <AlignLeftOutlined style={{ color: "rgba(0,0,0,.25)" }} />
 );

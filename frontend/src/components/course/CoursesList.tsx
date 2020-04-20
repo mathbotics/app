@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Layout } from "antd";
+import { Layout, Result } from "antd";
 import { createFragmentContainer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
 
@@ -36,6 +36,16 @@ const CoursesList = ({ courses }: Props) => {
   );
   return (
     <Wrapper>
+      {courses.courses.length == 0 && (
+        <Result
+          style={{ margin: "auto" }}
+          // @ts-ignore
+          status={"404"}
+          title="No courses found"
+          subTitle="Looks like you have no courses!"
+        />
+      )}
+
       {courseList
         // .filter((course) => course.lessonPlan.lessons.length > 0)
         .map((course) => (

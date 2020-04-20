@@ -17,7 +17,7 @@ enum PageState {
   Default, // Initial/Normal state
   CreateLessonIntent,
   CreateLessonSuccess,
-  CreateLessonError
+  CreateLessonError,
 }
 const Lessons = ({ lessons }: Props): JSX.Element => {
   const [pageState, setPageState] = useState<PageState>(PageState.Default);
@@ -78,7 +78,9 @@ type HeaderProps = { onAddLesson: () => void };
 const Header = ({ onAddLesson }: HeaderProps): JSX.Element => {
   return (
     <HeaderWrappper>
-      <Title level={1}>Lesson Catalogue</Title>
+      <Title level={3} style={{ fontWeight: 700 }}>
+        Lessons
+      </Title>
       <Tooltip title={"Add a lesson"}>
         <Button
           type="primary"
@@ -98,5 +100,5 @@ export default createFragmentContainer(Lessons, {
     fragment Lessons_lessons on Query {
       ...LessonsTable_lessons
     }
-  `
+  `,
 });
