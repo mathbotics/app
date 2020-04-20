@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 97f3d594e28750a48ae072c8a41e626c */
+/* @relayHash 189a12be8d6d1f7ca7bd6bd4e1cac330 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -33,16 +33,13 @@ query EditCoursePageQuery(
 
 fragment EditCourseLessonPlan_lessonPlan on LessonPlan {
   id
-  lessons {
-    id
-  }
 }
 
 fragment EditCourse_course on Course {
   id
   name
-  suggestedLevel
   lessonPlan {
+    id
     ...EditCourseLessonPlan_lessonPlan
   }
 }
@@ -121,13 +118,6 @@ return {
             "storageKey": null
           },
           {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "suggestedLevel",
-            "args": null,
-            "storageKey": null
-          },
-          {
             "kind": "LinkedField",
             "alias": null,
             "name": "lessonPlan",
@@ -136,19 +126,7 @@ return {
             "concreteType": "LessonPlan",
             "plural": false,
             "selections": [
-              (v2/*: any*/),
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "lessons",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "Lesson",
-                "plural": true,
-                "selections": [
-                  (v2/*: any*/)
-                ]
-              }
+              (v2/*: any*/)
             ]
           }
         ]
@@ -159,7 +137,7 @@ return {
     "operationKind": "query",
     "name": "EditCoursePageQuery",
     "id": null,
-    "text": "query EditCoursePageQuery(\n  $where: CourseWhereUniqueInput!\n) {\n  course(where: $where) {\n    ...EditCourse_course\n  }\n}\n\nfragment EditCourseLessonPlan_lessonPlan on LessonPlan {\n  id\n  lessons {\n    id\n  }\n}\n\nfragment EditCourse_course on Course {\n  id\n  name\n  suggestedLevel\n  lessonPlan {\n    ...EditCourseLessonPlan_lessonPlan\n  }\n}\n",
+    "text": "query EditCoursePageQuery(\n  $where: CourseWhereUniqueInput!\n) {\n  course(where: $where) {\n    ...EditCourse_course\n  }\n}\n\nfragment EditCourseLessonPlan_lessonPlan on LessonPlan {\n  id\n}\n\nfragment EditCourse_course on Course {\n  id\n  name\n  lessonPlan {\n    id\n    ...EditCourseLessonPlan_lessonPlan\n  }\n}\n",
     "metadata": {}
   }
 };

@@ -3,12 +3,11 @@
 
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type GradeLevel = "%future added value" | "%future added value" | "EIGHTH" | "ELEVENTH" | "FIFTH" | "FIRST" | "FOURTH" | "NINTH" | "SECOND" | "SEVENTH" | "SIXTH" | "TENTH" | "THIRD" | "TWELFTH" | "%future added value";
 export type EditCourse_course = {
     readonly id: string;
     readonly name: string;
-    readonly suggestedLevel: GradeLevel;
     readonly lessonPlan: {
+        readonly id: string;
         readonly " $fragmentRefs": FragmentRefs<"EditCourseLessonPlan_lessonPlan">;
     };
     readonly " $refType": "EditCourse_course";
@@ -21,31 +20,26 @@ export type EditCourse_course$key = {
 
 
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
+return {
   "kind": "Fragment",
   "name": "EditCourse_course",
   "type": "Course",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "id",
-      "args": null,
-      "storageKey": null
-    },
+    (v0/*: any*/),
     {
       "kind": "ScalarField",
       "alias": null,
       "name": "name",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "suggestedLevel",
       "args": null,
       "storageKey": null
     },
@@ -58,6 +52,7 @@ const node: ReaderFragment = {
       "concreteType": "LessonPlan",
       "plural": false,
       "selections": [
+        (v0/*: any*/),
         {
           "kind": "FragmentSpread",
           "name": "EditCourseLessonPlan_lessonPlan",
@@ -67,5 +62,6 @@ const node: ReaderFragment = {
     }
   ]
 };
-(node as any).hash = '1622e31e4fb78fa35003d51e9594954e';
+})();
+(node as any).hash = '3ee59885710d62caaa38a2ab630fe0e8';
 export default node;

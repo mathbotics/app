@@ -3,9 +3,9 @@ import { Layout, Tabs, Typography } from "antd";
 import { createFragmentContainer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
 import { EditCourse_course } from "./__generated__/EditCourse_course.graphql";
-
 import { EditCourseDetails } from "./EditCourseDetails";
 import { EditCourseLessonPlan } from "./EditCourseLessonPlan";
+import { EditCourseLessonPlan_lessonPlan } from "./__generated__/EditCourseLessonPlan_lessonPlan.graphql";
 
 const { TabPane } = Tabs;
 const { Title } = Typography;
@@ -15,6 +15,7 @@ type Tab = {
   Component: JSX.Element;
 };
 type Props = { course: EditCourse_course };
+
 const EditCourse = ({ course }: Props) => {
   const tabs: Tab[] = [
     {
@@ -49,8 +50,8 @@ export default createFragmentContainer(EditCourse, {
     fragment EditCourse_course on Course {
       id
       name
-      suggestedLevel
       lessonPlan {
+        id
         ...EditCourseLessonPlan_lessonPlan
       }
     }
