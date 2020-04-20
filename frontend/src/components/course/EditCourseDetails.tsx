@@ -15,7 +15,7 @@ export const EditCourseDetails = ({
   const onSubmit = ({ name }: Store) => console.log({ name });
 
   return (
-    <Layout>
+    <Layout style={{ backgroundColor: "white" }}>
       <UpdateCourseForm onSubmit={onSubmit} onSubmitError={onSubmitError} />
     </Layout>
   );

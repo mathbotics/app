@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Layout, Tabs, Typography } from "antd";
 import { createFragmentContainer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
+
 import { EditCourse_course } from "./__generated__/EditCourse_course.graphql";
 import { EditCourseDetails } from "./EditCourseDetails";
 import { EditCourseLessonPlan } from "./EditCourseLessonPlan";
+import { EditCourseStudents } from "./EditCourseStudents";
 
 const { TabPane } = Tabs;
 const { Title } = Typography;
@@ -37,6 +39,10 @@ const EditCourse = ({ course }: Props) => {
           }}
         />
       ),
+    },
+    {
+      title: "Students",
+      Component: <EditCourseStudents />,
     },
   ];
   const handleTabChange = (key: string) => console.log({ key });
