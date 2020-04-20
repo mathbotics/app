@@ -11,7 +11,9 @@ import {
   NotFoundPage,
   LessonsPage,
   SlidesPage,
-  AdminPage
+  AdminPage,
+  CoursesPage,
+  EditCoursePage,
 } from "./pages";
 
 // Routes
@@ -42,6 +44,19 @@ export const App: React.FC = () => {
           allowedRoles={["Admin", "Instructor"]}
           component={withSidebar(SlidesPage)}
         />
+        <ProtectedRoute
+          exact
+          path="/courses"
+          allowedRoles={["Admin", "Instructor"]}
+          component={withSidebar(CoursesPage)}
+        />
+        <ProtectedRoute
+          exact
+          path="/courses/:courseId/lessons"
+          allowedRoles={["Admin", "Instructor"]}
+          component={withSidebar(EditCoursePage)}
+        />
+
         <Route component={NotFoundPage} />
       </Switch>
     </BrowserRouter>

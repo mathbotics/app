@@ -1,67 +1,76 @@
 import React from "react";
-import { Form, Button } from "antd";
-import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
-import { FormItem } from "./FormItem";
-import { SelectFormItem } from "./SelectFormItem";
+// import { Form, Button, Typography } from "antd";
+// import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
+// import { FormItem } from "./FormItem";
+// import { SelectFormItem } from "./SelectFormItem";
+// import styled from "styled-components";
 
-type InvitationFormFormProps = {
-  onSubmit: (values: Store) => void;
-  onSubmitError: (error: ValidateErrorEntity) => void;
-};
+// const { Title } = Typography;
 
-export type InvitationFormFormFields = {
-  username: string;
-  role: Role;
-};
+// type InvitationFormFormProps = {
+//   onSubmit: (values: Store) => void;
+//   onSubmitError: (error: ValidateErrorEntity) => void;
+// };
 
-enum Role {
-  ADMIN,
-  GUARDIAN,
-  INSTRUCTOR,
-  STUDENT
-}
+// export type InvitationFormFormFields = {
+//   username: string;
+//   role: Role;
+// };
 
-export const CourseCreationForm = (props: any) => {
-  const [form] = Form.useForm();
-  const { setFieldsValue, getFieldValue } = form;
+// enum Role {
+//   ADMIN,
+//   GUARDIAN,
+//   INSTRUCTOR,
+//   STUDENT,
+// }
 
-  // Set default form values
-  React.useEffect(() => {
-    setFieldsValue({
-      name: "",
-      suggestedLevel: ""
-    });
-  }, []);
+export const CourseForm = (props: any) => {
+  return <></>;
+  // const [form] = Form.useForm();
+  // const { setFieldsValue, getFieldValue } = form;
 
-  return (
-    <Form
-      form={form}
-      onFinish={props.onSubmit}
-      onFinishFailed={props.onSubmitError}
-      layout="vertical"
-      style={{ backgroundColor: "white" }}
-    >
-      <FormItem
-        name="name"
-        value={getFieldValue("name")}
-        type="text"
-        input="courseName"
-        placeholder="Course Name"
-      />
+  // // Set default form values
+  // React.useEffect(() => {
+  //   setFieldsValue({
+  //     name: "",
+  //     suggestedLevel: "",
+  //   });
+  // }, []);
 
-      <SelectFormItem
-        defaultValue="FIRST"
-        name="gradeLevel"
-        options={[
-          { value: "FIRST", text: "First" },
-          { value: "SECOND", text: "Second" }
-        ]}
-        placeholder="Grade Level"
-      />
+  // return (
+  //   <Form
+  //     form={form}
+  //     onFinish={props.onSubmit}
+  //     onFinishFailed={props.onSubmitError}
+  //     layout="vertical"
+  //     style={{ backgroundColor: "white" }}
+  //   >
+  //     <FormItem
+  //       name="name"
+  //       value={getFieldValue("name")}
+  //       type="text"
+  //       input="courseName"
+  //       placeholder="Course Name"
+  //     />
 
-      <Button block type="primary" size="large" htmlType="submit">
-        Create Course
-      </Button>
-    </Form>
-  );
+  //     <FormItem
+  //       name="title"
+  //       value={getFieldValue("title")}
+  //       type="text"
+  //       input="courseTitle"
+  //       placeholder="Course Title"
+  //     />
+
+  //     <SelectFormItem
+  //       defaultValue=""
+  //       name="lessons"
+  //       options={[{ value: "FIRST", text: "First" }]}
+  //       placeholder="Grade Level"
+  //     />
+
+  //     <Button block type="primary" size="large" htmlType="submit">
+  //       Create Course
+  //     </Button>
+  //   </Form>
+  // );
 };

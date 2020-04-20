@@ -8,7 +8,6 @@ const mutation = graphql`
   mutation CreateOneCourseMutation($data: CourseCreateInput!) {
     createOneCourse(data: $data) {
       id
-      suggestedLevel
     }
   }
 `;
@@ -19,13 +18,13 @@ function commit(
   onFailure: (error: Error) => void
 ) {
   const variables = {
-    data: input
+    data: input,
   };
   commitMutation(environment, {
     mutation,
     variables,
     onCompleted: onSuccess,
-    onError: onFailure
+    onError: onFailure,
   });
 }
 

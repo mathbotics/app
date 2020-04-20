@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 1bf0797bc67549a2cf9925ed950a71d9 */
+/* @relayHash 4f4b26defebd87867c7f11a7219ae6f0 */
 
 import { ConcreteRequest } from "relay-runtime";
 export type GradeLevel = "%future added value" | "EIGHTH" | "ELEVENTH" | "FIFTH" | "FIRST" | "FOURTH" | "NINTH" | "SECOND" | "SEVENTH" | "SIXTH" | "TENTH" | "THIRD" | "TWELFTH" | "%future added value";
@@ -591,7 +591,6 @@ export type CreateOneCourseMutationVariables = {
 export type CreateOneCourseMutationResponse = {
     readonly createOneCourse: {
         readonly id: string;
-        readonly suggestedLevel: GradeLevel;
     };
 };
 export type CreateOneCourseMutation = {
@@ -607,7 +606,6 @@ mutation CreateOneCourseMutation(
 ) {
   createOneCourse(data: $data) {
     id
-    suggestedLevel
   }
 }
 */
@@ -643,13 +641,6 @@ v1 = [
         "name": "id",
         "args": null,
         "storageKey": null
-      },
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "suggestedLevel",
-        "args": null,
-        "storageKey": null
       }
     ]
   }
@@ -674,10 +665,10 @@ return {
     "operationKind": "mutation",
     "name": "CreateOneCourseMutation",
     "id": null,
-    "text": "mutation CreateOneCourseMutation(\n  $data: CourseCreateInput!\n) {\n  createOneCourse(data: $data) {\n    id\n    suggestedLevel\n  }\n}\n",
+    "text": "mutation CreateOneCourseMutation(\n  $data: CourseCreateInput!\n) {\n  createOneCourse(data: $data) {\n    id\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = 'bbd33a4a0e764321efb2c53a25168b1e';
+(node as any).hash = 'c9e9751286e58d4a6d592ccd3fa1ac30';
 export default node;
