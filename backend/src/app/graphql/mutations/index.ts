@@ -6,6 +6,7 @@ export * from './sendInvitationEmail';
 export * from './createSlide';
 export * from './updateBlockToMultipleChoiceBlock';
 export * from './updateBlockToTextBlock';
+export * from './answerMultipleChoiceQuestionBlock';
 
 export const mutation = extendType({
   type: 'Mutation',
