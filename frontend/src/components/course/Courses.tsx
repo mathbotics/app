@@ -47,7 +47,7 @@ const Courses = ({ courses }: Props) => {
       <CreateCourseModal
         title="Create a Course"
         rootDataID={getRootQueryDataID(CoursesPageQuery, {})}
-        visible={pageState == PageState.CreateCourseIntent}
+        visible={pageState === PageState.CreateCourseIntent}
         onSubmitSuccess={() => setPageState(PageState.CreateCourseSuccess)}
         onSubmitError={(e: Error) => {
           console.error(e);
