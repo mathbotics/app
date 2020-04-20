@@ -27,7 +27,7 @@ const Courses = ({ courses }: Props) => {
   let history = useHistory();
   const [pageState, setPageState] = useState<PageState>(PageState.Default);
   return (
-    <Layout style={{ backgroundColor: "white", height: "95vh" }}>
+    <Layout style={{ backgroundColor: "white", maxHeight: "95vh" }}>
       <HeaderWrappper>
         <Title level={3} style={{ fontWeight: 700 }}>
           Courses

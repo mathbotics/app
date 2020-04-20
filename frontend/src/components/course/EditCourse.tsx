@@ -29,6 +29,10 @@ const EditCourse = ({ course }: Props) => {
       Component: <EditCourseLessonPlan lessonPlan={course.lessonPlan} />,
     },
     {
+      title: "Students",
+      Component: <EditCourseStudents />,
+    },
+    {
       title: "Course Details",
       Component: (
         <EditCourseDetails
@@ -39,10 +43,6 @@ const EditCourse = ({ course }: Props) => {
           }}
         />
       ),
-    },
-    {
-      title: "Students",
-      Component: <EditCourseStudents />,
     },
   ];
   const handleTabChange = (key: string) => console.log({ key });
