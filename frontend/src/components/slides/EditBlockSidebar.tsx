@@ -6,9 +6,15 @@ import { graphql } from "babel-plugin-relay/macro";
 import { EditBlockSidebar_block } from "./__generated__/EditBlockSidebar_block.graphql";
 import EditTextBlockForm from "../block/text/EditTextBlockForm";
 import EditMultipleChoiceQuestionBlockForm from "../block/multiple_choice/EditMultipleChoiceQuestionBlockForm";
+import styled from "styled-components";
 
 const { Sider } = Layout;
 const { Option } = Select;
+
+const SiderWrapper = styled(Sider)`
+  margin: 0px 10px;
+  width: inherit;
+`;
 
 enum EditingBlockTypename {
   MultipleChoiceQuestionBlock = "MultipleChoiceQuestionBlock",
@@ -22,7 +28,7 @@ const EditBlockSidebar = ({ block }: Props) => {
   );
 
   return (
-    <Sider theme={"light"} width={300}>
+    <Sider theme={"light"}>
       <Select
         onChange={setEditingBlockTypename}
         defaultValue={block.__typename}
@@ -32,6 +38,7 @@ const EditBlockSidebar = ({ block }: Props) => {
         </Option>
         <Option value={EditingBlockTypename.TextBlock}>Text</Option>
       </Select>
+      {/* Multiple Choice */}
       {editingBlockTypename ===
         EditingBlockTypename.MultipleChoiceQuestionBlock && (
         <EditMultipleChoiceQuestionBlockForm
@@ -42,6 +49,7 @@ const EditBlockSidebar = ({ block }: Props) => {
             : {})}
         />
       )}
+      {/* Text */}
       {editingBlockTypename === EditingBlockTypename.TextBlock && (
         <EditTextBlockForm
           //@ts-ignore

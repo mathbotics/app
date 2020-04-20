@@ -5,7 +5,7 @@ import {
   LockOutlined,
   BookOutlined,
   AppstoreOutlined,
-  LogoutOutlined
+  LogoutOutlined,
 } from "@ant-design/icons";
 import styled from "styled-components";
 import { useHistory, Redirect } from "react-router-dom";
@@ -51,17 +51,18 @@ const menuItemsForViewer = ({ role }: withSidebar_viewer) => {
       return [
         { name: "Dashboard", path: "", icon: <DashboardOutlined /> },
         { name: "Admin", path: "admin", icon: <LockOutlined /> },
-        { name: "Lessons", path: "lessons", icon: <AppstoreOutlined /> }
+        { name: "Lessons", path: "lessons", icon: <AppstoreOutlined /> },
+        { name: "Courses", path: "courses", icon: <BookOutlined /> },
       ];
     case "Instructor":
       return [
         { name: "Dashboard", path: "", icon: <DashboardOutlined /> },
-        { name: "Courses", path: "courses", icon: <BookOutlined /> }
+        { name: "Courses", path: "courses", icon: <BookOutlined /> },
       ];
     case "Student":
       return [
         { name: "Dashboard", path: "", icon: <DashboardOutlined /> },
-        { name: "Courses", path: "courses", icon: <BookOutlined /> }
+        { name: "Courses", path: "courses", icon: <BookOutlined /> },
       ];
     default:
       return [{ name: "Dashboard", path: "", icon: <DashboardOutlined /> }];
@@ -83,7 +84,7 @@ const Sidebar = createFragmentContainer(
 
     const selectedKey = () => {
       const [, path] = window.location.pathname.split("/");
-      return items.findIndex(item => item.path === path);
+      return items.findIndex((item) => item.path === path);
     };
 
     const onClickMenuItem = (item: SidebarItem) => {
@@ -125,7 +126,14 @@ const Sidebar = createFragmentContainer(
         </Sider>
         <Layout>
           <Content style={{ margin: "16px 16px" }}>
-            <div style={{ padding: 24, background: "#fff", minHeight: 360 }}>
+            <div
+              style={{
+                padding: 24,
+                background: "#fff",
+                minHeight: 360,
+                overflowY: "auto",
+              }}
+            >
               <Component />
             </div>
           </Content>
@@ -138,7 +146,7 @@ const Sidebar = createFragmentContainer(
       fragment withSidebar_viewer on User {
         role: __typename
       }
-    `
+    `,
   }
 );
 

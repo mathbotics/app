@@ -19,9 +19,7 @@ enum PageState {
   EditBlock,
 }
 
-type SlidesProps = {
-  lesson: Slides_lesson;
-};
+type SlidesProps = { lesson: Slides_lesson };
 const Slides = (props: SlidesProps): JSX.Element => {
   const [pageState, setPageState] = React.useState<PageState>(
     PageState.EditSlide

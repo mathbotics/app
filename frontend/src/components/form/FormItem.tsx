@@ -18,6 +18,7 @@ type FormRulesType = {
   password: GenericFormRuleType;
   username: GenericFormRuleType;
   courseName: GenericFormRuleType;
+  courseTitle: GenericFormRuleType;
   lessonTitle: GenericFormRuleType;
   requiredText: GenericFormRuleType;
   text: GenericFormRuleType;
@@ -56,6 +57,10 @@ const FormRules: FormRulesType = {
   },
   courseName: {
     rules: [{ required: true, message: "Please input your course name." }],
+    icon: <BookIcon />,
+  },
+  courseTitle: {
+    rules: [{ required: true, message: "Please input your course title." }],
     icon: <BookIcon />,
   },
   lessonTitle: {

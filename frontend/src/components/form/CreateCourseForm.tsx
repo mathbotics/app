@@ -1,25 +1,24 @@
 import React from "react";
 import { Form, Button } from "antd";
-import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
 import { FormItem } from "./FormItem";
+
+import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
 
 type FormProps = {
   onSubmit: (values: Store) => void;
   onSubmitError: (error: ValidateErrorEntity) => void;
 };
 
-export type CreateLessonFormFields = { title: string };
-export const CreateLessonForm = ({
+export const CreateCourseForm = ({
   onSubmit,
   onSubmitError,
 }: FormProps): JSX.Element => {
   const [form] = Form.useForm();
   const { setFieldsValue, getFieldValue } = form;
 
+  // Set default form values
   React.useEffect(() => {
-    setFieldsValue({
-      title: "",
-    });
+    setFieldsValue({ name: "" });
   }, []);
 
   return (
@@ -28,19 +27,18 @@ export const CreateLessonForm = ({
       onFinish={onSubmit}
       onFinishFailed={onSubmitError}
       layout="vertical"
+      style={{ backgroundColor: "white" }}
     >
-      <p>
-        <b>Lesson Title</b>
-      </p>
       <FormItem
-        name="title"
-        value={getFieldValue("title")}
+        name="name"
+        value={getFieldValue("name")}
         type="text"
-        input="lessonTitle"
-        placeholder="Creating a robot 101"
+        input="courseName"
+        placeholder="Course Name"
       />
+
       <Button block type="primary" size="large" htmlType="submit">
-        Continue
+        Create Course
       </Button>
     </Form>
   );
