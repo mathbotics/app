@@ -3,7 +3,11 @@ import { Layout } from "antd";
 import { Store } from "rc-field-form/lib/interface";
 
 import { UpdateCourseForm } from "../form/UpdateCourseForm";
+import styled from "styled-components";
 
+const FormWrapper = styled.div`
+  width: 350px;
+`;
 type Props = {
   onSubmitSuccess: () => void;
   onSubmitError: (e: any) => void;
@@ -16,7 +20,9 @@ export const EditCourseDetails = ({
 
   return (
     <Layout style={{ backgroundColor: "white" }}>
-      <UpdateCourseForm onSubmit={onSubmit} onSubmitError={onSubmitError} />
+      <FormWrapper>
+        <UpdateCourseForm onSubmit={onSubmit} onSubmitError={onSubmitError} />
+      </FormWrapper>
     </Layout>
   );
 };

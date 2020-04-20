@@ -46,8 +46,26 @@ export const UpdateCourseForm = ({
       />
 
       <Button block type="primary" size="large" htmlType="submit">
-        Create Course
+        Update
       </Button>
+      <DeleteButton />
     </Form>
   );
 };
+
+const DeleteButton = () => (
+  <Button
+    block
+    type="danger"
+    size="large"
+    onClick={() => console.log("Deleting")}
+    style={{
+      marginTop: "10px",
+      backgroundColor: "transparent",
+      color: "red",
+      border: "0",
+    }}
+  >
+    Delete
+  </Button>
+);

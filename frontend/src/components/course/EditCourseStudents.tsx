@@ -3,7 +3,5 @@ import { Layout } from "antd";
 
 type Props = {};
 export const EditCourseStudents = ({}: Props) => {
-  return (
-    <Layout style={{ backgroundColor: "white" }}>Edit Course students</Layout>
-  );
+  return <Layout style={{ backgroundColor: "white" }}>Students</Layout>;
 };
