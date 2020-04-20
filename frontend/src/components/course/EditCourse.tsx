@@ -1,28 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { Layout, Tabs, Typography } from "antd";
 import { createFragmentContainer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
 import { EditCourse_course } from "./__generated__/EditCourse_course.graphql";
 import { EditCourseDetails } from "./EditCourseDetails";
 import { EditCourseLessonPlan } from "./EditCourseLessonPlan";
-import { EditCourseLessonPlan_lessonPlan } from "./__generated__/EditCourseLessonPlan_lessonPlan.graphql";
 
 const { TabPane } = Tabs;
 const { Title } = Typography;
 
-type Tab = {
-  title: string;
-  Component: JSX.Element;
-};
+enum PageState {
+  Default,
+  UpdateCourseSuccess,
+  UpdateCourseError,
+}
+type Tab = { title: string; Component: JSX.Element };
 type Props = { course: EditCourse_course };
-
 const EditCourse = ({ course }: Props) => {
+  const [pageState, setPageState] = useState<PageState>(
+    PageState.UpdateCourseSuccess
+  );
   const tabs: Tab[] = [
     {
       title: "Lesson Plan",
+      // @ts-ignore
       Component: <EditCourseLessonPlan lessonPlan={course.lessonPlan} />,
     },
-    { title: "Details", Component: <EditCourseDetails /> },
+    {
+      title: "Course Details",
+      Component: (
+        <EditCourseDetails
+          onSubmitSuccess={() => setPageState(PageState.UpdateCourseSuccess)}
+          onSubmitError={(e: Error) => {
+            console.error(e);
+            setPageState(PageState.UpdateCourseError);
+          }}
+        />
+      ),
+    },
   ];
   const handleTabChange = (key: string) => console.log({ key });
 
@@ -51,7 +66,6 @@ export default createFragmentContainer(EditCourse, {
       id
       name
       lessonPlan {
-        id
         ...EditCourseLessonPlan_lessonPlan
       }
     }

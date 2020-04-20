@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 189a12be8d6d1f7ca7bd6bd4e1cac330 */
+/* @relayHash 1e9884d724df880945fd75cdc9ac55ec */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -33,13 +33,16 @@ query EditCoursePageQuery(
 
 fragment EditCourseLessonPlan_lessonPlan on LessonPlan {
   id
+  lessons {
+    id
+    title
+  }
 }
 
 fragment EditCourse_course on Course {
   id
   name
   lessonPlan {
-    id
     ...EditCourseLessonPlan_lessonPlan
   }
 }
@@ -126,7 +129,26 @@ return {
             "concreteType": "LessonPlan",
             "plural": false,
             "selections": [
-              (v2/*: any*/)
+              (v2/*: any*/),
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "lessons",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Lesson",
+                "plural": true,
+                "selections": [
+                  (v2/*: any*/),
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "title",
+                    "args": null,
+                    "storageKey": null
+                  }
+                ]
+              }
             ]
           }
         ]
@@ -137,7 +159,7 @@ return {
     "operationKind": "query",
     "name": "EditCoursePageQuery",
     "id": null,
-    "text": "query EditCoursePageQuery(\n  $where: CourseWhereUniqueInput!\n) {\n  course(where: $where) {\n    ...EditCourse_course\n  }\n}\n\nfragment EditCourseLessonPlan_lessonPlan on LessonPlan {\n  id\n}\n\nfragment EditCourse_course on Course {\n  id\n  name\n  lessonPlan {\n    id\n    ...EditCourseLessonPlan_lessonPlan\n  }\n}\n",
+    "text": "query EditCoursePageQuery(\n  $where: CourseWhereUniqueInput!\n) {\n  course(where: $where) {\n    ...EditCourse_course\n  }\n}\n\nfragment EditCourseLessonPlan_lessonPlan on LessonPlan {\n  id\n  lessons {\n    id\n    title\n  }\n}\n\nfragment EditCourse_course on Course {\n  id\n  name\n  lessonPlan {\n    ...EditCourseLessonPlan_lessonPlan\n  }\n}\n",
     "metadata": {}
   }
 };
