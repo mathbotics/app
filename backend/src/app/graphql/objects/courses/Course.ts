@@ -5,6 +5,7 @@ export const Course = objectType({
   definition(t) {
     t.model.id();
     t.model.name();
+    t.model.description();
     t.model.suggestedLevel();
     t.model.instructors();
     // @ts-ignore

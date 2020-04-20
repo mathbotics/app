@@ -8,5 +8,6 @@ export const query = extendType({
     t.crud.courses({ filtering: true });
     t.crud.lessons({ filtering: true });
     t.crud.lesson();
+    t.crud.course();
   },
 });
