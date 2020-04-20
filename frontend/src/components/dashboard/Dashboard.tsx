@@ -13,13 +13,13 @@ type Props = {
 
 const Dashboard = ({
   dashboard: {
-    viewer: { firstName, lastName }
-  }
+    viewer: { firstName, lastName },
+  },
 }: Props) => {
   const [selected, setSelected] = useState<number>(1);
   return (
     <>
-      <Title level={2}>
+      <Title level={3} style={{ fontWeight: 700 }}>
         Hey there, {firstName} {lastName}!
       </Title>
     </>
@@ -40,5 +40,5 @@ export default createFragmentContainer(Dashboard, {
         }
       }
     }
-  `
+  `,
 });

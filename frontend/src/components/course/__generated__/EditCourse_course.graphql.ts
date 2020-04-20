@@ -3,8 +3,14 @@
 
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
+export type GradeLevel = "%future added value" | "%future added value" | "EIGHTH" | "ELEVENTH" | "FIFTH" | "FIRST" | "FOURTH" | "NINTH" | "SECOND" | "SEVENTH" | "SIXTH" | "TENTH" | "THIRD" | "TWELFTH" | "%future added value";
 export type EditCourse_course = {
     readonly id: string;
+    readonly name: string;
+    readonly suggestedLevel: GradeLevel;
+    readonly lessonPlan: {
+        readonly " $fragmentRefs": FragmentRefs<"EditCourseLessonPlan_lessonPlan">;
+    };
     readonly " $refType": "EditCourse_course";
 };
 export type EditCourse_course$data = EditCourse_course;
@@ -28,8 +34,38 @@ const node: ReaderFragment = {
       "name": "id",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "name",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "suggestedLevel",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "lessonPlan",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "LessonPlan",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "FragmentSpread",
+          "name": "EditCourseLessonPlan_lessonPlan",
+          "args": null
+        }
+      ]
     }
   ]
 };
-(node as any).hash = 'd9fe320ed013647bc628888584f75269';
+(node as any).hash = '1622e31e4fb78fa35003d51e9594954e';
 export default node;
