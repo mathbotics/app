@@ -10,7 +10,6 @@ import {
   createOperationDescriptor,
   getRequest,
   Variables,
-  DataID
 } from "relay-runtime";
 
 const oneMinute = 60 * 1000;
@@ -27,7 +26,7 @@ const fetchQuery: FetchFunction = async (operation, variables) => {
   const apiURI: RequestInfo = "http://localhost:5000/graphql";
   const headers = new Headers({
     "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": apiURI ?? "*"
+    "Access-Control-Allow-Origin": apiURI ?? "*",
   });
 
   const request: RequestInit = {
@@ -36,8 +35,8 @@ const fetchQuery: FetchFunction = async (operation, variables) => {
     headers,
     body: JSON.stringify({
       query: operation.text,
-      variables
-    })
+      variables,
+    }),
   };
 
   const response: Response = await fetch(apiURI, request);
@@ -54,7 +53,7 @@ const fetchQuery: FetchFunction = async (operation, variables) => {
 
 export const environment = new Environment({
   network: Network.create(fetchQuery),
-  store: new Store(new RecordSource())
+  store: new Store(new RecordSource()),
 });
 
 export const getRootQueryDataID = (

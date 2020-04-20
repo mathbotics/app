@@ -26,7 +26,8 @@ export default ({
     commitCreateOneCourseMutation(
       { name, suggestedLevel: "FIRST", lessonPlan: { create: {} } },
       onSubmitSuccess,
-      onSubmitError
+      onSubmitError,
+      rootDataID
     );
   return (
     <Modal visible={visible} title={title} onCancel={onCancel} footer={[]}>
