@@ -2774,6 +2774,7 @@ export interface NexusGenFieldTypes {
   MultipleChoiceQuestionChoice: { // field return type
     correct: boolean; // Boolean!
     id: string; // String!
+    selected: boolean | null; // Boolean
     text: string; // String!
   }
   Mutation: { // field return type
