@@ -1,7 +1,14 @@
 import React from "react";
 import { Form, Input } from "antd";
 
-import { EmailIcon, LockIcon, UserIcon, BookIcon, BarsIcon } from "./";
+import {
+  EmailIcon,
+  LockIcon,
+  UserIcon,
+  BookIcon,
+  BarsIcon,
+  AlignLeftIcon,
+} from "./";
 
 type FormItemProps = {
   name: string;
@@ -18,10 +25,10 @@ type FormRulesType = {
   password: GenericFormRuleType;
   username: GenericFormRuleType;
   courseName: GenericFormRuleType;
-  courseTitle: GenericFormRuleType;
   lessonTitle: GenericFormRuleType;
   requiredText: GenericFormRuleType;
   text: GenericFormRuleType;
+  description: GenericFormRuleType;
 };
 
 type FormRuleType = {
@@ -59,10 +66,11 @@ const FormRules: FormRulesType = {
     rules: [{ required: true, message: "Please input your course name." }],
     icon: <BookIcon />,
   },
-  courseTitle: {
-    rules: [{ required: true, message: "Please input your course title." }],
-    icon: <BookIcon />,
+  description: {
+    rules: [{ required: true, message: "Please add a description." }],
+    icon: <AlignLeftIcon />,
   },
+
   lessonTitle: {
     rules: [{ required: true, message: "Please input title of the lesson." }],
     icon: <BarsIcon />,

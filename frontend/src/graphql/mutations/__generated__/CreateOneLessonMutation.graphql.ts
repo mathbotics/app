@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash f0fba60dc8a520eebd2620700d37d192 */
+/* @relayHash 81035882728254f2b3711b3ada7a376d */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -32,6 +32,7 @@ export type CourseWhereUniqueInput = {
 export type CourseCreateWithoutLessonPlanInput = {
     contents?: ContentCreateManyWithoutCourseInput | null;
     createdAt?: unknown | null;
+    description?: string | null;
     id?: string | null;
     instructors?: InstructorCreateManyWithoutCoursesInput | null;
     name: string;
@@ -145,6 +146,7 @@ export type CourseCreateManyWithoutStudentsInput = {
 export type CourseCreateWithoutStudentsInput = {
     contents?: ContentCreateManyWithoutCourseInput | null;
     createdAt?: unknown | null;
+    description?: string | null;
     id?: string | null;
     instructors?: InstructorCreateManyWithoutCoursesInput | null;
     lessonPlan: LessonPlanCreateOneWithoutCourseInput;
@@ -500,6 +502,7 @@ export type CourseCreateManyWithoutInstructorsInput = {
 export type CourseCreateWithoutInstructorsInput = {
     contents?: ContentCreateManyWithoutCourseInput | null;
     createdAt?: unknown | null;
+    description?: string | null;
     id?: string | null;
     lessonPlan: LessonPlanCreateOneWithoutCourseInput;
     name: string;

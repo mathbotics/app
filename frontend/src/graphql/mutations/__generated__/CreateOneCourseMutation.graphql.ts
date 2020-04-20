@@ -1,12 +1,13 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 4f4b26defebd87867c7f11a7219ae6f0 */
+/* @relayHash 7163b6f27920ccd7bc7b3e53ee89ded5 */
 
 import { ConcreteRequest } from "relay-runtime";
 export type GradeLevel = "%future added value" | "EIGHTH" | "ELEVENTH" | "FIFTH" | "FIRST" | "FOURTH" | "NINTH" | "SECOND" | "SEVENTH" | "SIXTH" | "TENTH" | "THIRD" | "TWELFTH" | "%future added value";
 export type CourseCreateInput = {
     contents?: ContentCreateManyWithoutCourseInput | null;
     createdAt?: unknown | null;
+    description?: string | null;
     id?: string | null;
     instructors?: InstructorCreateManyWithoutCoursesInput | null;
     lessonPlan: LessonPlanCreateOneWithoutCourseInput;
@@ -124,6 +125,7 @@ export type CourseWhereUniqueInput = {
 export type CourseCreateWithoutStudentsInput = {
     contents?: ContentCreateManyWithoutCourseInput | null;
     createdAt?: unknown | null;
+    description?: string | null;
     id?: string | null;
     instructors?: InstructorCreateManyWithoutCoursesInput | null;
     lessonPlan: LessonPlanCreateOneWithoutCourseInput;
@@ -239,6 +241,7 @@ export type CourseCreateOneWithoutLessonPlanInput = {
 export type CourseCreateWithoutLessonPlanInput = {
     contents?: ContentCreateManyWithoutCourseInput | null;
     createdAt?: unknown | null;
+    description?: string | null;
     id?: string | null;
     instructors?: InstructorCreateManyWithoutCoursesInput | null;
     name: string;
@@ -298,6 +301,7 @@ export type CourseCreateManyWithoutInstructorsInput = {
 export type CourseCreateWithoutInstructorsInput = {
     contents?: ContentCreateManyWithoutCourseInput | null;
     createdAt?: unknown | null;
+    description?: string | null;
     id?: string | null;
     lessonPlan: LessonPlanCreateOneWithoutCourseInput;
     name: string;

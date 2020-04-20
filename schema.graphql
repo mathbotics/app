@@ -443,6 +443,7 @@ input ContentWhereUniqueInput {
 }
 
 type Course {
+  description: String
   id: String!
   instructors(after: InstructorWhereUniqueInput, before: InstructorWhereUniqueInput, first: Int, last: Int, skip: Int): [Instructor!]!
   lessonPlan: LessonPlan!
@@ -453,6 +454,7 @@ type Course {
 input CourseCreateInput {
   contents: ContentCreateManyWithoutCourseInput
   createdAt: DateTime
+  description: String
   id: String
   instructors: InstructorCreateManyWithoutCoursesInput
   lessonPlan: LessonPlanCreateOneWithoutCourseInput!
@@ -479,6 +481,7 @@ input CourseCreateOneWithoutLessonPlanInput {
 input CourseCreateWithoutInstructorsInput {
   contents: ContentCreateManyWithoutCourseInput
   createdAt: DateTime
+  description: String
   id: String
   lessonPlan: LessonPlanCreateOneWithoutCourseInput!
   name: String!
@@ -489,6 +492,7 @@ input CourseCreateWithoutInstructorsInput {
 input CourseCreateWithoutLessonPlanInput {
   contents: ContentCreateManyWithoutCourseInput
   createdAt: DateTime
+  description: String
   id: String
   instructors: InstructorCreateManyWithoutCoursesInput
   name: String!
@@ -499,6 +503,7 @@ input CourseCreateWithoutLessonPlanInput {
 input CourseCreateWithoutStudentsInput {
   contents: ContentCreateManyWithoutCourseInput
   createdAt: DateTime
+  description: String
   id: String
   instructors: InstructorCreateManyWithoutCoursesInput
   lessonPlan: LessonPlanCreateOneWithoutCourseInput!
@@ -516,6 +521,7 @@ input CourseScalarWhereInput {
   AND: [CourseScalarWhereInput!]
   contents: ContentFilter
   createdAt: DateTimeFilter
+  description: NullableStringFilter
   id: StringFilter
   instructors: InstructorFilter
   name: StringFilter
@@ -528,6 +534,7 @@ input CourseScalarWhereInput {
 input CourseUpdateInput {
   contents: ContentUpdateManyWithoutCourseInput
   createdAt: DateTime
+  description: String
   id: String
   instructors: InstructorUpdateManyWithoutCoursesInput
   lessonPlan: LessonPlanUpdateOneRequiredWithoutCourseInput
@@ -538,6 +545,7 @@ input CourseUpdateInput {
 
 input CourseUpdateManyDataInput {
   createdAt: DateTime
+  description: String
   id: String
   name: String
   suggestedLevel: GradeLevel
@@ -582,6 +590,7 @@ input CourseUpdateOneRequiredWithoutLessonPlanInput {
 input CourseUpdateWithoutInstructorsDataInput {
   contents: ContentUpdateManyWithoutCourseInput
   createdAt: DateTime
+  description: String
   id: String
   lessonPlan: LessonPlanUpdateOneRequiredWithoutCourseInput
   name: String
@@ -592,6 +601,7 @@ input CourseUpdateWithoutInstructorsDataInput {
 input CourseUpdateWithoutLessonPlanDataInput {
   contents: ContentUpdateManyWithoutCourseInput
   createdAt: DateTime
+  description: String
   id: String
   instructors: InstructorUpdateManyWithoutCoursesInput
   name: String
@@ -602,6 +612,7 @@ input CourseUpdateWithoutLessonPlanDataInput {
 input CourseUpdateWithoutStudentsDataInput {
   contents: ContentUpdateManyWithoutCourseInput
   createdAt: DateTime
+  description: String
   id: String
   instructors: InstructorUpdateManyWithoutCoursesInput
   lessonPlan: LessonPlanUpdateOneRequiredWithoutCourseInput
@@ -640,6 +651,7 @@ input CourseWhereInput {
   AND: [CourseWhereInput!]
   contents: ContentFilter
   createdAt: DateTimeFilter
+  description: NullableStringFilter
   id: StringFilter
   instructors: InstructorFilter
   lessonPlan: LessonPlanWhereInput
@@ -1712,6 +1724,20 @@ type Mutation {
   updateOneCourse(data: CourseUpdateInput!, where: CourseWhereUniqueInput!): Course
 }
 
+input NullableStringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
 input PageCreateManyWithoutContentInput {
   connect: [PageWhereUniqueInput!]
   create: [PageCreateWithoutContentInput!]
@@ -1948,6 +1974,7 @@ input QuarterSlideWhereUniqueInput {
 }
 
 type Query {
+  course(where: CourseWhereUniqueInput!): Course
   courses(after: CourseWhereUniqueInput, before: CourseWhereUniqueInput, first: Int, last: Int, skip: Int, where: CourseWhereInput): [Course!]!
   lesson(where: LessonWhereUniqueInput!): Lesson
   lessons(after: LessonWhereUniqueInput, before: LessonWhereUniqueInput, first: Int, last: Int, skip: Int, where: LessonWhereInput): [Lesson!]!
