@@ -45,18 +45,15 @@ const CourseLevel = styled.div`
 
 const CardFooter = styled.div`
   margin: 16px 0px 0px 0px;
+  display: flex;
+  alignitems: center;
+  justify-content: flex-start;
 `;
 
 const CardSlideCount = styled.div`
   font-size: 18px;
   font-weight: 600;
   color: #676767;
-`;
-
-const EditButton = styled.div`
-  :hover {
-    color: #1890ff;
-  }
 `;
 
 type Props = {
@@ -86,10 +83,10 @@ export const LessonCard = ({
         <CardTitle>{title}</CardTitle>
       </div>
       <div style={{ display: "flex", alignItems: "center" }}>
-        <CourseLevel>{suggestedLevel} grade</CourseLevel>
         <CardFooter>
+          <CourseLevel>{suggestedLevel} grade</CourseLevel>
           <CardSlideCount>
-            <ExportOutlined style={{ marginRight: "10px" }} />
+            <ExportOutlined style={{ margin: "0px 0px 0px 10px" }} />
             {slideCount} Slides
           </CardSlideCount>
         </CardFooter>

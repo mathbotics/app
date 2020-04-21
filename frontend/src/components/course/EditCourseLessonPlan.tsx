@@ -5,7 +5,7 @@ import { graphql } from "babel-plugin-relay/macro";
 import { EditCourseLessonPlan_lessonPlan } from "./__generated__/EditCourseLessonPlan_lessonPlan.graphql";
 import LessonPlanSidebar from "./LessonPlanSidebar";
 import { EditCourseLessonPlan_query } from "./__generated__/EditCourseLessonPlan_query.graphql";
-import LessonsCatalogue from "./LessonPlanCatalogue";
+import LessonPlanCatalogue from "./LessonPlanCatalogue";
 import styled from "styled-components";
 
 type Props = {
@@ -14,15 +14,17 @@ type Props = {
 };
 export const EditCourseLessonPlan = ({ lessonPlan, query }: Props) => {
   return (
-    <Wrapper style={{ height: "80vh", width: "90vw" }}>
+    <Wrapper>
       <LessonPlanSidebar lessons={lessonPlan} />
-      <LessonsCatalogue query={query} />
+      <LessonPlanCatalogue query={query} />
     </Wrapper>
   );
 };
 
 const Wrapper = styled(Layout)`
   background-color: white;
+  height: 100%;
+  width: 100%;
 `;
 
 export default createFragmentContainer(EditCourseLessonPlan, {

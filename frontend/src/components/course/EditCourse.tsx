@@ -51,7 +51,7 @@ const EditCourse = ({ course, query }: Props) => {
   const handleTabChange = (key: string) => console.log({ key });
 
   return (
-    <Layout style={{ backgroundColor: "white", width: "100%" }}>
+    <Layout style={{ backgroundColor: "white" }}>
       <div style={{}}>
         <Title level={1} style={{ fontWeight: 700 }}>
           {course.name}

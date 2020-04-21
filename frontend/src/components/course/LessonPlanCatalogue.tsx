@@ -9,34 +9,24 @@ import { LessonCard } from "../lessons/LessonCard";
 const { Search } = Input;
 const { Title } = Typography;
 
-const LessonsPreviewWrapper = styled.div`
-  width: 100%;
-
-  margin: 30px 0px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-`;
-
-const LessonCardWrapper = styled.div`
-  margin: 15px 0px;
-  padding: 0px 10px 0px 0px;
-  max-width: 80%;
-  height: 100px;
-`;
-
 type Props = { query: LessonPlanCatalogue_query };
 const LessonPlanCatalogue = ({ query }: Props) => {
   const { lessons } = query;
 
   return (
     <LessonsCatalogueWrapper>
-      <div style={{ margin: "0px 0px 15px 0px" }}>
+      <Header>
+        {/* Title */}
         <Title level={3}>Lesson Catalogue</Title>
         <p>Select a lesson or search by title to add it to your course</p>
-      </div>
-      <LessonCatalogueSearch />
+
+        {/* Search */}
+        <LessonCatalogueSearch />
+      </Header>
+
+      {/* Lessons */}
       <LessonsPreviewWrapper>
+        {lessons.length == 0 && <p> No lessons available</p>}
         {lessons.map(({ id, title, slides }) => (
           <LessonCardWrapper key={id} onClick={() => console.log({ id })}>
             <LessonCard id={id} title={title} slideCount={slides.length} />
@@ -63,9 +53,32 @@ export default createFragmentContainer(LessonPlanCatalogue, {
 });
 
 const LessonsCatalogueWrapper = styled.div`
-  padding: 0px 30px 30px 30px;
+  padding: 0px 30px 0px 30px;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
 `;
 
+const Header = styled.div`
+  position: sticky;
+  top: 0;
+  background-color: white;
+  padding-bottom: 10px;
+`;
+
+const LessonsPreviewWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+`;
+
+const LessonCardWrapper = styled.div`
+  width: 100%;
+  margin: 5px 0px;
+`;
 const LessonCatalogueSearch = () => {
   return (
     <Search
