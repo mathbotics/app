@@ -14,7 +14,7 @@ export const mutation = extendType({
   definition(t) {
     t.crud.createOneCourse({
       computedInputs: {
-        instructor({ ctx }) {
+        instructors({ ctx }) {
           const { id } = (ctx as Context).viewer;
           return {
             connect: {

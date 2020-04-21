@@ -453,6 +453,7 @@ type Course {
   instructors(after: InstructorWhereUniqueInput, before: InstructorWhereUniqueInput, first: Int, last: Int, skip: Int): [Instructor!]!
   lessonPlan: LessonPlan!
   name: String!
+  students(after: StudentWhereUniqueInput, before: StudentWhereUniqueInput, first: Int, last: Int, skip: Int): [Student!]!
   suggestedLevel: GradeLevel!
 }
 
@@ -461,7 +462,6 @@ input CourseCreateInput {
   createdAt: DateTime
   description: String
   id: String
-  instructors: InstructorCreateManyWithoutCoursesInput
   lessonPlan: LessonPlanCreateOneWithoutCourseInput!
   name: String!
   students: StudentCreateManyWithoutCoursesInput

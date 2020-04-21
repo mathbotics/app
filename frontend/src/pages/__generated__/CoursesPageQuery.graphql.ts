@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 64f4ba44d423b1eaec947ed109636b1d */
+/* @relayHash 25b8bf3cea9e1f416b6cba5db76e1e09 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -20,19 +20,27 @@ query CoursesPageQuery {
   ...Courses_courses
 }
 
+fragment CourseCard_course on Course {
+  id
+  name
+  suggestedLevel
+  instructors {
+    id
+    firstName
+    lastName
+    username
+  }
+  lessonPlan {
+    lessons {
+      title
+    }
+  }
+}
+
 fragment CoursesList_courses on Query {
   courses {
     id
-    name
-    suggestedLevel
-    instructors {
-      id
-    }
-    lessonPlan {
-      lessons {
-        title
-      }
-    }
+    ...CourseCard_course
   }
 }
 
@@ -103,7 +111,28 @@ return {
             "concreteType": "Instructor",
             "plural": true,
             "selections": [
-              (v0/*: any*/)
+              (v0/*: any*/),
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "firstName",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "lastName",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "username",
+                "args": null,
+                "storageKey": null
+              }
             ]
           },
           {
@@ -143,7 +172,7 @@ return {
     "operationKind": "query",
     "name": "CoursesPageQuery",
     "id": null,
-    "text": "query CoursesPageQuery {\n  ...Courses_courses\n}\n\nfragment CoursesList_courses on Query {\n  courses {\n    id\n    name\n    suggestedLevel\n    instructors {\n      id\n    }\n    lessonPlan {\n      lessons {\n        title\n      }\n    }\n  }\n}\n\nfragment Courses_courses on Query {\n  ...CoursesList_courses\n}\n",
+    "text": "query CoursesPageQuery {\n  ...Courses_courses\n}\n\nfragment CourseCard_course on Course {\n  id\n  name\n  suggestedLevel\n  instructors {\n    id\n    firstName\n    lastName\n    username\n  }\n  lessonPlan {\n    lessons {\n      title\n    }\n  }\n}\n\nfragment CoursesList_courses on Query {\n  courses {\n    id\n    ...CourseCard_course\n  }\n}\n\nfragment Courses_courses on Query {\n  ...CoursesList_courses\n}\n",
     "metadata": {}
   }
 };

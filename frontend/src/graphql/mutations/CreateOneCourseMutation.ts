@@ -7,7 +7,7 @@ import { CourseCreateInput } from "./__generated__/CreateOneCourseMutation.graph
 const mutation = graphql`
   mutation CreateOneCourseMutation($data: CourseCreateInput!) {
     createOneCourse(data: $data) {
-      id
+      ...CourseCard_course
     }
   }
 `;

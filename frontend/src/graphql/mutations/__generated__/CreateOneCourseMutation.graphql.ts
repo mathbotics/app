@@ -1,15 +1,15 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 7163b6f27920ccd7bc7b3e53ee89ded5 */
+/* @relayHash 3f8883bd5ddec97205d4943fa2f7b589 */
 
 import { ConcreteRequest } from "relay-runtime";
-export type GradeLevel = "%future added value" | "EIGHTH" | "ELEVENTH" | "FIFTH" | "FIRST" | "FOURTH" | "NINTH" | "SECOND" | "SEVENTH" | "SIXTH" | "TENTH" | "THIRD" | "TWELFTH" | "%future added value";
+import { FragmentRefs } from "relay-runtime";
+export type GradeLevel = "%future added value" | "%future added value" | "EIGHTH" | "ELEVENTH" | "FIFTH" | "FIRST" | "FOURTH" | "NINTH" | "SECOND" | "SEVENTH" | "SIXTH" | "TENTH" | "THIRD" | "TWELFTH" | "%future added value";
 export type CourseCreateInput = {
     contents?: ContentCreateManyWithoutCourseInput | null;
     createdAt?: unknown | null;
     description?: string | null;
     id?: string | null;
-    instructors?: InstructorCreateManyWithoutCoursesInput | null;
     lessonPlan: LessonPlanCreateOneWithoutCourseInput;
     name: string;
     students?: StudentCreateManyWithoutCoursesInput | null;
@@ -40,97 +40,6 @@ export type PageCreateWithoutContentInput = {
     createdAt?: unknown | null;
     data: string;
     id?: string | null;
-};
-export type InstructorCreateManyWithoutCoursesInput = {
-    connect?: Array<InstructorWhereUniqueInput> | null;
-    create?: Array<InstructorCreateWithoutCoursesInput> | null;
-};
-export type InstructorWhereUniqueInput = {
-    email?: string | null;
-    id?: string | null;
-};
-export type InstructorCreateWithoutCoursesInput = {
-    createdAt?: unknown | null;
-    email: string;
-    id?: string | null;
-    user: UserCreateOneWithoutInstructorInput;
-};
-export type UserCreateOneWithoutInstructorInput = {
-    connect?: UserWhereUniqueInput | null;
-    create?: UserCreateWithoutInstructorInput | null;
-};
-export type UserWhereUniqueInput = {
-    id?: string | null;
-    username?: string | null;
-};
-export type UserCreateWithoutInstructorInput = {
-    admin?: AdminCreateOneWithoutUserInput | null;
-    firstName: string;
-    guardian?: GuardianCreateOneWithoutUserInput | null;
-    id?: string | null;
-    lastName: string;
-    password: string;
-    student?: StudentCreateOneWithoutUserInput | null;
-    username: string;
-};
-export type AdminCreateOneWithoutUserInput = {
-    connect?: AdminWhereUniqueInput | null;
-    create?: AdminCreateWithoutUserInput | null;
-};
-export type AdminWhereUniqueInput = {
-    email?: string | null;
-    id?: string | null;
-};
-export type AdminCreateWithoutUserInput = {
-    createdAt?: unknown | null;
-    email: string;
-    id?: string | null;
-};
-export type GuardianCreateOneWithoutUserInput = {
-    connect?: GuardianWhereUniqueInput | null;
-    create?: GuardianCreateWithoutUserInput | null;
-};
-export type GuardianWhereUniqueInput = {
-    email?: string | null;
-    id?: string | null;
-};
-export type GuardianCreateWithoutUserInput = {
-    createdAt?: unknown | null;
-    email: string;
-    id?: string | null;
-    students?: StudentCreateManyWithoutGuardiansInput | null;
-};
-export type StudentCreateManyWithoutGuardiansInput = {
-    connect?: Array<StudentWhereUniqueInput> | null;
-    create?: Array<StudentCreateWithoutGuardiansInput> | null;
-};
-export type StudentWhereUniqueInput = {
-    id?: string | null;
-};
-export type StudentCreateWithoutGuardiansInput = {
-    courses?: CourseCreateManyWithoutStudentsInput | null;
-    createdAt?: unknown | null;
-    gradeLevel: GradeLevel;
-    id?: string | null;
-    multipleChoiceQuestionResponses?: MultipleChoiceQuestionResponseCreateManyWithoutStudentInput | null;
-    user: UserCreateOneWithoutStudentInput;
-};
-export type CourseCreateManyWithoutStudentsInput = {
-    connect?: Array<CourseWhereUniqueInput> | null;
-    create?: Array<CourseCreateWithoutStudentsInput> | null;
-};
-export type CourseWhereUniqueInput = {
-    id?: string | null;
-};
-export type CourseCreateWithoutStudentsInput = {
-    contents?: ContentCreateManyWithoutCourseInput | null;
-    createdAt?: unknown | null;
-    description?: string | null;
-    id?: string | null;
-    instructors?: InstructorCreateManyWithoutCoursesInput | null;
-    lessonPlan: LessonPlanCreateOneWithoutCourseInput;
-    name: string;
-    suggestedLevel: GradeLevel;
 };
 export type LessonPlanCreateOneWithoutCourseInput = {
     connect?: LessonPlanWhereUniqueInput | null;
@@ -238,6 +147,9 @@ export type CourseCreateOneWithoutLessonPlanInput = {
     connect?: CourseWhereUniqueInput | null;
     create?: CourseCreateWithoutLessonPlanInput | null;
 };
+export type CourseWhereUniqueInput = {
+    id?: string | null;
+};
 export type CourseCreateWithoutLessonPlanInput = {
     contents?: ContentCreateManyWithoutCourseInput | null;
     createdAt?: unknown | null;
@@ -248,77 +160,93 @@ export type CourseCreateWithoutLessonPlanInput = {
     students?: StudentCreateManyWithoutCoursesInput | null;
     suggestedLevel: GradeLevel;
 };
-export type StudentCreateManyWithoutCoursesInput = {
-    connect?: Array<StudentWhereUniqueInput> | null;
-    create?: Array<StudentCreateWithoutCoursesInput> | null;
+export type InstructorCreateManyWithoutCoursesInput = {
+    connect?: Array<InstructorWhereUniqueInput> | null;
+    create?: Array<InstructorCreateWithoutCoursesInput> | null;
 };
-export type StudentCreateWithoutCoursesInput = {
-    createdAt?: unknown | null;
-    gradeLevel: GradeLevel;
-    guardians?: GuardianCreateManyWithoutStudentsInput | null;
+export type InstructorWhereUniqueInput = {
+    email?: string | null;
     id?: string | null;
-    multipleChoiceQuestionResponses?: MultipleChoiceQuestionResponseCreateManyWithoutStudentInput | null;
-    user: UserCreateOneWithoutStudentInput;
 };
-export type GuardianCreateManyWithoutStudentsInput = {
-    connect?: Array<GuardianWhereUniqueInput> | null;
-    create?: Array<GuardianCreateWithoutStudentsInput> | null;
-};
-export type GuardianCreateWithoutStudentsInput = {
+export type InstructorCreateWithoutCoursesInput = {
     createdAt?: unknown | null;
     email: string;
     id?: string | null;
-    user: UserCreateOneWithoutGuardianInput;
+    user: UserCreateOneWithoutInstructorInput;
 };
-export type UserCreateOneWithoutGuardianInput = {
+export type UserCreateOneWithoutInstructorInput = {
     connect?: UserWhereUniqueInput | null;
-    create?: UserCreateWithoutGuardianInput | null;
+    create?: UserCreateWithoutInstructorInput | null;
 };
-export type UserCreateWithoutGuardianInput = {
+export type UserWhereUniqueInput = {
+    id?: string | null;
+    username?: string | null;
+};
+export type UserCreateWithoutInstructorInput = {
     admin?: AdminCreateOneWithoutUserInput | null;
     firstName: string;
+    guardian?: GuardianCreateOneWithoutUserInput | null;
     id?: string | null;
-    instructor?: InstructorCreateOneWithoutUserInput | null;
     lastName: string;
     password: string;
     student?: StudentCreateOneWithoutUserInput | null;
     username: string;
 };
-export type InstructorCreateOneWithoutUserInput = {
-    connect?: InstructorWhereUniqueInput | null;
-    create?: InstructorCreateWithoutUserInput | null;
+export type AdminCreateOneWithoutUserInput = {
+    connect?: AdminWhereUniqueInput | null;
+    create?: AdminCreateWithoutUserInput | null;
 };
-export type InstructorCreateWithoutUserInput = {
-    courses?: CourseCreateManyWithoutInstructorsInput | null;
+export type AdminWhereUniqueInput = {
+    email?: string | null;
+    id?: string | null;
+};
+export type AdminCreateWithoutUserInput = {
     createdAt?: unknown | null;
     email: string;
     id?: string | null;
 };
-export type CourseCreateManyWithoutInstructorsInput = {
-    connect?: Array<CourseWhereUniqueInput> | null;
-    create?: Array<CourseCreateWithoutInstructorsInput> | null;
+export type GuardianCreateOneWithoutUserInput = {
+    connect?: GuardianWhereUniqueInput | null;
+    create?: GuardianCreateWithoutUserInput | null;
 };
-export type CourseCreateWithoutInstructorsInput = {
+export type GuardianWhereUniqueInput = {
+    email?: string | null;
+    id?: string | null;
+};
+export type GuardianCreateWithoutUserInput = {
+    createdAt?: unknown | null;
+    email: string;
+    id?: string | null;
+    students?: StudentCreateManyWithoutGuardiansInput | null;
+};
+export type StudentCreateManyWithoutGuardiansInput = {
+    connect?: Array<StudentWhereUniqueInput> | null;
+    create?: Array<StudentCreateWithoutGuardiansInput> | null;
+};
+export type StudentWhereUniqueInput = {
+    id?: string | null;
+};
+export type StudentCreateWithoutGuardiansInput = {
+    courses?: CourseCreateManyWithoutStudentsInput | null;
+    createdAt?: unknown | null;
+    gradeLevel: GradeLevel;
+    id?: string | null;
+    multipleChoiceQuestionResponses?: MultipleChoiceQuestionResponseCreateManyWithoutStudentInput | null;
+    user: UserCreateOneWithoutStudentInput;
+};
+export type CourseCreateManyWithoutStudentsInput = {
+    connect?: Array<CourseWhereUniqueInput> | null;
+    create?: Array<CourseCreateWithoutStudentsInput> | null;
+};
+export type CourseCreateWithoutStudentsInput = {
     contents?: ContentCreateManyWithoutCourseInput | null;
     createdAt?: unknown | null;
     description?: string | null;
     id?: string | null;
+    instructors?: InstructorCreateManyWithoutCoursesInput | null;
     lessonPlan: LessonPlanCreateOneWithoutCourseInput;
     name: string;
-    students?: StudentCreateManyWithoutCoursesInput | null;
     suggestedLevel: GradeLevel;
-};
-export type StudentCreateOneWithoutUserInput = {
-    connect?: StudentWhereUniqueInput | null;
-    create?: StudentCreateWithoutUserInput | null;
-};
-export type StudentCreateWithoutUserInput = {
-    courses?: CourseCreateManyWithoutStudentsInput | null;
-    createdAt?: unknown | null;
-    gradeLevel: GradeLevel;
-    guardians?: GuardianCreateManyWithoutStudentsInput | null;
-    id?: string | null;
-    multipleChoiceQuestionResponses?: MultipleChoiceQuestionResponseCreateManyWithoutStudentInput | null;
 };
 export type MultipleChoiceQuestionResponseCreateManyWithoutStudentInput = {
     connect?: Array<MultipleChoiceQuestionResponseWhereUniqueInput> | null;
@@ -444,6 +372,66 @@ export type StudentCreateWithoutMultipleChoiceQuestionResponsesInput = {
     id?: string | null;
     user: UserCreateOneWithoutStudentInput;
 };
+export type GuardianCreateManyWithoutStudentsInput = {
+    connect?: Array<GuardianWhereUniqueInput> | null;
+    create?: Array<GuardianCreateWithoutStudentsInput> | null;
+};
+export type GuardianCreateWithoutStudentsInput = {
+    createdAt?: unknown | null;
+    email: string;
+    id?: string | null;
+    user: UserCreateOneWithoutGuardianInput;
+};
+export type UserCreateOneWithoutGuardianInput = {
+    connect?: UserWhereUniqueInput | null;
+    create?: UserCreateWithoutGuardianInput | null;
+};
+export type UserCreateWithoutGuardianInput = {
+    admin?: AdminCreateOneWithoutUserInput | null;
+    firstName: string;
+    id?: string | null;
+    instructor?: InstructorCreateOneWithoutUserInput | null;
+    lastName: string;
+    password: string;
+    student?: StudentCreateOneWithoutUserInput | null;
+    username: string;
+};
+export type InstructorCreateOneWithoutUserInput = {
+    connect?: InstructorWhereUniqueInput | null;
+    create?: InstructorCreateWithoutUserInput | null;
+};
+export type InstructorCreateWithoutUserInput = {
+    courses?: CourseCreateManyWithoutInstructorsInput | null;
+    createdAt?: unknown | null;
+    email: string;
+    id?: string | null;
+};
+export type CourseCreateManyWithoutInstructorsInput = {
+    connect?: Array<CourseWhereUniqueInput> | null;
+    create?: Array<CourseCreateWithoutInstructorsInput> | null;
+};
+export type CourseCreateWithoutInstructorsInput = {
+    contents?: ContentCreateManyWithoutCourseInput | null;
+    createdAt?: unknown | null;
+    description?: string | null;
+    id?: string | null;
+    lessonPlan: LessonPlanCreateOneWithoutCourseInput;
+    name: string;
+    students?: StudentCreateManyWithoutCoursesInput | null;
+    suggestedLevel: GradeLevel;
+};
+export type StudentCreateManyWithoutCoursesInput = {
+    connect?: Array<StudentWhereUniqueInput> | null;
+    create?: Array<StudentCreateWithoutCoursesInput> | null;
+};
+export type StudentCreateWithoutCoursesInput = {
+    createdAt?: unknown | null;
+    gradeLevel: GradeLevel;
+    guardians?: GuardianCreateManyWithoutStudentsInput | null;
+    id?: string | null;
+    multipleChoiceQuestionResponses?: MultipleChoiceQuestionResponseCreateManyWithoutStudentInput | null;
+    user: UserCreateOneWithoutStudentInput;
+};
 export type UserCreateOneWithoutStudentInput = {
     connect?: UserWhereUniqueInput | null;
     create?: UserCreateWithoutStudentInput | null;
@@ -457,6 +445,18 @@ export type UserCreateWithoutStudentInput = {
     lastName: string;
     password: string;
     username: string;
+};
+export type StudentCreateOneWithoutUserInput = {
+    connect?: StudentWhereUniqueInput | null;
+    create?: StudentCreateWithoutUserInput | null;
+};
+export type StudentCreateWithoutUserInput = {
+    courses?: CourseCreateManyWithoutStudentsInput | null;
+    createdAt?: unknown | null;
+    gradeLevel: GradeLevel;
+    guardians?: GuardianCreateManyWithoutStudentsInput | null;
+    id?: string | null;
+    multipleChoiceQuestionResponses?: MultipleChoiceQuestionResponseCreateManyWithoutStudentInput | null;
 };
 export type MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput = {
     connect?: Array<MultipleChoiceQuestionResponseWhereUniqueInput> | null;
@@ -594,7 +594,7 @@ export type CreateOneCourseMutationVariables = {
 };
 export type CreateOneCourseMutationResponse = {
     readonly createOneCourse: {
-        readonly id: string;
+        readonly " $fragmentRefs": FragmentRefs<"CourseCard_course">;
     };
 };
 export type CreateOneCourseMutation = {
@@ -609,7 +609,24 @@ mutation CreateOneCourseMutation(
   $data: CourseCreateInput!
 ) {
   createOneCourse(data: $data) {
+    ...CourseCard_course
+  }
+}
+
+fragment CourseCard_course on Course {
+  id
+  name
+  suggestedLevel
+  instructors {
     id
+    firstName
+    lastName
+    username
+  }
+  lessonPlan {
+    lessons {
+      title
+    }
   }
 }
 */
@@ -625,30 +642,18 @@ var v0 = [
 ],
 v1 = [
   {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "createOneCourse",
-    "storageKey": null,
-    "args": [
-      {
-        "kind": "Variable",
-        "name": "data",
-        "variableName": "data"
-      }
-    ],
-    "concreteType": "Course",
-    "plural": false,
-    "selections": [
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "id",
-        "args": null,
-        "storageKey": null
-      }
-    ]
+    "kind": "Variable",
+    "name": "data",
+    "variableName": "data"
   }
-];
+],
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
 return {
   "kind": "Request",
   "fragment": {
@@ -657,22 +662,128 @@ return {
     "type": "Mutation",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "createOneCourse",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "Course",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "FragmentSpread",
+            "name": "CourseCard_course",
+            "args": null
+          }
+        ]
+      }
+    ]
   },
   "operation": {
     "kind": "Operation",
     "name": "CreateOneCourseMutation",
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "createOneCourse",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "Course",
+        "plural": false,
+        "selections": [
+          (v2/*: any*/),
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "name",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "suggestedLevel",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "instructors",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Instructor",
+            "plural": true,
+            "selections": [
+              (v2/*: any*/),
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "firstName",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "lastName",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "username",
+                "args": null,
+                "storageKey": null
+              }
+            ]
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "lessonPlan",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "LessonPlan",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "lessons",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Lesson",
+                "plural": true,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "title",
+                    "args": null,
+                    "storageKey": null
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   "params": {
     "operationKind": "mutation",
     "name": "CreateOneCourseMutation",
     "id": null,
-    "text": "mutation CreateOneCourseMutation(\n  $data: CourseCreateInput!\n) {\n  createOneCourse(data: $data) {\n    id\n  }\n}\n",
+    "text": "mutation CreateOneCourseMutation(\n  $data: CourseCreateInput!\n) {\n  createOneCourse(data: $data) {\n    ...CourseCard_course\n  }\n}\n\nfragment CourseCard_course on Course {\n  id\n  name\n  suggestedLevel\n  instructors {\n    id\n    firstName\n    lastName\n    username\n  }\n  lessonPlan {\n    lessons {\n      title\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = 'c9e9751286e58d4a6d592ccd3fa1ac30';
+(node as any).hash = '0741d3af82de43747302d0c6233c02d6';
 export default node;

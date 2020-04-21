@@ -393,7 +393,6 @@ export interface NexusGenInputs {
     createdAt?: Date | null; // DateTime
     description?: string | null; // String
     id?: string | null; // String
-    instructors?: NexusGenInputs['InstructorCreateManyWithoutCoursesInput'] | null; // InstructorCreateManyWithoutCoursesInput
     lessonPlan: NexusGenInputs['LessonPlanCreateOneWithoutCourseInput']; // LessonPlanCreateOneWithoutCourseInput!
     name: string; // String!
     students?: NexusGenInputs['StudentCreateManyWithoutCoursesInput'] | null; // StudentCreateManyWithoutCoursesInput
@@ -2329,7 +2328,7 @@ export interface NexusGenRootTypes {
     id: string; // String!
   }
   Slide: NexusGenRootTypes['HalfSlide'] | NexusGenRootTypes['QuarterSlide'] | NexusGenRootTypes['SingleSlide'];
-  User: NexusGenRootTypes['Instructor'] | NexusGenRootTypes['Admin'] | NexusGenRootTypes['Guardian'] | NexusGenRootTypes['Student'];
+  User: NexusGenRootTypes['Instructor'] | NexusGenRootTypes['Student'] | NexusGenRootTypes['Guardian'] | NexusGenRootTypes['Admin'];
   String: string;
   Int: number;
   Float: number;
@@ -2735,6 +2734,7 @@ export interface NexusGenFieldTypes {
     instructors: NexusGenRootTypes['Instructor'][]; // [Instructor!]!
     lessonPlan: NexusGenRootTypes['LessonPlan']; // LessonPlan!
     name: string; // String!
+    students: NexusGenRootTypes['Student'][]; // [Student!]!
     suggestedLevel: NexusGenEnums['GradeLevel']; // GradeLevel!
   }
   EmptyBlock: { // field return type
@@ -2846,6 +2846,13 @@ export interface NexusGenArgTypes {
       last?: number | null; // Int
       skip?: number | null; // Int
     }
+    students: { // args
+      after?: NexusGenInputs['StudentWhereUniqueInput'] | null; // StudentWhereUniqueInput
+      before?: NexusGenInputs['StudentWhereUniqueInput'] | null; // StudentWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+      skip?: number | null; // Int
+    }
   }
   Guardian: {
     students: { // args
@@ -2945,7 +2952,7 @@ export interface NexusGenArgTypes {
 export interface NexusGenAbstractResolveReturnTypes {
   Block: "EmptyBlock" | "MultipleChoiceQuestionBlock" | "TextBlock"
   Slide: "HalfSlide" | "QuarterSlide" | "SingleSlide"
-  User: "Instructor" | "Admin" | "Guardian" | "Student"
+  User: "Instructor" | "Student" | "Guardian" | "Admin"
 }
 
 export interface NexusGenInheritedFields {}

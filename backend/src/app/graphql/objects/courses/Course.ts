@@ -8,7 +8,7 @@ export const Course = objectType({
     t.model.description();
     t.model.suggestedLevel();
     t.model.instructors();
-    // @ts-ignore
+    t.model.students();
     t.model.lessonPlan();
   },
 });

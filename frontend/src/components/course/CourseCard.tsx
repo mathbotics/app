@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-
 import { ExportOutlined, EditOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
-
 import { useHistory } from "react-router-dom";
+import { createFragmentContainer } from "react-relay";
+import { graphql } from "babel-plugin-relay/macro";
+import { CourseCard_course } from "./__generated__/CourseCard_course.graphql";
 
 const Card = styled.div`
   border-radius: 5px;
@@ -60,17 +61,19 @@ const EditButton = styled.div`
 `;
 
 type Props = {
-  id: string;
-  lesson_count: number;
-  name: string;
-  suggestedLevel: string;
+  course: CourseCard_course;
 };
-export const CourseCard = ({
-  id,
-  name,
-  suggestedLevel,
-  lesson_count,
+const CourseCard = ({
+  course: {
+    id,
+    instructors,
+    name,
+    suggestedLevel,
+    lessonPlan: { lessons },
+  },
 }: Props) => {
+  const lessonCount = lessons.length;
+  console.log(instructors);
   let history = useHistory();
   return (
     <Card>
@@ -96,9 +99,30 @@ export const CourseCard = ({
       <CardFooter>
         <CardSlideCount>
           <ExportOutlined style={{ marginRight: "10px" }} />
-          {lesson_count} Lessons
+          {lessonCount} Lessons
         </CardSlideCount>
       </CardFooter>
     </Card>
   );
 };
+
+export default createFragmentContainer(CourseCard, {
+  course: graphql`
+    fragment CourseCard_course on Course {
+      id
+      name
+      suggestedLevel
+      instructors {
+        id
+        firstName
+        lastName
+        username
+      }
+      lessonPlan {
+        lessons {
+          title
+        }
+      }
+    }
+  `,
+});
