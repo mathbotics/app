@@ -4,11 +4,7 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type EditCourseLessonPlan_lessonPlan = {
-    readonly id: string;
-    readonly lessons: ReadonlyArray<{
-        readonly id: string;
-        readonly title: string;
-    }>;
+    readonly " $fragmentRefs": FragmentRefs<"LessonPlanSidebar_lessons">;
     readonly " $refType": "EditCourseLessonPlan_lessonPlan";
 };
 export type EditCourseLessonPlan_lessonPlan$data = EditCourseLessonPlan_lessonPlan;
@@ -19,43 +15,19 @@ export type EditCourseLessonPlan_lessonPlan$key = {
 
 
 
-const node: ReaderFragment = (function(){
-var v0 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-};
-return {
+const node: ReaderFragment = {
   "kind": "Fragment",
   "name": "EditCourseLessonPlan_lessonPlan",
   "type": "LessonPlan",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
-    (v0/*: any*/),
     {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "lessons",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "Lesson",
-      "plural": true,
-      "selections": [
-        (v0/*: any*/),
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "title",
-          "args": null,
-          "storageKey": null
-        }
-      ]
+      "kind": "FragmentSpread",
+      "name": "LessonPlanSidebar_lessons",
+      "args": null
     }
   ]
 };
-})();
-(node as any).hash = '1aeb8144a16ba660127f440b3c8ced4a';
+(node as any).hash = '5f5a4e8178e8af0b34d435a2059b09c8';
 export default node;

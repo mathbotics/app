@@ -5,8 +5,10 @@ import { graphql } from "babel-plugin-relay/macro";
 
 import { EditCourse_course } from "./__generated__/EditCourse_course.graphql";
 import { EditCourseDetails } from "./EditCourseDetails";
-import { EditCourseLessonPlan } from "./EditCourseLessonPlan";
+import EditCourseLessonPlan from "./EditCourseLessonPlan";
 import { EditCourseStudents } from "./EditCourseStudents";
+
+import { EditCourse_query } from "./__generated__/EditCourse_query.graphql";
 
 const { TabPane } = Tabs;
 const { Title } = Typography;
@@ -17,16 +19,17 @@ enum PageState {
   UpdateCourseError,
 }
 type Tab = { title: string; Component: JSX.Element };
-type Props = { course: EditCourse_course };
-const EditCourse = ({ course }: Props) => {
+type Props = { course: EditCourse_course; query: EditCourse_query };
+const EditCourse = ({ course, query }: Props) => {
   const [pageState, setPageState] = useState<PageState>(
     PageState.UpdateCourseSuccess
   );
   const tabs: Tab[] = [
     {
       title: "Lesson Plan",
-      // @ts-ignore
-      Component: <EditCourseLessonPlan lessonPlan={course.lessonPlan} />,
+      Component: (
+        <EditCourseLessonPlan lessonPlan={course.lessonPlan} query={query} />
+      ),
     },
     {
       title: "Students",
@@ -48,7 +51,7 @@ const EditCourse = ({ course }: Props) => {
   const handleTabChange = (key: string) => console.log({ key });
 
   return (
-    <Layout style={{ backgroundColor: "white" }}>
+    <Layout style={{ backgroundColor: "white", width: "100%" }}>
       <div style={{}}>
         <Title level={1} style={{ fontWeight: 700 }}>
           {course.name}
@@ -74,6 +77,11 @@ export default createFragmentContainer(EditCourse, {
       lessonPlan {
         ...EditCourseLessonPlan_lessonPlan
       }
+    }
+  `,
+  query: graphql`
+    fragment EditCourse_query on Query {
+      ...EditCourseLessonPlan_query
     }
   `,
 });

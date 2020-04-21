@@ -1,17 +1,23 @@
 import React, { useState } from "react";
-import { Layout, Menu, Tooltip } from "antd";
-import { PlusOutlined, BookOutlined } from "@ant-design/icons";
+import { Layout, Menu, Tooltip, Typography } from "antd";
+import { PlusOutlined, BookOutlined, CopyOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 import { createFragmentContainer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
 
 import { LessonPlanSidebar_lessons } from "./__generated__/LessonPlanSidebar_lessons.graphql";
 
+const { Title } = Typography;
+
 const MenuItem = styled(Menu.Item)`
   width: 100% !important;
   height: 100% !important;
-  padding: 5px 15px !important;
-  background-color: #ffffff !important;
+  transition: all 0.15s ease-in-out;
+  border-radius: 5px;
+  :hover {
+    box-shadow: 0 10px 15px -3px rgba(57, 129, 181, 0.31),
+      0 4px 6px -2px rgba(120, 157, 195, 0.08);
+  }
 `;
 
 const SlideCard = styled(Layout.Content)`
@@ -31,10 +37,7 @@ const SlideCard = styled(Layout.Content)`
   }
 `;
 
-export type SlideMenuItem = {
-  id: string;
-  component: JSX.Element;
-};
+export type SlideMenuItem = { id: string; component: JSX.Element };
 
 const { Sider, Content } = Layout;
 type Props = {
@@ -43,50 +46,41 @@ type Props = {
   // onEdit: (id: string) => void;
 };
 const LessonPlanSidebar = ({ lessons }: Props) => {
-  // const [selected, setSelected] = useState<string | undefined>(
-  //   lessons.[0]?.id
-  // );
+  const [selected, setSelected] = useState<string | undefined>(
+    lessons.lessons?.[0]?.id
+  );
 
   return (
-    <Sider width={300} theme="light" style={{ overflow: "auto" }}>
-      {/* <Menu defaultSelectedKeys={[selected?.toString() ?? ""]} mode="inline">
-      {lessons.((lesson, index: number) => (
-          <MenuItem
-            key={index}
-            onClick={() => {
-              onEdit(slide.id);
-              setSelected(slide.id);
-            }}
-          >
-            <div style={{ display: "flex" }}>
-              <h1
-                style={{
-                  margin: "auto",
-                  paddingRight: "20px",
-                  fontWeight: "bolder",
-                }}
-              >
-                {index + 1}
-              </h1>
-              <SlideCard>
-                <Slide preview selected={slide.id === selected} slide={slide} />
-              </SlideCard>
-            </div>
-          </MenuItem>
-        ))} */}{" "}
-      */}
-      {/* {/* </Menu> */}
+    <Sider
+      width={300}
+      theme="light"
+      style={{
+        overflow: "auto",
+        padding: "30px",
+        height: "100%",
+        backgroundColor: "#198fff",
+        borderRadius: "5px",
+        color: "white",
+      }}
+    >
+      <Menu defaultSelectedKeys={[selected?.toString() ?? ""]} mode="inline">
+        {/* {!lessons.lessons && (
+        <MenuItem>
+          <p>No lessons</p>
+        </MenuItem>
+      )} */}
+      </Menu>
     </Sider>
   );
 };
 
 export default createFragmentContainer(LessonPlanSidebar, {
   lessons: graphql`
-    fragment LessonPlanSidebar_lessons on Lesson {
-      title
-      slides {
+    fragment LessonPlanSidebar_lessons on LessonPlan {
+      id
+      lessons {
         id
-        ...Slide_slide
+        title
       }
     }
   `,
