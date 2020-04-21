@@ -4,10 +4,10 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type LessonPlanSidebar_lessons = {
-    readonly title: string;
-    readonly slides: ReadonlyArray<{
+    readonly id: string;
+    readonly lessons: ReadonlyArray<{
         readonly id: string;
-        readonly " $fragmentRefs": FragmentRefs<"Slide_slide">;
+        readonly title: string;
     }>;
     readonly " $refType": "LessonPlanSidebar_lessons";
 };
@@ -19,44 +19,43 @@ export type LessonPlanSidebar_lessons$key = {
 
 
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
+return {
   "kind": "Fragment",
   "name": "LessonPlanSidebar_lessons",
-  "type": "Lesson",
+  "type": "LessonPlan",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "title",
-      "args": null,
-      "storageKey": null
-    },
+    (v0/*: any*/),
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "slides",
+      "name": "lessons",
       "storageKey": null,
       "args": null,
-      "concreteType": null,
+      "concreteType": "Lesson",
       "plural": true,
       "selections": [
+        (v0/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "id",
+          "name": "title",
           "args": null,
           "storageKey": null
-        },
-        {
-          "kind": "FragmentSpread",
-          "name": "Slide_slide",
-          "args": null
         }
       ]
     }
   ]
 };
-(node as any).hash = 'b3eb3b57610eda79a42fbf5842492f48';
+})();
+(node as any).hash = '8e730f0ebedd56fed51d98cd34481c93';
 export default node;
