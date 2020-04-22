@@ -9,7 +9,7 @@ import { CoursesPageQueryResponse } from "./__generated__/CoursesPageQuery.graph
 
 export const CoursesPageQuery = graphql`
   query CoursesPageQuery {
-    ...Courses_courses
+    ...Courses_query
   }
 `;
 
@@ -19,7 +19,7 @@ export const CoursesPage = () => (
     variables={{}}
     query={CoursesPageQuery}
     render={({ props, error }) =>
-      !error && props && <Courses courses={props as CoursesPageQueryResponse} />
+      !error && props && <Courses query={props as CoursesPageQueryResponse} />
     }
   />
 );

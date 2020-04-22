@@ -10,68 +10,20 @@ import { useHistory } from "react-router-dom";
 const columns: ColumnsType<any> = [
   {
     title: "",
-    dataIndex: "index"
+    dataIndex: "index",
   },
   {
     title: "Lessons Title",
-    dataIndex: "title"
-  },
-  {
-    title: "Grade Level",
-    dataIndex: "level",
-    defaultSortOrder: "descend",
-    filters: [
-      {
-        text: "12th",
-        value: "12"
-      },
-      {
-        text: "11th",
-        value: "11"
-      },
-      {
-        text: "10th",
-        value: "10"
-      },
-      {
-        text: "9th",
-        value: "9"
-      },
-
-      {
-        text: "8th",
-        value: "8"
-      },
-      {
-        text: "7th",
-        value: "7"
-      },
-      {
-        text: "6th",
-        value: "6"
-      },
-      {
-        text: "5th",
-        value: "5"
-      },
-      {
-        text: "4th",
-        value: "4"
-      }
-    ]
-  },
-  {
-    title: "Completion time",
-    dataIndex: "time"
+    dataIndex: "title",
   },
   {
     title: "Number of slides",
-    dataIndex: "slide_count"
+    dataIndex: "slide_count",
   },
   {
     title: "",
-    dataIndex: "edit_button"
-  }
+    dataIndex: "edit_button",
+  },
 ];
 
 type TableItem = {
@@ -108,7 +60,7 @@ const LessonsTable = ({ lessons: { lessons } }: Props) => {
             style={{ fontSize: "18px" }}
             onClick={() => history.push(`/lessons/${id}/slides`)}
           />
-        )
+        ),
       }))
     );
   }, [lessons]);
@@ -126,5 +78,5 @@ export default createFragmentContainer(LessonsTable, {
         }
       }
     }
-  `
+  `,
 });

@@ -6,7 +6,7 @@ import { graphql } from "babel-plugin-relay/macro";
 import { EditCourse_course } from "./__generated__/EditCourse_course.graphql";
 import { EditCourseDetails } from "./EditCourseDetails";
 import EditCourseLessonPlan from "./EditCourseLessonPlan";
-import { EditCourseStudents } from "./EditCourseStudents";
+import EditCourseStudents from "./EditCourseStudents";
 
 import { EditCourse_query } from "./__generated__/EditCourse_query.graphql";
 
@@ -33,7 +33,7 @@ const EditCourse = ({ course, query }: Props) => {
     },
     {
       title: "Students",
-      Component: <EditCourseStudents />,
+      Component: <EditCourseStudents course={course} />,
     },
     {
       title: "Course Details",
@@ -72,6 +72,7 @@ const EditCourse = ({ course, query }: Props) => {
 export default createFragmentContainer(EditCourse, {
   course: graphql`
     fragment EditCourse_course on Course {
+      ...EditCourseStudents_course
       id
       name
       lessonPlan {

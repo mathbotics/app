@@ -9,6 +9,7 @@ export type EditCourse_course = {
     readonly lessonPlan: {
         readonly " $fragmentRefs": FragmentRefs<"EditCourseLessonPlan_lessonPlan">;
     };
+    readonly " $fragmentRefs": FragmentRefs<"EditCourseStudents_course">;
     readonly " $refType": "EditCourse_course";
 };
 export type EditCourse_course$data = EditCourse_course;
@@ -55,8 +56,13 @@ const node: ReaderFragment = {
           "args": null
         }
       ]
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "EditCourseStudents_course",
+      "args": null
     }
   ]
 };
-(node as any).hash = 'ac8d134eaf4eb4cb94264e8cc6717200';
+(node as any).hash = '4ac8e6dc1e3116e8b0589c4fa40fdd7f';
 export default node;

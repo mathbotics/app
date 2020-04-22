@@ -24,9 +24,7 @@ const CardWrapper = styled.div`
   margin: 10px;
 `;
 
-type Props = {
-  courses: CoursesList_courses;
-};
+type Props = { courses: CoursesList_courses };
 const CoursesList = ({ courses }: Props) => (
   <Wrapper>
     {courses.courses.length === 0 && (
@@ -49,7 +47,7 @@ const CoursesList = ({ courses }: Props) => (
 export default createFragmentContainer(CoursesList, {
   courses: graphql`
     fragment CoursesList_courses on Query {
-      courses {
+      courses(where: $where) {
         id
         ...CourseCard_course
       }
