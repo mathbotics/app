@@ -33,6 +33,7 @@ const Course = ({ course }: Props) => {
 
         <Button
           onClick={() =>
+            course.lessonPlan.lessons.length > 0 &&
             history.push(
               `/courses/${course.id}/lessons/${course.lessonPlan.lessons[0].id}`
             )
