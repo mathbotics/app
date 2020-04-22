@@ -10,7 +10,7 @@ const mutation = graphql`
     $where: CourseWhereUniqueInput!
   ) {
     updateOneCourse(data: $data, where: $where) {
-      id
+      ...EditCourse_course
     }
   }
 `;

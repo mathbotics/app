@@ -4,7 +4,7 @@ import { createFragmentContainer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
 
 import { EditCourse_course } from "./__generated__/EditCourse_course.graphql";
-import { EditCourseDetails } from "./EditCourseDetails";
+import EditCourseDetails from "./EditCourseDetails";
 import EditCourseLessonPlan from "./EditCourseLessonPlan";
 import EditCourseStudents from "./EditCourseStudents";
 
@@ -44,6 +44,7 @@ const EditCourse = ({ course, query }: Props) => {
             console.error(e);
             setPageState(PageState.UpdateCourseError);
           }}
+          course={course}
         />
       ),
     },
@@ -73,6 +74,7 @@ export default createFragmentContainer(EditCourse, {
   course: graphql`
     fragment EditCourse_course on Course {
       ...EditCourseStudents_course
+      ...EditCourseDetails_course
       id
       name
       lessonPlan {

@@ -1,8 +1,9 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash e04a24845cb864237aabb5f61e5fc227 */
+/* @relayHash a6b133e2b5aa02f0d44ce4556feb375c */
 
 import { ConcreteRequest } from "relay-runtime";
+import { FragmentRefs } from "relay-runtime";
 export type GradeLevel = "EIGHTH" | "ELEVENTH" | "FIFTH" | "FIRST" | "FOURTH" | "NINTH" | "SECOND" | "SEVENTH" | "SIXTH" | "TENTH" | "THIRD" | "TWELFTH" | "%future added value";
 export type CourseUpdateInput = {
     contents?: ContentUpdateManyWithoutCourseInput | null;
@@ -2195,7 +2196,7 @@ export type UpdateOneCourseMutationVariables = {
 };
 export type UpdateOneCourseMutationResponse = {
     readonly updateOneCourse: {
-        readonly id: string;
+        readonly " $fragmentRefs": FragmentRefs<"EditCourse_course">;
     } | null;
 };
 export type UpdateOneCourseMutation = {
@@ -2211,7 +2212,64 @@ mutation UpdateOneCourseMutation(
   $where: CourseWhereUniqueInput!
 ) {
   updateOneCourse(data: $data, where: $where) {
+    ...EditCourse_course
+  }
+}
+
+fragment EditCourseDetails_course on Course {
+  id
+}
+
+fragment EditCourseLessonPlan_lessonPlan on LessonPlan {
+  id
+  lessons {
     id
+  }
+  ...LessonPlanSidebar_lessonPlan
+  ...LessonPlanCatalogue_lessonPlan
+}
+
+fragment EditCourseStudents_course on Course {
+  id
+  ...StudentsTable_course
+}
+
+fragment EditCourse_course on Course {
+  ...EditCourseStudents_course
+  ...EditCourseDetails_course
+  id
+  name
+  lessonPlan {
+    ...EditCourseLessonPlan_lessonPlan
+    ...LessonPlanCatalogue_lessonPlan
+  }
+}
+
+fragment LessonPlanCatalogue_lessonPlan on LessonPlan {
+  id
+  lessons {
+    id
+  }
+}
+
+fragment LessonPlanSidebar_lessonPlan on LessonPlan {
+  id
+  lessons {
+    id
+    title
+    slides {
+      __typename
+      id
+    }
+  }
+}
+
+fragment StudentsTable_course on Course {
+  students {
+    username
+    firstName
+    lastName
+    gradeLevel
   }
 }
 */
@@ -2233,35 +2291,23 @@ var v0 = [
 ],
 v1 = [
   {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "updateOneCourse",
-    "storageKey": null,
-    "args": [
-      {
-        "kind": "Variable",
-        "name": "data",
-        "variableName": "data"
-      },
-      {
-        "kind": "Variable",
-        "name": "where",
-        "variableName": "where"
-      }
-    ],
-    "concreteType": "Course",
-    "plural": false,
-    "selections": [
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "id",
-        "args": null,
-        "storageKey": null
-      }
-    ]
+    "kind": "Variable",
+    "name": "data",
+    "variableName": "data"
+  },
+  {
+    "kind": "Variable",
+    "name": "where",
+    "variableName": "where"
   }
-];
+],
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
 return {
   "kind": "Request",
   "fragment": {
@@ -2270,22 +2316,148 @@ return {
     "type": "Mutation",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "updateOneCourse",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "Course",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "FragmentSpread",
+            "name": "EditCourse_course",
+            "args": null
+          }
+        ]
+      }
+    ]
   },
   "operation": {
     "kind": "Operation",
     "name": "UpdateOneCourseMutation",
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "updateOneCourse",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "Course",
+        "plural": false,
+        "selections": [
+          (v2/*: any*/),
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "students",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Student",
+            "plural": true,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "username",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "firstName",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "lastName",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "gradeLevel",
+                "args": null,
+                "storageKey": null
+              }
+            ]
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "name",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "lessonPlan",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "LessonPlan",
+            "plural": false,
+            "selections": [
+              (v2/*: any*/),
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "lessons",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Lesson",
+                "plural": true,
+                "selections": [
+                  (v2/*: any*/),
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "title",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "slides",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": null,
+                    "plural": true,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "__typename",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      (v2/*: any*/)
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   "params": {
     "operationKind": "mutation",
     "name": "UpdateOneCourseMutation",
     "id": null,
-    "text": "mutation UpdateOneCourseMutation(\n  $data: CourseUpdateInput!\n  $where: CourseWhereUniqueInput!\n) {\n  updateOneCourse(data: $data, where: $where) {\n    id\n  }\n}\n",
+    "text": "mutation UpdateOneCourseMutation(\n  $data: CourseUpdateInput!\n  $where: CourseWhereUniqueInput!\n) {\n  updateOneCourse(data: $data, where: $where) {\n    ...EditCourse_course\n  }\n}\n\nfragment EditCourseDetails_course on Course {\n  id\n}\n\nfragment EditCourseLessonPlan_lessonPlan on LessonPlan {\n  id\n  lessons {\n    id\n  }\n  ...LessonPlanSidebar_lessonPlan\n  ...LessonPlanCatalogue_lessonPlan\n}\n\nfragment EditCourseStudents_course on Course {\n  id\n  ...StudentsTable_course\n}\n\nfragment EditCourse_course on Course {\n  ...EditCourseStudents_course\n  ...EditCourseDetails_course\n  id\n  name\n  lessonPlan {\n    ...EditCourseLessonPlan_lessonPlan\n    ...LessonPlanCatalogue_lessonPlan\n  }\n}\n\nfragment LessonPlanCatalogue_lessonPlan on LessonPlan {\n  id\n  lessons {\n    id\n  }\n}\n\nfragment LessonPlanSidebar_lessonPlan on LessonPlan {\n  id\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n    }\n  }\n}\n\nfragment StudentsTable_course on Course {\n  students {\n    username\n    firstName\n    lastName\n    gradeLevel\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '0d5608253d69354e8e382ff1697641d1';
+(node as any).hash = 'c8ddbca7dd8a809014a7eed483fbf06d';
 export default node;
