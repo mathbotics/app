@@ -56,7 +56,6 @@ const CardSlideCount = styled.div`
 `;
 
 const EditButton = styled.div`
-  z-index: 999999 !important;
   :hover {
     color: #1890ff;
   }
@@ -80,7 +79,7 @@ const CourseCard = ({
   //   instructors!!.filter((id) => id == query.viewer.id).length > 0;
 
   // console.log("UserId" + query.viewer.id);
-  console.log("Course Instructors" + instructors);
+
   return (
     <Card>
       <div
@@ -93,7 +92,7 @@ const CourseCard = ({
         <CardTitle>{name}</CardTitle>
 
         <Tooltip title="Edit course">
-          <EditButton>
+          <EditButton onClick={() => console.log("here")}>
             <EditOutlined style={{ fontSize: "18px" }} />
           </EditButton>
         </Tooltip>

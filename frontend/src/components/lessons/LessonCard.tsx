@@ -64,7 +64,15 @@ export const LessonCard = ({
   let history = useHistory();
   return (
     <Card>
-      <CardTitle>{title}</CardTitle>
+      <div
+        style={{
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+        }}
+      >
+        <CardTitle>{title}</CardTitle>
+      </div>
       <CardFooter>
         {slideCount && (
           <CardSlideCount>
