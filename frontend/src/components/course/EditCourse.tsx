@@ -77,6 +77,7 @@ export default createFragmentContainer(EditCourse, {
       name
       lessonPlan {
         ...EditCourseLessonPlan_lessonPlan
+        ...LessonPlanCatalogue_lessonPlan
       }
     }
   `,

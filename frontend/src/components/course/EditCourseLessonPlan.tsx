@@ -15,8 +15,8 @@ type Props = {
 export const EditCourseLessonPlan = ({ lessonPlan, query }: Props) => {
   return (
     <Wrapper>
-      <LessonPlanSidebar lessons={lessonPlan} />
-      <LessonPlanCatalogue query={query} />
+      <LessonPlanSidebar lessonPlan={lessonPlan} />
+      <LessonPlanCatalogue query={query} lessonPlan={lessonPlan} />
     </Wrapper>
   );
 };
@@ -30,7 +30,8 @@ const Wrapper = styled(Layout)`
 export default createFragmentContainer(EditCourseLessonPlan, {
   lessonPlan: graphql`
     fragment EditCourseLessonPlan_lessonPlan on LessonPlan {
-      ...LessonPlanSidebar_lessons
+      ...LessonPlanSidebar_lessonPlan
+      ...LessonPlanCatalogue_lessonPlan
     }
   `,
   query: graphql`

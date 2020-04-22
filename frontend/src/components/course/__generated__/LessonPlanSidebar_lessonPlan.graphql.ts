@@ -3,18 +3,21 @@
 
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type LessonPlanSidebar_lessons = {
+export type LessonPlanSidebar_lessonPlan = {
     readonly id: string;
     readonly lessons: ReadonlyArray<{
         readonly id: string;
         readonly title: string;
+        readonly slides: ReadonlyArray<{
+            readonly id: string;
+        }>;
     }>;
-    readonly " $refType": "LessonPlanSidebar_lessons";
+    readonly " $refType": "LessonPlanSidebar_lessonPlan";
 };
-export type LessonPlanSidebar_lessons$data = LessonPlanSidebar_lessons;
-export type LessonPlanSidebar_lessons$key = {
-    readonly " $data"?: LessonPlanSidebar_lessons$data;
-    readonly " $fragmentRefs": FragmentRefs<"LessonPlanSidebar_lessons">;
+export type LessonPlanSidebar_lessonPlan$data = LessonPlanSidebar_lessonPlan;
+export type LessonPlanSidebar_lessonPlan$key = {
+    readonly " $data"?: LessonPlanSidebar_lessonPlan$data;
+    readonly " $fragmentRefs": FragmentRefs<"LessonPlanSidebar_lessonPlan">;
 };
 
 
@@ -29,7 +32,7 @@ var v0 = {
 };
 return {
   "kind": "Fragment",
-  "name": "LessonPlanSidebar_lessons",
+  "name": "LessonPlanSidebar_lessonPlan",
   "type": "LessonPlan",
   "metadata": null,
   "argumentDefinitions": [],
@@ -51,11 +54,23 @@ return {
           "name": "title",
           "args": null,
           "storageKey": null
+        },
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "slides",
+          "storageKey": null,
+          "args": null,
+          "concreteType": null,
+          "plural": true,
+          "selections": [
+            (v0/*: any*/)
+          ]
         }
       ]
     }
   ]
 };
 })();
-(node as any).hash = '8e730f0ebedd56fed51d98cd34481c93';
+(node as any).hash = 'dc58909a0cfeb915c90d30245528cb13';
 export default node;

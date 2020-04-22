@@ -7,7 +7,7 @@ export type EditCourse_course = {
     readonly id: string;
     readonly name: string;
     readonly lessonPlan: {
-        readonly " $fragmentRefs": FragmentRefs<"EditCourseLessonPlan_lessonPlan">;
+        readonly " $fragmentRefs": FragmentRefs<"EditCourseLessonPlan_lessonPlan" | "LessonPlanCatalogue_lessonPlan">;
     };
     readonly " $fragmentRefs": FragmentRefs<"EditCourseStudents_course">;
     readonly " $refType": "EditCourse_course";
@@ -54,6 +54,11 @@ const node: ReaderFragment = {
           "kind": "FragmentSpread",
           "name": "EditCourseLessonPlan_lessonPlan",
           "args": null
+        },
+        {
+          "kind": "FragmentSpread",
+          "name": "LessonPlanCatalogue_lessonPlan",
+          "args": null
         }
       ]
     },
@@ -64,5 +69,5 @@ const node: ReaderFragment = {
     }
   ]
 };
-(node as any).hash = '4ac8e6dc1e3116e8b0589c4fa40fdd7f';
+(node as any).hash = 'cedc2736267c6b60a3f0f70131436882';
 export default node;

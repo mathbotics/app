@@ -4,7 +4,7 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type EditCourseLessonPlan_lessonPlan = {
-    readonly " $fragmentRefs": FragmentRefs<"LessonPlanSidebar_lessons">;
+    readonly " $fragmentRefs": FragmentRefs<"LessonPlanSidebar_lessonPlan" | "LessonPlanCatalogue_lessonPlan">;
     readonly " $refType": "EditCourseLessonPlan_lessonPlan";
 };
 export type EditCourseLessonPlan_lessonPlan$data = EditCourseLessonPlan_lessonPlan;
@@ -24,10 +24,15 @@ const node: ReaderFragment = {
   "selections": [
     {
       "kind": "FragmentSpread",
-      "name": "LessonPlanSidebar_lessons",
+      "name": "LessonPlanSidebar_lessonPlan",
+      "args": null
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "LessonPlanCatalogue_lessonPlan",
       "args": null
     }
   ]
 };
-(node as any).hash = '5f5a4e8178e8af0b34d435a2059b09c8';
+(node as any).hash = '0c0f5bca2098022b57d29ace245f5de3';
 export default node;

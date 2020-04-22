@@ -47,7 +47,7 @@ const CoursesList = ({ courses }: Props) => (
 export default createFragmentContainer(CoursesList, {
   courses: graphql`
     fragment CoursesList_courses on Query {
-      courses(where: $where) {
+      courses {
         id
         ...CourseCard_course
       }

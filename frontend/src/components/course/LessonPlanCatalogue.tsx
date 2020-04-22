@@ -1,18 +1,35 @@
 import React from "react";
 import { Input, Typography } from "antd";
+import { AppstoreAddOutlined } from "@ant-design/icons";
 import { createFragmentContainer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
 import { LessonPlanCatalogue_query } from "./__generated__/LessonPlanCatalogue_query.graphql";
 import styled from "styled-components";
 import { LessonCard } from "../lessons/LessonCard";
+import { commit as commitUpdateOneLessonPlanMutation } from "../../graphql/mutations/UpdateOneLessonPlanMutation";
+import { LessonPlanCatalogue_lessonPlan } from "./__generated__/LessonPlanCatalogue_lessonPlan.graphql";
 
 const { Search } = Input;
 const { Title } = Typography;
 
-type Props = { query: LessonPlanCatalogue_query };
-const LessonPlanCatalogue = ({ query }: Props) => {
+type Props = {
+  query: LessonPlanCatalogue_query;
+  lessonPlan: LessonPlanCatalogue_lessonPlan;
+};
+const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
   const { lessons } = query;
 
+  const connectLessonToLessonPlane = (id: string) => {
+    const lessonIds = lessonPlan.lessons.map((lesson) => ({ id: lesson.id }));
+    commitUpdateOneLessonPlanMutation(
+      {
+        data: { lessons: { connect: [{ id }, ...lessonIds] } },
+        where: { id: lessonPlan.id },
+      },
+      () => console.log("Success"),
+      (e) => console.log("Error " + e)
+    );
+  };
   return (
     <LessonsCatalogueWrapper>
       <Header>
@@ -28,7 +45,10 @@ const LessonPlanCatalogue = ({ query }: Props) => {
       <LessonsPreviewWrapper>
         {lessons.length == 0 && <p> No lessons available</p>}
         {lessons.map(({ id, title, slides }) => (
-          <LessonCardWrapper key={id} onClick={() => console.log({ id })}>
+          <LessonCardWrapper
+            key={id}
+            onClick={() => connectLessonToLessonPlane(id)}
+          >
             <LessonCard id={id} title={title} slideCount={slides.length} />
           </LessonCardWrapper>
         ))}
@@ -47,6 +67,14 @@ export default createFragmentContainer(LessonPlanCatalogue, {
           id
           title
         }
+      }
+    }
+  `,
+  lessonPlan: graphql`
+    fragment LessonPlanCatalogue_lessonPlan on LessonPlan {
+      id
+      lessons {
+        id
       }
     }
   `,

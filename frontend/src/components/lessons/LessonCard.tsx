@@ -33,18 +33,8 @@ const CardDescription = styled.div`
   margin-top: 25px;
 `;
 
-const CourseLevel = styled.div`
-  border-radius: 50px;
-  padding: 5px 15px;
-  background-color: #198fff14;
-  color: #0a7ce8;
-  font-weight: bold;
-  font-size: 13px;
-  width: fit-content;
-`;
-
 const CardFooter = styled.div`
-  margin: 16px 0px 0px 0px;
+  margin: 5px 0px 0px 0px;
   display: flex;
   alignitems: center;
   justify-content: flex-start;
@@ -60,37 +50,21 @@ type Props = {
   id: string;
   title: string;
   description?: string;
-  suggestedLevel?: string;
   slideCount?: number;
 };
-export const LessonCard = ({
-  id,
-  title,
-  suggestedLevel,
-  description,
-  slideCount,
-}: Props) => {
+export const LessonCard = ({ id, title, description, slideCount }: Props) => {
   let history = useHistory();
   return (
     <Card>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <CardTitle>{title}</CardTitle>
-      </div>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <CardFooter>
-          <CourseLevel>{suggestedLevel} grade</CourseLevel>
+      <CardTitle>{title}</CardTitle>
+      <CardFooter>
+        {slideCount && (
           <CardSlideCount>
             <ExportOutlined style={{ margin: "0px 0px 0px 10px" }} />
-            {slideCount} Slides
+            {slideCount} Slide{slideCount > 1 && "s"}
           </CardSlideCount>
-        </CardFooter>
-      </div>
+        )}
+      </CardFooter>
     </Card>
   );
 };
