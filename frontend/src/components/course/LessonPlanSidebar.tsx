@@ -64,11 +64,13 @@ const LessonPlanSidebar = ({ lessonPlan }: Props) => {
               <h1
                 style={{
                   margin: "auto",
-                  paddingRight: "20px",
+                  paddingRight: "15px",
                   fontWeight: 800,
                   backgroundColor: "white",
                   height: "100%",
                   fontSize: "14px",
+                  display: "flex",
+                  alignItems: "center",
                 }}
               >
                 {index + 1}
