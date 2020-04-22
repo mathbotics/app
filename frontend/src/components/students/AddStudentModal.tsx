@@ -22,13 +22,13 @@ export default ({
   onCancel,
   rootDataID,
 }: ModalProps) => {
-  const onSubmit = ({ title }: Store) =>
-    commitCreateOneLessonMutation(
-      { data: { title } },
-      onSubmitSuccess,
-      onSubmitError,
-      rootDataID
-    );
+  const onSubmit = ({ firstName }: Store) => console.log({ firstName });
+  // commitCreateOneStudentMutation(
+  //   { data: { } },
+  //   onSubmitSuccess,
+  //   onSubmitError,
+  //   rootDataID
+  // );
   return (
     <Modal visible={visible} title={title} onCancel={onCancel} footer={[]}>
       <CreateStudentForm onSubmit={onSubmit} onSubmitError={onSubmitError} />
