@@ -91,13 +91,11 @@ const CourseCard = ({
       >
         <CardTitle>{name}</CardTitle>
 
-        {/* {(isAdmin || isCourseCreator) && ( */}
         <Tooltip title="Edit course">
           <EditButton onClick={() => history.push(`/courses/${id}/edit`)}>
             <EditOutlined style={{ fontSize: "18px" }} />
           </EditButton>
         </Tooltip>
-        {/* )} */}
       </div>
       <CourseLevel>{suggestedLevel} grade</CourseLevel>
       <CardDescription>
