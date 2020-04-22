@@ -14,6 +14,7 @@ import {
   AdminPage,
   CoursesPage,
   EditCoursePage,
+  CoursePage,
 } from "./pages";
 
 // Routes
@@ -55,6 +56,12 @@ export const App: React.FC = () => {
           path="/courses/:courseId/edit"
           allowedRoles={["Admin", "Instructor"]}
           component={withSidebar(EditCoursePage)}
+        />
+        <ProtectedRoute
+          exact
+          path="/courses/:courseId"
+          allowedRoles={["Admin", "Instructor"]}
+          component={withSidebar(CoursePage)}
         />
 
         <Route component={NotFoundPage} />
