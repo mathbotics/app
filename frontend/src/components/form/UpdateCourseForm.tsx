@@ -48,7 +48,7 @@ export const UpdateCourseForm = ({
       <Button block type="primary" size="large" htmlType="submit">
         Update
       </Button>
-      <DeleteButton />
+      {/* <DeleteButton /> */}
     </Form>
   );
 };

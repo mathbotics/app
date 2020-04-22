@@ -9,3 +9,4 @@ export * from "./AdminPage";
 export * from "./CoursesPage";
 export * from "./EditCoursePage";
 export * from "./LessonPage";
+export * from "./CoursePage";
