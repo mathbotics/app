@@ -5,6 +5,7 @@ import { Tooltip } from "antd";
 import { useHistory } from "react-router-dom";
 import { createFragmentContainer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
+
 import { CourseCard_course } from "./__generated__/CourseCard_course.graphql";
 
 const Card = styled.div`
@@ -60,9 +61,7 @@ const EditButton = styled.div`
   }
 `;
 
-type Props = {
-  course: CourseCard_course;
-};
+type Props = { course: CourseCard_course };
 const CourseCard = ({
   course: {
     id,
@@ -73,8 +72,14 @@ const CourseCard = ({
   },
 }: Props) => {
   const lessonCount = lessons.length;
-  console.log(instructors);
+  // console.log(instructors);
   let history = useHistory();
+  // const isAdmin: boolean = query.viewer.__typename == "Admin";
+  // const isCourseCreator: boolean =
+  //   instructors!!.filter((id) => id == query.viewer.id).length > 0;
+
+  // console.log("UserId" + query.viewer.id);
+  console.log("Course Instructors" + instructors);
   return (
     <Card>
       <div
@@ -86,11 +91,13 @@ const CourseCard = ({
       >
         <CardTitle>{name}</CardTitle>
 
+        {/* {(isAdmin || isCourseCreator) && ( */}
         <Tooltip title="Edit course">
           <EditButton onClick={() => history.push(`/courses/${id}/edit`)}>
             <EditOutlined style={{ fontSize: "18px" }} />
           </EditButton>
         </Tooltip>
+        {/* )} */}
       </div>
       <CourseLevel>{suggestedLevel} grade</CourseLevel>
       <CardDescription>

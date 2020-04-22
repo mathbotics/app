@@ -1,12 +1,12 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 25b8bf3cea9e1f416b6cba5db76e1e09 */
+/* @relayHash 2b1dc15b90c76707c3b5ce2f633bf8a7 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type CoursesPageQueryVariables = {};
 export type CoursesPageQueryResponse = {
-    readonly " $fragmentRefs": FragmentRefs<"Courses_courses">;
+    readonly " $fragmentRefs": FragmentRefs<"Courses_query">;
 };
 export type CoursesPageQuery = {
     readonly response: CoursesPageQueryResponse;
@@ -17,7 +17,7 @@ export type CoursesPageQuery = {
 
 /*
 query CoursesPageQuery {
-  ...Courses_courses
+  ...Courses_query
 }
 
 fragment CourseCard_course on Course {
@@ -44,7 +44,7 @@ fragment CoursesList_courses on Query {
   }
 }
 
-fragment Courses_courses on Query {
+fragment Courses_query on Query {
   ...CoursesList_courses
 }
 */
@@ -68,7 +68,7 @@ return {
     "selections": [
       {
         "kind": "FragmentSpread",
-        "name": "Courses_courses",
+        "name": "Courses_query",
         "args": null
       }
     ]
@@ -172,10 +172,10 @@ return {
     "operationKind": "query",
     "name": "CoursesPageQuery",
     "id": null,
-    "text": "query CoursesPageQuery {\n  ...Courses_courses\n}\n\nfragment CourseCard_course on Course {\n  id\n  name\n  suggestedLevel\n  instructors {\n    id\n    firstName\n    lastName\n    username\n  }\n  lessonPlan {\n    lessons {\n      title\n    }\n  }\n}\n\nfragment CoursesList_courses on Query {\n  courses {\n    id\n    ...CourseCard_course\n  }\n}\n\nfragment Courses_courses on Query {\n  ...CoursesList_courses\n}\n",
+    "text": "query CoursesPageQuery {\n  ...Courses_query\n}\n\nfragment CourseCard_course on Course {\n  id\n  name\n  suggestedLevel\n  instructors {\n    id\n    firstName\n    lastName\n    username\n  }\n  lessonPlan {\n    lessons {\n      title\n    }\n  }\n}\n\nfragment CoursesList_courses on Query {\n  courses {\n    id\n    ...CourseCard_course\n  }\n}\n\nfragment Courses_query on Query {\n  ...CoursesList_courses\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '70b543208a0c175a505548b2cf1b5ef2';
+(node as any).hash = 'cd964d2016d3622a6981d3b4f3e70d27';
 export default node;

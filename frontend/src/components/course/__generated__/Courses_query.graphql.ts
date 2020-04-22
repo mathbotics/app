@@ -3,21 +3,21 @@
 
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type Courses_courses = {
+export type Courses_query = {
     readonly " $fragmentRefs": FragmentRefs<"CoursesList_courses">;
-    readonly " $refType": "Courses_courses";
+    readonly " $refType": "Courses_query";
 };
-export type Courses_courses$data = Courses_courses;
-export type Courses_courses$key = {
-    readonly " $data"?: Courses_courses$data;
-    readonly " $fragmentRefs": FragmentRefs<"Courses_courses">;
+export type Courses_query$data = Courses_query;
+export type Courses_query$key = {
+    readonly " $data"?: Courses_query$data;
+    readonly " $fragmentRefs": FragmentRefs<"Courses_query">;
 };
 
 
 
 const node: ReaderFragment = {
   "kind": "Fragment",
-  "name": "Courses_courses",
+  "name": "Courses_query",
   "type": "Query",
   "metadata": null,
   "argumentDefinitions": [],
@@ -29,5 +29,5 @@ const node: ReaderFragment = {
     }
   ]
 };
-(node as any).hash = 'c86d60d6903b5edec41de03acabae5b6';
+(node as any).hash = 'ac6a5a7d04f4e180f267c4f1f6077ba4';
 export default node;

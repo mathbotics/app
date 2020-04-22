@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { createFragmentContainer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
 
-import { Courses_courses } from "./__generated__/Courses_courses.graphql";
+import { Courses_query } from "./__generated__/Courses_query.graphql";
 import CoursesList from "./CoursesList";
 import { useHistory } from "react-router-dom";
 import CreateCourseModal from "./CreateCourseModal";
@@ -22,8 +22,8 @@ enum PageState {
   CreateCourseSuccess,
   CreateCourseError,
 }
-type Props = { courses: Courses_courses };
-const Courses = ({ courses }: Props) => {
+type Props = { query: Courses_query };
+const Courses = ({ query }: Props) => {
   let history = useHistory();
   const [pageState, setPageState] = useState<PageState>(PageState.Default);
   return (
@@ -56,14 +56,14 @@ const Courses = ({ courses }: Props) => {
         onCancel={() => setPageState(PageState.Default)}
       />
 
-      <CoursesList courses={courses} />
+      <CoursesList courses={query} />
     </Layout>
   );
 };
 
 export default createFragmentContainer(Courses, {
-  courses: graphql`
-    fragment Courses_courses on Query {
+  query: graphql`
+    fragment Courses_query on Query {
       ...CoursesList_courses
     }
   `,
