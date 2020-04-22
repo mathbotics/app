@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash a4ac460470dc3f07d745ea2e737b88b4 */
+/* @relayHash d5b10165c5f984b81fca18cf15e45587 */
 
 import { ConcreteRequest } from "relay-runtime";
 export type GradeLevel = "%future added value" | "%future added value" | "EIGHTH" | "ELEVENTH" | "FIFTH" | "FIRST" | "FOURTH" | "NINTH" | "SECOND" | "SEVENTH" | "SIXTH" | "TENTH" | "THIRD" | "TWELFTH" | "%future added value";
@@ -9,7 +9,6 @@ export type CreateStudentInput = {
     firstName: string;
     gradeLevel: GradeLevel;
     lastName: string;
-    password: string;
     username: string;
 };
 export type CreateStudentMutationVariables = {

@@ -37,7 +37,6 @@ export const CreateStudentForm = ({
       firstName: "",
       lastName: "",
       username: "",
-      password: "",
       gradeLevel: GradeLevel.FIRST,
     });
   }, []);
@@ -58,16 +57,6 @@ export const CreateStudentForm = ({
         type="username"
         input="text"
         placeholder="Username"
-      />
-      <p>
-        <b>Password</b>
-      </p>
-      <FormItem
-        name="password"
-        value={getFieldValue("password")}
-        type="password"
-        input="text"
-        placeholder="Password"
       />
       <p>
         <b>First Name</b>
