@@ -123,11 +123,7 @@ const SlidesSidebar = ({
                 {index + 1}
               </h1>
               <SlideCard>
-                <Slide
-                  preview={editing}
-                  selected={slide.id === selected}
-                  slide={slide}
-                />
+                <Slide preview selected={slide.id === selected} slide={slide} />
               </SlideCard>
             </div>
           </MenuItem>

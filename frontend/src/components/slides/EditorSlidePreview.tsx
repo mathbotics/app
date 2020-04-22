@@ -34,14 +34,7 @@ const EditorSlidePreview = ({
             : undefined
         }
         slide={slide}
-        selectedBlock={
-          editing
-            ? nullthrows(
-                selectedBlock,
-                "selectedBlock must be provided if editing is true"
-              )
-            : undefined
-        }
+        selectedBlock={selectedBlock}
       />
     ) : (
       <div

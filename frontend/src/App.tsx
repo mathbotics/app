@@ -49,7 +49,7 @@ export const App: React.FC = () => {
         <ProtectedRoute
           exact
           path="/courses"
-          allowedRoles={["Admin", "Instructor"]}
+          allowedRoles={["Admin", "Instructor", "Student"]}
           component={withSidebar(CoursesPage)}
         />
         <ProtectedRoute
@@ -65,7 +65,7 @@ export const App: React.FC = () => {
         />
         <ProtectedRoute
           path="/courses/:courseId"
-          allowedRoles={["Admin", "Instructor"]}
+          allowedRoles={["Admin", "Instructor", "Student"]}
           component={withSidebar(CoursePage)}
         />
         <Route component={NotFoundPage} />
