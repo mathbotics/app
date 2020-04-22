@@ -41,25 +41,38 @@ const LessonPlanSidebar = ({ lessonPlan }: Props) => {
   };
 
   const { lessons } = lessonPlan;
+
   return (
     <Sider
       width={300}
       theme="light"
       style={{
         overflow: "auto",
-        padding: "10px 0px",
         height: "100%",
         borderRadius: "5px",
-        color: "white",
+        marginRight: "20px",
       }}
     >
       {lessonPlan.lessons.length > 0 && (
         <Menu defaultSelectedKeys={[selected?.toString() ?? ""]} mode="inline">
-          {lessons.map((lesson) => (
+          {lessons.map((lesson, index) => (
             <MenuItem
               key={lesson.id}
               onClick={() => removeLessonFromLessonPlan(lesson.id)}
+              style={{ display: "flex" }}
             >
+              <h1
+                style={{
+                  margin: "auto",
+                  paddingRight: "20px",
+                  fontWeight: 800,
+                  backgroundColor: "white",
+                  height: "100%",
+                  fontSize: "14px",
+                }}
+              >
+                {index + 1}
+              </h1>
               <LessonCard
                 id={lesson.id}
                 title={lesson.title}

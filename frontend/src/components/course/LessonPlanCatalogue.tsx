@@ -82,7 +82,6 @@ export default createFragmentContainer(LessonPlanCatalogue, {
 });
 
 const LessonsCatalogueWrapper = styled.div`
-  padding: 0px 30px 0px 30px;
   height: 100%;
   width: 100%;
   overflow-y: scroll;

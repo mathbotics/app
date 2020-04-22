@@ -4,6 +4,9 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type EditCourseLessonPlan_lessonPlan = {
+    readonly lessons: ReadonlyArray<{
+        readonly id: string;
+    }>;
     readonly " $fragmentRefs": FragmentRefs<"LessonPlanSidebar_lessonPlan" | "LessonPlanCatalogue_lessonPlan">;
     readonly " $refType": "EditCourseLessonPlan_lessonPlan";
 };
@@ -23,6 +26,24 @@ const node: ReaderFragment = {
   "argumentDefinitions": [],
   "selections": [
     {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "lessons",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "Lesson",
+      "plural": true,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "id",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    },
+    {
       "kind": "FragmentSpread",
       "name": "LessonPlanSidebar_lessonPlan",
       "args": null
@@ -34,5 +55,5 @@ const node: ReaderFragment = {
     }
   ]
 };
-(node as any).hash = '0c0f5bca2098022b57d29ace245f5de3';
+(node as any).hash = '99e51289c4684e34a323c014b7b7f17e';
 export default node;
