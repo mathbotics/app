@@ -56,6 +56,7 @@ const CardSlideCount = styled.div`
 `;
 
 const EditButton = styled.div`
+  z-index: 999999 !important;
   :hover {
     color: #1890ff;
   }
@@ -92,7 +93,7 @@ const CourseCard = ({
         <CardTitle>{name}</CardTitle>
 
         <Tooltip title="Edit course">
-          <EditButton onClick={() => history.push(`/courses/${id}/edit`)}>
+          <EditButton>
             <EditOutlined style={{ fontSize: "18px" }} />
           </EditButton>
         </Tooltip>
