@@ -54,7 +54,7 @@ const Course = ({ course }: Props) => {
 
       <LessonsWrapper>
         {course.lessonPlan.lessons.map((lesson) => (
-          <LessonCardWrapper>
+          <LessonCardWrapper key={lesson.id}>
             <LessonCard
               id={lesson.id}
               courseId={course.id}
