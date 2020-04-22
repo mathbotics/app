@@ -19,7 +19,7 @@ type Props = {
 const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
   const { lessons } = query;
 
-  const connectLessonToLessonPlane = (id: string) => {
+  const connectLessonToLessonPlan = (id: string) => {
     const lessonIds = lessonPlan.lessons.map((lesson) => ({ id: lesson.id }));
     commitUpdateOneLessonPlanMutation(
       {
@@ -30,6 +30,7 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
       (e) => console.log("Error " + e)
     );
   };
+
   return (
     <LessonsCatalogueWrapper>
       <Header>
@@ -47,7 +48,7 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
         {lessons.map(({ id, title, slides }) => (
           <LessonCardWrapper
             key={id}
-            onClick={() => connectLessonToLessonPlane(id)}
+            onClick={() => connectLessonToLessonPlan(id)}
           >
             <LessonCard id={id} title={title} slideCount={slides.length} />
           </LessonCardWrapper>

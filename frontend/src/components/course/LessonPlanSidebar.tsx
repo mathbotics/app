@@ -4,7 +4,7 @@ import { PlusOutlined, BookOutlined, CopyOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 import { createFragmentContainer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
-
+import { commit as commitUpdateOneLessonPlanMutation } from "../../graphql/mutations/UpdateOneLessonPlanMutation";
 import { LessonPlanSidebar_lessonPlan } from "./__generated__/LessonPlanSidebar_lessonPlan.graphql";
 
 import { LessonCard } from "../lessons/LessonCard";
@@ -29,6 +29,17 @@ const LessonPlanSidebar = ({ lessonPlan }: Props) => {
     lessonPlan.lessons?.[0]?.id
   );
 
+  const removeLessonFromLessonPlan = (id: string) => {
+    commitUpdateOneLessonPlanMutation(
+      {
+        data: { lessons: { disconnect: [{ id }] } },
+        where: { id: lessonPlan.id },
+      },
+      () => console.log("Success"),
+      (e) => console.log("Error " + e)
+    );
+  };
+
   const { lessons } = lessonPlan;
   return (
     <Sider
@@ -45,7 +56,10 @@ const LessonPlanSidebar = ({ lessonPlan }: Props) => {
       {lessonPlan.lessons.length > 0 && (
         <Menu defaultSelectedKeys={[selected?.toString() ?? ""]} mode="inline">
           {lessons.map((lesson) => (
-            <MenuItem key={lesson.id} onClick={() => console.log(lesson.id)}>
+            <MenuItem
+              key={lesson.id}
+              onClick={() => removeLessonFromLessonPlan(lesson.id)}
+            >
               <LessonCard
                 id={lesson.id}
                 title={lesson.title}
