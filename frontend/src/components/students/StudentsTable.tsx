@@ -12,6 +12,10 @@ const columns: ColumnsType<any> = [
     dataIndex: "index",
   },
   {
+    title: "Username",
+    dataIndex: "username",
+  },
+  {
     title: "First Name",
     dataIndex: "firstName",
   },
@@ -47,13 +51,16 @@ const LessonsTable = ({ course: { students } }: Props) => {
   const [data, setData] = useState<ColumnsType<TableItem>>();
   useEffect(() => {
     setData(
-      students.map(({ firstName, lastName, gradeLevel }, index: number) => ({
-        index: index + 1,
-        key: index,
-        firstName,
-        lastName,
-        gradeLevel,
-      }))
+      students.map(
+        ({ firstName, lastName, gradeLevel, username }, index: number) => ({
+          index: index + 1,
+          key: index,
+          firstName,
+          lastName,
+          gradeLevel,
+          username,
+        })
+      )
     );
   }, [students]);
   return <Table columns={columns} dataSource={data} onChange={onChange} />;
