@@ -1184,6 +1184,12 @@ input LessonPlanCreateWithoutLessonsInput {
   id: String
 }
 
+input LessonPlanUpdateInput {
+  course: CourseUpdateOneRequiredWithoutLessonPlanInput
+  id: String
+  lessons: LessonUpdateManyWithoutLessonPlanInput
+}
+
 input LessonPlanUpdateOneRequiredWithoutCourseInput {
   connect: LessonPlanWhereUniqueInput
   create: LessonPlanCreateWithoutCourseInput
@@ -1733,6 +1739,7 @@ type Mutation {
   updateBlockToMultipleChoiceBlock(input: UpdateBlockToMultipleChoiceBlockInput!): MultipleChoiceQuestionBlock!
   updateBlockToTextBlock(input: UpdateBlockToTextBlockInput!): TextBlock!
   updateOneCourse(data: CourseUpdateInput!, where: CourseWhereUniqueInput!): Course
+  updateOneLessonPlan(data: LessonPlanUpdateInput!, where: LessonPlanWhereUniqueInput!): LessonPlan
 }
 
 input NullableStringFilter {

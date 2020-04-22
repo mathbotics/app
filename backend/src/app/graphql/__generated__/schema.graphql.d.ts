@@ -24,7 +24,7 @@ export interface NexusGenInputs {
     create?: NexusGenInputs['AdminCreateWithoutUserInput'] | null; // AdminCreateWithoutUserInput
   }
   AdminCreateWithoutUserInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email: string; // String!
     id?: string | null; // String
   }
@@ -37,7 +37,7 @@ export interface NexusGenInputs {
     upsert?: NexusGenInputs['AdminUpsertWithoutUserInput'] | null; // AdminUpsertWithoutUserInput
   }
   AdminUpdateWithoutUserDataInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email?: string | null; // String
     id?: string | null; // String
   }
@@ -317,7 +317,7 @@ export interface NexusGenInputs {
   }
   ContentCreateWithoutCourseInput: { // input type
     author: string; // String!
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     id?: string | null; // String
     pages?: NexusGenInputs['PageCreateManyWithoutContentInput'] | null; // PageCreateManyWithoutContentInput
     title: string; // String!
@@ -339,7 +339,7 @@ export interface NexusGenInputs {
   }
   ContentUpdateManyDataInput: { // input type
     author?: string | null; // String
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     id?: string | null; // String
     title?: string | null; // String
   }
@@ -364,7 +364,7 @@ export interface NexusGenInputs {
   }
   ContentUpdateWithoutCourseDataInput: { // input type
     author?: string | null; // String
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     id?: string | null; // String
     pages?: NexusGenInputs['PageUpdateManyWithoutContentInput'] | null; // PageUpdateManyWithoutContentInput
     title?: string | null; // String
@@ -390,7 +390,7 @@ export interface NexusGenInputs {
   }
   CourseCreateInput: { // input type
     contents?: NexusGenInputs['ContentCreateManyWithoutCourseInput'] | null; // ContentCreateManyWithoutCourseInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     description?: string | null; // String
     id?: string | null; // String
     lessonPlan: NexusGenInputs['LessonPlanCreateOneWithoutCourseInput']; // LessonPlanCreateOneWithoutCourseInput!
@@ -412,7 +412,7 @@ export interface NexusGenInputs {
   }
   CourseCreateWithoutInstructorsInput: { // input type
     contents?: NexusGenInputs['ContentCreateManyWithoutCourseInput'] | null; // ContentCreateManyWithoutCourseInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     description?: string | null; // String
     id?: string | null; // String
     lessonPlan: NexusGenInputs['LessonPlanCreateOneWithoutCourseInput']; // LessonPlanCreateOneWithoutCourseInput!
@@ -422,7 +422,7 @@ export interface NexusGenInputs {
   }
   CourseCreateWithoutLessonPlanInput: { // input type
     contents?: NexusGenInputs['ContentCreateManyWithoutCourseInput'] | null; // ContentCreateManyWithoutCourseInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     description?: string | null; // String
     id?: string | null; // String
     instructors?: NexusGenInputs['InstructorCreateManyWithoutCoursesInput'] | null; // InstructorCreateManyWithoutCoursesInput
@@ -432,7 +432,7 @@ export interface NexusGenInputs {
   }
   CourseCreateWithoutStudentsInput: { // input type
     contents?: NexusGenInputs['ContentCreateManyWithoutCourseInput'] | null; // ContentCreateManyWithoutCourseInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     description?: string | null; // String
     id?: string | null; // String
     instructors?: NexusGenInputs['InstructorCreateManyWithoutCoursesInput'] | null; // InstructorCreateManyWithoutCoursesInput
@@ -460,7 +460,7 @@ export interface NexusGenInputs {
   }
   CourseUpdateInput: { // input type
     contents?: NexusGenInputs['ContentUpdateManyWithoutCourseInput'] | null; // ContentUpdateManyWithoutCourseInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     description?: string | null; // String
     id?: string | null; // String
     instructors?: NexusGenInputs['InstructorUpdateManyWithoutCoursesInput'] | null; // InstructorUpdateManyWithoutCoursesInput
@@ -470,7 +470,7 @@ export interface NexusGenInputs {
     suggestedLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
   }
   CourseUpdateManyDataInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     description?: string | null; // String
     id?: string | null; // String
     name?: string | null; // String
@@ -518,7 +518,7 @@ export interface NexusGenInputs {
   }
   CourseUpdateWithoutInstructorsDataInput: { // input type
     contents?: NexusGenInputs['ContentUpdateManyWithoutCourseInput'] | null; // ContentUpdateManyWithoutCourseInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     description?: string | null; // String
     id?: string | null; // String
     lessonPlan?: NexusGenInputs['LessonPlanUpdateOneRequiredWithoutCourseInput'] | null; // LessonPlanUpdateOneRequiredWithoutCourseInput
@@ -528,7 +528,7 @@ export interface NexusGenInputs {
   }
   CourseUpdateWithoutLessonPlanDataInput: { // input type
     contents?: NexusGenInputs['ContentUpdateManyWithoutCourseInput'] | null; // ContentUpdateManyWithoutCourseInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     description?: string | null; // String
     id?: string | null; // String
     instructors?: NexusGenInputs['InstructorUpdateManyWithoutCoursesInput'] | null; // InstructorUpdateManyWithoutCoursesInput
@@ -538,7 +538,7 @@ export interface NexusGenInputs {
   }
   CourseUpdateWithoutStudentsDataInput: { // input type
     contents?: NexusGenInputs['ContentUpdateManyWithoutCourseInput'] | null; // ContentUpdateManyWithoutCourseInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     description?: string | null; // String
     id?: string | null; // String
     instructors?: NexusGenInputs['InstructorUpdateManyWithoutCoursesInput'] | null; // InstructorUpdateManyWithoutCoursesInput
@@ -583,14 +583,14 @@ export interface NexusGenInputs {
     title: string; // String!
   }
   DateTimeFilter: { // input type
-    equals?: Date | null; // DateTime
-    gt?: Date | null; // DateTime
-    gte?: Date | null; // DateTime
-    in?: Date[] | null; // [DateTime!]
-    lt?: Date | null; // DateTime
-    lte?: Date | null; // DateTime
-    not?: Date | null; // DateTime
-    notIn?: Date[] | null; // [DateTime!]
+    equals?: any | null; // DateTime
+    gt?: any | null; // DateTime
+    gte?: any | null; // DateTime
+    in?: any[] | null; // [DateTime!]
+    lt?: any | null; // DateTime
+    lte?: any | null; // DateTime
+    not?: any | null; // DateTime
+    notIn?: any[] | null; // [DateTime!]
   }
   GuardianCreateManyWithoutStudentsInput: { // input type
     connect?: NexusGenInputs['GuardianWhereUniqueInput'][] | null; // [GuardianWhereUniqueInput!]
@@ -601,13 +601,13 @@ export interface NexusGenInputs {
     create?: NexusGenInputs['GuardianCreateWithoutUserInput'] | null; // GuardianCreateWithoutUserInput
   }
   GuardianCreateWithoutStudentsInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email: string; // String!
     id?: string | null; // String
     user: NexusGenInputs['UserCreateOneWithoutGuardianInput']; // UserCreateOneWithoutGuardianInput!
   }
   GuardianCreateWithoutUserInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email: string; // String!
     id?: string | null; // String
     students?: NexusGenInputs['StudentCreateManyWithoutGuardiansInput'] | null; // StudentCreateManyWithoutGuardiansInput
@@ -627,7 +627,7 @@ export interface NexusGenInputs {
     students?: NexusGenInputs['StudentFilter'] | null; // StudentFilter
   }
   GuardianUpdateManyDataInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email?: string | null; // String
     id?: string | null; // String
   }
@@ -659,13 +659,13 @@ export interface NexusGenInputs {
     where: NexusGenInputs['GuardianWhereUniqueInput']; // GuardianWhereUniqueInput!
   }
   GuardianUpdateWithoutStudentsDataInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email?: string | null; // String
     id?: string | null; // String
     user?: NexusGenInputs['UserUpdateOneRequiredWithoutGuardianInput'] | null; // UserUpdateOneRequiredWithoutGuardianInput
   }
   GuardianUpdateWithoutUserDataInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email?: string | null; // String
     id?: string | null; // String
     students?: NexusGenInputs['StudentUpdateManyWithoutGuardiansInput'] | null; // StudentUpdateManyWithoutGuardiansInput
@@ -827,14 +827,14 @@ export interface NexusGenInputs {
     create?: NexusGenInputs['InstructorCreateWithoutUserInput'] | null; // InstructorCreateWithoutUserInput
   }
   InstructorCreateWithoutCoursesInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email: string; // String!
     id?: string | null; // String
     user: NexusGenInputs['UserCreateOneWithoutInstructorInput']; // UserCreateOneWithoutInstructorInput!
   }
   InstructorCreateWithoutUserInput: { // input type
     courses?: NexusGenInputs['CourseCreateManyWithoutInstructorsInput'] | null; // CourseCreateManyWithoutInstructorsInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email: string; // String!
     id?: string | null; // String
   }
@@ -853,7 +853,7 @@ export interface NexusGenInputs {
     OR?: NexusGenInputs['InstructorScalarWhereInput'][] | null; // [InstructorScalarWhereInput!]
   }
   InstructorUpdateManyDataInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email?: string | null; // String
     id?: string | null; // String
   }
@@ -885,14 +885,14 @@ export interface NexusGenInputs {
     where: NexusGenInputs['InstructorWhereUniqueInput']; // InstructorWhereUniqueInput!
   }
   InstructorUpdateWithoutCoursesDataInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email?: string | null; // String
     id?: string | null; // String
     user?: NexusGenInputs['UserUpdateOneRequiredWithoutInstructorInput'] | null; // UserUpdateOneRequiredWithoutInstructorInput
   }
   InstructorUpdateWithoutUserDataInput: { // input type
     courses?: NexusGenInputs['CourseUpdateManyWithoutInstructorsInput'] | null; // CourseUpdateManyWithoutInstructorsInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email?: string | null; // String
     id?: string | null; // String
   }
@@ -963,6 +963,11 @@ export interface NexusGenInputs {
   LessonPlanCreateWithoutLessonsInput: { // input type
     course: NexusGenInputs['CourseCreateOneWithoutLessonPlanInput']; // CourseCreateOneWithoutLessonPlanInput!
     id?: string | null; // String
+  }
+  LessonPlanUpdateInput: { // input type
+    course?: NexusGenInputs['CourseUpdateOneRequiredWithoutLessonPlanInput'] | null; // CourseUpdateOneRequiredWithoutLessonPlanInput
+    id?: string | null; // String
+    lessons?: NexusGenInputs['LessonUpdateManyWithoutLessonPlanInput'] | null; // LessonUpdateManyWithoutLessonPlanInput
   }
   LessonPlanUpdateOneRequiredWithoutCourseInput: { // input type
     connect?: NexusGenInputs['LessonPlanWhereUniqueInput'] | null; // LessonPlanWhereUniqueInput
@@ -1424,7 +1429,7 @@ export interface NexusGenInputs {
     create?: NexusGenInputs['PageCreateWithoutContentInput'][] | null; // [PageCreateWithoutContentInput!]
   }
   PageCreateWithoutContentInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     data: string; // String!
     id?: string | null; // String
   }
@@ -1442,7 +1447,7 @@ export interface NexusGenInputs {
     OR?: NexusGenInputs['PageScalarWhereInput'][] | null; // [PageScalarWhereInput!]
   }
   PageUpdateManyDataInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     data?: string | null; // String
     id?: string | null; // String
   }
@@ -1466,7 +1471,7 @@ export interface NexusGenInputs {
     where: NexusGenInputs['PageWhereUniqueInput']; // PageWhereUniqueInput!
   }
   PageUpdateWithoutContentDataInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     data?: string | null; // String
     id?: string | null; // String
   }
@@ -1925,7 +1930,7 @@ export interface NexusGenInputs {
     create?: NexusGenInputs['StudentCreateWithoutUserInput'] | null; // StudentCreateWithoutUserInput
   }
   StudentCreateWithoutCoursesInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     gradeLevel: NexusGenEnums['GradeLevel']; // GradeLevel!
     guardians?: NexusGenInputs['GuardianCreateManyWithoutStudentsInput'] | null; // GuardianCreateManyWithoutStudentsInput
     id?: string | null; // String
@@ -1934,7 +1939,7 @@ export interface NexusGenInputs {
   }
   StudentCreateWithoutGuardiansInput: { // input type
     courses?: NexusGenInputs['CourseCreateManyWithoutStudentsInput'] | null; // CourseCreateManyWithoutStudentsInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     gradeLevel: NexusGenEnums['GradeLevel']; // GradeLevel!
     id?: string | null; // String
     multipleChoiceQuestionResponses?: NexusGenInputs['MultipleChoiceQuestionResponseCreateManyWithoutStudentInput'] | null; // MultipleChoiceQuestionResponseCreateManyWithoutStudentInput
@@ -1942,7 +1947,7 @@ export interface NexusGenInputs {
   }
   StudentCreateWithoutMultipleChoiceQuestionResponsesInput: { // input type
     courses?: NexusGenInputs['CourseCreateManyWithoutStudentsInput'] | null; // CourseCreateManyWithoutStudentsInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     gradeLevel: NexusGenEnums['GradeLevel']; // GradeLevel!
     guardians?: NexusGenInputs['GuardianCreateManyWithoutStudentsInput'] | null; // GuardianCreateManyWithoutStudentsInput
     id?: string | null; // String
@@ -1950,7 +1955,7 @@ export interface NexusGenInputs {
   }
   StudentCreateWithoutUserInput: { // input type
     courses?: NexusGenInputs['CourseCreateManyWithoutStudentsInput'] | null; // CourseCreateManyWithoutStudentsInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     gradeLevel: NexusGenEnums['GradeLevel']; // GradeLevel!
     guardians?: NexusGenInputs['GuardianCreateManyWithoutStudentsInput'] | null; // GuardianCreateManyWithoutStudentsInput
     id?: string | null; // String
@@ -1973,7 +1978,7 @@ export interface NexusGenInputs {
     OR?: NexusGenInputs['StudentScalarWhereInput'][] | null; // [StudentScalarWhereInput!]
   }
   StudentUpdateManyDataInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     gradeLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
     id?: string | null; // String
   }
@@ -2026,7 +2031,7 @@ export interface NexusGenInputs {
     where: NexusGenInputs['StudentWhereUniqueInput']; // StudentWhereUniqueInput!
   }
   StudentUpdateWithoutCoursesDataInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     gradeLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
     guardians?: NexusGenInputs['GuardianUpdateManyWithoutStudentsInput'] | null; // GuardianUpdateManyWithoutStudentsInput
     id?: string | null; // String
@@ -2035,7 +2040,7 @@ export interface NexusGenInputs {
   }
   StudentUpdateWithoutGuardiansDataInput: { // input type
     courses?: NexusGenInputs['CourseUpdateManyWithoutStudentsInput'] | null; // CourseUpdateManyWithoutStudentsInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     gradeLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
     id?: string | null; // String
     multipleChoiceQuestionResponses?: NexusGenInputs['MultipleChoiceQuestionResponseUpdateManyWithoutStudentInput'] | null; // MultipleChoiceQuestionResponseUpdateManyWithoutStudentInput
@@ -2043,7 +2048,7 @@ export interface NexusGenInputs {
   }
   StudentUpdateWithoutMultipleChoiceQuestionResponsesDataInput: { // input type
     courses?: NexusGenInputs['CourseUpdateManyWithoutStudentsInput'] | null; // CourseUpdateManyWithoutStudentsInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     gradeLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
     guardians?: NexusGenInputs['GuardianUpdateManyWithoutStudentsInput'] | null; // GuardianUpdateManyWithoutStudentsInput
     id?: string | null; // String
@@ -2051,7 +2056,7 @@ export interface NexusGenInputs {
   }
   StudentUpdateWithoutUserDataInput: { // input type
     courses?: NexusGenInputs['CourseUpdateManyWithoutStudentsInput'] | null; // CourseUpdateManyWithoutStudentsInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     gradeLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
     guardians?: NexusGenInputs['GuardianUpdateManyWithoutStudentsInput'] | null; // GuardianUpdateManyWithoutStudentsInput
     id?: string | null; // String
@@ -2334,7 +2339,7 @@ export interface NexusGenRootTypes {
   Float: number;
   Boolean: boolean;
   ID: string;
-  DateTime: Date;
+  DateTime: any;
   Block: NexusGenRootTypes['EmptyBlock'] | NexusGenRootTypes['MultipleChoiceQuestionBlock'] | NexusGenRootTypes['TextBlock'];
 }
 
@@ -2492,6 +2497,7 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   LessonPlanCreateOneWithoutLessonsInput: NexusGenInputs['LessonPlanCreateOneWithoutLessonsInput'];
   LessonPlanCreateWithoutCourseInput: NexusGenInputs['LessonPlanCreateWithoutCourseInput'];
   LessonPlanCreateWithoutLessonsInput: NexusGenInputs['LessonPlanCreateWithoutLessonsInput'];
+  LessonPlanUpdateInput: NexusGenInputs['LessonPlanUpdateInput'];
   LessonPlanUpdateOneRequiredWithoutCourseInput: NexusGenInputs['LessonPlanUpdateOneRequiredWithoutCourseInput'];
   LessonPlanUpdateOneWithoutLessonsInput: NexusGenInputs['LessonPlanUpdateOneWithoutLessonsInput'];
   LessonPlanUpdateWithoutCourseDataInput: NexusGenInputs['LessonPlanUpdateWithoutCourseDataInput'];
@@ -2793,6 +2799,7 @@ export interface NexusGenFieldTypes {
     updateBlockToMultipleChoiceBlock: NexusGenRootTypes['MultipleChoiceQuestionBlock']; // MultipleChoiceQuestionBlock!
     updateBlockToTextBlock: NexusGenRootTypes['TextBlock']; // TextBlock!
     updateOneCourse: NexusGenRootTypes['Course'] | null; // Course
+    updateOneLessonPlan: NexusGenRootTypes['LessonPlan'] | null; // LessonPlan
   }
   QuarterSlide: { // field return type
     id: string; // String!
@@ -2913,6 +2920,10 @@ export interface NexusGenArgTypes {
       data: NexusGenInputs['CourseUpdateInput']; // CourseUpdateInput!
       where: NexusGenInputs['CourseWhereUniqueInput']; // CourseWhereUniqueInput!
     }
+    updateOneLessonPlan: { // args
+      data: NexusGenInputs['LessonPlanUpdateInput']; // LessonPlanUpdateInput!
+      where: NexusGenInputs['LessonPlanWhereUniqueInput']; // LessonPlanWhereUniqueInput!
+    }
   }
   Query: {
     course: { // args
@@ -2959,7 +2970,7 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "Admin" | "Content" | "Course" | "EmptyBlock" | "Guardian" | "HalfSlide" | "Instructor" | "Lesson" | "LessonPlan" | "MultipleChoiceQuestionBlock" | "MultipleChoiceQuestionChoice" | "Mutation" | "QuarterSlide" | "Query" | "SingleSlide" | "Student" | "TextBlock";
 
-export type NexusGenInputNames = "AdminCreateOneWithoutUserInput" | "AdminCreateWithoutUserInput" | "AdminUpdateOneWithoutUserInput" | "AdminUpdateWithoutUserDataInput" | "AdminUpsertWithoutUserInput" | "AdminWhereInput" | "AdminWhereUniqueInput" | "AnswerMultipleChoiceQuestionBlockInput" | "BlockCreateManyWithoutMultipleChoiceQuestionBlockInput" | "BlockCreateOneWithoutHalfSlidesImplementingInput" | "BlockCreateOneWithoutHalfSlidesInput" | "BlockCreateOneWithoutQuarterSlidesImplementingInput" | "BlockCreateOneWithoutQuarterSlidesInput" | "BlockCreateOneWithoutSingleSlidesInput" | "BlockCreateWithoutHalfSlidesImplementingInput" | "BlockCreateWithoutHalfSlidesInput" | "BlockCreateWithoutMultipleChoiceQuestionBlockInput" | "BlockCreateWithoutQuarterSlidesImplementingInput" | "BlockCreateWithoutQuarterSlidesInput" | "BlockCreateWithoutSingleSlidesInput" | "BlockFilter" | "BlockScalarWhereInput" | "BlockUpdateManyDataInput" | "BlockUpdateManyWithWhereNestedInput" | "BlockUpdateManyWithoutMultipleChoiceQuestionBlockInput" | "BlockUpdateOneRequiredWithoutHalfSlidesImplementingInput" | "BlockUpdateOneRequiredWithoutHalfSlidesInput" | "BlockUpdateOneRequiredWithoutQuarterSlidesImplementingInput" | "BlockUpdateOneRequiredWithoutQuarterSlidesInput" | "BlockUpdateOneRequiredWithoutSingleSlidesInput" | "BlockUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput" | "BlockUpdateWithoutHalfSlidesDataInput" | "BlockUpdateWithoutHalfSlidesImplementingDataInput" | "BlockUpdateWithoutMultipleChoiceQuestionBlockDataInput" | "BlockUpdateWithoutQuarterSlidesDataInput" | "BlockUpdateWithoutQuarterSlidesImplementingDataInput" | "BlockUpdateWithoutSingleSlidesDataInput" | "BlockUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput" | "BlockUpsertWithoutHalfSlidesImplementingInput" | "BlockUpsertWithoutHalfSlidesInput" | "BlockUpsertWithoutQuarterSlidesImplementingInput" | "BlockUpsertWithoutQuarterSlidesInput" | "BlockUpsertWithoutSingleSlidesInput" | "BlockWhereInput" | "BlockWhereUniqueInput" | "BooleanFilter" | "ChoiceInput" | "ContentCreateManyWithoutCourseInput" | "ContentCreateWithoutCourseInput" | "ContentFilter" | "ContentScalarWhereInput" | "ContentUpdateManyDataInput" | "ContentUpdateManyWithWhereNestedInput" | "ContentUpdateManyWithoutCourseInput" | "ContentUpdateWithWhereUniqueWithoutCourseInput" | "ContentUpdateWithoutCourseDataInput" | "ContentUpsertWithWhereUniqueWithoutCourseInput" | "ContentWhereInput" | "ContentWhereUniqueInput" | "CourseCreateInput" | "CourseCreateManyWithoutInstructorsInput" | "CourseCreateManyWithoutStudentsInput" | "CourseCreateOneWithoutLessonPlanInput" | "CourseCreateWithoutInstructorsInput" | "CourseCreateWithoutLessonPlanInput" | "CourseCreateWithoutStudentsInput" | "CourseFilter" | "CourseScalarWhereInput" | "CourseUpdateInput" | "CourseUpdateManyDataInput" | "CourseUpdateManyWithWhereNestedInput" | "CourseUpdateManyWithoutInstructorsInput" | "CourseUpdateManyWithoutStudentsInput" | "CourseUpdateOneRequiredWithoutLessonPlanInput" | "CourseUpdateWithWhereUniqueWithoutInstructorsInput" | "CourseUpdateWithWhereUniqueWithoutStudentsInput" | "CourseUpdateWithoutInstructorsDataInput" | "CourseUpdateWithoutLessonPlanDataInput" | "CourseUpdateWithoutStudentsDataInput" | "CourseUpsertWithWhereUniqueWithoutInstructorsInput" | "CourseUpsertWithWhereUniqueWithoutStudentsInput" | "CourseUpsertWithoutLessonPlanInput" | "CourseWhereInput" | "CourseWhereUniqueInput" | "CreateSlideInput" | "DateTimeFilter" | "GuardianCreateManyWithoutStudentsInput" | "GuardianCreateOneWithoutUserInput" | "GuardianCreateWithoutStudentsInput" | "GuardianCreateWithoutUserInput" | "GuardianFilter" | "GuardianScalarWhereInput" | "GuardianUpdateManyDataInput" | "GuardianUpdateManyWithWhereNestedInput" | "GuardianUpdateManyWithoutStudentsInput" | "GuardianUpdateOneWithoutUserInput" | "GuardianUpdateWithWhereUniqueWithoutStudentsInput" | "GuardianUpdateWithoutStudentsDataInput" | "GuardianUpdateWithoutUserDataInput" | "GuardianUpsertWithWhereUniqueWithoutStudentsInput" | "GuardianUpsertWithoutUserInput" | "GuardianWhereInput" | "GuardianWhereUniqueInput" | "HalfSlideCreateManyWithoutFirstHalfBlockInput" | "HalfSlideCreateManyWithoutSecondHalfBlockInput" | "HalfSlideCreateOneWithoutSlidesInput" | "HalfSlideCreateWithoutFirstHalfBlockInput" | "HalfSlideCreateWithoutSecondHalfBlockInput" | "HalfSlideCreateWithoutSlidesInput" | "HalfSlideFilter" | "HalfSlideScalarWhereInput" | "HalfSlideUpdateManyDataInput" | "HalfSlideUpdateManyWithWhereNestedInput" | "HalfSlideUpdateManyWithoutFirstHalfBlockInput" | "HalfSlideUpdateManyWithoutSecondHalfBlockInput" | "HalfSlideUpdateOneWithoutSlidesInput" | "HalfSlideUpdateWithWhereUniqueWithoutFirstHalfBlockInput" | "HalfSlideUpdateWithWhereUniqueWithoutSecondHalfBlockInput" | "HalfSlideUpdateWithoutFirstHalfBlockDataInput" | "HalfSlideUpdateWithoutSecondHalfBlockDataInput" | "HalfSlideUpdateWithoutSlidesDataInput" | "HalfSlideUpsertWithWhereUniqueWithoutFirstHalfBlockInput" | "HalfSlideUpsertWithWhereUniqueWithoutSecondHalfBlockInput" | "HalfSlideUpsertWithoutSlidesInput" | "HalfSlideWhereInput" | "HalfSlideWhereUniqueInput" | "InstructorCreateManyWithoutCoursesInput" | "InstructorCreateOneWithoutUserInput" | "InstructorCreateWithoutCoursesInput" | "InstructorCreateWithoutUserInput" | "InstructorFilter" | "InstructorScalarWhereInput" | "InstructorUpdateManyDataInput" | "InstructorUpdateManyWithWhereNestedInput" | "InstructorUpdateManyWithoutCoursesInput" | "InstructorUpdateOneWithoutUserInput" | "InstructorUpdateWithWhereUniqueWithoutCoursesInput" | "InstructorUpdateWithoutCoursesDataInput" | "InstructorUpdateWithoutUserDataInput" | "InstructorUpsertWithWhereUniqueWithoutCoursesInput" | "InstructorUpsertWithoutUserInput" | "InstructorWhereInput" | "InstructorWhereUniqueInput" | "LessonCreateInput" | "LessonCreateManyWithoutLessonPlanInput" | "LessonCreateOneWithoutSlidesInput" | "LessonCreateWithoutLessonPlanInput" | "LessonCreateWithoutSlidesInput" | "LessonFilter" | "LessonPlanCreateOneWithoutCourseInput" | "LessonPlanCreateOneWithoutLessonsInput" | "LessonPlanCreateWithoutCourseInput" | "LessonPlanCreateWithoutLessonsInput" | "LessonPlanUpdateOneRequiredWithoutCourseInput" | "LessonPlanUpdateOneWithoutLessonsInput" | "LessonPlanUpdateWithoutCourseDataInput" | "LessonPlanUpdateWithoutLessonsDataInput" | "LessonPlanUpsertWithoutCourseInput" | "LessonPlanUpsertWithoutLessonsInput" | "LessonPlanWhereInput" | "LessonPlanWhereUniqueInput" | "LessonScalarWhereInput" | "LessonUpdateManyDataInput" | "LessonUpdateManyWithWhereNestedInput" | "LessonUpdateManyWithoutLessonPlanInput" | "LessonUpdateOneWithoutSlidesInput" | "LessonUpdateWithWhereUniqueWithoutLessonPlanInput" | "LessonUpdateWithoutLessonPlanDataInput" | "LessonUpdateWithoutSlidesDataInput" | "LessonUpsertWithWhereUniqueWithoutLessonPlanInput" | "LessonUpsertWithoutSlidesInput" | "LessonWhereInput" | "LessonWhereUniqueInput" | "LogInInput" | "MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput" | "MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput" | "MultipleChoiceQuestionBlockCreateOneWithoutResponsesInput" | "MultipleChoiceQuestionBlockCreateWithoutBlocksInput" | "MultipleChoiceQuestionBlockCreateWithoutChoicesInput" | "MultipleChoiceQuestionBlockCreateWithoutResponsesInput" | "MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput" | "MultipleChoiceQuestionBlockUpdateOneWithoutChoicesInput" | "MultipleChoiceQuestionBlockUpdateOneWithoutResponsesInput" | "MultipleChoiceQuestionBlockUpdateWithoutBlocksDataInput" | "MultipleChoiceQuestionBlockUpdateWithoutChoicesDataInput" | "MultipleChoiceQuestionBlockUpdateWithoutResponsesDataInput" | "MultipleChoiceQuestionBlockUpsertWithoutBlocksInput" | "MultipleChoiceQuestionBlockUpsertWithoutChoicesInput" | "MultipleChoiceQuestionBlockUpsertWithoutResponsesInput" | "MultipleChoiceQuestionBlockWhereInput" | "MultipleChoiceQuestionBlockWhereUniqueInput" | "MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionChoiceCreateOneWithoutMultipleChoiceQuestionResponsesInput" | "MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput" | "MultipleChoiceQuestionChoiceFilter" | "MultipleChoiceQuestionChoiceScalarWhereInput" | "MultipleChoiceQuestionChoiceUpdateManyDataInput" | "MultipleChoiceQuestionChoiceUpdateManyWithWhereNestedInput" | "MultipleChoiceQuestionChoiceUpdateManyWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput" | "MultipleChoiceQuestionChoiceUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionBlockDataInput" | "MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionResponsesDataInput" | "MultipleChoiceQuestionChoiceUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionChoiceUpsertWithoutMultipleChoiceQuestionResponsesInput" | "MultipleChoiceQuestionChoiceWhereInput" | "MultipleChoiceQuestionChoiceWhereUniqueInput" | "MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput" | "MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionResponseCreateManyWithoutStudentInput" | "MultipleChoiceQuestionResponseCreateWithoutChoiceInput" | "MultipleChoiceQuestionResponseCreateWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionResponseCreateWithoutStudentInput" | "MultipleChoiceQuestionResponseFilter" | "MultipleChoiceQuestionResponseScalarWhereInput" | "MultipleChoiceQuestionResponseUpdateManyDataInput" | "MultipleChoiceQuestionResponseUpdateManyWithWhereNestedInput" | "MultipleChoiceQuestionResponseUpdateManyWithoutChoiceInput" | "MultipleChoiceQuestionResponseUpdateManyWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionResponseUpdateManyWithoutStudentInput" | "MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutChoiceInput" | "MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutStudentInput" | "MultipleChoiceQuestionResponseUpdateWithoutChoiceDataInput" | "MultipleChoiceQuestionResponseUpdateWithoutMultipleChoiceQuestionBlockDataInput" | "MultipleChoiceQuestionResponseUpdateWithoutStudentDataInput" | "MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutChoiceInput" | "MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutStudentInput" | "MultipleChoiceQuestionResponseWhereInput" | "MultipleChoiceQuestionResponseWhereUniqueInput" | "NullableStringFilter" | "PageCreateManyWithoutContentInput" | "PageCreateWithoutContentInput" | "PageFilter" | "PageScalarWhereInput" | "PageUpdateManyDataInput" | "PageUpdateManyWithWhereNestedInput" | "PageUpdateManyWithoutContentInput" | "PageUpdateWithWhereUniqueWithoutContentInput" | "PageUpdateWithoutContentDataInput" | "PageUpsertWithWhereUniqueWithoutContentInput" | "PageWhereInput" | "PageWhereUniqueInput" | "QuarterSlideCreateManyWithoutMainBlockInput" | "QuarterSlideCreateManyWithoutSideBlockInput" | "QuarterSlideCreateOneWithoutSlidesInput" | "QuarterSlideCreateWithoutMainBlockInput" | "QuarterSlideCreateWithoutSideBlockInput" | "QuarterSlideCreateWithoutSlidesInput" | "QuarterSlideFilter" | "QuarterSlideScalarWhereInput" | "QuarterSlideUpdateManyDataInput" | "QuarterSlideUpdateManyWithWhereNestedInput" | "QuarterSlideUpdateManyWithoutMainBlockInput" | "QuarterSlideUpdateManyWithoutSideBlockInput" | "QuarterSlideUpdateOneWithoutSlidesInput" | "QuarterSlideUpdateWithWhereUniqueWithoutMainBlockInput" | "QuarterSlideUpdateWithWhereUniqueWithoutSideBlockInput" | "QuarterSlideUpdateWithoutMainBlockDataInput" | "QuarterSlideUpdateWithoutSideBlockDataInput" | "QuarterSlideUpdateWithoutSlidesDataInput" | "QuarterSlideUpsertWithWhereUniqueWithoutMainBlockInput" | "QuarterSlideUpsertWithWhereUniqueWithoutSideBlockInput" | "QuarterSlideUpsertWithoutSlidesInput" | "QuarterSlideWhereInput" | "QuarterSlideWhereUniqueInput" | "RegisterUserInput" | "SendInvitationEmailInput" | "SingleSlideCreateManyWithoutBlockInput" | "SingleSlideCreateOneWithoutSlidesInput" | "SingleSlideCreateWithoutBlockInput" | "SingleSlideCreateWithoutSlidesInput" | "SingleSlideFilter" | "SingleSlideScalarWhereInput" | "SingleSlideUpdateManyDataInput" | "SingleSlideUpdateManyWithWhereNestedInput" | "SingleSlideUpdateManyWithoutBlockInput" | "SingleSlideUpdateOneWithoutSlidesInput" | "SingleSlideUpdateWithWhereUniqueWithoutBlockInput" | "SingleSlideUpdateWithoutBlockDataInput" | "SingleSlideUpdateWithoutSlidesDataInput" | "SingleSlideUpsertWithWhereUniqueWithoutBlockInput" | "SingleSlideUpsertWithoutSlidesInput" | "SingleSlideWhereInput" | "SingleSlideWhereUniqueInput" | "SlideCreateManyWithoutHalfSlideInput" | "SlideCreateManyWithoutLessonInput" | "SlideCreateManyWithoutQuarterSlideInput" | "SlideCreateManyWithoutSingleSlideInput" | "SlideCreateWithoutHalfSlideInput" | "SlideCreateWithoutLessonInput" | "SlideCreateWithoutQuarterSlideInput" | "SlideCreateWithoutSingleSlideInput" | "SlideFilter" | "SlideScalarWhereInput" | "SlideUpdateManyDataInput" | "SlideUpdateManyWithWhereNestedInput" | "SlideUpdateManyWithoutHalfSlideInput" | "SlideUpdateManyWithoutLessonInput" | "SlideUpdateManyWithoutQuarterSlideInput" | "SlideUpdateManyWithoutSingleSlideInput" | "SlideUpdateWithWhereUniqueWithoutHalfSlideInput" | "SlideUpdateWithWhereUniqueWithoutLessonInput" | "SlideUpdateWithWhereUniqueWithoutQuarterSlideInput" | "SlideUpdateWithWhereUniqueWithoutSingleSlideInput" | "SlideUpdateWithoutHalfSlideDataInput" | "SlideUpdateWithoutLessonDataInput" | "SlideUpdateWithoutQuarterSlideDataInput" | "SlideUpdateWithoutSingleSlideDataInput" | "SlideUpsertWithWhereUniqueWithoutHalfSlideInput" | "SlideUpsertWithWhereUniqueWithoutLessonInput" | "SlideUpsertWithWhereUniqueWithoutQuarterSlideInput" | "SlideUpsertWithWhereUniqueWithoutSingleSlideInput" | "SlideWhereInput" | "SlideWhereUniqueInput" | "StringFilter" | "StudentCreateManyWithoutCoursesInput" | "StudentCreateManyWithoutGuardiansInput" | "StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput" | "StudentCreateOneWithoutUserInput" | "StudentCreateWithoutCoursesInput" | "StudentCreateWithoutGuardiansInput" | "StudentCreateWithoutMultipleChoiceQuestionResponsesInput" | "StudentCreateWithoutUserInput" | "StudentFilter" | "StudentScalarWhereInput" | "StudentUpdateManyDataInput" | "StudentUpdateManyWithWhereNestedInput" | "StudentUpdateManyWithoutCoursesInput" | "StudentUpdateManyWithoutGuardiansInput" | "StudentUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput" | "StudentUpdateOneWithoutUserInput" | "StudentUpdateWithWhereUniqueWithoutCoursesInput" | "StudentUpdateWithWhereUniqueWithoutGuardiansInput" | "StudentUpdateWithoutCoursesDataInput" | "StudentUpdateWithoutGuardiansDataInput" | "StudentUpdateWithoutMultipleChoiceQuestionResponsesDataInput" | "StudentUpdateWithoutUserDataInput" | "StudentUpsertWithWhereUniqueWithoutCoursesInput" | "StudentUpsertWithWhereUniqueWithoutGuardiansInput" | "StudentUpsertWithoutMultipleChoiceQuestionResponsesInput" | "StudentUpsertWithoutUserInput" | "StudentWhereInput" | "StudentWhereUniqueInput" | "TextBlockCreateOneWithoutBlocksInput" | "TextBlockCreateWithoutBlocksInput" | "TextBlockUpdateOneWithoutBlocksInput" | "TextBlockUpdateWithoutBlocksDataInput" | "TextBlockUpsertWithoutBlocksInput" | "TextBlockWhereInput" | "TextBlockWhereUniqueInput" | "UpdateBlockToMultipleChoiceBlockInput" | "UpdateBlockToTextBlockInput" | "UserCreateOneWithoutGuardianInput" | "UserCreateOneWithoutInstructorInput" | "UserCreateOneWithoutStudentInput" | "UserCreateWithoutGuardianInput" | "UserCreateWithoutInstructorInput" | "UserCreateWithoutStudentInput" | "UserUpdateOneRequiredWithoutGuardianInput" | "UserUpdateOneRequiredWithoutInstructorInput" | "UserUpdateOneRequiredWithoutStudentInput" | "UserUpdateWithoutGuardianDataInput" | "UserUpdateWithoutInstructorDataInput" | "UserUpdateWithoutStudentDataInput" | "UserUpsertWithoutGuardianInput" | "UserUpsertWithoutInstructorInput" | "UserUpsertWithoutStudentInput" | "UserWhereInput" | "UserWhereUniqueInput";
+export type NexusGenInputNames = "AdminCreateOneWithoutUserInput" | "AdminCreateWithoutUserInput" | "AdminUpdateOneWithoutUserInput" | "AdminUpdateWithoutUserDataInput" | "AdminUpsertWithoutUserInput" | "AdminWhereInput" | "AdminWhereUniqueInput" | "AnswerMultipleChoiceQuestionBlockInput" | "BlockCreateManyWithoutMultipleChoiceQuestionBlockInput" | "BlockCreateOneWithoutHalfSlidesImplementingInput" | "BlockCreateOneWithoutHalfSlidesInput" | "BlockCreateOneWithoutQuarterSlidesImplementingInput" | "BlockCreateOneWithoutQuarterSlidesInput" | "BlockCreateOneWithoutSingleSlidesInput" | "BlockCreateWithoutHalfSlidesImplementingInput" | "BlockCreateWithoutHalfSlidesInput" | "BlockCreateWithoutMultipleChoiceQuestionBlockInput" | "BlockCreateWithoutQuarterSlidesImplementingInput" | "BlockCreateWithoutQuarterSlidesInput" | "BlockCreateWithoutSingleSlidesInput" | "BlockFilter" | "BlockScalarWhereInput" | "BlockUpdateManyDataInput" | "BlockUpdateManyWithWhereNestedInput" | "BlockUpdateManyWithoutMultipleChoiceQuestionBlockInput" | "BlockUpdateOneRequiredWithoutHalfSlidesImplementingInput" | "BlockUpdateOneRequiredWithoutHalfSlidesInput" | "BlockUpdateOneRequiredWithoutQuarterSlidesImplementingInput" | "BlockUpdateOneRequiredWithoutQuarterSlidesInput" | "BlockUpdateOneRequiredWithoutSingleSlidesInput" | "BlockUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput" | "BlockUpdateWithoutHalfSlidesDataInput" | "BlockUpdateWithoutHalfSlidesImplementingDataInput" | "BlockUpdateWithoutMultipleChoiceQuestionBlockDataInput" | "BlockUpdateWithoutQuarterSlidesDataInput" | "BlockUpdateWithoutQuarterSlidesImplementingDataInput" | "BlockUpdateWithoutSingleSlidesDataInput" | "BlockUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput" | "BlockUpsertWithoutHalfSlidesImplementingInput" | "BlockUpsertWithoutHalfSlidesInput" | "BlockUpsertWithoutQuarterSlidesImplementingInput" | "BlockUpsertWithoutQuarterSlidesInput" | "BlockUpsertWithoutSingleSlidesInput" | "BlockWhereInput" | "BlockWhereUniqueInput" | "BooleanFilter" | "ChoiceInput" | "ContentCreateManyWithoutCourseInput" | "ContentCreateWithoutCourseInput" | "ContentFilter" | "ContentScalarWhereInput" | "ContentUpdateManyDataInput" | "ContentUpdateManyWithWhereNestedInput" | "ContentUpdateManyWithoutCourseInput" | "ContentUpdateWithWhereUniqueWithoutCourseInput" | "ContentUpdateWithoutCourseDataInput" | "ContentUpsertWithWhereUniqueWithoutCourseInput" | "ContentWhereInput" | "ContentWhereUniqueInput" | "CourseCreateInput" | "CourseCreateManyWithoutInstructorsInput" | "CourseCreateManyWithoutStudentsInput" | "CourseCreateOneWithoutLessonPlanInput" | "CourseCreateWithoutInstructorsInput" | "CourseCreateWithoutLessonPlanInput" | "CourseCreateWithoutStudentsInput" | "CourseFilter" | "CourseScalarWhereInput" | "CourseUpdateInput" | "CourseUpdateManyDataInput" | "CourseUpdateManyWithWhereNestedInput" | "CourseUpdateManyWithoutInstructorsInput" | "CourseUpdateManyWithoutStudentsInput" | "CourseUpdateOneRequiredWithoutLessonPlanInput" | "CourseUpdateWithWhereUniqueWithoutInstructorsInput" | "CourseUpdateWithWhereUniqueWithoutStudentsInput" | "CourseUpdateWithoutInstructorsDataInput" | "CourseUpdateWithoutLessonPlanDataInput" | "CourseUpdateWithoutStudentsDataInput" | "CourseUpsertWithWhereUniqueWithoutInstructorsInput" | "CourseUpsertWithWhereUniqueWithoutStudentsInput" | "CourseUpsertWithoutLessonPlanInput" | "CourseWhereInput" | "CourseWhereUniqueInput" | "CreateSlideInput" | "DateTimeFilter" | "GuardianCreateManyWithoutStudentsInput" | "GuardianCreateOneWithoutUserInput" | "GuardianCreateWithoutStudentsInput" | "GuardianCreateWithoutUserInput" | "GuardianFilter" | "GuardianScalarWhereInput" | "GuardianUpdateManyDataInput" | "GuardianUpdateManyWithWhereNestedInput" | "GuardianUpdateManyWithoutStudentsInput" | "GuardianUpdateOneWithoutUserInput" | "GuardianUpdateWithWhereUniqueWithoutStudentsInput" | "GuardianUpdateWithoutStudentsDataInput" | "GuardianUpdateWithoutUserDataInput" | "GuardianUpsertWithWhereUniqueWithoutStudentsInput" | "GuardianUpsertWithoutUserInput" | "GuardianWhereInput" | "GuardianWhereUniqueInput" | "HalfSlideCreateManyWithoutFirstHalfBlockInput" | "HalfSlideCreateManyWithoutSecondHalfBlockInput" | "HalfSlideCreateOneWithoutSlidesInput" | "HalfSlideCreateWithoutFirstHalfBlockInput" | "HalfSlideCreateWithoutSecondHalfBlockInput" | "HalfSlideCreateWithoutSlidesInput" | "HalfSlideFilter" | "HalfSlideScalarWhereInput" | "HalfSlideUpdateManyDataInput" | "HalfSlideUpdateManyWithWhereNestedInput" | "HalfSlideUpdateManyWithoutFirstHalfBlockInput" | "HalfSlideUpdateManyWithoutSecondHalfBlockInput" | "HalfSlideUpdateOneWithoutSlidesInput" | "HalfSlideUpdateWithWhereUniqueWithoutFirstHalfBlockInput" | "HalfSlideUpdateWithWhereUniqueWithoutSecondHalfBlockInput" | "HalfSlideUpdateWithoutFirstHalfBlockDataInput" | "HalfSlideUpdateWithoutSecondHalfBlockDataInput" | "HalfSlideUpdateWithoutSlidesDataInput" | "HalfSlideUpsertWithWhereUniqueWithoutFirstHalfBlockInput" | "HalfSlideUpsertWithWhereUniqueWithoutSecondHalfBlockInput" | "HalfSlideUpsertWithoutSlidesInput" | "HalfSlideWhereInput" | "HalfSlideWhereUniqueInput" | "InstructorCreateManyWithoutCoursesInput" | "InstructorCreateOneWithoutUserInput" | "InstructorCreateWithoutCoursesInput" | "InstructorCreateWithoutUserInput" | "InstructorFilter" | "InstructorScalarWhereInput" | "InstructorUpdateManyDataInput" | "InstructorUpdateManyWithWhereNestedInput" | "InstructorUpdateManyWithoutCoursesInput" | "InstructorUpdateOneWithoutUserInput" | "InstructorUpdateWithWhereUniqueWithoutCoursesInput" | "InstructorUpdateWithoutCoursesDataInput" | "InstructorUpdateWithoutUserDataInput" | "InstructorUpsertWithWhereUniqueWithoutCoursesInput" | "InstructorUpsertWithoutUserInput" | "InstructorWhereInput" | "InstructorWhereUniqueInput" | "LessonCreateInput" | "LessonCreateManyWithoutLessonPlanInput" | "LessonCreateOneWithoutSlidesInput" | "LessonCreateWithoutLessonPlanInput" | "LessonCreateWithoutSlidesInput" | "LessonFilter" | "LessonPlanCreateOneWithoutCourseInput" | "LessonPlanCreateOneWithoutLessonsInput" | "LessonPlanCreateWithoutCourseInput" | "LessonPlanCreateWithoutLessonsInput" | "LessonPlanUpdateInput" | "LessonPlanUpdateOneRequiredWithoutCourseInput" | "LessonPlanUpdateOneWithoutLessonsInput" | "LessonPlanUpdateWithoutCourseDataInput" | "LessonPlanUpdateWithoutLessonsDataInput" | "LessonPlanUpsertWithoutCourseInput" | "LessonPlanUpsertWithoutLessonsInput" | "LessonPlanWhereInput" | "LessonPlanWhereUniqueInput" | "LessonScalarWhereInput" | "LessonUpdateManyDataInput" | "LessonUpdateManyWithWhereNestedInput" | "LessonUpdateManyWithoutLessonPlanInput" | "LessonUpdateOneWithoutSlidesInput" | "LessonUpdateWithWhereUniqueWithoutLessonPlanInput" | "LessonUpdateWithoutLessonPlanDataInput" | "LessonUpdateWithoutSlidesDataInput" | "LessonUpsertWithWhereUniqueWithoutLessonPlanInput" | "LessonUpsertWithoutSlidesInput" | "LessonWhereInput" | "LessonWhereUniqueInput" | "LogInInput" | "MultipleChoiceQuestionBlockCreateOneWithoutBlocksInput" | "MultipleChoiceQuestionBlockCreateOneWithoutChoicesInput" | "MultipleChoiceQuestionBlockCreateOneWithoutResponsesInput" | "MultipleChoiceQuestionBlockCreateWithoutBlocksInput" | "MultipleChoiceQuestionBlockCreateWithoutChoicesInput" | "MultipleChoiceQuestionBlockCreateWithoutResponsesInput" | "MultipleChoiceQuestionBlockUpdateOneWithoutBlocksInput" | "MultipleChoiceQuestionBlockUpdateOneWithoutChoicesInput" | "MultipleChoiceQuestionBlockUpdateOneWithoutResponsesInput" | "MultipleChoiceQuestionBlockUpdateWithoutBlocksDataInput" | "MultipleChoiceQuestionBlockUpdateWithoutChoicesDataInput" | "MultipleChoiceQuestionBlockUpdateWithoutResponsesDataInput" | "MultipleChoiceQuestionBlockUpsertWithoutBlocksInput" | "MultipleChoiceQuestionBlockUpsertWithoutChoicesInput" | "MultipleChoiceQuestionBlockUpsertWithoutResponsesInput" | "MultipleChoiceQuestionBlockWhereInput" | "MultipleChoiceQuestionBlockWhereUniqueInput" | "MultipleChoiceQuestionChoiceCreateManyWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionChoiceCreateOneWithoutMultipleChoiceQuestionResponsesInput" | "MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionChoiceCreateWithoutMultipleChoiceQuestionResponsesInput" | "MultipleChoiceQuestionChoiceFilter" | "MultipleChoiceQuestionChoiceScalarWhereInput" | "MultipleChoiceQuestionChoiceUpdateManyDataInput" | "MultipleChoiceQuestionChoiceUpdateManyWithWhereNestedInput" | "MultipleChoiceQuestionChoiceUpdateManyWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionChoiceUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput" | "MultipleChoiceQuestionChoiceUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionBlockDataInput" | "MultipleChoiceQuestionChoiceUpdateWithoutMultipleChoiceQuestionResponsesDataInput" | "MultipleChoiceQuestionChoiceUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionChoiceUpsertWithoutMultipleChoiceQuestionResponsesInput" | "MultipleChoiceQuestionChoiceWhereInput" | "MultipleChoiceQuestionChoiceWhereUniqueInput" | "MultipleChoiceQuestionResponseCreateManyWithoutChoiceInput" | "MultipleChoiceQuestionResponseCreateManyWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionResponseCreateManyWithoutStudentInput" | "MultipleChoiceQuestionResponseCreateWithoutChoiceInput" | "MultipleChoiceQuestionResponseCreateWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionResponseCreateWithoutStudentInput" | "MultipleChoiceQuestionResponseFilter" | "MultipleChoiceQuestionResponseScalarWhereInput" | "MultipleChoiceQuestionResponseUpdateManyDataInput" | "MultipleChoiceQuestionResponseUpdateManyWithWhereNestedInput" | "MultipleChoiceQuestionResponseUpdateManyWithoutChoiceInput" | "MultipleChoiceQuestionResponseUpdateManyWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionResponseUpdateManyWithoutStudentInput" | "MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutChoiceInput" | "MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionResponseUpdateWithWhereUniqueWithoutStudentInput" | "MultipleChoiceQuestionResponseUpdateWithoutChoiceDataInput" | "MultipleChoiceQuestionResponseUpdateWithoutMultipleChoiceQuestionBlockDataInput" | "MultipleChoiceQuestionResponseUpdateWithoutStudentDataInput" | "MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutChoiceInput" | "MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutMultipleChoiceQuestionBlockInput" | "MultipleChoiceQuestionResponseUpsertWithWhereUniqueWithoutStudentInput" | "MultipleChoiceQuestionResponseWhereInput" | "MultipleChoiceQuestionResponseWhereUniqueInput" | "NullableStringFilter" | "PageCreateManyWithoutContentInput" | "PageCreateWithoutContentInput" | "PageFilter" | "PageScalarWhereInput" | "PageUpdateManyDataInput" | "PageUpdateManyWithWhereNestedInput" | "PageUpdateManyWithoutContentInput" | "PageUpdateWithWhereUniqueWithoutContentInput" | "PageUpdateWithoutContentDataInput" | "PageUpsertWithWhereUniqueWithoutContentInput" | "PageWhereInput" | "PageWhereUniqueInput" | "QuarterSlideCreateManyWithoutMainBlockInput" | "QuarterSlideCreateManyWithoutSideBlockInput" | "QuarterSlideCreateOneWithoutSlidesInput" | "QuarterSlideCreateWithoutMainBlockInput" | "QuarterSlideCreateWithoutSideBlockInput" | "QuarterSlideCreateWithoutSlidesInput" | "QuarterSlideFilter" | "QuarterSlideScalarWhereInput" | "QuarterSlideUpdateManyDataInput" | "QuarterSlideUpdateManyWithWhereNestedInput" | "QuarterSlideUpdateManyWithoutMainBlockInput" | "QuarterSlideUpdateManyWithoutSideBlockInput" | "QuarterSlideUpdateOneWithoutSlidesInput" | "QuarterSlideUpdateWithWhereUniqueWithoutMainBlockInput" | "QuarterSlideUpdateWithWhereUniqueWithoutSideBlockInput" | "QuarterSlideUpdateWithoutMainBlockDataInput" | "QuarterSlideUpdateWithoutSideBlockDataInput" | "QuarterSlideUpdateWithoutSlidesDataInput" | "QuarterSlideUpsertWithWhereUniqueWithoutMainBlockInput" | "QuarterSlideUpsertWithWhereUniqueWithoutSideBlockInput" | "QuarterSlideUpsertWithoutSlidesInput" | "QuarterSlideWhereInput" | "QuarterSlideWhereUniqueInput" | "RegisterUserInput" | "SendInvitationEmailInput" | "SingleSlideCreateManyWithoutBlockInput" | "SingleSlideCreateOneWithoutSlidesInput" | "SingleSlideCreateWithoutBlockInput" | "SingleSlideCreateWithoutSlidesInput" | "SingleSlideFilter" | "SingleSlideScalarWhereInput" | "SingleSlideUpdateManyDataInput" | "SingleSlideUpdateManyWithWhereNestedInput" | "SingleSlideUpdateManyWithoutBlockInput" | "SingleSlideUpdateOneWithoutSlidesInput" | "SingleSlideUpdateWithWhereUniqueWithoutBlockInput" | "SingleSlideUpdateWithoutBlockDataInput" | "SingleSlideUpdateWithoutSlidesDataInput" | "SingleSlideUpsertWithWhereUniqueWithoutBlockInput" | "SingleSlideUpsertWithoutSlidesInput" | "SingleSlideWhereInput" | "SingleSlideWhereUniqueInput" | "SlideCreateManyWithoutHalfSlideInput" | "SlideCreateManyWithoutLessonInput" | "SlideCreateManyWithoutQuarterSlideInput" | "SlideCreateManyWithoutSingleSlideInput" | "SlideCreateWithoutHalfSlideInput" | "SlideCreateWithoutLessonInput" | "SlideCreateWithoutQuarterSlideInput" | "SlideCreateWithoutSingleSlideInput" | "SlideFilter" | "SlideScalarWhereInput" | "SlideUpdateManyDataInput" | "SlideUpdateManyWithWhereNestedInput" | "SlideUpdateManyWithoutHalfSlideInput" | "SlideUpdateManyWithoutLessonInput" | "SlideUpdateManyWithoutQuarterSlideInput" | "SlideUpdateManyWithoutSingleSlideInput" | "SlideUpdateWithWhereUniqueWithoutHalfSlideInput" | "SlideUpdateWithWhereUniqueWithoutLessonInput" | "SlideUpdateWithWhereUniqueWithoutQuarterSlideInput" | "SlideUpdateWithWhereUniqueWithoutSingleSlideInput" | "SlideUpdateWithoutHalfSlideDataInput" | "SlideUpdateWithoutLessonDataInput" | "SlideUpdateWithoutQuarterSlideDataInput" | "SlideUpdateWithoutSingleSlideDataInput" | "SlideUpsertWithWhereUniqueWithoutHalfSlideInput" | "SlideUpsertWithWhereUniqueWithoutLessonInput" | "SlideUpsertWithWhereUniqueWithoutQuarterSlideInput" | "SlideUpsertWithWhereUniqueWithoutSingleSlideInput" | "SlideWhereInput" | "SlideWhereUniqueInput" | "StringFilter" | "StudentCreateManyWithoutCoursesInput" | "StudentCreateManyWithoutGuardiansInput" | "StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput" | "StudentCreateOneWithoutUserInput" | "StudentCreateWithoutCoursesInput" | "StudentCreateWithoutGuardiansInput" | "StudentCreateWithoutMultipleChoiceQuestionResponsesInput" | "StudentCreateWithoutUserInput" | "StudentFilter" | "StudentScalarWhereInput" | "StudentUpdateManyDataInput" | "StudentUpdateManyWithWhereNestedInput" | "StudentUpdateManyWithoutCoursesInput" | "StudentUpdateManyWithoutGuardiansInput" | "StudentUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput" | "StudentUpdateOneWithoutUserInput" | "StudentUpdateWithWhereUniqueWithoutCoursesInput" | "StudentUpdateWithWhereUniqueWithoutGuardiansInput" | "StudentUpdateWithoutCoursesDataInput" | "StudentUpdateWithoutGuardiansDataInput" | "StudentUpdateWithoutMultipleChoiceQuestionResponsesDataInput" | "StudentUpdateWithoutUserDataInput" | "StudentUpsertWithWhereUniqueWithoutCoursesInput" | "StudentUpsertWithWhereUniqueWithoutGuardiansInput" | "StudentUpsertWithoutMultipleChoiceQuestionResponsesInput" | "StudentUpsertWithoutUserInput" | "StudentWhereInput" | "StudentWhereUniqueInput" | "TextBlockCreateOneWithoutBlocksInput" | "TextBlockCreateWithoutBlocksInput" | "TextBlockUpdateOneWithoutBlocksInput" | "TextBlockUpdateWithoutBlocksDataInput" | "TextBlockUpsertWithoutBlocksInput" | "TextBlockWhereInput" | "TextBlockWhereUniqueInput" | "UpdateBlockToMultipleChoiceBlockInput" | "UpdateBlockToTextBlockInput" | "UserCreateOneWithoutGuardianInput" | "UserCreateOneWithoutInstructorInput" | "UserCreateOneWithoutStudentInput" | "UserCreateWithoutGuardianInput" | "UserCreateWithoutInstructorInput" | "UserCreateWithoutStudentInput" | "UserUpdateOneRequiredWithoutGuardianInput" | "UserUpdateOneRequiredWithoutInstructorInput" | "UserUpdateOneRequiredWithoutStudentInput" | "UserUpdateWithoutGuardianDataInput" | "UserUpdateWithoutInstructorDataInput" | "UserUpdateWithoutStudentDataInput" | "UserUpsertWithoutGuardianInput" | "UserUpsertWithoutInstructorInput" | "UserUpsertWithoutStudentInput" | "UserWhereInput" | "UserWhereUniqueInput";
 
 export type NexusGenEnumNames = "GradeLevel";
 
@@ -2970,7 +2981,7 @@ export type NexusGenScalarNames = "Boolean" | "DateTime" | "Float" | "ID" | "Int
 export type NexusGenUnionNames = "Block";
 
 export interface NexusGenTypes {
-  context: {};
+  context: any;
   inputTypes: NexusGenInputs;
   rootTypes: NexusGenRootTypes;
   argTypes: NexusGenArgTypes;
