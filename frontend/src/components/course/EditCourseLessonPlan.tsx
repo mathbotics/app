@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Input } from "antd";
+import { Layout } from "antd";
 import { createFragmentContainer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
 import { EditCourseLessonPlan_lessonPlan } from "./__generated__/EditCourseLessonPlan_lessonPlan.graphql";
@@ -44,6 +44,7 @@ const Wrapper = styled(Layout)`
 export default createFragmentContainer(EditCourseLessonPlan, {
   lessonPlan: graphql`
     fragment EditCourseLessonPlan_lessonPlan on LessonPlan {
+      id
       lessons {
         id
       }

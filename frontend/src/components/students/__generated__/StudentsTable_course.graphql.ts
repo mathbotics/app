@@ -3,9 +3,10 @@
 
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type GradeLevel = "%future added value" | "%future added value" | "%future added value" | "%future added value" | "%future added value" | "EIGHTH" | "ELEVENTH" | "FIFTH" | "FIRST" | "FOURTH" | "NINTH" | "SECOND" | "SEVENTH" | "SIXTH" | "TENTH" | "THIRD" | "TWELFTH" | "%future added value";
+export type GradeLevel = "%future added value" | "%future added value" | "%future added value" | "%future added value" | "%future added value" | "%future added value" | "EIGHTH" | "ELEVENTH" | "FIFTH" | "FIRST" | "FOURTH" | "NINTH" | "SECOND" | "SEVENTH" | "SIXTH" | "TENTH" | "THIRD" | "TWELFTH" | "%future added value";
 export type StudentsTable_course = {
     readonly students: ReadonlyArray<{
+        readonly username: string;
         readonly firstName: string;
         readonly lastName: string;
         readonly gradeLevel: GradeLevel;
@@ -39,6 +40,13 @@ const node: ReaderFragment = {
         {
           "kind": "ScalarField",
           "alias": null,
+          "name": "username",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
           "name": "firstName",
           "args": null,
           "storageKey": null
@@ -61,5 +69,5 @@ const node: ReaderFragment = {
     }
   ]
 };
-(node as any).hash = 'bbbf7d13caed17969e5a3c2c42696a6d';
+(node as any).hash = 'a6498bc9c44791aa33ace0767f4660d2';
 export default node;

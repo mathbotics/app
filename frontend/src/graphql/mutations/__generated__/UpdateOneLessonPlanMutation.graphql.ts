@@ -1,8 +1,9 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 050c48fb508ff7c10bad704cdcf324ca */
+/* @relayHash 81b31db9fa59b7307153ccdc1444195a */
 
 import { ConcreteRequest } from "relay-runtime";
+import { FragmentRefs } from "relay-runtime";
 export type GradeLevel = "%future added value" | "EIGHTH" | "ELEVENTH" | "FIFTH" | "FIRST" | "FOURTH" | "NINTH" | "SECOND" | "SEVENTH" | "SIXTH" | "TENTH" | "THIRD" | "TWELFTH" | "%future added value";
 export type LessonPlanUpdateInput = {
     course?: CourseUpdateOneRequiredWithoutLessonPlanInput | null;
@@ -2190,6 +2191,7 @@ export type UpdateOneLessonPlanMutationVariables = {
 export type UpdateOneLessonPlanMutationResponse = {
     readonly updateOneLessonPlan: {
         readonly id: string;
+        readonly " $fragmentRefs": FragmentRefs<"EditCourseLessonPlan_lessonPlan">;
     } | null;
 };
 export type UpdateOneLessonPlanMutation = {
@@ -2206,6 +2208,35 @@ mutation UpdateOneLessonPlanMutation(
 ) {
   updateOneLessonPlan(data: $data, where: $where) {
     id
+    ...EditCourseLessonPlan_lessonPlan
+  }
+}
+
+fragment EditCourseLessonPlan_lessonPlan on LessonPlan {
+  id
+  lessons {
+    id
+  }
+  ...LessonPlanSidebar_lessonPlan
+  ...LessonPlanCatalogue_lessonPlan
+}
+
+fragment LessonPlanCatalogue_lessonPlan on LessonPlan {
+  id
+  lessons {
+    id
+  }
+}
+
+fragment LessonPlanSidebar_lessonPlan on LessonPlan {
+  id
+  lessons {
+    id
+    title
+    slides {
+      __typename
+      id
+    }
   }
 }
 */
@@ -2227,35 +2258,23 @@ var v0 = [
 ],
 v1 = [
   {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "updateOneLessonPlan",
-    "storageKey": null,
-    "args": [
-      {
-        "kind": "Variable",
-        "name": "data",
-        "variableName": "data"
-      },
-      {
-        "kind": "Variable",
-        "name": "where",
-        "variableName": "where"
-      }
-    ],
-    "concreteType": "LessonPlan",
-    "plural": false,
-    "selections": [
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "id",
-        "args": null,
-        "storageKey": null
-      }
-    ]
+    "kind": "Variable",
+    "name": "data",
+    "variableName": "data"
+  },
+  {
+    "kind": "Variable",
+    "name": "where",
+    "variableName": "where"
   }
-];
+],
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
 return {
   "kind": "Request",
   "fragment": {
@@ -2264,22 +2283,91 @@ return {
     "type": "Mutation",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "updateOneLessonPlan",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "LessonPlan",
+        "plural": false,
+        "selections": [
+          (v2/*: any*/),
+          {
+            "kind": "FragmentSpread",
+            "name": "EditCourseLessonPlan_lessonPlan",
+            "args": null
+          }
+        ]
+      }
+    ]
   },
   "operation": {
     "kind": "Operation",
     "name": "UpdateOneLessonPlanMutation",
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "updateOneLessonPlan",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "LessonPlan",
+        "plural": false,
+        "selections": [
+          (v2/*: any*/),
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "lessons",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Lesson",
+            "plural": true,
+            "selections": [
+              (v2/*: any*/),
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "title",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "slides",
+                "storageKey": null,
+                "args": null,
+                "concreteType": null,
+                "plural": true,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "__typename",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  (v2/*: any*/)
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   "params": {
     "operationKind": "mutation",
     "name": "UpdateOneLessonPlanMutation",
     "id": null,
-    "text": "mutation UpdateOneLessonPlanMutation(\n  $data: LessonPlanUpdateInput!\n  $where: LessonPlanWhereUniqueInput!\n) {\n  updateOneLessonPlan(data: $data, where: $where) {\n    id\n  }\n}\n",
+    "text": "mutation UpdateOneLessonPlanMutation(\n  $data: LessonPlanUpdateInput!\n  $where: LessonPlanWhereUniqueInput!\n) {\n  updateOneLessonPlan(data: $data, where: $where) {\n    id\n    ...EditCourseLessonPlan_lessonPlan\n  }\n}\n\nfragment EditCourseLessonPlan_lessonPlan on LessonPlan {\n  id\n  lessons {\n    id\n  }\n  ...LessonPlanSidebar_lessonPlan\n  ...LessonPlanCatalogue_lessonPlan\n}\n\nfragment LessonPlanCatalogue_lessonPlan on LessonPlan {\n  id\n  lessons {\n    id\n  }\n}\n\nfragment LessonPlanSidebar_lessonPlan on LessonPlan {\n  id\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '43d3339226bbc2d6efa97b3891637bc7';
+(node as any).hash = '11d3d65316ac9990875a5b9aa6ecd014';
 export default node;

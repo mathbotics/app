@@ -63,6 +63,7 @@ export default createFragmentContainer(LessonsTable, {
   course: graphql`
     fragment StudentsTable_course on Course {
       students {
+        username
         firstName
         lastName
         gradeLevel

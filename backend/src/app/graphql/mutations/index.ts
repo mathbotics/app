@@ -8,6 +8,7 @@ export * from './createSlide';
 export * from './updateBlockToMultipleChoiceBlock';
 export * from './updateBlockToTextBlock';
 export * from './answerMultipleChoiceQuestionBlock';
+export * from './createStudent';
 
 export const mutation = extendType({
   type: 'Mutation',

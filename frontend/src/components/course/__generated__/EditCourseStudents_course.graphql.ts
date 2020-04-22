@@ -4,6 +4,7 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type EditCourseStudents_course = {
+    readonly id: string;
     readonly " $fragmentRefs": FragmentRefs<"StudentsTable_course">;
     readonly " $refType": "EditCourseStudents_course";
 };
@@ -23,11 +24,18 @@ const node: ReaderFragment = {
   "argumentDefinitions": [],
   "selections": [
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "id",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "FragmentSpread",
       "name": "StudentsTable_course",
       "args": null
     }
   ]
 };
-(node as any).hash = 'bdfcf0b5d72b21053aca34bcf0a283c2';
+(node as any).hash = 'b6f57ff46a4af64bad5ea189dbc6f9bc';
 export default node;

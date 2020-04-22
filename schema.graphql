@@ -677,6 +677,15 @@ input CreateSlideInput {
   title: String!
 }
 
+input CreateStudentInput {
+  courseId: String!
+  firstName: String!
+  gradeLevel: GradeLevel!
+  lastName: String!
+  password: String!
+  username: String!
+}
+
 scalar DateTime
 
 input DateTimeFilter {
@@ -1733,6 +1742,7 @@ type Mutation {
   createOneCourse(data: CourseCreateInput!): Course!
   createOneLesson(data: LessonCreateInput!): Lesson!
   createSlide(input: CreateSlideInput!): Slide!
+  createStudent(input: CreateStudentInput!): Student!
   logIn(input: LogInInput!): User!
   registerUser(input: RegisterUserInput!): User!
   sendInvitationEmail(input: SendInvitationEmailInput!): String!

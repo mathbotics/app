@@ -4,7 +4,8 @@ import { Modal } from "antd";
 import { Store } from "rc-field-form/lib/interface";
 
 import { CreateStudentForm } from "../form/CreateStudentForm";
-import { commit as commitCreateOneLessonMutation } from "../../graphql/mutations/CreateOneLessonMutation";
+import { commit as commitCreateStudentMutation } from "../../graphql/mutations/CreateStudentMutation";
+import { CreateStudentInput } from "../../graphql/mutations/__generated__/CreateStudentMutation.graphql";
 
 type ModalProps = {
   title: string;
@@ -12,7 +13,7 @@ type ModalProps = {
   onSubmitSuccess: () => void;
   onSubmitError: (e: any) => void;
   onCancel: () => void;
-  rootDataID: DataID;
+  courseId: string;
 };
 export default ({
   title,
@@ -20,15 +21,14 @@ export default ({
   onSubmitSuccess,
   onSubmitError,
   onCancel,
-  rootDataID,
+  courseId,
 }: ModalProps) => {
-  const onSubmit = ({ firstName }: Store) => console.log({ firstName });
-  // commitCreateOneStudentMutation(
-  //   { data: { } },
-  //   onSubmitSuccess,
-  //   onSubmitError,
-  //   rootDataID
-  // );
+  const onSubmit = (formData: Store) =>
+    commitCreateStudentMutation(
+      { ...formData, courseId } as CreateStudentInput,
+      onSubmitSuccess,
+      onSubmitError
+    );
   return (
     <Modal visible={visible} title={title} onCancel={onCancel} footer={[]}>
       <CreateStudentForm onSubmit={onSubmit} onSubmitError={onSubmitError} />

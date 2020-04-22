@@ -11,6 +11,7 @@ const mutation = graphql`
   ) {
     updateOneLessonPlan(data: $data, where: $where) {
       id
+      ...EditCourseLessonPlan_lessonPlan
     }
   }
 `;

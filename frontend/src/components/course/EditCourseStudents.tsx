@@ -3,12 +3,10 @@ import { Layout, Button } from "antd";
 import { UserAddOutlined } from "@ant-design/icons";
 import { createFragmentContainer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
-import StudentsTable from "../students/StudentsTable";
-import { getRootQueryDataID } from "../../graphql/relay";
 
+import StudentsTable from "../students/StudentsTable";
 import { EditCourseStudents_course } from "./__generated__/EditCourseStudents_course.graphql";
 import AddStudentModal from "../students/AddStudentModal";
-import { CoursesPageQuery } from "../../pages";
 
 type Props = { course: EditCourseStudents_course };
 const EditCourseStudents = ({ course }: Props) => {
@@ -26,8 +24,8 @@ const EditCourseStudents = ({ course }: Props) => {
       <AddStudentModal
         title="Add student"
         visible={isModalOpen}
-        rootDataID={getRootQueryDataID(CoursesPageQuery, {})}
-        onSubmitSuccess={() => console.log("Success")}
+        courseId={course.id}
+        onSubmitSuccess={() => toggleModal(false)}
         onSubmitError={(e: Error) => console.error(e)}
         onCancel={() => toggleModal(!isModalOpen)}
       />
@@ -39,6 +37,7 @@ const EditCourseStudents = ({ course }: Props) => {
 export default createFragmentContainer(EditCourseStudents, {
   course: graphql`
     fragment EditCourseStudents_course on Course {
+      id
       ...StudentsTable_course
     }
   `,
