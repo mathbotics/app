@@ -7,20 +7,41 @@ import { EditorSlidePreview_slide } from "./__generated__/EditorSlidePreview_sli
 import { Block } from "../../types/Block";
 import Slide from "./Slide";
 import styled from "styled-components";
+import nullthrows from "nullthrows";
 
 type Props = {
-  onSelectBlock: (block: Block) => void; // This onClick should return a block to edit
+  onSelectBlock?: (block: Block) => void; // This onClick should return a block to edit
+  editing?: boolean;
   slide?: EditorSlidePreview_slide;
   selectedBlock?: Block;
 };
-const EditorSlidePreview = ({ onSelectBlock, selectedBlock, slide }: Props) => (
+const EditorSlidePreview = ({
+  editing = false,
+  onSelectBlock,
+  selectedBlock,
+  slide,
+}: Props) => (
   <Wrapper>
     {slide ? (
       <Slide
         preview={false}
-        onSelectBlock={onSelectBlock}
+        onSelectBlock={
+          editing
+            ? nullthrows(
+                onSelectBlock,
+                "onSelectBlock must be provided if editing is true"
+              )
+            : undefined
+        }
         slide={slide}
-        selectedBlock={selectedBlock}
+        selectedBlock={
+          editing
+            ? nullthrows(
+                selectedBlock,
+                "selectedBlock must be provided if editing is true"
+              )
+            : undefined
+        }
       />
     ) : (
       <div

@@ -6,6 +6,7 @@ import { createFragmentContainer } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
 import Slide from "./Slide";
 import { SlidesSidebar_lesson } from "./__generated__/SlidesSidebar_lesson.graphql";
+import nullthrows from "nullthrows";
 
 const MenuItem = styled(Menu.Item)`
   width: 100% !important;
@@ -43,7 +44,7 @@ const SidebarHeader = ({ title }: SidebarHeaderProps) => (
         whiteSpace: "nowrap",
         overflow: "hidden",
         textOverflow: "ellipsis",
-        paddingLeft: "15px"
+        paddingLeft: "15px",
       }}
     >
       <BookOutlined /> {title}
@@ -69,10 +70,16 @@ export type SlideMenuItem = {
 const { Sider, Content } = Layout;
 type Props = {
   lesson: SlidesSidebar_lesson;
-  onCreate: () => void;
-  onEdit: (id: string) => void;
+  onCreate?: () => void;
+  editing?: boolean;
+  onClick: (id: string) => void;
 };
-const SlidesSidebar = ({ lesson, onCreate, onEdit }: Props) => {
+const SlidesSidebar = ({
+  lesson,
+  editing = false,
+  onCreate,
+  onClick,
+}: Props) => {
   const [selected, setSelected] = useState<string | undefined>(
     lesson.slides[0]?.id
   );
@@ -82,16 +89,26 @@ const SlidesSidebar = ({ lesson, onCreate, onEdit }: Props) => {
       <SidebarHeader title={lesson.title} />
       <Menu defaultSelectedKeys={[selected?.toString() ?? ""]} mode="inline">
         {/* This is the add slide which should always show up on top */}
-        <MenuItem key={-1} onClick={() => onCreate()}>
-          <CreateSlideCard />
-        </MenuItem>
+        {editing && (
+          <MenuItem
+            key={-1}
+            onClick={() =>
+              nullthrows(
+                onCreate,
+                "An onCreate function must be provided if editing is true"
+              )()
+            }
+          >
+            <CreateSlideCard />
+          </MenuItem>
+        )}
 
         {/* This is the rest of the slides */}
         {lesson.slides.map((slide, index: number) => (
           <MenuItem
             key={index}
             onClick={() => {
-              onEdit(slide.id);
+              onClick(slide.id);
               setSelected(slide.id);
             }}
           >
@@ -100,13 +117,17 @@ const SlidesSidebar = ({ lesson, onCreate, onEdit }: Props) => {
                 style={{
                   margin: "auto",
                   paddingRight: "20px",
-                  fontWeight: "bolder"
+                  fontWeight: "bolder",
                 }}
               >
                 {index + 1}
               </h1>
               <SlideCard>
-                <Slide preview selected={slide.id === selected} slide={slide} />
+                <Slide
+                  preview={editing}
+                  selected={slide.id === selected}
+                  slide={slide}
+                />
               </SlideCard>
             </div>
           </MenuItem>
@@ -125,5 +146,5 @@ export default createFragmentContainer(SlidesSidebar, {
         ...Slide_slide
       }
     }
-  `
+  `,
 });

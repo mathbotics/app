@@ -587,7 +587,6 @@ export interface NexusGenInputs {
     firstName: string; // String!
     gradeLevel: NexusGenEnums['GradeLevel']; // GradeLevel!
     lastName: string; // String!
-    password: string; // String!
     username: string; // String!
   }
   DateTimeFilter: { // input type

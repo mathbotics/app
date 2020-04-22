@@ -8,3 +8,4 @@ export * from "./SlidesPage";
 export * from "./AdminPage";
 export * from "./CoursesPage";
 export * from "./EditCoursePage";
+export * from "./LessonPage";

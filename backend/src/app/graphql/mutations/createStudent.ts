@@ -10,9 +10,6 @@ export const CreateStudentInput = inputObjectType({
     t.string('username', {
       required: true,
     });
-    t.string('password', {
-      required: true,
-    });
     t.string('firstName', {
       required: true,
     });
@@ -36,9 +33,7 @@ export const createStudent = mutationField('createStudent', {
   },
   async resolve(
     _root,
-    {
-      input: { username, password, firstName, courseId, lastName, gradeLevel },
-    },
+    { input: { username, firstName, courseId, lastName, gradeLevel } },
   ) {
     const { user, ...student } = nullthrows(
       await prisma.student.create({
@@ -46,7 +41,10 @@ export const createStudent = mutationField('createStudent', {
           user: {
             create: {
               username,
-              password: await bcrypt.hash(password, 10),
+              password: await bcrypt.hash(
+                `${firstName.charAt(0)}${lastName}`,
+                10,
+              ),
               firstName,
               lastName,
             },

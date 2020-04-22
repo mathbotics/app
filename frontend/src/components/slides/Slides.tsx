@@ -40,15 +40,17 @@ const Slides = (props: SlidesProps): JSX.Element => {
   return (
     <Layout style={{ height: "92vh" }}>
       <SlidesSidebar
+        editing={true}
         lesson={props.lesson}
         onCreate={() => setPageState(PageState.CreateSlide)}
-        onEdit={(id: string) => {
+        onClick={(id: string) => {
           setPageState(PageState.EditSlide);
           setSelectedSlideId(id);
         }}
       />
       <EditorSlidePreview
         slide={props.lesson.slides.find(({ id }) => id === selectedSlideId)}
+        editing={true}
         onSelectBlock={onSelectBlock}
         selectedBlock={selectedBlock}
       />
