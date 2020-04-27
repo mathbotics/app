@@ -6,13 +6,8 @@ The Mathbotics backend is a GraphQL api with ApolloServer to expose the graphql 
 
 - prisma: Contains the prisma.schema and all the migrations (explanation in the user manual).
 - scripts: Contains index.html which will serve up the page rendering a single element by the id of "root"
-- src: Where the react code lives
-  - components: React Components used within the Mathbotics application
-    - data: Components related to the blocks
-    - graphql: Components related to the course/courses
-    - provider: Components related to the dashboard
-    - server: Where most of the form components are stored
-    - utils: Where things that do not pertain to the scope of the project reside. BE VERY WARY OF PUTTING THINGS IN HERE (utils folders tend to become a dump for things that have no better place, leading to poor design and structure).
+- src:
+  - data: Where the services relating to data retrieval exist.
   - graphql: Where things relating to graphql reside, this is where the "endpoints" and objects reside.
     - context: The context type resides here -- the context is passed with every single request to the resolve function of every single field.
     - mutations: These are fields that change the state of the application (they "do" things rather than "get" things).
@@ -26,6 +21,11 @@ The Mathbotics backend is a GraphQL api with ApolloServer to expose the graphql 
       - graphql: These process the request at a GraphQL level (after the graphql has been validated and parsed).
         - authentication.ts: This grabs the user returned from the logIn mutation and attaches its userId to the request's cookies to be fetched by the passport middleware.
         - permissions.ts: This uses GraphQL shield to set field-level permissions. At the time of writing, there are no permissions here, so the entire API may be accessed by any authenticated actor, this must be changed to only allow access to certain fields to certain actors.
+    - factories: Code to create database entities.
+    - seeders: Scripts to run code that creates database entities.
+    - tests: Code to test other code. Run `yarn test` to run the tests.
+      - integration: Code to test the an entire feature of the backend from top to bottom (query/mutation to response).
+      - unit: Code to tests specific functions of the application. Please read https://testing.googleblog.com/2014/03/testing-on-toilet-what-makes-good-test.html and abide by it before writing tests. Bad tests are worse than no tests. In general, a unit test should test a SINGLE path down a function, try to maintain this for integration tests as well.
 
 ## Installation Guide / Enviornment Setup:
 
@@ -38,6 +38,8 @@ The Mathbotics backend is a GraphQL api with ApolloServer to expose the graphql 
 - Generating gql type: If you add any mutation, query, or object, make sure that it is exported at the queries/index.ts or the objects/index.ts or the mutations/index.ts. Afterwards, run `yarn gen` in the backend folder.
 
 - Migrating Database (Prisma): When making changes to the schema, edit the prisma.schema in the prisma folder. Afterwards, docker exec into the running api container (via `docker exec -it mathbotics_api bash`) and run `yarn migrate:save`, fill the required info, this will create a new migration with the changes made to the schema, then run `yarn migrate:up` to apply that migration. Then, on your own machine, run `yarn gen` in the backend folder to generate a new version of the prisma client reflecting the new changes.
+
+- Seeding, creating users: Run `yarn seed src/seeders/AdminSeeder.ts` to create an admin, or for other types as well.
 
 ## Deployment:
 
