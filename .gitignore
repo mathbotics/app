@@ -25,3 +25,9 @@ yarn-debug.log*
 yarn-error.log*
 
 failed-introspect*
+.idea/.gitignore
+.idea/app.iml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
