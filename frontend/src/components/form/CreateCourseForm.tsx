@@ -19,7 +19,7 @@ export const CreateCourseForm = ({
   // Set default form values
   React.useEffect(() => {
     setFieldsValue({ name: "" });
-  }, []);
+  }, [setFieldsValue]);
 
   return (
     <Form

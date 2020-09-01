@@ -26,7 +26,7 @@ export const RegisterForm = (props: RegisterFormProps): JSX.Element => {
       username: "",
       password: ""
     });
-  }, []);
+  }, [setFieldsValue]);
 
   return (
     <Form

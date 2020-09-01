@@ -21,7 +21,7 @@ const EditTextBlockForm = ({ block, blockId }: Props): JSX.Element => {
       title: block?.title ?? "",
       body: block?.body ?? "",
     });
-  }, []);
+  }, [block, setFieldsValue]);
 
   const onSubmit = ({ title, body }: Store) =>
     commitUpdateBlockToTextBlockMutation(

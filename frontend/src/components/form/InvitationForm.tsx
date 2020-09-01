@@ -32,7 +32,7 @@ export const InvitationForm = (props: InvitationFormProps): JSX.Element => {
         email: "",
         role: Role.INSTRUCTOR
       }),
-    []
+    [setFieldsValue]
   );
 
   return (

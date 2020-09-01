@@ -63,7 +63,7 @@ const LessonsTable = ({ lessons: { lessons } }: Props) => {
         ),
       }))
     );
-  }, [lessons]);
+  }, [history, lessons]);
   return <Table columns={columns} dataSource={data} onChange={onChange} />;
 };
 
