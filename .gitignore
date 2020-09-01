@@ -1,12 +1,13 @@
 .DS_STORE
 node_modules
 .env
+.idea
 
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
-
+/.idea
 # testing
 /coverage
 
@@ -31,3 +32,14 @@ failed-introspect*
 .idea/misc.xml
 .idea/modules.xml
 .idea/vcs.xml
+.idea/graphql-settings.xml
+
+backend/.idea/.gitignore
+backend/.idea/backend.iml
+backend/.idea/codeStyles/
+backend/.idea/inspectionProfiles/
+backend/.idea/misc.xml
+backend/.idea/modules.xml
+backend/.idea/vcs.xml
+./
+frontend/package-lock.json

@@ -19,7 +19,7 @@ export const UpdateCourseForm = ({
   // Set default form values
   React.useEffect(() => {
     setFieldsValue({ name: "" });
-  }, []);
+  }, [setFieldsValue]);
 
   return (
     <Form

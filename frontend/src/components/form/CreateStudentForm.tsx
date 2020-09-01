@@ -39,7 +39,7 @@ export const CreateStudentForm = ({
       username: "",
       gradeLevel: GradeLevel.FIRST,
     });
-  }, []);
+  }, [setFieldsValue]);
 
   return (
     <Form

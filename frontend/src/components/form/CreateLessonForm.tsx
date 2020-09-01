@@ -20,7 +20,7 @@ export const CreateLessonForm = ({
     setFieldsValue({
       title: "",
     });
-  }, []);
+  }, [setFieldsValue]);
 
   return (
     <Form

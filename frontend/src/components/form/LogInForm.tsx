@@ -22,7 +22,7 @@ export const LogInForm = (props: LogInFormProps): JSX.Element => {
       username: "",
       password: ""
     });
-  }, []);
+  }, [setFieldsValue]);
 
   return (
     <Form

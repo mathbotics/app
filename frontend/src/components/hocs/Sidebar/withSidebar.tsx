@@ -76,7 +76,7 @@ const Sidebar = createFragmentContainer(
     const [items, setMenuItems] = React.useState<Array<SidebarItem>>([]);
 
     useEffect(() =>
-      setCollapsed(localStorage.getItem("collapsed") == "true" ?? true)
+      setCollapsed(localStorage.getItem("collapsed") == "true" ?? true), []
     );
 
     viewer && items.length === 0 && setMenuItems(menuItemsForViewer(viewer));
