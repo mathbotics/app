@@ -11,7 +11,7 @@
     "fmt": "./node_modules/.bin/prettier --write \"src/**/*.ts\"",
     "fmt:check": "./node_modules/.bin/prettier --check \"src/**/*.ts\"",
     "gen": "yarn gen:prisma && yarn gen:nexus",
-    "gen:nexus": "tsnd --no-notify --transpileOnly --project ./scripts/tsconfig.json ./scripts/gen/nexus.ts",
+    "gen:nexus": "tsnd --no-notify --project ./scripts/tsconfig.json ./scripts/gen/nexus.ts",
     "gen:prisma": "./node_modules/.bin/prisma2 generate",
     "lint": "./node_modules/.bin/eslint --config .eslintrc \"src/**/*.*\"",
     "lint:fix": "./node_modules/.bin/eslint --fix --config .eslintrc \"src/**/*.*\"",
