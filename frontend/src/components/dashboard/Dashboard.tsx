@@ -32,7 +32,7 @@ const Dashboard = ({
           </Title>
           <p style={{ fontWeight: 600, color: "#454d55", fontSize: "18px" }}>
             The Mathbotics learning platform will serve as an educational tool
-            for students K-12 to learn about robotos through educational content
+            for students K-12 to learn about robots through educational content
           </p>
           <Button
             type="primary"
