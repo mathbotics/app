@@ -55,6 +55,13 @@ const CardSlideCount = styled.div`
   color: #676767;
 `;
 
+const Edit = styled.div`
+  :hover {
+    color: #1890ff;
+  }
+  text-align: right;
+`;
+
 const EditButton = styled.div`
   :hover {
     color: #1890ff;
@@ -80,33 +87,54 @@ const CourseCard = ({
 
   // console.log("UserId" + query.viewer.id);
 
-  return (
-    <Card>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <CardTitle>{name}</CardTitle>
+    function openEditPage() {
+          console.log("We want to edit the page");
+          history.push(`/courses/${id}/edit`);
+    }
 
-        <Tooltip title="Edit course">
-          <EditButton onClick={() => console.log("here")}>
+    function openCoursePage() {
+        console.log("Go to course page");
+        history.push(`/courses/${id}`);
+    }
+
+    return (
+    <Card>
+
+      <Edit
+          onClick={() => openEditPage()}
+      >
+        <Tooltip placement="topRight" title="Edit course">
+          <EditButton >
             <EditOutlined style={{ fontSize: "18px" }} />
           </EditButton>
         </Tooltip>
+      </Edit>
+
+      <div
+          onClick={() => openCoursePage()}
+      >
+        <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+        >
+          <CardTitle>{name}</CardTitle>
+        </div>
+
+        <CourseLevel>{suggestedLevel} grade</CourseLevel>
+        <CardDescription>
+          <p style={{ fontSize: "16px" }}></p>
+        </CardDescription>
+        <CardFooter>
+          <CardSlideCount>
+            <ExportOutlined style={{ marginRight: "10px" }} />
+            {lessonCount} Lessons
+          </CardSlideCount>
+        </CardFooter>
       </div>
-      <CourseLevel>{suggestedLevel} grade</CourseLevel>
-      <CardDescription>
-        <p style={{ fontSize: "16px" }}></p>
-      </CardDescription>
-      <CardFooter>
-        <CardSlideCount>
-          <ExportOutlined style={{ marginRight: "10px" }} />
-          {lessonCount} Lessons
-        </CardSlideCount>
-      </CardFooter>
+
     </Card>
   );
 };
