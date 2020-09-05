@@ -8,7 +8,7 @@ import { CoursesList_courses } from "./__generated__/CoursesList_courses.graphql
 import CourseCard from "./CourseCard";
 import styled from "styled-components";
 
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 const Wrapper = styled(Layout)`
   background-color: white;
@@ -28,7 +28,7 @@ const CardWrapper = styled.div`
 
 type Props = { courses: CoursesList_courses };
 const CoursesList = ({ courses }: Props) => {
-  const history = useHistory();
+  // const history = useHistory();
   return (
     <Wrapper>
       {courses.courses.length === 0 && (
@@ -43,7 +43,7 @@ const CoursesList = ({ courses }: Props) => {
       {courses.courses.map((course) => (
         <CardWrapper
           key={course.id}
-          onClick={() => history.push(`/courses/${course.id}`)}
+          // onClick={() => history.push(`/courses/${course.id}`)}
         >
           <CourseCard key={course.id} course={course} />
         </CardWrapper>
