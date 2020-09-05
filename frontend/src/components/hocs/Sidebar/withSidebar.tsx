@@ -12,7 +12,6 @@ import { useHistory, Redirect } from "react-router-dom";
 import { graphql } from "babel-plugin-relay/macro";
 import { createFragmentContainer } from "react-relay";
 import QueryLookupRenderer from "relay-query-lookup-renderer";
-
 import { withSidebar_viewer } from "./__generated__/withSidebar_viewer.graphql";
 import { withSidebarQueryResponse } from "./__generated__/withSidebarQuery.graphql";
 import { environment } from "../../../graphql/relay";
@@ -90,7 +89,16 @@ const Sidebar = createFragmentContainer(
       history.push(`/${item.path}`);
     };
 
-    return (
+    //TODO fix logout
+      function logOut() {
+          localStorage.setItem('jwt', '');
+          localStorage.removeItem('jwt');
+          document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+          console.log("Need working log out mutation here");
+          history.push(`/`);
+      }
+
+      return (
       <Layout style={{ minHeight: "100%" }}>
         <Sider
           collapsible
@@ -116,7 +124,7 @@ const Sidebar = createFragmentContainer(
             ))}
 
             <Menu.Item
-              onClick={() => console.log("Need log out mutation here")}
+              onClick={() => logOut()}
             >
               <LogoutOutlined style={{ fontWeight: "bold" }} />
               <span>Logout</span>
