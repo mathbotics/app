@@ -56,6 +56,7 @@ const Courses = ({ query }: Props) => {
         onCancel={() => setPageState(PageState.Default)}
       />
 
+      {/*Display list of courses*/}
       <CoursesList courses={query} />
     </Layout>
   );
