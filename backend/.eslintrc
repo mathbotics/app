@@ -1,5 +1,10 @@
 {
   "root": true,
+  "settings": {
+    "react": {
+      "version": "latest"
+    }
+  },
   "rules": {
     "no-console": "warn",
     "import/export": "off",
