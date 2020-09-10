@@ -1,10 +1,5 @@
 {
   "root": true,
-  "settings": {
-    "react": {
-      "version": "latest"
-    }
-  },
   "rules": {
     "no-console": "warn",
     "import/export": "off",
@@ -20,6 +15,9 @@
   "extends": ["airbnb-typescript", "prettier/@typescript-eslint"],
   "ignorePatterns": ["src/graphql/__generated__", "*.mjml"],
   "settings": {
+    "react": {
+      "version": "latest"
+    },
     "import/resolver": {
       "node": {
         "extensions": [".js", ".ts"]
