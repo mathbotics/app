@@ -17,7 +17,7 @@
     "lint:fix": "cd backend && ./node_modules/.bin/eslint --fix --config .eslintrc \"src/**/*.*\"",
     "postinstall": "cd backend && yarn gen",
     "start": "cd backend && ts-node ./src/app/index.ts",
-    "test": "cd backend && ./node_modules/.bin/jest",
+    "test": "cd backend && ./node_modules/.bin/jest"
   },
   "husky": {
     "hooks": {
