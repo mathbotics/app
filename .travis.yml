@@ -2,3 +2,7 @@ language: node_js
 node_js:
   - 12.18.3
 cache: yarn
+
+install:
+  - cd docker
+  - docker-compose up
