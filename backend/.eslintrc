@@ -16,7 +16,7 @@
   "ignorePatterns": ["src/graphql/__generated__", "*.mjml"],
   "settings": {
     "react": {
-      "version": "latest"
+      "version": "detect"
     },
     "import/resolver": {
       "node": {
