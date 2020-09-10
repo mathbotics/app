@@ -55,7 +55,6 @@ apollo.applyMiddleware({
 });
 
 const onServerStart = () =>
-    // eslint-disable-next-line no-console
   console.log(
     `🤖  mathbotics/server started on http://localhost:${PORT}${apollo.graphqlPath}`,
   );
