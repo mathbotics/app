@@ -1,28 +1,10 @@
 {
+  "name": "travis-scripts",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "chk": "yarn fmt:check && yarn lint && yarn tsc",
-    "dev": "tsnd --no-notify --transpileOnly --respawn ./src/app/index.ts",
-    "docker:clean": "docker rm $(docker ps -a -q) && docker rmi $(docker images -a -q)",
-    "docker:clean:images": "docker rmi $(docker images -a -q)",
-    "docker:clean:containers": "docker rm $(docker ps -a -q)",
-    "docker:down": "cd ../docker && docker-compose down",
-    "docker:up": "cd ../docker && docker-compose up",
-    "fix": "yarn fmt && yarn lint:fix",
-    "fmt": "./node_modules/.bin/prettier --write \"src/**/*.ts\"",
-    "fmt:check": "./node_modules/.bin/prettier --check \"src/**/*.ts\"",
-    "gen": "yarn gen:prisma && yarn gen:nexus",
-    "gen:nexus": "tsnd --no-notify --project ./scripts/tsconfig.json ./scripts/gen/nexus.ts",
-    "gen:prisma": "cd backend && ./node_modules/.bin/prisma2 generate",
-    "lint": "cd backend && ./node_modules/.bin/eslint --config .eslintrc \"src/**/*.*\"",
-    "lint:fix": "cd backend && ./node_modules/.bin/eslint --fix --config .eslintrc \"src/**/*.*\"",
-    "postinstall": "cd backend && yarn gen",
-    "start": "cd backend && ts-node ./src/app/index.ts",
-    "test": "cd backend && ./node_modules/.bin/jest"
+
   },
-  "husky": {
-    "hooks": {
-      "pre-push": "yarn chk"
-    }
-  },
+
   "license": "MIT"
 }
