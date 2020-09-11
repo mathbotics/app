@@ -8,8 +8,10 @@ cache: yarn
 env:
   - CI=true
 
-before_deploy:
+before_install:
   - cd frontend
+
+before_deploy:
   - yarn global add netlify-cli
   - yarn run build
 
