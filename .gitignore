@@ -43,3 +43,6 @@ backend/.idea/modules.xml
 backend/.idea/vcs.xml
 ./
 frontend/package-lock.json
+
+# Local Netlify folder
+.netlify
