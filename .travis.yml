@@ -17,7 +17,7 @@ before_deploy:
 
 script:
   - yarn
-  - yarn build
+  - CI=false yarn build
 
 deploy:
   provider: script
