@@ -1,8 +1,24 @@
 language: node_js
+
 node_js:
   - 12.18.3
+
 cache: yarn
 
-install:
-  - cd docker
-  - docker-compose up
+env:
+  - CI=true
+
+before_deploy:
+  - cd frontend
+  - yarn global add netlify-cli
+  - yarn run build
+
+script:
+  - yarn test
+
+deploy:
+  provider: script
+  script: netlify deploy -s $NETLIFY_SITE_ID -t $NETLIFY_PUBLISH_KEY -p ./build
+  skip_cleanup: true
+  on:
+    branch: feature/FrontEnd/editButton
