@@ -68,6 +68,7 @@ export const LoginPage = (props: LogInProps): JSX.Element => {
         )}
 
         <AppLogo height="150px" />
+        {/*TODO change this back to Mathbotics*/}
         <h3>Martyn's learning platform</h3>
         <LogInForm
           onSubmit={onSubmitHandler}
