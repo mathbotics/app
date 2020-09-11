@@ -22,6 +22,8 @@
     "start": "ts-node ./src/app/index.ts",
     "seed": "DATABASE_URL='postgres://postgres:password@localhost:5432/postgres' ./node_modules/.bin/tsnd --no-notify --transpileOnly",
     "seedwin": "SET DATABASE_URL=postgres://postgres:password@localhost:5432/postgres && %cd%\\node_modules\\.bin\\tsnd --no-notify --transpileOnly",
+    "adminmac": "yarn seed src/seeders/AdminSeeder.ts",
+    "adminwin": "yarn seedwin src/seeders/AdminSeeder.ts",
     "test": "./node_modules/.bin/jest",
     "tsc": "./node_modules/.bin/tsc --noEmit"
   },
