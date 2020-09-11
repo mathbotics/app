@@ -16,7 +16,8 @@ before_deploy:
   - yarn run build
 
 script:
-  - yarn test
+  - yarn
+  - yarn build
 
 deploy:
   provider: script
