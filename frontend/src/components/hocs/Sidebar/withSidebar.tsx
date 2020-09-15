@@ -51,6 +51,7 @@ const menuItemsForViewer = ({ role }: withSidebar_viewer) => {
       return [
         { name: "Dashboard", path: "", icon: <DashboardOutlined /> },
         { name: "Admin", path: "admin", icon: <LockOutlined /> },
+        { name: "Courses", path: "courses", icon: <BookOutlined /> },
         { name: "Lessons", path: "lessons", icon: <AppstoreOutlined /> },
       ];
     case "Instructor":
