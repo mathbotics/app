@@ -55,5 +55,10 @@
     "relay-compiler": "^8.0.0",
     "relay-compiler-language-typescript": "^10.1.4",
     "relay-config": "^8.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn chk"
+    }
   }
 }
