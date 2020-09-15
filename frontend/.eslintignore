@@ -1,0 +1,5 @@
+.idea/
+.netlify/
+build/
+node_modules/
+public/
