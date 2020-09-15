@@ -51,6 +51,7 @@
     "@types/styled-components": "^5.0.1",
     "babel-plugin-relay": "^8.0.0",
     "graphql": "^14.6.0",
+    "husky": "^4.3.0",
     "relay-compiler": "^8.0.0",
     "relay-compiler-language-typescript": "^10.1.4",
     "relay-config": "^8.0.0"
