@@ -1,0 +1,7 @@
+src/app/graphql/__generated__
+.idea/
+.netlify/
+build/
+node_modules/
+public/
+
