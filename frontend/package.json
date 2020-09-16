@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.0.2",
-    "@apollo/client": "^3.2.0",
     "antd": "^4.0.0",
     "cuid": "^2.1.8",
     "nullthrows": "^1.1.1",
@@ -51,7 +50,7 @@
     "@types/relay-runtime": "^8.0.6",
     "@types/styled-components": "^5.0.1",
     "babel-plugin-relay": "^8.0.0",
-    "graphql": "^14.7.0",
+    "graphql": "^14.6.0",
     "relay-compiler": "^8.0.0",
     "relay-compiler-language-typescript": "^10.1.4",
     "relay-config": "^8.0.0"
