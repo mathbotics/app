@@ -11,11 +11,6 @@ import styled from 'styled-components';
 const { Sider } = Layout;
 const { Option } = Select;
 
-const SiderWrapper = styled(Sider)`
-  margin: 0px 10px;
-  width: inherit;
-`;
-
 enum EditingBlockTypename {
   MultipleChoiceQuestionBlock = 'MultipleChoiceQuestionBlock',
   TextBlock = 'TextBlock',
