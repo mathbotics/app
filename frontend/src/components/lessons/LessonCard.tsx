@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button } from 'antd';
-import { ExportOutlined, EditOutlined } from '@ant-design/icons';
+import { ExportOutlined } from '@ant-design/icons';
 
 import { useHistory } from 'react-router-dom';
 
@@ -25,6 +25,12 @@ const CardTitle = styled.h1`
   font-weight: bold;
 `;
 
+/*
+TODO
+card Description is not being used
+will probably be needed in future
+ */
+// eslint-disable-next-line
 const CardDescription = styled.div`
   font-size: 20px;
   color: #676767;
