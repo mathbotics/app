@@ -7,7 +7,6 @@ import {
   AppstoreOutlined,
   LogoutOutlined,
 } from '@ant-design/icons';
-import styled from 'styled-components';
 import { useHistory, Redirect } from 'react-router-dom';
 import { graphql } from 'babel-plugin-relay/macro';
 import { createFragmentContainer } from 'react-relay';
