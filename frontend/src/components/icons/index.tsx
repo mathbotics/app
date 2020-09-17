@@ -2,6 +2,7 @@ import React from 'react';
 
 export const AppLogo = (props: { height: any }) => (
   <img
+    alt="Mathbotics logo"
     style={{
       height: props.height,
       width: props.height,
