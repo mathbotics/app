@@ -19,12 +19,6 @@ import { AppLogo } from '../../icons';
 
 const { Sider, Content } = Layout;
 
-const Logo = styled.div`
-  height: 32px;
-  color: white;
-  margin: 16px;
-`;
-
 type SidebarItem = {
   name: string;
   path: string;
@@ -75,7 +69,7 @@ const Sidebar = createFragmentContainer(
     const [items, setMenuItems] = React.useState<Array<SidebarItem>>([]);
 
     useEffect(
-      () => setCollapsed(localStorage.getItem('collapsed') == 'true' ?? true),
+      () => setCollapsed(localStorage.getItem('collapsed') === 'true' ?? true),
       [],
     );
 
