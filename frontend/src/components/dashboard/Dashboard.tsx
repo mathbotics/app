@@ -21,6 +21,11 @@ const Dashboard = ({
   },
 }: Props) => {
   let history = useHistory();
+  /*
+  TODO
+  selected,setSelected are currently not being used
+  May be used in the future to set if something is selected or not
+   */
   const [selected, setSelected] = useState<number>(1);
   return (
     <>
