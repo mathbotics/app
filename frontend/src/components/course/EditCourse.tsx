@@ -21,6 +21,12 @@ enum PageState {
 type Tab = { title: string; Component: JSX.Element };
 type Props = { course: EditCourse_course; query: EditCourse_query };
 const EditCourse = ({ course, query }: Props) => {
+  /*
+  TODO
+  pageState isn't being used but it updated...?
+  Not sure why pageState is being set but not being used
+   */
+  // eslint-disable-next-line
   const [pageState, setPageState] = useState<PageState>(
     PageState.UpdateCourseSuccess,
   );
