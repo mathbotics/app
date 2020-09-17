@@ -24,6 +24,11 @@ enum PageState {
 }
 type Props = { query: Courses_query };
 const Courses = ({ query }: Props) => {
+  /*
+  TODO
+  history will probably be used in the future
+  */
+  // eslint-disable-next-line
   let history = useHistory();
   const [pageState, setPageState] = useState<PageState>(PageState.Default);
   return (
