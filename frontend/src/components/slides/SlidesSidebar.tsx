@@ -52,7 +52,7 @@ const SidebarHeader = ({ title }: SidebarHeaderProps) => (
   </Tooltip>
 );
 
-const CreateSlideCard = (props: any) => {
+const CreateSlideCard = () => {
   return (
     <Tooltip title="Create a slide">
       <SlideCard style={{ border: '1px solid #ccc' }}>
