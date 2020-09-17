@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Layout } from 'antd';
+import { Typography, Layout, Alert } from 'antd';
 import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
 
 import { commit as commitSendInvitationEmail } from '../graphql/mutations/SendInvitationEmailMutation';
@@ -11,6 +11,10 @@ const { Title } = Typography;
 
 const Wrapper = styled(Layout.Content)`
   width: 400px;
+`;
+
+const SAlert = styled(Alert)`
+  margin-bottom: 20px;
 `;
 
 enum InvitationState {
@@ -57,6 +61,16 @@ export const InvitationPage = (props: Props) => {
 
   return (
     <Wrapper>
+
+      {invitationState === InvitationState.SUCCESS && (
+        <SAlert
+          message="Invitation sent"
+          type="success"
+          showIcon
+          closable
+        />
+      )}
+      
       <Title level={3} style={{ fontWeight: 700 }}>
         Invite User
       </Title>
