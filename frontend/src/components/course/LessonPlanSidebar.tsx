@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Layout, Menu, Typography } from 'antd';
+import { Layout, Menu } from 'antd';
 import styled from 'styled-components';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
@@ -7,8 +7,6 @@ import { commit as commitUpdateOneLessonPlanMutation } from '../../graphql/mutat
 import { LessonPlanSidebar_lessonPlan } from './__generated__/LessonPlanSidebar_lessonPlan.graphql';
 
 import { LessonCard } from '../lessons/LessonCard';
-
-const { Title } = Typography;
 
 const MenuItem = styled(Menu.Item)`
   width: 100% !important;
@@ -20,10 +18,21 @@ const MenuItem = styled(Menu.Item)`
 `;
 
 export type SlideMenuItem = { id: string; component: JSX.Element };
-
+/*
+TODO
+while Content appears to not be used
+I believe it will be used in the future
+ */
+// eslint-disable-next-line
 const { Sider, Content } = Layout;
 type Props = { lessonPlan: LessonPlanSidebar_lessonPlan };
 const LessonPlanSidebar = ({ lessonPlan }: Props) => {
+  /*
+  TODO
+  Selected is being used but never sent
+  Not being removed, will probably need change the state in the future
+   */
+  // eslint-disable-next-line
   const [selected, setSelected] = useState<string | undefined>(
     lessonPlan.lessons?.[0]?.id,
   );
