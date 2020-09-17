@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Layout, Menu, Tooltip, Typography, Result, Button } from 'antd';
+import { Layout, Menu, Tooltip } from 'antd';
 import { PlusOutlined, BookOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { createFragmentContainer } from 'react-relay';
