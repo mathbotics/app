@@ -3,7 +3,7 @@
 build/
 node_modules/
 public/
-/src/components/block/__generated__
+src/components/block/__generated__
 src/components/block/multiple_choice/__generated__/
 src/components/block/text/__generated__/
 src/components/course/__generated__/
