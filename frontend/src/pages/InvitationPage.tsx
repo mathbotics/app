@@ -70,7 +70,14 @@ export const InvitationPage = (props: Props) => {
           closable
         />
       )}
-      
+      {invitationState === InvitationState.FAILURE && (
+        <SAlert
+          message="There was an error"
+          type="error"
+          showIcon
+          closable
+        />
+      )}
       <Title level={3} style={{ fontWeight: 700 }}>
         Invite User
       </Title>
