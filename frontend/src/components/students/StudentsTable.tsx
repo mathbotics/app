@@ -4,7 +4,6 @@ import { ColumnsType } from 'antd/lib/table';
 import { graphql } from 'babel-plugin-relay/macro';
 import { createFragmentContainer } from 'react-relay';
 import { StudentsTable_course } from './__generated__/StudentsTable_course.graphql';
-import { useHistory } from 'react-router-dom';
 
 const columns: ColumnsType<any> = [
   {
@@ -47,7 +46,6 @@ type Props = {
   course: StudentsTable_course;
 };
 const LessonsTable = ({ course: { students } }: Props) => {
-  let history = useHistory();
   const [data, setData] = useState<ColumnsType<TableItem>>();
   useEffect(() => {
     setData(
