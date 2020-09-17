@@ -29,6 +29,8 @@ const CardTitle = styled.h1`
 TODO
 card Description is not being used
 will probably be needed in future
+more likely than not it probably ties in with the
+description parameter being passed through props
  */
 // eslint-disable-next-line
 const CardDescription = styled.div`
