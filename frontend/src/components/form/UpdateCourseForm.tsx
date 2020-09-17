@@ -59,20 +59,22 @@ Delete Button logic is done(?)
 Notes:
 Seems to be leftovers from previous work that never got added,
 Needs to be implemented on to site
+Line on bottom was added to not warn use that it is not being used
  */
-// const DeleteButton = () => (
-//   <Button
-//     block
-//     type="danger"
-//     size="large"
-//     onClick={() => console.log('Deleting')}
-//     style={{
-//       marginTop: '10px',
-//       backgroundColor: 'transparent',
-//       color: 'red',
-//       border: '0',
-//     }}
-//   >
-//     Delete
-//   </Button>
-// );
+// eslint-disable-next-line
+const DeleteButton = () => (
+  <Button
+    block
+    type="danger"
+    size="large"
+    onClick={() => console.log('Deleting')}
+    style={{
+      marginTop: '10px',
+      backgroundColor: 'transparent',
+      color: 'red',
+      border: '0',
+    }}
+  >
+    Delete
+  </Button>
+);
