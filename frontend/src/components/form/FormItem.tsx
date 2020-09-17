@@ -1,5 +1,5 @@
-import React from "react";
-import { Form, Input } from "antd";
+import React from 'react';
+import { Form, Input } from 'antd';
 
 import {
   EmailIcon,
@@ -8,7 +8,7 @@ import {
   BookIcon,
   BarsIcon,
   AlignLeftIcon,
-} from "./";
+} from './';
 
 type FormItemProps = {
   name: string;
@@ -43,41 +43,41 @@ type GenericFormRuleType = {
 
 const FormRules: FormRulesType = {
   firstName: {
-    rules: [{ required: true, message: "Please input your First Name." }],
+    rules: [{ required: true, message: 'Please input your First Name.' }],
     icon: <UserIcon />,
   },
   lastName: {
-    rules: [{ required: true, message: "Please input your Last Name." }],
+    rules: [{ required: true, message: 'Please input your Last Name.' }],
     icon: <UserIcon />,
   },
   email: {
-    rules: [{ required: true, message: "Please input your email." }],
+    rules: [{ required: true, message: 'Please input your email.' }],
     icon: <EmailIcon />,
   },
   username: {
-    rules: [{ required: true, message: "Please input your username." }],
+    rules: [{ required: true, message: 'Please input your username.' }],
     icon: <UserIcon />,
   },
   password: {
-    rules: [{ required: true, message: "Please input your password." }],
+    rules: [{ required: true, message: 'Please input your password.' }],
     icon: <LockIcon />,
   },
   courseName: {
-    rules: [{ required: true, message: "Please input your course name." }],
+    rules: [{ required: true, message: 'Please input your course name.' }],
     icon: <BookIcon />,
   },
   description: {
-    rules: [{ required: true, message: "Please add a description." }],
+    rules: [{ required: true, message: 'Please add a description.' }],
     icon: <AlignLeftIcon />,
   },
 
   lessonTitle: {
-    rules: [{ required: true, message: "Please input title of the lesson." }],
+    rules: [{ required: true, message: 'Please input title of the lesson.' }],
     icon: <BarsIcon />,
   },
   requiredText: {
     rules: [
-      { required: true, message: "Please fill in this field. Por favor." },
+      { required: true, message: 'Please fill in this field. Por favor.' },
     ],
     icon: <BarsIcon />,
   },

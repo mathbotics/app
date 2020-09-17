@@ -1,31 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { Table } from "antd";
-import { ColumnsType } from "antd/lib/table";
-import { graphql } from "babel-plugin-relay/macro";
-import { createFragmentContainer } from "react-relay";
-import { StudentsTable_course } from "./__generated__/StudentsTable_course.graphql";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Table } from 'antd';
+import { ColumnsType } from 'antd/lib/table';
+import { graphql } from 'babel-plugin-relay/macro';
+import { createFragmentContainer } from 'react-relay';
+import { StudentsTable_course } from './__generated__/StudentsTable_course.graphql';
+import { useHistory } from 'react-router-dom';
 
 const columns: ColumnsType<any> = [
   {
-    title: "",
-    dataIndex: "index",
+    title: '',
+    dataIndex: 'index',
   },
   {
-    title: "Username",
-    dataIndex: "username",
+    title: 'Username',
+    dataIndex: 'username',
   },
   {
-    title: "First Name",
-    dataIndex: "firstName",
+    title: 'First Name',
+    dataIndex: 'firstName',
   },
   {
-    title: "Last Name",
-    dataIndex: "lastName",
+    title: 'Last Name',
+    dataIndex: 'lastName',
   },
   {
-    title: "Grade Level",
-    dataIndex: "gradeLevel",
+    title: 'Grade Level',
+    dataIndex: 'gradeLevel',
   },
 ];
 
@@ -40,7 +40,7 @@ type TableItem = {
 };
 
 function onChange(pagination, filters, sorter, extra) {
-  console.log("params", pagination, filters, sorter, extra);
+  console.log('params', pagination, filters, sorter, extra);
 }
 
 type Props = {
@@ -59,8 +59,8 @@ const LessonsTable = ({ course: { students } }: Props) => {
           lastName,
           gradeLevel,
           username,
-        })
-      )
+        }),
+      ),
     );
   }, [students]);
   return <Table columns={columns} dataSource={data} onChange={onChange} />;

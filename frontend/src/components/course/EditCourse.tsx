@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { Layout, Tabs, Typography } from "antd";
-import { createFragmentContainer } from "react-relay";
-import { graphql } from "babel-plugin-relay/macro";
+import React, { useState } from 'react';
+import { Layout, Tabs, Typography } from 'antd';
+import { createFragmentContainer } from 'react-relay';
+import { graphql } from 'babel-plugin-relay/macro';
 
-import { EditCourse_course } from "./__generated__/EditCourse_course.graphql";
-import EditCourseDetails from "./EditCourseDetails";
-import EditCourseLessonPlan from "./EditCourseLessonPlan";
-import EditCourseStudents from "./EditCourseStudents";
+import { EditCourse_course } from './__generated__/EditCourse_course.graphql';
+import EditCourseDetails from './EditCourseDetails';
+import EditCourseLessonPlan from './EditCourseLessonPlan';
+import EditCourseStudents from './EditCourseStudents';
 
-import { EditCourse_query } from "./__generated__/EditCourse_query.graphql";
+import { EditCourse_query } from './__generated__/EditCourse_query.graphql';
 
 const { TabPane } = Tabs;
 const { Title } = Typography;
@@ -22,21 +22,21 @@ type Tab = { title: string; Component: JSX.Element };
 type Props = { course: EditCourse_course; query: EditCourse_query };
 const EditCourse = ({ course, query }: Props) => {
   const [pageState, setPageState] = useState<PageState>(
-    PageState.UpdateCourseSuccess
+    PageState.UpdateCourseSuccess,
   );
   const tabs: Tab[] = [
     {
-      title: "Lesson Plan",
+      title: 'Lesson Plan',
       Component: (
         <EditCourseLessonPlan lessonPlan={course.lessonPlan} query={query} />
       ),
     },
     {
-      title: "Students",
+      title: 'Students',
       Component: <EditCourseStudents course={course} />,
     },
     {
-      title: "Course Details",
+      title: 'Course Details',
       Component: (
         <EditCourseDetails
           onSubmitSuccess={() => setPageState(PageState.UpdateCourseSuccess)}
@@ -52,7 +52,7 @@ const EditCourse = ({ course, query }: Props) => {
   const handleTabChange = (key: string) => console.log({ key });
 
   return (
-    <Layout style={{ backgroundColor: "white" }}>
+    <Layout style={{ backgroundColor: 'white' }}>
       <div style={{}}>
         <Title level={1} style={{ fontWeight: 700 }}>
           {course.name}

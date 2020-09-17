@@ -1,12 +1,12 @@
-import React, { ReactNode } from "react";
-import styled from "styled-components";
-import { FileImageOutlined } from "@ant-design/icons";
-import { graphql } from "babel-plugin-relay/macro";
-import { createFragmentContainer } from "react-relay";
-import { SingleSlide_singleSlide } from "./__generated__/SingleSlide_singleSlide.graphql";
-import { Block as BlockType } from "../../types/Block";
-import nullthrows from "nullthrows";
-import Block from "../block/Block";
+import React, { ReactNode } from 'react';
+import styled from 'styled-components';
+import { FileImageOutlined } from '@ant-design/icons';
+import { graphql } from 'babel-plugin-relay/macro';
+import { createFragmentContainer } from 'react-relay';
+import { SingleSlide_singleSlide } from './__generated__/SingleSlide_singleSlide.graphql';
+import { Block as BlockType } from '../../types/Block';
+import nullthrows from 'nullthrows';
+import Block from '../block/Block';
 
 type WrapperProps = { preview?: boolean; selected?: boolean };
 const Wrapper = styled.div`
@@ -18,13 +18,13 @@ const Wrapper = styled.div`
   display: flex;
   transition: all 0.15s ease-in-out;
   background-color: ${({ selected, preview }: WrapperProps) =>
-    selected && preview ? "#1990ff" : "#fff"};
+    selected && preview ? '#1990ff' : '#fff'};
   color: ${({ selected, preview }: WrapperProps) =>
-    selected && preview && "white"};
+    selected && preview && 'white'};
   :hover {
-    cursor: ${({ preview }: WrapperProps) => preview && "pointer"};
-    background-color: ${({ preview }: WrapperProps) => preview && "#1990ff"};
-    color: ${({ preview }: WrapperProps) => preview && "white"};
+    cursor: ${({ preview }: WrapperProps) => preview && 'pointer'};
+    background-color: ${({ preview }: WrapperProps) => preview && '#1990ff'};
+    color: ${({ preview }: WrapperProps) => preview && 'white'};
   }
 `;
 
@@ -40,7 +40,7 @@ const SingleSlide = ({
   preview,
   selected,
 }: Props) => {
-  console.log("Single blockID:", singleSlide?.id);
+  console.log('Single blockID:', singleSlide?.id);
   return (
     <Wrapper
       preview={preview}

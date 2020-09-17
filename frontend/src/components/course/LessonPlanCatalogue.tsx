@@ -1,13 +1,13 @@
-import React from "react";
-import { Input, Typography } from "antd";
-import { AppstoreAddOutlined } from "@ant-design/icons";
-import { createFragmentContainer } from "react-relay";
-import { graphql } from "babel-plugin-relay/macro";
-import { LessonPlanCatalogue_query } from "./__generated__/LessonPlanCatalogue_query.graphql";
-import styled from "styled-components";
-import { LessonCard } from "../lessons/LessonCard";
-import { commit as commitUpdateOneLessonPlanMutation } from "../../graphql/mutations/UpdateOneLessonPlanMutation";
-import { LessonPlanCatalogue_lessonPlan } from "./__generated__/LessonPlanCatalogue_lessonPlan.graphql";
+import React from 'react';
+import { Input, Typography } from 'antd';
+import { AppstoreAddOutlined } from '@ant-design/icons';
+import { createFragmentContainer } from 'react-relay';
+import { graphql } from 'babel-plugin-relay/macro';
+import { LessonPlanCatalogue_query } from './__generated__/LessonPlanCatalogue_query.graphql';
+import styled from 'styled-components';
+import { LessonCard } from '../lessons/LessonCard';
+import { commit as commitUpdateOneLessonPlanMutation } from '../../graphql/mutations/UpdateOneLessonPlanMutation';
+import { LessonPlanCatalogue_lessonPlan } from './__generated__/LessonPlanCatalogue_lessonPlan.graphql';
 
 const { Search } = Input;
 const { Title } = Typography;
@@ -26,8 +26,8 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
         data: { lessons: { connect: [{ id }, ...lessonIds] } },
         where: { id: lessonPlan.id },
       },
-      () => console.log("Success"),
-      (e) => console.log("Error " + e)
+      () => console.log('Success'),
+      (e) => console.log('Error ' + e),
     );
   };
 

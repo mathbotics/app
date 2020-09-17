@@ -1,14 +1,14 @@
-import React from "react";
-import { Button, Layout, Tooltip, Typography } from "antd";
+import React from 'react';
+import { Button, Layout, Tooltip, Typography } from 'antd';
 import {
   FileTextOutlined,
   ClockCircleOutlined,
-  EditOutlined
-} from "@ant-design/icons";
-import styled from "styled-components";
-import { createFragmentContainer } from "react-relay";
-import { graphql } from "babel-plugin-relay/macro";
-import { LessonPreview_lesson } from "./__generated__/LessonPreview_lesson.graphql";
+  EditOutlined,
+} from '@ant-design/icons';
+import styled from 'styled-components';
+import { createFragmentContainer } from 'react-relay';
+import { graphql } from 'babel-plugin-relay/macro';
+import { LessonPreview_lesson } from './__generated__/LessonPreview_lesson.graphql';
 
 type LessonPreviewProps = {
   lesson: LessonPreview_lesson;
@@ -16,22 +16,22 @@ type LessonPreviewProps = {
 };
 const LessonPreview = ({
   lesson: { id, title },
-  onClick
+  onClick,
 }: LessonPreviewProps) => {
   return (
     <LessonPreviewWrapper>
       <LessonPreviewCard>
         {/* Title of lessons */}
-        <ContentWrapper style={{ display: "flex", alignItems: "center" }}>
-          <FileTextOutlined style={{ marginRight: "10px", fontSize: "15px" }} />
+        <ContentWrapper style={{ display: 'flex', alignItems: 'center' }}>
+          <FileTextOutlined style={{ marginRight: '10px', fontSize: '15px' }} />
           <Tooltip title={title}>
             <span
               style={{
-                fontSize: "15px",
-                width: "80%",
-                textOverflow: "ellipsis",
-                overflow: "hidden",
-                fontWeight: 600
+                fontSize: '15px',
+                width: '80%',
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                fontWeight: 600,
               }}
             >
               {title}
@@ -41,7 +41,7 @@ const LessonPreview = ({
 
         {/* Suggested grade level */}
         <ContentWrapper>
-          <Tooltip title={"Recommended grade level for this lesson"}>
+          <Tooltip title={'Recommended grade level for this lesson'}>
             8th grade
           </Tooltip>
         </ContentWrapper>
@@ -55,9 +55,9 @@ const LessonPreview = ({
 
         {/* Slide Count */}
         <ContentWrapper>0 Slides</ContentWrapper>
-        <Tooltip title={"Edit lesson"}>
+        <Tooltip title={'Edit lesson'}>
           <Button
-            style={{ border: "none", background: "transparent" }}
+            style={{ border: 'none', background: 'transparent' }}
             onClick={() => onClick(id)}
           >
             <EditOutlined />
@@ -74,7 +74,7 @@ export default createFragmentContainer(LessonPreview, {
       id
       title
     }
-  `
+  `,
 });
 
 const ContentWrapper = styled.div`

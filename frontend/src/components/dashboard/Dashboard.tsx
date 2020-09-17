@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { graphql } from "babel-plugin-relay/macro";
-import { BookOutlined } from "@ant-design/icons";
-import { createFragmentContainer } from "react-relay";
-import { Typography, Button } from "antd";
+import React, { useState } from 'react';
+import { graphql } from 'babel-plugin-relay/macro';
+import { BookOutlined } from '@ant-design/icons';
+import { createFragmentContainer } from 'react-relay';
+import { Typography, Button } from 'antd';
 
-import { Dashboard_dashboard } from "./__generated__/Dashboard_dashboard.graphql";
-import styled from "styled-components";
+import { Dashboard_dashboard } from './__generated__/Dashboard_dashboard.graphql';
+import styled from 'styled-components';
 
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 const { Title } = Typography;
 
@@ -25,12 +25,12 @@ const Dashboard = ({
   return (
     <>
       <Banner>
-        <div style={{ width: "400px" }}>
-          <Title level={1} style={{ fontWeight: 800, color: "#454d55" }}>
+        <div style={{ width: '400px' }}>
+          <Title level={1} style={{ fontWeight: 800, color: '#454d55' }}>
             Welcome <br />
             {firstName} {lastName}!
           </Title>
-          <p style={{ fontWeight: 600, color: "#454d55", fontSize: "18px" }}>
+          <p style={{ fontWeight: 600, color: '#454d55', fontSize: '18px' }}>
             The Mathbotics learning platform will serve as an educational tool
             for students K-12 to learn about robots through educational content
           </p>
@@ -38,7 +38,7 @@ const Dashboard = ({
             type="primary"
             icon={<BookOutlined />}
             size="large"
-            onClick={() => history.push("/courses")}
+            onClick={() => history.push('/courses')}
           >
             View Courses
           </Button>

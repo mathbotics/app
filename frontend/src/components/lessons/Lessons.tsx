@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { Typography, Button, Alert, Layout, Tooltip, Menu } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
-import { graphql } from "babel-plugin-relay/macro";
-import { getRootQueryDataID } from "../../graphql/relay";
-import { LessonsPageQuery } from "../../pages/LessonsPage";
-import CreateLessonModal from "./CreateLessonModal";
-import styled from "styled-components";
-import LessonsTable from "./LessonsTable";
-import { createFragmentContainer } from "react-relay";
-import { Lessons_lessons } from "./__generated__/Lessons_lessons.graphql";
+import React, { useState } from 'react';
+import { Typography, Button, Alert, Layout, Tooltip, Menu } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import { graphql } from 'babel-plugin-relay/macro';
+import { getRootQueryDataID } from '../../graphql/relay';
+import { LessonsPageQuery } from '../../pages/LessonsPage';
+import CreateLessonModal from './CreateLessonModal';
+import styled from 'styled-components';
+import LessonsTable from './LessonsTable';
+import { createFragmentContainer } from 'react-relay';
+import { Lessons_lessons } from './__generated__/Lessons_lessons.graphql';
 
 const { Title } = Typography;
 
@@ -22,7 +22,7 @@ enum PageState {
 const Lessons = ({ lessons }: Props): JSX.Element => {
   const [pageState, setPageState] = useState<PageState>(PageState.Default);
   return (
-    <Layout style={{ backgroundColor: "white" }}>
+    <Layout style={{ backgroundColor: 'white' }}>
       {/* OnCreateLessonError - Attempt to create a lesson went wrong :( */}
       {pageState === PageState.CreateLessonError && (
         <Alert
@@ -81,13 +81,13 @@ const Header = ({ onAddLesson }: HeaderProps): JSX.Element => {
       <Title level={3} style={{ fontWeight: 700 }}>
         Lessons
       </Title>
-      <Tooltip title={"Add a lesson"}>
+      <Tooltip title={'Add a lesson'}>
         <Button
           type="primary"
           shape="circle"
           icon={<PlusOutlined />}
           htmlType="submit"
-          size={"large"}
+          size={'large'}
           onClick={() => onAddLesson()}
         />
       </Tooltip>

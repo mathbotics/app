@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 type Props = {};
 const ImageBlock = (props: Props) => {

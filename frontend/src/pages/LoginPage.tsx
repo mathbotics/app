@@ -1,12 +1,12 @@
-import React from "react";
-import { Layout, Alert } from "antd";
-import styled from "styled-components";
-import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
-import { LogInForm } from "../components/form";
-import { Redirect } from "react-router-dom";
-import { commit as commitLoginMutation } from "../graphql/mutations/LogInMutation";
-import { LogInMutationResponse } from "../graphql/mutations/__generated__/LogInMutation.graphql";
-import { AppLogo } from "../components/icons";
+import React from 'react';
+import { Layout, Alert } from 'antd';
+import styled from 'styled-components';
+import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
+import { LogInForm } from '../components/form';
+import { Redirect } from 'react-router-dom';
+import { commit as commitLoginMutation } from '../graphql/mutations/LogInMutation';
+import { LogInMutationResponse } from '../graphql/mutations/__generated__/LogInMutation.graphql';
+import { AppLogo } from '../components/icons';
 
 const StyledLayout = styled(Layout)`
   height: 100%;
@@ -32,11 +32,11 @@ enum AuthState {
   DEFAULT,
   AUTHENTICATING,
   AUTHENTICATED,
-  INVALID_ATTEMPT
+  INVALID_ATTEMPT,
 }
 export const LoginPage = (props: LogInProps): JSX.Element => {
   const [logInState, setLoginState] = React.useState<AuthState>(
-    AuthState.DEFAULT
+    AuthState.DEFAULT,
   );
 
   const onLoginSuccess = (response: LogInMutationResponse) =>
@@ -57,7 +57,7 @@ export const LoginPage = (props: LogInProps): JSX.Element => {
 
   return (
     <StyledLayout>
-      {logInState === AuthState.AUTHENTICATED && <Redirect to={"/"} />}
+      {logInState === AuthState.AUTHENTICATED && <Redirect to={'/'} />}
 
       <Content>
         {logInState === AuthState.INVALID_ATTEMPT && (

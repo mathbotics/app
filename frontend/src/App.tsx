@@ -1,7 +1,7 @@
-import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import withSidebar from "./components/hocs/Sidebar/withSidebar";
+import withSidebar from './components/hocs/Sidebar/withSidebar';
 
 // Pages
 import {
@@ -16,10 +16,10 @@ import {
   EditCoursePage,
   LessonPage,
   CoursePage,
-} from "./pages";
+} from './pages';
 
 // Routes
-import ProtectedRoute from "./routes/ProtectedRoute";
+import ProtectedRoute from './routes/ProtectedRoute';
 
 export const App: React.FC = () => {
   return (
@@ -31,31 +31,31 @@ export const App: React.FC = () => {
         <ProtectedRoute
           exact
           path="/admin"
-          allowedRoles={["Admin"]}
+          allowedRoles={['Admin']}
           component={withSidebar(AdminPage)}
         />
         <ProtectedRoute
           exact
           path="/lessons"
-          allowedRoles={["Admin", "Instructor"]}
+          allowedRoles={['Admin', 'Instructor']}
           component={withSidebar(LessonsPage)}
         />
         <ProtectedRoute
           exact
           path="/lessons/:lessonId/slides"
-          allowedRoles={["Admin"]}
+          allowedRoles={['Admin']}
           component={withSidebar(SlidesPage)}
         />
         <ProtectedRoute
           exact
           path="/courses"
-          allowedRoles={["Admin", "Instructor", "Student"]}
+          allowedRoles={['Admin', 'Instructor', 'Student']}
           component={withSidebar(CoursesPage)}
         />
         <ProtectedRoute
           exact
           path="/courses/:courseId/edit"
-          allowedRoles={["Admin", "Instructor"]}
+          allowedRoles={['Admin', 'Instructor']}
           component={withSidebar(EditCoursePage)}
         />
         <ProtectedRoute
@@ -65,7 +65,7 @@ export const App: React.FC = () => {
         />
         <ProtectedRoute
           path="/courses/:courseId"
-          allowedRoles={["Admin", "Instructor", "Student"]}
+          allowedRoles={['Admin', 'Instructor', 'Student']}
           component={withSidebar(CoursePage)}
         />
         <Route component={NotFoundPage} />

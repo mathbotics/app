@@ -1,12 +1,12 @@
-import React, {useState} from "react";
-import styled from "styled-components";
-import { ExportOutlined, EditOutlined } from "@ant-design/icons";
-import { Tooltip } from "antd";
-import { useHistory } from "react-router-dom";
-import { createFragmentContainer } from "react-relay";
-import { graphql } from "babel-plugin-relay/macro";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { ExportOutlined, EditOutlined } from '@ant-design/icons';
+import { Tooltip } from 'antd';
+import { useHistory } from 'react-router-dom';
+import { createFragmentContainer } from 'react-relay';
+import { graphql } from 'babel-plugin-relay/macro';
 
-import { CourseCard_course } from "./__generated__/CourseCard_course.graphql";
+import { CourseCard_course } from './__generated__/CourseCard_course.graphql';
 
 const Card = styled.div`
   border-radius: 5px;
@@ -81,51 +81,51 @@ const CourseCard = ({
   // console.log("UserId" + query.viewer.id);
   let [edit, setEdit] = useState(false);
 
-    function openEditPage(edit : boolean) {
-          if(edit){
-            console.log("We want to edit the page");
-            history.push(`/courses/${id}/edit`);
-          }
-          else{
-            openCoursePage();
-          }
+  function openEditPage(edit: boolean) {
+    if (edit) {
+      console.log('We want to edit the page');
+      history.push(`/courses/${id}/edit`);
+    } else {
+      openCoursePage();
     }
+  }
 
-    function openCoursePage() {
-        console.log("Go to course page");
-        history.push(`/courses/${id}`);
-    }
+  function openCoursePage() {
+    console.log('Go to course page');
+    history.push(`/courses/${id}`);
+  }
 
-    return (
-        <Card
-          onClick={()=>(openEditPage(edit))}
-        >
-          <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
+  return (
+    <Card onClick={() => openEditPage(edit)}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <CardTitle>{name}</CardTitle>
+
+        <Tooltip title="Edit course">
+          <EditButton
+            onMouseEnter={() => setEdit(true)}
+            onMouseLeave={() => setEdit(false)}
           >
-            <CardTitle>{name}</CardTitle>
-
-            <Tooltip title="Edit course">
-              <EditButton onMouseEnter={() => setEdit(true)} onMouseLeave={() => setEdit(false)}>
-                <EditOutlined style={{ fontSize: "18px" }} />
-              </EditButton>
-            </Tooltip>
-          </div>
-          <CourseLevel>{suggestedLevel} grade</CourseLevel>
-          <CardDescription>
-            <p style={{ fontSize: "16px" }}></p>
-          </CardDescription>
-          <CardFooter>
-            <CardSlideCount>
-              <ExportOutlined style={{ marginRight: "10px" }} />
-              {lessonCount} Lessons
-            </CardSlideCount>
-          </CardFooter>
-        </Card>
+            <EditOutlined style={{ fontSize: '18px' }} />
+          </EditButton>
+        </Tooltip>
+      </div>
+      <CourseLevel>{suggestedLevel} grade</CourseLevel>
+      <CardDescription>
+        <p style={{ fontSize: '16px' }}></p>
+      </CardDescription>
+      <CardFooter>
+        <CardSlideCount>
+          <ExportOutlined style={{ marginRight: '10px' }} />
+          {lessonCount} Lessons
+        </CardSlideCount>
+      </CardFooter>
+    </Card>
   );
 };
 

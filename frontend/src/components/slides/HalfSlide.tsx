@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "styled-components";
-import { UnorderedListOutlined, AlignLeftOutlined } from "@ant-design/icons";
-import { graphql } from "babel-plugin-relay/macro";
-import nullthrows from "nullthrows";
-import { createFragmentContainer } from "react-relay";
-import { HalfSlide_halfSlide } from "./__generated__/HalfSlide_halfSlide.graphql";
-import { Block as BlockType } from "../../types/Block";
-import Block from "../block/Block";
+import React from 'react';
+import styled from 'styled-components';
+import { UnorderedListOutlined, AlignLeftOutlined } from '@ant-design/icons';
+import { graphql } from 'babel-plugin-relay/macro';
+import nullthrows from 'nullthrows';
+import { createFragmentContainer } from 'react-relay';
+import { HalfSlide_halfSlide } from './__generated__/HalfSlide_halfSlide.graphql';
+import { Block as BlockType } from '../../types/Block';
+import Block from '../block/Block';
 
 type BlockWrapperProps = { preview?: boolean };
 const FirstHalfBlockWrapper = styled.div`
@@ -16,7 +16,7 @@ const FirstHalfBlockWrapper = styled.div`
   height: 100%;
   width: 49.5%;
   overflow: hidden;
-  background-color: ${({ preview }: BlockWrapperProps) => !preview && "white"};
+  background-color: ${({ preview }: BlockWrapperProps) => !preview && 'white'};
 `;
 
 const SecondHalfBlockWrapper = styled.div`
@@ -26,7 +26,7 @@ const SecondHalfBlockWrapper = styled.div`
   overflow: hidden;
   height: 100%;
   width: 49.5%;
-  background-color: ${({ preview }: BlockWrapperProps) => !preview && "white"};
+  background-color: ${({ preview }: BlockWrapperProps) => !preview && 'white'};
 `;
 
 type WrapperProps = { preview?: boolean; selected?: boolean };
@@ -38,12 +38,12 @@ const Wrapper = styled.div`
   display: flex;
   transition: all 0.15s ease-in-out;
   background-color: ${({ selected, preview }: WrapperProps) =>
-    selected && preview && "#1990ff"};
+    selected && preview && '#1990ff'};
   color: ${({ selected, preview }: WrapperProps) =>
-    selected && preview && "white"};
+    selected && preview && 'white'};
   :hover {
-    background-color: ${({ preview }: WrapperProps) => preview && "#1990ff"};
-    color: ${({ preview }: WrapperProps) => preview && "white"};
+    background-color: ${({ preview }: WrapperProps) => preview && '#1990ff'};
+    color: ${({ preview }: WrapperProps) => preview && 'white'};
   }
 `;
 

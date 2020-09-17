@@ -1,12 +1,12 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import { environment } from "../graphql/relay";
-import { QueryRenderer } from "react-relay";
-import { graphql } from "babel-plugin-relay/macro";
-import nullthrows from "nullthrows";
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import { environment } from '../graphql/relay';
+import { QueryRenderer } from 'react-relay';
+import { graphql } from 'babel-plugin-relay/macro';
+import nullthrows from 'nullthrows';
 
-import EditCourse from "../components/course/EditCourse";
-import { EditCoursePageQueryResponse } from "./__generated__/EditCoursePageQuery.graphql";
+import EditCourse from '../components/course/EditCourse';
+import { EditCoursePageQueryResponse } from './__generated__/EditCoursePageQuery.graphql';
 
 const Query = graphql`
   query EditCoursePageQuery($where: CourseWhereUniqueInput!) {
@@ -31,7 +31,7 @@ export const EditCoursePage = (): JSX.Element => {
           <EditCourse
             course={nullthrows(
               (props as EditCoursePageQueryResponse)?.course,
-              "Course not found"
+              'Course not found',
             )}
             query={nullthrows(props as EditCoursePageQueryResponse)}
           />

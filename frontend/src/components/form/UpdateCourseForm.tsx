@@ -1,8 +1,8 @@
-import React from "react";
-import { Form, Button } from "antd";
-import { FormItem } from "./FormItem";
+import React from 'react';
+import { Form, Button } from 'antd';
+import { FormItem } from './FormItem';
 
-import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
+import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
 
 type FormProps = {
   onSubmit: (values: Store) => void;
@@ -18,7 +18,7 @@ export const UpdateCourseForm = ({
 
   // Set default form values
   React.useEffect(() => {
-    setFieldsValue({ name: "" });
+    setFieldsValue({ name: '' });
   }, [setFieldsValue]);
 
   return (
@@ -27,11 +27,11 @@ export const UpdateCourseForm = ({
       onFinish={onSubmit}
       onFinishFailed={onSubmitError}
       layout="vertical"
-      style={{ backgroundColor: "white" }}
+      style={{ backgroundColor: 'white' }}
     >
       <FormItem
         name="name"
-        value={getFieldValue("name")}
+        value={getFieldValue('name')}
         type="text"
         input="courseName"
         placeholder="Course Name"
@@ -39,7 +39,7 @@ export const UpdateCourseForm = ({
 
       <FormItem
         name="description"
-        value={getFieldValue("description")}
+        value={getFieldValue('description')}
         type="text"
         input="description"
         placeholder="Course Description"
@@ -58,12 +58,12 @@ const DeleteButton = () => (
     block
     type="danger"
     size="large"
-    onClick={() => console.log("Deleting")}
+    onClick={() => console.log('Deleting')}
     style={{
-      marginTop: "10px",
-      backgroundColor: "transparent",
-      color: "red",
-      border: "0",
+      marginTop: '10px',
+      backgroundColor: 'transparent',
+      color: 'red',
+      border: '0',
     }}
   >
     Delete

@@ -1,6 +1,6 @@
-import React from "react";
-import { InvitationPage } from "./InvitationPage";
-import { Tabs } from "antd";
+import React from 'react';
+import { InvitationPage } from './InvitationPage';
+import { Tabs } from 'antd';
 
 const { TabPane } = Tabs;
 
@@ -10,7 +10,7 @@ type Tab = {
 };
 type Props = {};
 export const AdminPage = (props: Props) => {
-  const tabs: Tab[] = [{ title: "Invite", Component: <InvitationPage /> }];
+  const tabs: Tab[] = [{ title: 'Invite', Component: <InvitationPage /> }];
 
   const handleTabChange = (key: string) => console.log({ key });
   return (
