@@ -26,6 +26,7 @@ const Dashboard = ({
   selected,setSelected are currently not being used
   May be used in the future to set if something is selected or not
    */
+  // eslint-disable-next-line
   const [selected, setSelected] = useState<number>(1);
   return (
     <>
