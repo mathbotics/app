@@ -1,5 +1,4 @@
 import React from 'react';
-import { DataID } from 'react-relay';
 import { Modal } from 'antd';
 import { Store } from 'rc-field-form/lib/interface';
 
