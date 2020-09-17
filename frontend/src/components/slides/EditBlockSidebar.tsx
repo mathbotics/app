@@ -6,7 +6,6 @@ import { graphql } from 'babel-plugin-relay/macro';
 import { EditBlockSidebar_block } from './__generated__/EditBlockSidebar_block.graphql';
 import EditTextBlockForm from '../block/text/EditTextBlockForm';
 import EditMultipleChoiceQuestionBlockForm from '../block/multiple_choice/EditMultipleChoiceQuestionBlockForm';
-import styled from 'styled-components';
 
 const { Sider } = Layout;
 const { Option } = Select;
