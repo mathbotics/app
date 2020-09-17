@@ -67,7 +67,7 @@ export type SlideMenuItem = {
   component: JSX.Element;
 };
 
-const { Sider, Content } = Layout;
+const { Sider } = Layout;
 type Props = {
   lesson: SlidesSidebar_lesson;
   onCreate?: () => void;
