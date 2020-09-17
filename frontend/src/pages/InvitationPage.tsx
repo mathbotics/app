@@ -22,6 +22,12 @@ enum InvitationState {
 
 type Props = {};
 export const InvitationPage = (props: Props) => {
+  /*
+  TODO
+  Invitation state is not being used
+  Maybe there will be future use for it
+   */
+  // eslint-disable-next-line
   const [invitationState, setInvitationState] = React.useState<InvitationState>(
     InvitationState.DEFAULT,
   );
