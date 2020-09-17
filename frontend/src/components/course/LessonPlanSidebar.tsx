@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Layout, Menu, Tooltip, Typography } from 'antd';
-import { PlusOutlined, BookOutlined, CopyOutlined } from '@ant-design/icons';
+import { Layout, Menu, Typography } from 'antd';
 import styled from 'styled-components';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
