@@ -52,7 +52,12 @@ const SidebarHeader = ({ title }: SidebarHeaderProps) => (
   </Tooltip>
 );
 
-const CreateSlideCard = () => {
+/*
+TODO
+while props is not being used
+there may be a future use cause for it to be passed
+ */
+const CreateSlideCard = (props: any) => {
   return (
     <Tooltip title="Create a slide">
       <SlideCard style={{ border: '1px solid #ccc' }}>
