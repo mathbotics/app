@@ -1,6 +1,5 @@
 import React from 'react';
 import { Input, Typography } from 'antd';
-import { AppstoreAddOutlined } from '@ant-design/icons';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 import { LessonPlanCatalogue_query } from './__generated__/LessonPlanCatalogue_query.graphql';
@@ -44,7 +43,7 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
 
       {/* Lessons */}
       <LessonsPreviewWrapper>
-        {lessons.length == 0 && <p> No lessons available</p>}
+        {lessons.length === 0 && <p> No lessons available</p>}
         {lessons.map(({ id, title, slides }) => (
           <LessonCardWrapper
             key={id}
