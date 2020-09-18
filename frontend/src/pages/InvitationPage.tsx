@@ -12,11 +12,11 @@ const { Title } = Typography;
 const Wrapper = styled(Layout.Content)`
   width: 400px;
 `;
-
+//Alert component
 const SAlert = styled(Alert)`
   margin-bottom: 20px;
 `;
-
+//Invitation state
 enum InvitationState {
   DEFAULT,
   SUCCESS,
@@ -58,11 +58,11 @@ export const InvitationPage = (props: Props) => {
     setInvitationState(InvitationState.FAILURE);
     console.log({ error });
   };
-
+//invitation form
   return (
     <Wrapper>
-
       {invitationState === InvitationState.SUCCESS && (
+        //send success alert if email was sent seuccessfuly
         <SAlert
           message="Invitation sent"
           type="success"
@@ -70,7 +70,9 @@ export const InvitationPage = (props: Props) => {
           closable
         />
       )}
+      
       {invitationState === InvitationState.FAILURE && (
+        //send error alert if email wasn't sent
         <SAlert
           message="There was an error"
           type="error"
