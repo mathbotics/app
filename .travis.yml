@@ -19,10 +19,19 @@ script:
   - CI=false yarn build
 
 deploy:
-  provider: script
+  provider: heroku
+  api_key:
+    secure: $HEROKU_API_KEY
+  app:
+    master: mathbotics-frontend
+    dev: mathbotics-frontend
+    test: mathbotics-frontend
+  run:
+    - restart
   script:
     - netlify deploy -s $NETLIFY_SITE_ID -a $NETLIFY_PUBLISH_KEY -p -d ./build
     - y
   skip_cleanup: true
   on:
     branch: feature/FrontEnd/editButton
+
