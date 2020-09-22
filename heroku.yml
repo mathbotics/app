@@ -2,3 +2,7 @@ build:
   docker:
     web: docker/web/Dockerfile
     api: docker/api/Dockerfile
+setup:
+  addons:
+    - plan: heroku-postgresql
+      as: DATABASE
