@@ -12,7 +12,7 @@ before_install:
   - cd frontend
 
 before_deploy:
-  - yarn global add netlify-cli
+  - yarn global add heroku
 
 script:
   - yarn
