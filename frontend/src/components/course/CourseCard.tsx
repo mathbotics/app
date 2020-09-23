@@ -12,7 +12,6 @@ const Card = styled.div`
   border-radius: 5px;
   padding: 35px;
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   transition: all 0.15s ease-in-out;
