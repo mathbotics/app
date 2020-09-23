@@ -6,5 +6,6 @@
     "start": "cd frontend && npm i && cd ../back && npm i"
   },
 
-  "license": "MIT"
+  "license": "MIT",
+  "heroku-run-build-script": true
 }
