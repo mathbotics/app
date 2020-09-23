@@ -19,9 +19,9 @@ script:
   - CI=false yarn build
 
 deploy:
-  provider: heroku
-  api_key:
-    secure: $HEROKU_API_KEY
+  provider: heroku:git
+  api_key: $HEROKU_API_KEY
+  edge: true
   app:
     master: mathbotics-frontend
     dev: mathbotics-frontend
