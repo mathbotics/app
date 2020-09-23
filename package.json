@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node backend/src/server",
-    "heroku-postbuild": "cd frontend && yarn start"
+    "start": "cd frontend && npm i && cd ../back && npm i"
   },
   "license": "MIT",
   "heroku-run-build-script": true

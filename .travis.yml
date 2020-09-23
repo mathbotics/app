@@ -11,18 +11,24 @@ env:
 before_install:
   - cd frontend
 
-before_deploy:
-  - yarn global add netlify-cli
+#before_deploy:
+#  - yarn global add heroku
 
 script:
   - yarn
   - CI=false yarn build
 
 deploy:
-  provider: script
-  script:
-    - netlify deploy -s $NETLIFY_SITE_ID -a $NETLIFY_PUBLISH_KEY -p -d ./build
-    - y
+  provider: heroku
+  api_key: $HEROKU_API_KEY
+  edge: true
+  app: mathbotics-frontend
+  run:
+    - restart
+#  script:
+#    - netlify deploy -s $NETLIFY_SITE_ID -a $NETLIFY_PUBLISH_KEY -p -d ./build
+#    - y
   skip_cleanup: true
   on:
     branch: feature/FrontEnd/editButton
+
