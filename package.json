@@ -1,10 +1,10 @@
 {
-  "name": "travis-scripts",
+  "name": "app",
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "yarn backend && yarn start",
-    "heroku-postbuild": "cd frontend && npm install && npm run build"
+    "start": "yarn backend",
+    "heroku-postbuild": "cd frontend && yarn start"
   },
   "license": "MIT",
   "heroku-run-build-script": true
