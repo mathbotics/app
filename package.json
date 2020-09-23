@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "yarn backend",
+    "start": "node backend/src/server",
     "heroku-postbuild": "cd frontend && yarn start"
   },
   "license": "MIT",
