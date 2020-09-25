@@ -69,5 +69,9 @@ const onServerStart = () =>
 if (NODE_ENV !== 'test') {
   app.listen({ port: PORT || 3000}, onServerStart);
 }
+const port = PORT || 3000;
 
+app.listen(port, () => {
+  console.log(`listening on port ${port} ...... `);
+});
 export default apollo;
