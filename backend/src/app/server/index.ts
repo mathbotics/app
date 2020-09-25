@@ -54,6 +54,7 @@ if(NODE_ENV ==='production'){
     res.sendFile(path.join(__dirname, '../../../../frontend/src/index.tsx'));
   })
 }
+
 applyExpressMiddlewares(app);
 apollo.applyMiddleware({
   app,
@@ -66,7 +67,7 @@ const onServerStart = () =>
   );
 
 if (NODE_ENV !== 'test') {
-  app.listen({ port: PORT || 5000}, onServerStart);
+  app.listen({ port: PORT || 3000}, onServerStart);
 }
 
 export default apollo;
