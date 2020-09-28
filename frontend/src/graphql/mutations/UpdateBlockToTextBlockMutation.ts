@@ -1,8 +1,8 @@
-import { commitMutation } from "react-relay";
-import { graphql } from "babel-plugin-relay/macro";
+import { commitMutation } from 'react-relay';
+import { graphql } from 'babel-plugin-relay/macro';
 
-import { environment } from "../relay";
-import { UpdateBlockToTextBlockMutationVariables } from "./__generated__/UpdateBlockToTextBlockMutation.graphql";
+import { environment } from '../relay';
+import { UpdateBlockToTextBlockMutationVariables } from './__generated__/UpdateBlockToTextBlockMutation.graphql';
 
 const mutation = graphql`
   mutation UpdateBlockToTextBlockMutation(
@@ -18,7 +18,7 @@ const mutation = graphql`
 export const commit = (
   variables: UpdateBlockToTextBlockMutationVariables,
   onSuccess: (response: any) => void,
-  onFailure: (error: Error) => void
+  onFailure: (error: Error) => void,
 ) =>
   commitMutation(environment, {
     mutation,

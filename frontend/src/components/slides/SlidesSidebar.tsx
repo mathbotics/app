@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Layout, Menu, Tooltip, Typography, Result, Button } from "antd";
-import { PlusOutlined, BookOutlined } from "@ant-design/icons";
-import styled from "styled-components";
-import { createFragmentContainer } from "react-relay";
-import { graphql } from "babel-plugin-relay/macro";
-import Slide from "./Slide";
-import { SlidesSidebar_lesson } from "./__generated__/SlidesSidebar_lesson.graphql";
-import nullthrows from "nullthrows";
+import React, { useState } from 'react';
+import { Layout, Menu, Tooltip } from 'antd';
+import { PlusOutlined, BookOutlined } from '@ant-design/icons';
+import styled from 'styled-components';
+import { createFragmentContainer } from 'react-relay';
+import { graphql } from 'babel-plugin-relay/macro';
+import Slide from './Slide';
+import { SlidesSidebar_lesson } from './__generated__/SlidesSidebar_lesson.graphql';
+import nullthrows from 'nullthrows';
 
 const MenuItem = styled(Menu.Item)`
   width: 100% !important;
@@ -41,10 +41,10 @@ const SidebarHeader = ({ title }: SidebarHeaderProps) => (
       style={{
         fontSize: 18,
         fontWeight: 500,
-        whiteSpace: "nowrap",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-        paddingLeft: "15px",
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        paddingLeft: '15px',
       }}
     >
       <BookOutlined /> {title}
@@ -52,11 +52,16 @@ const SidebarHeader = ({ title }: SidebarHeaderProps) => (
   </Tooltip>
 );
 
+/*
+TODO
+while props is not being used
+there may be a future use cause for it to be passed
+ */
 const CreateSlideCard = (props: any) => {
   return (
     <Tooltip title="Create a slide">
-      <SlideCard style={{ border: "1px solid #ccc" }}>
-        <PlusOutlined style={{ fontSize: "40px" }} />
+      <SlideCard style={{ border: '1px solid #ccc' }}>
+        <PlusOutlined style={{ fontSize: '40px' }} />
       </SlideCard>
     </Tooltip>
   );
@@ -67,7 +72,7 @@ export type SlideMenuItem = {
   component: JSX.Element;
 };
 
-const { Sider, Content } = Layout;
+const { Sider } = Layout;
 type Props = {
   lesson: SlidesSidebar_lesson;
   onCreate?: () => void;
@@ -81,13 +86,13 @@ const SlidesSidebar = ({
   onClick,
 }: Props) => {
   const [selected, setSelected] = useState<string | undefined>(
-    lesson.slides[0]?.id
+    lesson.slides[0]?.id,
   );
 
   return (
-    <Sider width={300} theme="light" style={{ overflow: "auto" }}>
+    <Sider width={300} theme="light" style={{ overflow: 'auto' }}>
       <SidebarHeader title={lesson.title} />
-      <Menu defaultSelectedKeys={[selected?.toString() ?? ""]} mode="inline">
+      <Menu defaultSelectedKeys={[selected?.toString() ?? '']} mode="inline">
         {/* This is the add slide which should always show up on top */}
         {editing && (
           <MenuItem
@@ -95,7 +100,7 @@ const SlidesSidebar = ({
             onClick={() =>
               nullthrows(
                 onCreate,
-                "An onCreate function must be provided if editing is true"
+                'An onCreate function must be provided if editing is true',
               )()
             }
           >
@@ -112,12 +117,12 @@ const SlidesSidebar = ({
               setSelected(slide.id);
             }}
           >
-            <div style={{ display: "flex" }}>
+            <div style={{ display: 'flex' }}>
               <h1
                 style={{
-                  margin: "auto",
-                  paddingRight: "20px",
-                  fontWeight: "bolder",
+                  margin: 'auto',
+                  paddingRight: '20px',
+                  fontWeight: 'bolder',
                 }}
               >
                 {index + 1}

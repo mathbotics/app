@@ -1,12 +1,12 @@
-import React from "react";
-import { Input, Button } from "antd";
-import { createFragmentContainer } from "react-relay";
-import { graphql } from "babel-plugin-relay/macro";
-import nullthrows from "nullthrows";
-import cuid from "cuid";
+import React from 'react';
+import { Input, Button } from 'antd';
+import { createFragmentContainer } from 'react-relay';
+import { graphql } from 'babel-plugin-relay/macro';
+import nullthrows from 'nullthrows';
+import cuid from 'cuid';
 
-import { EditMultipleChoiceQuestionBlockForm_block } from "./__generated__/EditMultipleChoiceQuestionBlockForm_block.graphql";
-import { commit as commitUpdateBlockToMultipleChoiceBlock } from "../../../graphql/mutations/UpdateBlockToMultipleChoiceBlockMutation";
+import { EditMultipleChoiceQuestionBlockForm_block } from './__generated__/EditMultipleChoiceQuestionBlockForm_block.graphql';
+import { commit as commitUpdateBlockToMultipleChoiceBlock } from '../../../graphql/mutations/UpdateBlockToMultipleChoiceBlockMutation';
 
 type Props = {
   block?: EditMultipleChoiceQuestionBlockForm_block;
@@ -16,14 +16,14 @@ const EditMultipleChoiceQuestionBlockForm = ({
   block,
   blockId,
 }: Props): JSX.Element => {
-  const [text, setText] = React.useState(block?.text ?? "");
+  const [text, setText] = React.useState(block?.text ?? '');
   const [choices, setChoices] = React.useState(block?.choices ?? []);
 
   const onChangeChoiceText = (changedId: string, text: string) => {
     setChoices(
       choices.map(({ id, ...choice }) =>
-        id === changedId ? { ...choice, id, text } : { ...choice, id }
-      )
+        id === changedId ? { ...choice, id, text } : { ...choice, id },
+      ),
     );
   };
 
@@ -33,8 +33,8 @@ const EditMultipleChoiceQuestionBlockForm = ({
       choices
         .filter(({ id }) => id !== idToRemove)
         .map((choice, i) =>
-          correct && i === 0 ? { ...choice, correct: true } : choice
-        )
+          correct && i === 0 ? { ...choice, correct: true } : choice,
+        ),
     );
   };
 
@@ -44,7 +44,7 @@ const EditMultipleChoiceQuestionBlockForm = ({
         ...choice,
         id,
         correct: id === idToSetCorrect,
-      }))
+      })),
     );
   };
 
@@ -59,7 +59,7 @@ const EditMultipleChoiceQuestionBlockForm = ({
         },
       },
       onSaveSuccess,
-      onSaveError
+      onSaveError,
     );
   };
 
@@ -98,7 +98,7 @@ const EditMultipleChoiceQuestionBlockForm = ({
         onClick={() =>
           setChoices([
             ...choices,
-            { text: "", id: cuid(), correct: choices.length === 0 },
+            { text: '', id: cuid(), correct: choices.length === 0 },
           ])
         }
         type="link"

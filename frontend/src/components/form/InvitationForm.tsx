@@ -1,8 +1,8 @@
-import React from "react";
-import { Form, Button } from "antd";
-import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
-import { FormItem } from "./FormItem";
-import { SelectFormItem } from "./SelectFormItem";
+import React from 'react';
+import { Form, Button } from 'antd';
+import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
+import { FormItem } from './FormItem';
+import { SelectFormItem } from './SelectFormItem';
 
 type InvitationFormProps = {
   onSubmit: (values: Store) => void;
@@ -15,10 +15,10 @@ export type InvitationFormFields = {
 };
 
 enum Role {
-  ADMIN = "Admin",
-  GUARDIAN = "Guardian",
-  INSTRUCTOR = "Instructor",
-  STUDENT = "Student"
+  ADMIN = 'Admin',
+  GUARDIAN = 'Guardian',
+  INSTRUCTOR = 'Instructor',
+  STUDENT = 'Student',
 }
 
 export const InvitationForm = (props: InvitationFormProps): JSX.Element => {
@@ -29,10 +29,10 @@ export const InvitationForm = (props: InvitationFormProps): JSX.Element => {
   React.useEffect(
     () =>
       setFieldsValue({
-        email: "",
-        role: Role.INSTRUCTOR
+        email: '',
+        role: Role.INSTRUCTOR,
       }),
-    [setFieldsValue]
+    [setFieldsValue],
   );
 
   return (
@@ -41,11 +41,11 @@ export const InvitationForm = (props: InvitationFormProps): JSX.Element => {
       onFinish={props.onSubmit}
       onFinishFailed={props.onSubmitError}
       layout="vertical"
-      style={{ backgroundColor: "white" }}
+      style={{ backgroundColor: 'white' }}
     >
       <FormItem
         name="email"
-        value={getFieldValue("username")}
+        value={getFieldValue('username')}
         type="text"
         input="email"
         placeholder="Email"
@@ -54,8 +54,8 @@ export const InvitationForm = (props: InvitationFormProps): JSX.Element => {
         defaultValue="Instructor"
         name="role"
         options={[
-          { value: Role.ADMIN, text: "Admin" },
-          { value: Role.INSTRUCTOR, text: "Instructor" }
+          { value: Role.ADMIN, text: 'Admin' },
+          { value: Role.INSTRUCTOR, text: 'Instructor' },
         ]}
         placeholder="Role"
       />

@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import { Layout, Button } from "antd";
-import { UserAddOutlined } from "@ant-design/icons";
-import { createFragmentContainer } from "react-relay";
-import { graphql } from "babel-plugin-relay/macro";
+import React, { useState } from 'react';
+import { Layout, Button } from 'antd';
+import { UserAddOutlined } from '@ant-design/icons';
+import { createFragmentContainer } from 'react-relay';
+import { graphql } from 'babel-plugin-relay/macro';
 
-import StudentsTable from "../students/StudentsTable";
-import { EditCourseStudents_course } from "./__generated__/EditCourseStudents_course.graphql";
-import AddStudentModal from "../students/AddStudentModal";
+import StudentsTable from '../students/StudentsTable';
+import { EditCourseStudents_course } from './__generated__/EditCourseStudents_course.graphql';
+import AddStudentModal from '../students/AddStudentModal';
 
 type Props = { course: EditCourseStudents_course };
 const EditCourseStudents = ({ course }: Props) => {
   const [isModalOpen, toggleModal] = useState<boolean>(false);
   return (
-    <Layout style={{ backgroundColor: "white" }}>
+    <Layout style={{ backgroundColor: 'white' }}>
       <Button
         onClick={() => toggleModal(!isModalOpen)}
         icon={<UserAddOutlined />}
         type="primary"
-        style={{ margin: "10px 0", width: "fit-content" }}
+        style={{ margin: '10px 0', width: 'fit-content' }}
       >
         Add Student
       </Button>

@@ -1,30 +1,22 @@
-import React, { useEffect } from "react";
-import { Layout, Menu } from "antd";
+import React, { useEffect } from 'react';
+import { Layout, Menu } from 'antd';
 import {
   DashboardOutlined,
   LockOutlined,
   BookOutlined,
   AppstoreOutlined,
   LogoutOutlined,
-} from "@ant-design/icons";
-import styled from "styled-components";
-import { useHistory, Redirect } from "react-router-dom";
-import { graphql } from "babel-plugin-relay/macro";
-import { createFragmentContainer } from "react-relay";
-import QueryLookupRenderer from "relay-query-lookup-renderer";
-
-import { withSidebar_viewer } from "./__generated__/withSidebar_viewer.graphql";
-import { withSidebarQueryResponse } from "./__generated__/withSidebarQuery.graphql";
-import { environment } from "../../../graphql/relay";
-import { AppLogo } from "../../icons";
+} from '@ant-design/icons';
+import { useHistory, Redirect } from 'react-router-dom';
+import { graphql } from 'babel-plugin-relay/macro';
+import { createFragmentContainer } from 'react-relay';
+import QueryLookupRenderer from 'relay-query-lookup-renderer';
+import { withSidebar_viewer } from './__generated__/withSidebar_viewer.graphql';
+import { withSidebarQueryResponse } from './__generated__/withSidebarQuery.graphql';
+import { environment } from '../../../graphql/relay';
+import { AppLogo } from '../../icons';
 
 const { Sider, Content } = Layout;
-
-const Logo = styled.div`
-  height: 32px;
-  color: white;
-  margin: 16px;
-`;
 
 type SidebarItem = {
   name: string;
@@ -47,24 +39,24 @@ type Props = {
 
 const menuItemsForViewer = ({ role }: withSidebar_viewer) => {
   switch (role) {
-    case "Admin":
+    case 'Admin':
       return [
-        { name: "Dashboard", path: "", icon: <DashboardOutlined /> },
-        { name: "Admin", path: "admin", icon: <LockOutlined /> },
-        { name: "Lessons", path: "lessons", icon: <AppstoreOutlined /> },
+        { name: 'Dashboard', path: '', icon: <DashboardOutlined /> },
+        { name: 'Admin', path: 'admin', icon: <LockOutlined /> },
+        { name: 'Lessons', path: 'lessons', icon: <AppstoreOutlined /> },
       ];
-    case "Instructor":
+    case 'Instructor':
       return [
-        { name: "Dashboard", path: "", icon: <DashboardOutlined /> },
-        { name: "Courses", path: "courses", icon: <BookOutlined /> },
+        { name: 'Dashboard', path: '', icon: <DashboardOutlined /> },
+        { name: 'Courses', path: 'courses', icon: <BookOutlined /> },
       ];
-    case "Student":
+    case 'Student':
       return [
-        { name: "Dashboard", path: "", icon: <DashboardOutlined /> },
-        { name: "Courses", path: "courses", icon: <BookOutlined /> },
+        { name: 'Dashboard', path: '', icon: <DashboardOutlined /> },
+        { name: 'Courses', path: 'courses', icon: <BookOutlined /> },
       ];
     default:
-      return [{ name: "Dashboard", path: "", icon: <DashboardOutlined /> }];
+      return [{ name: 'Dashboard', path: '', icon: <DashboardOutlined /> }];
   }
 };
 
@@ -75,14 +67,15 @@ const Sidebar = createFragmentContainer(
     const [collapsed, setCollapsed] = React.useState<boolean>(false);
     const [items, setMenuItems] = React.useState<Array<SidebarItem>>([]);
 
-    useEffect(() =>
-      setCollapsed(localStorage.getItem("collapsed") == "true" ?? true), []
+    useEffect(
+      () => setCollapsed(localStorage.getItem('collapsed') === 'true' ?? true),
+      [],
     );
 
     viewer && items.length === 0 && setMenuItems(menuItemsForViewer(viewer));
 
     const selectedKey = () => {
-      const [, path] = window.location.pathname.split("/");
+      const [, path] = window.location.pathname.split('/');
       return items.findIndex((item) => item.path === path);
     };
 
@@ -90,18 +83,27 @@ const Sidebar = createFragmentContainer(
       history.push(`/${item.path}`);
     };
 
+    //TODO fix logout
+    function logOut() {
+      localStorage.setItem('jwt', '');
+      localStorage.removeItem('jwt');
+      document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+      console.log('Need working log out mutation here');
+      history.push(`/`);
+    }
+
     return (
-      <Layout style={{ minHeight: "100%" }}>
+      <Layout style={{ minHeight: '100%' }}>
         <Sider
           collapsible
           collapsed={collapsed}
           onCollapse={() => {
-            localStorage.setItem("collapsed", (!collapsed).toString());
+            localStorage.setItem('collapsed', (!collapsed).toString());
             setCollapsed(!collapsed);
           }}
         >
-          <div style={{ textAlign: "center", margin: "10px auto" }}>
-            <AppLogo height={collapsed ? "50px" : "100px"} />
+          <div style={{ textAlign: 'center', margin: '10px auto' }}>
+            <AppLogo height={collapsed ? '50px' : '100px'} />
           </div>
           <Menu
             theme="dark"
@@ -115,22 +117,20 @@ const Sidebar = createFragmentContainer(
               </Menu.Item>
             ))}
 
-            <Menu.Item
-              onClick={() => console.log("Need log out mutation here")}
-            >
-              <LogoutOutlined style={{ fontWeight: "bold" }} />
+            <Menu.Item onClick={() => logOut()}>
+              <LogoutOutlined style={{ fontWeight: 'bold' }} />
               <span>Logout</span>
             </Menu.Item>
           </Menu>
         </Sider>
         <Layout>
-          <Content style={{ margin: "16px 16px" }}>
+          <Content style={{ margin: '16px 16px' }}>
             <div
               style={{
                 padding: 24,
-                background: "#fff",
+                background: '#fff',
                 minHeight: 360,
-                overflowY: "auto",
+                overflowY: 'auto',
               }}
             >
               <Component />
@@ -146,7 +146,7 @@ const Sidebar = createFragmentContainer(
         role: __typename
       }
     `,
-  }
+  },
 );
 
 export default (component: React.FC) => () => (

@@ -1,6 +1,6 @@
-import React from "react";
-import { createFragmentContainer } from "react-relay";
-import { graphql } from "babel-plugin-relay/macro";
+import React from 'react';
+import { createFragmentContainer } from 'react-relay';
+import { graphql } from 'babel-plugin-relay/macro';
 
 type Props = {};
 const LessonsList = (props: Props) => {

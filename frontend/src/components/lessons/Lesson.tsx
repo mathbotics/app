@@ -1,10 +1,10 @@
-import React from "react";
-import { createFragmentContainer } from "react-relay";
-import { Layout } from "antd";
-import { graphql } from "babel-plugin-relay/macro";
-import { Lesson_lesson } from "./__generated__/Lesson_lesson.graphql";
-import SlidesSidebar from "../slides/SlidesSidebar";
-import EditorSlidePreview from "../slides/EditorSlidePreview";
+import React from 'react';
+import { createFragmentContainer } from 'react-relay';
+import { Layout } from 'antd';
+import { graphql } from 'babel-plugin-relay/macro';
+import { Lesson_lesson } from './__generated__/Lesson_lesson.graphql';
+import SlidesSidebar from '../slides/SlidesSidebar';
+import EditorSlidePreview from '../slides/EditorSlidePreview';
 
 type Props = {
   lesson: Lesson_lesson;
@@ -15,7 +15,7 @@ const Lesson = (props) => {
   >(props.lesson.slides[0]?.id);
 
   return (
-    <Layout style={{ height: "92vh" }}>
+    <Layout style={{ height: '92vh' }}>
       <SlidesSidebar
         onClick={(id) => setSelectedSlideId(id)}
         lesson={props.lesson}

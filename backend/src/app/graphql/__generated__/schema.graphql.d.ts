@@ -24,7 +24,7 @@ export interface NexusGenInputs {
     create?: NexusGenInputs['AdminCreateWithoutUserInput'] | null; // AdminCreateWithoutUserInput
   }
   AdminCreateWithoutUserInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email: string; // String!
     id?: string | null; // String
   }
@@ -37,7 +37,7 @@ export interface NexusGenInputs {
     upsert?: NexusGenInputs['AdminUpsertWithoutUserInput'] | null; // AdminUpsertWithoutUserInput
   }
   AdminUpdateWithoutUserDataInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email?: string | null; // String
     id?: string | null; // String
   }
@@ -317,7 +317,7 @@ export interface NexusGenInputs {
   }
   ContentCreateWithoutCourseInput: { // input type
     author: string; // String!
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     id?: string | null; // String
     pages?: NexusGenInputs['PageCreateManyWithoutContentInput'] | null; // PageCreateManyWithoutContentInput
     title: string; // String!
@@ -339,7 +339,7 @@ export interface NexusGenInputs {
   }
   ContentUpdateManyDataInput: { // input type
     author?: string | null; // String
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     id?: string | null; // String
     title?: string | null; // String
   }
@@ -364,7 +364,7 @@ export interface NexusGenInputs {
   }
   ContentUpdateWithoutCourseDataInput: { // input type
     author?: string | null; // String
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     id?: string | null; // String
     pages?: NexusGenInputs['PageUpdateManyWithoutContentInput'] | null; // PageUpdateManyWithoutContentInput
     title?: string | null; // String
@@ -390,7 +390,7 @@ export interface NexusGenInputs {
   }
   CourseCreateInput: { // input type
     contents?: NexusGenInputs['ContentCreateManyWithoutCourseInput'] | null; // ContentCreateManyWithoutCourseInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     description?: string | null; // String
     id?: string | null; // String
     lessonPlan: NexusGenInputs['LessonPlanCreateOneWithoutCourseInput']; // LessonPlanCreateOneWithoutCourseInput!
@@ -412,7 +412,7 @@ export interface NexusGenInputs {
   }
   CourseCreateWithoutInstructorsInput: { // input type
     contents?: NexusGenInputs['ContentCreateManyWithoutCourseInput'] | null; // ContentCreateManyWithoutCourseInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     description?: string | null; // String
     id?: string | null; // String
     lessonPlan: NexusGenInputs['LessonPlanCreateOneWithoutCourseInput']; // LessonPlanCreateOneWithoutCourseInput!
@@ -422,7 +422,7 @@ export interface NexusGenInputs {
   }
   CourseCreateWithoutLessonPlanInput: { // input type
     contents?: NexusGenInputs['ContentCreateManyWithoutCourseInput'] | null; // ContentCreateManyWithoutCourseInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     description?: string | null; // String
     id?: string | null; // String
     instructors?: NexusGenInputs['InstructorCreateManyWithoutCoursesInput'] | null; // InstructorCreateManyWithoutCoursesInput
@@ -432,7 +432,7 @@ export interface NexusGenInputs {
   }
   CourseCreateWithoutStudentsInput: { // input type
     contents?: NexusGenInputs['ContentCreateManyWithoutCourseInput'] | null; // ContentCreateManyWithoutCourseInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     description?: string | null; // String
     id?: string | null; // String
     instructors?: NexusGenInputs['InstructorCreateManyWithoutCoursesInput'] | null; // InstructorCreateManyWithoutCoursesInput
@@ -460,7 +460,7 @@ export interface NexusGenInputs {
   }
   CourseUpdateInput: { // input type
     contents?: NexusGenInputs['ContentUpdateManyWithoutCourseInput'] | null; // ContentUpdateManyWithoutCourseInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     description?: string | null; // String
     id?: string | null; // String
     instructors?: NexusGenInputs['InstructorUpdateManyWithoutCoursesInput'] | null; // InstructorUpdateManyWithoutCoursesInput
@@ -470,7 +470,7 @@ export interface NexusGenInputs {
     suggestedLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
   }
   CourseUpdateManyDataInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     description?: string | null; // String
     id?: string | null; // String
     name?: string | null; // String
@@ -518,7 +518,7 @@ export interface NexusGenInputs {
   }
   CourseUpdateWithoutInstructorsDataInput: { // input type
     contents?: NexusGenInputs['ContentUpdateManyWithoutCourseInput'] | null; // ContentUpdateManyWithoutCourseInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     description?: string | null; // String
     id?: string | null; // String
     lessonPlan?: NexusGenInputs['LessonPlanUpdateOneRequiredWithoutCourseInput'] | null; // LessonPlanUpdateOneRequiredWithoutCourseInput
@@ -528,7 +528,7 @@ export interface NexusGenInputs {
   }
   CourseUpdateWithoutLessonPlanDataInput: { // input type
     contents?: NexusGenInputs['ContentUpdateManyWithoutCourseInput'] | null; // ContentUpdateManyWithoutCourseInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     description?: string | null; // String
     id?: string | null; // String
     instructors?: NexusGenInputs['InstructorUpdateManyWithoutCoursesInput'] | null; // InstructorUpdateManyWithoutCoursesInput
@@ -538,7 +538,7 @@ export interface NexusGenInputs {
   }
   CourseUpdateWithoutStudentsDataInput: { // input type
     contents?: NexusGenInputs['ContentUpdateManyWithoutCourseInput'] | null; // ContentUpdateManyWithoutCourseInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     description?: string | null; // String
     id?: string | null; // String
     instructors?: NexusGenInputs['InstructorUpdateManyWithoutCoursesInput'] | null; // InstructorUpdateManyWithoutCoursesInput
@@ -590,14 +590,14 @@ export interface NexusGenInputs {
     username: string; // String!
   }
   DateTimeFilter: { // input type
-    equals?: Date | null; // DateTime
-    gt?: Date | null; // DateTime
-    gte?: Date | null; // DateTime
-    in?: Date[] | null; // [DateTime!]
-    lt?: Date | null; // DateTime
-    lte?: Date | null; // DateTime
-    not?: Date | null; // DateTime
-    notIn?: Date[] | null; // [DateTime!]
+    equals?: any | null; // DateTime
+    gt?: any | null; // DateTime
+    gte?: any | null; // DateTime
+    in?: any[] | null; // [DateTime!]
+    lt?: any | null; // DateTime
+    lte?: any | null; // DateTime
+    not?: any | null; // DateTime
+    notIn?: any[] | null; // [DateTime!]
   }
   GuardianCreateManyWithoutStudentsInput: { // input type
     connect?: NexusGenInputs['GuardianWhereUniqueInput'][] | null; // [GuardianWhereUniqueInput!]
@@ -608,13 +608,13 @@ export interface NexusGenInputs {
     create?: NexusGenInputs['GuardianCreateWithoutUserInput'] | null; // GuardianCreateWithoutUserInput
   }
   GuardianCreateWithoutStudentsInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email: string; // String!
     id?: string | null; // String
     user: NexusGenInputs['UserCreateOneWithoutGuardianInput']; // UserCreateOneWithoutGuardianInput!
   }
   GuardianCreateWithoutUserInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email: string; // String!
     id?: string | null; // String
     students?: NexusGenInputs['StudentCreateManyWithoutGuardiansInput'] | null; // StudentCreateManyWithoutGuardiansInput
@@ -634,7 +634,7 @@ export interface NexusGenInputs {
     students?: NexusGenInputs['StudentFilter'] | null; // StudentFilter
   }
   GuardianUpdateManyDataInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email?: string | null; // String
     id?: string | null; // String
   }
@@ -666,13 +666,13 @@ export interface NexusGenInputs {
     where: NexusGenInputs['GuardianWhereUniqueInput']; // GuardianWhereUniqueInput!
   }
   GuardianUpdateWithoutStudentsDataInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email?: string | null; // String
     id?: string | null; // String
     user?: NexusGenInputs['UserUpdateOneRequiredWithoutGuardianInput'] | null; // UserUpdateOneRequiredWithoutGuardianInput
   }
   GuardianUpdateWithoutUserDataInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email?: string | null; // String
     id?: string | null; // String
     students?: NexusGenInputs['StudentUpdateManyWithoutGuardiansInput'] | null; // StudentUpdateManyWithoutGuardiansInput
@@ -834,14 +834,14 @@ export interface NexusGenInputs {
     create?: NexusGenInputs['InstructorCreateWithoutUserInput'] | null; // InstructorCreateWithoutUserInput
   }
   InstructorCreateWithoutCoursesInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email: string; // String!
     id?: string | null; // String
     user: NexusGenInputs['UserCreateOneWithoutInstructorInput']; // UserCreateOneWithoutInstructorInput!
   }
   InstructorCreateWithoutUserInput: { // input type
     courses?: NexusGenInputs['CourseCreateManyWithoutInstructorsInput'] | null; // CourseCreateManyWithoutInstructorsInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email: string; // String!
     id?: string | null; // String
   }
@@ -860,7 +860,7 @@ export interface NexusGenInputs {
     OR?: NexusGenInputs['InstructorScalarWhereInput'][] | null; // [InstructorScalarWhereInput!]
   }
   InstructorUpdateManyDataInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email?: string | null; // String
     id?: string | null; // String
   }
@@ -892,14 +892,14 @@ export interface NexusGenInputs {
     where: NexusGenInputs['InstructorWhereUniqueInput']; // InstructorWhereUniqueInput!
   }
   InstructorUpdateWithoutCoursesDataInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email?: string | null; // String
     id?: string | null; // String
     user?: NexusGenInputs['UserUpdateOneRequiredWithoutInstructorInput'] | null; // UserUpdateOneRequiredWithoutInstructorInput
   }
   InstructorUpdateWithoutUserDataInput: { // input type
     courses?: NexusGenInputs['CourseUpdateManyWithoutInstructorsInput'] | null; // CourseUpdateManyWithoutInstructorsInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     email?: string | null; // String
     id?: string | null; // String
   }
@@ -1436,7 +1436,7 @@ export interface NexusGenInputs {
     create?: NexusGenInputs['PageCreateWithoutContentInput'][] | null; // [PageCreateWithoutContentInput!]
   }
   PageCreateWithoutContentInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     data: string; // String!
     id?: string | null; // String
   }
@@ -1454,7 +1454,7 @@ export interface NexusGenInputs {
     OR?: NexusGenInputs['PageScalarWhereInput'][] | null; // [PageScalarWhereInput!]
   }
   PageUpdateManyDataInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     data?: string | null; // String
     id?: string | null; // String
   }
@@ -1478,7 +1478,7 @@ export interface NexusGenInputs {
     where: NexusGenInputs['PageWhereUniqueInput']; // PageWhereUniqueInput!
   }
   PageUpdateWithoutContentDataInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     data?: string | null; // String
     id?: string | null; // String
   }
@@ -1937,7 +1937,7 @@ export interface NexusGenInputs {
     create?: NexusGenInputs['StudentCreateWithoutUserInput'] | null; // StudentCreateWithoutUserInput
   }
   StudentCreateWithoutCoursesInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     gradeLevel: NexusGenEnums['GradeLevel']; // GradeLevel!
     guardians?: NexusGenInputs['GuardianCreateManyWithoutStudentsInput'] | null; // GuardianCreateManyWithoutStudentsInput
     id?: string | null; // String
@@ -1946,7 +1946,7 @@ export interface NexusGenInputs {
   }
   StudentCreateWithoutGuardiansInput: { // input type
     courses?: NexusGenInputs['CourseCreateManyWithoutStudentsInput'] | null; // CourseCreateManyWithoutStudentsInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     gradeLevel: NexusGenEnums['GradeLevel']; // GradeLevel!
     id?: string | null; // String
     multipleChoiceQuestionResponses?: NexusGenInputs['MultipleChoiceQuestionResponseCreateManyWithoutStudentInput'] | null; // MultipleChoiceQuestionResponseCreateManyWithoutStudentInput
@@ -1954,7 +1954,7 @@ export interface NexusGenInputs {
   }
   StudentCreateWithoutMultipleChoiceQuestionResponsesInput: { // input type
     courses?: NexusGenInputs['CourseCreateManyWithoutStudentsInput'] | null; // CourseCreateManyWithoutStudentsInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     gradeLevel: NexusGenEnums['GradeLevel']; // GradeLevel!
     guardians?: NexusGenInputs['GuardianCreateManyWithoutStudentsInput'] | null; // GuardianCreateManyWithoutStudentsInput
     id?: string | null; // String
@@ -1962,7 +1962,7 @@ export interface NexusGenInputs {
   }
   StudentCreateWithoutUserInput: { // input type
     courses?: NexusGenInputs['CourseCreateManyWithoutStudentsInput'] | null; // CourseCreateManyWithoutStudentsInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     gradeLevel: NexusGenEnums['GradeLevel']; // GradeLevel!
     guardians?: NexusGenInputs['GuardianCreateManyWithoutStudentsInput'] | null; // GuardianCreateManyWithoutStudentsInput
     id?: string | null; // String
@@ -1985,7 +1985,7 @@ export interface NexusGenInputs {
     OR?: NexusGenInputs['StudentScalarWhereInput'][] | null; // [StudentScalarWhereInput!]
   }
   StudentUpdateManyDataInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     gradeLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
     id?: string | null; // String
   }
@@ -2038,7 +2038,7 @@ export interface NexusGenInputs {
     where: NexusGenInputs['StudentWhereUniqueInput']; // StudentWhereUniqueInput!
   }
   StudentUpdateWithoutCoursesDataInput: { // input type
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     gradeLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
     guardians?: NexusGenInputs['GuardianUpdateManyWithoutStudentsInput'] | null; // GuardianUpdateManyWithoutStudentsInput
     id?: string | null; // String
@@ -2047,7 +2047,7 @@ export interface NexusGenInputs {
   }
   StudentUpdateWithoutGuardiansDataInput: { // input type
     courses?: NexusGenInputs['CourseUpdateManyWithoutStudentsInput'] | null; // CourseUpdateManyWithoutStudentsInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     gradeLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
     id?: string | null; // String
     multipleChoiceQuestionResponses?: NexusGenInputs['MultipleChoiceQuestionResponseUpdateManyWithoutStudentInput'] | null; // MultipleChoiceQuestionResponseUpdateManyWithoutStudentInput
@@ -2055,7 +2055,7 @@ export interface NexusGenInputs {
   }
   StudentUpdateWithoutMultipleChoiceQuestionResponsesDataInput: { // input type
     courses?: NexusGenInputs['CourseUpdateManyWithoutStudentsInput'] | null; // CourseUpdateManyWithoutStudentsInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     gradeLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
     guardians?: NexusGenInputs['GuardianUpdateManyWithoutStudentsInput'] | null; // GuardianUpdateManyWithoutStudentsInput
     id?: string | null; // String
@@ -2063,7 +2063,7 @@ export interface NexusGenInputs {
   }
   StudentUpdateWithoutUserDataInput: { // input type
     courses?: NexusGenInputs['CourseUpdateManyWithoutStudentsInput'] | null; // CourseUpdateManyWithoutStudentsInput
-    createdAt?: Date | null; // DateTime
+    createdAt?: any | null; // DateTime
     gradeLevel?: NexusGenEnums['GradeLevel'] | null; // GradeLevel
     guardians?: NexusGenInputs['GuardianUpdateManyWithoutStudentsInput'] | null; // GuardianUpdateManyWithoutStudentsInput
     id?: string | null; // String
@@ -2346,7 +2346,7 @@ export interface NexusGenRootTypes {
   Float: number;
   Boolean: boolean;
   ID: string;
-  DateTime: Date;
+  DateTime: any;
   Block: NexusGenRootTypes['EmptyBlock'] | NexusGenRootTypes['MultipleChoiceQuestionBlock'] | NexusGenRootTypes['TextBlock'];
 }
 
@@ -2993,7 +2993,7 @@ export type NexusGenScalarNames = "Boolean" | "DateTime" | "Float" | "ID" | "Int
 export type NexusGenUnionNames = "Block";
 
 export interface NexusGenTypes {
-  context: {};
+  context: any;
   inputTypes: NexusGenInputs;
   rootTypes: NexusGenRootTypes;
   argTypes: NexusGenArgTypes;

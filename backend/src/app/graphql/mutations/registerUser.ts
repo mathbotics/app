@@ -7,6 +7,7 @@ import { Context } from '../context';
 
 const { JWT_SECRET } = process.env;
 
+// This seems to be un-used not sure why
 export const RegisterUserInput = inputObjectType({
   name: 'RegisterUserInput',
   definition(t) {
@@ -56,7 +57,7 @@ export const registerUser = mutationField('registerUser', {
                     lastName,
                   },
                 },
-                email: nullthrows(email, 'email is null or endefined'),
+                email: nullthrows(email, 'email is null or undefined'),
               },
               include: { user: true },
             }),
@@ -67,6 +68,7 @@ export const registerUser = mutationField('registerUser', {
           throw new Error('Unimplemented');
       }
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.warn(e);
       throw e;
     }

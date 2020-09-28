@@ -1,18 +1,18 @@
-import React from "react";
-import { graphql } from "babel-plugin-relay/macro";
-import { createFragmentContainer } from "react-relay";
-import { Block_block } from "./__generated__/Block_block.graphql";
-import MultipleChoiceQuestionBlock from "./multiple_choice/MultipleChoiceQuestionBlock";
-import TextBlock from "./text/TextBlock";
+import React from 'react';
+import { graphql } from 'babel-plugin-relay/macro';
+import { createFragmentContainer } from 'react-relay';
+import { Block_block } from './__generated__/Block_block.graphql';
+import MultipleChoiceQuestionBlock from './multiple_choice/MultipleChoiceQuestionBlock';
+import TextBlock from './text/TextBlock';
 
 type Props = { block: Block_block };
 const Block = ({ block }: Props) => {
   switch (block.__typename) {
-    case "MultipleChoiceQuestionBlock":
+    case 'MultipleChoiceQuestionBlock':
       return <MultipleChoiceQuestionBlock block={block} />;
-    case "TextBlock":
+    case 'TextBlock':
       return <TextBlock block={block} />;
-    case "EmptyBlock":
+    case 'EmptyBlock':
     default:
       return <div>Block not implemented</div>;
   }

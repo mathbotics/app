@@ -1,7 +1,7 @@
-import React from "react";
-import { Form, Button } from "antd";
-import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
-import { FormItem } from "./FormItem";
+import React from 'react';
+import { Form, Button } from 'antd';
+import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
+import { FormItem } from './FormItem';
 
 type LogInFormProps = {
   onSubmit: (values: Store) => void;
@@ -19,8 +19,8 @@ export const LogInForm = (props: LogInFormProps): JSX.Element => {
 
   React.useEffect(() => {
     setFieldsValue({
-      username: "",
-      password: ""
+      username: '',
+      password: '',
     });
   }, [setFieldsValue]);
 
@@ -33,7 +33,7 @@ export const LogInForm = (props: LogInFormProps): JSX.Element => {
     >
       <FormItem
         name="username"
-        value={getFieldValue("username")}
+        value={getFieldValue('username')}
         type="text"
         input="username"
         placeholder="Username"
@@ -41,7 +41,7 @@ export const LogInForm = (props: LogInFormProps): JSX.Element => {
 
       <FormItem
         name="password"
-        value={getFieldValue("password")}
+        value={getFieldValue('password')}
         type="password"
         input="password"
         placeholder="Password"

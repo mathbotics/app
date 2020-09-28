@@ -15,9 +15,6 @@
   "extends": ["airbnb-typescript", "prettier/@typescript-eslint"],
   "ignorePatterns": ["src/graphql/__generated__", "*.mjml"],
   "settings": {
-    "react": {
-      "version": "999.999.999"
-    },
     "import/resolver": {
       "node": {
         "extensions": [".js", ".ts"]

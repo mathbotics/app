@@ -1,7 +1,7 @@
-import React from "react";
-import { Form, Button } from "antd";
-import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
-import { FormItem } from "./FormItem";
+import React from 'react';
+import { Form, Button } from 'antd';
+import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
+import { FormItem } from './FormItem';
 
 type FormProps = {
   onSubmit: (values: Store) => void;
@@ -18,7 +18,7 @@ export const CreateLessonForm = ({
 
   React.useEffect(() => {
     setFieldsValue({
-      title: "",
+      title: '',
     });
   }, [setFieldsValue]);
 
@@ -34,7 +34,7 @@ export const CreateLessonForm = ({
       </p>
       <FormItem
         name="title"
-        value={getFieldValue("title")}
+        value={getFieldValue('title')}
         type="text"
         input="lessonTitle"
         placeholder="Creating a robot 101"

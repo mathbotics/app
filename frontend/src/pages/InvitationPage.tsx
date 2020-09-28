@@ -1,11 +1,11 @@
-import React from "react";
-import { Typography, Layout } from "antd";
-import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
+import React from 'react';
+import { Typography, Layout } from 'antd';
+import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
 
-import { commit as commitSendInvitationEmail } from "../graphql/mutations/SendInvitationEmailMutation";
-import { InvitationForm } from "../components/form";
-import { SendInvitationEmailMutationResponse } from "../graphql/mutations/__generated__/SendInvitationEmailMutation.graphql";
-import styled from "styled-components";
+import { commit as commitSendInvitationEmail } from '../graphql/mutations/SendInvitationEmailMutation';
+import { InvitationForm } from '../components/form';
+import { SendInvitationEmailMutationResponse } from '../graphql/mutations/__generated__/SendInvitationEmailMutation.graphql';
+import styled from 'styled-components';
 
 const { Title } = Typography;
 
@@ -22,12 +22,18 @@ enum InvitationState {
 
 type Props = {};
 export const InvitationPage = (props: Props) => {
+  /*
+  TODO
+  Invitation state is not being used
+  Maybe there will be future use for it
+   */
+  // eslint-disable-next-line
   const [invitationState, setInvitationState] = React.useState<InvitationState>(
-    InvitationState.DEFAULT
+    InvitationState.DEFAULT,
   );
 
   const onInvitationSuccess = (
-    response: SendInvitationEmailMutationResponse
+    response: SendInvitationEmailMutationResponse,
   ): void => setInvitationState(InvitationState.SUCCESS);
 
   const onInvitationFailure = (error: Error): void => {
@@ -40,7 +46,7 @@ export const InvitationPage = (props: Props) => {
     commitSendInvitationEmail(
       { email, role },
       onInvitationSuccess,
-      onInvitationFailure
+      onInvitationFailure,
     );
   };
 

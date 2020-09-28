@@ -1,7 +1,7 @@
-import React from "react";
-import { Form, Button } from "antd";
-import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
-import { FormItem } from "./FormItem";
+import React from 'react';
+import { Form, Button } from 'antd';
+import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
+import { FormItem } from './FormItem';
 
 type RegisterFormProps = {
   onSubmit: (values: Store) => void;
@@ -21,10 +21,10 @@ export const RegisterForm = (props: RegisterFormProps): JSX.Element => {
 
   React.useEffect(() => {
     setFieldsValue({
-      firstName: "",
-      lastName: "",
-      username: "",
-      password: ""
+      firstName: '',
+      lastName: '',
+      username: '',
+      password: '',
     });
   }, [setFieldsValue]);
 
@@ -37,21 +37,21 @@ export const RegisterForm = (props: RegisterFormProps): JSX.Element => {
     >
       <FormItem
         name="firstName"
-        value={getFieldValue("firstName")}
+        value={getFieldValue('firstName')}
         type="text"
         input="firstName"
         placeholder="FirstName"
       />
       <FormItem
         name="lastName"
-        value={getFieldValue("lastName")}
+        value={getFieldValue('lastName')}
         type="text"
         input="lastName"
         placeholder="LastName"
       />
       <FormItem
         name="username"
-        value={getFieldValue("username")}
+        value={getFieldValue('username')}
         type="text"
         input="username"
         placeholder="Username"
@@ -59,7 +59,7 @@ export const RegisterForm = (props: RegisterFormProps): JSX.Element => {
 
       <FormItem
         name="password"
-        value={getFieldValue("password")}
+        value={getFieldValue('password')}
         type="password"
         input="password"
         placeholder="Password"

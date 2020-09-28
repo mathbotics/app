@@ -28,6 +28,7 @@ const apollo = new ApolloServer({
     } as Context;
   },
   formatError(err: GraphQLError) {
+    // eslint-disable-next-line no-console
     console.warn(err);
     throw err;
   },
@@ -59,7 +60,7 @@ const onServerStart = () =>
   );
 
 if (NODE_ENV !== 'test') {
-  app.listen({ port: PORT }, onServerStart);
+  app.listen({ PORT }, onServerStart);
 }
 
 export default apollo;

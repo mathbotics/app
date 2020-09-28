@@ -1,14 +1,14 @@
-import React from "react";
-import { Layout } from "antd";
-import SlidesSidebar from "./SlidesSidebar";
-import { createFragmentContainer } from "react-relay";
-import { graphql } from "babel-plugin-relay/macro";
-import { Slides_lesson } from "./__generated__/Slides_lesson.graphql";
-import CreateSlideModal from "./CreateSlideModal";
-import EditBlockSidebar from "./EditBlockSidebar";
-import EditorSlidePreview from "./EditorSlidePreview";
-import { Block } from "../../types/Block";
-import nullthrows from "nullthrows";
+import React from 'react';
+import { Layout } from 'antd';
+import SlidesSidebar from './SlidesSidebar';
+import { createFragmentContainer } from 'react-relay';
+import { graphql } from 'babel-plugin-relay/macro';
+import { Slides_lesson } from './__generated__/Slides_lesson.graphql';
+import CreateSlideModal from './CreateSlideModal';
+import EditBlockSidebar from './EditBlockSidebar';
+import EditorSlidePreview from './EditorSlidePreview';
+import { Block } from '../../types/Block';
+import nullthrows from 'nullthrows';
 
 enum PageState {
   Default,
@@ -22,7 +22,7 @@ enum PageState {
 type SlidesProps = { lesson: Slides_lesson };
 const Slides = (props: SlidesProps): JSX.Element => {
   const [pageState, setPageState] = React.useState<PageState>(
-    PageState.EditSlide
+    PageState.EditSlide,
   );
   const [selectedSlideId, setSelectedSlideId] = React.useState<
     string | undefined
@@ -38,7 +38,7 @@ const Slides = (props: SlidesProps): JSX.Element => {
   };
 
   return (
-    <Layout style={{ height: "92vh" }}>
+    <Layout style={{ height: '92vh' }}>
       <SlidesSidebar
         editing={true}
         lesson={props.lesson}

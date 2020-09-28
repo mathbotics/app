@@ -1,12 +1,12 @@
-import React from "react";
-import { Form, Button } from "antd";
-import { FormItem } from "../../form/FormItem";
-import { createFragmentContainer } from "react-relay";
-import { graphql } from "babel-plugin-relay/macro";
-import { Store } from "rc-field-form/lib/interface";
+import React from 'react';
+import { Form, Button } from 'antd';
+import { FormItem } from '../../form/FormItem';
+import { createFragmentContainer } from 'react-relay';
+import { graphql } from 'babel-plugin-relay/macro';
+import { Store } from 'rc-field-form/lib/interface';
 
-import { EditTextBlockForm_block } from "./__generated__/EditTextBlockForm_block.graphql";
-import { commit as commitUpdateBlockToTextBlockMutation } from "../../../graphql/mutations/UpdateBlockToTextBlockMutation";
+import { EditTextBlockForm_block } from './__generated__/EditTextBlockForm_block.graphql';
+import { commit as commitUpdateBlockToTextBlockMutation } from '../../../graphql/mutations/UpdateBlockToTextBlockMutation';
 
 type Props = {
   block?: EditTextBlockForm_block;
@@ -18,8 +18,8 @@ const EditTextBlockForm = ({ block, blockId }: Props): JSX.Element => {
 
   React.useEffect(() => {
     setFieldsValue({
-      title: block?.title ?? "",
-      body: block?.body ?? "",
+      title: block?.title ?? '',
+      body: block?.body ?? '',
     });
   }, [block, setFieldsValue]);
 
@@ -27,7 +27,7 @@ const EditTextBlockForm = ({ block, blockId }: Props): JSX.Element => {
     commitUpdateBlockToTextBlockMutation(
       { input: { blockId, title, body } },
       onSubmitSuccess,
-      onSubmitError
+      onSubmitError,
     );
 
   const onSubmitSuccess = () => {};
@@ -42,7 +42,7 @@ const EditTextBlockForm = ({ block, blockId }: Props): JSX.Element => {
     >
       <FormItem
         name="title"
-        value={getFieldValue("title")}
+        value={getFieldValue('title')}
         type="text"
         input="text"
         placeholder="Title"
@@ -50,7 +50,7 @@ const EditTextBlockForm = ({ block, blockId }: Props): JSX.Element => {
 
       <FormItem
         name="body"
-        value={getFieldValue("body")}
+        value={getFieldValue('body')}
         type="text"
         input="text"
         placeholder="Body"

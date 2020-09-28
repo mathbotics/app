@@ -1,13 +1,13 @@
-import React from "react";
-import { Result } from "antd";
+import React from 'react';
+import { Result } from 'antd';
 
 export const NotFoundPage = (props: any) => (
   <div
     style={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "100vh"
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh',
     }}
   >
     <Result

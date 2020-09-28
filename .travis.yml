@@ -1,0 +1,34 @@
+language: node_js
+
+node_js:
+  - 12.18.3
+
+cache: yarn
+
+env:
+  - CI=true
+
+before_install:
+  - cd frontend
+
+#before_deploy:
+#  - yarn global add heroku
+
+script:
+  - yarn
+  - CI=false yarn build
+
+deploy:
+  provider: heroku
+  api_key: $HEROKU_API_KEY
+  edge: true
+  app: mathbotics-frontend
+  run:
+    - restart
+#  script:
+#    - netlify deploy -s $NETLIFY_SITE_ID -a $NETLIFY_PUBLISH_KEY -p -d ./build
+#    - y
+  skip_cleanup: true
+  on:
+    branch: feature/FrontEnd/editButton
+
