@@ -117,7 +117,7 @@ const Sidebar = createFragmentContainer(
               </Menu.Item>
             ))}
 
-            <Menu.Item onClick={() => logOut()}>
+            <Menu.Item onClick={() => history.push('/login')}>
               <LogoutOutlined style={{ fontWeight: 'bold' }} />
               <span>Logout</span>
             </Menu.Item>
