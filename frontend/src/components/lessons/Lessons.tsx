@@ -28,6 +28,8 @@ const Lessons = ({ lessons }: Props): JSX.Element => {
         <Alert
           style={{ marginBottom: 20 }}
           message="Unable to create lesson"
+          closable
+          showIcon
           type="error"
         />
       )}
@@ -37,6 +39,8 @@ const Lessons = ({ lessons }: Props): JSX.Element => {
         <Alert
           style={{ marginBottom: 20 }}
           message="Successfully created a lesson"
+          closable
+          showIcon
           type="success"
         />
       )}
