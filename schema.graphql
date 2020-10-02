@@ -1742,6 +1742,7 @@ type Mutation {
   createOneLesson(data: LessonCreateInput!): Lesson!
   createSlide(input: CreateSlideInput!): Slide!
   createStudent(input: CreateStudentInput!): Student!
+  deleteStudent: Student!
   logIn(input: LogInInput!): User!
   registerUser(input: RegisterUserInput!): User!
   sendInvitationEmail(input: SendInvitationEmailInput!): String!
