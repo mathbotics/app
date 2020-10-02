@@ -11,7 +11,8 @@ export default (app: Express) => {
       next();
     })(req, res, next);
   });
-  app.use("/logout", (req,res) => {
-    res.clearCookie("jwt")
+  app.get("/logout",(req, res) => {
+    req.logout();
+    //res.redirect('/login')
   })
 };
