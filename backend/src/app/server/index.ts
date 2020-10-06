@@ -60,7 +60,7 @@ const onServerStart = () =>
   );
 
 if (NODE_ENV !== 'test') {
-  app.listen({ PORT }, onServerStart);
+  app.listen({ port: PORT }, onServerStart);
 }
 
 export default apollo;
