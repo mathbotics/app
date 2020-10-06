@@ -8,7 +8,7 @@ type FormProps = {
   onSubmit: (values: Store) => void;
   onSubmitError: (error: ValidateErrorEntity) => void;
 };
-// HELLO TEST
+// Delete Form 
 export type DeleteStudentFormFields = { title: string };
 export const DeleteStudentForm = ({
   onSubmit,
