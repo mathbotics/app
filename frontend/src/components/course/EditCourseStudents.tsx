@@ -12,7 +12,7 @@ type Props = { course: EditCourseStudents_course };
 const EditCourseStudents = ({ course }: Props) => {
   const [isModalOpen, toggleModal] = useState<boolean>(false);
   return (
-    <Layout style={{ backgroundColor: 'white' }}>
+    <Layout style={{ backgroundColor: 'white', display: 'inline'}}>
       {/* Add Student Button */}
       <Button
         onClick={() => toggleModal(!isModalOpen)}
