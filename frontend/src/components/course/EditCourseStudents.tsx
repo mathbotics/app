@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Layout, Button } from 'antd';
-import { UserAddOutlined } from '@ant-design/icons';
+import { UserAddOutlined, DeleteOutlined } from '@ant-design/icons';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 
@@ -13,6 +13,7 @@ const EditCourseStudents = ({ course }: Props) => {
   const [isModalOpen, toggleModal] = useState<boolean>(false);
   return (
     <Layout style={{ backgroundColor: 'white' }}>
+      {/* Add Student Button */}
       <Button
         onClick={() => toggleModal(!isModalOpen)}
         icon={<UserAddOutlined />}
@@ -21,6 +22,17 @@ const EditCourseStudents = ({ course }: Props) => {
       >
         Add Student
       </Button>
+        {/* Delete all Students Button */}
+        <Button
+            // !TODO Add confirmation popup to remove all students
+            onClick={() => toggleModal(!isModalOpen)}
+            icon={<DeleteOutlined />}
+            type="primary"
+            danger
+            style={{ margin: '10px 0', width: 'fit-content' }}
+        >
+            Delete All Students
+        </Button>
       <AddStudentModal
         title="Add student"
         visible={isModalOpen}
