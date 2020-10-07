@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@ant-design/icons": "^4.0.2",
+    "@ant-design/icons": "^4.2.2",
     "antd": "^4.0.0",
     "babel-plugin-relay": "^8.0.0",
     "cuid": "^2.1.8",
