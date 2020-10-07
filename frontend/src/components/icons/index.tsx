@@ -10,6 +10,6 @@ export const AppLogo = (props: { height: any }) => (
       borderRadius: 100,
       margin: '10px',
     }}
-    src={'https://cdn.dribbble.com/users/1209888/screenshots/4782765/ff3.png'}
+    src="https://cdn.dribbble.com/users/1209888/screenshots/4782765/ff3.png"
   />
 );

@@ -20,7 +20,7 @@ const EditCourseStudents = ({ course }: Props) => {
         toggleDeleteStudentModal,
     ] = useState<boolean>(false);
     return (
-      <Layout style={{ backgroundColor: 'white', display: 'inline'}}>
+      <Layout style={{ backgroundColor: 'white', display: 'inline' }}>
         <Button
           onClick={() => toggleAddStudentModal(!isAddStudentModalOpen)}
           icon={<UserAddOutlined />}

@@ -1,8 +1,7 @@
 import React from 'react';
 import { Form, Button } from 'antd';
-import { FormItem } from './FormItem';
-
 import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
+import { FormItem } from './FormItem';
 
 type FormProps = {
   onSubmit: (values: Store) => void;

@@ -83,7 +83,7 @@ const Sidebar = createFragmentContainer(
       history.push(`/${item.path}`);
     };
 
-    //TODO fix logout
+    // TODO fix logout
     function logOut() {
       localStorage.setItem('jwt', '');
       localStorage.removeItem('jwt');

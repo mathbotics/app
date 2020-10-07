@@ -6,9 +6,9 @@ import styled from 'styled-components';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 
+import { useHistory } from 'react-router-dom';
 import { Courses_query } from './__generated__/Courses_query.graphql';
 import CoursesList from './CoursesList';
-import { useHistory } from 'react-router-dom';
 import CreateCourseModal from './CreateCourseModal';
 import { getRootQueryDataID } from '../../graphql/relay';
 
@@ -37,13 +37,13 @@ const Courses = ({ query }: Props) => {
         <Title level={3} style={{ fontWeight: 700 }}>
           Courses
         </Title>
-        <Tooltip title={'Add a course'}>
+        <Tooltip title="Add a course">
           <Button
             type="primary"
             shape="circle"
             icon={<PlusOutlined />}
             htmlType="submit"
-            size={'large'}
+            size="large"
             onClick={() => setPageState(PageState.CreateCourseIntent)}
           />
         </Tooltip>
@@ -61,7 +61,7 @@ const Courses = ({ query }: Props) => {
         onCancel={() => setPageState(PageState.Default)}
       />
 
-      {/*Display list of courses*/}
+      {/* Display list of courses */}
       <CoursesList courses={query} />
     </Layout>
   );

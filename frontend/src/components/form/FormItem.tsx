@@ -8,7 +8,7 @@ import {
   BookIcon,
   BarsIcon,
   AlignLeftIcon,
-} from './';
+} from ".";
 
 type FormItemProps = {
   name: string;
@@ -87,15 +87,13 @@ const FormRules: FormRulesType = {
   },
 };
 
-export const FormItem = (props: FormItemProps): JSX.Element => {
-  return (
-    <Form.Item name={props.name} rules={FormRules[props.input].rules}>
-      <Input
-        prefix={FormRules[props.input].icon}
-        type={props.type}
-        placeholder={props.placeholder}
-        value={props.value}
-      />
-    </Form.Item>
+export const FormItem = (props: FormItemProps): JSX.Element => (
+  <Form.Item name={props.name} rules={FormRules[props.input].rules}>
+    <Input
+      prefix={FormRules[props.input].icon}
+      type={props.type}
+      placeholder={props.placeholder}
+      value={props.value}
+    />
+  </Form.Item>
   );
-};

@@ -3,11 +3,11 @@ import { Result } from 'antd';
 import { SmileOutlined } from '@ant-design/icons';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
+import styled from 'styled-components';
+import nullthrows from 'nullthrows';
 import { EditorSlidePreview_slide } from './__generated__/EditorSlidePreview_slide.graphql';
 import { Block } from '../../types/Block';
 import Slide from './Slide';
-import styled from 'styled-components';
-import nullthrows from 'nullthrows';
 
 type Props = {
   onSelectBlock?: (block: Block) => void; // This onClick should return a block to edit

@@ -2,17 +2,17 @@ import React from 'react';
 import { Typography, Button } from 'antd';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
-import { Course_course } from './__generated__/Course_course.graphql';
 import styled from 'styled-components';
 import { ExportOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router-dom';
+import { Course_course } from './__generated__/Course_course.graphql';
 import { LessonCard } from '../lessons/LessonCard';
 
 const { Title } = Typography;
 
 type Props = { course: Course_course };
 const Course = ({ course }: Props) => {
-  let history = useHistory();
+  const history = useHistory();
 
   return (
     <>
@@ -28,7 +28,9 @@ const Course = ({ course }: Props) => {
         </Title>
 
         <h1 style={{ fontWeight: 400, color: 'white', margin: '5px 0px' }}>
-          {course.lessonPlan.lessons.length} Lessons
+          {course.lessonPlan.lessons.length}
+          {' '}
+          Lessons
         </h1>
 
         <Button
@@ -36,8 +38,7 @@ const Course = ({ course }: Props) => {
             course.lessonPlan.lessons.length > 0 &&
             history.push(
               `/courses/${course.id}/lessons/${course.lessonPlan.lessons[0].id}`,
-            )
-          }
+            )}
           size="large"
           type="primary"
           icon={<ExportOutlined style={{ fontWeight: 700 }} />}

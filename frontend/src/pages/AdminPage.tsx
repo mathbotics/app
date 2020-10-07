@@ -1,6 +1,6 @@
 import React from 'react';
-import { InvitationPage } from './InvitationPage';
 import { Tabs } from 'antd';
+import { InvitationPage } from './InvitationPage';
 
 const { TabPane } = Tabs;
 

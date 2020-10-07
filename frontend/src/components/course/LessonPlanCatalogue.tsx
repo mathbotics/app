@@ -2,8 +2,8 @@ import React from 'react';
 import { Input, Typography } from 'antd';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
-import { LessonPlanCatalogue_query } from './__generated__/LessonPlanCatalogue_query.graphql';
 import styled from 'styled-components';
+import { LessonPlanCatalogue_query } from './__generated__/LessonPlanCatalogue_query.graphql';
 import { LessonCard } from '../lessons/LessonCard';
 import { commit as commitUpdateOneLessonPlanMutation } from '../../graphql/mutations/UpdateOneLessonPlanMutation';
 import { LessonPlanCatalogue_lessonPlan } from './__generated__/LessonPlanCatalogue_lessonPlan.graphql';
@@ -26,7 +26,7 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
         where: { id: lessonPlan.id },
       },
       () => console.log('Success'),
-      (e) => console.log('Error ' + e),
+      (e) => console.log(`Error ${e}`),
     );
   };
 
@@ -106,13 +106,11 @@ const LessonCardWrapper = styled.div`
   width: 100%;
   margin: 5px 0px;
 `;
-const LessonCatalogueSearch = () => {
-  return (
-    <Search
-      placeholder="Search lesson by title"
-      size="large"
-      onSearch={(value: String) => console.log(value)}
-      style={{ width: 400 }}
-    />
+const LessonCatalogueSearch = () => (
+  <Search
+    placeholder="Search lesson by title"
+    size="large"
+    onSearch={(value: String) => console.log(value)}
+    style={{ width: 400 }}
+  />
   );
-};

@@ -4,9 +4,9 @@ import { PlusOutlined, BookOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
+import nullthrows from 'nullthrows';
 import Slide from './Slide';
 import { SlidesSidebar_lesson } from './__generated__/SlidesSidebar_lesson.graphql';
-import nullthrows from 'nullthrows';
 
 const MenuItem = styled(Menu.Item)`
   width: 100% !important;
@@ -47,7 +47,9 @@ const SidebarHeader = ({ title }: SidebarHeaderProps) => (
         paddingLeft: '15px',
       }}
     >
-      <BookOutlined /> {title}
+      <BookOutlined />
+      {' '}
+      {title}
     </p>
   </Tooltip>
 );
@@ -57,15 +59,13 @@ TODO
 while props is not being used
 there may be a future use cause for it to be passed
  */
-const CreateSlideCard = (props: any) => {
-  return (
-    <Tooltip title="Create a slide">
-      <SlideCard style={{ border: '1px solid #ccc' }}>
-        <PlusOutlined style={{ fontSize: '40px' }} />
-      </SlideCard>
-    </Tooltip>
+const CreateSlideCard = (props: any) => (
+  <Tooltip title="Create a slide">
+    <SlideCard style={{ border: '1px solid #ccc' }}>
+      <PlusOutlined style={{ fontSize: '40px' }} />
+    </SlideCard>
+  </Tooltip>
   );
-};
 
 export type SlideMenuItem = {
   id: string;
@@ -101,8 +101,7 @@ const SlidesSidebar = ({
               nullthrows(
                 onCreate,
                 'An onCreate function must be provided if editing is true',
-              )()
-            }
+              )()}
           >
             <CreateSlideCard />
           </MenuItem>
