@@ -69,7 +69,7 @@ export const LessonCard = ({
   slideCount,
   linkLesson,
 }: Props) => {
-  let history = useHistory();
+  const history = useHistory();
   return (
     <Card>
       <div
@@ -85,7 +85,10 @@ export const LessonCard = ({
         {slideCount && (
           <CardSlideCount>
             <ExportOutlined style={{ margin: '0px 0px 0px 10px' }} />
-            {slideCount} Slide{slideCount > 1 && 's'}
+            {slideCount}
+            {' '}
+            Slide
+            {slideCount > 1 && 's'}
           </CardSlideCount>
         )}
       </CardFooter>

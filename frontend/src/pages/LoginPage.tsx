@@ -2,8 +2,8 @@ import React from 'react';
 import { Layout, Alert } from 'antd';
 import styled from 'styled-components';
 import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
-import { LogInForm } from '../components/form';
 import { Redirect } from 'react-router-dom';
+import { LogInForm } from '../components/form';
 import { commit as commitLoginMutation } from '../graphql/mutations/LogInMutation';
 import { LogInMutationResponse } from '../graphql/mutations/__generated__/LogInMutation.graphql';
 import { AppLogo } from '../components/icons';
@@ -57,7 +57,7 @@ export const LoginPage = (props: LogInProps): JSX.Element => {
 
   return (
     <StyledLayout>
-      {logInState === AuthState.AUTHENTICATED && <Redirect to={'/'} />}
+      {logInState === AuthState.AUTHENTICATED && <Redirect to="/" />}
 
       <Content>
         {logInState === AuthState.INVALID_ATTEMPT && (

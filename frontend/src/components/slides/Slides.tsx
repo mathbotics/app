@@ -1,14 +1,14 @@
 import React from 'react';
 import { Layout } from 'antd';
-import SlidesSidebar from './SlidesSidebar';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
+import nullthrows from 'nullthrows';
+import SlidesSidebar from './SlidesSidebar';
 import { Slides_lesson } from './__generated__/Slides_lesson.graphql';
 import CreateSlideModal from './CreateSlideModal';
 import EditBlockSidebar from './EditBlockSidebar';
 import EditorSlidePreview from './EditorSlidePreview';
 import { Block } from '../../types/Block';
-import nullthrows from 'nullthrows';
 
 enum PageState {
   Default,
@@ -40,7 +40,7 @@ const Slides = (props: SlidesProps): JSX.Element => {
   return (
     <Layout style={{ height: '92vh' }}>
       <SlidesSidebar
-        editing={true}
+        editing
         lesson={props.lesson}
         onCreate={() => setPageState(PageState.CreateSlide)}
         onClick={(id: string) => {
@@ -50,7 +50,7 @@ const Slides = (props: SlidesProps): JSX.Element => {
       />
       <EditorSlidePreview
         slide={props.lesson.slides.find(({ id }) => id === selectedSlideId)}
-        editing={true}
+        editing
         onSelectBlock={onSelectBlock}
         selectedBlock={selectedBlock}
       />
@@ -64,8 +64,7 @@ const Slides = (props: SlidesProps): JSX.Element => {
           visible={pageState === PageState.CreateSlide}
           onCreateSlideSuccess={() => setPageState(PageState.Default)}
           onCreateSlideError={(e: Error) =>
-            setPageState(PageState.CreateSlideError)
-          }
+            setPageState(PageState.CreateSlideError)}
           onCancel={() => setPageState(PageState.Default)}
         />
       )}

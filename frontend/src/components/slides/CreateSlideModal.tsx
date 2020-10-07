@@ -74,8 +74,7 @@ export default ({
           onCreateSlideMutationSuccess,
           onCreateSlideMutationError,
           lessonId,
-        )
-      }
+        )}
       onCancel={onCancel}
     >
       <ModalBodyWrapper>

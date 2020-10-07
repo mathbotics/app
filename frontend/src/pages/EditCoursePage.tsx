@@ -1,9 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { environment } from '../graphql/relay';
 import { QueryRenderer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 import nullthrows from 'nullthrows';
+import { environment } from '../graphql/relay';
 
 import EditCourse from '../components/course/EditCourse';
 import { EditCoursePageQueryResponse } from './__generated__/EditCoursePageQuery.graphql';
@@ -35,8 +35,7 @@ export const EditCoursePage = (): JSX.Element => {
             )}
             query={nullthrows(props as EditCoursePageQueryResponse)}
           />
-        )
-      }
+        )}
     />
   );
 };

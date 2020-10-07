@@ -15,15 +15,13 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const Question = ({ text }: { text: string }) => {
-  return (
-    <div
-      style={{ width: '350px', overflowWrap: 'break-word', color: '#646464' }}
-    >
-      <Title level={2}>{text}</Title>
-    </div>
+const Question = ({ text }: { text: string }) => (
+  <div
+    style={{ width: '350px', overflowWrap: 'break-word', color: '#646464' }}
+  >
+    <Title level={2}>{text}</Title>
+  </div>
   );
-};
 
 export type MultipleChoiceProps = { block: MultipleChoiceQuestionBlock_block };
 const MultipleChoiceQuestionBlock = ({ block }: MultipleChoiceProps) => (

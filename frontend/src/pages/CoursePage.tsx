@@ -2,8 +2,8 @@ import React from 'react';
 import { QueryRenderer } from 'react-relay';
 import { useParams } from 'react-router-dom';
 import { graphql } from 'babel-plugin-relay/macro';
-import { environment } from '../graphql/relay';
 import nullthrows from 'nullthrows';
+import { environment } from '../graphql/relay';
 import Course from '../components/course/Course';
 import { CoursePageQueryResponse } from './__generated__/CoursePageQuery.graphql';
 
@@ -32,8 +32,7 @@ export const CoursePage = (): JSX.Element => {
               'Course not found',
             )}
           />
-        )
-      }
+        )}
     />
   );
 };

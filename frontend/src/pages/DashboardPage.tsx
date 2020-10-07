@@ -19,7 +19,6 @@ export const DashboardPage = (): JSX.Element => (
     query={Query}
     render={({ props, error }) =>
       !error &&
-      props && <Dashboard dashboard={props as DashboardPageQueryResponse} />
-    }
+      props && <Dashboard dashboard={props as DashboardPageQueryResponse} />}
   />
 );

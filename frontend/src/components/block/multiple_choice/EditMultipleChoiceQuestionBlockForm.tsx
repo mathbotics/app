@@ -22,7 +22,7 @@ const EditMultipleChoiceQuestionBlockForm = ({
   const onChangeChoiceText = (changedId: string, text: string) => {
     setChoices(
       choices.map(({ id, ...choice }) =>
-        id === changedId ? { ...choice, id, text } : { ...choice, id },
+        (id === changedId ? { ...choice, id, text } : { ...choice, id }),
       ),
     );
   };
@@ -33,7 +33,7 @@ const EditMultipleChoiceQuestionBlockForm = ({
       choices
         .filter(({ id }) => id !== idToRemove)
         .map((choice, i) =>
-          correct && i === 0 ? { ...choice, correct: true } : choice,
+          (correct && i === 0 ? { ...choice, correct: true } : choice),
         ),
     );
   };
@@ -99,8 +99,7 @@ const EditMultipleChoiceQuestionBlockForm = ({
           setChoices([
             ...choices,
             { text: '', id: cuid(), correct: choices.length === 0 },
-          ])
-        }
+          ])}
         type="link"
         size="large"
       >

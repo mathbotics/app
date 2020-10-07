@@ -2,11 +2,11 @@ import React from 'react';
 import { Layout, Alert } from 'antd';
 import styled from 'styled-components';
 import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
-import { RegisterForm } from '../components/form';
 import { Redirect, useParams } from 'react-router-dom';
+import nullthrows from 'nullthrows';
+import { RegisterForm } from '../components/form';
 import { commit as commitRegisterUserMutation } from '../graphql/mutations/RegisterUserMutation';
 import { RegisterUserMutationResponse } from '../graphql/mutations/__generated__/RegisterUserMutation.graphql';
-import nullthrows from 'nullthrows';
 
 const StyledLayout = styled(Layout)`
   height: 100%;
@@ -68,7 +68,7 @@ export const RegisterPage = (props: RegisterProps): JSX.Element => {
   };
   return (
     <StyledLayout>
-      {registerState === RegisterState.SUCCESS && <Redirect to={'/login'} />}
+      {registerState === RegisterState.SUCCESS && <Redirect to="/login" />}
 
       <Content>
         {registerState === RegisterState.FAILURE && (
