@@ -10,7 +10,8 @@
     "function-paren-newline": "off",
     "operator-linebreak": "off",
     "camelcase": "off",
-    "@typescript-eslint/camelcase": "off"
+    "@typescript-eslint/camelcase": "off",
+    "react/require-default-props": "off"
   },
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "prettier"],
