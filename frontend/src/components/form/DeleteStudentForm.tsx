@@ -9,23 +9,23 @@ type FormProps = {
 
 export type DeleteStudentFormFields = { title: string };
 export const DeleteStudentForm = ({
-                                      onSubmit,
-                                      onSubmitError,
-                                  }: FormProps): JSX.Element => {
+    onSubmit,
+    onSubmitError,
+}: FormProps): JSX.Element => {
     const [form] = Form.useForm();
     return (
-        <Form
-            form={form}
-            onFinish={onSubmit}
-            onFinishFailed={onSubmitError}
-            layout='vertical'
-        >
-            <p>Are you sure you wish to delete all students?</p>
-            <p>You cannot undo this action!</p>
+      <Form
+        form={form}
+        onFinish={onSubmit}
+        onFinishFailed={onSubmitError}
+        layout="vertical"
+      >
+        <p>Are you sure you wish to delete all students?</p>
+        <p>You cannot undo this action!</p>
 
-            <Button block type="primary" size="large" danger htmlType="submit">
-                Delete All Students
-            </Button>
-        </Form>
+        <Button block type="primary" size="large" danger htmlType="submit">
+          Delete All Students
+        </Button>
+      </Form>
     )
 }
