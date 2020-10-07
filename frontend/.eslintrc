@@ -9,7 +9,8 @@
     "object-curly-newline": "off",
     "function-paren-newline": "off",
     "operator-linebreak": "off",
-    "camelcase": "off"
+    "camelcase": "off",
+    "@typescript-eslint/camelcase": "off"
   },
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "prettier"],
