@@ -1,7 +1,7 @@
 {
   "root": true,
   "rules": {
-    "no-console": "warn",
+    "no-console": "off",
     "import/export": "off",
     "no-case-declarations": "off",
     "implicit-arrow-linebreak": "off",
