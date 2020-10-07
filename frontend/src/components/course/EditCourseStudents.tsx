@@ -20,14 +20,24 @@ const EditCourseStudents = ({ course }: Props) => {
         toggleDeleteStudentModal,
     ] = useState<boolean>(false);
     return (
-      <Layout style={{ backgroundColor: 'white' }}>
+      <Layout style={{ backgroundColor: 'white', display: 'inline'}}>
         <Button
           onClick={() => toggleAddStudentModal(!isAddStudentModalOpen)}
           icon={<UserAddOutlined />}
           type="primary"
-          style={{ margin: '10px 0', width: 'fit-content' }}
+          style={{ margin: '0px 5px 0px 0px ', width: 'fit-content' }}
         >
           Add Student
+        </Button>
+        <Button
+          // TODO Add confirmation popup to remove all students
+          onClick={() => toggleDeleteStudentModal(!isDeleteStudentModalOpen)}
+          icon={<DeleteOutlined />}
+          type="primary"
+          danger
+          style={{ margin: '0px 5px 0px 0px ', width: 'fit-content' }}
+        >
+          Delete All Students
         </Button>
         <AddStudentModal
           title="Add student"
@@ -37,16 +47,6 @@ const EditCourseStudents = ({ course }: Props) => {
           onSubmitError={(e: Error) => console.error(e)}
           onCancel={() => toggleAddStudentModal(!isAddStudentModalOpen)}
         />
-        <Button
-        // TODO Add confirmation popup to remove all students
-          onClick={() => toggleDeleteStudentModal(!isDeleteStudentModalOpen)}
-          icon={<DeleteOutlined />}
-          type="primary"
-          danger
-          style={{ margin: '10px 0', width: 'fit-content', justifyContent: 'inline' }}
-        >
-          Delete All Students
-        </Button>
         <DeleteStudentModal
           title="Delete All Students"
           visible={isDeleteStudentModalOpen}
