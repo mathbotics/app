@@ -16,3 +16,4 @@ src/graphql/mutations/__generated__/
 src/pages/__generated__/
 src/routes/__generated__/
 src/serviceWorker.ts
+*.css
