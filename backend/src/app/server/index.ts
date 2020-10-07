@@ -20,8 +20,8 @@ type ExpressIntegrationContext = {
 
 const app = express();
 
-//Allow Cross Origin | Also to enable share with vscode
-app.use(function(req, res, next) {
+// Allow Cross Origin | Also to enable share with vscode
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
 
