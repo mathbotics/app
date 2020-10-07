@@ -1,7 +1,7 @@
 {
   "root": true,
   "rules": {
-    "no-console": "off",
+    "no-console": "warn",
     "import/export": "off",
     "no-case-declarations": "off",
     "implicit-arrow-linebreak": "off",
@@ -11,8 +11,11 @@
     "operator-linebreak": "off",
     "camelcase": "off",
     "@typescript-eslint/camelcase": "off",
-    "@typescript-eslint/no-unused-vars": "off",
-    "react/require-default-props": "off"
+    "@typescript-eslint/no-unused-vars": "warn",
+    "react/require-default-props": "warn",
+    "react/jsx-props-no-spreading": "warn",
+    "react/prop-types": "warn",
+    "import/no-extraneous-dependencies": "off"
   },
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "prettier"],
