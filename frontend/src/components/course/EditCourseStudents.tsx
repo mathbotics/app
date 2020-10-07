@@ -7,7 +7,7 @@ import { graphql } from 'babel-plugin-relay/macro';
 import StudentsTable from '../students/StudentsTable';
 import { EditCourseStudents_course } from './__generated__/EditCourseStudents_course.graphql';
 import AddStudentModal from '../students/Modals/AddStudentModal';
-import { DeleteStudentModal } from '../students/Modals/DeleteStudentModal';
+import DeleteStudentModal from '../students/Modals/DeleteStudentModal';
 
 type Props = { course: EditCourseStudents_course };
 const EditCourseStudents = ({ course }: Props) => {
