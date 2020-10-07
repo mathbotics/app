@@ -2,6 +2,7 @@
   "root": true,
   "rules": {
     "no-console": "warn",
+    "no-shadow": "warn",
     "import/export": "off",
     "no-case-declarations": "off",
     "implicit-arrow-linebreak": "off",
@@ -15,6 +16,7 @@
     "@typescript-eslint/no-use-before-define": "warn",
     "react/require-default-props": "warn",
     "react/jsx-props-no-spreading": "warn",
+    "react/destructuring-assignment": "warn",
     "react/prop-types": "warn",
     "react/no-unused-prop-types": "warn",
     "import/no-extraneous-dependencies": "off",
