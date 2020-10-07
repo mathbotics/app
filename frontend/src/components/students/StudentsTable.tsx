@@ -29,7 +29,7 @@ const columns: ColumnsType<any> = [
   {
     title: 'Action',
     dataIndex: 'delete',
-    render: () => (<a onClick={() => console.log("handle delete here")/* handleDelete */}>Delete</a>),
+    render: () => (<div onClick={() => console.log("handle delete here")/* handleDelete */}>Delete</div>),
   },
 ];
 
