@@ -16,7 +16,6 @@
     "react/jsx-props-no-spreading": "warn",
     "react/prop-types": "warn",
     "react/no-unused-prop-types": "warn",
-    "react/require-default-props": "warn",
     "import/no-extraneous-dependencies": "off",
     "import/no-unresolved": "off",
     "import/no-cycle": "off"
