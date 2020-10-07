@@ -26,6 +26,11 @@ const columns: ColumnsType<any> = [
     title: 'Grade Level',
     dataIndex: 'gradeLevel',
   },
+  {
+    title: 'Action',
+    dataIndex: 'delete',
+    render: () => (<a onClick={() => console.log("handle delete here")/* handleDelete */}>Delete</a>),
+  },
 ];
 
 type TableItem = {
@@ -41,7 +46,12 @@ type TableItem = {
 function onChange(pagination, filters, sorter, extra) {
   console.log('params', pagination, filters, sorter, extra);
 }
-
+// const handleDelete = (key) => {
+//   const dataSource = [...columns];
+//   setState({
+//     columns: columns.filter((item) => item.key !== key),
+//   });
+// };
 type Props = {
   course: StudentsTable_course;
 };
@@ -49,16 +59,16 @@ const LessonsTable = ({ course: { students } }: Props) => {
   const [data, setData] = useState<ColumnsType<TableItem>>();
   useEffect(() => {
     setData(
-      students.map(
-        ({ firstName, lastName, gradeLevel, username }, index: number) => ({
-          index: index + 1,
-          key: index,
-          firstName,
-          lastName,
-          gradeLevel,
-          username,
-        }),
-      ),
+        students.map(
+            ({ firstName, lastName, gradeLevel, username }, index: number) => ({
+              index: index + 1,
+              key: index,
+              firstName,
+              lastName,
+              gradeLevel,
+              username,
+            }),
+        ),
     );
   }, [students]);
   return <Table columns={columns} dataSource={data} onChange={onChange} />;
