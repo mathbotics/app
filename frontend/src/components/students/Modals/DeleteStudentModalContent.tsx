@@ -8,7 +8,7 @@ type FormProps = {
 };
 
 export type DeleteStudentFormFields = { title: string };
-export const DeleteStudentForm = ({
+export const DeleteStudentModalContent = ({
     onSubmit,
     onSubmitError,
 }: FormProps): JSX.Element => {
