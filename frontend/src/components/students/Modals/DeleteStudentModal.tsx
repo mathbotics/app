@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from 'antd';
-import { DeleteStudentForm } from '../../form/DeleteStudentForm';
+import { DeleteStudentModalContent } from './DeleteStudentModalContent';
 
 type ModalProps = {
   title: string;
@@ -22,7 +22,7 @@ export default ({
 
   return (
     <Modal visible={visible} title={title} onCancel={onCancel} footer={[]}>
-      <DeleteStudentForm onSubmit={onSubmit} onSubmitError={onSubmitError} />
+      <DeleteStudentModalContent onSubmit={onSubmit} onSubmitError={onSubmitError} />
     </Modal>
   );
 };
