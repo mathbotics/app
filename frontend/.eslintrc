@@ -8,7 +8,8 @@
     "import/prefer-default-export": "off",
     "object-curly-newline": "off",
     "function-paren-newline": "off",
-    "operator-linebreak": "off"
+    "operator-linebreak": "off",
+    "camelcase": "off"
   },
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "prettier"],
