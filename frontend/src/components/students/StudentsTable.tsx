@@ -49,7 +49,6 @@ const columns: ColumnsType<any> = [
         style={{
           display: 'flex',
           fontSize: '16px', 
-          justifyContent: 'space-evenly',
           alignItems: 'center',
         }}
       >
@@ -66,7 +65,7 @@ const columns: ColumnsType<any> = [
                 // TODO Add confirmation popup to delete a students
                 onClick={() => console.log("handle delete here")}
               >
-                <DeleteOutlined />
+                <DeleteOutlined style={{margin: '0px 0px 0px 15px'}}/>
             </DeleteButton>
           </Tooltip>
         </div>
