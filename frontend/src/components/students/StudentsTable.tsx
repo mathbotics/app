@@ -5,6 +5,21 @@ import { graphql } from 'babel-plugin-relay/macro';
 import { createFragmentContainer } from 'react-relay';
 import { StudentsTable_course } from './__generated__/StudentsTable_course.graphql';
 
+import { Button, Tooltip } from 'antd';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import styled from 'styled-components';
+
+const EditButton = styled.div`
+  :hover {
+    color: #1890ff;
+  }
+`;
+const DeleteButton = styled.div`
+  :hover {
+    color: #ff4d4e;
+  }
+`;
+
 const columns: ColumnsType<any> = [
   {
     title: '',
@@ -28,8 +43,34 @@ const columns: ColumnsType<any> = [
   },
   {
     title: 'Action',
-    dataIndex: 'delete',
-    render: () => (<div onClick={() => console.log("handle delete here")/* handleDelete */}>Delete</div>),
+    dataIndex: 'action',
+    render: () => (
+      <div
+        style={{
+          display: 'flex',
+          fontSize: '16px', 
+          justifyContent: 'space-evenly',
+          alignItems: 'center',
+        }}
+      >
+          <Tooltip title="Edit Student">
+            <EditButton
+                // TODO Add edit a student modal
+                onClick={() => console.log("handle edit here")}
+              >
+                <EditOutlined />
+            </EditButton>
+          </Tooltip>
+          <Tooltip title="Delete Student">
+            <DeleteButton
+                // TODO Add confirmation popup to delete a students
+                onClick={() => console.log("handle delete here")}
+              >
+                <DeleteOutlined />
+            </DeleteButton>
+          </Tooltip>
+        </div>
+    ),
   },
 ];
 
