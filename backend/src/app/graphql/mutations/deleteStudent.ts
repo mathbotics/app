@@ -23,14 +23,7 @@ export const deleteStudent = mutationField('deleteStudent',{
           where: {
             courses: {
               every: { id: courseId} },
-            },
-          // include : {
-          //     courses: {
-          //       where: {
-          //         id: {courseId} 
-          //       }
-          //     } 
-          //   }
+            }
           })
       } 
 });

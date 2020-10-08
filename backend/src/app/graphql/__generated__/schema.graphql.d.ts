@@ -2834,6 +2834,7 @@ export interface NexusGenFieldTypes {
     title: string; // String!
   }
   Student: { // field return type
+    courses: NexusGenRootTypes['Course'][]; // [Course!]!
     firstName: string; // String!
     gradeLevel: NexusGenEnums['GradeLevel']; // GradeLevel!
     guardians: NexusGenRootTypes['Guardian'][]; // [Guardian!]!
@@ -2970,6 +2971,13 @@ export interface NexusGenArgTypes {
     }
   }
   Student: {
+    courses: { // args
+      after?: NexusGenInputs['CourseWhereUniqueInput'] | null; // CourseWhereUniqueInput
+      before?: NexusGenInputs['CourseWhereUniqueInput'] | null; // CourseWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+      skip?: number | null; // Int
+    }
     guardians: { // args
       after?: NexusGenInputs['GuardianWhereUniqueInput'] | null; // GuardianWhereUniqueInput
       before?: NexusGenInputs['GuardianWhereUniqueInput'] | null; // GuardianWhereUniqueInput
