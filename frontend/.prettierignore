@@ -17,3 +17,4 @@ src/pages/__generated__/
 src/routes/__generated__/
 src/serviceWorker.ts
 *.css
+src/graphql/

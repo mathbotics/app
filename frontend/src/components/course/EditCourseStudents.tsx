@@ -25,17 +25,16 @@ const EditCourseStudents = ({ course }: Props) => {
           onClick={() => toggleAddStudentModal(!isAddStudentModalOpen)}
           icon={<UserAddOutlined />}
           type="primary"
-          style={{ margin: '0px 5px 0px 0px ', width: 'fit-content' }}
+          style={{ margin: '0px 5px 15px 0px ', width: 'fit-content' }}
         >
           Add Student
         </Button>
         <Button
-          // TODO Add confirmation popup to remove all students
           onClick={() => toggleDeleteStudentModal(!isDeleteStudentModalOpen)}
           icon={<DeleteOutlined />}
           type="primary"
           danger
-          style={{ margin: '0px 5px 0px 0px ', width: 'fit-content' }}
+          style={{ margin: '0px 5px 15px 0px ', width: 'fit-content' }}
         >
           Delete All Students
         </Button>
