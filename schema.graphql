@@ -699,7 +699,7 @@ input DateTimeFilter {
 }
 
 input DeleteStudentInput {
-  username: String!
+  courseId: String!
 }
 
 type EmptyBlock {
@@ -2010,6 +2010,7 @@ type Query {
   courses(after: CourseWhereUniqueInput, before: CourseWhereUniqueInput, first: Int, last: Int, skip: Int, where: CourseWhereInput): [Course!]!
   lesson(where: LessonWhereUniqueInput!): Lesson
   lessons(after: LessonWhereUniqueInput, before: LessonWhereUniqueInput, first: Int, last: Int, skip: Int, where: LessonWhereInput): [Lesson!]!
+  students(after: StudentWhereUniqueInput, before: StudentWhereUniqueInput, first: Int, last: Int, skip: Int): [Student!]!
   viewer: User!
 }
 
@@ -2371,6 +2372,7 @@ input StringFilter {
 }
 
 type Student implements User {
+  courses(after: CourseWhereUniqueInput, before: CourseWhereUniqueInput, first: Int, last: Int, skip: Int): [Course!]!
   firstName: String!
   gradeLevel: GradeLevel!
   guardians(after: GuardianWhereUniqueInput, before: GuardianWhereUniqueInput, first: Int, last: Int, skip: Int): [Guardian!]!

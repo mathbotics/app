@@ -1,11 +1,10 @@
 {
-  "name": "travis-scripts",
+  "name": "app",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "cd frontend && npm i && cd ../back && npm i"
   },
-
   "license": "MIT",
   "heroku-run-build-script": true
 }

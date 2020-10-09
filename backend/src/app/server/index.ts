@@ -58,6 +58,13 @@ const apollo = new ApolloServer({
   ),
 });
 
+if(NODE_ENV ==='production'){
+  app.use(express.static(path.join(__dirname, '../../../../frontend/src')));
+  app.use((req, res) => {
+    res.sendFile(path.join(__dirname, '../../../../frontend/src/index.tsx'));
+  })
+}
+
 applyExpressMiddlewares(app);
 apollo.applyMiddleware({
   app,
@@ -70,7 +77,6 @@ const onServerStart = () =>
   );
 
 if (NODE_ENV !== 'test') {
-  app.listen({ port: PORT }, onServerStart);
+  app.listen({ port: PORT}, onServerStart);
 }
-
 export default apollo;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Layout } from 'antd';
+import { Typography, Layout, Alert } from 'antd';
 import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
 
 import styled from 'styled-components';
@@ -12,7 +12,11 @@ const { Title } = Typography;
 const Wrapper = styled(Layout.Content)`
   width: 400px;
 `;
-
+//Alert component
+const SAlert = styled(Alert)`
+  margin-bottom: 20px;
+`;
+//Invitation state
 enum InvitationState {
   DEFAULT,
   SUCCESS,
@@ -54,9 +58,28 @@ export const InvitationPage = (props: Props) => {
     setInvitationState(InvitationState.FAILURE);
     console.log({ error });
   };
-
+//invitation form
   return (
     <Wrapper>
+      {invitationState === InvitationState.SUCCESS && (
+        //send success alert if email was sent seuccessfuly
+        <SAlert
+          message="Invitation sent"
+          type="success"
+          showIcon
+          closable
+        />
+      )}
+      
+      {invitationState === InvitationState.FAILURE && (
+        //send error alert if email wasn't sent
+        <SAlert
+          message="There was an error"
+          type="error"
+          showIcon
+          closable
+        />
+      )}
       <Title level={3} style={{ fontWeight: 700 }}>
         Invite User
       </Title>
