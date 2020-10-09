@@ -2826,6 +2826,7 @@ export interface NexusGenFieldTypes {
     courses: NexusGenRootTypes['Course'][]; // [Course!]!
     lesson: NexusGenRootTypes['Lesson'] | null; // Lesson
     lessons: NexusGenRootTypes['Lesson'][]; // [Lesson!]!
+    students: NexusGenRootTypes['Student'][]; // [Student!]!
     viewer: NexusGenRootTypes['User']; // User!
   }
   SingleSlide: { // field return type
@@ -2968,6 +2969,13 @@ export interface NexusGenArgTypes {
       last?: number | null; // Int
       skip?: number | null; // Int
       where?: NexusGenInputs['LessonWhereInput'] | null; // LessonWhereInput
+    }
+    students: { // args
+      after?: NexusGenInputs['StudentWhereUniqueInput'] | null; // StudentWhereUniqueInput
+      before?: NexusGenInputs['StudentWhereUniqueInput'] | null; // StudentWhereUniqueInput
+      first?: number | null; // Int
+      last?: number | null; // Int
+      skip?: number | null; // Int
     }
   }
   Student: {
