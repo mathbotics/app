@@ -2370,6 +2370,7 @@ input StringFilter {
 }
 
 type Student implements User {
+  courses: [Course!]
   firstName: String!
   gradeLevel: GradeLevel!
   guardians(after: GuardianWhereUniqueInput, before: GuardianWhereUniqueInput, first: Int, last: Int, skip: Int): [Guardian!]!

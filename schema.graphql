@@ -699,7 +699,7 @@ input DateTimeFilter {
 }
 
 input DeleteStudentInput {
-  username: String!
+  courseId: String!
 }
 
 type EmptyBlock {
@@ -2371,6 +2371,7 @@ input StringFilter {
 }
 
 type Student implements User {
+  courses(after: CourseWhereUniqueInput, before: CourseWhereUniqueInput, first: Int, last: Int, skip: Int): [Course!]!
   firstName: String!
   gradeLevel: GradeLevel!
   guardians(after: GuardianWhereUniqueInput, before: GuardianWhereUniqueInput, first: Int, last: Int, skip: Int): [Guardian!]!
