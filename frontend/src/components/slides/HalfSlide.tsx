@@ -61,8 +61,7 @@ const HalfSlide = ({ onSelectBlock, halfSlide, preview, selected }: Props) => (
     <FirstHalfBlockWrapper
       preview={preview}
       onClick={() =>
-        onSelectBlock && onSelectBlock(nullthrows(halfSlide?.firstHalfBlock))
-      }
+        onSelectBlock && onSelectBlock(nullthrows(halfSlide?.firstHalfBlock))}
     >
       {preview ? (
         <AlignLeftOutlined style={{ fontSize: 50 }} />
@@ -74,8 +73,7 @@ const HalfSlide = ({ onSelectBlock, halfSlide, preview, selected }: Props) => (
     <SecondHalfBlockWrapper
       preview={preview}
       onClick={() =>
-        onSelectBlock && onSelectBlock(nullthrows(halfSlide?.secondHalfBlock))
-      }
+        onSelectBlock && onSelectBlock(nullthrows(halfSlide?.secondHalfBlock))}
     >
       {preview ? (
         <UnorderedListOutlined style={{ fontSize: 50 }} />

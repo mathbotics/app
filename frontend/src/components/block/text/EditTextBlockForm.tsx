@@ -1,9 +1,9 @@
 import React from 'react';
 import { Form, Button } from 'antd';
-import { FormItem } from '../../form/FormItem';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 import { Store } from 'rc-field-form/lib/interface';
+import { FormItem } from '../../form/FormItem';
 
 import { EditTextBlockForm_block } from './__generated__/EditTextBlockForm_block.graphql';
 import { commit as commitUpdateBlockToTextBlockMutation } from '../../../graphql/mutations/UpdateBlockToTextBlockMutation';

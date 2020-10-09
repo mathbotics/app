@@ -4,10 +4,10 @@ import { BookOutlined } from '@ant-design/icons';
 import { createFragmentContainer } from 'react-relay';
 import { Typography, Button } from 'antd';
 
-import { Dashboard_dashboard } from './__generated__/Dashboard_dashboard.graphql';
 import styled from 'styled-components';
 
 import { useHistory } from 'react-router-dom';
+import { Dashboard_dashboard } from './__generated__/Dashboard_dashboard.graphql';
 
 const { Title } = Typography;
 
@@ -20,7 +20,7 @@ const Dashboard = ({
     viewer: { firstName, lastName },
   },
 }: Props) => {
-  let history = useHistory();
+  const history = useHistory();
   /*
   TODO
   selected,setSelected are currently not being used
@@ -33,8 +33,13 @@ const Dashboard = ({
       <Banner>
         <div style={{ width: '400px' }}>
           <Title level={1} style={{ fontWeight: 800, color: '#454d55' }}>
-            Welcome <br />
-            {firstName} {lastName}!
+            Welcome
+            {' '}
+            <br />
+            {firstName}
+            {' '}
+            {lastName}
+            !
           </Title>
           <p style={{ fontWeight: 600, color: '#454d55', fontSize: '18px' }}>
             The Mathbotics learning platform will serve as an educational tool
