@@ -73,13 +73,13 @@ const CourseCard = ({
 }: Props) => {
   const lessonCount = lessons.length;
   // console.log(instructors);
-  let history = useHistory();
+  const history = useHistory();
   // const isAdmin: boolean = query.viewer.__typename == "Admin";
   // const isCourseCreator: boolean =
   //   instructors!!.filter((id) => id == query.viewer.id).length > 0;
 
   // console.log("UserId" + query.viewer.id);
-  let [edit, setEdit] = useState(false);
+  const [edit, setEdit] = useState(false);
 
   function openEditPage(edit: boolean) {
     if (edit) {
@@ -115,14 +115,20 @@ const CourseCard = ({
           </EditButton>
         </Tooltip>
       </div>
-      <CourseLevel>{suggestedLevel} grade</CourseLevel>
+      <CourseLevel>
+        {suggestedLevel}
+        {' '}
+        grade
+      </CourseLevel>
       <CardDescription>
-        <p style={{ fontSize: '16px' }}></p>
+        <p style={{ fontSize: '16px' }} />
       </CardDescription>
       <CardFooter>
         <CardSlideCount>
           <ExportOutlined style={{ marginRight: '10px' }} />
-          {lessonCount} Lessons
+          {lessonCount}
+          {' '}
+          Lessons
         </CardSlideCount>
       </CardFooter>
     </Card>

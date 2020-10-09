@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { FileImageOutlined } from '@ant-design/icons';
 import { graphql } from 'babel-plugin-relay/macro';
 import { createFragmentContainer } from 'react-relay';
+import nullthrows from 'nullthrows';
 import { SingleSlide_singleSlide } from './__generated__/SingleSlide_singleSlide.graphql';
 import { Block as BlockType } from '../../types/Block';
-import nullthrows from 'nullthrows';
 import Block from '../block/Block';
 
 type WrapperProps = { preview?: boolean; selected?: boolean };
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   display: flex;
   transition: all 0.15s ease-in-out;
   background-color: ${({ selected, preview }: WrapperProps) =>
-    selected && preview ? '#1990ff' : '#fff'};
+    (selected && preview ? '#1990ff' : '#fff')};
   color: ${({ selected, preview }: WrapperProps) =>
     selected && preview && 'white'};
   :hover {
@@ -46,8 +46,7 @@ const SingleSlide = ({
       preview={preview}
       selected={selected}
       onClick={() =>
-        onSelectBlock && onSelectBlock(nullthrows(singleSlide?.block))
-      }
+        onSelectBlock && onSelectBlock(nullthrows(singleSlide?.block))}
     >
       {preview ? (
         <FileImageOutlined style={{ fontSize: 50 }} />

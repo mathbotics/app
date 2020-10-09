@@ -3,8 +3,8 @@ import { Radio } from 'antd';
 import { RadioChangeEvent } from 'antd/lib/radio';
 import { graphql } from 'babel-plugin-relay/macro';
 import { createFragmentContainer } from 'react-relay';
-import { MultipleChoiceGroup_block } from './__generated__/MultipleChoiceGroup_block.graphql';
 import style from 'styled-components';
+import { MultipleChoiceGroup_block } from './__generated__/MultipleChoiceGroup_block.graphql';
 
 type MultipleChoiceChoiceProps = {
   id: string;
@@ -42,15 +42,13 @@ export type MultipleChoiceGroupProps = {
 };
 
 type Props = { block: MultipleChoiceGroup_block };
-const MultipleChoiceGroup = ({ block }: Props) => {
-  return (
-    <Radio.Group onChange={(e: any) => console.log(e.target.value)} value={''}>
-      {block.choices.map(({ id, text }, index: number) => (
-        <MultipleChoiceChoice key={id} id={id} value={id} text={text} />
+const MultipleChoiceGroup = ({ block }: Props) => (
+  <Radio.Group onChange={(e: any) => console.log(e.target.value)} value="">
+    {block.choices.map(({ id, text }, index: number) => (
+      <MultipleChoiceChoice key={id} id={id} value={id} text={text} />
       ))}
-    </Radio.Group>
+  </Radio.Group>
   );
-};
 
 export default createFragmentContainer(MultipleChoiceGroup, {
   block: graphql`

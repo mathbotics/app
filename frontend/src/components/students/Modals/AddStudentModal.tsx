@@ -2,9 +2,9 @@ import React from 'react';
 import { Modal } from 'antd';
 import { Store } from 'rc-field-form/lib/interface';
 
-import { CreateStudentForm } from '../form/CreateStudentForm';
-import { commit as commitCreateStudentMutation } from '../../graphql/mutations/CreateStudentMutation';
-import { CreateStudentInput } from '../../graphql/mutations/__generated__/CreateStudentMutation.graphql';
+import { CreateStudentForm } from '../../form/CreateStudentForm';
+import { commit as commitCreateStudentMutation } from '../../../graphql/mutations/CreateStudentMutation';
+import { CreateStudentInput } from '../../../graphql/mutations/__generated__/CreateStudentMutation.graphql';
 
 type ModalProps = {
   title: string;

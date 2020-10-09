@@ -1,11 +1,11 @@
 import React, { ReactNode } from 'react';
-import SingleSlide from './SingleSlide';
-import HalfSlide from './HalfSlide';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
+import styled from 'styled-components';
+import SingleSlide from './SingleSlide';
+import HalfSlide from './HalfSlide';
 import { Slide_slide } from './__generated__/Slide_slide.graphql';
 import { Block } from '../../types/Block';
-import styled from 'styled-components';
 
 type WrapperProps = { preview?: boolean; selected?: boolean };
 const Wrapper = styled.div`
@@ -61,7 +61,12 @@ const Slide = ({
         </Wrapper>
       );
     default:
-      return <div>Slide not implement{children}</div>;
+      return (
+        <div>
+          Slide not implement
+          {children}
+        </div>
+);
   }
 };
 

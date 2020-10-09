@@ -33,8 +33,7 @@ export const LessonPage = (): JSX.Element => {
               'Lesson not found',
             )}
           />
-        )
-      }
+        )}
     />
   );
 };

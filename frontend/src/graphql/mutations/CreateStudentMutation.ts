@@ -1,18 +1,18 @@
-import { commitMutation } from 'react-relay';
-import { graphql } from 'babel-plugin-relay/macro';
+import { commitMutation } from "react-relay";
+import { graphql } from "babel-plugin-relay/macro";
 
-import { environment } from '../relay';
-import { CreateStudentInput } from './__generated__/CreateStudentMutation.graphql';
+import { environment } from "../relay";
+import { CreateStudentInput } from "./__generated__/CreateStudentMutation.graphql";
 
 const mutation = graphql`
-  mutation CreateStudentMutation($input: CreateStudentInput!) {
-    createStudent(input: $input) {
-      username
-      firstName
-      lastName
-      gradeLevel
+    mutation CreateStudentMutation($input: CreateStudentInput!) {
+        createStudent(input: $input) {
+            username
+            firstName
+            lastName
+            gradeLevel
+        }
     }
-  }
 `;
 
 function commit(
@@ -30,10 +30,10 @@ function commit(
     onError,
     updater(store) {
       const { courseId } = variables.input;
-      const student = store.getRootField('createStudent');
+      const student = store.getRootField("createStudent");
       const course = store.get(courseId);
-      const students = course?.getLinkedRecords('students') ?? [];
-      course?.setLinkedRecords([...students, student], 'students');
+      const students = course?.getLinkedRecords("students") ?? [];
+      course?.setLinkedRecords([...students, student], "students");
     },
   });
 }

@@ -5,6 +5,10 @@
   "scripts": {
     "start": "cd frontend && npm i && cd ../back && npm i"
   },
+<<<<<<< HEAD
+=======
+
+>>>>>>> 666c970fb77ba62f420b86767b26b124eb91d052
   "license": "MIT",
   "heroku-run-build-script": true
 }

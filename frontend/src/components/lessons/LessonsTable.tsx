@@ -4,8 +4,8 @@ import { ColumnsType } from 'antd/lib/table';
 import { EditOutlined } from '@ant-design/icons';
 import { graphql } from 'babel-plugin-relay/macro';
 import { createFragmentContainer } from 'react-relay';
-import { LessonsTable_lessons } from './__generated__/LessonsTable_lessons.graphql';
 import { useHistory } from 'react-router-dom';
+import { LessonsTable_lessons } from './__generated__/LessonsTable_lessons.graphql';
 
 const columns: ColumnsType<any> = [
   {
@@ -44,7 +44,7 @@ type Props = {
   lessons: LessonsTable_lessons;
 };
 const LessonsTable = ({ lessons: { lessons } }: Props) => {
-  let history = useHistory();
+  const history = useHistory();
   const [data, setData] = useState<ColumnsType<TableItem>>();
   useEffect(() => {
     setData(

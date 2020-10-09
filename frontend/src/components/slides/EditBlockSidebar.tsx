@@ -22,7 +22,7 @@ const EditBlockSidebar = ({ block }: Props) => {
   );
 
   return (
-    <Sider theme={'light'}>
+    <Sider theme="light">
       <Select
         onChange={setEditingBlockTypename}
         defaultValue={block.__typename}
@@ -36,7 +36,7 @@ const EditBlockSidebar = ({ block }: Props) => {
       {editingBlockTypename ===
         EditingBlockTypename.MultipleChoiceQuestionBlock && (
         <EditMultipleChoiceQuestionBlockForm
-          //@ts-ignore
+          // @ts-ignore
           blockId={block.id}
           {...(block.__typename === 'MultipleChoiceQuestionBlock'
             ? { block }
@@ -46,7 +46,7 @@ const EditBlockSidebar = ({ block }: Props) => {
       {/* Text */}
       {editingBlockTypename === EditingBlockTypename.TextBlock && (
         <EditTextBlockForm
-          //@ts-ignore
+          // @ts-ignore
           blockId={block.id}
           {...(block.__typename === 'TextBlock' ? { block } : {})}
         />

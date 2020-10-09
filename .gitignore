@@ -1,7 +1,7 @@
 .DS_STORE
 node_modules
 .env
-.idea
+*/.idea/*
 
 # dependencies
 /node_modules
@@ -26,23 +26,7 @@ yarn-debug.log*
 yarn-error.log*
 
 failed-introspect*
-.idea/.gitignore
-.idea/app.iml
-.idea/inspectionProfiles/
-.idea/misc.xml
-.idea/modules.xml
-.idea/vcs.xml
-.idea/graphql-settings.xml
 
-backend/.idea/.gitignore
-backend/.idea/backend.iml
-backend/.idea/codeStyles/
-backend/.idea/inspectionProfiles/
-backend/.idea/misc.xml
-backend/.idea/modules.xml
-backend/.idea/vcs.xml
-./
-frontend/package-lock.json
 
 # Local Netlify folder
 .netlify

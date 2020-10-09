@@ -44,7 +44,7 @@ const LessonPlanSidebar = ({ lessonPlan }: Props) => {
         where: { id: lessonPlan.id },
       },
       () => console.log('Success'),
-      (e) => console.log('Error ' + e),
+      (e) => console.log(`Error ${e}`),
     );
   };
 
