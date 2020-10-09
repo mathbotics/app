@@ -699,11 +699,7 @@ input DateTimeFilter {
 }
 
 input DeleteStudentInput {
-<<<<<<< HEAD
   courseId: String!
-=======
-  username: String!
->>>>>>> 666c970fb77ba62f420b86767b26b124eb91d052
 }
 
 type EmptyBlock {
