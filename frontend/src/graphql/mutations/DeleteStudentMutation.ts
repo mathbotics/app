@@ -39,4 +39,8 @@ function commit(
   });
 }
 
+<<<<<<< HEAD
 export { commit };
+=======
+export { commit };
+>>>>>>> 2943583235dbc26d8ce25ca0d7a1e4a52ff4fa32
