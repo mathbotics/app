@@ -24,7 +24,7 @@ export const DeleteStudentModalContent = ({
         <p>You cannot undo this action!</p>
 
         <Button block type="primary" size="large" danger htmlType="submit">
-          Delete All Students
+          Delete
         </Button>
       </Form>
     )

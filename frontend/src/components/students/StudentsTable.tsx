@@ -7,6 +7,13 @@ import { createFragmentContainer } from 'react-relay';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { StudentsTable_course } from './__generated__/StudentsTable_course.graphql';
+import { EditCourseStudents_course } from '../course/__generated__/EditCourseStudents_course.graphql';
+import DeleteStudentModal from './Modals/DeleteStudentModal';
+
+type Props = {
+  course: StudentsTable_course;
+  studentCourse: EditCourseStudents_course;
+};
 
 const EditButton = styled.div`
   :hover {
@@ -19,7 +26,7 @@ const DeleteButton = styled.div`
   }
 `;
 let edit = false;
-const columns: ColumnsType<any> = [
+const columns: ColumnsType<any>  = [
   {
     title: '',
     dataIndex: 'index',
@@ -43,7 +50,7 @@ const columns: ColumnsType<any> = [
   {
     title: 'Action',
     dataIndex: 'action',
-    render: () => (
+    render: ({ studentCourse }: Props) => (
       <div
         style={{
           display: 'flex',
@@ -70,6 +77,14 @@ const columns: ColumnsType<any> = [
             <DeleteOutlined style={{ margin: '0px 0px 0px 15px' }} />
           </DeleteButton>
         </Tooltip>
+        <DeleteStudentModal
+                title="Delete All Students"
+                visible={edit}
+                courseId={studentCourse.id}
+                onSubmitSuccess={() => edit = false}
+                onSubmitError={(e: Error) => console.error(e)}
+                onCancel={() => edit = !edit}
+              />
       </div>
     ),
   },
@@ -94,9 +109,10 @@ function onChange(pagination, filters, sorter, extra) {
 //     columns: columns.filter((item) => item.key !== key),
 //   });
 // };
-type Props = {
-  course: StudentsTable_course;
-};
+
+// type Props = {
+//   course: StudentsTable_course;
+// };
 const LessonsTable = ({ course: { students } }: Props) => {
   const [data, setData] = useState<ColumnsType<TableItem>>();
 
