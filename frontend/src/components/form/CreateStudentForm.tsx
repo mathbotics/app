@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button } from 'antd';
+import { Form, Button, Alert } from 'antd';
 import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import { FormItem } from './FormItem';
 import { SelectFormItem } from './SelectFormItem';
@@ -48,6 +48,16 @@ export const CreateStudentForm = ({
       onFinishFailed={onSubmitError}
       layout="vertical"
     >
+      {/*TODO need help hiding alert until submit*/}
+      {onSubmitError && (
+          // send error alert if email wasn't sent
+      <Alert
+        message="Username is taken"
+        type="error"
+        showIcon
+        closable
+      />
+      )}
       <p>
         <b>Username</b>
       </p>
