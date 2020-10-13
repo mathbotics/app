@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Table } from 'antd';
+import { Table, Button, Tooltip } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 import { graphql } from 'babel-plugin-relay/macro';
 import { createFragmentContainer } from 'react-relay';
-import { StudentsTable_course } from './__generated__/StudentsTable_course.graphql';
 
-import { Button, Tooltip } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
+import { StudentsTable_course } from './__generated__/StudentsTable_course.graphql';
 
 const EditButton = styled.div`
   :hover {
@@ -19,7 +18,7 @@ const DeleteButton = styled.div`
     color: #ff4d4e;
   }
 `;
-
+let edit = false;
 const columns: ColumnsType<any> = [
   {
     title: '',
@@ -48,27 +47,30 @@ const columns: ColumnsType<any> = [
       <div
         style={{
           display: 'flex',
-          fontSize: '16px', 
+          fontSize: '16px',
           alignItems: 'center',
         }}
       >
-          <Tooltip title="Edit Student">
-            <EditButton
+        <Tooltip title="Edit Student">
+          <EditButton
                 // TODO Add edit a student modal
-                onClick={() => console.log("handle edit here")}
-              >
-                <EditOutlined />
-            </EditButton>
-          </Tooltip>
-          <Tooltip title="Delete Student">
-            <DeleteButton
+            onClick={() => {
+                edit = !edit;
+                console.log(edit);
+            }}
+          >
+            <EditOutlined />
+          </EditButton>
+        </Tooltip>
+        <Tooltip title="Delete Student">
+          <DeleteButton
                 // TODO Add confirmation popup to delete a students
-                onClick={() => console.log("handle delete here")}
-              >
-                <DeleteOutlined style={{margin: '0px 0px 0px 15px'}}/>
-            </DeleteButton>
-          </Tooltip>
-        </div>
+            onClick={() => console.log("handle delete here")}
+          >
+            <DeleteOutlined style={{ margin: '0px 0px 0px 15px' }} />
+          </DeleteButton>
+        </Tooltip>
+      </div>
     ),
   },
 ];
@@ -97,6 +99,7 @@ type Props = {
 };
 const LessonsTable = ({ course: { students } }: Props) => {
   const [data, setData] = useState<ColumnsType<TableItem>>();
+
   useEffect(() => {
     setData(
         students.map(
