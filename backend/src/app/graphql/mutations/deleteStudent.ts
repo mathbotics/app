@@ -2,6 +2,7 @@ import { mutationField, inputObjectType, arg } from 'nexus';
 import nullthrows from 'nullthrows';
 
 import prisma from '../../data/prisma';
+import { Student } from '../objects';
 
 export const DeleteStudentInput = inputObjectType({
     name: 'DeleteStudentInput',
@@ -14,7 +15,7 @@ export const DeleteStudentInput = inputObjectType({
 export const deleteStudent = mutationField('deleteStudent',{
     type: 'Student',
     args: {
-        input: arg({ type: 'DeleteStudentInput', required: true }),
+        input: arg({ type: 'DeleteStudentInput', required: true}),
       },
     async resolve(
         _root,{input: {courseId}},
@@ -23,7 +24,9 @@ export const deleteStudent = mutationField('deleteStudent',{
           where: {
             courses: {
               every: { id: courseId} },
-            }
-          })
+            },
+            include : {student: true}
+          });
+          return true;
       } 
 });
