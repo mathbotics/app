@@ -19,6 +19,16 @@ type ExpressIntegrationContext = {
 };
 
 const app = express();
+
+// Allow Cross Origin | Also to enable share with vscode
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+
+  next();
+});
+
+
 const apollo = new ApolloServer({
   context({ req, res }: ExpressIntegrationContext) {
     return {
@@ -28,6 +38,7 @@ const apollo = new ApolloServer({
     } as Context;
   },
   formatError(err: GraphQLError) {
+    // eslint-disable-next-line no-console
     console.warn(err);
     throw err;
   },
@@ -47,6 +58,13 @@ const apollo = new ApolloServer({
   ),
 });
 
+if(NODE_ENV ==='production'){
+  app.use(express.static(path.join(__dirname, '../../../../frontend/src')));
+  app.use((req, res) => {
+    res.sendFile(path.join(__dirname, '../../../../frontend/src/index.tsx'));
+  })
+}
+
 applyExpressMiddlewares(app);
 apollo.applyMiddleware({
   app,
@@ -59,7 +77,6 @@ const onServerStart = () =>
   );
 
 if (NODE_ENV !== 'test') {
-  app.listen({ port: PORT }, onServerStart);
+  app.listen({ port: PORT}, onServerStart);
 }
-
 export default apollo;

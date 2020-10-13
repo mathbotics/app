@@ -7,5 +7,6 @@ export const Student = objectType({
     t.model.id();
     t.model.gradeLevel();
     t.model.guardians();
+    t.model.courses();
   },
 });

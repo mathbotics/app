@@ -1,8 +1,7 @@
-import React from "react";
-import { Form, Button } from "antd";
-import { FormItem } from "./FormItem";
-
-import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
+import React from 'react';
+import { Form, Button } from 'antd';
+import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
+import { FormItem } from './FormItem';
 
 type FormProps = {
   onSubmit: (values: Store) => void;
@@ -18,7 +17,7 @@ export const UpdateCourseForm = ({
 
   // Set default form values
   React.useEffect(() => {
-    setFieldsValue({ name: "" });
+    setFieldsValue({ name: '' });
   }, [setFieldsValue]);
 
   return (
@@ -27,11 +26,11 @@ export const UpdateCourseForm = ({
       onFinish={onSubmit}
       onFinishFailed={onSubmitError}
       layout="vertical"
-      style={{ backgroundColor: "white" }}
+      style={{ backgroundColor: 'white' }}
     >
       <FormItem
         name="name"
-        value={getFieldValue("name")}
+        value={getFieldValue('name')}
         type="text"
         input="courseName"
         placeholder="Course Name"
@@ -39,7 +38,7 @@ export const UpdateCourseForm = ({
 
       <FormItem
         name="description"
-        value={getFieldValue("description")}
+        value={getFieldValue('description')}
         type="text"
         input="description"
         placeholder="Course Description"
@@ -53,17 +52,26 @@ export const UpdateCourseForm = ({
   );
 };
 
+/*
+TODO
+Delete Button logic is done(?)
+Notes:
+Seems to be leftovers from previous work that never got added,
+Needs to be implemented on to site
+Line on bottom was added to not warn use that it is not being used
+ */
+// eslint-disable-next-line
 const DeleteButton = () => (
   <Button
     block
     type="danger"
     size="large"
-    onClick={() => console.log("Deleting")}
+    onClick={() => console.log('Deleting')}
     style={{
-      marginTop: "10px",
-      backgroundColor: "transparent",
-      color: "red",
-      border: "0",
+      marginTop: '10px',
+      backgroundColor: 'transparent',
+      color: 'red',
+      border: '0',
     }}
   >
     Delete

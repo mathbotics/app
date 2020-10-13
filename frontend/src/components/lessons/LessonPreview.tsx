@@ -1,14 +1,14 @@
-import React from "react";
-import { Button, Layout, Tooltip, Typography } from "antd";
+import React from 'react';
+import { Button, Layout, Tooltip, Typography } from 'antd';
 import {
   FileTextOutlined,
   ClockCircleOutlined,
-  EditOutlined
-} from "@ant-design/icons";
-import styled from "styled-components";
-import { createFragmentContainer } from "react-relay";
-import { graphql } from "babel-plugin-relay/macro";
-import { LessonPreview_lesson } from "./__generated__/LessonPreview_lesson.graphql";
+  EditOutlined,
+} from '@ant-design/icons';
+import styled from 'styled-components';
+import { createFragmentContainer } from 'react-relay';
+import { graphql } from 'babel-plugin-relay/macro';
+import { LessonPreview_lesson } from './__generated__/LessonPreview_lesson.graphql';
 
 type LessonPreviewProps = {
   lesson: LessonPreview_lesson;
@@ -16,57 +16,57 @@ type LessonPreviewProps = {
 };
 const LessonPreview = ({
   lesson: { id, title },
-  onClick
-}: LessonPreviewProps) => {
-  return (
-    <LessonPreviewWrapper>
-      <LessonPreviewCard>
-        {/* Title of lessons */}
-        <ContentWrapper style={{ display: "flex", alignItems: "center" }}>
-          <FileTextOutlined style={{ marginRight: "10px", fontSize: "15px" }} />
-          <Tooltip title={title}>
-            <span
-              style={{
-                fontSize: "15px",
-                width: "80%",
-                textOverflow: "ellipsis",
-                overflow: "hidden",
-                fontWeight: 600
+  onClick,
+}: LessonPreviewProps) => (
+  <LessonPreviewWrapper>
+    <LessonPreviewCard>
+      {/* Title of lessons */}
+      <ContentWrapper style={{ display: 'flex', alignItems: 'center' }}>
+        <FileTextOutlined style={{ marginRight: '10px', fontSize: '15px' }} />
+        <Tooltip title={title}>
+          <span
+            style={{
+                fontSize: '15px',
+                width: '80%',
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                fontWeight: 600,
               }}
-            >
-              {title}
-            </span>
-          </Tooltip>
-        </ContentWrapper>
-
-        {/* Suggested grade level */}
-        <ContentWrapper>
-          <Tooltip title={"Recommended grade level for this lesson"}>
-            8th grade
-          </Tooltip>
-        </ContentWrapper>
-
-        {/* Suggested completion time */}
-        <ContentWrapper>
-          <Tooltip title={`Suggested completion time`}>
-            <ClockCircleOutlined /> 15min
-          </Tooltip>
-        </ContentWrapper>
-
-        {/* Slide Count */}
-        <ContentWrapper>0 Slides</ContentWrapper>
-        <Tooltip title={"Edit lesson"}>
-          <Button
-            style={{ border: "none", background: "transparent" }}
-            onClick={() => onClick(id)}
           >
-            <EditOutlined />
-          </Button>
+            {title}
+          </span>
         </Tooltip>
-      </LessonPreviewCard>
-    </LessonPreviewWrapper>
+      </ContentWrapper>
+
+      {/* Suggested grade level */}
+      <ContentWrapper>
+        <Tooltip title="Recommended grade level for this lesson">
+          8th grade
+        </Tooltip>
+      </ContentWrapper>
+
+      {/* Suggested completion time */}
+      <ContentWrapper>
+        <Tooltip title="Suggested completion time">
+          <ClockCircleOutlined />
+          {' '}
+          15min
+        </Tooltip>
+      </ContentWrapper>
+
+      {/* Slide Count */}
+      <ContentWrapper>0 Slides</ContentWrapper>
+      <Tooltip title="Edit lesson">
+        <Button
+          style={{ border: 'none', background: 'transparent' }}
+          onClick={() => onClick(id)}
+        >
+          <EditOutlined />
+        </Button>
+      </Tooltip>
+    </LessonPreviewCard>
+  </LessonPreviewWrapper>
   );
-};
 
 export default createFragmentContainer(LessonPreview, {
   lesson: graphql`
@@ -74,7 +74,7 @@ export default createFragmentContainer(LessonPreview, {
       id
       title
     }
-  `
+  `,
 });
 
 const ContentWrapper = styled.div`

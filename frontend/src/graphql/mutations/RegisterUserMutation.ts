@@ -1,8 +1,8 @@
-import { commitMutation } from "react-relay";
-import { graphql } from "babel-plugin-relay/macro";
+import { commitMutation } from 'react-relay';
+import { graphql } from 'babel-plugin-relay/macro';
 
-import { environment } from "../relay";
-import { RegisterUserInput } from "./__generated__/RegisterUserMutation.graphql";
+import { environment } from '../relay';
+import { RegisterUserInput } from './__generated__/RegisterUserMutation.graphql';
 
 const mutation = graphql`
   mutation RegisterUserMutation($input: RegisterUserInput!) {
@@ -15,16 +15,16 @@ const mutation = graphql`
 function commit(
   input: RegisterUserInput,
   onSuccess: (response: any) => void,
-  onFailure: (error: Error) => void
+  onFailure: (error: Error) => void,
 ) {
   const variables = {
-    input
+    input,
   };
   commitMutation(environment, {
     mutation,
     variables,
     onCompleted: onSuccess,
-    onError: onFailure
+    onError: onFailure,
   });
 }
 

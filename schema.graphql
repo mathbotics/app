@@ -698,6 +698,10 @@ input DateTimeFilter {
   notIn: [DateTime!]
 }
 
+input DeleteStudentInput {
+  courseId: String!
+}
+
 type EmptyBlock {
   id: String!
 }
@@ -1742,6 +1746,7 @@ type Mutation {
   createOneLesson(data: LessonCreateInput!): Lesson!
   createSlide(input: CreateSlideInput!): Slide!
   createStudent(input: CreateStudentInput!): Student!
+  deleteStudent(input: DeleteStudentInput!): Student!
   logIn(input: LogInInput!): User!
   registerUser(input: RegisterUserInput!): User!
   sendInvitationEmail(input: SendInvitationEmailInput!): String!
@@ -2005,6 +2010,7 @@ type Query {
   courses(after: CourseWhereUniqueInput, before: CourseWhereUniqueInput, first: Int, last: Int, skip: Int, where: CourseWhereInput): [Course!]!
   lesson(where: LessonWhereUniqueInput!): Lesson
   lessons(after: LessonWhereUniqueInput, before: LessonWhereUniqueInput, first: Int, last: Int, skip: Int, where: LessonWhereInput): [Lesson!]!
+  students(after: StudentWhereUniqueInput, before: StudentWhereUniqueInput, first: Int, last: Int, skip: Int): [Student!]!
   viewer: User!
 }
 
@@ -2366,6 +2372,7 @@ input StringFilter {
 }
 
 type Student implements User {
+  courses(after: CourseWhereUniqueInput, before: CourseWhereUniqueInput, first: Int, last: Int, skip: Int): [Course!]!
   firstName: String!
   gradeLevel: GradeLevel!
   guardians(after: GuardianWhereUniqueInput, before: GuardianWhereUniqueInput, first: Int, last: Int, skip: Int): [Guardian!]!
