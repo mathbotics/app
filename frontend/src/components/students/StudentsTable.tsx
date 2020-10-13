@@ -26,7 +26,7 @@ const DeleteButton = styled.div`
   }
 `;
 let edit = false;
-const columns: ColumnsType<any>  = [
+const columns: ColumnsType<any> = [
   {
     title: '',
     dataIndex: 'index',
@@ -78,13 +78,13 @@ const columns: ColumnsType<any>  = [
           </DeleteButton>
         </Tooltip>
         <DeleteStudentModal
-                title="Delete All Students"
-                visible={edit}
-                courseId={studentCourse.id}
-                onSubmitSuccess={() => edit = false}
-                onSubmitError={(e: Error) => console.error(e)}
-                onCancel={() => edit = !edit}
-              />
+          title="Delete All Students"
+          visible={edit}
+          courseId={studentCourse.id}
+          onSubmitSuccess={() => edit = false}
+          onSubmitError={(e: Error) => console.error(e)}
+          onCancel={() => edit = !edit}
+        />
       </div>
     ),
   },
