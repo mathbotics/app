@@ -19,9 +19,9 @@ export default ({
   onSubmitSuccess,
   onSubmitError,
   onCancel,
-  courseId
+  courseId,
 }: ModalProps) => {
-  const onSubmit = 
+  const onSubmit =
   () =>
     commitDeleteStudentMutation(
       { courseId } as DeleteStudentInput,

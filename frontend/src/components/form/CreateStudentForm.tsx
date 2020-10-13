@@ -48,7 +48,7 @@ export const CreateStudentForm = ({
       onFinishFailed={onSubmitError}
       layout="vertical"
     >
-      {/*TODO need help hiding alert until submit*/}
+      {/* TODO need help hiding alert until submit */}
       {onSubmitError && (
           // send error alert if email wasn't sent
       <Alert
