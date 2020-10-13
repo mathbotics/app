@@ -11,4 +11,8 @@ export default (app: Express) => {
       next();
     })(req, res, next);
   });
+  app.get("/logout",(req, res) => {
+    req.logout();
+    //res.redirect('/login')
+  })
 };

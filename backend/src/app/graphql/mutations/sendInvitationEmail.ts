@@ -57,6 +57,7 @@ export const sendInvitationEmail = mutationField('sendInvitationEmail', {
       await sendMail(message);
       return url;
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.warn(e);
       throw e;
     }

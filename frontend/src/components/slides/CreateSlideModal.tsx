@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Modal, Layout } from "antd";
-import styled from "styled-components";
-import Slide from "./Slide";
-import { Slide_slide } from "./__generated__/Slide_slide.graphql";
-import { commit as commitCreateSlideMutation } from "../../graphql/mutations/CreateSlideMutation";
+import React, { useState } from 'react';
+import { Modal, Layout } from 'antd';
+import styled from 'styled-components';
+import Slide from './Slide';
+import { Slide_slide } from './__generated__/Slide_slide.graphql';
+import { commit as commitCreateSlideMutation } from '../../graphql/mutations/CreateSlideMutation';
 
 const ModalBodyWrapper = styled(Layout.Content)`
   display: flex;
@@ -15,7 +15,7 @@ const ModalSlideWrapper = styled.div`
   height: 200px !important;
 `;
 
-type SlideType = Slide_slide["__typename"];
+type SlideType = Slide_slide['__typename'];
 
 type ModalPreviewSlideType = {
   type: SlideType;
@@ -37,28 +37,28 @@ export default ({
   lessonId,
   onCreateSlideSuccess,
   onCreateSlideError,
-  onCancel
+  onCancel,
 }: ModalProps) => {
-  const [selected, setSelected] = useState<SlideType>("SingleSlide");
+  const [selected, setSelected] = useState<SlideType>('SingleSlide');
 
   const onCreateSlideMutationSuccess = () => onCreateSlideSuccess();
   const onCreateSlideMutationError = (e: Error) => onCreateSlideError(e);
 
-  const poop = "poop";
+  const poop = 'poop';
 
   const previewSlides: ModalPreviewSlideType[] = [
     {
-      type: "SingleSlide",
-      title: "Single Slide",
+      type: 'SingleSlide',
+      title: 'Single Slide',
       description:
-        "A single slide, perfect for a single piece of content like and image or some reading material."
+        'A single slide, perfect for a single piece of content like and image or some reading material.',
     },
     {
-      type: "HalfSlide",
-      title: "Half Slide",
+      type: 'HalfSlide',
+      title: 'Half Slide',
       description:
-        "A slide made for 2 pieces of content. Great for some context on the left and interactive material on the right."
-    }
+        'A slide made for 2 pieces of content. Great for some context on the left and interactive material on the right.',
+    },
   ];
 
   return (
@@ -69,39 +69,38 @@ export default ({
       onOk={() =>
         commitCreateSlideMutation(
           {
-            input: { lessonId, title: poop, slideType: selected }
+            input: { lessonId, title: poop, slideType: selected },
           },
           onCreateSlideMutationSuccess,
           onCreateSlideMutationError,
-          lessonId
-        )
-      }
+          lessonId,
+        )}
       onCancel={onCancel}
     >
       <ModalBodyWrapper>
         {previewSlides.map(
           (
             { type, title, description }: ModalPreviewSlideType,
-            index: number
+            index: number,
           ) => (
             <div
               key={index}
               style={{
-                display: "flex",
-                alignItems: "flex-start",
-                flexDirection: "column",
-                margin: "20px"
+                display: 'flex',
+                alignItems: 'flex-start',
+                flexDirection: 'column',
+                margin: '20px',
               }}
             >
               <ModalSlideWrapper key={index} onClick={() => setSelected(type)}>
                 <Slide preview selected={type === selected} type={type} />
               </ModalSlideWrapper>
-              <h3 style={{ marginTop: "10px" }}>
+              <h3 style={{ marginTop: '10px' }}>
                 <u>{title}</u>
               </h3>
-              <p style={{ width: 300, marginTop: "5px" }}>{description}</p>
+              <p style={{ width: 300, marginTop: '5px' }}>{description}</p>
             </div>
-          )
+          ),
         )}
       </ModalBodyWrapper>
     </Modal>

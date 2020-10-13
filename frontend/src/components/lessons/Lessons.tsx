@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { Typography, Button, Alert, Layout, Tooltip, Menu } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
-import { graphql } from "babel-plugin-relay/macro";
-import { getRootQueryDataID } from "../../graphql/relay";
-import { LessonsPageQuery } from "../../pages/LessonsPage";
-import CreateLessonModal from "./CreateLessonModal";
-import styled from "styled-components";
-import LessonsTable from "./LessonsTable";
-import { createFragmentContainer } from "react-relay";
-import { Lessons_lessons } from "./__generated__/Lessons_lessons.graphql";
+import React, { useState } from 'react';
+import { Typography, Button, Alert, Layout, Tooltip } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import { graphql } from 'babel-plugin-relay/macro';
+import styled from 'styled-components';
+import { createFragmentContainer } from 'react-relay';
+import { getRootQueryDataID } from '../../graphql/relay';
+import { LessonsPageQuery } from '../../pages/LessonsPage';
+import CreateLessonModal from './CreateLessonModal';
+import LessonsTable from './LessonsTable';
+import { Lessons_lessons } from './__generated__/Lessons_lessons.graphql';
 
 const { Title } = Typography;
 
@@ -22,12 +22,14 @@ enum PageState {
 const Lessons = ({ lessons }: Props): JSX.Element => {
   const [pageState, setPageState] = useState<PageState>(PageState.Default);
   return (
-    <Layout style={{ backgroundColor: "white" }}>
+    <Layout style={{ backgroundColor: 'white' }}>
       {/* OnCreateLessonError - Attempt to create a lesson went wrong :( */}
       {pageState === PageState.CreateLessonError && (
         <Alert
           style={{ marginBottom: 20 }}
           message="Unable to create lesson"
+          closable
+          showIcon
           type="error"
         />
       )}
@@ -37,6 +39,8 @@ const Lessons = ({ lessons }: Props): JSX.Element => {
         <Alert
           style={{ marginBottom: 20 }}
           message="Successfully created a lesson"
+          closable
+          showIcon
           type="success"
         />
       )}
@@ -75,25 +79,23 @@ const HeaderWrappper = styled(Layout.Content)`
 `;
 
 type HeaderProps = { onAddLesson: () => void };
-const Header = ({ onAddLesson }: HeaderProps): JSX.Element => {
-  return (
-    <HeaderWrappper>
-      <Title level={3} style={{ fontWeight: 700 }}>
-        Lessons
-      </Title>
-      <Tooltip title={"Add a lesson"}>
-        <Button
-          type="primary"
-          shape="circle"
-          icon={<PlusOutlined />}
-          htmlType="submit"
-          size={"large"}
-          onClick={() => onAddLesson()}
-        />
-      </Tooltip>
-    </HeaderWrappper>
+const Header = ({ onAddLesson }: HeaderProps): JSX.Element => (
+  <HeaderWrappper>
+    <Title level={3} style={{ fontWeight: 700 }}>
+      Lessons
+    </Title>
+    <Tooltip title="Add a lesson">
+      <Button
+        type="primary"
+        shape="circle"
+        icon={<PlusOutlined />}
+        htmlType="submit"
+        size="large"
+        onClick={() => onAddLesson()}
+      />
+    </Tooltip>
+  </HeaderWrappper>
   );
-};
 
 export default createFragmentContainer(Lessons, {
   lessons: graphql`

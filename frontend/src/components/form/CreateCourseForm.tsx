@@ -1,8 +1,7 @@
-import React from "react";
-import { Form, Button } from "antd";
-import { FormItem } from "./FormItem";
-
-import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
+import React from 'react';
+import { Form, Button } from 'antd';
+import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
+import { FormItem } from './FormItem';
 
 type FormProps = {
   onSubmit: (values: Store) => void;
@@ -18,7 +17,7 @@ export const CreateCourseForm = ({
 
   // Set default form values
   React.useEffect(() => {
-    setFieldsValue({ name: "" });
+    setFieldsValue({ name: '' });
   }, [setFieldsValue]);
 
   return (
@@ -27,11 +26,11 @@ export const CreateCourseForm = ({
       onFinish={onSubmit}
       onFinishFailed={onSubmitError}
       layout="vertical"
-      style={{ backgroundColor: "white" }}
+      style={{ backgroundColor: 'white' }}
     >
       <FormItem
         name="name"
-        value={getFieldValue("name")}
+        value={getFieldValue('name')}
         type="text"
         input="courseName"
         placeholder="Course Name"

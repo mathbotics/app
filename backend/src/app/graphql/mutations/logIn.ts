@@ -46,6 +46,7 @@ export const logIn = mutationField('logIn', {
         'User relationship is null.',
       );
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.warn(e);
       throw e;
     }

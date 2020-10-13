@@ -5,20 +5,20 @@ import { environment } from "../relay";
 import { CreateStudentInput } from "./__generated__/CreateStudentMutation.graphql";
 
 const mutation = graphql`
-  mutation CreateStudentMutation($input: CreateStudentInput!) {
-    createStudent(input: $input) {
-      username
-      firstName
-      lastName
-      gradeLevel
+    mutation CreateStudentMutation($input: CreateStudentInput!) {
+        createStudent(input: $input) {
+            username
+            firstName
+            lastName
+            gradeLevel
+        }
     }
-  }
 `;
 
 function commit(
   input: CreateStudentInput,
   onCompleted: (response: any) => void,
-  onError: (error: Error) => void
+  onError: (error: Error) => void,
 ) {
   const variables = {
     input,

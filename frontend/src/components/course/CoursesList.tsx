@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
-import { Layout, Result } from "antd";
-import { createFragmentContainer } from "react-relay";
-import { graphql } from "babel-plugin-relay/macro";
+import { Layout, Result } from 'antd';
+import { createFragmentContainer } from 'react-relay';
+import { graphql } from 'babel-plugin-relay/macro';
 
-import { CoursesList_courses } from "./__generated__/CoursesList_courses.graphql";
-import CourseCard from "./CourseCard";
-import styled from "styled-components";
+import styled from 'styled-components';
+import { CoursesList_courses } from './__generated__/CoursesList_courses.graphql';
+import CourseCard from './CourseCard';
 
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 const Wrapper = styled(Layout)`
   background-color: white;
@@ -27,31 +27,28 @@ const CardWrapper = styled.div`
 `;
 
 type Props = { courses: CoursesList_courses };
-const CoursesList = ({ courses }: Props) => {
-  const history = useHistory();
-  return (
-    <Wrapper>
-      {courses.courses.length === 0 && (
-        <Result
-          style={{ margin: "auto" }}
+const CoursesList = ({ courses }: Props) =>
+  // const history = useHistory();
+   (
+     <Wrapper>
+       {courses.courses.length === 0 && (
+       <Result
+         style={{ margin: 'auto' }}
           // @ts-ignore
-          status={"404"}
-          title="No courses found"
-          subTitle="Looks like you have no courses!"
-        />
+         status="404"
+         title="No courses found"
+         subTitle="Looks like you have no courses!"
+       />
       )}
-      {courses.courses.map((course) => (
-        <CardWrapper
-          key={course.id}
-          onClick={() => history.push(`/courses/${course.id}`)}
-        >
-          <CourseCard key={course.id} course={course} />
-        </CardWrapper>
+       {courses.courses.map((course) => (
+         <CardWrapper
+           key={course.id}
+         >
+           <CourseCard key={course.id} course={course} />
+         </CardWrapper>
       ))}
-    </Wrapper>
+     </Wrapper>
   );
-};
-
 export default createFragmentContainer(CoursesList, {
   courses: graphql`
     fragment CoursesList_courses on Query {

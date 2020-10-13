@@ -1,10 +1,10 @@
-import React from "react";
-import { DataID } from "react-relay";
-import { Modal } from "antd";
-import { Store } from "rc-field-form/lib/interface";
+import React from 'react';
+import { DataID } from 'react-relay';
+import { Modal } from 'antd';
+import { Store } from 'rc-field-form/lib/interface';
 
-import { CreateCourseForm } from "../form/CreateCourseForm";
-import { commit as commitCreateOneCourseMutation } from "../../graphql/mutations/CreateOneCourseMutation";
+import { CreateCourseForm } from '../form/CreateCourseForm';
+import { commit as commitCreateOneCourseMutation } from '../../graphql/mutations/CreateOneCourseMutation';
 
 type ModalProps = {
   title: string;
@@ -24,10 +24,10 @@ export default ({
 }: ModalProps) => {
   const onSubmit = ({ name }: Store) =>
     commitCreateOneCourseMutation(
-      { name, suggestedLevel: "FIRST", lessonPlan: { create: {} } },
+      { name, suggestedLevel: 'FIRST', lessonPlan: { create: {} } },
       onSubmitSuccess,
       onSubmitError,
-      rootDataID
+      rootDataID,
     );
   return (
     <Modal visible={visible} title={title} onCancel={onCancel} footer={[]}>

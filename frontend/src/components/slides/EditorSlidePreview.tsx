@@ -1,13 +1,13 @@
-import React from "react";
-import { Result } from "antd";
-import { SmileOutlined } from "@ant-design/icons";
-import { createFragmentContainer } from "react-relay";
-import { graphql } from "babel-plugin-relay/macro";
-import { EditorSlidePreview_slide } from "./__generated__/EditorSlidePreview_slide.graphql";
-import { Block } from "../../types/Block";
-import Slide from "./Slide";
-import styled from "styled-components";
-import nullthrows from "nullthrows";
+import React from 'react';
+import { Result } from 'antd';
+import { SmileOutlined } from '@ant-design/icons';
+import { createFragmentContainer } from 'react-relay';
+import { graphql } from 'babel-plugin-relay/macro';
+import styled from 'styled-components';
+import nullthrows from 'nullthrows';
+import { EditorSlidePreview_slide } from './__generated__/EditorSlidePreview_slide.graphql';
+import { Block } from '../../types/Block';
+import Slide from './Slide';
 
 type Props = {
   onSelectBlock?: (block: Block) => void; // This onClick should return a block to edit
@@ -29,7 +29,7 @@ const EditorSlidePreview = ({
           editing
             ? nullthrows(
                 onSelectBlock,
-                "onSelectBlock must be provided if editing is true"
+                'onSelectBlock must be provided if editing is true',
               )
             : undefined
         }
@@ -39,18 +39,18 @@ const EditorSlidePreview = ({
     ) : (
       <div
         style={{
-          backgroundColor: "white",
-          borderRadius: "5px",
-          width: "100%",
-          height: "100%",
-          overflow: "hidden",
-          justifyContent: "center",
-          alignItems: "center",
-          display: "flex",
+          backgroundColor: 'white',
+          borderRadius: '5px',
+          width: '100%',
+          height: '100%',
+          overflow: 'hidden',
+          justifyContent: 'center',
+          alignItems: 'center',
+          display: 'flex',
         }}
       >
         <Result
-          style={{ display: "inline-block" }}
+          style={{ display: 'inline-block' }}
           icon={<SmileOutlined />}
           title="Get started by creating a slide!"
         />

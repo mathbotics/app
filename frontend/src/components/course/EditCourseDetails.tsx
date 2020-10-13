@@ -1,13 +1,13 @@
-import React from "react";
-import { Layout } from "antd";
-import styled from "styled-components";
-import { Store } from "rc-field-form/lib/interface";
-import { createFragmentContainer } from "react-relay";
-import { graphql } from "babel-plugin-relay/macro";
+import React from 'react';
+import { Layout } from 'antd';
+import styled from 'styled-components';
+import { Store } from 'rc-field-form/lib/interface';
+import { createFragmentContainer } from 'react-relay';
+import { graphql } from 'babel-plugin-relay/macro';
 
-import { UpdateCourseForm } from "../form/UpdateCourseForm";
-import { commit as commitUpdateOneCourseMutation } from "../../graphql/mutations/UpdateOneCourseMutation";
-import { EditCourseDetails_course } from "./__generated__/EditCourseDetails_course.graphql";
+import { UpdateCourseForm } from '../form/UpdateCourseForm';
+import { commit as commitUpdateOneCourseMutation } from '../../graphql/mutations/UpdateOneCourseMutation';
+import { EditCourseDetails_course } from './__generated__/EditCourseDetails_course.graphql';
 
 const FormWrapper = styled.div`
   width: 350px;
@@ -26,11 +26,11 @@ const EditCourseDetails = ({
     commitUpdateOneCourseMutation(
       { data: { name, description }, where: { id } },
       onSubmitSuccess,
-      onSubmitError
+      onSubmitError,
     );
 
   return (
-    <Layout style={{ backgroundColor: "white" }}>
+    <Layout style={{ backgroundColor: 'white' }}>
       <FormWrapper>
         <UpdateCourseForm onSubmit={onSubmit} onSubmitError={onSubmitError} />
       </FormWrapper>

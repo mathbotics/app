@@ -1,11 +1,11 @@
-import React, { ReactNode } from "react";
-import SingleSlide from "./SingleSlide";
-import HalfSlide from "./HalfSlide";
-import { createFragmentContainer } from "react-relay";
-import { graphql } from "babel-plugin-relay/macro";
-import { Slide_slide } from "./__generated__/Slide_slide.graphql";
-import { Block } from "../../types/Block";
-import styled from "styled-components";
+import React, { ReactNode } from 'react';
+import { createFragmentContainer } from 'react-relay';
+import { graphql } from 'babel-plugin-relay/macro';
+import styled from 'styled-components';
+import SingleSlide from './SingleSlide';
+import HalfSlide from './HalfSlide';
+import { Slide_slide } from './__generated__/Slide_slide.graphql';
+import { Block } from '../../types/Block';
 
 type WrapperProps = { preview?: boolean; selected?: boolean };
 const Wrapper = styled.div`
@@ -13,13 +13,13 @@ const Wrapper = styled.div`
   width: 100%;
   border-radius: 5px;
   overflow: hidden;
-  border: ${({ preview }: WrapperProps) => preview && "1px solid #ccc"};
+  border: ${({ preview }: WrapperProps) => preview && '1px solid #ccc'};
   :hover {
-    border: ${({ preview }: WrapperProps) => preview && "1px solid #f3f3f3cc"};
+    border: ${({ preview }: WrapperProps) => preview && '1px solid #f3f3f3cc'};
   }
 `;
 type Props = {
-  type?: Slide_slide["__typename"];
+  type?: Slide_slide['__typename'];
   slide?: Slide_slide;
   children?: ReactNode;
   preview?: boolean;
@@ -38,7 +38,7 @@ const Slide = ({
   selectedBlock,
 }: Props) => {
   switch (slide?.__typename ?? type) {
-    case "SingleSlide":
+    case 'SingleSlide':
       return (
         <Wrapper preview={preview}>
           <SingleSlide
@@ -49,7 +49,7 @@ const Slide = ({
           />
         </Wrapper>
       );
-    case "HalfSlide":
+    case 'HalfSlide':
       return (
         <Wrapper preview={preview}>
           <HalfSlide
@@ -61,7 +61,12 @@ const Slide = ({
         </Wrapper>
       );
     default:
-      return <div>Slide not implement{children}</div>;
+      return (
+        <div>
+          Slide not implement
+          {children}
+        </div>
+);
   }
 };
 
