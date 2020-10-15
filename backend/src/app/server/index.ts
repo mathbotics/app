@@ -76,7 +76,12 @@ const onServerStart = () =>
     `🤖  mathbotics/server started on http://localhost:${PORT}${apollo.graphqlPath}`,
   );
 
+console.log(NODE_ENV);
 if (NODE_ENV !== 'test') {
-  app.listen({ port: PORT}, onServerStart);
+  console.log('listening');
+  app.listen({ port: PORT || 3000}, onServerStart);
 }
+
+
+
 export default apollo;

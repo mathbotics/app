@@ -44,16 +44,19 @@ const menuItemsForViewer = ({ role }: withSidebar_viewer) => {
         { name: 'Dashboard', path: '', icon: <DashboardOutlined /> },
         { name: 'Admin', path: 'admin', icon: <LockOutlined /> },
         { name: 'Lessons', path: 'lessons', icon: <AppstoreOutlined /> },
+        {name: 'Logout', path:'logout', icon: <LogoutOutlined/>}
       ];
     case 'Instructor':
       return [
         { name: 'Dashboard', path: '', icon: <DashboardOutlined /> },
         { name: 'Courses', path: 'courses', icon: <BookOutlined /> },
+        {name: 'Logout', path:'logout', icon: <LogoutOutlined/>}
       ];
     case 'Student':
       return [
         { name: 'Dashboard', path: '', icon: <DashboardOutlined /> },
         { name: 'Courses', path: 'courses', icon: <BookOutlined /> },
+        {name: 'Logout', path:'logout', icon: <LogoutOutlined/>}
       ];
     default:
       return [{ name: 'Dashboard', path: '', icon: <DashboardOutlined /> }];
@@ -83,13 +86,12 @@ const Sidebar = createFragmentContainer(
       history.push(`/${item.path}`);
     };
 
-    // TODO fix logout
+    //TODO fix logout
     function logOut() {
       localStorage.setItem('jwt', '');
       localStorage.removeItem('jwt');
       document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
       console.log('Need working log out mutation here');
-      history.push(`/`);
     }
 
     return (
@@ -117,10 +119,10 @@ const Sidebar = createFragmentContainer(
               </Menu.Item>
             ))}
 
-            <Menu.Item onClick={() => history.push('/login')}>
+            {/* <Menu.Item onClick={() => logOut()}>
               <LogoutOutlined style={{ fontWeight: 'bold' }} />
               <span>Logout</span>
-            </Menu.Item>
+            </Menu.Item> */}
           </Menu>
         </Sider>
         <Layout>

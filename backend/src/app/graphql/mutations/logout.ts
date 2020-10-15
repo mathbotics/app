@@ -10,7 +10,7 @@ import { Context } from '../context'
 // });
 
 export const logout = mutationField("logout", {
-  type: "User",
+  type: 'Boolean',
   async resolve(_root, context:Context){
     console.log("here")
     context.res.clearCookie("jwt")

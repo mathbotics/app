@@ -1,5 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import {
+  LogoutOutlined,
+} from '@ant-design/icons';
 
 import withSidebar from './components/hocs/Sidebar/withSidebar';
 
@@ -66,6 +69,17 @@ export const App: React.FC = () => (
         path="/courses/:courseId"
         allowedRoles={['Admin', 'Instructor', 'Student']}
         component={withSidebar(CoursePage)}
+      />
+      <Route 
+        path='/logout'
+        component={withSidebar(
+          (): JSX.Element => {
+            console.log('clicking');
+            return (
+            <span>trying to log out</span>
+            
+            )
+          })}
       />
       <Route component={NotFoundPage} />
     </Switch>
