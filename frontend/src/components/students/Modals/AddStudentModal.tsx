@@ -9,6 +9,7 @@ import { CreateStudentInput } from '../../../graphql/mutations/__generated__/Cre
 type ModalProps = {
   title: string;
   visible: boolean;
+  createdStudent: boolean;
   onSubmitSuccess: () => void;
   onSubmitError: (e: any) => void;
   onCancel: () => void;
@@ -17,20 +18,22 @@ type ModalProps = {
 export default ({
   title,
   visible,
+  createdStudent,
   onSubmitSuccess,
   onSubmitError,
   onCancel,
   courseId,
 }: ModalProps) => {
-  const onSubmit = (formData: Store) =>
+  const onSubmit = (formData: Store) => {
     commitCreateStudentMutation(
-      { ...formData, courseId } as CreateStudentInput,
-      onSubmitSuccess,
-      onSubmitError,
+        { ...formData, courseId } as CreateStudentInput,
+        onSubmitSuccess,
+        onSubmitError,
     );
+  }
   return (
     <Modal visible={visible} title={title} onCancel={onCancel} footer={[]}>
-      <CreateStudentForm onSubmit={onSubmit} onSubmitError={onSubmitError} />
+      <CreateStudentForm onSubmit={onSubmit} onSubmitError={onSubmitError} createdStudent={createdStudent} />
     </Modal>
   );
 };
