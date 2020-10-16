@@ -25,6 +25,8 @@ export const deleteStudent = mutationField('deleteStudent',{
               every: { id: courseId} },
             }
           });
-          return;
+
+          return await prisma.student.findMany();
+      
       } 
 });
