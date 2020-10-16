@@ -33,7 +33,11 @@ export default ({
   }
   return (
     <Modal visible={visible} title={title} onCancel={onCancel} footer={[]}>
-      <CreateStudentForm onSubmit={onSubmit} onSubmitError={onSubmitError} createdStudent={createdStudent} />
+      <CreateStudentForm
+        onSubmit={onSubmit}
+        onSubmitError={onSubmitError}
+        createdStudent={createdStudent}
+      />
     </Modal>
   );
 };
