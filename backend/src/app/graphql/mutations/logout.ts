@@ -9,10 +9,12 @@ import { Context } from '../context'
 //   },
 // });
 
-export const logout = mutationField("logout", {
+export const logOut = mutationField("logOut", {
   type: 'Boolean',
-  async resolve(_root, context:Context){
-    console.log("here")
-    context.res.clearCookie("jwt")
+  args: {},
+  async resolve(_root, {}, context:Context){
+    // console.log(context.res.cookie());
+    context.res.clearCookie('jwt');
+    return true;
   }
 })

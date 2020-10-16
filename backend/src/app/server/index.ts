@@ -83,5 +83,9 @@ if (NODE_ENV !== 'test') {
 }
 
 
+// app.get('/logout', (req, res) => {
+//   console.log('logging out');
+//   req.logout();
+// })
 
 export default apollo;

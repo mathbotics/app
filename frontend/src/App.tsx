@@ -70,7 +70,7 @@ export const App: React.FC = () => (
         allowedRoles={['Admin', 'Instructor', 'Student']}
         component={withSidebar(CoursePage)}
       />
-      <Route 
+      {/* <Route 
         path='/logout'
         component={withSidebar(
           (): JSX.Element => {
@@ -80,7 +80,7 @@ export const App: React.FC = () => (
             
             )
           })}
-      />
+      /> */}
       <Route component={NotFoundPage} />
     </Switch>
   </BrowserRouter>

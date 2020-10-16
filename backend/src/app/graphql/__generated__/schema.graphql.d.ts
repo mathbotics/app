@@ -2813,7 +2813,7 @@ export interface NexusGenFieldTypes {
     createStudent: NexusGenRootTypes['Student']; // Student!
     deleteStudent: NexusGenRootTypes['Student']; // Student!
     logIn: NexusGenRootTypes['User']; // User!
-    logout: boolean; // Boolean!
+    logOut: boolean; // Boolean!
     registerUser: NexusGenRootTypes['User']; // User!
     sendInvitationEmail: string; // String!
     updateBlockToMultipleChoiceBlock: NexusGenRootTypes['MultipleChoiceQuestionBlock']; // MultipleChoiceQuestionBlock!

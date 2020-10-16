@@ -1749,7 +1749,7 @@ type Mutation {
   createStudent(input: CreateStudentInput!): Student!
   deleteStudent(input: DeleteStudentInput!): Student!
   logIn(input: LogInInput!): User!
-  logout: Boolean!
+  logOut: Boolean!
   registerUser(input: RegisterUserInput!): User!
   sendInvitationEmail(input: SendInvitationEmailInput!): String!
   updateBlockToMultipleChoiceBlock(input: UpdateBlockToMultipleChoiceBlockInput!): MultipleChoiceQuestionBlock!

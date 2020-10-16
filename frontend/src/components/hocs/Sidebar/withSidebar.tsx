@@ -9,12 +9,13 @@ import {
 } from '@ant-design/icons';
 import { useHistory, Redirect } from 'react-router-dom';
 import { graphql } from 'babel-plugin-relay/macro';
-import { createFragmentContainer } from 'react-relay';
+import { commitLocalUpdate, commitMutation, createFragmentContainer } from 'react-relay';
 import QueryLookupRenderer from 'relay-query-lookup-renderer';
 import { withSidebar_viewer } from './__generated__/withSidebar_viewer.graphql';
 import { withSidebarQueryResponse } from './__generated__/withSidebarQuery.graphql';
 import { environment } from '../../../graphql/relay';
 import { AppLogo } from '../../icons';
+import {commit as commitLogOutMutation} from '../../../graphql/mutations/LogOutMutation';
 
 const { Sider, Content } = Layout;
 
@@ -43,20 +44,20 @@ const menuItemsForViewer = ({ role }: withSidebar_viewer) => {
       return [
         { name: 'Dashboard', path: '', icon: <DashboardOutlined /> },
         { name: 'Admin', path: 'admin', icon: <LockOutlined /> },
-        { name: 'Lessons', path: 'lessons', icon: <AppstoreOutlined /> },
-        {name: 'Logout', path:'logout', icon: <LogoutOutlined/>}
+        { name: 'Lessons', path: 'lessons', icon: <AppstoreOutlined /> }
+        // {name: 'Logout', path:'logout', icon: <LogoutOutlined/>}
       ];
     case 'Instructor':
       return [
         { name: 'Dashboard', path: '', icon: <DashboardOutlined /> },
         { name: 'Courses', path: 'courses', icon: <BookOutlined /> },
-        {name: 'Logout', path:'logout', icon: <LogoutOutlined/>}
+        // {name: 'Logout', path:'logout', icon: <LogoutOutlined/>}
       ];
     case 'Student':
       return [
         { name: 'Dashboard', path: '', icon: <DashboardOutlined /> },
         { name: 'Courses', path: 'courses', icon: <BookOutlined /> },
-        {name: 'Logout', path:'logout', icon: <LogoutOutlined/>}
+        // {name: 'Logout', path:'logout', icon: <LogoutOutlined/>}
       ];
     default:
       return [{ name: 'Dashboard', path: '', icon: <DashboardOutlined /> }];
@@ -88,12 +89,24 @@ const Sidebar = createFragmentContainer(
 
     //TODO fix logout
     function logOut() {
-      localStorage.setItem('jwt', '');
-      localStorage.removeItem('jwt');
       document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+      history.push('/login');
+      commitLogOutMutation(
+        logOutSuccess,
+        logOutError
+      );
+
       console.log('Need working log out mutation here');
     }
 
+  function logOutSuccess(){
+      console.log("user logged out finally");
+     history.push('/login');
+  }
+
+function logOutError(){
+console.log("Error logging out");
+}
     return (
       <Layout style={{ minHeight: '100%' }}>
         <Sider
@@ -119,10 +132,10 @@ const Sidebar = createFragmentContainer(
               </Menu.Item>
             ))}
 
-            {/* <Menu.Item onClick={() => logOut()}>
+            <Menu.Item onClick={() => logOut()}>
               <LogoutOutlined style={{ fontWeight: 'bold' }} />
               <span>Logout</span>
-            </Menu.Item> */}
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout>
