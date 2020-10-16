@@ -7,6 +7,7 @@ import { SelectFormItem } from './SelectFormItem';
 type FormProps = {
   onSubmit: (values: Store) => void;
   onSubmitError: (error: ValidateErrorEntity) => void;
+  createdStudent: boolean
 };
 
 enum GradeLevel {
@@ -28,6 +29,7 @@ export type CreateStudentFormFields = { title: string };
 export const CreateStudentForm = ({
   onSubmit,
   onSubmitError,
+  createdStudent,
 }: FormProps): JSX.Element => {
   const [form] = Form.useForm();
   const { setFieldsValue, getFieldValue } = form;
@@ -49,7 +51,7 @@ export const CreateStudentForm = ({
       layout="vertical"
     >
       {/* TODO need help hiding alert until submit */}
-      {onSubmitError && (
+      {!createdStudent && (
           // send error alert if email wasn't sent
       <Alert
         message="Username is taken"
