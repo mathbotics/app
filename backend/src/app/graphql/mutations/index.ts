@@ -11,7 +11,6 @@ export * from './updateBlockToMultipleChoiceBlock';
 export * from './updateBlockToTextBlock';
 export * from './answerMultipleChoiceQuestionBlock';
 export * from './createStudent';
-export * from './checkUsernameTaken';
 
 export const mutation = extendType({
   type: 'Mutation',
