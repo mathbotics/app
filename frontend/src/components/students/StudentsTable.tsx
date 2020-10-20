@@ -8,7 +8,6 @@ import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { StudentsTable_course } from './__generated__/StudentsTable_course.graphql';
 
-
 type Props = {
   course: StudentsTable_course;
 
