@@ -60,8 +60,7 @@ const columns: ColumnsType<any> = [
           <EditButton
                 // TODO Add edit a student modal
             onClick={() => {
-                edit = !edit;
-                console.log(edit);
+                onEditClick();
             }}
           >
             <EditOutlined />
@@ -90,6 +89,11 @@ type TableItem = {
   slide_count?: number;
   edit_button?: JSX.Element;
 };
+
+function onEditClick() {
+  edit = !edit;
+  console.log(edit);
+}
 
 function onChange(pagination, filters, sorter, extra) {
   console.log('params', pagination, filters, sorter, extra);
