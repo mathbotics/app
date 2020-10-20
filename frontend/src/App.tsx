@@ -70,14 +70,14 @@ export const App: React.FC = () => (
         allowedRoles={['Admin', 'Instructor', 'Student']}
         component={withSidebar(CoursePage)}
       />
-      {/* <Route 
+      {/* <Route
         path='/logout'
         component={withSidebar(
           (): JSX.Element => {
             console.log('clicking');
             return (
             <span>trying to log out</span>
-            
+
             )
           })}
       /> */}
