@@ -11,22 +11,22 @@ export const TakenUserInput = inputObjectType({
       });
     },
   });
-export const checkUsernameTaken = mutationField('checkUsernameTaken',{
+export const checkUsernameTaken = mutationField('checkUsernameTaken', {
     type: 'User',
     args: {
-        input: arg({ type: 'TakenUserInput', required: true}),
+        input: arg({ type: 'TakenUserInput', required: true }),
       },
     async resolve(
-        _root,{input: {username}},
+        _root, { input: { username } },
     ) {
          const user = await prisma.user.findOne({
-             select : {
-                id:true,
+             select: {
+                id: true,
              },
-            where :{
-                username: username,
-            }
+            where: {
+                username,
+            },
           });
           return user;
-      } 
+      },
 });
