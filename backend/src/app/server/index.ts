@@ -58,7 +58,7 @@ const apollo = new ApolloServer({
   ),
 });
 
-if(NODE_ENV ==='production'){
+if (NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../../../../frontend/src')));
   app.use((req, res) => {
     res.sendFile(path.join(__dirname, '../../../../frontend/src/index.tsx'));
@@ -79,7 +79,7 @@ const onServerStart = () =>
 console.log(NODE_ENV);
 if (NODE_ENV !== 'test') {
   console.log('listening');
-  app.listen({ port: PORT || 3000}, onServerStart);
+  app.listen({ port: PORT || 3000 }, onServerStart);
 }
 
 
