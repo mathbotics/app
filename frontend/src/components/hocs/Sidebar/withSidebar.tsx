@@ -9,7 +9,7 @@ import {
 } from '@ant-design/icons';
 import { useHistory, Redirect } from 'react-router-dom';
 import { graphql } from 'babel-plugin-relay/macro';
-import { commitLocalUpdate, commitMutation, createFragmentContainer } from 'react-relay';
+import { createFragmentContainer } from 'react-relay';
 import QueryLookupRenderer from 'relay-query-lookup-renderer';
 import { withSidebar_viewer } from './__generated__/withSidebar_viewer.graphql';
 import { withSidebarQueryResponse } from './__generated__/withSidebarQuery.graphql';
