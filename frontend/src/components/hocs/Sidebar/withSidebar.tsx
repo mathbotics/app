@@ -15,7 +15,7 @@ import { withSidebar_viewer } from './__generated__/withSidebar_viewer.graphql';
 import { withSidebarQueryResponse } from './__generated__/withSidebarQuery.graphql';
 import { environment } from '../../../graphql/relay';
 import { AppLogo } from '../../icons';
-import {commit as commitLogOutMutation} from '../../../graphql/mutations/LogOutMutation';
+import { commit as commitLogOutMutation } from '../../../graphql/mutations/LogOutMutation';
 
 const { Sider, Content } = Layout;
 
@@ -44,7 +44,7 @@ const menuItemsForViewer = ({ role }: withSidebar_viewer) => {
       return [
         { name: 'Dashboard', path: '', icon: <DashboardOutlined /> },
         { name: 'Admin', path: 'admin', icon: <LockOutlined /> },
-        { name: 'Lessons', path: 'lessons', icon: <AppstoreOutlined /> }
+        { name: 'Lessons', path: 'lessons', icon: <AppstoreOutlined /> },
         // {name: 'Logout', path:'logout', icon: <LogoutOutlined/>}
       ];
     case 'Instructor':
@@ -87,24 +87,24 @@ const Sidebar = createFragmentContainer(
       history.push(`/${item.path}`);
     };
 
-    //TODO fix logout
+    // TODO fix logout
     function logOut() {
       document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
       history.push('/login');
       commitLogOutMutation(
         logOutSuccess,
-        logOutError
+        logOutError,
       );
 
       console.log('Need working log out mutation here');
     }
 
-  function logOutSuccess(){
+  function logOutSuccess() {
       console.log("user logged out finally");
      history.push('/login');
   }
 
-function logOutError(){
+function logOutError() {
 console.log("Error logging out");
 }
     return (
