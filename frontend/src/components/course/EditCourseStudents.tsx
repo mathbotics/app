@@ -8,8 +8,11 @@ import StudentsTable from '../students/StudentsTable';
 import { EditCourseStudents_course } from './__generated__/EditCourseStudents_course.graphql';
 import AddStudentModal from '../students/Modals/AddStudentModal';
 import DeleteStudentModal from '../students/Modals/DeleteStudentModal';
+// import DeleteSingleStudentModal from '../students/Modals/DeleteSingleStudentModal';
+import EditStudentModal from '../students/Modals/EditStudentModal';
 
 type Props = { course: EditCourseStudents_course };
+
 const EditCourseStudents = ({ course }: Props) => {
     const [
         isAddStudentModalOpen,
@@ -19,6 +22,10 @@ const EditCourseStudents = ({ course }: Props) => {
         isDeleteStudentModalOpen,
         toggleDeleteStudentModal,
     ] = useState<boolean>(false);
+    const [
+      edit,
+      toggleEdit,
+  ] = useState<boolean>(false);
     return (
       <Layout style={{ backgroundColor: 'white', display: 'inline' }}>
         <Button
@@ -54,7 +61,20 @@ const EditCourseStudents = ({ course }: Props) => {
           onSubmitError={(e: Error) => console.error(e)}
           onCancel={() => toggleDeleteStudentModal(!isDeleteStudentModalOpen)}
         />
-        <StudentsTable course={course} />
+        <StudentsTable
+          course={course}
+          editModal={edit}
+          toggleEditModal={() => toggleEdit(!edit)}
+        />
+        <EditStudentModal
+          title="Edit Student"
+          visible={edit}
+          // courseId={course.id}
+          onSubmitSuccess={() => console.log("It Worked!?!?!?!")}
+          onSubmitError={(e: Error) => console.error(e)}
+          onCancel={() => console.log("We canceled!?!?!?!")}
+        />
+
       </Layout>
     );
 };
