@@ -11,7 +11,7 @@ import { StudentsTable_course } from './__generated__/StudentsTable_course.graph
 type Props = {
   course: StudentsTable_course;
   editModal: boolean;
-  toggleEditModal: () => void;
+  toggleEditModal: (e) => void;
 };
 
 const EditButton = styled.div`
@@ -81,7 +81,7 @@ const LessonsTable = ({ course: { students }, toggleEditModal }: Props) => {
           <Tooltip title="Edit Student">
             <EditButton
                   // TODO Add edit a student modal
-              onClick={() => toggleEditModal()}
+              onClick={(e) => toggleEditModal(e)}
             >
               <EditOutlined />
             </EditButton>
