@@ -26,7 +26,11 @@ const EditCourseStudents = ({ course }: Props) => {
     const [
       edit,
       toggleEdit,
-  ] = useState<boolean>(false);
+    ] = useState<boolean>(false);
+    const [
+      deleteStudent,
+      toggleDeleteStudent,
+    ] = useState<boolean>(false);
     return (
       <Layout style={{ backgroundColor: 'white', display: 'inline' }}>
         <Button
@@ -66,6 +70,7 @@ const EditCourseStudents = ({ course }: Props) => {
           course={course}
           editModal={edit}
           toggleEditModal={() => toggleEdit(!edit)}
+          toggleDeleteModal={() => toggleDeleteStudent(!deleteStudent)}
         />
         <EditStudentModal
           title="Edit Student"
@@ -75,7 +80,6 @@ const EditCourseStudents = ({ course }: Props) => {
           onSubmitError={(e: Error) => console.error(e)}
           onCancel={() => toggleEdit(!edit)}
         />
-
       </Layout>
     );
 };

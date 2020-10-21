@@ -12,6 +12,7 @@ type Props = {
   course: StudentsTable_course;
   editModal: boolean;
   toggleEditModal: () => void;
+  toggleDeleteModal: () => void;
 };
 
 const EditButton = styled.div`
@@ -45,7 +46,7 @@ function onChange(pagination, filters, sorter, extra) {
 //   });
 // };
 
-const LessonsTable = ({ course: { students }, toggleEditModal }: Props) => {
+const LessonsTable = ({ course: { students }, toggleEditModal, toggleDeleteModal }: Props) => {
   const columns: ColumnsType<any> = [
     {
       title: '',
@@ -89,7 +90,7 @@ const LessonsTable = ({ course: { students }, toggleEditModal }: Props) => {
           <Tooltip title="Delete Student">
             <DeleteButton
                   // TODO Add confirmation popup to delete a students
-              onClick={() => console.log("delete student here")}
+              onClick={() => toggleDeleteModal()}
             >
               <DeleteOutlined style={{ margin: '0px 0px 0px 15px' }} />
             </DeleteButton>
