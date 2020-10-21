@@ -10,6 +10,7 @@ import AddStudentModal from '../students/Modals/AddStudentModal';
 import DeleteStudentModal from '../students/Modals/DeleteStudentModal';
 // import DeleteSingleStudentModal from '../students/Modals/DeleteSingleStudentModal';
 import EditStudentModal from '../students/Modals/EditStudentModal';
+import EditBlockSidebar from '../slides/EditBlockSidebar';
 
 type Props = { course: EditCourseStudents_course };
 
@@ -72,7 +73,7 @@ const EditCourseStudents = ({ course }: Props) => {
           // courseId={course.id}
           onSubmitSuccess={() => console.log("It Worked!?!?!?!")}
           onSubmitError={(e: Error) => console.error(e)}
-          onCancel={() => console.log("We canceled!?!?!?!")}
+          onCancel={() => toggleEdit(!edit)}
         />
 
       </Layout>
