@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Button, Tooltip } from 'antd';
+import { Table, Tooltip } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 import { graphql } from 'babel-plugin-relay/macro';
 import { createFragmentContainer } from 'react-relay';
