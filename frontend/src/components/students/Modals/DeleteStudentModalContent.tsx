@@ -20,8 +20,8 @@ export const DeleteStudentModalContent = ({
         onFinishFailed={onSubmitError}
         layout="vertical"
       >
-        <p>Are you sure you wish to delete all students?</p>
-        <p>You cannot undo this action!</p>
+        <p>Are you sure you wish to perform this action?</p>
+        <p>You cannot undo this!</p>
 
         <Button block type="primary" size="large" danger htmlType="submit">
           Delete
