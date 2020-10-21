@@ -702,6 +702,14 @@ input DeleteStudentInput {
   courseId: String!
 }
 
+input EditStudentInput {
+  firstName: String!
+  gradeLevel: GradeLevel!
+  lastName: String!
+  studentId: String!
+  username: String!
+}
+
 type EmptyBlock {
   id: String!
 }
@@ -1747,7 +1755,9 @@ type Mutation {
   createSlide(input: CreateSlideInput!): Slide!
   createStudent(input: CreateStudentInput!): Student!
   deleteStudent(input: DeleteStudentInput!): Student!
+  editStudent(input: EditStudentInput!): Student!
   logIn(input: LogInInput!): User!
+  logout: User!
   registerUser(input: RegisterUserInput!): User!
   sendInvitationEmail(input: SendInvitationEmailInput!): String!
   updateBlockToMultipleChoiceBlock(input: UpdateBlockToMultipleChoiceBlockInput!): MultipleChoiceQuestionBlock!
