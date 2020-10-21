@@ -2,6 +2,8 @@
   "scripts": {
     "chk": "yarn fmt:check && yarn lint && yarn tsc",
     "dev": "tsnd --no-notify --transpileOnly --respawn ./src/app/index.ts",
+    "devwin": "env.bat && tsnd --no-notify --transpileOnly --respawn ./src/app/index.ts",
+    "devmac": "bash ./env.sh && tsnd --no-notify --transpileOnly --respawn ./src/app/index.ts",
     "docker:clean": "docker rm $(docker ps -a -q) && docker rmi $(docker images -a -q)",
     "docker:clean:images": "docker rmi $(docker images -a -q)",
     "docker:clean:containers": "docker rm $(docker ps -a -q)",
