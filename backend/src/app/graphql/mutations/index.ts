@@ -3,7 +3,8 @@ import { Context } from '../context';
 
 export * from './logIn';
 export * from './registerUser';
-//export * from './logout'
+export * from './logout'
+export * from './editStudent';
 export * from './deleteStudent';
 export * from './sendInvitationEmail';
 export * from './createSlide';
