@@ -10,7 +10,8 @@ import { StudentsTable_course } from './__generated__/StudentsTable_course.graph
 
 type Props = {
   course: StudentsTable_course;
-
+  editModal: boolean;
+  toggleEditModal: () => void;
 };
 
 const EditButton = styled.div`
@@ -23,7 +24,14 @@ const DeleteButton = styled.div`
     color: #ff4d4e;
   }
 `;
-let edit = false;
+
+function editModalFunction() {
+  // {toggleEditModal} = Props;
+  console.log("Jessica");
+  // TODO need a way to trigger toggleEditModal
+  // { toggleEditModal() }: Props;
+}
+
 const columns: ColumnsType<any> = [
   {
     title: '',
@@ -59,9 +67,7 @@ const columns: ColumnsType<any> = [
         <Tooltip title="Edit Student">
           <EditButton
                 // TODO Add edit a student modal
-            onClick={() => {
-                onEditClick();
-            }}
+            onClick={() => editModalFunction()}
           >
             <EditOutlined />
           </EditButton>
@@ -69,7 +75,7 @@ const columns: ColumnsType<any> = [
         <Tooltip title="Delete Student">
           <DeleteButton
                 // TODO Add confirmation popup to delete a students
-            onClick={() => console.log("handle delete here")}
+                onClick={() => console.log("delete student here")}
           >
             <DeleteOutlined style={{ margin: '0px 0px 0px 15px' }} />
           </DeleteButton>
@@ -90,10 +96,6 @@ type TableItem = {
   edit_button?: JSX.Element;
 };
 
-function onEditClick() {
-  edit = !edit;
-  console.log(edit);
-}
 
 function onChange(pagination, filters, sorter, extra) {
   console.log('params', pagination, filters, sorter, extra);
@@ -105,9 +107,6 @@ function onChange(pagination, filters, sorter, extra) {
 //   });
 // };
 
-// type Props = {
-//   course: StudentsTable_course;
-// };
 const LessonsTable = ({ course: { students } }: Props) => {
   const [data, setData] = useState<ColumnsType<TableItem>>();
 
