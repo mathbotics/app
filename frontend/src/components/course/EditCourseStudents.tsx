@@ -8,7 +8,7 @@ import StudentsTable from '../students/StudentsTable';
 import { EditCourseStudents_course } from './__generated__/EditCourseStudents_course.graphql';
 import AddStudentModal from '../students/Modals/AddStudentModal';
 import DeleteStudentModal from '../students/Modals/DeleteStudentModal';
-// import DeleteSingleStudentModal from '../students/Modals/DeleteSingleStudentModal';
+import DeleteSingleStudentModal from '../students/Modals/DeleteSingleStudentModal';
 import EditStudentModal from '../students/Modals/EditStudentModal';
 import EditBlockSidebar from '../slides/EditBlockSidebar';
 
@@ -26,7 +26,11 @@ const EditCourseStudents = ({ course }: Props) => {
     const [
       edit,
       toggleEdit,
-  ] = useState<boolean>(false);
+    ] = useState<boolean>(false);
+    const [
+      deleteStudent,
+      toggleDeleteStudent,
+    ] = useState<boolean>(false);
     return (
       <Layout style={{ backgroundColor: 'white', display: 'inline' }}>
         <Button
@@ -66,9 +70,10 @@ const EditCourseStudents = ({ course }: Props) => {
           course={course}
           editModal={edit}
           toggleEditModal={(e) => {
-            toggleEdit(!edit)
-            console.log("DATA here ?!?!?", e);
+              toggleEdit(!edit)
+              console.log("DATA here ?!?!?", e);
           }}
+          toggleDeleteModal={() => toggleDeleteStudent(!deleteStudent)}
         />
         <EditStudentModal
           title="Edit Student"
@@ -78,7 +83,14 @@ const EditCourseStudents = ({ course }: Props) => {
           onSubmitError={(e: Error) => console.error(e)}
           onCancel={() => toggleEdit(!edit)}
         />
-
+        <DeleteSingleStudentModal
+          title="Delete Student"
+          visible={deleteStudent}
+          // courseId={course.id}
+          onSubmitSuccess={() => console.log("It Worked!?!?!?!")}
+          onSubmitError={(e: Error) => console.error(e)}
+          onCancel={() => toggleDeleteStudent(!deleteStudent)}
+        />
       </Layout>
     );
 };
