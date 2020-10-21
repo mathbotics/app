@@ -28,10 +28,10 @@ export default ({
     //   onSubmitSuccess,
     //   onSubmitError,
     // );
-
+  // TODO linter complaining about no declaration or statement
   return (
     <Modal visible={visible} title={title} onCancel={onCancel} footer={[]}>
-         <EditStudentForm onSubmit={onSubmit} onSubmitError={onSubmitError} /> 
+      <EditStudentForm onSubmit={onSubmit} onSubmitError={onSubmitError} />
     </Modal>
   );
 };
