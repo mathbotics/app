@@ -78,7 +78,7 @@ const EditCourseStudents = ({ course }: Props) => {
         <EditStudentModal
           title="Edit Student"
           visible={edit}
-          // courseId={course.id}
+          studentId={course.id}
           onSubmitSuccess={() => console.log("It Worked!?!?!?!")}
           onSubmitError={(e: Error) => console.error(e)}
           onCancel={() => toggleEdit(!edit)}

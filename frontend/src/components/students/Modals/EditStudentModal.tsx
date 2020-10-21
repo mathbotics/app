@@ -1,8 +1,8 @@
 import React from 'react';
 import { Modal } from 'antd';
 import { EditStudentForm } from '../../form/EditStudentForm';
-import { commit as commitDeleteStudentMutation } from '../../../graphql/mutations/DeleteStudentMutation';
-import { DeleteStudentInput } from '../../../graphql/mutations/__generated__/DeleteStudentMutation.graphql';
+import { commit as commitEditStudentMutation } from '../../../graphql/mutations/EditStudentMutation';
+import { EditStudentInput } from '../../../graphql/mutations/__generated__/EditStudentMutation.graphql';
 
 type ModalProps = {
   title: string;
@@ -10,7 +10,7 @@ type ModalProps = {
   onSubmitSuccess: () => void;
   onSubmitError: (e: any) => void;
   onCancel: () => void;
-//   courseId: string;
+  studentId: string;
 };
 export default ({
   title,
@@ -18,16 +18,16 @@ export default ({
   onSubmitSuccess,
   onSubmitError,
   onCancel,
-//   courseId,
+  studentId,
 }: ModalProps) => {
   const onSubmit =
   () =>
     console.log(visible);
-    // commitDeleteStudentMutation(
-    //   { courseId } as DeleteStudentInput,
-    //   onSubmitSuccess,
-    //   onSubmitError,
-    // );
+    commitEditStudentMutation(
+      { studentId } as EditStudentInput,
+      onSubmitSuccess,
+      onSubmitError,
+    );
 
   return (
     <Modal visible={visible} title={title} onCancel={onCancel} footer={[]}>
