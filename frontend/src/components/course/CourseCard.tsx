@@ -11,6 +11,7 @@ import { CourseCard_course } from './__generated__/CourseCard_course.graphql';
 const Card = styled.div`
   border-radius: 5px;
   padding: 35px;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
