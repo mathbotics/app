@@ -94,7 +94,6 @@ const LessonsTable = ({ course: { students }, toggleEditModal }: Props) => {
               <DeleteOutlined style={{ margin: '0px 0px 0px 15px' }} />
             </DeleteButton>
           </Tooltip>
-  
         </div>
       ),
     },
