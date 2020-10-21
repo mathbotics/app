@@ -1,7 +1,6 @@
 import React from 'react';
 import { Modal } from 'antd';
-import { DeleteStudentModalContent } from './DeleteStudentModalContent';
-
+import { EditStudentForm } from '../../form/EditStudentForm';
 import { commit as commitDeleteStudentMutation } from '../../../graphql/mutations/DeleteStudentMutation';
 import { DeleteStudentInput } from '../../../graphql/mutations/__generated__/DeleteStudentMutation.graphql';
 
@@ -32,7 +31,7 @@ export default ({
 
   return (
     <Modal visible={visible} title={title} onCancel={onCancel} footer={[]}>
-      <DeleteStudentModalContent onSubmit={onSubmit} onSubmitError={onSubmitError} />
+         <EditStudentForm onSubmit={onSubmit} onSubmitError={onSubmitError} /> 
     </Modal>
   );
 };
