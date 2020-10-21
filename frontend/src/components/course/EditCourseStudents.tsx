@@ -10,7 +10,7 @@ import AddStudentModal from '../students/Modals/AddStudentModal';
 import DeleteStudentModal from '../students/Modals/DeleteStudentModal';
 import DeleteSingleStudentModal from '../students/Modals/DeleteSingleStudentModal';
 import EditStudentModal from '../students/Modals/EditStudentModal';
-import EditBlockSidebar from '../slides/EditBlockSidebar';
+// import EditBlockSidebar from '../slides/EditBlockSidebar';
 
 type Props = { course: EditCourseStudents_course };
 

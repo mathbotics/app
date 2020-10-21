@@ -31,7 +31,7 @@ export default ({
 
   return (
     <Modal visible={visible} title={title} onCancel={onCancel} footer={[]}>
-         <EditStudentForm onSubmit={onSubmit} onSubmitError={onSubmitError} /> 
+      <EditStudentForm onSubmit={onSubmit} onSubmitError={onSubmitError} />
     </Modal>
   );
 };
