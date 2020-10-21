@@ -11,19 +11,21 @@ export const DeleteStudentInput = inputObjectType({
       });
     },
   });
-export const deleteStudent = mutationField('deleteStudent',{
+export const deleteStudents = mutationField('deleteStudents', {
     type: 'Student',
     args: {
         input: arg({ type: 'DeleteStudentInput', required: true }),
       },
     async resolve(
-        _root,{input: {courseId}},
+        _root, { input: { courseId } },
     ) {
          const { count } = await prisma.student.deleteMany({
           where: {
             courses: {
-              every: { id: courseId} },
-            }
-          })
-      } 
+              every: { id: courseId } },
+            },
+          });
+
+          return await prisma.student.findMany();
+      },
 });

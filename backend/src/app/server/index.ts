@@ -58,7 +58,7 @@ const apollo = new ApolloServer({
   ),
 });
 
-if(NODE_ENV ==='production'){
+if (NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../../../../frontend/src')));
   app.use((req, res) => {
     res.sendFile(path.join(__dirname, '../../../../frontend/src/index.tsx'));
@@ -76,7 +76,16 @@ const onServerStart = () =>
     `🤖  mathbotics/server started on http://localhost:${PORT}${apollo.graphqlPath}`,
   );
 
+console.log(NODE_ENV);
 if (NODE_ENV !== 'test') {
-  app.listen({ port: PORT}, onServerStart);
+  console.log('listening');
+  app.listen({ port: PORT || 3000 }, onServerStart);
 }
+
+
+// app.get('/logout', (req, res) => {
+//   console.log('logging out');
+//   req.logout();
+// })
+
 export default apollo;

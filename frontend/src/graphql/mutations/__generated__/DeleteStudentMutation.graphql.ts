@@ -27,7 +27,7 @@ export type DeleteStudentMutation = {
 mutation DeleteStudentMutation(
   $input: DeleteStudentInput!
 ) {
-  deleteStudent(input: $input) {
+  deleteStudents(input: $input) {
     courses {
       id
     }
@@ -101,7 +101,7 @@ return {
     "operationKind": "mutation",
     "name": "DeleteStudentMutation",
     "id": null,
-    "text": "mutation DeleteStudentMutation(\n  $input: DeleteStudentInput!\n) {\n  deleteStudent(input: $input) {\n    courses {\n      id\n    }\n  }\n}\n",
+    "text": "mutation DeleteStudentMutation(\n  $input: DeleteStudentInput!\n) {\n  deleteStudents(input: $input) {\n    courses {\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
