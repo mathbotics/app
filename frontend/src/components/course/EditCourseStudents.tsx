@@ -65,7 +65,10 @@ const EditCourseStudents = ({ course }: Props) => {
         <StudentsTable
           course={course}
           editModal={edit}
-          toggleEditModal={() => toggleEdit(!edit)}
+          toggleEditModal={(e) => {
+            toggleEdit(!edit)
+            console.log("DATA here ?!?!?", e);
+          }}
         />
         <EditStudentModal
           title="Edit Student"
