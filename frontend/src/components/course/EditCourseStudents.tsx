@@ -8,7 +8,7 @@ import StudentsTable from '../students/StudentsTable';
 import { EditCourseStudents_course } from './__generated__/EditCourseStudents_course.graphql';
 import AddStudentModal from '../students/Modals/AddStudentModal';
 import DeleteStudentModal from '../students/Modals/DeleteStudentModal';
-// import DeleteSingleStudentModal from '../students/Modals/DeleteSingleStudentModal';
+import DeleteSingleStudentModal from '../students/Modals/DeleteSingleStudentModal';
 import EditStudentModal from '../students/Modals/EditStudentModal';
 import EditBlockSidebar from '../slides/EditBlockSidebar';
 
@@ -79,6 +79,14 @@ const EditCourseStudents = ({ course }: Props) => {
           onSubmitSuccess={() => console.log("It Worked!?!?!?!")}
           onSubmitError={(e: Error) => console.error(e)}
           onCancel={() => toggleEdit(!edit)}
+        />
+        <DeleteSingleStudentModal
+          title="Delete Student"
+          visible={deleteStudent}
+          // courseId={course.id}
+          onSubmitSuccess={() => console.log("It Worked!?!?!?!")}
+          onSubmitError={(e: Error) => console.error(e)}
+          onCancel={() => toggleDeleteStudent(!deleteStudent)}
         />
       </Layout>
     );
