@@ -75,7 +75,7 @@ const columns: ColumnsType<any> = [
         <Tooltip title="Delete Student">
           <DeleteButton
                 // TODO Add confirmation popup to delete a students
-                onClick={() => console.log("delete student here")}
+            onClick={() => console.log("delete student here")}
           >
             <DeleteOutlined style={{ margin: '0px 0px 0px 15px' }} />
           </DeleteButton>
@@ -95,7 +95,6 @@ type TableItem = {
   slide_count?: number;
   edit_button?: JSX.Element;
 };
-
 
 function onChange(pagination, filters, sorter, extra) {
   console.log('params', pagination, filters, sorter, extra);
