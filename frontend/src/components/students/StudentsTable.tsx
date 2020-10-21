@@ -25,67 +25,6 @@ const DeleteButton = styled.div`
   }
 `;
 
-function editModalFunction() {
-  // {toggleEditModal} = Props;
-  console.log("Jessica");
-  // TODO need a way to trigger toggleEditModal
-  // { toggleEditModal() }: Props;
-}
-
-const columns: ColumnsType<any> = [
-  {
-    title: '',
-    dataIndex: 'index',
-  },
-  {
-    title: 'Username',
-    dataIndex: 'username',
-  },
-  {
-    title: 'First Name',
-    dataIndex: 'firstName',
-  },
-  {
-    title: 'Last Name',
-    dataIndex: 'lastName',
-  },
-  {
-    title: 'Grade Level',
-    dataIndex: 'gradeLevel',
-  },
-  {
-    title: 'Action',
-    dataIndex: 'action',
-    render: () => (
-      <div
-        style={{
-          display: 'flex',
-          fontSize: '16px',
-          alignItems: 'center',
-        }}
-      >
-        <Tooltip title="Edit Student">
-          <EditButton
-                // TODO Add edit a student modal
-            onClick={() => editModalFunction()}
-          >
-            <EditOutlined />
-          </EditButton>
-        </Tooltip>
-        <Tooltip title="Delete Student">
-          <DeleteButton
-                // TODO Add confirmation popup to delete a students
-            onClick={() => console.log("delete student here")}
-          >
-            <DeleteOutlined style={{ margin: '0px 0px 0px 15px' }} />
-          </DeleteButton>
-        </Tooltip>
-
-      </div>
-    ),
-  },
-];
-
 type TableItem = {
   index: number;
   key: number;
@@ -106,7 +45,60 @@ function onChange(pagination, filters, sorter, extra) {
 //   });
 // };
 
-const LessonsTable = ({ course: { students } }: Props) => {
+const LessonsTable = ({ course: { students }, toggleEditModal }: Props) => {
+  const columns: ColumnsType<any> = [
+    {
+      title: '',
+      dataIndex: 'index',
+    },
+    {
+      title: 'Username',
+      dataIndex: 'username',
+    },
+    {
+      title: 'First Name',
+      dataIndex: 'firstName',
+    },
+    {
+      title: 'Last Name',
+      dataIndex: 'lastName',
+    },
+    {
+      title: 'Grade Level',
+      dataIndex: 'gradeLevel',
+    },
+    {
+      title: 'Action',
+      dataIndex: 'action',
+      render: () => (
+        <div
+          style={{
+            display: 'flex',
+            fontSize: '16px',
+            alignItems: 'center',
+          }}
+        >
+          <Tooltip title="Edit Student">
+            <EditButton
+                  // TODO Add edit a student modal
+              onClick={() => toggleEditModal()}
+            >
+              <EditOutlined />
+            </EditButton>
+          </Tooltip>
+          <Tooltip title="Delete Student">
+            <DeleteButton
+                  // TODO Add confirmation popup to delete a students
+              onClick={() => console.log("delete student here")}
+            >
+              <DeleteOutlined style={{ margin: '0px 0px 0px 15px' }} />
+            </DeleteButton>
+          </Tooltip>
+  
+        </div>
+      ),
+    },
+  ];
   const [data, setData] = useState<ColumnsType<TableItem>>();
 
   useEffect(() => {
