@@ -2814,9 +2814,10 @@ export interface NexusGenFieldTypes {
     createOneLesson: NexusGenRootTypes['Lesson']; // Lesson!
     createSlide: NexusGenRootTypes['Slide']; // Slide!
     createStudent: NexusGenRootTypes['Student']; // Student!
-    deleteStudent: NexusGenRootTypes['Student']; // Student!
+    deleteStudents: NexusGenRootTypes['Student']; // Student!
     editStudent: NexusGenRootTypes['Student']; // Student!
     logIn: NexusGenRootTypes['User']; // User!
+    logOut: boolean; // Boolean!
     registerUser: NexusGenRootTypes['User']; // User!
     sendInvitationEmail: string; // String!
     updateBlockToMultipleChoiceBlock: NexusGenRootTypes['MultipleChoiceQuestionBlock']; // MultipleChoiceQuestionBlock!
@@ -2929,7 +2930,7 @@ export interface NexusGenArgTypes {
     createStudent: { // args
       input: NexusGenInputs['CreateStudentInput']; // CreateStudentInput!
     }
-    deleteStudent: { // args
+    deleteStudents: { // args
       input: NexusGenInputs['DeleteStudentInput']; // DeleteStudentInput!
     }
     editStudent: { // args
