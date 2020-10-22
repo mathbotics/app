@@ -20,6 +20,10 @@ const EditCourseStudents = ({ course }: Props) => {
         toggleAddStudentModal,
     ] = useState<boolean>(false);
     const [
+        createdStudent,
+        toggleCreateStudent,
+    ] = useState<boolean>(true);
+    const [
         isDeleteStudentModalOpen,
         toggleDeleteStudentModal,
     ] = useState<boolean>(false);
@@ -54,8 +58,15 @@ const EditCourseStudents = ({ course }: Props) => {
           title="Add student"
           visible={isAddStudentModalOpen}
           courseId={course.id}
-          onSubmitSuccess={() => toggleAddStudentModal(false)}
-          onSubmitError={(e: Error) => console.error(e)}
+          onSubmitSuccess={() => {
+              toggleAddStudentModal(false);
+              toggleCreateStudent(true);
+          }}
+          onSubmitError={(e: Error) => {
+              console.error(e);
+              toggleCreateStudent(false);
+          }}
+          createdStudent={createdStudent}
           onCancel={() => toggleAddStudentModal(!isAddStudentModalOpen)}
         />
         <DeleteStudentModal
