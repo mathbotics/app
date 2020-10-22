@@ -118,15 +118,15 @@ const LessonsTable = ({ course: { students }, toggleEditModal, toggleDeleteModal
   return <Table columns={columns} dataSource={data} onChange={onChange} />;
 };
 
-export default createFragmentContainer(LessonsTable, {
-  course: graphql`
-    fragment StudentsTable_course on Course {
-      students {
-        username
-        firstName
-        lastName
-        gradeLevel
+  export default createFragmentContainer(LessonsTable, {
+    course: graphql`
+      fragment StudentsTable_course on Course {
+        students {
+          username
+          firstName
+          lastName
+          gradeLevel
+        }
       }
-    }
-  `,
-});
+    `,
+  });
