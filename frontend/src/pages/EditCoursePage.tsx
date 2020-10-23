@@ -33,10 +33,6 @@ export const EditCoursePage = (): JSX.Element => {
               (props as EditCoursePageQueryResponse)?.course,
               'Course not found',
             )}
-            student={nullthrows(
-              (props as EditCoursePageQueryResponse)?.student,
-              'Student not found',
-            )}
             query={nullthrows(props as EditCoursePageQueryResponse)}
           />
         )}

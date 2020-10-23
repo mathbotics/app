@@ -5,6 +5,9 @@ import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type EditCourseStudents_course = {
     readonly id: string;
+    readonly students: ReadonlyArray<{
+        readonly id: string;
+    }>;
     readonly " $fragmentRefs": FragmentRefs<"StudentsTable_course">;
     readonly " $refType": "EditCourseStudents_course";
 };
@@ -16,19 +19,33 @@ export type EditCourseStudents_course$key = {
 
 
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
+return {
   "kind": "Fragment",
   "name": "EditCourseStudents_course",
   "type": "Course",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
+    (v0/*: any*/),
     {
-      "kind": "ScalarField",
+      "kind": "LinkedField",
       "alias": null,
-      "name": "id",
+      "name": "students",
+      "storageKey": null,
       "args": null,
-      "storageKey": null
+      "concreteType": "Student",
+      "plural": true,
+      "selections": [
+        (v0/*: any*/)
+      ]
     },
     {
       "kind": "FragmentSpread",
@@ -37,5 +54,6 @@ const node: ReaderFragment = {
     }
   ]
 };
-(node as any).hash = 'b6f57ff46a4af64bad5ea189dbc6f9bc';
+})();
+(node as any).hash = 'be36f44c255b5a4a8ed04cdbaf5b58d3';
 export default node;

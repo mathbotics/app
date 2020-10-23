@@ -82,7 +82,10 @@ const LessonsTable = ({ course: { students }, toggleEditModal, toggleDeleteModal
           <Tooltip title="Edit Student">
             <EditButton
                   // TODO Add edit a student modal
-              onClick={(e) => toggleEditModal(e)}
+                  onClick={(e) => {
+                    console.log(students[0]);
+                    toggleEditModal(e)}
+                  }
             >
               <EditOutlined />
             </EditButton>
@@ -126,6 +129,7 @@ export default createFragmentContainer(LessonsTable, {
         firstName
         lastName
         gradeLevel
+        id
       }
     }
   `,

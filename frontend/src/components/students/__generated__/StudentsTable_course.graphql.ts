@@ -10,6 +10,7 @@ export type StudentsTable_course = {
         readonly firstName: string;
         readonly lastName: string;
         readonly gradeLevel: GradeLevel;
+        readonly id: string;
     }>;
     readonly " $refType": "StudentsTable_course";
 };
@@ -64,10 +65,17 @@ const node: ReaderFragment = {
           "name": "gradeLevel",
           "args": null,
           "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "id",
+          "args": null,
+          "storageKey": null
         }
       ]
     }
   ]
 };
-(node as any).hash = 'a6498bc9c44791aa33ace0767f4660d2';
+(node as any).hash = '9dd74f1b1500359daa0af84ba38eaefa';
 export default node;
