@@ -6,15 +6,16 @@ import { graphql } from 'babel-plugin-relay/macro';
 
 import StudentsTable from '../students/StudentsTable';
 import { EditCourseStudents_course } from './__generated__/EditCourseStudents_course.graphql';
+import { EditCourseStudents_student } from './__generated__/EditCourseStudents_student.graphql';
 import AddStudentModal from '../students/Modals/AddStudentModal';
 import DeleteStudentModal from '../students/Modals/DeleteStudentModal';
 import DeleteSingleStudentModal from '../students/Modals/DeleteSingleStudentModal';
 import EditStudentModal from '../students/Modals/EditStudentModal';
 // import EditBlockSidebar from '../slides/EditBlockSidebar';
 
-type Props = { course: EditCourseStudents_course };
+type Props = { course: EditCourseStudents_course, student: EditCourseStudents_student };
 
-const EditCourseStudents = ({ course }: Props) => {
+const EditCourseStudents = ({ student, course }: Props) => {
     const [
         isAddStudentModalOpen,
         toggleAddStudentModal,
@@ -78,7 +79,7 @@ const EditCourseStudents = ({ course }: Props) => {
         <EditStudentModal
           title="Edit Student"
           visible={edit}
-          studentId={course.id}
+          studentId={student.id}
           onSubmitSuccess={() => console.log("It Worked!?!?!?!")}
           onSubmitError={(e: Error) => console.error(e)}
           onCancel={() => toggleEdit(!edit)}
@@ -96,6 +97,11 @@ const EditCourseStudents = ({ course }: Props) => {
 };
 
 export default createFragmentContainer(EditCourseStudents, {
+    student: graphql`
+        fragment EditCourseStudents_student on Student {
+          id
+        }
+    `,
     course: graphql`
         fragment EditCourseStudents_course on Course {
             id
@@ -103,3 +109,4 @@ export default createFragmentContainer(EditCourseStudents, {
         }
     `,
 });
+

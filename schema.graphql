@@ -2019,6 +2019,7 @@ type Query {
   courses(after: CourseWhereUniqueInput, before: CourseWhereUniqueInput, first: Int, last: Int, skip: Int, where: CourseWhereInput): [Course!]!
   lesson(where: LessonWhereUniqueInput!): Lesson
   lessons(after: LessonWhereUniqueInput, before: LessonWhereUniqueInput, first: Int, last: Int, skip: Int, where: LessonWhereInput): [Lesson!]!
+  student(where: StudentWhereUniqueInput!): Student
   students(after: StudentWhereUniqueInput, before: StudentWhereUniqueInput, first: Int, last: Int, skip: Int): [Student!]!
   viewer: User!
 }
