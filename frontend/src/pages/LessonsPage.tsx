@@ -1,9 +1,9 @@
-import React from "react";
-import { graphql } from "babel-plugin-relay/macro";
-import { environment } from "../graphql/relay";
-import { LessonsPageQueryResponse } from "./__generated__/LessonsPageQuery.graphql";
-import { QueryRenderer } from "react-relay";
-import Lessons from "../components/lessons/Lessons";
+import React from 'react';
+import { graphql } from 'babel-plugin-relay/macro';
+import { QueryRenderer } from 'react-relay';
+import { environment } from '../graphql/relay';
+import { LessonsPageQueryResponse } from './__generated__/LessonsPageQuery.graphql';
+import Lessons from '../components/lessons/Lessons';
 
 export const LessonsPageQuery = graphql`
   query LessonsPageQuery {
@@ -17,7 +17,6 @@ export const LessonsPage = () => (
     variables={{}}
     query={LessonsPageQuery}
     render={({ props, error }) =>
-      !error && props && <Lessons lessons={props as LessonsPageQueryResponse} />
-    }
+      !error && props && <Lessons lessons={props as LessonsPageQueryResponse} />}
   />
 );

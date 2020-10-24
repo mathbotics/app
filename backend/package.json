@@ -2,6 +2,8 @@
   "scripts": {
     "chk": "yarn fmt:check && yarn lint && yarn tsc",
     "dev": "tsnd --no-notify --transpileOnly --respawn ./src/app/index.ts",
+    "devwin": "env.bat && tsnd --no-notify --transpileOnly --respawn ./src/app/index.ts",
+    "devmac": "bash ./env.sh && tsnd --no-notify --transpileOnly --respawn ./src/app/index.ts",
     "docker:clean": "docker rm $(docker ps -a -q) && docker rmi $(docker images -a -q)",
     "docker:clean:images": "docker rmi $(docker images -a -q)",
     "docker:clean:containers": "docker rm $(docker ps -a -q)",
@@ -22,6 +24,8 @@
     "start": "ts-node ./src/app/index.ts",
     "seed": "DATABASE_URL='postgres://postgres:password@localhost:5432/postgres' ./node_modules/.bin/tsnd --no-notify --transpileOnly",
     "seedwin": "SET DATABASE_URL=postgres://postgres:password@localhost:5432/postgres && %cd%\\node_modules\\.bin\\tsnd --no-notify --transpileOnly",
+    "adminmac": "yarn seed src/seeders/AdminSeeder.ts",
+    "adminwin": "yarn seedwin src/seeders/AdminSeeder.ts",
     "test": "./node_modules/.bin/jest",
     "tsc": "./node_modules/.bin/tsc --noEmit"
   },

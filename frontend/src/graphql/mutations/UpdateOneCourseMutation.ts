@@ -1,8 +1,8 @@
-import { commitMutation } from "react-relay";
-import { graphql } from "babel-plugin-relay/macro";
+import { commitMutation } from 'react-relay';
+import { graphql } from 'babel-plugin-relay/macro';
 
-import { environment } from "../relay";
-import { UpdateOneCourseMutationVariables } from "./__generated__/UpdateOneCourseMutation.graphql";
+import { environment } from '../relay';
+import { UpdateOneCourseMutationVariables } from './__generated__/UpdateOneCourseMutation.graphql';
 
 const mutation = graphql`
   mutation UpdateOneCourseMutation(
@@ -18,7 +18,7 @@ const mutation = graphql`
 export const commit = (
   variables: UpdateOneCourseMutationVariables,
   onCompleted: (response: any) => void,
-  onError: (error: Error) => void
+  onError: (error: Error) => void,
 ) =>
   commitMutation(environment, {
     mutation,

@@ -1,12 +1,12 @@
-import React from "react";
-import { Layout, Alert } from "antd";
-import styled from "styled-components";
-import { Store, ValidateErrorEntity } from "rc-field-form/lib/interface";
-import { RegisterForm } from "../components/form";
-import { Redirect, useParams } from "react-router-dom";
-import { commit as commitRegisterUserMutation } from "../graphql/mutations/RegisterUserMutation";
-import { RegisterUserMutationResponse } from "../graphql/mutations/__generated__/RegisterUserMutation.graphql";
-import nullthrows from "nullthrows";
+import React from 'react';
+import { Layout, Alert } from 'antd';
+import styled from 'styled-components';
+import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
+import { Redirect, useParams } from 'react-router-dom';
+import nullthrows from 'nullthrows';
+import { RegisterForm } from '../components/form';
+import { commit as commitRegisterUserMutation } from '../graphql/mutations/RegisterUserMutation';
+import { RegisterUserMutationResponse } from '../graphql/mutations/__generated__/RegisterUserMutation.graphql';
 
 const StyledLayout = styled(Layout)`
   height: 100%;
@@ -32,12 +32,12 @@ enum RegisterState {
   DEFAULT,
   SUCCESS,
   FAILURE,
-  VALIDATING
+  VALIDATING,
 }
 export const RegisterPage = (props: RegisterProps): JSX.Element => {
   const { token } = useParams();
   const [registerState, setRegisterState] = React.useState<RegisterState>(
-    RegisterState.DEFAULT
+    RegisterState.DEFAULT,
   );
 
   const onRegisterSuccess = (response: RegisterUserMutationResponse): void =>
@@ -52,13 +52,13 @@ export const RegisterPage = (props: RegisterProps): JSX.Element => {
     firstName,
     lastName,
     username,
-    password
+    password,
   }: Store): void => {
     setRegisterState(RegisterState.VALIDATING);
     commitRegisterUserMutation(
       { firstName, lastName, username, password, token: nullthrows(token) },
       onRegisterSuccess,
-      onRegisterFailure
+      onRegisterFailure,
     );
   };
 
@@ -68,7 +68,7 @@ export const RegisterPage = (props: RegisterProps): JSX.Element => {
   };
   return (
     <StyledLayout>
-      {registerState === RegisterState.SUCCESS && <Redirect to={"/login"} />}
+      {registerState === RegisterState.SUCCESS && <Redirect to="/login" />}
 
       <Content>
         {registerState === RegisterState.FAILURE && (

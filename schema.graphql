@@ -698,6 +698,10 @@ input DateTimeFilter {
   notIn: [DateTime!]
 }
 
+input DeleteStudentInput {
+  courseId: String!
+}
+
 type EmptyBlock {
   id: String!
 }
@@ -1738,11 +1742,14 @@ input MultipleChoiceQuestionResponseWhereUniqueInput {
 
 type Mutation {
   answerMultipleChoiceQuestionBlock(input: AnswerMultipleChoiceQuestionBlockInput!): MultipleChoiceQuestionBlock!
+  checkUsernameTaken(input: TakenUserInput!): User!
   createOneCourse(data: CourseCreateInput!): Course!
   createOneLesson(data: LessonCreateInput!): Lesson!
   createSlide(input: CreateSlideInput!): Slide!
   createStudent(input: CreateStudentInput!): Student!
+  deleteStudent(input: DeleteStudentInput!): Student!
   logIn(input: LogInInput!): User!
+  logOut: Boolean!
   registerUser(input: RegisterUserInput!): User!
   sendInvitationEmail(input: SendInvitationEmailInput!): String!
   updateBlockToMultipleChoiceBlock(input: UpdateBlockToMultipleChoiceBlockInput!): MultipleChoiceQuestionBlock!
@@ -2005,6 +2012,7 @@ type Query {
   courses(after: CourseWhereUniqueInput, before: CourseWhereUniqueInput, first: Int, last: Int, skip: Int, where: CourseWhereInput): [Course!]!
   lesson(where: LessonWhereUniqueInput!): Lesson
   lessons(after: LessonWhereUniqueInput, before: LessonWhereUniqueInput, first: Int, last: Int, skip: Int, where: LessonWhereInput): [Lesson!]!
+  students(after: StudentWhereUniqueInput, before: StudentWhereUniqueInput, first: Int, last: Int, skip: Int): [Student!]!
   viewer: User!
 }
 
@@ -2366,6 +2374,7 @@ input StringFilter {
 }
 
 type Student implements User {
+  courses(after: CourseWhereUniqueInput, before: CourseWhereUniqueInput, first: Int, last: Int, skip: Int): [Course!]!
   firstName: String!
   gradeLevel: GradeLevel!
   guardians(after: GuardianWhereUniqueInput, before: GuardianWhereUniqueInput, first: Int, last: Int, skip: Int): [Guardian!]!
@@ -2582,6 +2591,10 @@ input StudentWhereInput {
 
 input StudentWhereUniqueInput {
   id: String
+}
+
+input TakenUserInput {
+  username: String!
 }
 
 type TextBlock {

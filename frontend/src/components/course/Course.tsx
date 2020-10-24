@@ -1,52 +1,53 @@
-import React from "react";
-import { Typography, Button } from "antd";
-import { createFragmentContainer } from "react-relay";
-import { graphql } from "babel-plugin-relay/macro";
-import { Course_course } from "./__generated__/Course_course.graphql";
-import styled from "styled-components";
-import { ExportOutlined } from "@ant-design/icons";
-import { useHistory } from "react-router-dom";
-import { LessonCard } from "../lessons/LessonCard";
+import React from 'react';
+import { Typography, Button } from 'antd';
+import { createFragmentContainer } from 'react-relay';
+import { graphql } from 'babel-plugin-relay/macro';
+import styled from 'styled-components';
+import { ExportOutlined } from '@ant-design/icons';
+import { useHistory } from 'react-router-dom';
+import { Course_course } from './__generated__/Course_course.graphql';
+import { LessonCard } from '../lessons/LessonCard';
 
 const { Title } = Typography;
 
 type Props = { course: Course_course };
 const Course = ({ course }: Props) => {
-  let history = useHistory();
+  const history = useHistory();
 
   return (
     <>
       <Banner>
-        <Title level={1} style={{ fontWeight: 800, color: "white" }}>
+        <Title level={1} style={{ fontWeight: 800, color: 'white' }}>
           {course.name}
         </Title>
         <Title
           level={3}
-          style={{ fontWeight: 500, color: "white", margin: "5px 0px" }}
+          style={{ fontWeight: 500, color: 'white', margin: '5px 0px' }}
         >
           {course.description}
         </Title>
 
-        <h1 style={{ fontWeight: 400, color: "white", margin: "5px 0px" }}>
-          {course.lessonPlan.lessons.length} Lessons
+        <h1 style={{ fontWeight: 400, color: 'white', margin: '5px 0px' }}>
+          {course.lessonPlan.lessons.length}
+          {' '}
+          Lessons
         </h1>
 
         <Button
           onClick={() =>
             course.lessonPlan.lessons.length > 0 &&
             history.push(
-              `/courses/${course.id}/lessons/${course.lessonPlan.lessons[0].id}`
-            )
-          }
+              `/courses/${course.id}/lessons/${course.lessonPlan.lessons[0].id}`,
+            )}
           size="large"
           type="primary"
           icon={<ExportOutlined style={{ fontWeight: 700 }} />}
           style={{
             fontWeight: 700,
-            marginTop: "20px",
-            border: "1px solid #4ca7ff",
+            marginTop: '20px',
+            border: '1px solid #4ca7ff',
             boxShadow:
-              "0 10px 15px -3px rgba(57, 129, 181, 0.31),0 4px 6px -2px rgba(120, 157, 195, 0.08)",
+              '0 10px 15px -3px rgba(57, 129, 181, 0.31),0 4px 6px -2px rgba(120, 157, 195, 0.08)',
           }}
         >
           Start Course

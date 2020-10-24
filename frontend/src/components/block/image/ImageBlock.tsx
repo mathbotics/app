@@ -1,8 +1,6 @@
-import React from "react";
+import React from 'react';
 
 type Props = {};
-const ImageBlock = (props: Props) => {
-  return <div>Image Block not implemented</div>;
-};
+const ImageBlock = (props: Props) => <div>Image Block not implemented</div>;
 
 export default ImageBlock;

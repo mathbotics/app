@@ -1,15 +1,15 @@
-import React from "react";
-import { Spin } from "antd";
-import { Route, Redirect } from "react-router-dom";
-import { graphql } from "babel-plugin-relay/macro";
-import { createFragmentContainer } from "react-relay";
-import QueryLookupRenderer from "relay-query-lookup-renderer";
-import nullthrows from "nullthrows";
+import React from 'react';
+import { Spin } from 'antd';
+import { Route, Redirect } from 'react-router-dom';
+import { graphql } from 'babel-plugin-relay/macro';
+import { createFragmentContainer } from 'react-relay';
+import QueryLookupRenderer from 'relay-query-lookup-renderer';
+import nullthrows from 'nullthrows';
 
-import { ProtectedRouteQueryResponse } from "./__generated__/ProtectedRouteQuery.graphql";
-import { ProtectedRoute_viewer } from "./__generated__/ProtectedRoute_viewer.graphql";
-import { NotFoundPage } from "../pages/";
-import { environment } from "../graphql/relay";
+import { ProtectedRouteQueryResponse } from './__generated__/ProtectedRouteQuery.graphql';
+import { ProtectedRoute_viewer } from './__generated__/ProtectedRoute_viewer.graphql';
+import { NotFoundPage } from "../pages";
+import { environment } from '../graphql/relay';
 
 const ViewerQuery = graphql`
   query ProtectedRouteQuery {
@@ -19,16 +19,16 @@ const ViewerQuery = graphql`
   }
 `;
 
-type Props = Omit<React.ComponentProps<typeof Route>, "component"> & {
+type Props = Omit<React.ComponentProps<typeof Route>, 'component'> & {
   component: React.FC;
   viewer: ProtectedRoute_viewer;
-  allowedRoles?: Array<"Admin" | "Guardian" | "Instructor" | "Student">;
+  allowedRoles?: Array<'Admin' | 'Guardian' | 'Instructor' | 'Student'>;
 };
 
 const ProtectedRoute = createFragmentContainer(
   ({ component: Component, allowedRoles, viewer, ...rest }: Props) => {
     const allowed =
-      !allowedRoles || allowedRoles.some(role => role === viewer.role);
+      !allowedRoles || allowedRoles.some((role) => role === viewer.role);
     return (
       <Route
         {...rest}
@@ -41,11 +41,11 @@ const ProtectedRoute = createFragmentContainer(
       fragment ProtectedRoute_viewer on User {
         role: __typename
       }
-    `
-  }
+    `,
+  },
 );
 
-export default (props: Omit<Props, "viewer">) => (
+export default (props: Omit<Props, 'viewer'>) => (
   <QueryLookupRenderer
     lookup
     environment={environment}
@@ -60,10 +60,10 @@ export default (props: Omit<Props, "viewer">) => (
           <Spin
             size="large"
             style={{
-              display: "flex",
-              height: "100%",
-              alignItems: "center",
-              justifyContent: "center"
+              display: 'flex',
+              height: '100%',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
           />
         );
