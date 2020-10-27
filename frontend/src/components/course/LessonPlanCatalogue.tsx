@@ -46,11 +46,11 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
         {lessons.length === 0 && <p> No lessons available</p>}
         {lessons.map(({ id, title, slides }) => (
           <LessonCardWrapper
-            key={id}
-            onClick={() => connectLessonToLessonPlan(id)}
-          >
+            // key={id}
+            // onClick={() => connectLessonToLessonPlan(id)}
+           >
             <LessonCard id={id} title={title} slideCount={slides.length} />
-          </LessonCardWrapper>
+           </LessonCardWrapper> 
         ))}
       </LessonsPreviewWrapper>
     </LessonsCatalogueWrapper>

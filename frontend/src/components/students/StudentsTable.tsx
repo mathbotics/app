@@ -90,7 +90,9 @@ const LessonsTable = ({ course: { students }, toggleEditModal, toggleDeleteModal
           <Tooltip title="Delete Student">
             <DeleteButton
                   // TODO Add confirmation popup to delete a students
-              onClick={() => toggleDeleteModal()}
+              onClick={() => {
+                toggleDeleteModal()}
+              }
             >
               <DeleteOutlined style={{ margin: '0px 0px 0px 15px' }} />
             </DeleteButton>

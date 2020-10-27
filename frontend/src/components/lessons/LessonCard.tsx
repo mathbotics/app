@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from 'antd';
+import { Button, Tooltip } from 'antd';
 import { ExportOutlined } from '@ant-design/icons';
 
 import { useHistory } from 'react-router-dom';
 
+import { PlusOutlined } from '@ant-design/icons';
 const Card = styled.div`
   border-radius: 5px;
   padding: 25px 20px;
@@ -52,7 +53,12 @@ const CardSlideCount = styled.div`
   font-weight: 600;
   color: #676767;
 `;
-
+const CardWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0px;
+`;
 type Props = {
   id: string;
   courseId?: string;
@@ -70,8 +76,10 @@ export const LessonCard = ({
   linkLesson,
 }: Props) => {
   const history = useHistory();
+  
   return (
     <Card>
+      
       <div
         style={{
           whiteSpace: 'nowrap',
@@ -79,9 +87,25 @@ export const LessonCard = ({
           textOverflow: 'ellipsis',
         }}
       >
-        <CardTitle>{title}</CardTitle>
+        <CardWrapper> 
+          <CardTitle>{title}</CardTitle>
+          <Tooltip title="Add this lesson">
+            <Button
+              type="primary"
+              shape="circle"
+              icon={<PlusOutlined />}
+              htmlType="submit"
+              size="large"
+              onClick={() => {
+                console.log("hello")
+              }}
+            />
+          </Tooltip>
+      </CardWrapper> 
+
       </div>
       <CardFooter>
+        
         {slideCount && (
           <CardSlideCount>
             <ExportOutlined style={{ margin: '0px 0px 0px 10px' }} />
@@ -92,6 +116,7 @@ export const LessonCard = ({
           </CardSlideCount>
         )}
       </CardFooter>
+     
       {linkLesson && (
         <Button
           size="large"
