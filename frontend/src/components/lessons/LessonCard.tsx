@@ -5,7 +5,7 @@ import { ExportOutlined } from '@ant-design/icons';
 
 import { useHistory } from 'react-router-dom';
 
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 const Card = styled.div`
   border-radius: 5px;
   padding: 25px 20px;
@@ -66,6 +66,9 @@ type Props = {
   description?: string;
   slideCount?: number;
   linkLesson?: boolean;
+  addLesson?: boolean;
+  removeLesson?: boolean;
+
 };
 export const LessonCard = ({
   id,
@@ -74,6 +77,8 @@ export const LessonCard = ({
   description,
   slideCount,
   linkLesson,
+  addLesson,
+  removeLesson
 }: Props) => {
   const history = useHistory();
   
@@ -89,7 +94,7 @@ export const LessonCard = ({
       >
         <CardWrapper> 
           <CardTitle>{title}</CardTitle>
-          <Tooltip title="Add this lesson">
+          {addLesson && (<Tooltip title="Add Lesson">
             <Button
               type="primary"
               shape="circle"
@@ -100,7 +105,20 @@ export const LessonCard = ({
                 console.log("hello")
               }}
             />
-          </Tooltip>
+          </Tooltip>)}
+
+          {removeLesson && (<Tooltip title="Remove Lesson">
+            <Button
+              type="primary"
+              shape="circle"
+              icon={<MinusOutlined />}
+              htmlType="submit"
+              size="large"
+              onClick={() => {
+                console.log("hello")
+              }}
+            />
+          </Tooltip>)}         
       </CardWrapper> 
 
       </div>

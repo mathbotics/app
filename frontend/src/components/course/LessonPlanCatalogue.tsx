@@ -47,9 +47,9 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
         {lessons.map(({ id, title, slides }) => (
           <LessonCardWrapper
             // key={id}
-            // onClick={() => connectLessonToLessonPlan(id)}
+            onClick={() => connectLessonToLessonPlan(id)}
            >
-            <LessonCard id={id} title={title} slideCount={slides.length} />
+            <LessonCard id={id} title={title} slideCount={slides.length} addLesson={true} />
            </LessonCardWrapper> 
         ))}
       </LessonsPreviewWrapper>
@@ -88,6 +88,7 @@ const LessonsCatalogueWrapper = styled.div`
 
 const Header = styled.div`
   position: sticky;
+  width: 100%;
   top: 0;
   background-color: white;
   padding-bottom: 10px;

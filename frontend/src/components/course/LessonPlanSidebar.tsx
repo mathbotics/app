@@ -52,11 +52,11 @@ const LessonPlanSidebar = ({ lessonPlan }: Props) => {
 
   return (
     <Sider
-      width={300}
+      width={350}
       theme="light"
       style={{
         overflow: 'auto',
-        height: '100%',
+        height: 'auto',
         borderRadius: '5px',
         marginRight: '20px',
       }}
@@ -87,6 +87,7 @@ const LessonPlanSidebar = ({ lessonPlan }: Props) => {
                 id={lesson.id}
                 title={lesson.title}
                 slideCount={lesson.slides.length}
+                removeLesson={true}
               />
             </MenuItem>
           ))}
