@@ -71,6 +71,7 @@ type Props = {
   addLesson?: boolean;
   removeLesson?: boolean;
   addToLessonPlan?: (id:string) => void;
+  removeFromLessonPlan?: (id:string) => void;
 };
 export const LessonCard = ({
   id,
@@ -82,6 +83,7 @@ export const LessonCard = ({
   addLesson,
   removeLesson,
   addToLessonPlan,
+  removeFromLessonPlan,
 }: Props) => {
   const history = useHistory();
 
@@ -120,7 +122,15 @@ export const LessonCard = ({
           {removeLesson && (
           <Tooltip title="Remove Lesson">
             <DeleteButton>
-              <DeleteOutlined style={{ margin: '0px 0px 0px 15px' }} />
+              <DeleteOutlined
+                style={{ margin: '0px 0px 0px 15px' }}
+                onClick={() => {
+                    console.log("remove")
+                    if (removeFromLessonPlan) {
+                        removeFromLessonPlan(id)
+                    }
+                }}
+              />
             </DeleteButton>
           </Tooltip>
 
