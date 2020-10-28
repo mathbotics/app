@@ -81,7 +81,7 @@ export default createFragmentContainer(LessonPlanCatalogue, {
 });
 
 const LessonsCatalogueWrapper = styled.div`
-  height: 100%;
+  height: 100vh;
   width: 100%;
   overflow-y: scroll;
 `;
@@ -96,11 +96,11 @@ const Header = styled.div`
 
 const LessonsPreviewWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 550px;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 `;
 
 const LessonCardWrapper = styled.div`
