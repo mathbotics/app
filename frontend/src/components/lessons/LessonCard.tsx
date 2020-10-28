@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button, Tooltip } from 'antd';
-import { ExportOutlined, PlusOutlined, MinusOutlined } from '@ant-design/icons';
+import { ExportOutlined } from '@ant-design/icons';
 
 import { useHistory } from 'react-router-dom';
 
+import { PlusOutlined, CloseOutlined, DeleteOutlined } from '@ant-design/icons';
 const Card = styled.div`
   border-radius: 5px;
   padding: 25px 20px;
@@ -56,6 +57,10 @@ const CardWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+`;
+const DeleteButton = styled.div`
+    color: #ff4d4e;
 `;
 type Props = {
   id: string;
@@ -77,25 +82,25 @@ export const LessonCard = ({
   linkLesson,
   addLesson,
   removeLesson,
-  addToLessonPlan,
+  addToLessonPlan
 }: Props) => {
   const history = useHistory();
-
+  
   return (
     <Card>
-
+      
       <div
         style={{
           whiteSpace: 'nowrap',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
+
         }}
       >
-        <CardWrapper>
+        <CardWrapper> 
           <CardTitle>{title}</CardTitle>
-
-          {addLesson && (
-          <Tooltip title="Add Lesson">
+          
+          {addLesson && (<Tooltip title="Add Lesson">
             <Button
               type="primary"
               shape="circle"
@@ -104,34 +109,27 @@ export const LessonCard = ({
               size="large"
               onClick={() => {
                 console.log("add")
-                  if (addToLessonPlan) {
-                      addToLessonPlan(id)
-                  }
+                if (addToLessonPlan) {
+                  addToLessonPlan(id)
+                }
               }}
             />
-          </Tooltip>
-)}
-
+          </Tooltip>)}
+         
           {removeLesson && (
           <Tooltip title="Remove Lesson">
-            <Button
-              type="primary"
-              shape="circle"
-              icon={<MinusOutlined />}
-              htmlType="submit"
-              size="large"
-              onClick={() => {
-                console.log("remove")
-              }}
-            />
-          </Tooltip>
-)}
-        </CardWrapper>
+            <DeleteButton>
+              <DeleteOutlined style={{ margin: '0px 0px 0px 15px' }} />
+            </DeleteButton>
+          </Tooltip>        
+
+          )}         
+          </CardWrapper> 
 
       </div>
-
+      
       <CardFooter>
-
+        
         {slideCount && (
           <CardSlideCount>
             <ExportOutlined style={{ margin: '0px 0px 0px 10px' }} />
@@ -142,7 +140,7 @@ export const LessonCard = ({
           </CardSlideCount>
         )}
       </CardFooter>
-
+     
       {linkLesson && (
         <Button
           size="large"
