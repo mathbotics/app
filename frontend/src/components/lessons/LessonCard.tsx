@@ -77,7 +77,7 @@ export const LessonCard = ({
   linkLesson,
   addLesson,
   removeLesson,
-  addToLessonPlan
+  addToLessonPlan,
 }: Props) => {
   const history = useHistory();
 
