@@ -57,7 +57,6 @@ const CardWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 10px 0px;
 `;
 type Props = {
   id: string;
@@ -94,6 +93,7 @@ export const LessonCard = ({
       >
         <CardWrapper> 
           <CardTitle>{title}</CardTitle>
+          
           {addLesson && (<Tooltip title="Add Lesson">
             <Button
               type="primary"
@@ -102,11 +102,11 @@ export const LessonCard = ({
               htmlType="submit"
               size="large"
               onClick={() => {
-                console.log("hello")
+                console.log("add")
               }}
             />
           </Tooltip>)}
-
+         
           {removeLesson && (<Tooltip title="Remove Lesson">
             <Button
               type="primary"
@@ -115,13 +115,14 @@ export const LessonCard = ({
               htmlType="submit"
               size="large"
               onClick={() => {
-                console.log("hello")
+                console.log("remove")
               }}
             />
           </Tooltip>)}         
-      </CardWrapper> 
+          </CardWrapper> 
 
       </div>
+      
       <CardFooter>
         
         {slideCount && (
