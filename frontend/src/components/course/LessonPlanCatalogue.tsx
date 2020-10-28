@@ -47,6 +47,7 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
         {lessons.map(({ id, title, slides }) => (
           <LessonCard
             id={id}
+            key={id}
             title={title}
             slideCount={slides.length}
             addLesson
