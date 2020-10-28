@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button, Tooltip } from 'antd';
-import { ExportOutlined } from '@ant-design/icons';
+import { ExportOutlined, PlusOutlined, CloseOutlined, DeleteOutlined } from '@ant-design/icons';
 
 import { useHistory } from 'react-router-dom';
 
-import { PlusOutlined, CloseOutlined, DeleteOutlined } from '@ant-design/icons';
 const Card = styled.div`
   border-radius: 5px;
   padding: 25px 20px;
@@ -82,13 +81,13 @@ export const LessonCard = ({
   linkLesson,
   addLesson,
   removeLesson,
-  addToLessonPlan
+  addToLessonPlan,
 }: Props) => {
   const history = useHistory();
-  
+
   return (
     <Card>
-      
+
       <div
         style={{
           whiteSpace: 'nowrap',
@@ -97,10 +96,11 @@ export const LessonCard = ({
 
         }}
       >
-        <CardWrapper> 
+        <CardWrapper>
           <CardTitle>{title}</CardTitle>
-          
-          {addLesson && (<Tooltip title="Add Lesson">
+
+          {addLesson && (
+          <Tooltip title="Add Lesson">
             <Button
               type="primary"
               shape="circle"
@@ -114,22 +114,23 @@ export const LessonCard = ({
                 }
               }}
             />
-          </Tooltip>)}
-         
+          </Tooltip>
+)}
+
           {removeLesson && (
           <Tooltip title="Remove Lesson">
             <DeleteButton>
               <DeleteOutlined style={{ margin: '0px 0px 0px 15px' }} />
             </DeleteButton>
-          </Tooltip>        
+          </Tooltip>
 
-          )}         
-          </CardWrapper> 
+          )}
+        </CardWrapper>
 
       </div>
-      
+
       <CardFooter>
-        
+
         {slideCount && (
           <CardSlideCount>
             <ExportOutlined style={{ margin: '0px 0px 0px 10px' }} />
@@ -140,7 +141,7 @@ export const LessonCard = ({
           </CardSlideCount>
         )}
       </CardFooter>
-     
+
       {linkLesson && (
         <Button
           size="large"
