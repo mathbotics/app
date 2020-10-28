@@ -22,11 +22,10 @@ export const EditCourseLessonPlan = ({ lessonPlan, query }: Props) => (
       width={350}
       theme="light"
       style={{
-        overflow: 'auto',
-        height: '100vh',
+        overflow: 'scroll',
+        height: '650px',
         borderRadius: '5px',
         marginRight: '20px',
-        flex: '0 0 100vh',
         position: 'relative'
       }}      
       >
