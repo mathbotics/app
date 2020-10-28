@@ -54,12 +54,6 @@ const LessonPlanSidebar = ({ lessonPlan }: Props) => {
     <Sider
       width={350}
       theme="light"
-      style={{
-        overflow: 'auto',
-        height: 'auto',
-        borderRadius: '5px',
-        marginRight: '20px',
-      }}
     >
       {lessonPlan.lessons.length > 0 && (
         <Menu defaultSelectedKeys={[selected?.toString() ?? '']} mode="inline">

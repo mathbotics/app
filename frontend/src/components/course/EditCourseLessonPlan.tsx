@@ -12,9 +12,24 @@ type Props = {
   lessonPlan: EditCourseLessonPlan_lessonPlan;
   query: EditCourseLessonPlan_query;
 };
+const { Sider, Content } = Layout;
 export const EditCourseLessonPlan = ({ lessonPlan, query }: Props) => (
+
   <Wrapper>
+   
     {lessonPlan.lessons.length > 0 && (
+      <Sider
+      width={350}
+      theme="light"
+      style={{
+        overflow: 'auto',
+        height: '100vh',
+        borderRadius: '5px',
+        marginRight: '20px',
+        flex: '0 0 100vh',
+        position: 'relative'
+      }}      
+      >
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <h1
         style={{
@@ -27,10 +42,13 @@ export const EditCourseLessonPlan = ({ lessonPlan, query }: Props) => (
       </h1>
       <LessonPlanSidebar lessonPlan={lessonPlan} />
     </div>
+    </Sider>
       )}
 
     <LessonPlanCatalogue query={query} lessonPlan={lessonPlan} />
+
   </Wrapper>
+
   );
 
 const Wrapper = styled(Layout)`
