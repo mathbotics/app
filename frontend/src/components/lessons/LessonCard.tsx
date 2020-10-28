@@ -66,7 +66,7 @@ type Props = {
   linkLesson?: boolean;
   addLesson?: boolean;
   removeLesson?: boolean;
-
+  addToLessonPlan?: (id:string) => void;
 };
 export const LessonCard = ({
   id,
@@ -77,6 +77,7 @@ export const LessonCard = ({
   linkLesson,
   addLesson,
   removeLesson,
+  addToLessonPlan
 }: Props) => {
   const history = useHistory();
 
@@ -103,6 +104,9 @@ export const LessonCard = ({
               size="large"
               onClick={() => {
                 console.log("add")
+                  if (addToLessonPlan) {
+                      addToLessonPlan(id)
+                  }
               }}
             />
           </Tooltip>
