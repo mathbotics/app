@@ -48,9 +48,9 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
           <LessonCardWrapper
             // key={id}
             onClick={() => connectLessonToLessonPlan(id)}
-           >
-            <LessonCard id={id} title={title} slideCount={slides.length} addLesson={true} />
-           </LessonCardWrapper> 
+          >
+            <LessonCard id={id} title={title} slideCount={slides.length} addLesson />
+          </LessonCardWrapper>
         ))}
       </LessonsPreviewWrapper>
     </LessonsCatalogueWrapper>

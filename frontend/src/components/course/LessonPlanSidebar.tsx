@@ -81,7 +81,7 @@ const LessonPlanSidebar = ({ lessonPlan }: Props) => {
                 id={lesson.id}
                 title={lesson.title}
                 slideCount={lesson.slides.length}
-                removeLesson={true}
+                removeLesson
               />
             </MenuItem>
           ))}
