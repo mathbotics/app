@@ -60,7 +60,6 @@ const LessonPlanSidebar = ({ lessonPlan }: Props) => {
           {lessons.map((lesson, index) => (
             <MenuItem
               key={lesson.id}
-              onClick={() => removeLessonFromLessonPlan(lesson.id)}
               style={{ display: 'flex' }}
             >
               <h1
@@ -82,6 +81,7 @@ const LessonPlanSidebar = ({ lessonPlan }: Props) => {
                 title={lesson.title}
                 slideCount={lesson.slides.length}
                 removeLesson
+                removeFromLessonPlan={(id) => removeLessonFromLessonPlan(id)}
               />
             </MenuItem>
           ))}
