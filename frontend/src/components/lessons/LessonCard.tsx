@@ -58,7 +58,7 @@ const CardWrapper = styled.div`
   align-items: center;
 
 `;
-const DeleteButton = styled.div`
+const RemoveLessonButton = styled.div`
     color: #ff4d4e;
 `;
 type Props = {
@@ -121,9 +121,9 @@ export const LessonCard = ({
 
           {removeLesson && (
           <Tooltip title="Remove Lesson">
-            <DeleteButton>
+            <RemoveLessonButton>
               <DeleteOutlined
-                style={{ margin: '0px 0px 0px 15px' }}
+                style={{ margin: '0px 0px 0px 15px', fontSize: '18px' }}
                 onClick={() => {
                     console.log("remove")
                     if (removeFromLessonPlan) {
@@ -131,7 +131,7 @@ export const LessonCard = ({
                     }
                 }}
               />
-            </DeleteButton>
+            </RemoveLessonButton>
           </Tooltip>
 
           )}

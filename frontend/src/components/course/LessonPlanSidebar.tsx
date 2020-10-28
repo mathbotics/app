@@ -10,7 +10,7 @@ import { LessonCard } from '../lessons/LessonCard';
 
 const MenuItem = styled(Menu.Item)`
   width: 100% !important;
-  height: 145px !important;
+  height: 128px !important;
   transition: all 0.15s ease-in-out;
   border-radius: 5px;
   padding: 0px !important;
