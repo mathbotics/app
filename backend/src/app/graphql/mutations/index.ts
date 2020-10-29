@@ -12,6 +12,7 @@ export * from './updateBlockToMultipleChoiceBlock';
 export * from './updateBlockToTextBlock';
 export * from './answerMultipleChoiceQuestionBlock';
 export * from './createStudent';
+export * from './sendResetPasswordEmail'; 
 
 export const mutation = extendType({
   type: 'Mutation',

@@ -1760,6 +1760,7 @@ type Mutation {
   logOut: Boolean!
   registerUser(input: RegisterUserInput!): User!
   sendInvitationEmail(input: SendInvitationEmailInput!): String!
+  sendResetPasswordEmail(input: SendResetPasswordEmailInput!): String!
   updateBlockToMultipleChoiceBlock(input: UpdateBlockToMultipleChoiceBlockInput!): MultipleChoiceQuestionBlock!
   updateBlockToTextBlock(input: UpdateBlockToTextBlockInput!): TextBlock!
   updateOneCourse(data: CourseUpdateInput!, where: CourseWhereUniqueInput!): Course
@@ -2035,6 +2036,10 @@ input RegisterUserInput {
 input SendInvitationEmailInput {
   email: String!
   role: String!
+}
+
+input SendResetPasswordEmailInput {
+  email: String!
 }
 
 type SingleSlide implements Slide {

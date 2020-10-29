@@ -27,7 +27,7 @@ export const sendResetPasswordEmail = mutationField('sendResetPasswordEmail', {
   args: {
     input: arg({ type: 'SendResetPasswordEmailInput', required: true }),
   },
-  async resolve(_root, { input: { email, role } }) {
+  async resolve(_root, { input: { email } }) {
     try {
       const { html } = mjml(
         (
