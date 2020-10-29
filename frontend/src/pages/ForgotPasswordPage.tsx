@@ -3,9 +3,9 @@ import { Typography, Layout, Alert } from 'antd';
 import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
 
 import styled from 'styled-components';
-import { commit as commitSendInvitationEmail } from '../graphql/mutations/SendInvitationEmailMutation';
+import { commit as commitSendResetPasswordEmail } from '../graphql/mutations/SendResetPasswordEmailMutation';
 import { ForgotPasswordForm } from '../components/form';
-import { SendInvitationEmailMutationResponse } from '../graphql/mutations/__generated__/SendInvitationEmailMutation.graphql';
+import { SendResetPasswordEmailMutationResponse } from '../graphql/mutations/__generated__/SendResetPasswordEmailMutation.graphql';
 
 const { Title } = Typography;
 
@@ -37,7 +37,7 @@ export const ForgotPasswordPage = (props: Props) => {
   );
 
   const onInvitationSuccess = (
-    response: SendInvitationEmailMutationResponse,
+    response: SendResetPasswordEmailMutationResponse,
   ): void => setEmailState(SentEmailState.SUCCESS);
 
   const onInvitationFailure = (error: Error): void => {
@@ -45,10 +45,11 @@ export const ForgotPasswordPage = (props: Props) => {
     console.log(error);
   };
 
-  const onSubmitHandler = ({ email, role }: Store): void => {
+  const onSubmitHandler = ({ email }: Store): void => {
     setEmailState(SentEmailState.VALIDATING);
-    commitSendInvitationEmail(
-      { email, role },
+    commitSendResetPasswordEmail(
+      // { email, role },
+      { email },
       onInvitationSuccess,
       onInvitationFailure,
     );
