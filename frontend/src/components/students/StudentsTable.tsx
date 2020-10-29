@@ -83,7 +83,7 @@ const LessonsTable = ({ course: { students }, toggleEditModal, toggleDeleteModal
             <EditButton
                   // TODO Add edit a student modal
                   onClick={(e) => {
-                    console.log(students[0]);
+                    console.log(students);
                     toggleEditModal(e)}
                   }
             >
@@ -132,14 +132,5 @@ export default createFragmentContainer(LessonsTable, {
         id
       }
     }
-  `,
-  student: graphql`
-    fragment StudentsTable_student on Student {
-        username
-        firstName
-        lastName
-        gradeLevel
-        id
-      }
   `,
 });

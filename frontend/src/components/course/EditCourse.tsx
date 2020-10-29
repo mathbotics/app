@@ -4,7 +4,7 @@ import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 
 import { EditCourse_course } from './__generated__/EditCourse_course.graphql';
-import { EditCourse_student } from './__generated__/EditCourse_student.graphql';
+//import { EditCourse_student } from './__generated__/EditCourse_student.graphql';
 import EditCourseDetails from './EditCourseDetails';
 import EditCourseLessonPlan from './EditCourseLessonPlan';
 import EditCourseStudents from './EditCourseStudents';
@@ -20,8 +20,8 @@ enum PageState {
   UpdateCourseError,
 }
 type Tab = { title: string; Component: JSX.Element };
-type Props = { course: EditCourse_course; student: EditCourse_student; query: EditCourse_query };
-const EditCourse = ({course, student, query }: Props) => {
+type Props = { course: EditCourse_course; query: EditCourse_query };
+const EditCourse = ({course, query }: Props) => {
   /*
   TODO
   pageState isn't being used but it updated...?
@@ -40,7 +40,7 @@ const EditCourse = ({course, student, query }: Props) => {
     },
     {
       title: 'Students',
-      Component: <EditCourseStudents course={course} student={student}  />,
+      Component: <EditCourseStudents course={course}   />,
     },
     {
       title: 'Course Details',
@@ -78,16 +78,7 @@ const EditCourse = ({course, student, query }: Props) => {
 };
 
 export default createFragmentContainer(EditCourse, {
-  student: graphql`
-    fragment EditCourse_student on Student {
-      ...EditCourseStudents_student
-      id
-      username      
-      firstName
-      lastName
-      gradeLevel
-    }
-  `,
+
   course: graphql`
     fragment EditCourse_course on Course {
       ...EditCourseStudents_course

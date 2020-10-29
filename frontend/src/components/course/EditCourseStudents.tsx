@@ -6,16 +6,16 @@ import { graphql } from 'babel-plugin-relay/macro';
 
 import StudentsTable from '../students/StudentsTable';
 import { EditCourseStudents_course } from './__generated__/EditCourseStudents_course.graphql';
-import { EditCourseStudents_student } from './__generated__/EditCourseStudents_student.graphql';
+//import { EditCourseStudents_student } from './__generated__/EditCourseStudents_student.graphql';
 import AddStudentModal from '../students/Modals/AddStudentModal';
 import DeleteStudentModal from '../students/Modals/DeleteStudentModal';
 import DeleteSingleStudentModal from '../students/Modals/DeleteSingleStudentModal';
 import EditStudentModal from '../students/Modals/EditStudentModal';
 // import EditBlockSidebar from '../slides/EditBlockSidebar';
 
-type Props = { course: EditCourseStudents_course, student: EditCourseStudents_student  };
+type Props = { course: EditCourseStudents_course };
 
-const EditCourseStudents = ({ course, student }: Props) => {
+const EditCourseStudents = ({ course, course: { students }}: Props) => {
     const [
         isAddStudentModalOpen,
         toggleAddStudentModal,
@@ -79,7 +79,7 @@ const EditCourseStudents = ({ course, student }: Props) => {
         <EditStudentModal
           title="Edit Student"
           visible={edit}
-          studentId={student.id}
+          studentId={students[0].id}
           onSubmitSuccess={() => toggleEdit(false)}
           onSubmitError={(e: Error) => console.error(e)}
           onCancel={() => toggleEdit(!edit)}
@@ -100,13 +100,14 @@ export default createFragmentContainer(EditCourseStudents, {
     course: graphql`
         fragment EditCourseStudents_course on Course {
             id
+            students {
+              username
+              firstName
+              lastName
+              gradeLevel
+              id
+            }            
             ...StudentsTable_course
-        }
-    `,
-    student: graphql`
-        fragment EditCourseStudents_student on Student {
-            id
-            ...StudentsTable_student
         }
     `,
 });
