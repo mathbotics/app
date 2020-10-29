@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal } from 'antd';
+import { Store } from 'rc-field-form/lib/interface';
 import { EditStudentForm } from '../../form/EditStudentForm';
 import { commit as commitEditStudentMutation } from '../../../graphql/mutations/EditStudentMutation';
 import { EditStudentInput } from '../../../graphql/mutations/__generated__/EditStudentMutation.graphql';
@@ -20,11 +21,10 @@ export default ({
   onCancel,
   studentId,
 }: ModalProps) => {
-  const onSubmit =
-  () =>
-    console.log(visible);
+  const onSubmit = 
+  (formData: Store) =>
     commitEditStudentMutation(
-      { studentId } as EditStudentInput,
+      { ...formData, studentId } as EditStudentInput,
       onSubmitSuccess,
       onSubmitError,
     );

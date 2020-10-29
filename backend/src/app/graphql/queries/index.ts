@@ -31,7 +31,7 @@ export const query = extendType({
     t.crud.lessons({ filtering: true });
     t.crud.lesson();
     t.crud.course();
-    t.crud.students();
+    t.crud.students( {filtering: true} );
     t.crud.student();
   },
 });

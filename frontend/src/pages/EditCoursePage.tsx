@@ -13,6 +13,9 @@ const Query = graphql`
     course(where: $where) {
       ...EditCourse_course
     }
+    student(where:{id:"ckgljwsjw00044jqp7t4g7q4l"}) {
+      ...EditCourse_student
+    }
     ...EditCourse_query
   }
 `;
@@ -31,6 +34,10 @@ export const EditCoursePage = (): JSX.Element => {
           <EditCourse
             course={nullthrows(
               (props as EditCoursePageQueryResponse)?.course,
+              'Course not found',
+            )}
+            student={nullthrows(
+              (props as EditCoursePageQueryResponse)?.student,
               'Course not found',
             )}
             query={nullthrows(props as EditCoursePageQueryResponse)}

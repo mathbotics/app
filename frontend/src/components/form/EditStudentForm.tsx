@@ -3,12 +3,8 @@ import { Form, Button } from 'antd';
 import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import { FormItem } from './FormItem';
 import { SelectFormItem } from './SelectFormItem';
-import { createFragmentContainer } from 'react-relay';
-import { graphql } from 'babel-plugin-relay/macro';
-import { EditStudentForm_course } from './__generated__/EditStudentForm_course.graphql';
 
 type FormProps = {
-  course: EditStudentForm_course;
   onSubmit: (values: Store) => void;
   onSubmitError: (error: ValidateErrorEntity) => void;
 };
@@ -30,7 +26,6 @@ enum GradeLevel {
 
 export type EditStudentFormFields = { title: string };
 export const EditStudentForm = ({
-  course: {students},
   onSubmit,
   onSubmitError,
 }: FormProps): JSX.Element => {
@@ -102,11 +97,3 @@ export const EditStudentForm = ({
     </Form>
   );
 };
-
-export default createFragmentContainer(EditStudentForm, {
-  course: graphql`
-    fragment EditStudentForm_course on Course {
-      ...StudentsTable_course
-    }
-  `,
-});

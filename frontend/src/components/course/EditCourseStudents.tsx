@@ -6,16 +6,16 @@ import { graphql } from 'babel-plugin-relay/macro';
 
 import StudentsTable from '../students/StudentsTable';
 import { EditCourseStudents_course } from './__generated__/EditCourseStudents_course.graphql';
-//import { EditCourseStudents_student } from './__generated__/EditCourseStudents_student.graphql';
+import { EditCourseStudents_student } from './__generated__/EditCourseStudents_student.graphql';
 import AddStudentModal from '../students/Modals/AddStudentModal';
 import DeleteStudentModal from '../students/Modals/DeleteStudentModal';
 import DeleteSingleStudentModal from '../students/Modals/DeleteSingleStudentModal';
 import EditStudentModal from '../students/Modals/EditStudentModal';
 // import EditBlockSidebar from '../slides/EditBlockSidebar';
 
-type Props = { course: EditCourseStudents_course };
+type Props = { course: EditCourseStudents_course, student: EditCourseStudents_student  };
 
-const EditCourseStudents = ({ course, course: { students } }: Props) => {
+const EditCourseStudents = ({ course, student }: Props) => {
     const [
         isAddStudentModalOpen,
         toggleAddStudentModal,
@@ -79,10 +79,8 @@ const EditCourseStudents = ({ course, course: { students } }: Props) => {
         <EditStudentModal
           title="Edit Student"
           visible={edit}
-          studentId={students.map(
-            ({id}) => ({id})
-          )}
-          onSubmitSuccess={() => console.log("It Worked!?!?!?!")}
+          studentId={student.id}
+          onSubmitSuccess={() => toggleEdit(false)}
           onSubmitError={(e: Error) => console.error(e)}
           onCancel={() => toggleEdit(!edit)}
         />
@@ -103,6 +101,12 @@ export default createFragmentContainer(EditCourseStudents, {
         fragment EditCourseStudents_course on Course {
             id
             ...StudentsTable_course
+        }
+    `,
+    student: graphql`
+        fragment EditCourseStudents_student on Student {
+            id
+            ...StudentsTable_student
         }
     `,
 });

@@ -133,4 +133,13 @@ export default createFragmentContainer(LessonsTable, {
       }
     }
   `,
+  student: graphql`
+    fragment StudentsTable_student on Student {
+        username
+        firstName
+        lastName
+        gradeLevel
+        id
+      }
+  `,
 });
