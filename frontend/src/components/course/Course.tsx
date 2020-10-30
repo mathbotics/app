@@ -72,8 +72,17 @@ const Course = ({ course }: Props) => {
 };
 const LessonsWrapper = styled.div`
   margin: 20px 0;
+  width: 100%;
+  height: 520px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
 `;
-const LessonCardWrapper = styled.div``;
+const LessonCardWrapper = styled.div`
+  width: 100%;
+  margin: 5px 0px;
+`;
 
 const Banner = styled.div`
   background-color: #198fff;
