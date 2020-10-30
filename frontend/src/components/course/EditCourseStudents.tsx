@@ -73,8 +73,10 @@ const EditCourseStudents = ({ course }: Props) => {
           title="Delete All Students"
           visible={isDeleteStudentModalOpen}
           courseId={course.id}
-          onSubmitSuccess={() => toggleDeleteStudentModal(false)}
-          onSubmitError={(e: Error) => console.error(e)}
+          onSubmitSuccess={() => {
+            console.log("Succesfully deleted all students")
+            toggleDeleteStudentModal(false) }}
+          onSubmitError={(e: Error) => console.error(`Error deleting student ${e}`)}
           onCancel={() => toggleDeleteStudentModal(!isDeleteStudentModalOpen)}
         />
         <StudentsTable
