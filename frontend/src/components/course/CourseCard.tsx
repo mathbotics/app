@@ -129,7 +129,8 @@ const CourseCard = ({
           <ExportOutlined style={{ marginRight: '10px' }} />
           {lessonCount}
           {' '}
-          Lessons
+          Lesson
+          {lessonCount != 1 && 's'}
         </CardSlideCount>
       </CardFooter>
     </Card>

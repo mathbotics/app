@@ -6,11 +6,21 @@ import styled from 'styled-components';
 import { commit as commitSendResetPasswordEmail } from '../graphql/mutations/SendResetPasswordEmailMutation';
 import { ForgotPasswordForm } from '../components/form';
 import { SendResetPasswordEmailMutationResponse } from '../graphql/mutations/__generated__/SendResetPasswordEmailMutation.graphql';
-
+import { AppLogo } from '../components/icons';
 const { Title } = Typography;
 
+const StyledLayout = styled(Layout)`
+  height: 100%;
+`;
 const Wrapper = styled(Layout.Content)`
-  width: 400px;
+flex: initial;
+width: 20em;
+margin: auto;
+padding: 25px 20px;
+border-radius: 10px;
+background-color: #fff;
+box-shadow: 1px 4px 38px -2px rgba(105, 103, 103, 0.1);
+text-align: center;
 `;
 // Alert component
 const SAlert = styled(Alert)`
@@ -61,7 +71,8 @@ export const ForgotPasswordPage = (props: Props) => {
   };
 // invitation form
   return (
-    <Wrapper>
+    <StyledLayout>
+      <Wrapper>
       {emailState === SentEmailState.SUCCESS && (
         // send success alert if email was sent seuccessfuly
         <SAlert
@@ -81,14 +92,15 @@ export const ForgotPasswordPage = (props: Props) => {
           closable
         />
       )}
-      <Title level={3} style={{ fontWeight: 700 }}>
-        Forgot Password
-      </Title>
+       <AppLogo height="150px" />
+      <h3> Forgot Password </h3>
 
       <ForgotPasswordForm
         onSubmit={onSubmitHandler}
         onSubmitError={onSubmitErrorHandler}
       />
-    </Wrapper>
+      <a href="/login"> Or Cancel</a>
+      </Wrapper>
+    </StyledLayout>
   );
 };
