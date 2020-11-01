@@ -7,12 +7,13 @@ import { createFragmentContainer } from 'react-relay';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { StudentsTable_course } from './__generated__/StudentsTable_course.graphql';
+import { string } from 'prop-types';
 
 type Props = {
   course: StudentsTable_course;
   editModal: boolean;
-  toggleEditModal: (e) => void;
-  toggleDeleteModal: () => void;
+  onClickEdit: (studentId: string) => void;
+  onClickRemove: (e) => void;
 };
 
 const EditButton = styled.div`
@@ -46,7 +47,11 @@ function onChange(pagination, filters, sorter, extra) {
 //   });
 // };
 
-const LessonsTable = ({ course: { students }, toggleEditModal, toggleDeleteModal }: Props) => {
+const LessonsTable = ({
+  course: { students },
+  onClickEdit,
+  onClickRemove,
+}: Props) => {
   const columns: ColumnsType<any> = [
     {
       title: '',
@@ -71,54 +76,69 @@ const LessonsTable = ({ course: { students }, toggleEditModal, toggleDeleteModal
     {
       title: 'Action',
       dataIndex: 'action',
-      render: () => (
-        <div
-          style={{
-            display: 'flex',
-            fontSize: '16px',
-            alignItems: 'center',
-          }}
-        >
-          <Tooltip title="Edit Student">
-            <EditButton
-                  // TODO Add edit a student modal
-                  onClick={(e) => {
-                    console.log(students);
-                    toggleEditModal(e)}
-                  }
-            >
-              <EditOutlined />
-            </EditButton>
-          </Tooltip>
-          <Tooltip title="Delete Student">
-            <DeleteButton
-                  // TODO Add confirmation popup to delete a students
-              onClick={() => toggleDeleteModal()}
-            >
-              <DeleteOutlined style={{ margin: '0px 0px 0px 15px' }} />
-            </DeleteButton>
-          </Tooltip>
-        </div>
-      ),
     },
   ];
   const [data, setData] = useState<ColumnsType<TableItem>>();
 
   useEffect(() => {
     setData(
-        students.map(
-            ({ firstName, lastName, gradeLevel, username }, index: number) => ({
-              index: index + 1,
-              key: index,
-              firstName,
-              lastName,
-              gradeLevel,
-              username,
-            }),
-        ),
+      students.map(
+        ({ firstName, lastName, gradeLevel, username, id }, index: number) => ({
+          index: index + 1,
+          key: index,
+          firstName,
+          lastName,
+          gradeLevel,
+          username,
+          action: (
+            <EditStudentTableButton
+              id={id}
+              onClickEdit={onClickEdit}
+              onClickRemove={onClickRemove}
+            />
+          ),
+        }),
+      ),
     );
   }, [students]);
   return <Table columns={columns} dataSource={data} onChange={onChange} />;
+};
+
+type EditStudentTableButtonProps = {
+  id: string;
+  onClickEdit: (string) => void;
+  onClickRemove: (e) => void;
+};
+const EditStudentTableButton = ({
+  id,
+  onClickEdit,
+  onClickRemove,
+}: EditStudentTableButtonProps) => {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        fontSize: '16px',
+        alignItems: 'center',
+      }}
+    >
+      <Tooltip title="Edit Student">
+        <EditButton
+          onClick={(e) => {
+            e.preventDefault();
+            onClickEdit(id);
+          }}
+        >
+          <EditOutlined />
+        </EditButton>
+      </Tooltip>
+      <Tooltip title="Delete Student">
+        <DeleteButton onClick={onClickRemove}>
+          <DeleteOutlined style={{ margin: '0px 0px 0px 15px' }} />
+        </DeleteButton>
+      </Tooltip>
+    </div>
+  );
 };
 
 export default createFragmentContainer(LessonsTable, {

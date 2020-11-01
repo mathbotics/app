@@ -15,100 +15,96 @@ import EditStudentModal from '../students/Modals/EditStudentModal';
 
 type Props = { course: EditCourseStudents_course };
 
-const EditCourseStudents = ({ course, course: { students }}: Props) => {
-    const [
-        isAddStudentModalOpen,
-        toggleAddStudentModal,
-    ] = useState<boolean>(false);
-    const [
-        isDeleteStudentModalOpen,
-        toggleDeleteStudentModal,
-    ] = useState<boolean>(false);
-    const [
-      edit,
-      toggleEdit,
-    ] = useState<boolean>(false);
-    const [
-      deleteStudent,
-      toggleDeleteStudent,
-    ] = useState<boolean>(false);
-    return (
-      <Layout style={{ backgroundColor: 'white', display: 'inline' }}>
-        <Button
-          onClick={() => toggleAddStudentModal(!isAddStudentModalOpen)}
-          icon={<UserAddOutlined />}
-          type="primary"
-          style={{ margin: '0px 5px 15px 0px ', width: 'fit-content' }}
-        >
-          Add Student
-        </Button>
-        <Button
-          onClick={() => toggleDeleteStudentModal(!isDeleteStudentModalOpen)}
-          icon={<DeleteOutlined />}
-          type="primary"
-          danger
-          style={{ margin: '0px 5px 15px 0px ', width: 'fit-content' }}
-        >
-          Delete All Students
-        </Button>
-        <AddStudentModal
-          title="Add student"
-          visible={isAddStudentModalOpen}
-          courseId={course.id}
-          onSubmitSuccess={() => toggleAddStudentModal(false)}
-          onSubmitError={(e: Error) => console.error(e)}
-          onCancel={() => toggleAddStudentModal(!isAddStudentModalOpen)}
-        />
-        <DeleteStudentModal
-          title="Delete All Students"
-          visible={isDeleteStudentModalOpen}
-          courseId={course.id}
-          onSubmitSuccess={() => toggleDeleteStudentModal(false)}
-          onSubmitError={(e: Error) => console.error(e)}
-          onCancel={() => toggleDeleteStudentModal(!isDeleteStudentModalOpen)}
-        />
-        <StudentsTable
-          course={course}
-          editModal={edit}
-          toggleEditModal={(e) => {
-              toggleEdit(!edit)
-              console.log("DATA here ?!?!?", e);
-          }}
-          toggleDeleteModal={() => toggleDeleteStudent(!deleteStudent)}
-        />
-        <EditStudentModal
-          title="Edit Student"
-          visible={edit}
-          studentId={students[0].id}
-          onSubmitSuccess={() => toggleEdit(false)}
-          onSubmitError={(e: Error) => console.error(e)}
-          onCancel={() => toggleEdit(!edit)}
-        />
-        <DeleteSingleStudentModal
-          title="Delete Student"
-          visible={deleteStudent}
-          // courseId={course.id}
-          onSubmitSuccess={() => console.log("It Worked!?!?!?!")}
-          onSubmitError={(e: Error) => console.error(e)}
-          onCancel={() => toggleDeleteStudent(!deleteStudent)}
-        />
-      </Layout>
-    );
+const EditCourseStudents = ({ course, course: { students } }: Props) => {
+  const [isAddStudentModalOpen, toggleAddStudentModal] = useState<boolean>(
+    false,
+  );
+  const [isDeleteStudentModalOpen, toggleDeleteStudentModal] = useState<
+    boolean
+  >(false);
+  const [edit, toggleEdit] = useState<boolean>(false);
+  const [deleteStudent, toggleDeleteStudent] = useState<boolean>(false);
+  const [selectedStudentId, setSelectedStudentId] = useState<string>('');
+  return (
+    <Layout style={{ backgroundColor: 'white', display: 'inline' }}>
+      <Button
+        onClick={() => toggleAddStudentModal(!isAddStudentModalOpen)}
+        icon={<UserAddOutlined />}
+        type="primary"
+        style={{ margin: '0px 5px 15px 0px ', width: 'fit-content' }}
+      >
+        Add Student
+      </Button>
+      <Button
+        onClick={() => toggleDeleteStudentModal(!isDeleteStudentModalOpen)}
+        icon={<DeleteOutlined />}
+        type="primary"
+        danger
+        style={{ margin: '0px 5px 15px 0px ', width: 'fit-content' }}
+      >
+        Delete All Students
+      </Button>
+      <AddStudentModal
+        title="Add student"
+        visible={isAddStudentModalOpen}
+        courseId={course.id}
+        onSubmitSuccess={() => toggleAddStudentModal(false)}
+        onSubmitError={(e: Error) => console.error(e)}
+        onCancel={() => toggleAddStudentModal(!isAddStudentModalOpen)}
+      />
+      <DeleteStudentModal
+        title="Delete All Students"
+        visible={isDeleteStudentModalOpen}
+        courseId={course.id}
+        onSubmitSuccess={() => toggleDeleteStudentModal(false)}
+        onSubmitError={(e: Error) => console.error(e)}
+        onCancel={() => toggleDeleteStudentModal(!isDeleteStudentModalOpen)}
+      />
+      <StudentsTable
+        course={course}
+        editModal={edit}
+        onClickEdit={studentId => {
+          setSelectedStudentId(studentId);
+          toggleEdit(!edit);
+        }
+      }
+        onClickRemove={e => {
+          // TODO: toggleRemove()
+          console.log("trying to remove")
+        }}
+      />
+      <EditStudentModal
+        title="Edit Student"
+        visible={edit}
+        studentId={selectedStudentId}
+        onSubmitSuccess={() => toggleEdit(false)}
+        onSubmitError={(e: Error) => console.error(`Unable to edit student ${e}`)}
+        onCancel={() => toggleEdit(!edit)}
+      />
+      <DeleteSingleStudentModal
+        title="Delete Student"
+        visible={deleteStudent}
+        // courseId={course.id}
+        onSubmitSuccess={() => console.log('It Worked!?!?!?!')}
+        onSubmitError={(e: Error) => console.error(e)}
+        onCancel={() => toggleDeleteStudent(!deleteStudent)}
+      />
+    </Layout>
+  );
 };
 
 export default createFragmentContainer(EditCourseStudents, {
-    course: graphql`
-        fragment EditCourseStudents_course on Course {
-            id
-            students {
-              username
-              firstName
-              lastName
-              gradeLevel
-              id
-            }            
-            ...StudentsTable_course
-        }
-    `,
+  course: graphql`
+    fragment EditCourseStudents_course on Course {
+      id
+      students {
+        username
+        firstName
+        lastName
+        gradeLevel
+        id
+      }
+      ...StudentsTable_course
+    }
+  `,
 });
-
