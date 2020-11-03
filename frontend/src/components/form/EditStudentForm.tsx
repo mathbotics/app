@@ -3,10 +3,15 @@ import { Form, Button } from 'antd';
 import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import { FormItem } from './FormItem';
 import { SelectFormItem } from './SelectFormItem';
+import { graphql } from 'babel-plugin-relay/macro';
+import { createFragmentContainer } from 'react-relay';
+import { EditStudentForm_student } from './__generated__/EditStudentForm_student.graphql';
 
 type FormProps = {
   onSubmit: (values: Store) => void;
   onSubmitError: (error: ValidateErrorEntity) => void;
+  student?: EditStudentForm_student;
+  studentId: string;
 };
 
 enum GradeLevel {
@@ -28,18 +33,21 @@ export type EditStudentFormFields = { title: string };
 export const EditStudentForm = ({
   onSubmit,
   onSubmitError,
+  student,
+  studentId,
 }: FormProps): JSX.Element => {
   const [form] = Form.useForm();
   const { setFieldsValue, getFieldValue } = form;
 
   React.useEffect(() => {
     setFieldsValue({
-      firstName:'',
-      lastName: '',
-      username: '',
-      gradeLevel: GradeLevel.FIRST,
+      firstName: student?.firstName ?? '',
+      lastName: student?.lastName ?? '',
+      username: student?.username ?? '',
+      gradeLevel: student?.gradeLevel ?? '',
     });
-  }, [setFieldsValue]);
+    console.log(studentId, 'Is this being passed?');
+  }, [student, setFieldsValue]);
 
   return (
     <Form
@@ -97,3 +105,15 @@ export const EditStudentForm = ({
     </Form>
   );
 };
+
+export default createFragmentContainer(EditStudentForm, {
+  student: graphql`
+    fragment EditStudentForm_student on Student {
+      username
+      firstName
+      lastName
+      gradeLevel
+      id
+    }
+  `,
+});

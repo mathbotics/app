@@ -66,7 +66,7 @@ const EditCourse = ({course, query }: Props) => {
         </Title>
       </div>
 
-      <Tabs defaultActiveKey="0" onChange={handleTabChange}>
+      <Tabs defaultActiveKey="1" onChange={handleTabChange}>
         {tabs.map(({ title, Component }: Tab, index: number) => (
           <TabPane key={index.toString()} tab={title}>
             {Component}
