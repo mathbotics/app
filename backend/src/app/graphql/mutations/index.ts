@@ -6,6 +6,7 @@ export * from './registerUser';
 //export * from './logout'
 export * from './editStudent';
 export * from './deleteStudent';
+export * from './deleteSingleStudent';
 export * from './sendInvitationEmail';
 export * from './createSlide';
 export * from './updateBlockToMultipleChoiceBlock';
