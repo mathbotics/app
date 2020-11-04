@@ -8,5 +8,6 @@ export const Student = objectType({
     t.model.gradeLevel();
     t.model.guardians();
     t.model.courses();
+    t.model.email();
   },
 });
