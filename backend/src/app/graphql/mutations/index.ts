@@ -5,6 +5,7 @@ export * from './logIn';
 export * from './registerUser';
 //export * from './logout'
 export * from './editStudent';
+export * from './resetPassword';
 export * from './deleteStudent';
 export * from './deleteSingleStudent';
 export * from './sendInvitationEmail';

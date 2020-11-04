@@ -1763,6 +1763,7 @@ type Mutation {
   editStudent(input: EditStudentInput!): Student!
   logIn(input: LogInInput!): User!
   registerUser(input: RegisterUserInput!): User!
+  resetPassword(input: ResetPasswordInput!): User!
   sendInvitationEmail(input: SendInvitationEmailInput!): String!
   updateBlockToMultipleChoiceBlock(input: UpdateBlockToMultipleChoiceBlockInput!): MultipleChoiceQuestionBlock!
   updateBlockToTextBlock(input: UpdateBlockToTextBlockInput!): TextBlock!
@@ -2035,6 +2036,11 @@ input RegisterUserInput {
   password: String!
   token: String!
   username: String!
+}
+
+input ResetPasswordInput {
+  email: String!
+  password: String!
 }
 
 input SendInvitationEmailInput {
