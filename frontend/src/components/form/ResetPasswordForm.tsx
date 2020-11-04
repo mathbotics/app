@@ -3,17 +3,17 @@ import { Form, Button } from 'antd';
 import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import { FormItem } from './FormItem';
 
-type LogInFormProps = {
+type ResetPasswordFormProps = {
   onSubmit: (values: Store) => void;
   onSubmitError: (error: ValidateErrorEntity) => void;
 };
 
-export type LogInFormFields = {
+export type ResetPasswordFormFields = {
   username: string;
   password: string;
 };
 
-export const LogInForm = (props: LogInFormProps): JSX.Element => {
+export const ResetPasswordForm = (props: ResetPasswordFormProps): JSX.Element => {
   const [form] = Form.useForm();
   const { setFieldsValue, getFieldValue } = form;
 
@@ -44,9 +44,9 @@ export const LogInForm = (props: LogInFormProps): JSX.Element => {
         value={getFieldValue('password')}
         type="password"
         input="password"
-        placeholder="Password"
+        placeholder="New Password"
       />
-      <a href="/forgotPassword"> Forgot Password? </a>
+    
       <Button block type="primary" size="large" htmlType="submit">
         <b>Go</b>
       </Button>

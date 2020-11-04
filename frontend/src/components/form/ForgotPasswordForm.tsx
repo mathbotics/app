@@ -3,26 +3,27 @@ import { Form, Button } from 'antd';
 import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import { FormItem } from './FormItem';
 
-type LogInFormProps = {
+type ForgotPasswordFormProps = {
   onSubmit: (values: Store) => void;
   onSubmitError: (error: ValidateErrorEntity) => void;
 };
 
-export type LogInFormFields = {
+export type ForgotPasswordFormFields = {
   username: string;
-  password: string;
 };
 
-export const LogInForm = (props: LogInFormProps): JSX.Element => {
+export const ForgotPasswordForm = (props: ForgotPasswordFormProps): JSX.Element => {
   const [form] = Form.useForm();
   const { setFieldsValue, getFieldValue } = form;
 
-  React.useEffect(() => {
-    setFieldsValue({
-      username: '',
-      password: '',
-    });
-  }, [setFieldsValue]);
+  // Set default form values
+  React.useEffect(
+    () =>
+      setFieldsValue({
+        email: '',
+      }),
+    [setFieldsValue],
+  );
 
   return (
     <Form
@@ -30,25 +31,18 @@ export const LogInForm = (props: LogInFormProps): JSX.Element => {
       onFinish={props.onSubmit}
       onFinishFailed={props.onSubmitError}
       layout="vertical"
+      style={{ backgroundColor: 'white' }}
     >
       <FormItem
-        name="username"
+        name="email"
         value={getFieldValue('username')}
         type="text"
-        input="username"
-        placeholder="Username"
+        input="email"
+        placeholder="Email"
       />
 
-      <FormItem
-        name="password"
-        value={getFieldValue('password')}
-        type="password"
-        input="password"
-        placeholder="Password"
-      />
-      <a href="/forgotPassword"> Forgot Password? </a>
       <Button block type="primary" size="large" htmlType="submit">
-        <b>Go</b>
+        Reset Password
       </Button>
     </Form>
   );

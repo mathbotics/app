@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash dd10ca1b5d5bb940321180dceb580aa5 */
+/* @relayHash 40f5079b62bb37b720c1a1c6e55ecf1e */
 
 import { ConcreteRequest } from "relay-runtime";
 export type DeleteStudentInput = {
@@ -10,7 +10,7 @@ export type DeleteStudentMutationVariables = {
     input: DeleteStudentInput;
 };
 export type DeleteStudentMutationResponse = {
-    readonly deleteStudent: {
+    readonly deleteStudents: {
         readonly courses: ReadonlyArray<{
             readonly id: string;
         }>;
@@ -27,7 +27,7 @@ export type DeleteStudentMutation = {
 mutation DeleteStudentMutation(
   $input: DeleteStudentInput!
 ) {
-  deleteStudent(input: $input) {
+  deleteStudents(input: $input) {
     courses {
       id
     }
@@ -48,7 +48,7 @@ v1 = [
   {
     "kind": "LinkedField",
     "alias": null,
-    "name": "deleteStudent",
+    "name": "deleteStudents",
     "storageKey": null,
     "args": [
       {
@@ -101,10 +101,10 @@ return {
     "operationKind": "mutation",
     "name": "DeleteStudentMutation",
     "id": null,
-    "text": "mutation DeleteStudentMutation(\n  $input: DeleteStudentInput!\n) {\n  deleteStudent(input: $input) {\n    courses {\n      id\n    }\n  }\n}\n",
+    "text": "mutation DeleteStudentMutation(\n  $input: DeleteStudentInput!\n) {\n  deleteStudents(input: $input) {\n    courses {\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = 'ca2aad3f99abcaf484e46d91ac0bba8f';
+(node as any).hash = 'b2bb2d990c11a3d68d591ae8c805da4d';
 export default node;

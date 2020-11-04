@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button } from 'antd';
+import { Form, Button, Alert } from 'antd';
 import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import { FormItem } from './FormItem';
 import { SelectFormItem } from './SelectFormItem';
@@ -7,6 +7,7 @@ import { SelectFormItem } from './SelectFormItem';
 type FormProps = {
   onSubmit: (values: Store) => void;
   onSubmitError: (error: ValidateErrorEntity) => void;
+  createdStudent: boolean
 };
 
 enum GradeLevel {
@@ -28,6 +29,7 @@ export type CreateStudentFormFields = { title: string };
 export const CreateStudentForm = ({
   onSubmit,
   onSubmitError,
+  createdStudent,
 }: FormProps): JSX.Element => {
   const [form] = Form.useForm();
   const { setFieldsValue, getFieldValue } = form;
@@ -48,6 +50,16 @@ export const CreateStudentForm = ({
       onFinishFailed={onSubmitError}
       layout="vertical"
     >
+      {/* TODO need help hiding alert until submit */}
+      {!createdStudent && (
+          // send error alert if email wasn't sent
+      <Alert
+        message="Username is taken"
+        type="error"
+        showIcon
+        closable
+      />
+      )}
       <p>
         <b>Username</b>
       </p>

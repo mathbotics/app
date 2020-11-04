@@ -1,5 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import {
+  LogoutOutlined,
+} from '@ant-design/icons';
 
 import withSidebar from './components/hocs/Sidebar/withSidebar';
 
@@ -16,6 +19,8 @@ import {
   EditCoursePage,
   LessonPage,
   CoursePage,
+  ForgotPasswordPage,
+  ResetPasswordPage,
 } from './pages';
 
 // Routes
@@ -25,6 +30,8 @@ export const App: React.FC = () => (
   <BrowserRouter>
     <Switch>
       <Route path="/login" component={LoginPage} />
+      <Route path="/forgotPassword" component={ForgotPasswordPage} />
+      <Route path="/resetPassword/:token" component={ResetPasswordPage} />
       <Route path="/register/:token" component={RegisterPage} />
       <ProtectedRoute exact path="/" component={withSidebar(DashboardPage)} />
       <ProtectedRoute
@@ -67,6 +74,17 @@ export const App: React.FC = () => (
         allowedRoles={['Admin', 'Instructor', 'Student']}
         component={withSidebar(CoursePage)}
       />
+      {/* <Route
+        path='/logout'
+        component={withSidebar(
+          (): JSX.Element => {
+            console.log('clicking');
+            return (
+            <span>trying to log out</span>
+
+            )
+          })}
+      /> */}
       <Route component={NotFoundPage} />
     </Switch>
   </BrowserRouter>

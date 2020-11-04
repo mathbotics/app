@@ -33,7 +33,7 @@ const Courses = ({ query }: Props) => {
   const [pageState, setPageState] = useState<PageState>(PageState.Default);
   return (
     <Layout style={{ backgroundColor: 'white', maxHeight: '95vh' }}>
-      <HeaderWrappper>
+      <HeaderWrapper>
         <Title level={3} style={{ fontWeight: 700 }}>
           Courses
         </Title>
@@ -47,7 +47,7 @@ const Courses = ({ query }: Props) => {
             onClick={() => setPageState(PageState.CreateCourseIntent)}
           />
         </Tooltip>
-      </HeaderWrappper>
+      </HeaderWrapper>
 
       <CreateCourseModal
         title="Create a Course"
@@ -75,7 +75,7 @@ export default createFragmentContainer(Courses, {
   `,
 });
 
-const HeaderWrappper = styled.div`
+const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;

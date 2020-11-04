@@ -36,23 +36,23 @@ export const editStudent = mutationField('editStudent', {
   ) {
     const { user, ...student } = (
         await prisma.student.update({
-            where:{ id: studentId },
-            data:{
-                user:{
-                    update:{
+            where: { id: studentId },
+            data: {
+                user: {
+                    update: {
                         username,
                         firstName,
                         lastName,
-                    }
+                    },
                 },
                 gradeLevel,
 
             },
-            include: {user: true}
-            
+            include: { user: true },
+
         })
-        
+
     );
-    return { ...user, ...student}
-    }
+    return { ...user, ...student }
+    },
 })
