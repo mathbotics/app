@@ -9,7 +9,6 @@ export const DeleteSingleStudentInput = inputObjectType({
     t.string('studentId', {
       required: true,
     });
-
   },
 });
 
@@ -24,8 +23,8 @@ export const deleteSingleStudent = mutationField('deleteSingleStudent', {
   ) {
     const { user, ...student } = nullthrows(
       await prisma.student.delete({
-        where:{
-            id: studentId
+        where: {
+            id: studentId,
         },
         include: { user: true },
       }),

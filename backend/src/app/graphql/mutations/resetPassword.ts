@@ -27,20 +27,20 @@ export const resetPassword = mutationField('resetPassword', {
   ) {
     const { user, ...instructor } = nullthrows(
         await prisma.instructor.update({
-            where:{ email: email },
-            data:{
-                user:{
-                    update:{
-                        password: await bcrypt.hash(password, 10)
-                    }
+            where: { email },
+            data: {
+                user: {
+                    update: {
+                        password: await bcrypt.hash(password, 10),
+                    },
                 },
                 email: nullthrows(email, 'email is null or undefined'),
             },
-            include: {user: true}
-            
-        })
-        
+            include: { user: true },
+
+        }),
+
     );
-    return { ...user, ...instructor}
-    }
+    return { ...user, ...instructor }
+    },
 })

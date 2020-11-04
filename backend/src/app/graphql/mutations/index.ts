@@ -7,7 +7,7 @@ export * from './logout'
 export * from './deleteStudents';
 export * from './editStudent';
 export * from './resetPassword';
-export * from './deleteStudent';
+export * from './deleteStudents';
 export * from './deleteSingleStudent';
 export * from './sendInvitationEmail';
 export * from './createSlide';
