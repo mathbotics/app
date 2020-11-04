@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Layout, Button } from 'antd';
-import { UserAddOutlined, DeleteOutlined } from '@ant-design/icons';
+import { UserAddOutlined, DeleteOutlined, WindowsFilled } from '@ant-design/icons';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 
@@ -60,7 +60,7 @@ const EditCourseStudents = ({ course }: Props) => {
         title="Delete All Students"
         visible={isDeleteStudentModalOpen}
         courseId={course.id}
-        onSubmitSuccess={() => toggleDeleteStudentModal(false)}
+        onSubmitSuccess={() => window.location.reload()}
         onSubmitError={(e: Error) => console.error(e)}
         onCancel={() => toggleDeleteStudentModal(!isDeleteStudentModalOpen)}
       />
@@ -80,7 +80,7 @@ const EditCourseStudents = ({ course }: Props) => {
         title="Edit Student"
         visible={edit}
         studentId={selectedStudentId}
-        onSubmitSuccess={() => toggleEdit(false)}
+        onSubmitSuccess={() => window.location.reload()}
         onSubmitError={(e: Error) =>
           console.error(`Unable to edit student ${e}`)}
         onCancel={() => toggleEdit(!edit)}
@@ -89,7 +89,7 @@ const EditCourseStudents = ({ course }: Props) => {
         title="Delete Student"
         visible={deleteStudent}
         studentId={selectedStudentId}
-        onSubmitSuccess={() => toggleDeleteStudent(false)}
+        onSubmitSuccess={() => window.location.reload()}
         onSubmitError={(e: Error) => console.error(e)}
         onCancel={() => toggleDeleteStudent(!deleteStudent)}
       />

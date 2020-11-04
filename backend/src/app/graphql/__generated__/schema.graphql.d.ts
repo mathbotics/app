@@ -2828,7 +2828,6 @@ export interface NexusGenFieldTypes {
     createSlide: NexusGenRootTypes['Slide']; // Slide!
     createStudent: NexusGenRootTypes['Student']; // Student!
     deleteSingleStudent: NexusGenRootTypes['Student']; // Student!
-    deleteStudent: NexusGenRootTypes['Student']; // Student!
     deleteStudents: NexusGenRootTypes['Student']; // Student!
     editStudent: NexusGenRootTypes['Student']; // Student!
     logIn: NexusGenRootTypes['User']; // User!
@@ -2950,9 +2949,6 @@ export interface NexusGenArgTypes {
     }
     deleteSingleStudent: { // args
       input: NexusGenInputs['DeleteSingleStudentInput']; // DeleteSingleStudentInput!
-    }
-    deleteStudent: { // args
-      input: NexusGenInputs['DeleteStudentInput']; // DeleteStudentInput!
     }
     deleteStudents: { // args
       input: NexusGenInputs['DeleteStudentInput']; // DeleteStudentInput!

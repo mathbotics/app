@@ -9,7 +9,7 @@ type ResetPasswordFormProps = {
 };
 
 export type ResetPasswordFormFields = {
-  username: string;
+  email: string;
   password: string;
 };
 
@@ -19,7 +19,7 @@ export const ResetPasswordForm = (props: ResetPasswordFormProps): JSX.Element =>
 
   React.useEffect(() => {
     setFieldsValue({
-      username: '',
+      email: '',
       password: '',
     });
   }, [setFieldsValue]);
@@ -32,11 +32,11 @@ export const ResetPasswordForm = (props: ResetPasswordFormProps): JSX.Element =>
       layout="vertical"
     >
       <FormItem
-        name="username"
-        value={getFieldValue('username')}
+        name="email"
+        value={getFieldValue('email')}
         type="text"
-        input="username"
-        placeholder="Username"
+        input="email"
+        placeholder="e-mail"
       />
 
       <FormItem

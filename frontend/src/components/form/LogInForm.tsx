@@ -46,10 +46,10 @@ export const LogInForm = (props: LogInFormProps): JSX.Element => {
         input="password"
         placeholder="Password"
       />
-      <a href="/forgotPassword"> Forgot Password? </a>
       <Button block type="primary" size="large" htmlType="submit">
         <b>Go</b>
       </Button>
+      <a href="/forgotPassword" > Forgot Password? </a>
     </Form>
   );
 };

@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
 import { ResetPasswordForm } from '../components/form';
 import { AppLogo } from '../components/icons';
-import { commit as commitLoginMutation } from '../graphql/mutations/LogInMutation';
+import { commit as commitResetPasswordMutation } from '../graphql/mutations/ResetPasswordMutation';
 import { LogInMutationResponse } from '../graphql/mutations/__generated__/LogInMutation.graphql';
 
 const StyledLayout = styled(Layout)`
@@ -45,9 +45,9 @@ export const ResetPasswordPage = (props: LogInProps) => {
   const onLoginFailure = (error: Error) =>
     setLoginState(AuthState.INVALID_ATTEMPT);
 
-  const onSubmitHandler = ({ username, password }: Store): void => {
+  const onSubmitHandler = ({ email, password }: Store): void => {
     setLoginState(AuthState.AUTHENTICATING);
-    commitLoginMutation({ username, password }, onLoginSuccess, onLoginFailure);
+    commitResetPasswordMutation({ email, password }, onLoginSuccess, onLoginFailure);
   };
 
   const onSubmitErrorHandler = (error: ValidateErrorEntity) => {

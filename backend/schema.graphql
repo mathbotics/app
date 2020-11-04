@@ -698,6 +698,10 @@ input DateTimeFilter {
   notIn: [DateTime!]
 }
 
+input DeleteSingleStudentInput {
+  studentId: String!
+}
+
 input DeleteStudentInput {
   courseId: String!
 }
@@ -1754,12 +1758,15 @@ type Mutation {
   createOneLesson(data: LessonCreateInput!): Lesson!
   createSlide(input: CreateSlideInput!): Slide!
   createStudent(input: CreateStudentInput!): Student!
+  deleteSingleStudent(input: DeleteSingleStudentInput!): Student!
   deleteStudents(input: DeleteStudentInput!): Student!
   editStudent(input: EditStudentInput!): Student!
   logIn(input: LogInInput!): User!
   logOut: Boolean!
   registerUser(input: RegisterUserInput!): User!
+  resetPassword(input: ResetPasswordInput!): User!
   sendInvitationEmail(input: SendInvitationEmailInput!): String!
+  sendResetPasswordEmail(input: SendResetPasswordEmailInput!): String!
   updateBlockToMultipleChoiceBlock(input: UpdateBlockToMultipleChoiceBlockInput!): MultipleChoiceQuestionBlock!
   updateBlockToTextBlock(input: UpdateBlockToTextBlockInput!): TextBlock!
   updateOneCourse(data: CourseUpdateInput!, where: CourseWhereUniqueInput!): Course
@@ -2020,7 +2027,8 @@ type Query {
   courses(after: CourseWhereUniqueInput, before: CourseWhereUniqueInput, first: Int, last: Int, skip: Int, where: CourseWhereInput): [Course!]!
   lesson(where: LessonWhereUniqueInput!): Lesson
   lessons(after: LessonWhereUniqueInput, before: LessonWhereUniqueInput, first: Int, last: Int, skip: Int, where: LessonWhereInput): [Lesson!]!
-  students(after: StudentWhereUniqueInput, before: StudentWhereUniqueInput, first: Int, last: Int, skip: Int): [Student!]!
+  student(where: StudentWhereUniqueInput!): Student
+  students(after: StudentWhereUniqueInput, before: StudentWhereUniqueInput, first: Int, last: Int, skip: Int, where: StudentWhereInput): [Student!]!
   viewer: User!
 }
 
@@ -2032,9 +2040,18 @@ input RegisterUserInput {
   username: String!
 }
 
+input ResetPasswordInput {
+  email: String!
+  password: String!
+}
+
 input SendInvitationEmailInput {
   email: String!
   role: String!
+}
+
+input SendResetPasswordEmailInput {
+  email: String!
 }
 
 type SingleSlide implements Slide {
