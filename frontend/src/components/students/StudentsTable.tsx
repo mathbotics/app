@@ -109,27 +109,32 @@ const EditStudentTableButton = ({
 }: EditStudentTableButtonProps) => (
   <div
     style={{
-        display: 'flex',
-        fontSize: '16px',
-        alignItems: 'center',
-      }}
+      display: 'flex',
+      fontSize: '16px',
+      alignItems: 'center',
+    }}
   >
     <Tooltip title="Edit Student">
       <EditButton
         onClick={(e) => {
-            onClickEdit(id);
-          }}
+          onClickEdit(id);
+        }}
       >
         <EditOutlined />
       </EditButton>
     </Tooltip>
     <Tooltip title="Delete Student">
-      <DeleteButton onClick={() => { console.log(id); onClickRemove(id) }}>
+      <DeleteButton
+        onClick={() => {
+          console.log(id);
+          onClickRemove(id);
+        }}
+      >
         <DeleteOutlined style={{ margin: '0px 0px 0px 15px' }} />
       </DeleteButton>
     </Tooltip>
   </div>
-  );
+);
 
 export default createFragmentContainer(LessonsTable, {
   course: graphql`
