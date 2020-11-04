@@ -85,7 +85,7 @@ const EditCourseStudents = ({ course }: Props) => {
         title="Delete Student"
         visible={deleteStudent}
         studentId={selectedStudentId}
-        onSubmitSuccess={() => {toggleDeleteStudent(false), window.location.reload()}}
+        onSubmitSuccess={() => toggleDeleteStudent(false)}
         onSubmitError={(e: Error) => console.error(e)}
         onCancel={() => toggleDeleteStudent(!deleteStudent)}
       />
