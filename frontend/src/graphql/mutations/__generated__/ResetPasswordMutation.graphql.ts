@@ -1,11 +1,11 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 2d2fb68c2c77349244402bf26d41b79d */
+/* @relayHash 196abecb5be7857d8390f814a149aabd */
 
 import { ConcreteRequest } from "relay-runtime";
 export type ResetPasswordInput = {
-    email: string;
     password: string;
+    token: string;
 };
 export type ResetPasswordMutationVariables = {
     input: ResetPasswordInput;

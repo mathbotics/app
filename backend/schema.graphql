@@ -2041,8 +2041,8 @@ input RegisterUserInput {
 }
 
 input ResetPasswordInput {
-  email: String!
   password: String!
+  token: String!
 }
 
 input SendInvitationEmailInput {

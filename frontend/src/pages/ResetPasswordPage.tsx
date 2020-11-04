@@ -3,11 +3,12 @@ import { Layout, Alert } from 'antd';
 import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
 
 import styled from 'styled-components';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import { ResetPasswordForm } from '../components/form';
 import { AppLogo } from '../components/icons';
 import { commit as commitResetPasswordMutation } from '../graphql/mutations/ResetPasswordMutation';
 import { LogInMutationResponse } from '../graphql/mutations/__generated__/LogInMutation.graphql';
+import nullthrows from 'nullthrows';
 
 const StyledLayout = styled(Layout)`
   height: 100%;
@@ -35,6 +36,7 @@ enum AuthState {
   INVALID_ATTEMPT,
 }
 export const ResetPasswordPage = (props: LogInProps) => {
+  const { token } = useParams();
   const [logInState, setLoginState] = React.useState<AuthState>(
     AuthState.DEFAULT,
   );
@@ -45,9 +47,9 @@ export const ResetPasswordPage = (props: LogInProps) => {
   const onLoginFailure = (error: Error) =>
     setLoginState(AuthState.INVALID_ATTEMPT);
 
-  const onSubmitHandler = ({ email, password }: Store): void => {
+  const onSubmitHandler = ({ password }: Store): void => {
     setLoginState(AuthState.AUTHENTICATING);
-    commitResetPasswordMutation({ email, password }, onLoginSuccess, onLoginFailure);
+    commitResetPasswordMutation({ password, token: nullthrows(token) }, onLoginSuccess, onLoginFailure);
   };
 
   const onSubmitErrorHandler = (error: ValidateErrorEntity) => {

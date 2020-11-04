@@ -19,7 +19,6 @@ export const ResetPasswordForm = (props: ResetPasswordFormProps): JSX.Element =>
 
   React.useEffect(() => {
     setFieldsValue({
-      email: '',
       password: '',
     });
   }, [setFieldsValue]);
@@ -31,14 +30,6 @@ export const ResetPasswordForm = (props: ResetPasswordFormProps): JSX.Element =>
       onFinishFailed={props.onSubmitError}
       layout="vertical"
     >
-      <FormItem
-        name="email"
-        value={getFieldValue('email')}
-        type="text"
-        input="email"
-        placeholder="e-mail"
-      />
-
       <FormItem
         name="password"
         value={getFieldValue('password')}

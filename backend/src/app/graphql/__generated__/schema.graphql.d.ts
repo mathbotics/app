@@ -1645,8 +1645,8 @@ export interface NexusGenInputs {
     username: string; // String!
   }
   ResetPasswordInput: { // input type
-    email: string; // String!
     password: string; // String!
+    token: string; // String!
   }
   SendInvitationEmailInput: { // input type
     email: string; // String!

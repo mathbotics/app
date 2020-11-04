@@ -1759,7 +1759,6 @@ type Mutation {
   createSlide(input: CreateSlideInput!): Slide!
   createStudent(input: CreateStudentInput!): Student!
   deleteSingleStudent(input: DeleteSingleStudentInput!): Student!
-  deleteStudent(input: DeleteStudentInput!): Student!
   deleteStudents(input: DeleteStudentInput!): Student!
   editStudent(input: EditStudentInput!): Student!
   logIn(input: LogInInput!): User!
@@ -2042,8 +2041,8 @@ input RegisterUserInput {
 }
 
 input ResetPasswordInput {
-  email: String!
   password: String!
+  token: String!
 }
 
 input SendInvitationEmailInput {

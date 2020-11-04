@@ -2,7 +2,10 @@ import { mutationField, inputObjectType, arg } from 'nexus';
 import nullthrows from 'nullthrows';
 import bcrypt from 'bcrypt';
 import prisma from '../../data/prisma';
-import { Instructor } from '../objects';
+import jwt from 'jsonwebtoken';
+import { Context } from '../context';
+
+const { JWT_SECRET } = process.env;
 
 export const ResetPasswordInput = inputObjectType({
   name: 'ResetPasswordInput',
@@ -10,9 +13,9 @@ export const ResetPasswordInput = inputObjectType({
     t.string('password', {
       required: true,
     });
-    t.string('email', {
-      required: true,
-    });
+    t.string('token', {
+        required: true,
+      });
   },
 });
 
@@ -21,26 +24,34 @@ export const resetPassword = mutationField('resetPassword', {
   args: {
     input: arg({ type: 'ResetPasswordInput', required: true }),
   },
-  async resolve(
-    _root,
-    { input: { password, email } },
-  ) {
-    const { user, ...instructor } = nullthrows(
-        await prisma.instructor.update({
-            where: { email },
-            data: {
+  async resolve(_root, { input: { password, token } }, ctx) {
+    const { email } = jwt.verify(
+      token,
+      nullthrows(JWT_SECRET, 'JWT_SECRET is null or undefined.'),
+    ) as { email?: string; };
+    try {
+
+          const { user, ...instructor } = nullthrows(
+            await (ctx as Context).prisma.instructor.update({
+              where: { email },
+              data: {
                 user: {
-                    update: {
-                        password: await bcrypt.hash(password, 10),
-                    },
+                  update: {
+                    password: await bcrypt.hash(password, 10),
+                  },
                 },
                 email: nullthrows(email, 'email is null or undefined'),
-            },
-            include: { user: true },
-
-        }),
-
-    );
-    return { ...user, ...instructor }
-    },
-})
+              },
+              include: { user: true },
+            }),
+            'Could not create instructor',
+          );
+          return { ...user, ...instructor };
+      
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.warn(e);
+      throw e;
+    }
+  },
+});
