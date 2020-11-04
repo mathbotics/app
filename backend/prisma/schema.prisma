@@ -57,6 +57,7 @@ model Student {
   guardians  Guardian[]
   courses    Course[]
   user       User
+  email      String
 }
 
 enum GradeLevel {
