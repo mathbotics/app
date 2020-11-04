@@ -2388,6 +2388,7 @@ input StringFilter {
 
 type Student implements User {
   courses(after: CourseWhereUniqueInput, before: CourseWhereUniqueInput, first: Int, last: Int, skip: Int): [Course!]!
+  email: String!
   firstName: String!
   gradeLevel: GradeLevel!
   guardians(after: GuardianWhereUniqueInput, before: GuardianWhereUniqueInput, first: Int, last: Int, skip: Int): [Guardian!]!
@@ -2418,6 +2419,7 @@ input StudentCreateOneWithoutUserInput {
 
 input StudentCreateWithoutCoursesInput {
   createdAt: DateTime
+  email: String!
   gradeLevel: GradeLevel!
   guardians: GuardianCreateManyWithoutStudentsInput
   id: String
@@ -2428,6 +2430,7 @@ input StudentCreateWithoutCoursesInput {
 input StudentCreateWithoutGuardiansInput {
   courses: CourseCreateManyWithoutStudentsInput
   createdAt: DateTime
+  email: String!
   gradeLevel: GradeLevel!
   id: String
   multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseCreateManyWithoutStudentInput
@@ -2437,6 +2440,7 @@ input StudentCreateWithoutGuardiansInput {
 input StudentCreateWithoutMultipleChoiceQuestionResponsesInput {
   courses: CourseCreateManyWithoutStudentsInput
   createdAt: DateTime
+  email: String!
   gradeLevel: GradeLevel!
   guardians: GuardianCreateManyWithoutStudentsInput
   id: String
@@ -2446,6 +2450,7 @@ input StudentCreateWithoutMultipleChoiceQuestionResponsesInput {
 input StudentCreateWithoutUserInput {
   courses: CourseCreateManyWithoutStudentsInput
   createdAt: DateTime
+  email: String!
   gradeLevel: GradeLevel!
   guardians: GuardianCreateManyWithoutStudentsInput
   id: String
@@ -2462,6 +2467,7 @@ input StudentScalarWhereInput {
   AND: [StudentScalarWhereInput!]
   courses: CourseFilter
   createdAt: DateTimeFilter
+  email: StringFilter
   gradeLevel: GradeLevel
   guardians: GuardianFilter
   id: StringFilter
@@ -2472,6 +2478,7 @@ input StudentScalarWhereInput {
 
 input StudentUpdateManyDataInput {
   createdAt: DateTime
+  email: String
   gradeLevel: GradeLevel
   id: String
 }
@@ -2523,6 +2530,7 @@ input StudentUpdateOneWithoutUserInput {
 
 input StudentUpdateWithoutCoursesDataInput {
   createdAt: DateTime
+  email: String
   gradeLevel: GradeLevel
   guardians: GuardianUpdateManyWithoutStudentsInput
   id: String
@@ -2533,6 +2541,7 @@ input StudentUpdateWithoutCoursesDataInput {
 input StudentUpdateWithoutGuardiansDataInput {
   courses: CourseUpdateManyWithoutStudentsInput
   createdAt: DateTime
+  email: String
   gradeLevel: GradeLevel
   id: String
   multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseUpdateManyWithoutStudentInput
@@ -2542,6 +2551,7 @@ input StudentUpdateWithoutGuardiansDataInput {
 input StudentUpdateWithoutMultipleChoiceQuestionResponsesDataInput {
   courses: CourseUpdateManyWithoutStudentsInput
   createdAt: DateTime
+  email: String
   gradeLevel: GradeLevel
   guardians: GuardianUpdateManyWithoutStudentsInput
   id: String
@@ -2551,6 +2561,7 @@ input StudentUpdateWithoutMultipleChoiceQuestionResponsesDataInput {
 input StudentUpdateWithoutUserDataInput {
   courses: CourseUpdateManyWithoutStudentsInput
   createdAt: DateTime
+  email: String
   gradeLevel: GradeLevel
   guardians: GuardianUpdateManyWithoutStudentsInput
   id: String
@@ -2593,6 +2604,7 @@ input StudentWhereInput {
   AND: [StudentWhereInput!]
   courses: CourseFilter
   createdAt: DateTimeFilter
+  email: StringFilter
   gradeLevel: GradeLevel
   guardians: GuardianFilter
   id: StringFilter
