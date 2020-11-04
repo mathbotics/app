@@ -46,7 +46,7 @@ export const ResetPasswordForm = (props: ResetPasswordFormProps): JSX.Element =>
         input="password"
         placeholder="New Password"
       />
-    
+
       <Button block type="primary" size="large" htmlType="submit">
         <b>Go</b>
       </Button>

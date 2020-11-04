@@ -1,10 +1,10 @@
 import React from 'react';
 import { Form, Button } from 'antd';
 import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
-import { FormItem } from './FormItem';
-import { SelectFormItem } from './SelectFormItem';
 import { graphql } from 'babel-plugin-relay/macro';
 import { createFragmentContainer } from 'react-relay';
+import { FormItem } from './FormItem';
+import { SelectFormItem } from './SelectFormItem';
 import { EditStudentForm_student } from './__generated__/EditStudentForm_student.graphql';
 
 type FormProps = {

@@ -4,7 +4,7 @@ import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 
 import { EditCourse_course } from './__generated__/EditCourse_course.graphql';
-//import { EditCourse_student } from './__generated__/EditCourse_student.graphql';
+// import { EditCourse_student } from './__generated__/EditCourse_student.graphql';
 import EditCourseDetails from './EditCourseDetails';
 import EditCourseLessonPlan from './EditCourseLessonPlan';
 import EditCourseStudents from './EditCourseStudents';
@@ -21,7 +21,7 @@ enum PageState {
 }
 type Tab = { title: string; Component: JSX.Element };
 type Props = { course: EditCourse_course; query: EditCourse_query };
-const EditCourse = ({course, query }: Props) => {
+const EditCourse = ({ course, query }: Props) => {
   /*
   TODO
   pageState isn't being used but it updated...?
@@ -40,7 +40,7 @@ const EditCourse = ({course, query }: Props) => {
     },
     {
       title: 'Students',
-      Component: <EditCourseStudents course={course}   />,
+      Component: <EditCourseStudents course={course} />,
     },
     {
       title: 'Course Details',

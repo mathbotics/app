@@ -3,11 +3,11 @@ import { Layout, Alert } from 'antd';
 import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
 
 import styled from 'styled-components';
+import { Redirect } from 'react-router-dom';
 import { ResetPasswordForm } from '../components/form';
 import { AppLogo } from '../components/icons';
 import { commit as commitLoginMutation } from '../graphql/mutations/LogInMutation';
 import { LogInMutationResponse } from '../graphql/mutations/__generated__/LogInMutation.graphql';
-import { Redirect } from 'react-router-dom';
 
 const StyledLayout = styled(Layout)`
   height: 100%;
@@ -59,20 +59,20 @@ export const ResetPasswordPage = (props: LogInProps) => {
     <StyledLayout>
       {logInState === AuthState.AUTHENTICATED && <Redirect to="/" />}
       <Wrapper>
-        
-      {logInState === AuthState.INVALID_ATTEMPT && (
-          <SAlert
-            message="Unable to verify username and password"
-            type="error"
-          />
-        )}
-       <AppLogo height="150px" />
-      <h3> Reset Password </h3>
 
-      <ResetPasswordForm
-        onSubmit={onSubmitHandler}
-        onSubmitError={onSubmitErrorHandler}
-      />
+        {logInState === AuthState.INVALID_ATTEMPT && (
+        <SAlert
+          message="Unable to verify username and password"
+          type="error"
+        />
+        )}
+        <AppLogo height="150px" />
+        <h3> Reset Password </h3>
+
+        <ResetPasswordForm
+          onSubmit={onSubmitHandler}
+          onSubmitError={onSubmitErrorHandler}
+        />
       </Wrapper>
     </StyledLayout>
   );

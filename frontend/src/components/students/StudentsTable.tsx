@@ -6,8 +6,8 @@ import { createFragmentContainer } from 'react-relay';
 
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
-import { StudentsTable_course } from './__generated__/StudentsTable_course.graphql';
 import { string } from 'prop-types';
+import { StudentsTable_course } from './__generated__/StudentsTable_course.graphql';
 
 type Props = {
   course: StudentsTable_course;
@@ -106,32 +106,30 @@ const EditStudentTableButton = ({
   id,
   onClickEdit,
   onClickRemove,
-}: EditStudentTableButtonProps) => {
-  return (
-    <div
-      style={{
+}: EditStudentTableButtonProps) => (
+  <div
+    style={{
         display: 'flex',
         fontSize: '16px',
         alignItems: 'center',
       }}
-    >
-      <Tooltip title="Edit Student">
-        <EditButton
-          onClick={(e) => {
+  >
+    <Tooltip title="Edit Student">
+      <EditButton
+        onClick={(e) => {
             onClickEdit(id);
           }}
-        >
-          <EditOutlined />
-        </EditButton>
-      </Tooltip>
-      <Tooltip title="Delete Student">
-        <DeleteButton onClick={() => { console.log(id); onClickRemove(id)}}>
-          <DeleteOutlined style={{ margin: '0px 0px 0px 15px' }} />
-        </DeleteButton>
-      </Tooltip>
-    </div>
+      >
+        <EditOutlined />
+      </EditButton>
+    </Tooltip>
+    <Tooltip title="Delete Student">
+      <DeleteButton onClick={() => { console.log(id); onClickRemove(id) }}>
+        <DeleteOutlined style={{ margin: '0px 0px 0px 15px' }} />
+      </DeleteButton>
+    </Tooltip>
+  </div>
   );
-};
 
 export default createFragmentContainer(LessonsTable, {
   course: graphql`

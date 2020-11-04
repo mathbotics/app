@@ -15,12 +15,11 @@ import EditStudentModal from '../students/Modals/EditStudentModal';
 type Props = { course: EditCourseStudents_course };
 
 const EditCourseStudents = ({ course }: Props) => {
-
   const [isAddStudentModalOpen, toggleAddStudentModal] = useState<boolean>(
     false,
   );
   const [isDeleteStudentModalOpen, toggleDeleteStudentModal] = useState<boolean>(
-    false
+    false,
   );
     const [
         createdStudent,
@@ -81,10 +80,9 @@ const EditCourseStudents = ({ course }: Props) => {
         title="Edit Student"
         visible={edit}
         studentId={selectedStudentId}
-        onSubmitSuccess={() =>  toggleEdit(false) }
+        onSubmitSuccess={() => toggleEdit(false)}
         onSubmitError={(e: Error) =>
-          console.error(`Unable to edit student ${e}`)
-        }
+          console.error(`Unable to edit student ${e}`)}
         onCancel={() => toggleEdit(!edit)}
       />
       <DeleteSingleStudentModal

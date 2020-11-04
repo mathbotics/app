@@ -21,7 +21,7 @@ export default ({
   onCancel,
   studentId,
 }: ModalProps) => {
-  const onSubmit = 
+  const onSubmit =
   (formData: Store) =>
     commitEditStudentMutation(
       { ...formData, studentId } as EditStudentInput,
