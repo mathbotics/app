@@ -11,9 +11,8 @@ import { string } from 'prop-types';
 
 type Props = {
   course: StudentsTable_course;
-  editModal: boolean;
   onClickEdit: (studentId: string) => void;
-  onClickRemove: (e) => void;
+  onClickRemove: (studentId: string) => void;
 };
 
 const EditButton = styled.div`
@@ -40,12 +39,6 @@ type TableItem = {
 function onChange(pagination, filters, sorter, extra) {
   console.log('params', pagination, filters, sorter, extra);
 }
-// const handleDelete = (key) => {
-//   const dataSource = [...columns];
-//   setState({
-//     columns: columns.filter((item) => item.key !== key),
-//   });
-// };
 
 const LessonsTable = ({
   course: { students },
@@ -107,7 +100,7 @@ const LessonsTable = ({
 type EditStudentTableButtonProps = {
   id: string;
   onClickEdit: (string) => void;
-  onClickRemove: (e) => void;
+  onClickRemove: (string) => void;
 };
 const EditStudentTableButton = ({
   id,
@@ -125,7 +118,6 @@ const EditStudentTableButton = ({
       <Tooltip title="Edit Student">
         <EditButton
           onClick={(e) => {
-            e.preventDefault();
             onClickEdit(id);
           }}
         >
@@ -133,7 +125,7 @@ const EditStudentTableButton = ({
         </EditButton>
       </Tooltip>
       <Tooltip title="Delete Student">
-        <DeleteButton onClick={onClickRemove}>
+        <DeleteButton onClick={() => { console.log(id); onClickRemove(id)}}>
           <DeleteOutlined style={{ margin: '0px 0px 0px 15px' }} />
         </DeleteButton>
       </Tooltip>

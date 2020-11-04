@@ -2,8 +2,8 @@ import React from 'react';
 import { Modal } from 'antd';
 import { DeleteStudentModalContent } from './DeleteStudentModalContent';
 
-import { commit as commitDeleteStudentMutation } from '../../../graphql/mutations/DeleteStudentMutation';
-import { DeleteStudentInput } from '../../../graphql/mutations/__generated__/DeleteStudentMutation.graphql';
+import { commit as commitDeleteSingleStudentMutation } from '../../../graphql/mutations/DeleteSingleStudentMutation';
+import { DeleteSingleStudentInput } from '../../../graphql/mutations/__generated__/DeleteSingleStudentMutation.graphql';
 
 type ModalProps = {
   title: string;
@@ -11,7 +11,7 @@ type ModalProps = {
   onSubmitSuccess: () => void;
   onSubmitError: (e: any) => void;
   onCancel: () => void;
-//   courseId: string;
+  studentId: string;
 };
 export default ({
   title,
@@ -19,16 +19,15 @@ export default ({
   onSubmitSuccess,
   onSubmitError,
   onCancel,
-//   courseId,
+  studentId,
 }: ModalProps) => {
   const onSubmit =
   () =>
-    console.log(visible);
-    // commitDeleteStudentMutation(
-    //   { courseId } as DeleteStudentInput,
-    //   onSubmitSuccess,
-    //   onSubmitError,
-    // );
+    commitDeleteSingleStudentMutation(
+      { studentId } as DeleteSingleStudentInput,
+      onSubmitSuccess,
+      onSubmitError,
+    );
 
   return (
     <Modal visible={visible} title={title} onCancel={onCancel} footer={[]}>

@@ -698,7 +698,7 @@ input DateTimeFilter {
   notIn: [DateTime!]
 }
 
-input DeleteSingleStudenttInput {
+input DeleteSingleStudentInput {
   studentId: String!
 }
 
@@ -1758,7 +1758,7 @@ type Mutation {
   createOneLesson(data: LessonCreateInput!): Lesson!
   createSlide(input: CreateSlideInput!): Slide!
   createStudent(input: CreateStudentInput!): Student!
-  deleteSingleStudent(input: DeleteSingleStudenttInput!): Student!
+  deleteSingleStudent(input: DeleteSingleStudentInput!): Student!
   deleteStudent(input: DeleteStudentInput!): Student!
   editStudent(input: EditStudentInput!): Student!
   logIn(input: LogInInput!): User!

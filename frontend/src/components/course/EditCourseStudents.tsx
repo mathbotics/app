@@ -6,22 +6,21 @@ import { graphql } from 'babel-plugin-relay/macro';
 
 import StudentsTable from '../students/StudentsTable';
 import { EditCourseStudents_course } from './__generated__/EditCourseStudents_course.graphql';
-//import { EditCourseStudents_student } from './__generated__/EditCourseStudents_student.graphql';
 import AddStudentModal from '../students/Modals/AddStudentModal';
 import DeleteStudentModal from '../students/Modals/DeleteStudentModal';
 import DeleteSingleStudentModal from '../students/Modals/DeleteSingleStudentModal';
 import EditStudentModal from '../students/Modals/EditStudentModal';
-// import EditBlockSidebar from '../slides/EditBlockSidebar';
 
 type Props = { course: EditCourseStudents_course };
 
-const EditCourseStudents = ({ course, course: { students } }: Props) => {
+const EditCourseStudents = ({ course }: Props) => {
+
   const [isAddStudentModalOpen, toggleAddStudentModal] = useState<boolean>(
     false,
   );
-  const [isDeleteStudentModalOpen, toggleDeleteStudentModal] = useState<
-    boolean
-  >(false);
+  const [isDeleteStudentModalOpen, toggleDeleteStudentModal] = useState<boolean>(
+    false
+  );
   const [edit, toggleEdit] = useState<boolean>(false);
   const [deleteStudent, toggleDeleteStudent] = useState<boolean>(false);
   const [selectedStudentId, setSelectedStudentId] = useState<string>('');
@@ -62,30 +61,31 @@ const EditCourseStudents = ({ course, course: { students } }: Props) => {
       />
       <StudentsTable
         course={course}
-        editModal={edit}
-        onClickEdit={studentId => {
+        onClickEdit={(studentId) => {
           setSelectedStudentId(studentId);
           toggleEdit(!edit);
-        }
-      }
-        onClickRemove={e => {
-          // TODO: toggleRemove()
-          console.log("trying to remove")
+        }}
+        onClickRemove={(studentId) => {
+          setSelectedStudentId(studentId);
+          toggleDeleteStudent(!deleteStudent);
+          console.log('trying to remove');
         }}
       />
       <EditStudentModal
         title="Edit Student"
         visible={edit}
         studentId={selectedStudentId}
-        onSubmitSuccess={() => toggleEdit(false)}
-        onSubmitError={(e: Error) => console.error(`Unable to edit student ${e}`)}
+        onSubmitSuccess={() =>  toggleEdit(false) }
+        onSubmitError={(e: Error) =>
+          console.error(`Unable to edit student ${e}`)
+        }
         onCancel={() => toggleEdit(!edit)}
       />
       <DeleteSingleStudentModal
         title="Delete Student"
         visible={deleteStudent}
-        // courseId={course.id}
-        onSubmitSuccess={() => console.log('It Worked!?!?!?!')}
+        studentId={selectedStudentId}
+        onSubmitSuccess={() => {toggleDeleteStudent(false), window.location.reload()}}
         onSubmitError={(e: Error) => console.error(e)}
         onCancel={() => toggleDeleteStudent(!deleteStudent)}
       />

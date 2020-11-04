@@ -3,8 +3,8 @@ import nullthrows from 'nullthrows';
 
 import prisma from '../../data/prisma';
 
-export const DeleteSingleStudenttInput = inputObjectType({
-  name: 'DeleteSingleStudenttInput',
+export const DeleteSingleStudentInput = inputObjectType({
+  name: 'DeleteSingleStudentInput',
   definition(t) {
     t.string('studentId', {
       required: true,
@@ -16,7 +16,7 @@ export const DeleteSingleStudenttInput = inputObjectType({
 export const deleteSingleStudent = mutationField('deleteSingleStudent', {
   type: 'Student',
   args: {
-    input: arg({ type: 'DeleteSingleStudenttInput', required: true }),
+    input: arg({ type: 'DeleteSingleStudentInput', required: true }),
   },
   async resolve(
     _root,
