@@ -5,3 +5,4 @@ export * from './RegisterForm';
 export * from './InvitationForm';
 export * from './CreateLessonForm';
 export * from './ForgotPasswordForm';
+export * from './ResetPasswordForm';

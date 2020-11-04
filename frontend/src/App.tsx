@@ -20,6 +20,7 @@ import {
   LessonPage,
   CoursePage,
   ForgotPasswordPage,
+  ResetPasswordPage,
 } from './pages';
 
 // Routes
@@ -30,6 +31,7 @@ export const App: React.FC = () => (
     <Switch>
       <Route path="/login" component={LoginPage} />
       <Route path="/forgotPassword" component={ForgotPasswordPage} />
+      <Route path="/resetPassword/:token" component={ResetPasswordPage} />
       <Route path="/register/:token" component={RegisterPage} />
       <ProtectedRoute exact path="/" component={withSidebar(DashboardPage)} />
       <ProtectedRoute

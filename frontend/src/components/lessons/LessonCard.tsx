@@ -147,7 +147,7 @@ export const LessonCard = ({
             {slideCount}
             {' '}
             Slide
-            {slideCount > 1 && 's'}
+            {slideCount !== 1 && 's'}
           </CardSlideCount>
         )}
       </CardFooter>

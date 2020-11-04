@@ -41,7 +41,7 @@ export const sendResetPasswordEmail = mutationField('sendResetPasswordEmail', {
       );
       const template = Handlebars.compile(html);
         // { email, role },
-      const url = `http://localhost:3000/register/${jwt.sign(
+      const url = `http://localhost:3000/resetPassword/${jwt.sign(
         { email },
         nullthrows(JWT_SECRET, 'JWT_SECRET is null or undefined'),
       )}`;
