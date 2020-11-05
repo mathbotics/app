@@ -4,6 +4,7 @@ import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 
 import { EditCourse_course } from './__generated__/EditCourse_course.graphql';
+// import { EditCourse_student } from './__generated__/EditCourse_student.graphql';
 import EditCourseDetails from './EditCourseDetails';
 import EditCourseLessonPlan from './EditCourseLessonPlan';
 import EditCourseStudents from './EditCourseStudents';
@@ -65,7 +66,7 @@ const EditCourse = ({ course, query }: Props) => {
         </Title>
       </div>
 
-      <Tabs defaultActiveKey="0" onChange={handleTabChange}>
+      <Tabs defaultActiveKey="1" onChange={handleTabChange}>
         {tabs.map(({ title, Component }: Tab, index: number) => (
           <TabPane key={index.toString()} tab={title}>
             {Component}
@@ -77,6 +78,7 @@ const EditCourse = ({ course, query }: Props) => {
 };
 
 export default createFragmentContainer(EditCourse, {
+
   course: graphql`
     fragment EditCourse_course on Course {
       ...EditCourseStudents_course

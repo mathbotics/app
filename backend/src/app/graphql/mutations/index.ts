@@ -5,12 +5,17 @@ export * from './logIn';
 export * from './registerUser';
 export * from './logout'
 export * from './deleteStudents';
+export * from './editStudent';
+export * from './resetPassword';
+export * from './deleteStudents';
+export * from './deleteSingleStudent';
 export * from './sendInvitationEmail';
 export * from './createSlide';
 export * from './updateBlockToMultipleChoiceBlock';
 export * from './updateBlockToTextBlock';
 export * from './answerMultipleChoiceQuestionBlock';
 export * from './createStudent';
+export * from './sendResetPasswordEmail';
 
 export const mutation = extendType({
   type: 'Mutation',

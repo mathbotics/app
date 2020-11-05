@@ -10,7 +10,7 @@ import { LessonCard } from '../lessons/LessonCard';
 
 const MenuItem = styled(Menu.Item)`
   width: 100% !important;
-  height: 126px !important;
+  height: 128px !important;
   transition: all 0.15s ease-in-out;
   border-radius: 5px;
   padding: 0px !important;
@@ -52,21 +52,14 @@ const LessonPlanSidebar = ({ lessonPlan }: Props) => {
 
   return (
     <Sider
-      width={300}
+      width={350}
       theme="light"
-      style={{
-        overflow: 'auto',
-        height: '100%',
-        borderRadius: '5px',
-        marginRight: '20px',
-      }}
     >
       {lessonPlan.lessons.length > 0 && (
         <Menu defaultSelectedKeys={[selected?.toString() ?? '']} mode="inline">
           {lessons.map((lesson, index) => (
             <MenuItem
               key={lesson.id}
-              onClick={() => removeLessonFromLessonPlan(lesson.id)}
               style={{ display: 'flex' }}
             >
               <h1
@@ -87,6 +80,8 @@ const LessonPlanSidebar = ({ lessonPlan }: Props) => {
                 id={lesson.id}
                 title={lesson.title}
                 slideCount={lesson.slides.length}
+                removeLesson
+                removeFromLessonPlan={(id) => removeLessonFromLessonPlan(id)}
               />
             </MenuItem>
           ))}

@@ -45,11 +45,15 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
       <LessonsPreviewWrapper>
         {lessons.length === 0 && <p> No lessons available</p>}
         {lessons.map(({ id, title, slides }) => (
-          <LessonCardWrapper
-            key={id}
-            onClick={() => connectLessonToLessonPlan(id)}
-          >
-            <LessonCard id={id} title={title} slideCount={slides.length} />
+          <LessonCardWrapper>
+            <LessonCard
+              id={id}
+              key={id}
+              title={title}
+              slideCount={slides.length}
+              addLesson
+              addToLessonPlan={(id) => connectLessonToLessonPlan(id)}
+            />
           </LessonCardWrapper>
         ))}
       </LessonsPreviewWrapper>
@@ -81,13 +85,14 @@ export default createFragmentContainer(LessonPlanCatalogue, {
 });
 
 const LessonsCatalogueWrapper = styled.div`
-  height: 100%;
+  height: 100vh;
   width: 100%;
   overflow-y: scroll;
 `;
 
 const Header = styled.div`
   position: sticky;
+  width: 100%;
   top: 0;
   background-color: white;
   padding-bottom: 10px;
@@ -95,11 +100,11 @@ const Header = styled.div`
 
 const LessonsPreviewWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 550px;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 `;
 
 const LessonCardWrapper = styled.div`
