@@ -10,3 +10,5 @@ export * from './CoursesPage';
 export * from './EditCoursePage';
 export * from './LessonPage';
 export * from './CoursePage';
+export * from './ForgotPasswordPage';
+export * from './ResetPasswordPage';

@@ -8,7 +8,7 @@ const mutation = graphql`
 mutation DeleteStudentMutation(
     $input: DeleteStudentInput!
   ) {
-      deleteStudent(input: $input) {
+      deleteStudents(input: $input) {
       courses{
         id
       }
