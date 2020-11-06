@@ -22,9 +22,9 @@ export default ({
   onCancel,
   rootDataID,
 }: ModalProps) => {
-  const onSubmit = ({ name }: Store) =>
+  const onSubmit = ({ name, suggestedLevel }: Store) =>
     commitCreateOneCourseMutation(
-      { name, suggestedLevel: 'FIRST', lessonPlan: { create: {} } },
+      { name, suggestedLevel, lessonPlan: { create: {} } },
       onSubmitSuccess,
       onSubmitError,
       rootDataID,
