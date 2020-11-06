@@ -5,9 +5,9 @@ export const Student = objectType({
   definition(t) {
     t.implements('User');
     t.model.id();
+    t.model.email();
     t.model.gradeLevel();
     t.model.guardians();
     t.model.courses();
-    t.model.email();
   },
 });

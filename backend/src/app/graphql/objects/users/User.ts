@@ -24,6 +24,12 @@ export const User = interfaceType({
         return lastName;
       },
     });
+    t.string('email', {
+      async resolve({ id }) {
+        const { email } = await UserHelper.user(id);
+        return email;
+      },
+    });
     t.resolveType(({ id }) => UserHelper.role(id));
   },
 });

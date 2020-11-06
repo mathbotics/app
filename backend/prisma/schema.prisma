@@ -52,12 +52,12 @@ model Page {
 
 model Student {
   createdAt  DateTime   @default(now())
+  email      String     @unique
   gradeLevel GradeLevel
   id         String     @id @default(cuid())
   guardians  Guardian[]
   courses    Course[]
   user       User
-  email      String
 }
 
 enum GradeLevel {

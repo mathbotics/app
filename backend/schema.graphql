@@ -1760,6 +1760,7 @@ type Mutation {
   logOut: Boolean!
   registerUser(input: RegisterUserInput!): User!
   sendInvitationEmail(input: SendInvitationEmailInput!): String!
+  sendResetPasswordEmail(input: SendResetPasswordEmailInput!): String!
   updateBlockToMultipleChoiceBlock(input: UpdateBlockToMultipleChoiceBlockInput!): MultipleChoiceQuestionBlock!
   updateBlockToTextBlock(input: UpdateBlockToTextBlockInput!): TextBlock!
   updateOneCourse(data: CourseUpdateInput!, where: CourseWhereUniqueInput!): Course
@@ -2035,6 +2036,10 @@ input RegisterUserInput {
 input SendInvitationEmailInput {
   email: String!
   role: String!
+}
+
+input SendResetPasswordEmailInput {
+  email: String!
 }
 
 type SingleSlide implements Slide {
@@ -2383,6 +2388,7 @@ input StringFilter {
 
 type Student implements User {
   courses(after: CourseWhereUniqueInput, before: CourseWhereUniqueInput, first: Int, last: Int, skip: Int): [Course!]!
+  email: String!
   firstName: String!
   gradeLevel: GradeLevel!
   guardians(after: GuardianWhereUniqueInput, before: GuardianWhereUniqueInput, first: Int, last: Int, skip: Int): [Guardian!]!
@@ -2665,6 +2671,7 @@ input UpdateBlockToTextBlockInput {
 }
 
 interface User {
+  email: String!
   firstName: String!
   id: String!
   lastName: String!
