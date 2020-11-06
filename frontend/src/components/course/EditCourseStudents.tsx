@@ -52,7 +52,7 @@ const EditCourseStudents = ({ course }: Props) => {
         visible={isAddStudentModalOpen}
         courseId={course.id}
         onSubmitSuccess={() => { toggleAddStudentModal(false); window.location.reload() }}
-        onSubmitError={(e: Error) => console.error(e)}
+        onSubmitError={(e: Error) => {console.error(e); toggleCreateStudent(false)}}
         createdStudent={createdStudent}
         onCancel={() => toggleAddStudentModal(!isAddStudentModalOpen)}
       />
