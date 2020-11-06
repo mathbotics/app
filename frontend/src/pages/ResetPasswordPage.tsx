@@ -4,11 +4,11 @@ import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
 
 import styled from 'styled-components';
 import { Redirect, useParams } from 'react-router-dom';
+import nullthrows from 'nullthrows';
 import { ResetPasswordForm } from '../components/form';
 import { AppLogo } from '../components/icons';
 import { commit as commitResetPasswordMutation } from '../graphql/mutations/ResetPasswordMutation';
 import { LogInMutationResponse } from '../graphql/mutations/__generated__/LogInMutation.graphql';
-import nullthrows from 'nullthrows';
 
 const StyledLayout = styled(Layout)`
   height: 100%;
