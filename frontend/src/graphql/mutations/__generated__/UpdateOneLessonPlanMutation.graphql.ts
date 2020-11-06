@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash aaafee1cbbc9a3fc7ae93df33ee656b1 */
+/* @relayHash 461111a23bd5ac84b0037ea6aceb8a40 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -119,6 +119,7 @@ export type StudentCreateManyWithoutGuardiansInput = {
     create?: Array<StudentCreateWithoutGuardiansInput> | null;
 };
 export type StudentWhereUniqueInput = {
+    email?: string | null;
     id?: string | null;
 };
 export type StudentCreateWithoutGuardiansInput = {
