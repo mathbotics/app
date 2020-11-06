@@ -14,12 +14,11 @@ export const CoursesPageQuery = graphql`
 `;
 
 export const CoursesPage = () => (
-  console.log(window.location.href),
-    <QueryRenderer
-      environment={environment}
-      variables={{}}
-      query={CoursesPageQuery}
-      render={({ props, error }) =>
+  <QueryRenderer
+    environment={environment}
+    variables={{}}
+    query={CoursesPageQuery}
+    render={({ props, error }) =>
       !error && props && <Courses query={props as CoursesPageQueryResponse} />}
-    />
+  />
 );

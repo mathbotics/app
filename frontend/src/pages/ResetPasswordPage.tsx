@@ -49,7 +49,8 @@ export const ResetPasswordPage = (props: LogInProps) => {
 
   const onSubmitHandler = ({ password }: Store): void => {
     setLoginState(AuthState.AUTHENTICATING);
-    commitResetPasswordMutation({ password, token: nullthrows(token) }, onLoginSuccess, onLoginFailure);
+    commitResetPasswordMutation({ password, token: nullthrows(token) },
+        onLoginSuccess, onLoginFailure);
   };
 
   const onSubmitErrorHandler = (error: ValidateErrorEntity) => {
