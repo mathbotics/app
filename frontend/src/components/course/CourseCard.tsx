@@ -130,7 +130,7 @@ const CourseCard = ({
           {lessonCount}
           {' '}
           Lesson
-          {lessonCount != 1 && 's'}
+          {lessonCount !== 1 && 's'}
         </CardSlideCount>
       </CardFooter>
     </Card>

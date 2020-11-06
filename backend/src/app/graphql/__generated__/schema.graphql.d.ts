@@ -2863,6 +2863,7 @@ export interface NexusGenFieldTypes {
   }
   Student: { // field return type
     courses: NexusGenRootTypes['Course'][]; // [Course!]!
+    email: string; // String!
     firstName: string; // String!
     gradeLevel: NexusGenEnums['GradeLevel']; // GradeLevel!
     guardians: NexusGenRootTypes['Guardian'][]; // [Guardian!]!
@@ -2880,6 +2881,7 @@ export interface NexusGenFieldTypes {
     title: string; // String!
   }
   User: { // field return type
+    email: string; // String!
     firstName: string; // String!
     id: string; // String!
     lastName: string; // String!
