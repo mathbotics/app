@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 425515e391b2eac4937f4fcc0c428103 */
+/* @relayHash aaafee1cbbc9a3fc7ae93df33ee656b1 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -124,6 +124,7 @@ export type StudentWhereUniqueInput = {
 export type StudentCreateWithoutGuardiansInput = {
     courses?: CourseCreateManyWithoutStudentsInput | null;
     createdAt?: unknown | null;
+    email: string;
     gradeLevel: GradeLevel;
     id?: string | null;
     multipleChoiceQuestionResponses?: MultipleChoiceQuestionResponseCreateManyWithoutStudentInput | null;
@@ -461,6 +462,7 @@ export type StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput = {
 export type StudentCreateWithoutMultipleChoiceQuestionResponsesInput = {
     courses?: CourseCreateManyWithoutStudentsInput | null;
     createdAt?: unknown | null;
+    email: string;
     gradeLevel: GradeLevel;
     guardians?: GuardianCreateManyWithoutStudentsInput | null;
     id?: string | null;
@@ -520,6 +522,7 @@ export type StudentCreateManyWithoutCoursesInput = {
 };
 export type StudentCreateWithoutCoursesInput = {
     createdAt?: unknown | null;
+    email: string;
     gradeLevel: GradeLevel;
     guardians?: GuardianCreateManyWithoutStudentsInput | null;
     id?: string | null;
@@ -585,6 +588,7 @@ export type StudentCreateOneWithoutUserInput = {
 export type StudentCreateWithoutUserInput = {
     courses?: CourseCreateManyWithoutStudentsInput | null;
     createdAt?: unknown | null;
+    email: string;
     gradeLevel: GradeLevel;
     guardians?: GuardianCreateManyWithoutStudentsInput | null;
     id?: string | null;
@@ -763,6 +767,7 @@ export type StudentWhereInput = {
     AND?: Array<StudentWhereInput> | null;
     courses?: CourseFilter | null;
     createdAt?: DateTimeFilter | null;
+    email?: StringFilter | null;
     gradeLevel?: GradeLevel | null;
     guardians?: GuardianFilter | null;
     id?: StringFilter | null;
@@ -1085,6 +1090,7 @@ export type StudentScalarWhereInput = {
     AND?: Array<StudentScalarWhereInput> | null;
     courses?: CourseFilter | null;
     createdAt?: DateTimeFilter | null;
+    email?: StringFilter | null;
     gradeLevel?: GradeLevel | null;
     guardians?: GuardianFilter | null;
     id?: StringFilter | null;
@@ -1099,6 +1105,7 @@ export type StudentUpdateWithWhereUniqueWithoutGuardiansInput = {
 export type StudentUpdateWithoutGuardiansDataInput = {
     courses?: CourseUpdateManyWithoutStudentsInput | null;
     createdAt?: unknown | null;
+    email?: string | null;
     gradeLevel?: GradeLevel | null;
     id?: string | null;
     multipleChoiceQuestionResponses?: MultipleChoiceQuestionResponseUpdateManyWithoutStudentInput | null;
@@ -1761,6 +1768,7 @@ export type StudentUpdateOneRequiredWithoutMultipleChoiceQuestionResponsesInput 
 export type StudentUpdateWithoutMultipleChoiceQuestionResponsesDataInput = {
     courses?: CourseUpdateManyWithoutStudentsInput | null;
     createdAt?: unknown | null;
+    email?: string | null;
     gradeLevel?: GradeLevel | null;
     guardians?: GuardianUpdateManyWithoutStudentsInput | null;
     id?: string | null;
@@ -1868,6 +1876,7 @@ export type StudentUpdateWithWhereUniqueWithoutCoursesInput = {
 };
 export type StudentUpdateWithoutCoursesDataInput = {
     createdAt?: unknown | null;
+    email?: string | null;
     gradeLevel?: GradeLevel | null;
     guardians?: GuardianUpdateManyWithoutStudentsInput | null;
     id?: string | null;
@@ -1991,6 +2000,7 @@ export type StudentUpdateManyWithWhereNestedInput = {
 };
 export type StudentUpdateManyDataInput = {
     createdAt?: unknown | null;
+    email?: string | null;
     gradeLevel?: GradeLevel | null;
     id?: string | null;
 };
@@ -2030,6 +2040,7 @@ export type StudentUpdateOneWithoutUserInput = {
 export type StudentUpdateWithoutUserDataInput = {
     courses?: CourseUpdateManyWithoutStudentsInput | null;
     createdAt?: unknown | null;
+    email?: string | null;
     gradeLevel?: GradeLevel | null;
     guardians?: GuardianUpdateManyWithoutStudentsInput | null;
     id?: string | null;
