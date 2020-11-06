@@ -13,6 +13,7 @@ src/components/lessons/__generated__/
 src/components/slides/__generated__/
 src/components/students/__generated__/
 src/graphql/mutations/__generated__/
+src/components/form/__generated__/
 src/pages/__generated__/
 src/routes/__generated__/
 src/serviceWorker.ts
