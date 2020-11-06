@@ -1,8 +1,8 @@
 import { mutationField, inputObjectType, arg } from 'nexus';
 import nullthrows from 'nullthrows';
 import bcrypt from 'bcrypt';
-import prisma from '../../data/prisma';
 import jwt from 'jsonwebtoken';
+import prisma from '../../data/prisma';
 import { Context } from '../context';
 
 const { JWT_SECRET } = process.env;
@@ -30,7 +30,6 @@ export const resetPassword = mutationField('resetPassword', {
       nullthrows(JWT_SECRET, 'JWT_SECRET is null or undefined.'),
     ) as { email?: string; };
     try {
-
           const { user, ...instructor } = nullthrows(
             await (ctx as Context).prisma.instructor.update({
               where: { email },
@@ -47,7 +46,6 @@ export const resetPassword = mutationField('resetPassword', {
             'Could not create instructor',
           );
           return { ...user, ...instructor };
-      
     } catch (e) {
       // eslint-disable-next-line no-console
       console.warn(e);
