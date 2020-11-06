@@ -14,7 +14,6 @@ export const CoursesPageQuery = graphql`
 `;
 
 export const CoursesPage = () => (
-  console.log(window.location.href),
   <QueryRenderer
     environment={environment}
     variables={{}}

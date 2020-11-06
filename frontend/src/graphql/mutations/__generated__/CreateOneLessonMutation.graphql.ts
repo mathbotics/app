@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 356c78461c8233fb3a7399071999df18 */
+/* @relayHash 514add3a0ac963ebd3d3c59b94ca8de9 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -129,11 +129,13 @@ export type StudentCreateManyWithoutGuardiansInput = {
     create?: Array<StudentCreateWithoutGuardiansInput> | null;
 };
 export type StudentWhereUniqueInput = {
+    email?: string | null;
     id?: string | null;
 };
 export type StudentCreateWithoutGuardiansInput = {
     courses?: CourseCreateManyWithoutStudentsInput | null;
     createdAt?: unknown | null;
+    email: string;
     gradeLevel: GradeLevel;
     id?: string | null;
     multipleChoiceQuestionResponses?: MultipleChoiceQuestionResponseCreateManyWithoutStudentInput | null;
@@ -456,6 +458,7 @@ export type StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput = {
 export type StudentCreateWithoutMultipleChoiceQuestionResponsesInput = {
     courses?: CourseCreateManyWithoutStudentsInput | null;
     createdAt?: unknown | null;
+    email: string;
     gradeLevel: GradeLevel;
     guardians?: GuardianCreateManyWithoutStudentsInput | null;
     id?: string | null;
@@ -515,6 +518,7 @@ export type StudentCreateManyWithoutCoursesInput = {
 };
 export type StudentCreateWithoutCoursesInput = {
     createdAt?: unknown | null;
+    email: string;
     gradeLevel: GradeLevel;
     guardians?: GuardianCreateManyWithoutStudentsInput | null;
     id?: string | null;
@@ -580,6 +584,7 @@ export type StudentCreateOneWithoutUserInput = {
 export type StudentCreateWithoutUserInput = {
     courses?: CourseCreateManyWithoutStudentsInput | null;
     createdAt?: unknown | null;
+    email: string;
     gradeLevel: GradeLevel;
     guardians?: GuardianCreateManyWithoutStudentsInput | null;
     id?: string | null;
