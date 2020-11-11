@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Input, Typography } from 'antd';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
@@ -15,8 +15,22 @@ type Props = {
   query: LessonPlanCatalogue_query;
   lessonPlan: LessonPlanCatalogue_lessonPlan;
 };
+
 const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
   const { lessons } = query;
+  const [searchValue, setSearchValue] = useState<String>();
+
+  const LessonCatalogueSearch = () => (
+    <Search
+      placeholder="Search lesson by title"
+      size="large"
+      onSearch={(value: String) => {
+        console.log(value)
+        setSearchValue(value);
+      }}
+      style={{ width: 400 }}
+    />
+    );
 
   const connectLessonToLessonPlan = (id: string) => {
     const lessonIds = lessonPlan.lessons.map((lesson) => ({ id: lesson.id }));
@@ -41,9 +55,26 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
         <LessonCatalogueSearch />
       </Header>
 
-      {/* Lessons */}
+      {/* Lessons filtered */}
       <LessonsPreviewWrapper>
         {lessons.length === 0 && <p> No lessons available</p>}
+        {lessons.filter(lesson => ( lesson.title === searchValue ))
+          .map(({ id, title, slides }) => (
+          <LessonCardWrapper>
+            <LessonCard
+              id={id}
+              key={id}
+              title={title}
+              slideCount={slides.length}
+              addLesson
+              addToLessonPlan={(id) => connectLessonToLessonPlan(id)}
+            />
+          </LessonCardWrapper>
+        ))}
+      </LessonsPreviewWrapper>
+
+      {/* Lessons */}
+      <LessonsPreviewWrapper>
         {lessons.map(({ id, title, slides }) => (
           <LessonCardWrapper>
             <LessonCard
@@ -111,11 +142,4 @@ const LessonCardWrapper = styled.div`
   width: 100%;
   margin: 5px 0px;
 `;
-const LessonCatalogueSearch = () => (
-  <Search
-    placeholder="Search lesson by title"
-    size="large"
-    onSearch={(value: String) => console.log(value)}
-    style={{ width: 400 }}
-  />
-  );
+
