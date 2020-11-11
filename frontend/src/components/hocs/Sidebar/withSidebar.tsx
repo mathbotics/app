@@ -6,6 +6,7 @@ import {
   BookOutlined,
   AppstoreOutlined,
   LogoutOutlined,
+  SolutionOutlined,
 } from '@ant-design/icons';
 import { useHistory, Redirect } from 'react-router-dom';
 import { graphql } from 'babel-plugin-relay/macro';
@@ -45,19 +46,18 @@ const menuItemsForViewer = ({ role }: withSidebar_viewer) => {
         { name: 'Dashboard', path: '', icon: <DashboardOutlined /> },
         { name: 'Admin', path: 'admin', icon: <LockOutlined /> },
         { name: 'Lessons', path: 'lessons', icon: <AppstoreOutlined /> },
-        // {name: 'Logout', path:'logout', icon: <LogoutOutlined/>}
       ];
     case 'Instructor':
       return [
         { name: 'Dashboard', path: '', icon: <DashboardOutlined /> },
         { name: 'Courses', path: 'courses', icon: <BookOutlined /> },
-        // {name: 'Logout', path:'logout', icon: <LogoutOutlined/>}
+        { name: 'Grades', path: 'grades', icon: <SolutionOutlined /> },
       ];
     case 'Student':
       return [
         { name: 'Dashboard', path: '', icon: <DashboardOutlined /> },
         { name: 'Courses', path: 'courses', icon: <BookOutlined /> },
-        // {name: 'Logout', path:'logout', icon: <LogoutOutlined/>}
+        { name: 'Grades', path: 'grades', icon: <SolutionOutlined /> },
       ];
     default:
       return [{ name: 'Dashboard', path: '', icon: <DashboardOutlined /> }];
@@ -87,7 +87,6 @@ const Sidebar = createFragmentContainer(
       history.push(`/${item.path}`);
     };
 
-    // TODO fix logout
     function logOut() {
       document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
       history.push('/login');
@@ -96,7 +95,6 @@ const Sidebar = createFragmentContainer(
         logOutError,
       );
 
-      console.log('Need working log out mutation here');
     }
 
   function logOutSuccess() {

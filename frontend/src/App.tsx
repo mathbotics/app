@@ -21,6 +21,8 @@ import {
   CoursePage,
   ForgotPasswordPage,
   ResetPasswordPage,
+  InstructorGradesPage,
+  StudentGradesPage,
 } from './pages';
 
 // Routes
@@ -74,17 +76,18 @@ export const App: React.FC = () => (
         allowedRoles={['Admin', 'Instructor', 'Student']}
         component={withSidebar(CoursePage)}
       />
-      {/* <Route
-        path='/logout'
-        component={withSidebar(
-          (): JSX.Element => {
-            console.log('clicking');
-            return (
-            <span>trying to log out</span>
-
-            )
-          })}
-      /> */}
+      <ProtectedRoute
+        exact
+        path="/grades"
+        allowedRoles={['Instructor']}
+        component={withSidebar(InstructorGradesPage)}
+      />
+      <ProtectedRoute
+        exact
+        path="/grades"
+        allowedRoles={['Student']}
+        component={withSidebar(StudentGradesPage)}
+      />
       <Route component={NotFoundPage} />
     </Switch>
   </BrowserRouter>

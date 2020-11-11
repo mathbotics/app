@@ -112,10 +112,13 @@ const LessonCardWrapper = styled.div`
   margin: 5px 0px;
 `;
 const LessonCatalogueSearch = () => (
+
   <Search
     placeholder="Search lesson by title"
     size="large"
-    onSearch={(value: String) => console.log(value)}
+    onSearch={(value: String) => {
+      console.log(value);
+    }}
     style={{ width: 400 }}
   />
-  );
+);
