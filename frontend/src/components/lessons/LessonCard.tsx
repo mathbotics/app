@@ -86,7 +86,7 @@ export const LessonCard = ({
   removeFromLessonPlan,
 }: Props) => {
   const history = useHistory();
-  const [enabled, toggleEnabled] = useState(true);
+  const [disabled, toggleDisabled] = useState(false);
   return (
     <Card>
 
@@ -104,7 +104,7 @@ export const LessonCard = ({
           {addLesson && (
           <Tooltip title="Add Lesson">
             <Button
-              // disabled
+              disabled={disabled}
               type="primary"
               shape="circle"
               icon={<PlusOutlined />}
