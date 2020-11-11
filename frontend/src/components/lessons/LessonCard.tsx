@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import { Button, Tooltip } from 'antd';
 import { ExportOutlined, PlusOutlined, CloseOutlined, DeleteOutlined } from '@ant-design/icons';
@@ -86,7 +86,7 @@ export const LessonCard = ({
   removeFromLessonPlan,
 }: Props) => {
   const history = useHistory();
-
+  const [enabled, toggleEnabled] = useState(true);
   return (
     <Card>
 
@@ -104,6 +104,7 @@ export const LessonCard = ({
           {addLesson && (
           <Tooltip title="Add Lesson">
             <Button
+              // disabled
               type="primary"
               shape="circle"
               icon={<PlusOutlined />}
