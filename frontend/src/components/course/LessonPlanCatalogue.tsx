@@ -56,6 +56,7 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
       </Header>
 
       {/* Lessons filtered */}
+      {  searchValue && (    
       <LessonsPreviewWrapper>
         {lessons.length === 0 && <p> No lessons available</p>}
         {lessons.filter(lesson => ( lesson.title === searchValue ))
@@ -71,7 +72,7 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
             />
           </LessonCardWrapper>
         ))}
-      </LessonsPreviewWrapper>
+      </LessonsPreviewWrapper>)}
 
       {/* Lessons */}
       <LessonsPreviewWrapper>
