@@ -57,7 +57,7 @@ const menuItemsForViewer = ({ role }: withSidebar_viewer) => {
       return [
         { name: 'Dashboard', path: '', icon: <DashboardOutlined /> },
         { name: 'Courses', path: 'courses', icon: <BookOutlined /> },
-        { name: 'Grades', path: 'grades', icon: <SolutionOutlined /> },
+        { name: 'Grades', path: 'gradesStudent', icon: <SolutionOutlined /> },
       ];
     default:
       return [{ name: 'Dashboard', path: '', icon: <DashboardOutlined /> }];
