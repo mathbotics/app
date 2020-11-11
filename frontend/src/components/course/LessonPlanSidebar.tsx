@@ -51,17 +51,11 @@ const LessonPlanSidebar = ({ lessonPlan }: Props) => {
   const { lessons } = lessonPlan;
 
   return (
-    <Sider
-      width={350}
-      theme="light"
-    >
+    <Sider width={350} theme="light">
       {lessonPlan.lessons.length > 0 && (
         <Menu defaultSelectedKeys={[selected?.toString() ?? '']} mode="inline">
           {lessons.map((lesson, index) => (
-            <MenuItem
-              key={lesson.id}
-              style={{ display: 'flex' }}
-            >
+            <MenuItem key={lesson.id} style={{ display: 'flex' }}>
               <h1
                 style={{
                   margin: 'auto',

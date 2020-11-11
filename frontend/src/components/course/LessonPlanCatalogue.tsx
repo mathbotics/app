@@ -25,12 +25,12 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
       placeholder="Search lesson by title"
       size="large"
       onSearch={(value: String) => {
-        console.log(value)
+        console.log(value);
         setSearchValue(value);
       }}
       style={{ width: 400 }}
     />
-    );
+  );
 
   const connectLessonToLessonPlan = (id: string) => {
     const lessonIds = lessonPlan.lessons.map((lesson) => ({ id: lesson.id }));
@@ -56,40 +56,43 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
       </Header>
 
       {/* Lessons filtered */}
-      { searchValue && (    
-      <LessonsPreviewWrapper>
-        {lessons.length === 0 && <p> No lessons available</p>}
-        {lessons.filter(lesson => ( lesson.title === searchValue ))
-          .map(({ id, title, slides }) => (
-          <LessonCardWrapper>
-            <LessonCard
-              id={id}
-              key={id}
-              title={title}
-              slideCount={slides.length}
-              addLesson
-              addToLessonPlan={(id) => connectLessonToLessonPlan(id)}
-            />
-          </LessonCardWrapper>
-        ))}
-      </LessonsPreviewWrapper>)}
+      {searchValue && (
+        <LessonsPreviewWrapper>
+          {lessons.length === 0 && <p> No lessons available</p>}
+          {lessons
+            .filter((lesson) => lesson.title === searchValue)
+            .map(({ id, title, slides }) => (
+              <LessonCardWrapper>
+                <LessonCard
+                  id={id}
+                  key={id}
+                  title={title}
+                  slideCount={slides.length}
+                  addLesson
+                  addToLessonPlan={(id) => connectLessonToLessonPlan(id)}
+                />
+              </LessonCardWrapper>
+            ))}
+        </LessonsPreviewWrapper>
+      )}
 
       {/* Lessons */}
-  { !searchValue && (
-      <LessonsPreviewWrapper>
-        {lessons.map(({ id, title, slides }) => (
-          <LessonCardWrapper>
-            <LessonCard
-              id={id}
-              key={id}
-              title={title}
-              slideCount={slides.length}
-              addLesson
-              addToLessonPlan={(id) => connectLessonToLessonPlan(id)}
-            />
-          </LessonCardWrapper>
-        ))}
-      </LessonsPreviewWrapper>)}
+      {!searchValue && (
+        <LessonsPreviewWrapper>
+          {lessons.map(({ id, title, slides }) => (
+            <LessonCardWrapper>
+              <LessonCard
+                id={id}
+                key={id}
+                title={title}
+                slideCount={slides.length}
+                addLesson
+                addToLessonPlan={(id) => connectLessonToLessonPlan(id)}
+              />
+            </LessonCardWrapper>
+          ))}
+        </LessonsPreviewWrapper>
+      )}
     </LessonsCatalogueWrapper>
   );
 };
@@ -144,4 +147,3 @@ const LessonCardWrapper = styled.div`
   width: 100%;
   margin: 5px 0px;
 `;
-
