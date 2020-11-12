@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Button, Tooltip } from 'antd';
 import { ExportOutlined, PlusOutlined, CloseOutlined, DeleteOutlined } from '@ant-design/icons';
@@ -13,7 +13,7 @@ const Card = styled.div`
   flex-direction: column;
   transition: all 0.15s ease-in-out;
   border: 0.5px solid #e0e9f3;
-  :hover {
+  :hover {..
     box-shadow: 0 10px 15px -3px rgba(57, 129, 181, 0.31),
       0 4px 6px -2px rgba(120, 157, 195, 0.08);
     cursor: pointer;
@@ -86,7 +86,12 @@ export const LessonCard = ({
   removeFromLessonPlan,
 }: Props) => {
   const history = useHistory();
-  const [disabled, toggleDisabled] = useState(false);
+  const [disabled, toggleDisabled] = useState<boolean>(false);
+
+    useEffect(() => {
+
+    }, [disabled]);
+
   return (
     <Card>
 
@@ -112,8 +117,11 @@ export const LessonCard = ({
               size="large"
               onClick={() => {
                 console.log("add")
-                if (addToLessonPlan) {
-                  addToLessonPlan(id)
+                if (addToLessonPlan)
+                {
+                    toggleDisabled(true);
+                    console.log("This is disabled flag", disabled);
+                    addToLessonPlan(id);
                 }
               }}
             />
@@ -128,6 +136,8 @@ export const LessonCard = ({
                 onClick={() => {
                     console.log("remove")
                     if (removeFromLessonPlan) {
+                        toggleDisabled(false);
+                        console.log("This is disabled flag being disabled?", disabled);
                         removeFromLessonPlan(id)
                     }
                 }}
