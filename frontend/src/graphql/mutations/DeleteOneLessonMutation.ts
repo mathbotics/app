@@ -29,4 +29,3 @@ function commit(
   }
   
   export { commit };
-
