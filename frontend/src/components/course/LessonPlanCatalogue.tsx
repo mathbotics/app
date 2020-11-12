@@ -20,17 +20,17 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
   const { lessons } = query;
   const [searchValue, setSearchValue] = useState<String>();
 
-  const LessonCatalogueSearch = () => (
-    <Search
-      placeholder="Search lesson by title"
-      size="large"
-      onSearch={(value: String) => {
-        console.log(value);
-        setSearchValue(value);
-      }}
-      style={{ width: 400 }}
-    />
-  );
+  // const LessonCatalogueSearch = () => (
+  //   <Search
+  //     placeholder="Search lesson by title"
+  //     size="large"
+  //     onSearch={(value: String) => {
+  //       console.log(value);
+  //       setSearchValue(value);
+  //     }}
+  //     style={{ width: 400 }}
+  //   />
+  // );
 
   const connectLessonToLessonPlan = (id: string) => {
     const lessonIds = lessonPlan.lessons.map((lesson) => ({ id: lesson.id }));
@@ -52,7 +52,15 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
         <p>Select a lesson or search by title to add it to your course</p>
 
         {/* Search */}
-        <LessonCatalogueSearch />
+        {/* <LessonCatalogueSearch /> */}
+        <input
+          placeholder="Search lesson by title"
+          onChange={(e) => {
+              console.log(e.target.value);
+              setSearchValue(e.target.value);
+            }}
+          style={{ width: 400 }}
+        />
       </Header>
 
       {/* Lessons filtered */}
@@ -60,7 +68,7 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
         <LessonsPreviewWrapper>
           {lessons.length === 0 && <p> No lessons available</p>}
           {lessons
-            .filter((lesson) => lesson.title.toLowerCase() === searchValue.toLowerCase())
+            .filter((lesson) => lesson.title.toLowerCase().includes(searchValue.toLowerCase()))
             .map(({ id, title, slides }) => (
               <LessonCardWrapper>
                 <LessonCard
