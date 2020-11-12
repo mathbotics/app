@@ -9,25 +9,20 @@ const mutation = graphql`
         $where: LessonWhereUniqueInput!
     ) {
         deleteOneLesson(where: $where) {
-        ...Lesson_lesson
+            ...Lessons_lessons
         }
     }
 `;
 
-function commit(
-  input: LessonWhereUniqueInput,
+export const commit = (
+  variables: LessonWhereUniqueInput,
   onCompleted: (response: any) => void,
   onError: (error: Error) => void,
-) {
-  const variables = {
-    input,
-  };
+) =>
   commitMutation(environment, {
     mutation,
     variables,
     onCompleted,
     onError,
   });
-}
 
-export { commit };

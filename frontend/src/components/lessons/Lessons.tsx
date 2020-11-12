@@ -59,6 +59,7 @@ const Lessons = ({ lessons }: Props): JSX.Element => {
         lessons={lessons}
         onClickRemove={(lessonId) => {
           setSelectedLessonId(lessonId);
+          toggleDeleteOneLesson(!deleteOneLesson);
         }}
       />
       <DeleteLessonModal
