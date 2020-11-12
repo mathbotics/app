@@ -3,7 +3,7 @@ import { Modal } from 'antd';
 import { DeleteStudentModalContent } from '../students/Modals/DeleteStudentModalContent';
 
 import { commit as commitDeleteOneLessonMutation } from '../../graphql/mutations/DeleteOneLessonMutation';
-import { LessonWhereUniqueInput } from '../../graphql/mutations/__generated__/DeleteOneLessonMutation.graphql';
+import { DeleteLessonInput } from '../../graphql/mutations/__generated__/DeleteOneLessonMutation.graphql';
 
 type ModalProps = {
   title: string;
@@ -24,7 +24,7 @@ export default ({
   const onSubmit =
   () =>
     commitDeleteOneLessonMutation(
-      { lessonId } as LessonWhereUniqueInput,
+      { lessonId } as DeleteLessonInput,
       onSubmitSuccess,
       onSubmitError,
     );

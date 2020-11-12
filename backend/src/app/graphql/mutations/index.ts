@@ -10,7 +10,7 @@ export * from './resetPassword';
 export * from './deleteStudents';
 export * from './deleteSingleStudent';
 export * from './sendInvitationEmail';
-//export * from './deleteCourse';
+export * from './deleteLesson';
 export * from './createSlide';
 export * from './updateBlockToMultipleChoiceBlock';
 export * from './updateBlockToTextBlock';
@@ -37,6 +37,6 @@ export const mutation = extendType({
     t.crud.deleteOneCourse();
     t.crud.createOneLesson();
     t.crud.updateOneLessonPlan();
-    t.crud.deleteOneLesson();
+    //t.crud.deleteOneLesson();
   },
 });
