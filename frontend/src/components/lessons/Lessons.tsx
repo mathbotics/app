@@ -7,6 +7,7 @@ import { createFragmentContainer } from 'react-relay';
 import { getRootQueryDataID } from '../../graphql/relay';
 import { LessonsPageQuery } from '../../pages/LessonsPage';
 import CreateLessonModal from './CreateLessonModal';
+import DeleteLessonModal from './DeleteLessonModal';
 import LessonsTable from './LessonsTable';
 import { Lessons_lessons } from './__generated__/Lessons_lessons.graphql';
 
@@ -21,6 +22,8 @@ enum PageState {
 }
 const Lessons = ({ lessons }: Props): JSX.Element => {
   const [pageState, setPageState] = useState<PageState>(PageState.Default);
+  const [deleteOneLesson, toggleDeleteOneLesson] = useState<boolean>(false);
+  const [selectedLessonId, setSelectedLessonId] = useState<string>('');
   return (
     <Layout style={{ backgroundColor: 'white' }}>
       {/* OnCreateLessonError - Attempt to create a lesson went wrong :( */}
@@ -52,7 +55,20 @@ const Lessons = ({ lessons }: Props): JSX.Element => {
       <Header onAddLesson={() => setPageState(PageState.CreateLessonIntent)} />
 
       {/* Lessons table */}
-      <LessonsTable lessons={lessons} />
+      <LessonsTable
+        lessons={lessons}
+        onClickRemove={(lessonId) => {
+          setSelectedLessonId(lessonId);
+        }}
+      />
+      <DeleteLessonModal
+        title="Delete Lesson"
+        visible={deleteOneLesson}
+        lessonId={selectedLessonId}
+        onSubmitSuccess={() => window.location.reload()}
+        onSubmitError={(e: Error) => console.error(e)}
+        onCancel={() => toggleDeleteOneLesson(!deleteOneLesson)}
+      />
 
       {/* OnCreateLessonIntent - Someone clicked a button to create a lessons */}
       {pageState === PageState.CreateLessonIntent && (
@@ -95,7 +111,7 @@ const Header = ({ onAddLesson }: HeaderProps): JSX.Element => (
       />
     </Tooltip>
   </HeaderWrappper>
-  );
+);
 
 export default createFragmentContainer(Lessons, {
   lessons: graphql`

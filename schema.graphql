@@ -1758,6 +1758,8 @@ type Mutation {
   createOneLesson(data: LessonCreateInput!): Lesson!
   createSlide(input: CreateSlideInput!): Slide!
   createStudent(input: CreateStudentInput!): Student!
+  deleteOneCourse(where: CourseWhereUniqueInput!): Course
+  deleteOneLesson(where: LessonWhereUniqueInput!): Lesson
   deleteSingleStudent(input: DeleteSingleStudentInput!): Student!
   deleteStudents(input: DeleteStudentInput!): Student!
   editStudent(input: EditStudentInput!): Student!
