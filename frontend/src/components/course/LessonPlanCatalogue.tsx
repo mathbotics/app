@@ -60,7 +60,7 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
         <LessonsPreviewWrapper>
           {lessons.length === 0 && <p> No lessons available</p>}
           {lessons
-            .filter((lesson) => lesson.title === searchValue)
+            .filter((lesson) => lesson.title.toLowerCase() === searchValue.toLowerCase())
             .map(({ id, title, slides }) => (
               <LessonCardWrapper>
                 <LessonCard
