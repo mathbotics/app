@@ -14,6 +14,7 @@ const { Title } = Typography;
 type Props = {
   query: LessonPlanCatalogue_query;
   lessonPlan: LessonPlanCatalogue_lessonPlan;
+  courseToDelete: String;
 };
 const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
   const { lessons } = query;
