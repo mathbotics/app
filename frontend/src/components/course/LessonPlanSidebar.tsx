@@ -25,7 +25,10 @@ I believe it will be used in the future
  */
 // eslint-disable-next-line
 const { Sider, Content } = Layout;
-type Props = { lessonPlan: LessonPlanSidebar_lessonPlan };
+type Props = {
+  lessonPlan: LessonPlanSidebar_lessonPlan
+  setCourseToBeDeleted: (id) => void;
+};
 const LessonPlanSidebar = ({ lessonPlan }: Props) => {
   /*
   TODO
