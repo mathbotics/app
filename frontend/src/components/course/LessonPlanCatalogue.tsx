@@ -1,5 +1,5 @@
-import React from 'react';
-import { Input, Typography } from 'antd';
+import React, { useState } from 'react';
+import { Input, Typography, Tooltip, Button } from 'antd';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 import styled from 'styled-components';
@@ -7,7 +7,7 @@ import { LessonPlanCatalogue_query } from './__generated__/LessonPlanCatalogue_q
 import { LessonCard } from '../lessons/LessonCard';
 import { commit as commitUpdateOneLessonPlanMutation } from '../../graphql/mutations/UpdateOneLessonPlanMutation';
 import { LessonPlanCatalogue_lessonPlan } from './__generated__/LessonPlanCatalogue_lessonPlan.graphql';
-
+import { PlusOutlined } from '@ant-design/icons';
 const { Search } = Input;
 const { Title } = Typography;
 
@@ -17,7 +17,7 @@ type Props = {
 };
 const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
   const { lessons } = query;
-
+  const [selectedLessons, setSelectedLessons] = useState<any[]>([]);
   const connectLessonToLessonPlan = (id: string) => {
     const lessonIds = lessonPlan.lessons.map((lesson) => ({ id: lesson.id }));
     commitUpdateOneLessonPlanMutation(
@@ -54,6 +54,24 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
               addLesson
               addToLessonPlan={(id) => connectLessonToLessonPlan(id)}
             />
+            <Tooltip title="Add Lesson">
+            <Button
+              disabled={selectedLessons?.includes(id) ?? false}
+              type="primary"
+              shape="circle"
+              icon={<PlusOutlined />}
+              htmlType="submit"
+              size="large"
+              onClick={() => {
+                console.log("Before updated lessons",selectedLessons);
+                connectLessonToLessonPlan(id);
+                // let newSelectLessons = selectedLessons.concat(id);
+                // console.log("newSelectLessons",newSelectLessons);
+                setSelectedLessons( arr => [...arr, id]);
+                console.log("Updated selected lessons",selectedLessons);
+              }}
+            />
+          </Tooltip>
           </LessonCardWrapper>
         ))}
       </LessonsPreviewWrapper>
