@@ -106,28 +106,6 @@ export const LessonCard = ({
         <CardWrapper>
           <CardTitle>{title}</CardTitle>
 
-          {addLesson && (
-          <Tooltip title="Add Lesson">
-            <Button
-              disabled={disabled}
-              type="primary"
-              shape="circle"
-              icon={<PlusOutlined />}
-              htmlType="submit"
-              size="large"
-              onClick={() => {
-                console.log("add")
-                if (addToLessonPlan)
-                {
-                    toggleDisabled(true);
-                    console.log("This is disabled flag", disabled);
-                    addToLessonPlan(id);
-                }
-              }}
-            />
-          </Tooltip>
-)}
-
           {removeLesson && (
           <Tooltip title="Remove Lesson">
             <RemoveLessonButton>
