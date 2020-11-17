@@ -94,7 +94,7 @@ const LessonPlanSidebar = ({ lessonPlan }: Props) => {
                   <DeleteOutlined
                     style={{ margin: '0px 0px 0px 15px', fontSize: '18px' }}
                     onClick={() => {
-                        console.log("remove");
+                        console.log("Remove from lesson plan");
                         removeLessonFromLessonPlan(lesson.id);
                         }}
                   />
