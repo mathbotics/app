@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Layout } from 'antd';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
@@ -17,6 +17,9 @@ const { Sider, Content } = Layout;
 export const EditCourseLessonPlan = ({ lessonPlan, query }: Props) => {
   const [courseToDelete, setCourseToBeDeleted] = useState<String>("");
 
+  useEffect(() => {
+    console.log(`courseToDelete Updated: ${courseToDelete}`);
+  }, [courseToDelete])
   return (
     <Wrapper>
 
