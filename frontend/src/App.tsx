@@ -1,9 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import {
-  LogoutOutlined,
-} from '@ant-design/icons';
-
 import withSidebar from './components/hocs/Sidebar/withSidebar';
 
 // Pages
@@ -21,8 +17,8 @@ import {
   CoursePage,
   ForgotPasswordPage,
   ResetPasswordPage,
-  InstructorGradesPage,
-  StudentGradesPage,
+  GradesPage,
+  // StudentGradesPage,
 } from './pages';
 
 // Routes
@@ -80,15 +76,15 @@ export const App: React.FC = () => (
         exact
         path="/grades"
         allowedRoles={['Instructor']}
-        component={withSidebar(InstructorGradesPage)}
+        component={withSidebar(GradesPage)}
       />
       {/* TODO would be better to pass in /:studentId */}
-      <ProtectedRoute
+      {/* <ProtectedRoute
         exact
         path="/gradesStudent"
         allowedRoles={['Student']}
         component={withSidebar(StudentGradesPage)}
-      />
+      /> */}
       <Route component={NotFoundPage} />
     </Switch>
   </BrowserRouter>

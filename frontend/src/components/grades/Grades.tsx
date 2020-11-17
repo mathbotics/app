@@ -6,9 +6,8 @@ import styled from 'styled-components';
 import { createFragmentContainer } from 'react-relay';
 import { getRootQueryDataID } from '../../graphql/relay';
 import { LessonsPageQuery } from '../../pages/LessonsPage';
-import CreateLessonModal from './CreateLessonModal';
-import LessonsTable from './LessonsTable';
-import { Lessons_lessons } from './__generated__/Lessons_lessons.graphql';
+import GradesTable from './GradesTable';
+import { Lessons_lessons } from '../lessons/__generated__/Lessons_lessons.graphql';
 
 const { Title } = Typography;
 
@@ -52,10 +51,10 @@ const Lessons = ({ lessons }: Props): JSX.Element => {
       <Header onAddLesson={() => setPageState(PageState.CreateLessonIntent)} />
 
       {/* Lessons table */}
-      <LessonsTable lessons={lessons} />
+      <GradesTable lessons={lessons} />
 
       {/* OnCreateLessonIntent - Someone clicked a button to create a lessons */}
-      {pageState === PageState.CreateLessonIntent && (
+      {/* {pageState === PageState.CreateLessonIntent && (
         <CreateLessonModal
           title="Create a lesson"
           rootDataID={getRootQueryDataID(LessonsPageQuery, {})}
@@ -67,7 +66,7 @@ const Lessons = ({ lessons }: Props): JSX.Element => {
           }}
           onCancel={() => setPageState(PageState.Default)}
         />
-      )}
+      )} */}
     </Layout>
   );
 };
@@ -83,9 +82,9 @@ type HeaderProps = { onAddLesson: () => void };
 const Header = ({ onAddLesson }: HeaderProps): JSX.Element => (
   <HeaderWrappper>
     <Title level={3} style={{ fontWeight: 700 }}>
-      Lessons
+     Grades
     </Title>
-    <Tooltip title="Add a lesson">
+    {/* <Tooltip title="Add a lesson">
       <Button
         type="primary"
         shape="circle"
@@ -94,7 +93,7 @@ const Header = ({ onAddLesson }: HeaderProps): JSX.Element => (
         size="large"
         onClick={() => onAddLesson()}
       />
-    </Tooltip>
+    </Tooltip> */}
   </HeaderWrappper>
   );
 

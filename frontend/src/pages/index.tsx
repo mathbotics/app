@@ -12,5 +12,5 @@ export * from './LessonPage';
 export * from './CoursePage';
 export * from './ForgotPasswordPage';
 export * from './ResetPasswordPage';
-export * from './InstructorGradesPage';
-export * from './StudentGradesPage';
+export * from './GradesPage';
+// export * from './StudentGradesPage';
