@@ -88,8 +88,6 @@ const LessonPlanSidebar = ({ lessonPlan }: Props) => {
                 id={lesson.id}
                 title={lesson.title}
                 slideCount={lesson.slides.length}
-                removeLesson
-                removeFromLessonPlan={(id) => removeLessonFromLessonPlan(id)}
               />
               <Tooltip title="Remove Lesson">
                 <RemoveLessonButton>
