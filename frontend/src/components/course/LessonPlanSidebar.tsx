@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Tooltip } from 'antd';
 import styled from 'styled-components';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
+import { DeleteOutlined } from "@ant-design/icons";
 import { commit as commitUpdateOneLessonPlanMutation } from '../../graphql/mutations/UpdateOneLessonPlanMutation';
 import { LessonPlanSidebar_lessonPlan } from './__generated__/LessonPlanSidebar_lessonPlan.graphql';
 
@@ -15,6 +16,10 @@ const MenuItem = styled(Menu.Item)`
   border-radius: 5px;
   padding: 0px !important;
   margin: 10px 0px;
+`;
+
+const RemoveLessonButton = styled.div`
+    color: #ff4d4e;
 `;
 
 export type SlideMenuItem = { id: string; component: JSX.Element };
@@ -86,6 +91,17 @@ const LessonPlanSidebar = ({ lessonPlan }: Props) => {
                 removeLesson
                 removeFromLessonPlan={(id) => removeLessonFromLessonPlan(id)}
               />
+              <Tooltip title="Remove Lesson">
+                <RemoveLessonButton>
+                  <DeleteOutlined
+                    style={{ margin: '0px 0px 0px 15px', fontSize: '18px' }}
+                    onClick={() => {
+                        console.log("remove");
+                        removeLessonFromLessonPlan(lesson.id);
+                        }}
+                  />
+                </RemoveLessonButton>
+              </Tooltip>
             </MenuItem>
           ))}
         </Menu>
