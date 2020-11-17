@@ -34,7 +34,7 @@ type Props = {
   lessonPlan: LessonPlanSidebar_lessonPlan
   setCourseToBeDeleted: (id) => void;
 };
-const LessonPlanSidebar = ({ lessonPlan }: Props) => {
+const LessonPlanSidebar = ({ lessonPlan, setCourseToBeDeleted }: Props) => {
   /*
   TODO
   Selected is being used but never sent
@@ -94,9 +94,10 @@ const LessonPlanSidebar = ({ lessonPlan }: Props) => {
                   <DeleteOutlined
                     style={{ margin: '0px 0px 0px 15px', fontSize: '18px' }}
                     onClick={() => {
-                        console.log("Remove from lesson plan");
-                        removeLessonFromLessonPlan(lesson.id);
-                        }}
+                      setCourseToBeDeleted(lesson.id);
+                      console.log("Remove from lesson plan");
+                      removeLessonFromLessonPlan(lesson.id);
+                    }}
                   />
                 </RemoveLessonButton>
               </Tooltip>
