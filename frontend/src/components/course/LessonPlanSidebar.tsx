@@ -94,6 +94,7 @@ const LessonPlanSidebar = ({ lessonPlan, setCourseToBeDeleted }: Props) => {
                   <DeleteOutlined
                     style={{ margin: '0px 0px 0px 15px', fontSize: '18px' }}
                     onClick={() => {
+                      // TODO might want to change the logic instead pass array
                       setCourseToBeDeleted(lesson.id);
                       console.log("Remove from lesson plan");
                       removeLessonFromLessonPlan(lesson.id);
