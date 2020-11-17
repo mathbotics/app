@@ -3,11 +3,12 @@ import { Input, Typography, Tooltip, Button } from 'antd';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 import styled from 'styled-components';
+import { PlusOutlined } from '@ant-design/icons';
 import { LessonPlanCatalogue_query } from './__generated__/LessonPlanCatalogue_query.graphql';
 import { LessonCard } from '../lessons/LessonCard';
 import { commit as commitUpdateOneLessonPlanMutation } from '../../graphql/mutations/UpdateOneLessonPlanMutation';
 import { LessonPlanCatalogue_lessonPlan } from './__generated__/LessonPlanCatalogue_lessonPlan.graphql';
-import { PlusOutlined } from '@ant-design/icons';
+
 const { Search } = Input;
 const { Title } = Typography;
 
@@ -56,23 +57,23 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
               addToLessonPlan={(id) => connectLessonToLessonPlan(id)}
             />
             <Tooltip title="Add Lesson">
-            <Button
-              disabled={selectedLessons?.includes(id) ?? false}
-              type="primary"
-              shape="circle"
-              icon={<PlusOutlined />}
-              htmlType="submit"
-              size="large"
-              onClick={() => {
-                console.log("Before updated lessons",selectedLessons);
+              <Button
+                disabled={selectedLessons?.includes(id) ?? false}
+                type="primary"
+                shape="circle"
+                icon={<PlusOutlined />}
+                htmlType="submit"
+                size="large"
+                onClick={() => {
+                console.log("Before updated lessons", selectedLessons);
                 connectLessonToLessonPlan(id);
                 // let newSelectLessons = selectedLessons.concat(id);
                 // console.log("newSelectLessons",newSelectLessons);
-                setSelectedLessons( arr => [...arr, id]);
-                console.log("Updated selected lessons",selectedLessons);
+                setSelectedLessons((arr) => [...arr, id]);
+                console.log("Updated selected lessons", selectedLessons);
               }}
-            />
-          </Tooltip>
+              />
+            </Tooltip>
           </LessonCardWrapper>
         ))}
       </LessonsPreviewWrapper>
