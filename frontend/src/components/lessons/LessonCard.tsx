@@ -66,8 +66,6 @@ type Props = {
   description?: string;
   slideCount?: number;
   linkLesson?: boolean;
-  addLesson?: boolean;
-  addToLessonPlan?: (id:string) => void;
 };
 export const LessonCard = ({
   id,
