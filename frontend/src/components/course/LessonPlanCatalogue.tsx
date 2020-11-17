@@ -40,7 +40,7 @@ const LessonPlanCatalogue = ({ lessonPlan, query, courseToDelete }: Props) => {
   // Todo there is an off by 1 error happening here
   useEffect(() => {
     console.log(`Current selected lessons: ${selectedLessons}`)
-    const filteredLessons = selectedLessons.filter((lessonId) => lessonId === courseToDelete);
+    const filteredLessons = selectedLessons.filter((lessonId) => lessonId !== courseToDelete);
     setSelectedLessons(filteredLessons);
     console.log(`Lesson plan detected course to delete`, courseToDelete)
     console.log(`New updated selected lessons ${selectedLessons}`)
