@@ -53,8 +53,6 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
               key={id}
               title={title}
               slideCount={slides.length}
-              addLesson
-              addToLessonPlan={(id) => connectLessonToLessonPlan(id)}
             />
             <Tooltip title="Add Lesson">
               <Button
