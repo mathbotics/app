@@ -51,8 +51,8 @@ const LessonPlanSidebar = ({ lessonPlan }: Props) => {
         data: { lessons: { disconnect: [{ id }] } },
         where: { id: lessonPlan.id },
       },
-      () => console.log('Success'),
-      (e) => console.log(`Error ${e}`),
+      () => console.log('Successfully removed item from lesson plan - GRAPHQL'),
+      (e) => console.log(`Error could not remove item from lesson plan - GRAPHQL: ${e}`),
     );
   };
 
