@@ -17,9 +17,14 @@ type Props = {
   lessonPlan: LessonPlanCatalogue_lessonPlan;
   courseToDelete: String;
 };
+
 const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
   const { lessons } = query;
+  // Lessons array that were to the lesson catalogue
   const [selectedLessons, setSelectedLessons] = useState<any[]>([]);
+  /*
+    Graphql logic to add lessons to LessonPlan
+ */
   const connectLessonToLessonPlan = (id: string) => {
     const lessonIds = lessonPlan.lessons.map((lesson) => ({ id: lesson.id }));
     commitUpdateOneLessonPlanMutation(
@@ -27,8 +32,8 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
         data: { lessons: { connect: [{ id }, ...lessonIds] } },
         where: { id: lessonPlan.id },
       },
-      () => console.log('Success'),
-      (e) => console.log(`Error ${e}`),
+      () => console.log('GRAPHQL Success'),
+      (e) => console.log(`GRAPHQL Error ${e}`),
     );
   };
 
@@ -63,12 +68,14 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
                 htmlType="submit"
                 size="large"
                 onClick={() => {
+                  // TODO logging is off by 1, recently added lesson shows up on next iteration
                 console.log("Before updated lessons", selectedLessons);
                 connectLessonToLessonPlan(id);
                 // let newSelectLessons = selectedLessons.concat(id);
                 // console.log("newSelectLessons",newSelectLessons);
                 setSelectedLessons((arr) => [...arr, id]);
                 console.log("Updated selected lessons", selectedLessons);
+                console.log("Updated LessonPlan Lesson", lessonPlan.lessons);
               }}
               />
             </Tooltip>
