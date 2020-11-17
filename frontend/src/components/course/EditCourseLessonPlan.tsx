@@ -42,7 +42,10 @@ export const EditCourseLessonPlan = ({ lessonPlan, query }: Props) => {
             >
               Lesson Plan
             </h1>
-            <LessonPlanSidebar lessonPlan={lessonPlan} setCourseToBeDeleted={(id) => setCourseToBeDeleted(id)} />
+            <LessonPlanSidebar
+              lessonPlan={lessonPlan}
+              setCourseToBeDeleted={(id) => setCourseToBeDeleted(id)}
+            />
           </div>
         </Sider>
         )}
