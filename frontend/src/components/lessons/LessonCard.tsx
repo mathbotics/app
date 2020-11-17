@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { Button, Tooltip } from 'antd';
-import { ExportOutlined, PlusOutlined, CloseOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
+import { ExportOutlined } from '@ant-design/icons';
 
 import { useHistory } from 'react-router-dom';
 
@@ -78,17 +78,8 @@ export const LessonCard = ({
   description,
   slideCount,
   linkLesson,
-  addLesson,
-  removeLesson,
-  addToLessonPlan,
-  removeFromLessonPlan,
 }: Props) => {
   const history = useHistory();
-  const [disabled, toggleDisabled] = useState<boolean>(false);
-
-    useEffect(() => {
-
-    }, [disabled]);
 
   return (
     <Card>
