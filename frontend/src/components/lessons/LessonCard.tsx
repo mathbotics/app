@@ -58,9 +58,7 @@ const CardWrapper = styled.div`
   align-items: center;
 
 `;
-const RemoveLessonButton = styled.div`
-    color: #ff4d4e;
-`;
+
 type Props = {
   id: string;
   courseId?: string;
@@ -105,25 +103,6 @@ export const LessonCard = ({
       >
         <CardWrapper>
           <CardTitle>{title}</CardTitle>
-
-          {removeLesson && (
-          <Tooltip title="Remove Lesson">
-            <RemoveLessonButton>
-              <DeleteOutlined
-                style={{ margin: '0px 0px 0px 15px', fontSize: '18px' }}
-                onClick={() => {
-                    console.log("remove")
-                    if (removeFromLessonPlan) {
-                        toggleDisabled(false);
-                        console.log("This is disabled flag being disabled?", disabled);
-                        removeFromLessonPlan(id)
-                    }
-                }}
-              />
-            </RemoveLessonButton>
-          </Tooltip>
-
-          )}
         </CardWrapper>
 
       </div>
