@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Table } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
-import { EditOutlined } from '@ant-design/icons';
 import { graphql } from 'babel-plugin-relay/macro';
 import { createFragmentContainer } from 'react-relay';
 import { useHistory } from 'react-router-dom';
-import { LessonsTable_lessons } from '../lessons/__generated__/LessonsTable_lessons.graphql';
+import { StudentGradesTable_lessons } from './__generated__/StudentGradesTable_lessons.graphql';
 
 const columns: ColumnsType<any> = [
   {
@@ -13,16 +12,12 @@ const columns: ColumnsType<any> = [
     dataIndex: 'index',
   },
   {
-    title: 'Lessons Title',
+    title: 'Lesson Title',
     dataIndex: 'title',
   },
   {
-    title: 'Number of slides',
-    dataIndex: 'slide_count',
-  },
-  {
-    title: '',
-    dataIndex: 'edit_button',
+    title: 'Grade',
+    dataIndex: 'grade',
   },
 ];
 
@@ -32,8 +27,8 @@ type TableItem = {
   title: string;
   level?: number;
   time?: string;
-  slide_count?: number;
-  edit_button?: JSX.Element;
+  grade?: string;
+
 };
 
 function onChange(pagination, filters, sorter, extra) {
@@ -41,11 +36,12 @@ function onChange(pagination, filters, sorter, extra) {
 }
 
 type Props = {
-  lessons: LessonsTable_lessons;
+  lessons: StudentGradesTable_lessons;
 };
-const GradesTable = ({ lessons: { lessons } }: Props) => {
+const StudentGradesTable = ({ lessons: { lessons } }: Props) => {
   const history = useHistory();
   const [data, setData] = useState<ColumnsType<TableItem>>();
+  
   useEffect(() => {
     setData(
       lessons.map(({ id, title, slides }, index: number) => ({
@@ -54,22 +50,16 @@ const GradesTable = ({ lessons: { lessons } }: Props) => {
         title,
         level: 9,
         time: '15 min',
-        slide_count: slides.length,
-        edit_button: (
-          <EditOutlined
-            style={{ fontSize: '18px' }}
-            onClick={() => history.push(`/lessons/${id}/slides`)}
-          />
-        ),
+        grade: 'A',
       })),
     );
   }, [history, lessons]);
   return <Table columns={columns} dataSource={data} onChange={onChange} />;
 };
 
-export default createFragmentContainer(GradesTable, {
+export default createFragmentContainer(StudentGradesTable, {
   lessons: graphql`
-    fragment LessonsTable_lessons on Query {
+    fragment StudentGradesTable_lessons on Query {
       lessons {
         id
         title

@@ -17,8 +17,7 @@ import {
   CoursePage,
   ForgotPasswordPage,
   ResetPasswordPage,
-  GradesPage,
-  // StudentGradesPage,
+  StudentGradesPage,
 } from './pages';
 
 // Routes
@@ -74,9 +73,9 @@ export const App: React.FC = () => (
       />
       <ProtectedRoute
         exact
-        path="/grades"
-        allowedRoles={['Instructor']}
-        component={withSidebar(GradesPage)}
+        path="/grades/:studentId"
+        allowedRoles={['Student']}
+        component={withSidebar(StudentGradesPage)}
       />
       {/* TODO would be better to pass in /:studentId */}
       {/* <ProtectedRoute
