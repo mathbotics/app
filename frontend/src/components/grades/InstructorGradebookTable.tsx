@@ -103,7 +103,9 @@ const InstructorGradebookTable = ({ lessons: { lessons } }: Props) => {
       })),
     );
   }, [history, lessons]);
-  return <Table columns={columns} dataSource={data} onChange={onChange} scroll={{ x: 1500, y: 300 }}/>;
+  return <Table columns={columns} dataSource={data} onChange={onChange} scroll={{ x: 1500, y:500}} 
+  pagination={{ defaultPageSize: 10, showSizeChanger: true, pageSizeOptions: ['10', '20', '30']}}
+  />;
 };
 
 export default createFragmentContainer(InstructorGradebookTable, {
