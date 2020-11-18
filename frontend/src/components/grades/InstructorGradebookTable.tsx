@@ -7,17 +7,62 @@ import { useHistory } from 'react-router-dom';
 import { InstructorGradebookTable_lessons } from './__generated__/InstructorGradebookTable_lessons.graphql';
 
 const columns: ColumnsType<any> = [
+
   {
-    title: '',
-    dataIndex: 'index',
+    title: 'First Name',
+    dataIndex: 'firstName',
+    width: 100,
+    key: 'firstName',
+    fixed: 'left',
+  },  
+  {
+    title: 'Last Name',
+    dataIndex: 'lastName',
+    width: 100,
+    key: 'lastName',
+    fixed: 'left',
+  },  
+  {
+    title: 'Lesson 1',
+    dataIndex: 'lessonGrade',
+    key: '1',
+    width: 150,
   },
   {
-    title: 'Lesson Title',
-    dataIndex: 'title',
+    title: 'Lesson 2',
+    dataIndex: 'lessonGrade',
+    key: '2',
+    width: 150,
   },
   {
-    title: 'Grade',
-    dataIndex: 'grade',
+    title: 'Lesson 3',
+    dataIndex: 'lessonGrade',
+    key: '3',
+    width: 150,
+  },
+  {
+    title: 'Lesson 4',
+    dataIndex: 'lessonGrade',
+    key: '4',
+    width: 150,
+  },
+  {
+    title: 'Lesson 5',
+    dataIndex: 'lessonGrade',
+    key: '5',
+    width: 150,
+  },
+  {
+    title: 'Lesson 6',
+    dataIndex: 'lessonGrade',
+    key: '6',
+    width: 150,
+  },
+  {
+    title: 'Lesson 7',
+    dataIndex: 'lessonGrade',
+    key: '7',
+    width: 150,
   },
 ];
 
@@ -28,6 +73,8 @@ type TableItem = {
   level?: number;
   time?: string;
   grade?: string;
+  firstName?: string;
+  lastName?: string;
 
 };
 
@@ -50,11 +97,13 @@ const InstructorGradebookTable = ({ lessons: { lessons } }: Props) => {
         title,
         level: 9,
         time: '15 min',
-        grade: 'A',
+        lessonGrade: 'A',
+        firstName: 'Jessica',
+        lastName: index + 1,
       })),
     );
   }, [history, lessons]);
-  return <Table columns={columns} dataSource={data} onChange={onChange} />;
+  return <Table columns={columns} dataSource={data} onChange={onChange} scroll={{ x: 1500, y: 300 }}/>;
 };
 
 export default createFragmentContainer(InstructorGradebookTable, {
