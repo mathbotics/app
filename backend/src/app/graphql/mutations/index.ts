@@ -37,6 +37,6 @@ export const mutation = extendType({
     t.crud.deleteOneCourse();
     t.crud.createOneLesson();
     t.crud.updateOneLessonPlan();
-    //t.crud.deleteOneLesson();
+    // t.crud.deleteOneLesson();
   },
 });
