@@ -77,13 +77,12 @@ export const App: React.FC = () => (
         allowedRoles={['Student']}
         component={withSidebar(StudentGradesPage)}
       />
-      {/* TODO would be better to pass in /:studentId */}
-      {/* <ProtectedRoute
+      <ProtectedRoute
         exact
-        path="/gradesStudent"
-        allowedRoles={['Student']}
+        path="/gradebook/:instructorId"
+        allowedRoles={['Instructor']}
         component={withSidebar(StudentGradesPage)}
-      /> */}
+      />
       <Route component={NotFoundPage} />
     </Switch>
   </BrowserRouter>
