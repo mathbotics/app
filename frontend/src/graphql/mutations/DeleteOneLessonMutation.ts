@@ -27,5 +27,5 @@ function commit(
       onError,
     });
   }
-  
+
   export { commit };

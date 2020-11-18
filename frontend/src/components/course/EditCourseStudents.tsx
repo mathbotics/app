@@ -89,8 +89,7 @@ const EditCourseStudents = ({ course }: Props) => {
         studentId={selectedStudentId}
         onSubmitSuccess={() => window.location.reload()}
         onSubmitError={(e: Error) =>
-          console.error(`Unable to edit student ${e}`)
-        }
+          console.error(`Unable to edit student ${e}`)}
         onCancel={() => toggleEdit(!edit)}
       />
       <DeleteSingleStudentModal
