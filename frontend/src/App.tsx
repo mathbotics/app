@@ -18,6 +18,7 @@ import {
   ForgotPasswordPage,
   ResetPasswordPage,
   StudentGradesPage,
+  InstructorGradebookPage,
 } from './pages';
 
 // Routes
@@ -81,7 +82,7 @@ export const App: React.FC = () => (
         exact
         path="/gradebook/:instructorId"
         allowedRoles={['Instructor']}
-        component={withSidebar(StudentGradesPage)}
+        component={withSidebar(InstructorGradebookPage)}
       />
       <Route component={NotFoundPage} />
     </Switch>
