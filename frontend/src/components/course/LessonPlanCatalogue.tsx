@@ -16,12 +16,19 @@ type Props = {
   query: LessonPlanCatalogue_query;
   lessonPlan: LessonPlanCatalogue_lessonPlan;
   courseToDelete: String;
+  courseToDeleteArray: String[];
 };
 
-const LessonPlanCatalogue = ({ lessonPlan, query, courseToDelete }: Props) => {
+const LessonPlanCatalogue = ({ lessonPlan, query, courseToDelete, courseToDeleteArray }: Props) => {
   const { lessons } = query;
   // Lessons array that were added to the lessons plan
   const [selectedLessons, setSelectedLessons] = useState<String[]>([]);
+
+  useEffect(() => {
+    setSelectedLessons(courseToDeleteArray);
+    console.log(`LessonPlanCatalogue cought the change in array`, courseToDeleteArray)
+  }, [courseToDeleteArray])
+
   /*
     Graphql logic to add lessons to LessonPlan
  */
@@ -36,14 +43,6 @@ const LessonPlanCatalogue = ({ lessonPlan, query, courseToDelete }: Props) => {
       (e) => console.log(`GRAPHQL Error ${e}`),
     );
   };
-
-  useEffect(() => {
-    console.log(`Current selected lessons: ${selectedLessons}`)
-    const filteredLessons = selectedLessons.filter((lessonId) => lessonId !== courseToDelete);
-    setSelectedLessons(filteredLessons);
-    console.log(`Lesson plan detected course to delete`, courseToDelete)
-    console.log(`New updated selected lessons ${selectedLessons}`)
-  }, [courseToDelete])
 
   return (
     <LessonsCatalogueWrapper>
