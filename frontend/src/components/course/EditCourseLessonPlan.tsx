@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Layout } from 'antd';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
