@@ -15,11 +15,14 @@ type Props = {
 const { Sider, Content } = Layout;
 
 export const EditCourseLessonPlan = ({ lessonPlan, query }: Props) => {
+  // course id to be deleted gets sent here
   const [courseToDelete, setCourseToBeDeleted] = useState<String>("");
+  // TODO convert to array
+  const [courseToDeleteArray, setCourseToBeDeletedArray] = useState<String[]>([]);
 
   useEffect(() => {
-    console.log(`courseToDelete Updated: ${courseToDelete}`);
-  }, [courseToDelete])
+    console.log(`courseToDeleteArray Updated: ${courseToDeleteArray}`);
+  }, [courseToDeleteArray])
   return (
     <Wrapper>
 
@@ -48,6 +51,9 @@ export const EditCourseLessonPlan = ({ lessonPlan, query }: Props) => {
             <LessonPlanSidebar
               lessonPlan={lessonPlan}
               setCourseToBeDeleted={(id) => setCourseToBeDeleted(id)}
+              setCourseToBeDeletedArray={
+                (lessons) => setCourseToBeDeletedArray([...courseToDeleteArray, ...lessons])
+              }
             />
           </div>
         </Sider>

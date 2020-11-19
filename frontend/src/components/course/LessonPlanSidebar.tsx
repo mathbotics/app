@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Layout, Menu, Tooltip } from 'antd';
 import styled from 'styled-components';
 import { createFragmentContainer } from 'react-relay';
@@ -33,14 +33,10 @@ const { Sider, Content } = Layout;
 type Props = {
   lessonPlan: LessonPlanSidebar_lessonPlan
   setCourseToBeDeleted: (id) => void;
+  setCourseToBeDeletedArray: (lessons) => void;
 };
-const LessonPlanSidebar = ({ lessonPlan, setCourseToBeDeleted }: Props) => {
-  /*
-  TODO
-  Selected is being used but never sent
-  Not being removed, will probably need change the state in the future
-   */
-  // eslint-disable-next-line
+const LessonPlanSidebar = (
+    { lessonPlan, setCourseToBeDeleted, setCourseToBeDeletedArray }: Props) => {
   const [selected, setSelected] = useState<string | undefined>(
     lessonPlan.lessons?.[0]?.id,
   );
@@ -57,6 +53,17 @@ const LessonPlanSidebar = ({ lessonPlan, setCourseToBeDeleted }: Props) => {
   };
 
   const { lessons } = lessonPlan;
+
+  useEffect(() => {
+    const lessonIds : string[] = [];
+    lessons.map((lesson, index) => (
+        lessonIds.push(lesson.id)
+        ),
+    )
+    console.log('YOOOOOO', lessonIds)
+    // setCourseToBeDeletedArray();
+    console.log("ALL our courses", lessons)
+  }, [lessons])
 
   return (
     <Sider
@@ -94,9 +101,10 @@ const LessonPlanSidebar = ({ lessonPlan, setCourseToBeDeleted }: Props) => {
                   <DeleteOutlined
                     style={{ margin: '0px 0px 0px 15px', fontSize: '18px' }}
                     onClick={() => {
-                      // TODO might want to change the logic instead pass array
+                      // sends to parent the course id
                       setCourseToBeDeleted(lesson.id);
-                      console.log("Remove from lesson plan");
+                      // setCourseToBeDeletedArray(lesson.id);
+                      // console.log("Remove from lesson plan");
                       removeLessonFromLessonPlan(lesson.id);
                     }}
                   />

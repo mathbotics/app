@@ -20,8 +20,8 @@ type Props = {
 
 const LessonPlanCatalogue = ({ lessonPlan, query, courseToDelete }: Props) => {
   const { lessons } = query;
-  // Lessons array that were to the lesson catalogue
-  const [selectedLessons, setSelectedLessons] = useState<any[]>([]);
+  // Lessons array that were added to the lessons plan
+  const [selectedLessons, setSelectedLessons] = useState<String[]>([]);
   /*
     Graphql logic to add lessons to LessonPlan
  */
@@ -37,7 +37,6 @@ const LessonPlanCatalogue = ({ lessonPlan, query, courseToDelete }: Props) => {
     );
   };
 
-  // Todo there is an off by 1 error happening here
   useEffect(() => {
     console.log(`Current selected lessons: ${selectedLessons}`)
     const filteredLessons = selectedLessons.filter((lessonId) => lessonId !== courseToDelete);
@@ -77,13 +76,11 @@ const LessonPlanCatalogue = ({ lessonPlan, query, courseToDelete }: Props) => {
                 htmlType="submit"
                 size="large"
                 onClick={() => {
-                  // TODO logging is off by 1, recently added lesson shows up on next iteration
                 //  Both selectedLessons and LessonPlan.lessons on first add showing empty
-                console.log("Before updated lessons", selectedLessons);
                 connectLessonToLessonPlan(id);
                 setSelectedLessons((arr) => [...arr, id]);
-                console.log("Updated selected lessons", selectedLessons);
-                console.log("Updated LessonPlan Lesson", lessonPlan.lessons);
+                console.log("selected lessons", selectedLessons);
+                console.log("LessonPlan Lesson", lessonPlan.lessons);
               }}
               />
             </Tooltip>
