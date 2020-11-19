@@ -63,7 +63,7 @@ export const EditCourseLessonPlan = ({ lessonPlan, query }: Props) => {
         query={query}
         lessonPlan={lessonPlan}
         courseToDelete={courseToDelete}
-        courseToDeleteArray={courseToDeleteArray}
+        lessonIdsInLessonPlan={courseToDeleteArray}
       />
 
     </Wrapper>
