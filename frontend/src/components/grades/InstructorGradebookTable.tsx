@@ -41,7 +41,6 @@ const InstructorGradebookTable = ({ lessons: { lessons } }: Props) => {
       fixed: 'left',
     },  
     {   
-      title: 'Lesson Titles',
       children: 
       lessons.map(function(lesson) {
         
