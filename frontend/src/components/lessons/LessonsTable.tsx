@@ -1,11 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { Table } from 'antd';
+import { Table, Tooltip } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
-import { EditOutlined } from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { graphql } from 'babel-plugin-relay/macro';
 import { createFragmentContainer } from 'react-relay';
+import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { LessonsTable_lessons } from './__generated__/LessonsTable_lessons.graphql';
+
+const DeleteButton = styled.div`
+  :hover {
+    color: #ff4d4e;
+  }
+`;
+const EditButton = styled.div`
+  :hover {
+    color: #1890ff;
+  }
+`;
 
 const columns: ColumnsType<any> = [
   {
@@ -21,8 +33,8 @@ const columns: ColumnsType<any> = [
     dataIndex: 'slide_count',
   },
   {
-    title: '',
-    dataIndex: 'edit_button',
+    title: 'Action',
+    dataIndex: 'action',
   },
 ];
 
@@ -33,7 +45,6 @@ type TableItem = {
   level?: number;
   time?: string;
   slide_count?: number;
-  edit_button?: JSX.Element;
 };
 
 function onChange(pagination, filters, sorter, extra) {
@@ -42,8 +53,9 @@ function onChange(pagination, filters, sorter, extra) {
 
 type Props = {
   lessons: LessonsTable_lessons;
+  onClickRemove: (lessonId: string) => void;
 };
-const LessonsTable = ({ lessons: { lessons } }: Props) => {
+const LessonsTable = ({ onClickRemove, lessons: { lessons } }: Props) => {
   const history = useHistory();
   const [data, setData] = useState<ColumnsType<TableItem>>();
   useEffect(() => {
@@ -55,10 +67,11 @@ const LessonsTable = ({ lessons: { lessons } }: Props) => {
         level: 9,
         time: '15 min',
         slide_count: slides.length,
-        edit_button: (
-          <EditOutlined
-            style={{ fontSize: '18px' }}
-            onClick={() => history.push(`/lessons/${id}/slides`)}
+        action: (
+          <EditLessonTableButtons
+            id={id}
+            onClickRemove={onClickRemove}
+            history={history}
           />
         ),
       })),
@@ -66,6 +79,42 @@ const LessonsTable = ({ lessons: { lessons } }: Props) => {
   }, [history, lessons]);
   return <Table columns={columns} dataSource={data} onChange={onChange} />;
 };
+
+type EditLessonTableButtonProps = {
+  id: string;
+  history;
+  onClickRemove: (string) => void;
+};
+
+const EditLessonTableButtons = ({
+  id,
+  onClickRemove,
+  history,
+}: EditLessonTableButtonProps) => (
+  <div
+    style={{
+      display: 'flex',
+      fontSize: '16px',
+      alignItems: 'center',
+    }}
+  >
+    <Tooltip title="Edit Student">
+      <EditButton onClick={() => history.push(`/lessons/${id}/slides`)}>
+        <EditOutlined />
+      </EditButton>
+    </Tooltip>
+    <Tooltip title="Delete Student">
+      <DeleteButton
+        onClick={() => {
+          console.log(id);
+          onClickRemove(id);
+        }}
+      >
+        <DeleteOutlined style={{ margin: '0px 0px 0px 15px' }} />
+      </DeleteButton>
+    </Tooltip>
+  </div>
+);
 
 export default createFragmentContainer(LessonsTable, {
   lessons: graphql`
