@@ -6,65 +6,8 @@ import { createFragmentContainer } from 'react-relay';
 import { useHistory } from 'react-router-dom';
 import { InstructorGradebookTable_lessons } from './__generated__/InstructorGradebookTable_lessons.graphql';
 
-const columns: ColumnsType<any> = [
 
-  {
-    title: 'First Name',
-    dataIndex: 'firstName',
-    width: 100,
-    key: 'firstName',
-    fixed: 'left',
-  },  
-  {
-    title: 'Last Name',
-    dataIndex: 'lastName',
-    width: 100,
-    key: 'lastName',
-    fixed: 'left',
-  },  
-  {
-    title: 'Lesson 1',
-    dataIndex: 'lessonGrade',
-    key: '1',
-    width: 150,
-  },
-  {
-    title: 'Lesson 2',
-    dataIndex: 'lessonGrade',
-    key: '2',
-    width: 150,
-  },
-  {
-    title: 'Lesson 3',
-    dataIndex: 'lessonGrade',
-    key: '3',
-    width: 150,
-  },
-  {
-    title: 'Lesson 4',
-    dataIndex: 'lessonGrade',
-    key: '4',
-    width: 150,
-  },
-  {
-    title: 'Lesson 5',
-    dataIndex: 'lessonGrade',
-    key: '5',
-    width: 150,
-  },
-  {
-    title: 'Lesson 6',
-    dataIndex: 'lessonGrade',
-    key: '6',
-    width: 150,
-  },
-  {
-    title: 'Lesson 7',
-    dataIndex: 'lessonGrade',
-    key: '7',
-    width: 150,
-  },
-];
+
 
 type TableItem = {
   index: number;
@@ -88,18 +31,37 @@ type Props = {
 const InstructorGradebookTable = ({ lessons: { lessons } }: Props) => {
   const history = useHistory();
   const [data, setData] = useState<ColumnsType<TableItem>>();
-  
+
+
+  const columns: ColumnsType<any> = [
+ 
+    {
+      title: 'Student Name',
+      dataIndex: 'fullName',
+      width: 150,
+      key: 'fullName',
+      fixed: 'left',
+    },  
+    {   
+      title: 'Lesson Titles',
+      children: 
+      lessons.map(function(lesson) {
+      return {
+        title: lesson.title,
+        dataIndex: 'lessonGrade',
+        key: '1',
+        width: 100,
+      }
+    })}
+  ];
   useEffect(() => {
     setData(
       lessons.map(({ id, title, slides }, index: number) => ({
         index: index + 1,
         key: index,
         title,
-        level: 9,
-        time: '15 min',
         lessonGrade: 'A',
-        firstName: 'Jessica',
-        lastName: index + 1,
+        fullName: 'Jessica ' + index,
       })),
     );
   }, [history, lessons]);
