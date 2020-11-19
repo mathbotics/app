@@ -59,7 +59,12 @@ export const EditCourseLessonPlan = ({ lessonPlan, query }: Props) => {
         </Sider>
         )}
 
-      <LessonPlanCatalogue query={query} lessonPlan={lessonPlan} courseToDelete={courseToDelete} />
+      <LessonPlanCatalogue
+        query={query}
+        lessonPlan={lessonPlan}
+        courseToDelete={courseToDelete}
+        courseToDeleteArray={courseToDeleteArray}
+      />
 
     </Wrapper>
   )
