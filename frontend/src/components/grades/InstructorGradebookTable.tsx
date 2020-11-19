@@ -7,8 +7,6 @@ import { useHistory } from 'react-router-dom';
 import { InstructorGradebookTable_lessons } from './__generated__/InstructorGradebookTable_lessons.graphql';
 
 
-
-
 type TableItem = {
   index: number;
   key: number;
@@ -46,6 +44,7 @@ const InstructorGradebookTable = ({ lessons: { lessons } }: Props) => {
       title: 'Lesson Titles',
       children: 
       lessons.map(function(lesson) {
+        
       return {
         title: lesson.title,
         dataIndex: 'lessonGrade',
