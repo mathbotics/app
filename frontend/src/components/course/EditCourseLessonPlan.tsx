@@ -20,9 +20,9 @@ export const EditCourseLessonPlan = ({ lessonPlan, query }: Props) => {
   // TODO convert to array
   const [courseToDeleteArray, setCourseToBeDeletedArray] = useState<String[]>([]);
 
-  useEffect(() => {
-    console.log(`courseToDeleteArray Updated: ${courseToDeleteArray}`);
-  }, [courseToDeleteArray])
+  // useEffect(() => {
+  //   console.log(`courseToDeleteArray Updated: ${courseToDeleteArray}`);
+  // }, [courseToDeleteArray])
   return (
     <Wrapper>
 
