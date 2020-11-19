@@ -60,9 +60,7 @@ const LessonPlanSidebar = (
         lessonIds.push(lesson.id)
         ),
     )
-    console.log('YOOOOOO', lessonIds)
-    // setCourseToBeDeletedArray();
-    console.log("ALL our courses", lessons)
+    setCourseToBeDeletedArray(lessonIds);
   }, [lessons])
 
   return (
