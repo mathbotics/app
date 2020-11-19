@@ -16,18 +16,20 @@ type Props = {
   query: LessonPlanCatalogue_query;
   lessonPlan: LessonPlanCatalogue_lessonPlan;
   courseToDelete: String;
-  courseToDeleteArray: String[];
+  lessonIdsInLessonPlan: String[];
 };
 
-const LessonPlanCatalogue = ({ lessonPlan, query, courseToDelete, courseToDeleteArray }: Props) => {
+const LessonPlanCatalogue = (
+    { lessonPlan, query, courseToDelete, lessonIdsInLessonPlan }: Props) => {
   const { lessons } = query;
   // Lessons array that were added to the lessons plan
   const [selectedLessons, setSelectedLessons] = useState<String[]>([]);
 
   useEffect(() => {
-    setSelectedLessons(courseToDeleteArray);
-    console.log(`LessonPlanCatalogue cought the change in array`, courseToDeleteArray)
-  }, [courseToDeleteArray])
+    setSelectedLessons((arr) => [...arr, ...lessonIdsInLessonPlan]);
+    console.log(`LessonPlanCatalogue caught the change in array`, lessonIdsInLessonPlan)
+    console.log(`Comparing our new array to current`, selectedLessons)
+  }, [lessonIdsInLessonPlan])
 
   /*
     Graphql logic to add lessons to LessonPlan
@@ -68,7 +70,7 @@ const LessonPlanCatalogue = ({ lessonPlan, query, courseToDelete, courseToDelete
             />
             <Tooltip title="Add Lesson">
               <Button
-                disabled={selectedLessons?.includes(id) ?? false}
+                disabled={lessonIdsInLessonPlan.includes(id) ?? false}
                 type="primary"
                 shape="circle"
                 icon={<PlusOutlined />}
@@ -77,9 +79,9 @@ const LessonPlanCatalogue = ({ lessonPlan, query, courseToDelete, courseToDelete
                 onClick={() => {
                 //  Both selectedLessons and LessonPlan.lessons on first add showing empty
                 connectLessonToLessonPlan(id);
-                setSelectedLessons((arr) => [...arr, id]);
-                console.log("selected lessons", selectedLessons);
-                console.log("LessonPlan Lesson", lessonPlan.lessons);
+                // setSelectedLessons((arr) => [...arr, id]);
+                // console.log("selected lessons", selectedLessons);
+                // console.log("LessonPlan Lesson", lessonPlan.lessons);
               }}
               />
             </Tooltip>
