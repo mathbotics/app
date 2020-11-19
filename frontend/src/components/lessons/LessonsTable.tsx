@@ -98,12 +98,12 @@ const EditLessonTableButtons = ({
       alignItems: 'center',
     }}
   >
-    <Tooltip title="Edit Student">
+    <Tooltip title="Edit Lesson">
       <EditButton onClick={() => history.push(`/lessons/${id}/slides`)}>
         <EditOutlined />
       </EditButton>
     </Tooltip>
-    <Tooltip title="Delete Student">
+    <Tooltip title="Delete Lesson">
       <DeleteButton
         onClick={() => {
           console.log(id);
