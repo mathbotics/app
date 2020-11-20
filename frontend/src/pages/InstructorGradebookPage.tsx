@@ -7,6 +7,7 @@ import InstructorGradebook from '../components/grades/InstructorGradebook';
 
 export const InstructorGradebookPageQuery = graphql`
   query InstructorGradebookPageQuery {
+    ...InstructorGradebook_course
     ...InstructorGradebook_lessons
   }
 `;
@@ -17,6 +18,6 @@ export const InstructorGradebookPage = () => (
     variables={{}}
     query={InstructorGradebookPageQuery}
     render={({ props, error }) =>
-      !error && props && <InstructorGradebook lessons={props as InstructorGradebookPageQueryResponse}/>}
+      !error && props && <InstructorGradebook lessons={props as InstructorGradebookPageQueryResponse} course={props as InstructorGradebookPageQueryResponse}/>}
   />
 );

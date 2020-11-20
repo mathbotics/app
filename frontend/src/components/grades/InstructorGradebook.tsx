@@ -5,24 +5,20 @@ import styled from 'styled-components';
 import { createFragmentContainer } from 'react-relay';
 import InstructorGradebookTable from './InstructorGradebookTable';
 import { InstructorGradebook_lessons } from './__generated__/InstructorGradebook_lessons.graphql';
+import { InstructorGradebook_course } from './__generated__/InstructorGradebook_course.graphql';
 
 const { Title } = Typography;
 
-type Props = { lessons: InstructorGradebook_lessons };
-enum PageState {
-  Default, // Initial/Normal state
-  CreateLessonIntent,
-  CreateLessonSuccess,
-  CreateLessonError,
-}
-const InstructorGradebook = ({ lessons }: Props): JSX.Element => {
+type Props = { lessons: InstructorGradebook_lessons, course: InstructorGradebook_course };
+
+const InstructorGradebook = ({ lessons, course }: Props): JSX.Element => {
 
   return (
     <Layout style={{ backgroundColor: 'white' }}>
       <Header/>
 
       {/* Lessons table */}
-      <InstructorGradebookTable lessons={lessons} />
+      <InstructorGradebookTable lessons={lessons} course={course}/>
     </Layout>
   );
 };
@@ -49,4 +45,9 @@ export default createFragmentContainer(InstructorGradebook, {
     ...InstructorGradebookTable_lessons
   }
   `,
+  course: graphql`
+  fragment InstructorGradebook_course on Query {
+    ...InstructorGradebookTable_course
+  }
+  `,  
 });

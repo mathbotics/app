@@ -5,7 +5,7 @@ import { graphql } from 'babel-plugin-relay/macro';
 import { createFragmentContainer } from 'react-relay';
 import { useHistory } from 'react-router-dom';
 import { InstructorGradebookTable_lessons } from './__generated__/InstructorGradebookTable_lessons.graphql';
-
+import { InstructorGradebookTable_course } from './__generated__/InstructorGradebookTable_course.graphql';
 
 type TableItem = {
   index: number;
@@ -24,9 +24,13 @@ function onChange(pagination, filters, sorter, extra) {
 }
 
 type Props = {
-  lessons: InstructorGradebookTable_lessons;
+  lessons: InstructorGradebookTable_lessons
+  course: InstructorGradebookTable_course;
 };
-const InstructorGradebookTable = ({ lessons: { lessons } }: Props) => {
+const InstructorGradebookTable = ({ 
+  lessons: { lessons },
+  course: { students },
+  }: Props) => {
   const history = useHistory();
   const [data, setData] = useState<ColumnsType<TableItem>>();
 
@@ -50,19 +54,21 @@ const InstructorGradebookTable = ({ lessons: { lessons } }: Props) => {
         key: '1',
         width: 100,
       }
-    })}
+    })},
   ];
   useEffect(() => {
     setData(
-      lessons.map(({ id, title, slides }, index: number) => ({
-        index: index + 1,
-        key: index,
-        title,
-        lessonGrade: 'A',
-        fullName: 'Jessica ' + index,
-      })),
+      students.map(
+        ({ firstName, lastName, gradeLevel, username, id }, index: number) => ({
+          index: index + 1,
+          key: index,
+          fullName: lastName + ', ' + firstName,
+          lessonGrade: 'A',
+        }),
+      ),
     );
-  }, [history, lessons]);
+  }, [history, students]);
+
   return <Table columns={columns} dataSource={data} onChange={onChange} scroll={{ x: 1500, y:500}} 
   pagination={{ defaultPageSize: 10, showSizeChanger: true, pageSizeOptions: ['10', '20', '30']}}
   />;
@@ -80,4 +86,15 @@ export default createFragmentContainer(InstructorGradebookTable, {
       }
     }
   `,
+  course: graphql`
+  fragment InstructorGradebookTable_course on Query {
+    students {
+      username
+      firstName
+      lastName
+      gradeLevel
+      id
+    }
+  }
+`, 
 });
