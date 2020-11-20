@@ -15,13 +15,13 @@ type Props = {
 };
 
 const InstructorGradebook = ({ lessons, course }: Props): JSX.Element => (
-    <Layout style={{ backgroundColor: 'white' }}>
-      <Header />
+  <Layout style={{ backgroundColor: 'white' }}>
+    <Header />
 
-      {/* Lessons table */}
-      <InstructorGradebookTable lessons={lessons} course={course} />
-    </Layout>
-  );
+    {/* Lessons table */}
+    <InstructorGradebookTable lessons={lessons} course={course} />
+  </Layout>
+);
 
 const HeaderWrappper = styled(Layout.Content)`
   display: flex;

@@ -16,13 +16,13 @@ enum PageState {
   CreateLessonError,
 }
 const StudentGrades = ({ lessons }: Props): JSX.Element => (
-    <Layout style={{ backgroundColor: 'white' }}>
-      <Header/>
+  <Layout style={{ backgroundColor: 'white' }}>
+    <Header />
 
-      {/* Lessons table */}
-      <StudentGradesTable lessons={lessons} />
-    </Layout>
-  );
+    {/* Lessons table */}
+    <StudentGradesTable lessons={lessons} />
+  </Layout>
+);
 
 const HeaderWrappper = styled(Layout.Content)`
   display: flex;
@@ -37,12 +37,12 @@ const Header = (): JSX.Element => (
       Grades
     </Title>
   </HeaderWrappper>
-  );
+);
 
 export default createFragmentContainer(StudentGrades, {
   lessons: graphql`
-  fragment StudentGrades_lessons on Query {
-    ...StudentGradesTable_lessons
-  }
+    fragment StudentGrades_lessons on Query {
+      ...StudentGradesTable_lessons
+    }
   `,
 });

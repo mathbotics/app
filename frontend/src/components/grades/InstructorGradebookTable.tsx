@@ -58,7 +58,7 @@ const InstructorGradebookTable = ({
         ({ firstName, lastName }, index: number) => ({
           index: index + 1,
           key: index,
-          fullName: `${lastName}, ${firstName}`,
+          fullName: `${lastName} ${firstName}`,
           grade: 'A',
         }),
       ),
