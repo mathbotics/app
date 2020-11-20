@@ -3,7 +3,7 @@ import { Layout, Menu, Tooltip } from 'antd';
 import styled from 'styled-components';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
-import { DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined } from '@ant-design/icons';
 import { commit as commitUpdateOneLessonPlanMutation } from '../../graphql/mutations/UpdateOneLessonPlanMutation';
 import { LessonPlanSidebar_lessonPlan } from './__generated__/LessonPlanSidebar_lessonPlan.graphql';
 
@@ -19,7 +19,7 @@ const MenuItem = styled(Menu.Item)`
 `;
 
 const RemoveLessonButton = styled.div`
-    color: #ff4d4e;
+  color: #ff4d4e;
 `;
 
 export type SlideMenuItem = { id: string; component: JSX.Element };
@@ -31,12 +31,15 @@ I believe it will be used in the future
 // eslint-disable-next-line
 const { Sider, Content } = Layout;
 type Props = {
-  lessonPlan: LessonPlanSidebar_lessonPlan
+  lessonPlan: LessonPlanSidebar_lessonPlan;
   setCourseToBeDeleted: (id) => void;
   setCourseToBeDeletedArray: (lessons) => void;
 };
-const LessonPlanSidebar = (
-    { lessonPlan, setCourseToBeDeleted, setCourseToBeDeletedArray }: Props) => {
+const LessonPlanSidebar = ({
+  lessonPlan,
+  setCourseToBeDeleted,
+  setCourseToBeDeletedArray,
+}: Props) => {
   const [selected, setSelected] = useState<string | undefined>(
     lessonPlan.lessons?.[0]?.id,
   );
@@ -48,35 +51,29 @@ const LessonPlanSidebar = (
         where: { id: lessonPlan.id },
       },
       () => console.log('Successfully removed item from lesson plan - GRAPHQL'),
-      (e) => console.log(`Error could not remove item from lesson plan - GRAPHQL: ${e}`),
+      (e) =>
+        console.log(
+          `Error could not remove item from lesson plan - GRAPHQL: ${e}`,
+        ),
     );
   };
 
   const { lessons } = lessonPlan;
 
   useEffect(() => {
-    const lessonIds : string[] = [];
-    console.log(`LessonPlanSidebar - useEffect: current lessons `, lessons)
-    lessons.map((lesson, index) => (
-        lessonIds.push(lesson.id)
-        ),
-    )
-    console.log(`LessonPlanSidebar - useEffect: current lessonIds `, lessonIds)
+    const lessonIds: string[] = [];
+    console.log(`LessonPlanSidebar - useEffect: current lessons `, lessons);
+    lessons.map((lesson, index) => lessonIds.push(lesson.id));
+    console.log(`LessonPlanSidebar - useEffect: current lessonIds `, lessonIds);
     setCourseToBeDeletedArray(lessonIds);
-  }, [lessons])
+  }, [lessons]);
 
   return (
-    <Sider
-      width={350}
-      theme="light"
-    >
+    <Sider width={350} theme="light">
       {lessonPlan.lessons.length > 0 && (
         <Menu defaultSelectedKeys={[selected?.toString() ?? '']} mode="inline">
           {lessons.map((lesson, index) => (
-            <MenuItem
-              key={lesson.id}
-              style={{ display: 'flex' }}
-            >
+            <MenuItem key={lesson.id} style={{ display: 'flex' }}>
               <h1
                 style={{
                   margin: 'auto',
@@ -99,11 +96,14 @@ const LessonPlanSidebar = (
               <Tooltip title="Remove Lesson">
                 <RemoveLessonButton>
                   <DeleteOutlined
-                    style={{ margin: '0px 0px 0px 15px', fontSize: '18px' }}
+                    style={{ fontSize: '18px', margin: '55px 0px 0px 1px' }}
                     onClick={() => {
                       // sends to parent the course id
                       setCourseToBeDeleted(lesson.id);
-                      console.log(`LessonPlanSidebar: set the current course to be deleted `, lesson.id)
+                      console.log(
+                        `LessonPlanSidebar: set the current course to be deleted `,
+                        lesson.id,
+                      );
                       // setCourseToBeDeletedArray(lesson.id);
                       // console.log("Remove from lesson plan");
                       removeLessonFromLessonPlan(lesson.id);
