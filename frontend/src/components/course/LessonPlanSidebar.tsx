@@ -56,10 +56,12 @@ const LessonPlanSidebar = (
 
   useEffect(() => {
     const lessonIds : string[] = [];
+    console.log(`LessonPlanSidebar - useEffect: current lessons `, lessons)
     lessons.map((lesson, index) => (
         lessonIds.push(lesson.id)
         ),
     )
+    console.log(`LessonPlanSidebar - useEffect: current lessonIds `, lessonIds)
     setCourseToBeDeletedArray(lessonIds);
   }, [lessons])
 
@@ -101,6 +103,7 @@ const LessonPlanSidebar = (
                     onClick={() => {
                       // sends to parent the course id
                       setCourseToBeDeleted(lesson.id);
+                      console.log(`LessonPlanSidebar: set the current course to be deleted `, lesson.id)
                       // setCourseToBeDeletedArray(lesson.id);
                       // console.log("Remove from lesson plan");
                       removeLessonFromLessonPlan(lesson.id);
