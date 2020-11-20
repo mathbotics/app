@@ -18,13 +18,13 @@ export const deleteCourse = mutationField('deleteCourse', {
   },
   async resolve(_root, { input: { courseId } }) {
     const { ...course } = nullthrows(
-        await prisma.course.delete({
-          where: {
-              id: courseId,
-          },
-        }),
-        'Could not delete course',
-      );
-      return { ...course };
-    },
-  });
+      await prisma.course.delete({
+        where: {
+          id: courseId,
+        },
+      }),
+      'Could not delete course',
+    );
+    return { ...course };
+  },
+});

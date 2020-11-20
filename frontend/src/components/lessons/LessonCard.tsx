@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from 'antd';
-import { ExportOutlined } from '@ant-design/icons';
+import { Button, Tooltip } from 'antd';
+import { ExportOutlined, PlusOutlined, CloseOutlined, DeleteOutlined } from '@ant-design/icons';
 
 import { useHistory } from 'react-router-dom';
 
@@ -58,7 +58,9 @@ const CardWrapper = styled.div`
   align-items: center;
 
 `;
-
+const RemoveLessonButton = styled.div`
+    color: #ff4d4e;
+`;
 type Props = {
   id: string;
   courseId?: string;
@@ -66,6 +68,10 @@ type Props = {
   description?: string;
   slideCount?: number;
   linkLesson?: boolean;
+  addLesson?: boolean;
+  removeLesson?: boolean;
+  addToLessonPlan?: (id:string) => void;
+  removeFromLessonPlan?: (id:string) => void;
 };
 export const LessonCard = ({
   id,
@@ -74,6 +80,10 @@ export const LessonCard = ({
   description,
   slideCount,
   linkLesson,
+  addLesson,
+  removeLesson,
+  addToLessonPlan,
+  removeFromLessonPlan,
 }: Props) => {
   const history = useHistory();
 
@@ -90,6 +100,41 @@ export const LessonCard = ({
       >
         <CardWrapper>
           <CardTitle>{title}</CardTitle>
+
+          {addLesson && (
+          <Tooltip title="Add Lesson">
+            <Button
+              type="primary"
+              shape="circle"
+              icon={<PlusOutlined />}
+              htmlType="submit"
+              size="large"
+              onClick={() => {
+                console.log("add")
+                if (addToLessonPlan) {
+                  addToLessonPlan(id)
+                }
+              }}
+            />
+          </Tooltip>
+)}
+
+          {removeLesson && (
+          <Tooltip title="Remove Lesson">
+            <RemoveLessonButton>
+              <DeleteOutlined
+                style={{ margin: '0px 0px 0px 15px', fontSize: '18px' }}
+                onClick={() => {
+                    console.log("remove")
+                    if (removeFromLessonPlan) {
+                        removeFromLessonPlan(id)
+                    }
+                }}
+              />
+            </RemoveLessonButton>
+          </Tooltip>
+
+          )}
         </CardWrapper>
 
       </div>
