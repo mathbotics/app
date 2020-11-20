@@ -42,14 +42,12 @@ const InstructorGradebookTable = ({
       fixed: 'left',
     },
     {
-      children: lessons.map((lesson) => {
-        return {
+      children: lessons.map((lesson) => ({
           title: lesson.title,
           dataIndex: 'grade',
           key: '1',
           width: 100,
-        };
-      }),
+        })),
     },
   ];
   useEffect(() => {
