@@ -27,9 +27,11 @@ const LessonPlanCatalogue = (
 
   useEffect(() => {
     setSelectedLessons((arr) => [...arr, ...lessonIdsInLessonPlan]);
-    console.log(`LessonPlanCatalogue caught the change in array`, lessonIdsInLessonPlan)
-    console.log(`Comparing our new array to current`, selectedLessons)
-  }, [lessonIdsInLessonPlan])
+    const filteredLessons = selectedLessons.filter((lessonId) => lessonId !== courseToDelete);
+    setSelectedLessons(filteredLessons);
+    console.log(`LessonPlanCatalogue - useEffect: caught the change in array`, lessonIdsInLessonPlan)
+    console.log(`LessonPlanCatalogue - useEffect: Comparing our new array to current`, selectedLessons)
+  }, [lessonIdsInLessonPlan, courseToDelete])
 
   /*
     Graphql logic to add lessons to LessonPlan
@@ -70,7 +72,7 @@ const LessonPlanCatalogue = (
             />
             <Tooltip title="Add Lesson">
               <Button
-                disabled={lessonIdsInLessonPlan.includes(id) ?? false}
+                disabled={selectedLessons?.includes(id) ?? false}
                 type="primary"
                 shape="circle"
                 icon={<PlusOutlined />}
@@ -79,8 +81,9 @@ const LessonPlanCatalogue = (
                 onClick={() => {
                 //  Both selectedLessons and LessonPlan.lessons on first add showing empty
                 connectLessonToLessonPlan(id);
-                // setSelectedLessons((arr) => [...arr, id]);
-                // console.log("selected lessons", selectedLessons);
+                setSelectedLessons((arr) => [...arr, id]);
+                console.log("LessonPlanCatalogue: Selected CourseId to add", id);
+                console.log("LessonPlanCatalogue: Adding to selected lessons", selectedLessons);
                 // console.log("LessonPlan Lesson", lessonPlan.lessons);
               }}
               />
