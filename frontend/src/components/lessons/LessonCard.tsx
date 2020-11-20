@@ -13,7 +13,7 @@ const Card = styled.div`
   flex-direction: column;
   transition: all 0.15s ease-in-out;
   border: 0.5px solid #e0e9f3;
-  :hover {..
+  :hover {
     box-shadow: 0 10px 15px -3px rgba(57, 129, 181, 0.31),
       0 4px 6px -2px rgba(120, 157, 195, 0.08);
     cursor: pointer;
