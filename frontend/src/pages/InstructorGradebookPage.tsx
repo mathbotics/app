@@ -18,6 +18,12 @@ export const InstructorGradebookPage = () => (
     variables={{}}
     query={InstructorGradebookPageQuery}
     render={({ props, error }) =>
-      !error && props && <InstructorGradebook lessons={props as InstructorGradebookPageQueryResponse} course={props as InstructorGradebookPageQueryResponse}/>}
+      !error &&
+      props && (
+        <InstructorGradebook
+          lessons={props as InstructorGradebookPageQueryResponse}
+          course={props as InstructorGradebookPageQueryResponse}
+        />
+      )}
   />
 );

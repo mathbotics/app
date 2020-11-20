@@ -89,7 +89,6 @@ const Lessons = ({ lessons }: Props): JSX.Element => {
   );
 };
 
-
 const HeaderWrappper = styled(Layout.Content)`
   display: flex;
   justify-content: space-between;

@@ -41,7 +41,6 @@ type Props = {
 const StudentGradesTable = ({ lessons: { lessons } }: Props) => {
   const history = useHistory();
   const [data, setData] = useState<ColumnsType<TableItem>>();
-  
   useEffect(() => {
     setData(
       lessons.map(({ id, title, slides }, index: number) => ({

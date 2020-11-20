@@ -16,7 +16,6 @@ type TableItem = {
   grade?: string;
   firstName?: string;
   lastName?: string;
-
 };
 
 function onChange(pagination, filters, sorter, extra) {
@@ -24,54 +23,61 @@ function onChange(pagination, filters, sorter, extra) {
 }
 
 type Props = {
-  lessons: InstructorGradebookTable_lessons
+  lessons: InstructorGradebookTable_lessons;
   course: InstructorGradebookTable_course;
 };
-const InstructorGradebookTable = ({ 
+const InstructorGradebookTable = ({
   lessons: { lessons },
   course: { students },
-  }: Props) => {
+}: Props) => {
   const history = useHistory();
   const [data, setData] = useState<ColumnsType<TableItem>>();
 
-
   const columns: ColumnsType<any> = [
- 
     {
       title: 'Student Name',
       dataIndex: 'fullName',
       width: 150,
       key: 'fullName',
       fixed: 'left',
-    },  
-    {   
-      children: 
-      lessons.map(function(lesson) {
-        
-      return {
-        title: lesson.title,
-        dataIndex: 'lessonGrade',
-        key: '1',
-        width: 100,
-      }
-    })},
+    },
+    {
+      children: lessons.map((lesson) => {
+        return {
+          title: lesson.title,
+          dataIndex: 'grade',
+          key: '1',
+          width: 100,
+        };
+      }),
+    },
   ];
   useEffect(() => {
     setData(
       students.map(
-        ({ firstName, lastName, gradeLevel, username, id }, index: number) => ({
+        ({ firstName, lastName }, index: number) => ({
           index: index + 1,
           key: index,
-          fullName: lastName + ', ' + firstName,
-          lessonGrade: 'A',
+          fullName: `${lastName}, ${firstName}`,
+          grade: 'A',
         }),
       ),
     );
   }, [history, students]);
 
-  return <Table columns={columns} dataSource={data} onChange={onChange} scroll={{ x: 1500, y:500}} 
-  pagination={{ defaultPageSize: 10, showSizeChanger: true, pageSizeOptions: ['10', '20', '30']}}
-  />;
+  return (
+    <Table
+      columns={columns}
+      dataSource={data}
+      onChange={onChange}
+      scroll={{ x: 1500, y: 500 }}
+      pagination={{
+        defaultPageSize: 10,
+        showSizeChanger: true,
+        pageSizeOptions: ['10', '20', '30'],
+      }}
+    />
+  );
 };
 
 export default createFragmentContainer(InstructorGradebookTable, {
@@ -87,14 +93,14 @@ export default createFragmentContainer(InstructorGradebookTable, {
     }
   `,
   course: graphql`
-  fragment InstructorGradebookTable_course on Query {
-    students {
-      username
-      firstName
-      lastName
-      gradeLevel
-      id
+    fragment InstructorGradebookTable_course on Query {
+      students {
+        username
+        firstName
+        lastName
+        gradeLevel
+        id
+      }
     }
-  }
-`, 
+  `,
 });

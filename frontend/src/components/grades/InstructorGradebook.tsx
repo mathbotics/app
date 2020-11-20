@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Typography, Layout } from 'antd';
 import { graphql } from 'babel-plugin-relay/macro';
 import styled from 'styled-components';
@@ -9,20 +9,19 @@ import { InstructorGradebook_course } from './__generated__/InstructorGradebook_
 
 const { Title } = Typography;
 
-type Props = { lessons: InstructorGradebook_lessons, course: InstructorGradebook_course };
-
-const InstructorGradebook = ({ lessons, course }: Props): JSX.Element => {
-
-  return (
-    <Layout style={{ backgroundColor: 'white' }}>
-      <Header/>
-
-      {/* Lessons table */}
-      <InstructorGradebookTable lessons={lessons} course={course}/>
-    </Layout>
-  );
+type Props = {
+  lessons: InstructorGradebook_lessons;
+  course: InstructorGradebook_course;
 };
 
+const InstructorGradebook = ({ lessons, course }: Props): JSX.Element => (
+    <Layout style={{ backgroundColor: 'white' }}>
+      <Header />
+
+      {/* Lessons table */}
+      <InstructorGradebookTable lessons={lessons} course={course} />
+    </Layout>
+  );
 
 const HeaderWrappper = styled(Layout.Content)`
   display: flex;
@@ -30,24 +29,23 @@ const HeaderWrappper = styled(Layout.Content)`
   align-items: center;
 `;
 
-type HeaderProps = { onAddLesson: () => void };
 const Header = (): JSX.Element => (
   <HeaderWrappper>
     <Title level={3} style={{ fontWeight: 700 }}>
       GradeBook
     </Title>
   </HeaderWrappper>
-  );
+);
 
 export default createFragmentContainer(InstructorGradebook, {
   lessons: graphql`
-  fragment InstructorGradebook_lessons on Query {
-    ...InstructorGradebookTable_lessons
-  }
+    fragment InstructorGradebook_lessons on Query {
+      ...InstructorGradebookTable_lessons
+    }
   `,
   course: graphql`
-  fragment InstructorGradebook_course on Query {
-    ...InstructorGradebookTable_course
-  }
-  `,  
+    fragment InstructorGradebook_course on Query {
+      ...InstructorGradebookTable_course
+    }
+  `,
 });

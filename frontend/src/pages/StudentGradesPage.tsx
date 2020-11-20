@@ -17,6 +17,6 @@ export const StudentGradesPage = () => (
     variables={{}}
     query={StudentGradesPageQuery}
     render={({ props, error }) =>
-      !error && props && <StudentGrades lessons={props as StudentGradesPageQueryResponse}/>}
+      !error && props && <StudentGrades lessons={props as StudentGradesPageQueryResponse}/> }
   />
 );

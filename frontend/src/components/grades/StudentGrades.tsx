@@ -4,7 +4,7 @@ import { graphql } from 'babel-plugin-relay/macro';
 import styled from 'styled-components';
 import { createFragmentContainer } from 'react-relay';
 import StudentGradesTable from './StudentGradesTable';
-import { StudentGrades_lessons} from './__generated__/StudentGrades_lessons.graphql';
+import { StudentGrades_lessons } from './__generated__/StudentGrades_lessons.graphql';
 
 const { Title } = Typography;
 
@@ -15,9 +15,7 @@ enum PageState {
   CreateLessonSuccess,
   CreateLessonError,
 }
-const StudentGrades = ({ lessons }: Props): JSX.Element => {
-
-  return (
+const StudentGrades = ({ lessons }: Props): JSX.Element => (
     <Layout style={{ backgroundColor: 'white' }}>
       <Header/>
 
@@ -25,8 +23,6 @@ const StudentGrades = ({ lessons }: Props): JSX.Element => {
       <StudentGradesTable lessons={lessons} />
     </Layout>
   );
-};
-
 
 const HeaderWrappper = styled(Layout.Content)`
   display: flex;

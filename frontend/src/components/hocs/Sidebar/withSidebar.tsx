@@ -51,7 +51,11 @@ const menuItemsForViewer = ({ role }: withSidebar_viewer) => {
       return [
         { name: 'Dashboard', path: '', icon: <DashboardOutlined /> },
         { name: 'Courses', path: 'courses', icon: <BookOutlined /> },
-        { name: 'Gradebook', path: 'gradebook/instructor', icon: <SolutionOutlined /> },
+        {
+          name: 'Gradebook',
+          path: 'gradebook/instructor',
+          icon: <SolutionOutlined />,
+        },
       ];
     case 'Student':
       return [
@@ -90,21 +94,17 @@ const Sidebar = createFragmentContainer(
     function logOut() {
       document.cookie = 'jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
       history.push('/login');
-      commitLogOutMutation(
-        logOutSuccess,
-        logOutError,
-      );
-
+      commitLogOutMutation(logOutSuccess, logOutError);
     }
 
-  function logOutSuccess() {
-      console.log("user logged out finally");
-     history.push('/login');
-  }
+    function logOutSuccess() {
+      console.log('user logged out finally');
+      history.push('/login');
+    }
 
-function logOutError() {
-console.log("Error logging out");
-}
+    function logOutError() {
+      console.log('Error logging out');
+    }
     return (
       <Layout style={{ minHeight: '100%' }}>
         <Sider
