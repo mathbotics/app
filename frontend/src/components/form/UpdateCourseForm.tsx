@@ -5,11 +5,13 @@ import { FormItem } from './FormItem';
 
 type FormProps = {
   onSubmit: (values: Store) => void;
+  onDelete: () => void;
   onSubmitError: (error: ValidateErrorEntity) => void;
 };
 
 export const UpdateCourseForm = ({
   onSubmit,
+  onDelete,
   onSubmitError,
 }: FormProps): JSX.Element => {
   const [form] = Form.useForm();
@@ -24,6 +26,7 @@ export const UpdateCourseForm = ({
     <Form
       form={form}
       onFinish={onSubmit}
+      onReset={onDelete}
       onFinishFailed={onSubmitError}
       layout="vertical"
       style={{ backgroundColor: 'white' }}
@@ -47,7 +50,6 @@ export const UpdateCourseForm = ({
       <Button block type="primary" size="large" htmlType="submit">
         Update
       </Button>
-      {/* <DeleteButton /> */}
     </Form>
   );
 };
@@ -64,14 +66,13 @@ Line on bottom was added to not warn use that it is not being used
 const DeleteButton = () => (
   <Button
     block
-    type="danger"
+    type="primary"
+    danger
+    htmlType="reset"
     size="large"
     onClick={() => console.log('Deleting')}
     style={{
       marginTop: '10px',
-      backgroundColor: 'transparent',
-      color: 'red',
-      border: '0',
     }}
   >
     Delete

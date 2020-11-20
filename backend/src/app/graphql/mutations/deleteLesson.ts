@@ -3,7 +3,7 @@ import nullthrows from 'nullthrows';
 
 import prisma from '../../data/prisma';
 
-export const DeleteCourseInput = inputObjectType({
+export const DeleteLessonInput = inputObjectType({
   name: 'DeleteLessonInput',
   definition(t) {
     t.string('lessonId', {
@@ -18,13 +18,13 @@ export const deleteLesson = mutationField('deleteLesson', {
   },
   async resolve(_root, { input: { lessonId } }) {
     const { ...lesson } = nullthrows(
-        await prisma.lesson.delete({
-          where: {
-              id: lessonId,
-          },
-        }),
-        'Could not delete lesson',
-      );
-      return { ...lesson };
-    },
-  });
+      await prisma.lesson.delete({
+        where: {
+          id: lessonId,
+        },
+      }),
+      'Could not delete lesson',
+    );
+    return { ...lesson };
+  },
+});

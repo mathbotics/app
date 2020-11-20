@@ -698,6 +698,10 @@ input DateTimeFilter {
   notIn: [DateTime!]
 }
 
+input DeleteCourseInput {
+  courseId: String!
+}
+
 input DeleteLessonInput {
   lessonId: String!
 }
@@ -1762,8 +1766,8 @@ type Mutation {
   createOneLesson(data: LessonCreateInput!): Lesson!
   createSlide(input: CreateSlideInput!): Slide!
   createStudent(input: CreateStudentInput!): Student!
+  deleteCourse(input: DeleteCourseInput!): Course!
   deleteLesson(input: DeleteLessonInput!): Lesson!
-  deleteOneCourse(where: CourseWhereUniqueInput!): Course
   deleteSingleStudent(input: DeleteSingleStudentInput!): Student!
   deleteStudents(input: DeleteStudentInput!): Student!
   editStudent(input: EditStudentInput!): Student!

@@ -20,6 +20,7 @@ const LessonPlanCatalogue = ({ lessonPlan, query }: Props) => {
 
   const connectLessonToLessonPlan = (id: string) => {
     const lessonIds = lessonPlan.lessons.map((lesson) => ({ id: lesson.id }));
+    console.log('connecting lesson to lesson plan', id);
     commitUpdateOneLessonPlanMutation(
       {
         data: { lessons: { connect: [{ id }, ...lessonIds] } },
@@ -118,4 +119,4 @@ const LessonCatalogueSearch = () => (
     onSearch={(value: String) => console.log(value)}
     style={{ width: 400 }}
   />
-  );
+);
