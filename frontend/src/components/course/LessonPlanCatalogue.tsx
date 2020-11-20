@@ -72,9 +72,8 @@ const LessonPlanCatalogue = (
             />
             <Tooltip title="Add Lesson">
               <Button
-                disabled={selectedLessons?.includes(id) ?? false}
+                disabled={selectedLessons.includes(id) ?? false}
                 type="primary"
-                shape="circle"
                 icon={<PlusOutlined />}
                 htmlType="submit"
                 size="large"
@@ -86,7 +85,9 @@ const LessonPlanCatalogue = (
                 console.log("LessonPlanCatalogue: Adding to selected lessons", selectedLessons);
                 // console.log("LessonPlan Lesson", lessonPlan.lessons);
               }}
-              />
+              >
+                Add to lesson plan
+              </Button>
             </Tooltip>
           </LessonCardWrapper>
         ))}
