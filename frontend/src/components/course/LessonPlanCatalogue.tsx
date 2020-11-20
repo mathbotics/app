@@ -28,6 +28,19 @@ const LessonPlanCatalogue = ({
   const { lessons } = query;
   // Lessons array that were added to the lessons plan
   const [selectedLessons, setSelectedLessons] = useState<String[]>([]);
+  const [searchValue, setSearchValue] = useState<String>();
+
+  // const LessonCatalogueSearch = () => (
+  //   <Search
+  //     placeholder="Search lesson by title"
+  //     size="large"
+  //     onSearch={(value: String) => {
+  //       console.log(value);
+  //       setSearchValue(value);
+  //     }}
+  //     style={{ width: 400 }}
+  //   />
+  // );
 
   useEffect(() => {
     setSelectedLessons((arr) => [...arr, ...lessonIdsInLessonPlan]);
@@ -68,48 +81,101 @@ const LessonPlanCatalogue = ({
         <p>Select a lesson or search by title to add it to your course</p>
 
         {/* Search */}
-        <LessonCatalogueSearch />
+        {/* <LessonCatalogueSearch /> */}
+        <input
+          placeholder="Search lesson by title"
+          onChange={(e) => {
+              console.log(e.target.value);
+              setSearchValue(e.target.value);
+            }}
+          style={{ width: 400 }}
+        />
       </Header>
 
+      {/* Lessons filtered */}
+      {searchValue && (
+        <LessonsPreviewWrapper>
+          {lessons.length === 0 && <p> No lessons available</p>}
+          {lessons
+            .filter((lesson) => lesson.title.toLowerCase().includes(searchValue.toLowerCase()))
+            .map(({ id, title, slides }) => (
+              <LessonCardWrapper>
+                <LessonCard
+                  id={id}
+                  key={id}
+                  title={title}
+                  slideCount={slides.length}
+                />
+                <ButtonWrapper>
+                  <Button
+                    disabled={selectedLessons.includes(id) ?? false}
+                    type="primary"
+                    icon={<PlusOutlined />}
+                    size="middle"
+                    htmlType="submit"
+                    onClick={() => {
+                      //  Both selectedLessons and LessonPlan.lessons on first add showing empty
+                      connectLessonToLessonPlan(id);
+                      setSelectedLessons((arr) => [...arr, id]);
+                      console.log(
+                          'LessonPlanCatalogue: Selected CourseId to add',
+                          id,
+                      );
+                      console.log(
+                          'LessonPlanCatalogue: Adding to selected lessons',
+                          selectedLessons,
+                      );
+                      // console.log("LessonPlan Lesson", lessonPlan.lessons);
+                  }}
+                  >
+                    Add Lesson
+                  </Button>
+                </ButtonWrapper>
+              </LessonCardWrapper>
+            ))}
+        </LessonsPreviewWrapper>
+      )}
+
       {/* Lessons */}
-      <LessonsPreviewWrapper>
-        {lessons.length === 0 && <p> No lessons available</p>}
-        {lessons.map(({ id, title, slides }) => (
-          <LessonCardWrapper>
-            <LessonCard
-              id={id}
-              key={id}
-              title={title}
-              slideCount={slides.length}
-            />
-            <ButtonWrapper>
-              <Button
-                disabled={selectedLessons.includes(id) ?? false}
-                type="primary"
-                icon={<PlusOutlined />}
-                size="middle"
-                htmlType="submit"
-                onClick={() => {
-                  //  Both selectedLessons and LessonPlan.lessons on first add showing empty
-                  connectLessonToLessonPlan(id);
-                  setSelectedLessons((arr) => [...arr, id]);
-                  console.log(
-                    'LessonPlanCatalogue: Selected CourseId to add',
-                    id,
-                  );
-                  console.log(
-                    'LessonPlanCatalogue: Adding to selected lessons',
-                    selectedLessons,
-                  );
-                  // console.log("LessonPlan Lesson", lessonPlan.lessons);
+      {!searchValue && (
+        <LessonsPreviewWrapper>
+          {lessons.map(({ id, title, slides }) => (
+            <LessonCardWrapper>
+              <LessonCard
+                id={id}
+                key={id}
+                title={title}
+                slideCount={slides.length}
+              />
+              <ButtonWrapper>
+                <Button
+                  disabled={selectedLessons.includes(id) ?? false}
+                  type="primary"
+                  icon={<PlusOutlined />}
+                  size="middle"
+                  htmlType="submit"
+                  onClick={() => {
+                    //  Both selectedLessons and LessonPlan.lessons on first add showing empty
+                    connectLessonToLessonPlan(id);
+                    setSelectedLessons((arr) => [...arr, id]);
+                    console.log(
+                        'LessonPlanCatalogue: Selected CourseId to add',
+                        id,
+                    );
+                    console.log(
+                        'LessonPlanCatalogue: Adding to selected lessons',
+                        selectedLessons,
+                    );
+                    // console.log("LessonPlan Lesson", lessonPlan.lessons);
                 }}
-              >
-                Add Lesson
-              </Button>
-            </ButtonWrapper>
-          </LessonCardWrapper>
-        ))}
-      </LessonsPreviewWrapper>
+                >
+                  Add Lesson
+                </Button>
+              </ButtonWrapper>
+            </LessonCardWrapper>
+          ))}
+        </LessonsPreviewWrapper>
+      )}
     </LessonsCatalogueWrapper>
   );
 };
@@ -165,7 +231,7 @@ const LessonsPreviewWrapper = styled.div`
 
 const LessonCardWrapper = styled.div`
   width: 100%;
-  margin: 15px 0px;
+  margin: 5px 0px;
 `;
 const LessonCatalogueSearch = () => (
   <Search
@@ -174,4 +240,4 @@ const LessonCatalogueSearch = () => (
     onSearch={(value: String) => console.log(value)}
     style={{ width: 400 }}
   />
-);
+  );
