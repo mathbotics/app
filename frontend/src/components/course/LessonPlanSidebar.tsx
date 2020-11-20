@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { Layout, Menu } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Layout, Menu, Tooltip } from 'antd';
 import styled from 'styled-components';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
+import { DeleteOutlined } from '@ant-design/icons';
 import { commit as commitUpdateOneLessonPlanMutation } from '../../graphql/mutations/UpdateOneLessonPlanMutation';
 import { LessonPlanSidebar_lessonPlan } from './__generated__/LessonPlanSidebar_lessonPlan.graphql';
 
@@ -17,6 +18,10 @@ const MenuItem = styled(Menu.Item)`
   margin: 10px 0px;
 `;
 
+const RemoveLessonButton = styled.div`
+  color: #ff4d4e;
+`;
+
 export type SlideMenuItem = { id: string; component: JSX.Element };
 /*
 TODO
@@ -25,14 +30,16 @@ I believe it will be used in the future
  */
 // eslint-disable-next-line
 const { Sider, Content } = Layout;
-type Props = { lessonPlan: LessonPlanSidebar_lessonPlan };
-const LessonPlanSidebar = ({ lessonPlan }: Props) => {
-  /*
-  TODO
-  Selected is being used but never sent
-  Not being removed, will probably need change the state in the future
-   */
-  // eslint-disable-next-line
+type Props = {
+  lessonPlan: LessonPlanSidebar_lessonPlan;
+  setCourseToBeDeleted: (id) => void;
+  setCourseToBeDeletedArray: (lessons) => void;
+};
+const LessonPlanSidebar = ({
+  lessonPlan,
+  setCourseToBeDeleted,
+  setCourseToBeDeletedArray,
+}: Props) => {
   const [selected, setSelected] = useState<string | undefined>(
     lessonPlan.lessons?.[0]?.id,
   );
@@ -43,12 +50,23 @@ const LessonPlanSidebar = ({ lessonPlan }: Props) => {
         data: { lessons: { disconnect: [{ id }] } },
         where: { id: lessonPlan.id },
       },
-      () => console.log('Success'),
-      (e) => console.log(`Error ${e}`),
+      () => console.log('Successfully removed item from lesson plan - GRAPHQL'),
+      (e) =>
+        console.log(
+          `Error could not remove item from lesson plan - GRAPHQL: ${e}`,
+        ),
     );
   };
 
   const { lessons } = lessonPlan;
+
+  useEffect(() => {
+    const lessonIds: string[] = [];
+    console.log(`LessonPlanSidebar - useEffect: current lessons `, lessons);
+    lessons.map((lesson, index) => lessonIds.push(lesson.id));
+    console.log(`LessonPlanSidebar - useEffect: current lessonIds `, lessonIds);
+    setCourseToBeDeletedArray(lessonIds);
+  }, [lessons]);
 
   return (
     <Sider width={350} theme="light">
@@ -74,9 +92,25 @@ const LessonPlanSidebar = ({ lessonPlan }: Props) => {
                 id={lesson.id}
                 title={lesson.title}
                 slideCount={lesson.slides.length}
-                removeLesson
-                removeFromLessonPlan={(id) => removeLessonFromLessonPlan(id)}
               />
+              <Tooltip title="Remove Lesson">
+                <RemoveLessonButton>
+                  <DeleteOutlined
+                    style={{ fontSize: '18px', margin: '55px 0px 0px 1px' }}
+                    onClick={() => {
+                      // sends to parent the course id
+                      setCourseToBeDeleted(lesson.id);
+                      console.log(
+                        `LessonPlanSidebar: set the current course to be deleted `,
+                        lesson.id,
+                      );
+                      // setCourseToBeDeletedArray(lesson.id);
+                      // console.log("Remove from lesson plan");
+                      removeLessonFromLessonPlan(lesson.id);
+                    }}
+                  />
+                </RemoveLessonButton>
+              </Tooltip>
             </MenuItem>
           ))}
         </Menu>
