@@ -1,12 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button, Tooltip } from 'antd';
-import {
-  ExportOutlined,
-  PlusOutlined,
-  CloseOutlined,
-  DeleteOutlined,
-} from '@ant-design/icons';
+import { ExportOutlined, PlusOutlined, CloseOutlined, DeleteOutlined } from '@ant-design/icons';
 
 import { useHistory } from 'react-router-dom';
 
@@ -61,9 +56,10 @@ const CardWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
 `;
 const RemoveLessonButton = styled.div`
-  color: #ff4d4e;
+    color: #ff4d4e;
 `;
 type Props = {
   id: string;
@@ -74,8 +70,8 @@ type Props = {
   linkLesson?: boolean;
   addLesson?: boolean;
   removeLesson?: boolean;
-  addToLessonPlan?: (id: string) => void;
-  removeFromLessonPlan?: (id: string) => void;
+  addToLessonPlan?: (id:string) => void;
+  removeFromLessonPlan?: (id:string) => void;
 };
 export const LessonCard = ({
   id,
@@ -93,57 +89,64 @@ export const LessonCard = ({
 
   return (
     <Card>
+
       <div
         style={{
           whiteSpace: 'nowrap',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
+
         }}
       >
         <CardWrapper>
           <CardTitle>{title}</CardTitle>
 
           {addLesson && (
-            <Tooltip title="Add Lesson">
-              <Button
-                type="primary"
-                shape="circle"
-                icon={<PlusOutlined />}
-                htmlType="submit"
-                size="large"
-                onClick={() => {
-                  console.log('id', id);
-                  if (addToLessonPlan) {
-                    addToLessonPlan(id);
-                  }
-                }}
-              />
-            </Tooltip>
-          )}
+          <Tooltip title="Add Lesson">
+            <Button
+              type="primary"
+              shape="circle"
+              icon={<PlusOutlined />}
+              htmlType="submit"
+              size="large"
+              onClick={() => {
+                console.log("add")
+                if (addToLessonPlan) {
+                  addToLessonPlan(id)
+                }
+              }}
+            />
+          </Tooltip>
+)}
 
           {removeLesson && (
-            <Tooltip title="Remove Lesson">
-              <RemoveLessonButton>
-                <DeleteOutlined
-                  style={{ margin: '0px 0px 0px 15px', fontSize: '18px' }}
-                  onClick={() => {
-                    console.log('remove');
+          <Tooltip title="Remove Lesson">
+            <RemoveLessonButton>
+              <DeleteOutlined
+                style={{ margin: '0px 0px 0px 15px', fontSize: '18px' }}
+                onClick={() => {
+                    console.log("remove")
                     if (removeFromLessonPlan) {
-                      removeFromLessonPlan(id);
+                        removeFromLessonPlan(id)
                     }
-                  }}
-                />
-              </RemoveLessonButton>
-            </Tooltip>
+                }}
+              />
+            </RemoveLessonButton>
+          </Tooltip>
+
           )}
         </CardWrapper>
+
       </div>
 
       <CardFooter>
+
         {slideCount && (
           <CardSlideCount>
             <ExportOutlined style={{ margin: '0px 0px 0px 10px' }} />
-            {slideCount} Slide
+            {slideCount}
+            {' '}
+            Slide
             {slideCount !== 1 && 's'}
           </CardSlideCount>
         )}
