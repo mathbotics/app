@@ -20,7 +20,8 @@ export const EditCourseLessonPlan = ({ lessonPlan, query }: Props) => {
   const [courseToDeleteArray, setCourseToBeDeletedArray] = useState<String[]>([]);
 
   useEffect(() => {
-    console.log(`courseToDeleteArray Updated: ${courseToDeleteArray}`);
+    console.log(`EditCourseLessonPlan - useEffect: courseToDeleteArray Updated: `, courseToDeleteArray);
+    console.log(`EditCourseLessonPlan - useEffect: courseToDelete Updated: `, courseToDelete);
   }, [courseToDelete, courseToDeleteArray])
   return (
     <Wrapper>
