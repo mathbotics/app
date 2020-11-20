@@ -19,19 +19,31 @@ type Props = {
   lessonIdsInLessonPlan: String[];
 };
 
-const LessonPlanCatalogue = (
-    { lessonPlan, query, courseToDelete, lessonIdsInLessonPlan }: Props) => {
+const LessonPlanCatalogue = ({
+  lessonPlan,
+  query,
+  courseToDelete,
+  lessonIdsInLessonPlan,
+}: Props) => {
   const { lessons } = query;
   // Lessons array that were added to the lessons plan
   const [selectedLessons, setSelectedLessons] = useState<String[]>([]);
 
   useEffect(() => {
     setSelectedLessons((arr) => [...arr, ...lessonIdsInLessonPlan]);
-    const filteredLessons = selectedLessons.filter((lessonId) => lessonId !== courseToDelete);
+    const filteredLessons = selectedLessons.filter(
+      (lessonId) => lessonId !== courseToDelete,
+    );
     setSelectedLessons(filteredLessons);
-    console.log(`LessonPlanCatalogue - useEffect: caught the change in array`, lessonIdsInLessonPlan)
-    console.log(`LessonPlanCatalogue - useEffect: Comparing our new array to current`, selectedLessons)
-  }, [lessonIdsInLessonPlan, courseToDelete])
+    console.log(
+      `LessonPlanCatalogue - useEffect: caught the change in array`,
+      lessonIdsInLessonPlan,
+    );
+    console.log(
+      `LessonPlanCatalogue - useEffect: Comparing our new array to current`,
+      selectedLessons,
+    );
+  }, [lessonIdsInLessonPlan, courseToDelete]);
 
   /*
     Graphql logic to add lessons to LessonPlan
@@ -70,25 +82,31 @@ const LessonPlanCatalogue = (
               title={title}
               slideCount={slides.length}
             />
-            <Tooltip title="Add Lesson">
+            <ButtonWrapper>
               <Button
                 disabled={selectedLessons.includes(id) ?? false}
                 type="primary"
                 icon={<PlusOutlined />}
+                size="middle"
                 htmlType="submit"
-                size="large"
                 onClick={() => {
-                //  Both selectedLessons and LessonPlan.lessons on first add showing empty
-                connectLessonToLessonPlan(id);
-                setSelectedLessons((arr) => [...arr, id]);
-                console.log("LessonPlanCatalogue: Selected CourseId to add", id);
-                console.log("LessonPlanCatalogue: Adding to selected lessons", selectedLessons);
-                // console.log("LessonPlan Lesson", lessonPlan.lessons);
-              }}
+                  //  Both selectedLessons and LessonPlan.lessons on first add showing empty
+                  connectLessonToLessonPlan(id);
+                  setSelectedLessons((arr) => [...arr, id]);
+                  console.log(
+                    'LessonPlanCatalogue: Selected CourseId to add',
+                    id,
+                  );
+                  console.log(
+                    'LessonPlanCatalogue: Adding to selected lessons',
+                    selectedLessons,
+                  );
+                  // console.log("LessonPlan Lesson", lessonPlan.lessons);
+                }}
               >
-                Add to lesson plan
+                Add Lesson
               </Button>
-            </Tooltip>
+            </ButtonWrapper>
           </LessonCardWrapper>
         ))}
       </LessonsPreviewWrapper>
@@ -119,6 +137,9 @@ export default createFragmentContainer(LessonPlanCatalogue, {
   `,
 });
 
+const ButtonWrapper = styled.div`
+  float: right;
+`;
 const LessonsCatalogueWrapper = styled.div`
   height: 100vh;
   width: 100%;
@@ -144,7 +165,7 @@ const LessonsPreviewWrapper = styled.div`
 
 const LessonCardWrapper = styled.div`
   width: 100%;
-  margin: 5px 0px;
+  margin: 15px 0px;
 `;
 const LessonCatalogueSearch = () => (
   <Search
@@ -153,4 +174,4 @@ const LessonCatalogueSearch = () => (
     onSearch={(value: String) => console.log(value)}
     style={{ width: 400 }}
   />
-  );
+);
