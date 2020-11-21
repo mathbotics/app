@@ -3,13 +3,15 @@ import { Context } from '../context';
 
 export * from './logIn';
 export * from './registerUser';
-export * from './logout'
+export * from './logout';
 export * from './deleteStudents';
 export * from './editStudent';
 export * from './resetPassword';
 export * from './deleteStudents';
 export * from './deleteSingleStudent';
 export * from './sendInvitationEmail';
+export * from './deleteLesson';
+export * from './deleteCourse';
 export * from './createSlide';
 export * from './updateBlockToMultipleChoiceBlock';
 export * from './updateBlockToTextBlock';
@@ -33,7 +35,9 @@ export const mutation = extendType({
       },
     });
     t.crud.updateOneCourse();
+    // t.crud.deleteOneCourse();
     t.crud.createOneLesson();
     t.crud.updateOneLessonPlan();
+    // t.crud.deleteOneLesson();
   },
 });

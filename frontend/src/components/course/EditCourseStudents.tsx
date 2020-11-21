@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Layout, Button } from 'antd';
-import { UserAddOutlined, DeleteOutlined, WindowsFilled } from '@ant-design/icons';
+import {
+  UserAddOutlined,
+  DeleteOutlined,
+  WindowsFilled,
+} from '@ant-design/icons';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 
@@ -18,13 +22,10 @@ const EditCourseStudents = ({ course }: Props) => {
   const [isAddStudentModalOpen, toggleAddStudentModal] = useState<boolean>(
     false,
   );
-  const [isDeleteStudentModalOpen, toggleDeleteStudentModal] = useState<boolean>(
-    false,
-  );
-    const [
-        createdStudent,
-        toggleCreateStudent,
-    ] = useState<boolean>(true);
+  const [isDeleteStudentModalOpen, toggleDeleteStudentModal] = useState<
+    boolean
+  >(false);
+  const [createdStudent, toggleCreateStudent] = useState<boolean>(true);
   const [edit, toggleEdit] = useState<boolean>(false);
   const [deleteStudent, toggleDeleteStudent] = useState<boolean>(false);
   const [selectedStudentId, setSelectedStudentId] = useState<string>('');
@@ -52,7 +53,7 @@ const EditCourseStudents = ({ course }: Props) => {
         visible={isAddStudentModalOpen}
         courseId={course.id}
         onSubmitSuccess={() => { toggleAddStudentModal(false); window.location.reload() }}
-        onSubmitError={(e: Error) => {console.error(e); toggleCreateStudent(false)}}
+        onSubmitError={(e: Error) => { console.error(e); toggleCreateStudent(false) }}
         createdStudent={createdStudent}
         onCancel={() => toggleAddStudentModal(!isAddStudentModalOpen)}
       />

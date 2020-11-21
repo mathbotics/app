@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Layout } from 'antd';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
@@ -13,42 +13,62 @@ type Props = {
   query: EditCourseLessonPlan_query;
 };
 const { Sider, Content } = Layout;
-export const EditCourseLessonPlan = ({ lessonPlan, query }: Props) => (
 
-  <Wrapper>
+export const EditCourseLessonPlan = ({ lessonPlan, query }: Props) => {
+  // course id to be deleted gets sent here
+  const [courseToDelete, setCourseToBeDeleted] = useState<String>("");
+  const [courseToDeleteArray, setCourseToBeDeletedArray] = useState<String[]>([]);
 
-    {lessonPlan.lessons.length > 0 && (
-      <Sider
-        width={350}
-        theme="light"
-        style={{
-        overflow: 'scroll',
-        height: '650px',
-        borderRadius: '5px',
-        marginRight: '20px',
-        position: 'relative',
-      }}
-      >
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <h1
-            style={{
-              fontSize: '18px',
-              fontWeight: 700,
-              textDecoration: 'underline',
-            }}
-          >
-            Lesson Plan
-          </h1>
-          <LessonPlanSidebar lessonPlan={lessonPlan} />
-        </div>
-      </Sider>
-      )}
+  useEffect(() => {
+    console.log(`EditCourseLessonPlan - useEffect: courseToDeleteArray Updated: `, courseToDeleteArray);
+    console.log(`EditCourseLessonPlan - useEffect: courseToDelete Updated: `, courseToDelete);
+  }, [courseToDelete, courseToDeleteArray])
+  return (
+    <Wrapper>
 
-    <LessonPlanCatalogue query={query} lessonPlan={lessonPlan} />
+      {lessonPlan.lessons.length > 0 && (
+        <Sider
+          width={350}
+          theme="light"
+          style={{
+                  overflow: 'scroll',
+                  height: '650px',
+                  borderRadius: '5px',
+                  marginRight: '20px',
+                  position: 'relative',
+                }}
+        >
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <h1
+              style={{
+                      fontSize: '18px',
+                      fontWeight: 700,
+                      textDecoration: 'underline',
+                    }}
+            >
+              Lesson Plan
+            </h1>
+            <LessonPlanSidebar
+              lessonPlan={lessonPlan}
+              setCourseToBeDeleted={(id) => setCourseToBeDeleted(id)}
+              setCourseToBeDeletedArray={
+                (lessons) => setCourseToBeDeletedArray([...courseToDeleteArray, ...lessons])
+              }
+            />
+          </div>
+        </Sider>
+        )}
 
-  </Wrapper>
+      <LessonPlanCatalogue
+        query={query}
+        lessonPlan={lessonPlan}
+        courseToDelete={courseToDelete}
+        lessonIdsInLessonPlan={courseToDeleteArray}
+      />
 
-  );
+    </Wrapper>
+  )
+};
 
 const Wrapper = styled(Layout)`
   background-color: white;
