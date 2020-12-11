@@ -1,9 +1,5 @@
 # Mathbotics frontend
 
-
-##### Fall 2020 Updates:
-  - Gradebook for students & instructors added. _*Hard coded*_ values for display purposes are shown.
-
 ### Project Structure:
 
 The Mathbotics FrontEnd is a React based frontend and was created using CRA(CreateReactApp), therefore it has a familiar folder structure.
