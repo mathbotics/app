@@ -31,7 +31,7 @@ The Mathbotics FrontEnd is a React based frontend and was created using CRA(Crea
 ### User Manual Docs:
 
 - Generating gql type: If you update or add to any graphql query or mutation on the frontend you will have to generate the types, run `yarn relay` at the root of the /frontend directory
-- Stuck on loading screen: Sometimes when you restart the application using docker, the users will be removed but you will still have the session cookie on your browser. This will lead to an infinite loading screen. To fix, remove the cookie on the browser (CMD + SHFT + C -> Application -> cookies -> clear)
+- Stuck on loading screen: Sometimes when you restart the application using docker, the users will be removed but you will still have the session cookie on your browser. This will lead to an infinite loading screen.
 ### NOTE: 
 Version Two of MathBotics should not have an infinite loading screen issue. However, in the case that you encounter this problem, remove the cookie on the browser (CMD + SHFT + C -> Application -> cookies -> clear)
 ### Deployment:
