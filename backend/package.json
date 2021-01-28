@@ -83,5 +83,6 @@
       "pre-push": "yarn chk"
     }
   },
-  "license": "MIT"
+  "license": "MIT",
+  "version": "0.0.0"
 }
