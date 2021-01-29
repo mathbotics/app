@@ -52,7 +52,7 @@ model Page {
 
 model Student {
   createdAt  DateTime   @default(now())
-  email      String     @unique
+  //email      String     @unique //fixes bug with add student to course
   gradeLevel GradeLevel
   id         String     @id @default(cuid())
   guardians  Guardian[]
