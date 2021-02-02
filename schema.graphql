@@ -59,6 +59,7 @@ input AdminWhereUniqueInput {
 input AnswerMultipleChoiceQuestionBlockInput {
   blockId: String!
   selectedChoiceId: String!
+  studentId: String!
 }
 
 union Block = EmptyBlock | MultipleChoiceQuestionBlock | TextBlock
@@ -2033,6 +2034,7 @@ input QuarterSlideWhereUniqueInput {
 }
 
 type Query {
+  admin(where: AdminWhereUniqueInput!): Admin
   course(where: CourseWhereUniqueInput!): Course
   courses(after: CourseWhereUniqueInput, before: CourseWhereUniqueInput, first: Int, last: Int, skip: Int, where: CourseWhereInput): [Course!]!
   lesson(where: LessonWhereUniqueInput!): Lesson

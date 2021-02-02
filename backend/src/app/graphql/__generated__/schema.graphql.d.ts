@@ -61,6 +61,7 @@ export interface NexusGenInputs {
   AnswerMultipleChoiceQuestionBlockInput: { // input type
     blockId: string; // String!
     selectedChoiceId: string; // String!
+    studentId: string; // String!
   }
   BlockCreateManyWithoutMultipleChoiceQuestionBlockInput: { // input type
     connect?: NexusGenInputs['BlockWhereUniqueInput'][] | null; // [BlockWhereUniqueInput!]
@@ -2366,7 +2367,7 @@ export interface NexusGenRootTypes {
     id: string; // String!
   }
   Slide: NexusGenRootTypes['HalfSlide'] | NexusGenRootTypes['QuarterSlide'] | NexusGenRootTypes['SingleSlide'];
-  User: NexusGenRootTypes['Instructor'] | NexusGenRootTypes['Student'] | NexusGenRootTypes['Guardian'] | NexusGenRootTypes['Admin'];
+  User: NexusGenRootTypes['Admin'] | NexusGenRootTypes['Instructor'] | NexusGenRootTypes['Student'] | NexusGenRootTypes['Guardian'];
   String: string;
   Int: number;
   Float: number;
@@ -2858,6 +2859,7 @@ export interface NexusGenFieldTypes {
     title: string; // String!
   }
   Query: { // field return type
+    admin: NexusGenRootTypes['Admin'] | null; // Admin
     course: NexusGenRootTypes['Course'] | null; // Course
     courses: NexusGenRootTypes['Course'][]; // [Course!]!
     lesson: NexusGenRootTypes['Lesson'] | null; // Lesson
@@ -3005,6 +3007,9 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
+    admin: { // args
+      where: NexusGenInputs['AdminWhereUniqueInput']; // AdminWhereUniqueInput!
+    }
     course: { // args
       where: NexusGenInputs['CourseWhereUniqueInput']; // CourseWhereUniqueInput!
     }
@@ -3060,7 +3065,7 @@ export interface NexusGenArgTypes {
 export interface NexusGenAbstractResolveReturnTypes {
   Block: "EmptyBlock" | "MultipleChoiceQuestionBlock" | "TextBlock"
   Slide: "HalfSlide" | "QuarterSlide" | "SingleSlide"
-  User: "Instructor" | "Student" | "Guardian" | "Admin"
+  User: "Admin" | "Instructor" | "Student" | "Guardian"
 }
 
 export interface NexusGenInheritedFields {}
