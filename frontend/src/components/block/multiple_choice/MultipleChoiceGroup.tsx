@@ -5,6 +5,9 @@ import { graphql } from 'babel-plugin-relay/macro';
 import { createFragmentContainer } from 'react-relay';
 import style from 'styled-components';
 import { MultipleChoiceGroup_block } from './__generated__/MultipleChoiceGroup_block.graphql';
+import { setConstantValue } from 'typescript';
+import { useState } from 'react';
+import RadioGroup from 'antd/lib/radio/group';
 
 type MultipleChoiceChoiceProps = {
   id: string;
@@ -42,14 +45,27 @@ export type MultipleChoiceGroupProps = {
 };
 
 type Props = { block: MultipleChoiceGroup_block };
-const MultipleChoiceGroup = ({ block }: Props) => (
-  <Radio.Group onChange={(e: any) => console.log(e.target.value)} value="">
+
+const MultipleChoiceGroup = ({ block }: Props) => {
+const [choice, setchoice] = useState<RadioGroup>();
+  return (
+  <Radio.Group onChange={(e: any) => radioTask(e)} value={choice}>
     {block.choices.map(({ id, text }, index: number) => (
       <MultipleChoiceChoice key={id} id={id} value={id} text={text} />
       ))}
   </Radio.Group>
-  );
+);
 
+  function radioTask(event){
+    console.log(event.target.value);
+    setchoice(event.target.value);
+
+    /*do any call to the backend to save choices, submitting with a submit
+     button instead of calling after every radio option change will reduce
+     server load*/
+
+  }
+};
 export default createFragmentContainer(MultipleChoiceGroup, {
   block: graphql`
     fragment MultipleChoiceGroup_block on MultipleChoiceQuestionBlock {
