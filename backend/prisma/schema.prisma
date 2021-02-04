@@ -169,7 +169,7 @@ model LessonPlan {
 model CourseToStudent {
   course     Course     @relation(fields: [courseId], references: [id])
   courseId   String       // relation scalar field (used in the @relation attribute above)
-  student    Student @relation(fields: [studentId], references: [id])
+  student    Student    @relation(fields: [studentId], references: [id])
   studentId  String      // relation scalar field (used in the @relation attribute above)
   grade      Float
   @@id([courseId, studentId])

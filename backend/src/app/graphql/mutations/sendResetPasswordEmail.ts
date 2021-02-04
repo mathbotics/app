@@ -40,7 +40,7 @@ export const sendResetPasswordEmail = mutationField('sendResetPasswordEmail', {
         ).toString('utf8'),
       );
       const template = Handlebars.compile(html);
-        // { email, role },
+      // { email, role },
       const url = `http://localhost:3000/resetPassword/${jwt.sign(
         { email },
         nullthrows(JWT_SECRET, 'JWT_SECRET is null or undefined'),
@@ -48,8 +48,7 @@ export const sendResetPasswordEmail = mutationField('sendResetPasswordEmail', {
       const message = {
         from: '"Mathbotics learning platform 🤖" <hello@mathbotics.io>',
         to: email,
-        subject:
-          'You have requested to reset your password 🤖',
+        subject: 'You have requested to reset your password 🤖',
         text: 'Mathbotics password reset',
         html: template({ url }),
       };

@@ -7,7 +7,6 @@ import passport from './passport';
 export default (app: Express) => {
   app.use(cookieParser());
 
-
   app.use('/graphql', (req, res, next) => {
     passport.authenticate('jwt', { session: false }, (_err, user) => {
       req.user = user;
