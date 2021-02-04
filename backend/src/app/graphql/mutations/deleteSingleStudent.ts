@@ -17,14 +17,11 @@ export const deleteSingleStudent = mutationField('deleteSingleStudent', {
   args: {
     input: arg({ type: 'DeleteSingleStudentInput', required: true }),
   },
-  async resolve(
-    _root,
-    { input: { studentId } },
-  ) {
+  async resolve(_root, { input: { studentId } }) {
     const { user, ...student } = nullthrows(
       await prisma.student.delete({
         where: {
-            id: studentId,
+          id: studentId,
         },
         include: { user: true },
       }),

@@ -14,8 +14,8 @@ export const ResetPasswordInput = inputObjectType({
       required: true,
     });
     t.string('token', {
-        required: true,
-      });
+      required: true,
+    });
   },
 });
 
@@ -28,24 +28,24 @@ export const resetPassword = mutationField('resetPassword', {
     const { email } = jwt.verify(
       token,
       nullthrows(JWT_SECRET, 'JWT_SECRET is null or undefined.'),
-    ) as { email?: string; };
+    ) as { email?: string };
     try {
-          const { user, ...instructor } = nullthrows(
-            await (ctx as Context).prisma.instructor.update({
-              where: { email },
-              data: {
-                user: {
-                  update: {
-                    password: await bcrypt.hash(password, 10),
-                  },
-                },
-                email: nullthrows(email, 'email is null or undefined'),
+      const { user, ...instructor } = nullthrows(
+        await (ctx as Context).prisma.instructor.update({
+          where: { email },
+          data: {
+            user: {
+              update: {
+                password: await bcrypt.hash(password, 10),
               },
-              include: { user: true },
-            }),
-            'Could not create instructor',
-          );
-          return { ...user, ...instructor };
+            },
+            email: nullthrows(email, 'email is null or undefined'),
+          },
+          include: { user: true },
+        }),
+        'Could not create instructor',
+      );
+      return { ...user, ...instructor };
     } catch (e) {
       // eslint-disable-next-line no-console
       console.warn(e);
