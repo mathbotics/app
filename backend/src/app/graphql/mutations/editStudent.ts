@@ -19,9 +19,9 @@ export const EditStudentInput = inputObjectType({
       required: true,
     });
     t.field('gradeLevel', {
-        type: 'GradeLevel',
-        required: true,
-      });
+      type: 'GradeLevel',
+      required: true,
+    });
   },
 });
 
@@ -34,25 +34,20 @@ export const editStudent = mutationField('editStudent', {
     _root,
     { input: { username, firstName, lastName, studentId, gradeLevel } },
   ) {
-    const { user, ...student } = (
-        await prisma.student.update({
-            where: { id: studentId },
-            data: {
-                user: {
-                    update: {
-                        username,
-                        firstName,
-                        lastName,
-                    },
-                },
-                gradeLevel,
-
-            },
-            include: { user: true },
-
-        })
-
-    );
-    return { ...user, ...student }
-    },
-})
+    const { user, ...student } = await prisma.student.update({
+      where: { id: studentId },
+      data: {
+        user: {
+          update: {
+            username,
+            firstName,
+            lastName,
+          },
+        },
+        gradeLevel,
+      },
+      include: { user: true },
+    });
+    return { ...user, ...student };
+  },
+});

@@ -21,10 +21,11 @@ model Course {
   name           String
   description    String?
   suggestedLevel GradeLevel
-  students       Student[]
+  //students       Student[]  // We have the relational table with CourseToStudent[]
   contents       Content[]
   instructors    Instructor[]
   lessonPlan     LessonPlan
+  courseTo       CourseToStudent[]
 }
 
 model Guardian {
@@ -56,8 +57,9 @@ model Student {
   gradeLevel GradeLevel
   id         String     @id @default(cuid())
   guardians  Guardian[]
-  courses    Course[]
+  //courses    Course[]   // We have the relational table with CourseToStudent[]
   user       User
+  studentTo  CourseToStudent[]
 }
 
 enum GradeLevel {
@@ -117,8 +119,8 @@ model Slide {
   id           String        @id @default(cuid())
   title        String
   singleSlide  SingleSlide?
-  quarterSlide QuarterSlide?
-  halfSlide    HalfSlide?
+  //quarterSlide QuarterSlide?  // Commendeted out till quarter slides are fixed
+  //halfSlide    HalfSlide?    // Commendeted out till half slides are fixed
 }
 
 model SingleSlide {
@@ -126,24 +128,24 @@ model SingleSlide {
   block Block
 }
 
-model QuarterSlide {
-  id        String @id @default(cuid())
-  mainBlock Block  @relation("QuarterSlideToMainBlock")
-  sideBlock Block
-}
+//model QuarterSlide {
+//  id        String @id @default(cuid())
+//  mainBlock Block  @relation("QuarterSlideToMainBlock")
+//  sideBlock Block
+//}
 
-model HalfSlide {
-  id              String @id @default(cuid())
-  firstHalfBlock  Block  @relation("HalfSlideToFirstHalfBlock")
-  secondHalfBlock Block
-}
+//model HalfSlide {
+//  id              String @id @default(cuid())
+  //firstHalfBlock  Block  @relation("HalfSlideToFirstHalfBlock")  // Commented out due to error with conflicting relations
+//  secondHalfBlock Block
+//}
 
 model Block {
   id                          String                       @id @default(cuid())
   multipleChoiceQuestionBlock MultipleChoiceQuestionBlock?
   textBlock                   TextBlock?
-  halfSlidesImplementing      HalfSlide[]
-  quarterSlidesImplementing   QuarterSlide[]
+  //halfSlidesImplementing      HalfSlide[]     // Commented out till half slides are fixed
+  //quarterSlidesImplementing   QuarterSlide[]  // Commented out till quarter slides are fixed
 }
 
 model TextBlock {
@@ -161,5 +163,14 @@ model Lesson {
 model LessonPlan {
   id      String   @id @default(cuid())
   lessons Lesson[]
-  course  Course
+  course  Course?
+}
+
+model CourseToStudent {
+  course     Course     @relation(fields: [courseId], references: [id])
+  courseId   String       // relation scalar field (used in the @relation attribute above)
+  student    Student    @relation(fields: [studentId], references: [id])
+  studentId  String      // relation scalar field (used in the @relation attribute above)
+  grade      Float
+  @@id([courseId, studentId])
 }
