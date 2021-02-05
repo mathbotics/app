@@ -78,7 +78,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": ""
+      "pre-push": "yarn chk"
     }
   },
   "license": "MIT"
