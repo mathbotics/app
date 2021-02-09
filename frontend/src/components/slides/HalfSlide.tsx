@@ -16,6 +16,7 @@ const FirstHalfBlockWrapper = styled.div`
   height: 100%;
   width: 49.5%;
   overflow: hidden;
+  padding-left: .5em;
   background-color: ${({ preview }: BlockWrapperProps) => !preview && 'white'};
 `;
 
@@ -26,6 +27,7 @@ const SecondHalfBlockWrapper = styled.div`
   overflow: hidden;
   height: 100%;
   width: 49.5%;
+  padding-left: .5em;
   background-color: ${({ preview }: BlockWrapperProps) => !preview && 'white'};
 `;
 
@@ -47,6 +49,8 @@ const Wrapper = styled.div`
   }
 `;
 
+/*original preview font size was 50*/
+
 type BlockComponent = React.ReactElement;
 type Props = {
   halfSlide?: HalfSlide_halfSlide;
@@ -64,7 +68,7 @@ const HalfSlide = ({ onSelectBlock, halfSlide, preview, selected }: Props) => (
         onSelectBlock && onSelectBlock(nullthrows(halfSlide?.firstHalfBlock))}
     >
       {preview ? (
-        <AlignLeftOutlined style={{ fontSize: 50 }} />
+        <AlignLeftOutlined style={{ fontSize: 30 }} />
       ) : (
         <Block block={nullthrows(halfSlide?.firstHalfBlock)} />
       )}
@@ -76,7 +80,7 @@ const HalfSlide = ({ onSelectBlock, halfSlide, preview, selected }: Props) => (
         onSelectBlock && onSelectBlock(nullthrows(halfSlide?.secondHalfBlock))}
     >
       {preview ? (
-        <UnorderedListOutlined style={{ fontSize: 50 }} />
+        <UnorderedListOutlined style={{ fontSize: 30 }} />
       ) : (
         <Block block={nullthrows(halfSlide?.secondHalfBlock)} />
       )}

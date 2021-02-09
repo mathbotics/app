@@ -59,6 +59,16 @@ const EditorSlidePreview = ({
   </Wrapper>
 );
 
+/*Original
+
+  height: inherit;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+`
+*/
 const Wrapper = styled.div`
   height: inherit;
   width: 100%;
