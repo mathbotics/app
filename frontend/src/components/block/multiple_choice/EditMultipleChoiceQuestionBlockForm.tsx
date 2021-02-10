@@ -4,9 +4,22 @@ import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 import nullthrows from 'nullthrows';
 import cuid from 'cuid';
+import styled from 'styled-components';
 
 import { EditMultipleChoiceQuestionBlockForm_block } from './__generated__/EditMultipleChoiceQuestionBlockForm_block.graphql';
 import { commit as commitUpdateBlockToMultipleChoiceBlock } from '../../../graphql/mutations/UpdateBlockToMultipleChoiceBlockMutation';
+
+const SpecialDiv = styled.div`
+margin-bottom: .75em;
+margin-top: .75em;
+`;
+
+const SelectionDiv = styled.div`
+border-bottom-style: dotted;
+border-width: 5px;
+border-color: black;
+margin-bottom: 1em;
+`;
 
 type Props = {
   block?: EditMultipleChoiceQuestionBlockForm_block;
@@ -70,6 +83,7 @@ const EditMultipleChoiceQuestionBlockForm = ({
 
   return (
     <>
+    <SpecialDiv>
       <Input
         name="text"
         value={text}
@@ -77,8 +91,9 @@ const EditMultipleChoiceQuestionBlockForm = ({
         onChange={({ target: { value } }) => setText(value)}
         placeholder="Question Text"
       />
+    </SpecialDiv>
       {choices.map(({ text, id, correct }) => (
-        <div>
+        <SpecialDiv>
           <Button onClick={() => onClickSetCorrect(id)} disabled={correct}>
             Set as correct
           </Button>
@@ -91,7 +106,8 @@ const EditMultipleChoiceQuestionBlockForm = ({
             value={text}
           />
           <Button onClick={() => onClickRemoveChoice(id)}>Remove</Button>
-        </div>
+          <br/>
+        </SpecialDiv>
       ))}
       <Button
         block

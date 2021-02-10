@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import { QuestionListSidebar_content } from './__generated__/QuestionListSidebar_content.graphql';
 import { Lesson_lesson } from '../lessons/__generated__/Lesson_lesson.graphql';
 import { Slide_slide } from './__generated__/Slide_slide.graphql';
+import { ContainerTwoTone } from '@ant-design/icons';
+import MultipleChoiceQuestionBlock from '../block/multiple_choice/MultipleChoiceQuestionBlock';
 
 
 /* copied from EditBlockSidebar*/
@@ -28,7 +30,7 @@ width: 100%;
 //will have to add props block until I figure out what to add, should be slide id and multiple choice block id/name
 type Props = { 
   content?: QuestionListSidebar_content;
-  type?: Slide_slide['__typename'];
+  type?: Slide_slide['__typename']; //not sure if this is needed. but content has everything I need.
 };
 const QuestionListSidebar = ({ content, type }: Props) => {
   /* //states below
@@ -41,8 +43,8 @@ const QuestionListSidebar = ({ content, type }: Props) => {
       <Card title="Question List" style={{width: 200}}>
       <p>Item 1</p>
       <p>Item 2</p>
-      {}
-      {multipleChoiceQuestionsHandler(content)}
+      {/* check functions */}
+      {multipleChoiceQuestionsHandler(content, type)}
       </Card>
     </Sider>
   );
@@ -55,15 +57,15 @@ const QuestionListSidebar = ({ content, type }: Props) => {
    - update list with question id and their number to the list
    - sets question status to unread. ALL OF THEM (this can change to load from Postgres )
 */
-function multipleChoiceQuestionsHandler(slide)
+function multipleChoiceQuestionsHandler(content, type)
 {
-
-  //need to identify the type of slide in the parameter.
   /*
-  let slides = slide;
-  var questions = [];
-  slides.forEach(function(id) {
-    */
+  let slides = content.lesson.slide;
+  let questions = [];
+  */
+ /*
+  for(var num = 0; num < slides.length; num ++) {
+  
     /* compare if current slide contains a MultipleChoice question in singleSlide
       and if current slide is a Halfslide containing a multiplechoice (you check twice, left and right side) 
 
@@ -72,25 +74,49 @@ function multipleChoiceQuestionsHandler(slide)
       switch (slide?.__typename ?? type) {
     case 'SingleSlide':
     */
-    /*
-    if() {
-      questions.push(id);
+/*  
+switch (slides[num].type ?? type) {
+
+    case 'SingleSlide':
+      {
+*/
+        //if statement for handling current slide content
+        /* there is currently no text identifier for a question.
+         we have in the database some form of MultipleChoiceQuestionBlock
+         and it only contains block id and text.
+         The slides table are actually divded in each table depending on its type... 
+         they only have its own id, lessonPlan they belong, title of the lessonplan
+         I NEED DATA FROM MULTIPLECHOICEQUESTIONBLOCK just its ID
+         (MultipleChoiceQuestionBlock.id) */ 
+/*
+        if(slides[num].id === id) {
+          questions.push(slides[num]);
+        }
+        
+        break;
+      }
+
+    case 'HalfSlide':
+      {
+
+        break;
+      }
+    
+    default:
+      {
+        //do nothing
+        break;
+      }
     }
-    else if() {
-      questions.push(id);
-    }
-    else {
-      //do nothing
-    }
-  });
-  
+}
+*/
   //display items
   return (
     <>
     <p>hey arnold</p>
     </>
   );
-  */
+  
 }
 
 /* 
