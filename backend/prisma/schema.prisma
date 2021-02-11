@@ -21,7 +21,6 @@ model Course {
   name           String
   description    String?
   suggestedLevel GradeLevel
-  //students       Student[]  // We have the relational table with CourseToStudent[]
   contents       Content[]
   instructors    Instructor[]
   lessonPlan     LessonPlan
@@ -57,7 +56,6 @@ model Student {
   gradeLevel GradeLevel
   id         String     @id @default(cuid())
   guardians  Guardian[]
-  //courses    Course[]   // We have the relational table with CourseToStudent[]
   user       User
   studentTo  CourseToStudent[]
 }
