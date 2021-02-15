@@ -1,0 +1,13 @@
+# IF THERE'S A GIT CONFLICT IN THIS FILE, DON'T SOLVE IT MANUALLY!
+# INSTEAD EXECUTE `prisma2 migrate fix`
+# Prisma Migrate lockfile v1
+# Read more about conflict resolution here: TODO
+
+20200316001458-create-lesson-models
+20200322221513-make-blocks-nullable-on-slides
+20200329060657-non-nullable-blocks
+20200401032809-add-correct-to-multiple-choice-question-choice
+20200420023218-add-description-to-course
+20200420023308-update-description-on-course-to-nullable
+20201105185655-student_email_property
+20210128224807-test-student-email

@@ -98,7 +98,7 @@ const EditCourseStudents = ({ course }: Props) => {
   );
 };
 
-export default createFragmentContainer(EditCourseStudents, {
+export default createFragmentContainer(EditCourseStudents, { 
   course: graphql`
     fragment EditCourseStudents_course on Course {
       id

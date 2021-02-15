@@ -8,6 +8,7 @@ export const AnswerMultipleChoiceQuestionBlockInput = inputObjectType({
   definition(t) {
     t.string('blockId', { required: true });
     t.string('selectedChoiceId', { required: true });
+    t.string('studentId', { required: true})
   },
 });
 
@@ -23,11 +24,11 @@ export const answerMultipleChoiceQuestionBlock = mutationField(
     type: 'MultipleChoiceQuestionBlock',
     async resolve(
       _root,
-      { input: { blockId, selectedChoiceId } },
+      { input: { blockId, selectedChoiceId, studentId} },
       { viewer }: any,
     ) {
       const student = await prisma.student.findOne({
-        where: { id: viewer.id },
+        where: { id: studentId },
       });
       if (!student) {
         throw new Error('Must be a student');
@@ -58,10 +59,12 @@ export const answerMultipleChoiceQuestionBlock = mutationField(
       if (responses.length !== 0) {
         throw new Error('This question has already been answered.');
       }
+      console.log("student answered")
       await prisma.multipleChoiceQuestionResponse.create({
         data: {
           choice: { connect: { id: selectedChoiceId } },
           student: { connect: { id: student.id } },
+          multipleChoiceQuestionBlock: { connect: { id: multipleChoiceQuestionBlock?.id}}
         },
       });
       return { ...multipleChoiceQuestionBlock, ...block };

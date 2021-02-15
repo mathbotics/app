@@ -4,5 +4,5 @@ import GraphSchema from '../../GraphQLSchema';  // Added to mimic const GraphSch
 
 import authentication from './authentication';
 
-export default (schema: GraphSchema) =>
+export default (schema: typeof GraphSchema) =>
   applyMiddleware(schema, authentication);
