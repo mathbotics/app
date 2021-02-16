@@ -24,10 +24,12 @@ export const query = extendType({
                 },
               },
             },
+            
           };
         },
       },
     });
+    t.crud.admin();
     t.crud.lessons({ filtering: true });
     t.crud.lesson();
     t.crud.course();

@@ -1,7 +1,5 @@
 import { ApolloServer } from 'apollo-server-express';
 import { GraphQLError } from 'graphql';
-import { makeSchema } from 'nexus';
-import { nexusPrismaPlugin } from 'nexus-prisma';
 import express, { Request, Response } from 'express';
 import * as path from 'path';
 
@@ -10,6 +8,7 @@ import applyExpressMiddlewares from './middlewares/express';
 import applySchemaMiddlewares from './middlewares/graphql';
 import prisma from '../data/prisma';
 import types from '../graphql';
+import GraphSchema from './GraphQLSchema'; // Added to mimic const GraphSchema = require('./src/models/GraphQLSchema');
 
 const { PORT, NODE_ENV } = process.env;
 
@@ -44,21 +43,7 @@ const apollo = new ApolloServer({
     console.warn(err);
     throw err;
   },
-  schema: applySchemaMiddlewares(
-    makeSchema({
-      plugins: [nexusPrismaPlugin()],
-      shouldGenerateArtifacts: NODE_ENV !== 'production',
-      outputs: {
-        schema: path.join(__dirname, '../../../schema.graphql'),
-        typegen: path.join(
-          __dirname,
-          '../graphql/__generated__/schema.graphql.d.ts',
-        ),
-      },
-      types,
-    }),
-  ),
-});
+  schema: GraphSchema});
 
 if (NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../../../../frontend/src')));

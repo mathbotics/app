@@ -19,6 +19,7 @@ model Course {
   createdAt      DateTime     @default(now())
   id             String       @id @default(cuid())
   name           String
+  description    String?
   suggestedLevel GradeLevel
   students       Student[]
   contents       Content[]
@@ -51,6 +52,7 @@ model Page {
 
 model Student {
   createdAt  DateTime   @default(now())
+  email      String     @unique
   gradeLevel GradeLevel
   id         String     @id @default(cuid())
   guardians  Guardian[]
@@ -59,7 +61,18 @@ model Student {
 }
 
 enum GradeLevel {
-  FIRST SECOND THIRD FOURTH FIFTH SIXTH SEVENTH EIGHTH NINTH TENTH ELEVENTH TWELFTH
+  FIRST
+  SECOND
+  THIRD
+  FOURTH
+  FIFTH
+  SIXTH
+  SEVENTH
+  EIGHTH
+  NINTH
+  TENTH
+  ELEVENTH
+  TWELFTH
 }
 
 model Admin {
@@ -84,8 +97,7 @@ model User {
 model MultipleChoiceQuestionBlock {
   id            String                   @id @default(cuid())
   text          String
-  choices       MultipleChoiceQuestionChoice[]   @relation("MultipleChoiceQuestionToAvailableMultipleChoiceQuestionChoice")
-  correctChoice MultipleChoiceQuestionChoice
+  choices       MultipleChoiceQuestionChoice[]
   responses     MultipleChoiceQuestionResponse[]
 }
 
@@ -96,9 +108,9 @@ model MultipleChoiceQuestionResponse {
 }
 
 model MultipleChoiceQuestionChoice {
-  id       String                      @id @default(cuid())
-  text     String
-  question MultipleChoiceQuestionBlock
+  id        String                      @id @default(cuid())
+  text      String
+  correct   Boolean
 }
 
 model Slide {
