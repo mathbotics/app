@@ -13,7 +13,7 @@ import {
 import prisma from '../data/prisma';
 import { mutation } from '../graphql/mutations';
 import { Mutations } from '../graphql/mutations/Mutations';
-import { Lesson, Slide } from '../graphql/objects'; 
+//import { Lesson, Slide } from '../graphql/objects'; 
 
 
 const User = new GraphQLInterfaceType({
@@ -252,32 +252,32 @@ const Courses = new GraphQLObjectType({
   }
 });
 
-const Lessons = new GraphQLObjectType({
-  name: "Lesson",
-  description: "This represents the Lesson",
-  fields: () => {
-    return {
-      id: {
-        type: GraphQLString,
-        resolve(Lesson) {
-          return Lesson.id
-        }
-      },
-      title: {
-        type: GraphQLString,
-        resolve(Lesson){
-          return Lesson.title
-        }
-      },
-      slide: {
-        type: new GraphQLList(Lesson),
-        resolve(Lesson){
-          return Lesson.slide
-        }
-      }
-    }
-  }
-});
+// const Lessons = new GraphQLObjectType({
+//   name: "Lesson",
+//   description: "This represents the Lesson",
+//   fields: () => {
+//     return {
+//       id: {
+//         type: GraphQLString,
+//         resolve(Lesson) {
+//           return Lesson.id
+//         }
+//       },
+//       title: {
+//         type: GraphQLString,
+//         resolve(Lesson){
+//           return Lesson.title
+//         }
+//       },
+//       slide: {
+//         type: new GraphQLList(Lesson),
+//         resolve(Lesson){
+//           return Lesson.slide
+//         }
+//       }
+//     }
+//   }
+// });
 
 
 const LessonPlans = new GraphQLObjectType({
