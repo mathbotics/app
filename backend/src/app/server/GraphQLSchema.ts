@@ -70,26 +70,26 @@ export const Student = new GraphQLObjectType({
       },
       firstName: {
         type: GraphQLString,
-        resolve(user){
-          return user.firstName
+        resolve(Student){
+          return Student.user.firstName;
         }
       },
       lastName: {
         type: GraphQLString,
-        resolve(user){
-          return user.lastName
+        resolve(Student){
+          return Student.user.lastName
         }
       },
       email: {
         type: GraphQLString,
-        resolve(user){
-          return user.email
+        resolve(Student){
+          return Student.user.email
         }
       },
       password: {          
         type: GraphQLString,
-        resolve(user){
-          return user.password
+        resolve(Student){
+          return Student.user.password
         }
       },
       gradeLevel: {
@@ -118,7 +118,9 @@ export const Student = new GraphQLObjectType({
       }
     }
   },
-  isTypeOf: (value) => value instanceof Student
+  isTypeOf: (value, info) => {
+    return "gradeLevel" in value
+  }
 });
 
 // add in istypeof declaration
@@ -382,7 +384,7 @@ const RootQuery = new GraphQLObjectType({
           }
         },
         resolve(root, args){
-          return prisma.course.findMany({where: args});
+          return prisma.user.findMany({where: args});
         }
       },
       students: {
@@ -393,7 +395,10 @@ const RootQuery = new GraphQLObjectType({
           }
         },
         resolve(root, args){
-          return prisma.student.findMany({where: args});
+          return prisma.student.findMany({
+            where: args,
+          include: { user: true}
+        });
         }
       },
       guardians: {
