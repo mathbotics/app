@@ -6,12 +6,17 @@ import {
   GraphQLString,
   GraphQLList,
   GraphQLSchema,
-  GraphQLNonNull 
+  GraphQLNonNull, 
+  GraphQLEnumType,
+  GraphQLInterfaceType
 } from 'graphql';
 import prisma from '../data/prisma';
+import { mutation } from '../graphql/mutations';
+import { Mutations } from '../graphql/mutations/Mutations';
 import { Lesson, Slide } from '../graphql/objects'; 
 
-const Users = new GraphQLObjectType({
+
+const User = new GraphQLInterfaceType({
   name: "User",
   description: "This represents the user model",
   fields: () => {
@@ -50,9 +55,11 @@ const Users = new GraphQLObjectType({
   }
 });
 
-const Students = new GraphQLObjectType({
+// add in istypeof declaration
+export const Student = new GraphQLObjectType({
   name: "Student",
   description: "This represents the student",
+  interfaces: [User],
   fields: () => {
     return {
       id: {
@@ -61,10 +68,28 @@ const Students = new GraphQLObjectType({
           return Student.id
         }
       },
+      firstName: {
+        type: GraphQLString,
+        resolve(Student){
+          return Student.user.firstName;
+        }
+      },
+      lastName: {
+        type: GraphQLString,
+        resolve(Student){
+          return Student.user.lastName
+        }
+      },
       email: {
         type: GraphQLString,
         resolve(Student){
-          return Student.email
+          return Student.user.email
+        }
+      },
+      password: {          
+        type: GraphQLString,
+        resolve(Student){
+          return Student.user.password
         }
       },
       gradeLevel: {
@@ -92,9 +117,13 @@ const Students = new GraphQLObjectType({
       //}
       }
     }
+  },
+  isTypeOf: (value, info) => {
+    return "gradeLevel" in value
   }
 });
 
+// add in istypeof declaration
 const Instructors = new GraphQLObjectType({
   name: "Instructor",
   description: "This represents the instructor",
@@ -122,6 +151,7 @@ const Instructors = new GraphQLObjectType({
   }
 });
 
+// add in istypeof declaration
 const Guardians = new GraphQLObjectType({
   name: "Guardian",
   description: "This represents the Guardian",
@@ -149,6 +179,7 @@ const Guardians = new GraphQLObjectType({
   }
 });
 
+// add in istypeof declaration
 const Admins = new GraphQLObjectType({
   name: "Admin",
   description: "This represents the Admin",
@@ -322,35 +353,56 @@ const Slides = new GraphQLObjectType({
   }
 });
 
+export const GradeLevel = new GraphQLEnumType({
+  name: "GradeLevel",
+  values: {
+    FIRST: {value: 1},
+    SECOND: {value: 2},
+    THIRD: {value: 3},
+    FOURTH: {value: 4},
+    FIFTH: {value: 5},
+    SIXTH: {value: 6},
+    SEVENTH: {value: 7},
+    EIGHTH: {value: 8},
+    NINTH: {value: 9},
+    TENTH: {value: 10},
+    ELEVENTH: {value: 11},
+    TWELFTH: {value: 12}
+  }
+})
+
 
 const RootQuery = new GraphQLObjectType({
   name: 'RootQuery',
   description: 'This is the root query',
   fields: {
       users: {
-        type: new GraphQLList(Users),
+        type: new GraphQLList(User),
         args: {
           id: {
             type: GraphQLID
           }
         },
         resolve(root, args){
-          return prisma.course.findMany({where: args});
+          return prisma.user.findMany({where: args});
         }
       },
       students: {
-        type: new GraphQLList(Students),
+        type: new GraphQLList(Student),
         args: {
           id: {
             type: GraphQLID
           }
         },
         resolve(root, args){
-          return prisma.student.findMany({where: args});
+          return prisma.student.findMany({
+            where: args,
+          include: { user: true}
+        });
         }
       },
       guardians: {
-        type: new GraphQLList(Users),
+        type: new GraphQLList(User),
         args: {
           id: {
             type: GraphQLID
@@ -376,7 +428,8 @@ const RootQuery = new GraphQLObjectType({
 
 
 const GraphSchema = new GraphQLSchema({
-  query: RootQuery
+  query: RootQuery,
+  mutation: Mutations
 });
 
 export default GraphSchema

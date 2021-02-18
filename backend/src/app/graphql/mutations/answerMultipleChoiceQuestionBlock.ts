@@ -10,7 +10,7 @@ export const AnswerMultipleChoiceQuestionBlockInput = inputObjectType({
     t.string('selectedChoiceId', { required: true });
     t.string('studentId', { required: true})
   },
-});
+}); 
 
 export const answerMultipleChoiceQuestionBlock = mutationField(
   'answerMultipleChoiceQuestionBlock',
