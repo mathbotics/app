@@ -13,7 +13,8 @@ import {
 import prisma from '../data/prisma';
 import { mutation } from '../graphql/mutations';
 import { Mutations } from '../graphql/mutations/Mutations';
-import { Lesson, Slide } from '../graphql/objects'; 
+import { Slide } from '../graphql/objects';
+//import { Lesson, Slide } from '../graphql/objects'; 
 
 
 const User = new GraphQLInterfaceType({
@@ -25,6 +26,12 @@ const User = new GraphQLInterfaceType({
         type: GraphQLString, 
         resolve(user){
           return user.id
+        }
+      },
+      username: {
+        type: GraphQLString,
+        resolve(user){
+          return user.username
         }
       },
       firstName: {
@@ -55,7 +62,6 @@ const User = new GraphQLInterfaceType({
   }
 });
 
-// add in istypeof declaration
 export const Student = new GraphQLObjectType({
   name: "Student",
   description: "This represents the student",
@@ -66,6 +72,12 @@ export const Student = new GraphQLObjectType({
         type: GraphQLString,
         resolve(Student){
           return Student.id
+        }
+      },
+      username: {
+        type: GraphQLString,
+        resolve(Student){
+          return Student.user.username
         }
       },
       firstName: {
@@ -93,7 +105,7 @@ export const Student = new GraphQLObjectType({
         }
       },
       gradeLevel: {
-        type: GraphQLString,
+        type: GradeLevel,
         resolve(Student){
           return Student.gradeLevel
         }
@@ -124,7 +136,7 @@ export const Student = new GraphQLObjectType({
 });
 
 // add in istypeof declaration
-const Instructors = new GraphQLObjectType({
+const Instructor = new GraphQLObjectType({
   name: "Instructor",
   description: "This represents the instructor",
   fields: () => {
@@ -152,7 +164,7 @@ const Instructors = new GraphQLObjectType({
 });
 
 // add in istypeof declaration
-const Guardians = new GraphQLObjectType({
+const Guardian = new GraphQLObjectType({
   name: "Guardian",
   description: "This represents the Guardian",
   fields: () => {
@@ -180,7 +192,7 @@ const Guardians = new GraphQLObjectType({
 });
 
 // add in istypeof declaration
-const Admins = new GraphQLObjectType({
+const Admin = new GraphQLObjectType({
   name: "Admin",
   description: "This represents the Admin",
   fields: () => {
@@ -201,7 +213,7 @@ const Admins = new GraphQLObjectType({
   }
 });
 
-const Courses = new GraphQLObjectType({
+const Course = new GraphQLObjectType({
   name: "Course",
   description: "This represents the Course",
   fields: () => {
@@ -252,7 +264,7 @@ const Courses = new GraphQLObjectType({
   }
 });
 
-const Lessons = new GraphQLObjectType({
+const Lesson = new GraphQLObjectType({
   name: "Lesson",
   description: "This represents the Lesson",
   fields: () => {
@@ -270,7 +282,7 @@ const Lessons = new GraphQLObjectType({
         }
       },
       slide: {
-        type: new GraphQLList(Lesson),
+        type: new GraphQLList(Slide),
         resolve(Lesson){
           return Lesson.slide
         }
@@ -280,7 +292,7 @@ const Lessons = new GraphQLObjectType({
 });
 
 
-const LessonPlans = new GraphQLObjectType({
+const LessonPlan = new GraphQLObjectType({
   name: "LessonPlan",
   description: "This represents the LessonPlan",
   fields: () => {
@@ -302,7 +314,7 @@ const LessonPlans = new GraphQLObjectType({
 });
 
 
-const Slides = new GraphQLObjectType({
+const Slide = new GraphQLObjectType({
   name: "Slide",
   description: "This represents the Slide",
   fields: () => {
@@ -356,18 +368,18 @@ const Slides = new GraphQLObjectType({
 export const GradeLevel = new GraphQLEnumType({
   name: "GradeLevel",
   values: {
-    FIRST: {value: 1},
-    SECOND: {value: 2},
-    THIRD: {value: 3},
-    FOURTH: {value: 4},
-    FIFTH: {value: 5},
-    SIXTH: {value: 6},
-    SEVENTH: {value: 7},
-    EIGHTH: {value: 8},
-    NINTH: {value: 9},
-    TENTH: {value: 10},
-    ELEVENTH: {value: 11},
-    TWELFTH: {value: 12}
+    FIRST: {value: "FIRST"},
+    SECOND: {value: "SECOND"},
+    THIRD: {value: "THIRD"},
+    FOURTH: {value: "FOURTH"},
+    FIFTH: {value: "FIFTH"},
+    SIXTH: {value: "SIXTH"},
+    SEVENTH: {value: "SEVENTH"},
+    EIGHTH: {value: "EIGHTH"},
+    NINTH: {value: "NINTH"},
+    TENTH: {value: "TENTH"},
+    ELEVENTH: {value: "ELEVENTH"},
+    TWELFTH: {value: "TWELFTH"}
   }
 })
 
@@ -397,7 +409,7 @@ const RootQuery = new GraphQLObjectType({
         resolve(root, args){
           return prisma.student.findMany({
             where: args,
-          include: { user: true}
+            include: { user: true}
         });
         }
       },
@@ -413,7 +425,7 @@ const RootQuery = new GraphQLObjectType({
         }
       },
       instructors: {
-        type: new GraphQLList(Instructors),
+        type: new GraphQLList(Instructor),
         args: {
           id: {
             type: GraphQLID
