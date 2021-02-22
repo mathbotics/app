@@ -5,20 +5,22 @@ import { environment } from '../relay';
 import { LogInInput } from './__generated__/LogInMutation.graphql';
 
 const mutation = graphql`
-  mutation LogInMutation($input: LogInInput!) {
+  mutation LogInMutation($input: LoginInput!) {
     logIn(input: $input) {
-      firstName
-      lastName
-      username
-      ... on Instructor {
-        email
+      user{
+        firstName
+        lastName
+        username
+        ... on Instructor {
+          email
+        }
       }
     }
   }
 `;
 
 function commit(
-  input: LogInInput,
+  input: {username, password}, 
   onSuccess: (response: any) => void,
   onFailure: (error: Error) => void,
 ) {

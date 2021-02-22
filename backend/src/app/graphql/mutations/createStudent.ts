@@ -27,7 +27,6 @@ export const createStudentMutation = {
       }
     },
    async resolve(root, args){
-     console.log(args.input)
      const { username, firstName, lastName, gradeLevel} = args.input 
     const { user, ...student } = nullthrows(
       await prisma.student.create({

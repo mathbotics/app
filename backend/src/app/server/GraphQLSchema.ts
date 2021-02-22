@@ -8,16 +8,15 @@ import {
   GraphQLSchema,
   GraphQLNonNull, 
   GraphQLEnumType,
-  GraphQLInterfaceType
+  GraphQLInterfaceType,
+  FieldsOnCorrectTypeRule
 } from 'graphql';
 import prisma from '../data/prisma';
-import { mutation } from '../graphql/mutations';
 import { Mutations } from '../graphql/mutations/Mutations';
-import { Slide } from '../graphql/objects';
 //import { Lesson, Slide } from '../graphql/objects'; 
 
 
-const User = new GraphQLInterfaceType({
+export const User = new GraphQLInterfaceType({
   name: "User",
   description: "This represents the user model",
   fields: () => {
@@ -131,6 +130,7 @@ export const Student = new GraphQLObjectType({
     }
   },
   isTypeOf: (value, info) => {
+    console.log(value)
     return "gradeLevel" in value
   }
 });
@@ -195,6 +195,7 @@ const Guardian = new GraphQLObjectType({
 const Admin = new GraphQLObjectType({
   name: "Admin",
   description: "This represents the Admin",
+  interfaces: [User],
   fields: () => {
     return {
       id: {
@@ -203,13 +204,41 @@ const Admin = new GraphQLObjectType({
           return Admin.id
         }
       },
+      username: {
+        type: GraphQLString,
+        resolve(Admin){
+          return Admin.user.username
+        }
+      },
+      firstName: {
+        type: GraphQLString,
+        resolve(Admin){
+          return Admin.user.firstName;
+        }
+      },
+      lastName: {
+        type: GraphQLString,
+        resolve(Admin){
+          return Admin.user.lastName
+        }
+      },
       email: {
         type: GraphQLString,
         resolve(Admin){
-          return Admin.email
+          return Admin.user.email
+        }
+      },
+      password: {          
+        type: GraphQLString,
+        resolve(Admin){
+          return Admin.user.password
         }
       }
     }
+  },
+  isTypeOf: (value, info) => {
+    console.log(value)
+    return value.length === 6;
   }
 });
 
