@@ -1,3 +1,4 @@
+import { ResolveType } from 'apollo-server-express';
 import {
   GraphQLObjectType,
   GraphQLID,
@@ -9,14 +10,19 @@ import {
   GraphQLNonNull, 
   GraphQLEnumType,
   GraphQLInterfaceType,
-  FieldsOnCorrectTypeRule
+  GraphQLUnionType,
+  FieldsOnCorrectTypeRule,
+  GraphQLScalarType
 } from 'graphql';
 import prisma from '../data/prisma';
 import { Mutations } from '../graphql/mutations/Mutations';
+//import { TextBlock } from '../graphql/objects';
+//import { EmptyBlock, MultipleChoiceQuestionBlock, TextBlock } from '../graphql/objects';
+//import { Block } from '../graphql/objects';
+//import { Slide } from '../graphql/objects';
 //import { Lesson, Slide } from '../graphql/objects'; 
 
-
-export const User = new GraphQLInterfaceType({
+export const User : any = new GraphQLInterfaceType({
   name: "User",
   description: "This represents the user model",
   fields: () => {
@@ -64,7 +70,7 @@ export const User = new GraphQLInterfaceType({
   // }
 });
 
-export const Student = new GraphQLObjectType({
+export const Student: any  = new GraphQLObjectType({
   name: "Student",
   description: "This represents the student",
   interfaces: [User],
@@ -113,32 +119,34 @@ export const Student = new GraphQLObjectType({
         }
       },
       guardians: {
-        type: GraphQLString,
+        type: Guardian,
         resolve(Student){
-          return Student.guardians
+          return Student.guardian.id
         }
       },
+<<<<<<< HEAD
       studentTo: {
         type: new GraphQLList(CourseToStudent),
+=======
+      courses: {
+        type: Course,
+>>>>>>> da0093149b95cdc0d8d33149a18f121f65f7daa9
         resolve(Student){
           console.log(Student)
           return Student.studentTo
         }
-      //},
-      //authors: {        // user-student relation
-      //  type: new GraphQLList(Books),
-      //   resolve(author){
-      //    return author.getBooks();
-      //}
       }
     }
+  },
+  isTypeOf: (value, info) => {
+     return "gradeLevel" in value
   }
 });
 
-// add in istypeof declaration
-const Instructor = new GraphQLObjectType({
+const Instructor : any = new GraphQLObjectType({
   name: "Instructor",
   description: "This represents the instructor",
+  interfaces: [User],
   fields: () => {
     return {
       id: {
@@ -147,14 +155,38 @@ const Instructor = new GraphQLObjectType({
           return Instructor.id
         }
       },
-      email: {
+      firstName: {
+        type: GraphQLString,
+        resolve(Instructor){
+          return Instructor.user.firstName;
+        }
+      },
+      lastName: {
+        type: GraphQLString,
+        resolve(Instructor){
+          return Instructor.user.lastName
+        }
+      },
+      username: {
+        type: GraphQLString,
+        resolve(Instructor){
+          return Instructor.user.username
+        }
+      },
+      password: {          
+        type: GraphQLString,
+        resolve(Instructor){
+          return Instructor.user.password
+        }
+      },
+      email : {
         type: GraphQLString,
         resolve(Instructor){
           return Instructor.email
         }
       },
       courses: {
-        type: GraphQLString,
+        type: Course,
         resolve(Instructor){
           return Instructor.courses
         }
@@ -163,10 +195,10 @@ const Instructor = new GraphQLObjectType({
   }
 });
 
-// add in istypeof declaration
 const Guardian = new GraphQLObjectType({
   name: "Guardian",
   description: "This represents the Guardian",
+  interfaces: [User],
   fields: () => {
     return {
       id: {
@@ -181,17 +213,41 @@ const Guardian = new GraphQLObjectType({
           return Guardian.email
         }
       },
-      students: {
+      firstName: {
         type: GraphQLString,
         resolve(Guardian){
-          return Guardian.courses
+          return Guardian.user.firstName;
+        }
+      },
+      lastName: {
+        type: GraphQLString,
+        resolve(Guardian){
+          return Guardian.user.lastName
+        }
+      },
+      username: {
+        type: GraphQLString,
+        resolve(Guardian){
+          return Guardian.user.username
+        }
+      },
+      password: {          
+        type: GraphQLString,
+        resolve(Guardian){
+          return Guardian.user.password
+        }
+      },
+      students: {
+        type: Student,
+        resolve(Guardian){
+          return Guardian.students.id
         }
       }
     }
   }
 });
 
-// add in istypeof declaration
+
 const Admin = new GraphQLObjectType({
   name: "Admin",
   description: "This represents the Admin",
@@ -307,13 +363,18 @@ export const Course = new GraphQLObjectType({
         }
       },
       instructors: {
-        type: GraphQLString,
+        type: Instructor,
         resolve(Course){
           return Course.instructors
         }
       },
+<<<<<<< HEAD
       courseTo: {
         type: new GraphQLList(CourseToStudent),
+=======
+      students: {
+        type: Student,
+>>>>>>> da0093149b95cdc0d8d33149a18f121f65f7daa9
         resolve(Course){
           return Course.courseTo
         }
@@ -345,10 +406,11 @@ const Lesson = new GraphQLObjectType({
           return Lesson.title
         }
       },
-      slide: {
+      slides: {
         type: new GraphQLList(Slide),
         resolve(Lesson){
-          return Lesson.slide
+          console.log(Lesson)
+          return Lesson.slides
         }
       }
     }
@@ -370,53 +432,195 @@ const LessonPlan = new GraphQLObjectType({
   }
 });
 
+const MultipleChoiceQuestionChoice = new GraphQLObjectType({
+  name: "MultipleChoiceQuestionChoice",
+  description: "This represents the MultipleChoiceQuestionChoice",
+  fields: () => {
+    return {
+      id: {
+        type: GraphQLString,
+        resolve(MultipleChoiceQuestionChoice) {
+          return MultipleChoiceQuestionChoice.id
+        }
+      },
+      text: {
+        type: GraphQLString,
+        resolve(MultipleChoiceQuestionChoice) {
+          return MultipleChoiceQuestionChoice.text
+        }
+      },
+      correct: {
+        type: GraphQLString,
+        resolve(MultipleChoiceQuestionChoice) {
+          return MultipleChoiceQuestionChoice.correct
+        }
+      }
+    }
+  }
+});
 
+const MultipleChoiceQuestionResponse = new GraphQLObjectType({
+  name: "MultipleChoiceQuestionResponse",
+  description: "This represents the MultipleChoiceQuestionResponse",
+  fields: () => {
+    return {
+      id: {
+        type: GraphQLString,
+        resolve(MultipleChoiceQuestionResponse) {
+          return MultipleChoiceQuestionResponse.id
+        }
+      },
+      choice: {
+        type: GraphQLString,
+        resolve(MultipleChoiceQuestionResponse) {
+          return MultipleChoiceQuestionResponse.choice
+        }
+      },
+      student: {
+        type: GraphQLString,
+        resolve(MultipleChoiceQuestionChoice) {
+          return MultipleChoiceQuestionChoice.student
+        }
+      }
+    }
+  }
+});
 
-const Slide = new GraphQLObjectType({
+const MultipleChoiceQuestionBlock = new GraphQLObjectType({
+  name: "MultipleChoiceQuestionBlock",
+  description: "This is the multiple choice question block",
+  fields: () => {
+    return {
+      id: {
+        type: GraphQLString, 
+        resolve(MultipleChoiceQuestionBlock){
+          return MultipleChoiceQuestionBlock.id
+        }
+      },
+      text: {
+        type: GraphQLString,
+        resolve(MultipleChoiceQuestionBlock){
+          return MultipleChoiceQuestionBlock.text
+        }
+      },
+      choices: {
+        type: new GraphQLList(MultipleChoiceQuestionChoice),
+        resolve(MultipleChoiceQuestionBlock){
+          return MultipleChoiceQuestionBlock.choices
+        }
+      },
+      responses: {
+        type: new GraphQLList(MultipleChoiceQuestionResponse),
+        resolve(MultipleChoiceQuestionBlock){
+          return MultipleChoiceQuestionBlock.responses
+        }
+      }
+    }
+  }
+});
+
+const TextBlock = new GraphQLObjectType({
+  name: "TextBlock",
+  description: "This represents the Text Block",
+  fields: () => {
+    return {
+      id: {
+        type: GraphQLString, 
+        resolve(TextBlock){
+          return TextBlock.id
+        }
+      },
+      title: {
+        type: GraphQLString, 
+        resolve(TextBlock){
+          return TextBlock.title
+        }
+      },
+      body: {
+        type: GraphQLString, 
+        resolve(TextBlock){
+          return TextBlock.body
+        }
+      }
+    }
+   } 
+});
+
+const EmptyBlock = new GraphQLObjectType({
+  name: "EmptyBlock",
+  description: "This represents the Empty Block",
+  fields: () => {
+    return {
+      id: {
+        type: GraphQLString, 
+        resolve(EmptyBlock){
+          return EmptyBlock.id
+        }
+      }
+    }
+   } 
+});
+
+const Block = new GraphQLUnionType({
+  name: "Block",
+  description: "This represents the Block",
+  types: [MultipleChoiceQuestionBlock, TextBlock, EmptyBlock],
+  resolveType(value){
+    if (value.choices){
+      return MultipleChoiceQuestionBlock;
+    }
+    
+    //COME BACK IF IT BREAKSSSS
+    if (value.body !=null){
+      return TextBlock;
+    }
+    return EmptyBlock;
+   } 
+});
+
+const Slide = new GraphQLInterfaceType({
   name: "Slide",
   description: "This represents the Slide",
   fields: () => {
     return {
       id: {
         type: GraphQLString,
-        resolve(Course) {
-          return Course.id
+        resolve(Slide) {
+          return Slide.id
         }
       },
-      name: {
+      title: {
         type: GraphQLString,
-        resolve(Course){
-          return Course.name
+        resolve(Slide){
+          return Slide.name
+        }
+      }
+    }
+  }
+});
+
+const SingleSlide = new GraphQLObjectType({
+  name: "SingleSlide",
+  description: "This represents the Single Slide",
+  interfaces : [Slide],
+  fields: () => {
+    return {
+      id: {
+        type: GraphQLString,
+        resolve(SingleSlide) {
+          return SingleSlide.id
         }
       },
-      description: {
+      title: {
         type: GraphQLString,
-        resolve(Course){
-          return Course.description
+        resolve(SingleSlide){
+          return SingleSlide.name
         }
       },
-      suggestedLevel: {
-        type: GraphQLString,
-        resolve(Course){
-          return Course.suggestedLevel
-        }
-      },
-      instructors: {
-        type: GraphQLString,
-        resolve(Course){
-          return Course.instructors
-        }
-      },
-      students: {
-        type: GraphQLString,
-        resolve(Course){
-          return Course.students
-        }
-      },
-      lessonPlan: {
-        type: GraphQLString,
-        resolve(Course){
-          return Course.lessonPlan
+      block: {
+        type: Block,
+        resolve(SingleSlide) {
+          return SingleSlide.block
         }
       }
     }
@@ -475,7 +679,7 @@ const RootQuery = new GraphQLObjectType({
         });
         }
       },
-      guardians: {
+      guardian: {
         type: new GraphQLList(User),
         args: {
           id: {
@@ -511,7 +715,18 @@ const RootQuery = new GraphQLObjectType({
           console.log(courses)
           return courses
         }
-      }
+      },
+      lessons: {
+        type: new GraphQLList(Lesson),
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        resolve(root, args){
+          return prisma.lesson.findMany({where: args, include: {slides: true}});
+        }
+      },
     }
 });
 
