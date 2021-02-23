@@ -16,7 +16,7 @@ import {
 } from 'graphql';
 import prisma from '../data/prisma';
 import { Mutations } from '../graphql/mutations/Mutations';
-import { TextBlock } from '../graphql/objects';
+//import { TextBlock } from '../graphql/objects';
 //import { EmptyBlock, MultipleChoiceQuestionBlock, TextBlock } from '../graphql/objects';
 //import { Block } from '../graphql/objects';
 //import { Slide } from '../graphql/objects';
@@ -410,6 +410,33 @@ const MultipleChoiceQuestionChoice = new GraphQLObjectType({
   }
 });
 
+const MultipleChoiceQuestionResponse = new GraphQLObjectType({
+  name: "MultipleChoiceQuestionResponse",
+  description: "This represents the MultipleChoiceQuestionResponse",
+  fields: () => {
+    return {
+      id: {
+        type: GraphQLString,
+        resolve(MultipleChoiceQuestionResponse) {
+          return MultipleChoiceQuestionResponse.id
+        }
+      },
+      choice: {
+        type: GraphQLString,
+        resolve(MultipleChoiceQuestionResponse) {
+          return MultipleChoiceQuestionResponse.choice
+        }
+      },
+      student: {
+        type: GraphQLString,
+        resolve(MultipleChoiceQuestionChoice) {
+          return MultipleChoiceQuestionChoice.student
+        }
+      }
+    }
+  }
+});
+
 const MultipleChoiceQuestionBlock = new GraphQLObjectType({
   name: "MultipleChoiceQuestionBlock",
   description: "This is the multiple choice question block",
@@ -432,10 +459,57 @@ const MultipleChoiceQuestionBlock = new GraphQLObjectType({
         resolve(MultipleChoiceQuestionBlock){
           return MultipleChoiceQuestionBlock.choices
         }
-     
+      },
+      responses: {
+        type: new GraphQLList(MultipleChoiceQuestionResponse),
+        resolve(MultipleChoiceQuestionBlock){
+          return MultipleChoiceQuestionBlock.responses
+        }
+      }
     }
   }
+});
 
+const TextBlock = new GraphQLObjectType({
+  name: "TextBlock",
+  description: "This represents the Text Block",
+  fields: () => {
+    return {
+      id: {
+        type: GraphQLString, 
+        resolve(TextBlock){
+          return TextBlock.id
+        }
+      },
+      title: {
+        type: GraphQLString, 
+        resolve(TextBlock){
+          return TextBlock.title
+        }
+      },
+      body: {
+        type: GraphQLString, 
+        resolve(TextBlock){
+          return TextBlock.body
+        }
+      }
+    }
+   } 
+});
+
+const EmptyBlock = new GraphQLObjectType({
+  name: "EmptyBlock",
+  description: "This represents the Empty Block",
+  fields: () => {
+    return {
+      id: {
+        type: GraphQLString, 
+        resolve(EmptyBlock){
+          return EmptyBlock.id
+        }
+      }
+    }
+   } 
 });
 
 const Block = new GraphQLUnionType({
@@ -454,7 +528,6 @@ const Block = new GraphQLUnionType({
     return EmptyBlock;
    } 
 });
-
 
 const Slide = new GraphQLInterfaceType({
   name: "Slide",
