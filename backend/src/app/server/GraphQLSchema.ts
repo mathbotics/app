@@ -242,7 +242,7 @@ const Admin = new GraphQLObjectType({
   }
 });
 
-const Course = new GraphQLObjectType({
+export const Course = new GraphQLObjectType({
   name: "Course",
   description: "This represents the Course",
   fields: () => {
@@ -266,7 +266,7 @@ const Course = new GraphQLObjectType({
         }
       },
       suggestedLevel: {
-        type: GraphQLString,
+        type: GradeLevel,
         resolve(Course){
           return Course.suggestedLevel
         }
@@ -286,7 +286,7 @@ const Course = new GraphQLObjectType({
       lessonPlan: {
         type: GraphQLString,
         resolve(Course){
-          return Course.lessonPlan
+          return Course.lessonPlan.id
         }
       }
     }
@@ -320,7 +320,6 @@ const Lesson = new GraphQLObjectType({
   }
 });
 
-
 const LessonPlan = new GraphQLObjectType({
   name: "LessonPlan",
   description: "This represents the LessonPlan",
@@ -328,19 +327,14 @@ const LessonPlan = new GraphQLObjectType({
     return {
       id: {
         type: GraphQLString,
-        resolve(lessonPlan) {
-          return lessonPlan.id
-        }
-      },
-      lessons: {
-        type: GraphQLString,
-        resolve(lessonPlan){
-          return lessonPlan.lessons
+        resolve(LessonPlan) {
+          return LessonPlan.id
         }
       }
     }
   }
 });
+
 
 
 const Slide = new GraphQLObjectType({
@@ -462,6 +456,17 @@ const RootQuery = new GraphQLObjectType({
         },
         resolve(root, args){
           return prisma.instructor.findMany({where: args});
+        }
+      },
+      courses: {
+        type: new GraphQLList(Course),
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        resolve(root, args){
+          return prisma.course.findMany({where: args, include: { lessonPlan: true}});
         }
       }
     }
