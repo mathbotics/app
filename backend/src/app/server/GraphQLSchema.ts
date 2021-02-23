@@ -1,3 +1,4 @@
+import { ResolveType } from 'apollo-server-express';
 import {
   GraphQLObjectType,
   GraphQLID,
@@ -13,6 +14,10 @@ import {
 } from 'graphql';
 import prisma from '../data/prisma';
 import { Mutations } from '../graphql/mutations/Mutations';
+<<<<<<< HEAD
+=======
+//import { Slide } from '../graphql/objects';
+>>>>>>> e830c5bb647651e64c12832be9e7493a49c496ef
 //import { Lesson, Slide } from '../graphql/objects'; 
 
 
@@ -65,7 +70,9 @@ export const User = new GraphQLInterfaceType({
   }
 });
 
-export const Student = new GraphQLObjectType({
+//type Student = ReturnType<typeof User>;
+
+export const Student: any  = new GraphQLObjectType({
   name: "Student",
   description: "This represents the student",
   interfaces: [User],
@@ -114,31 +121,32 @@ export const Student = new GraphQLObjectType({
         }
       },
       guardians: {
-        type: GraphQLString,
+        type: Guardian,
         resolve(Student){
-          return Student.guardians
+          return Student.guardian.id
         }
       },
       courses: {
-        type: GraphQLString,
+        type: Course,
         resolve(Student){
           return Student.courses
         }
-      //},
-      //authors: {        // user-student relation
-      //  type: new GraphQLList(Books),
-      //   resolve(author){
-      //    return author.getBooks();
-      //}
       }
     }
+<<<<<<< HEAD
+=======
+  },
+  isTypeOf: (value, info) => {
+     return "gradeLevel" in value
+>>>>>>> e830c5bb647651e64c12832be9e7493a49c496ef
   }
 });
 
 // add in istypeof declaration
-const Instructor = new GraphQLObjectType({
+const Instructor : any = new GraphQLObjectType({
   name: "Instructor",
   description: "This represents the instructor",
+  interfaces: [User],
   fields: () => {
     return {
       id: {
@@ -154,7 +162,7 @@ const Instructor = new GraphQLObjectType({
         }
       },
       courses: {
-        type: GraphQLString,
+        type: Course,
         resolve(Instructor){
           return Instructor.courses
         }
@@ -167,6 +175,7 @@ const Instructor = new GraphQLObjectType({
 const Guardian = new GraphQLObjectType({
   name: "Guardian",
   description: "This represents the Guardian",
+  interfaces: [User],
   fields: () => {
     return {
       id: {
@@ -182,9 +191,9 @@ const Guardian = new GraphQLObjectType({
         }
       },
       students: {
-        type: GraphQLString,
+        type: Student,
         resolve(Guardian){
-          return Guardian.courses
+          return Guardian.students.id
         }
       }
     }
@@ -268,19 +277,19 @@ export const Course = new GraphQLObjectType({
         }
       },
       instructors: {
-        type: GraphQLString,
+        type: Instructor,
         resolve(Course){
           return Course.instructors
         }
       },
       students: {
-        type: GraphQLString,
+        type: Student,
         resolve(Course){
           return Course.students
         }
       },
       lessonPlan: {
-        type: GraphQLString,
+        type: LessonPlan,
         resolve(Course){
           return Course.lessonPlan.id
         }
@@ -289,7 +298,7 @@ export const Course = new GraphQLObjectType({
   }
 });
 
-const Lesson = new GraphQLObjectType({
+const Lesson : any = new GraphQLObjectType({
   name: "Lesson",
   description: "This represents the Lesson",
   fields: () => {
@@ -323,17 +332,34 @@ const LessonPlan = new GraphQLObjectType({
     return {
       id: {
         type: GraphQLString,
+<<<<<<< HEAD
         resolve(LessonPlan) {
           return LessonPlan.id
         }
+=======
+        resolve(lessonPlan) {
+          return lessonPlan.id
+        }
+      },
+      lessons: {
+        type: Lesson,
+        resolve(lessonPlan){
+          //return lessonPlan.lessons.id
+          return prisma.lessonPlan.findUnique(Lesson.id);
+>>>>>>> e830c5bb647651e64c12832be9e7493a49c496ef
       }
     }
   }
+}
 });
 
 
+<<<<<<< HEAD
 
 const Slide = new GraphQLObjectType({
+=======
+const Slide : any = new GraphQLObjectType({
+>>>>>>> e830c5bb647651e64c12832be9e7493a49c496ef
   name: "Slide",
   description: "This represents the Slide",
   fields: () => {
@@ -363,19 +389,19 @@ const Slide = new GraphQLObjectType({
         }
       },
       instructors: {
-        type: GraphQLString,
+        type: Instructor,
         resolve(Course){
           return Course.instructors
         }
       },
       students: {
-        type: GraphQLString,
+        type: Student,
         resolve(Course){
           return Course.students
         }
       },
       lessonPlan: {
-        type: GraphQLString,
+        type: LessonPlan,
         resolve(Course){
           return Course.lessonPlan
         }
@@ -432,7 +458,7 @@ const RootQuery = new GraphQLObjectType({
         });
         }
       },
-      guardians: {
+      guardian: {
         type: new GraphQLList(User),
         args: {
           id: {
