@@ -17,7 +17,6 @@ import { Mutations } from '../graphql/mutations/Mutations';
 //import { Slide } from '../graphql/objects';
 //import { Lesson, Slide } from '../graphql/objects'; 
 
-
 export const User : any = new GraphQLInterfaceType({
   name: "User",
   description: "This represents the user model",
@@ -66,8 +65,6 @@ export const User : any = new GraphQLInterfaceType({
     else return Admin;
   }
 });
-
-//type Student = ReturnType<typeof User>;
 
 export const Student: any  = new GraphQLObjectType({
   name: "Student",
@@ -136,7 +133,6 @@ export const Student: any  = new GraphQLObjectType({
   }
 });
 
-// add in istypeof declaration
 const Instructor : any = new GraphQLObjectType({
   name: "Instructor",
   description: "This represents the instructor",
@@ -165,7 +161,6 @@ const Instructor : any = new GraphQLObjectType({
   }
 });
 
-// add in istypeof declaration
 const Guardian = new GraphQLObjectType({
   name: "Guardian",
   description: "This represents the Guardian",
@@ -194,7 +189,7 @@ const Guardian = new GraphQLObjectType({
   }
 });
 
-// add in istypeof declaration
+
 const Admin = new GraphQLObjectType({
   name: "Admin",
   description: "This represents the Admin",
@@ -335,7 +330,7 @@ const LessonPlan = new GraphQLObjectType({
 });
 
 
-const Slide : any = new GraphQLObjectType({
+const Slide : any = new GraphQLInterfaceType({
   name: "Slide",
   description: "This represents the Slide",
   fields: () => {
@@ -346,40 +341,10 @@ const Slide : any = new GraphQLObjectType({
           return Course.id
         }
       },
-      name: {
+      title: {
         type: GraphQLString,
         resolve(Course){
           return Course.name
-        }
-      },
-      description: {
-        type: GraphQLString,
-        resolve(Course){
-          return Course.description
-        }
-      },
-      suggestedLevel: {
-        type: GraphQLString,
-        resolve(Course){
-          return Course.suggestedLevel
-        }
-      },
-      instructors: {
-        type: Instructor,
-        resolve(Course){
-          return Course.instructors
-        }
-      },
-      students: {
-        type: Student,
-        resolve(Course){
-          return Course.students
-        }
-      },
-      lessonPlan: {
-        type: LessonPlan,
-        resolve(Course){
-          return Course.lessonPlan
         }
       }
     }
@@ -466,7 +431,18 @@ const RootQuery = new GraphQLObjectType({
         resolve(root, args){
           return prisma.course.findMany({where: args, include: { lessonPlan: true}});
         }
-      }
+      },
+      lessons: {
+        type: new GraphQLList(Lesson),
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        resolve(root, args){
+          return prisma.lesson.findMany({where: args, include: {slides: true}});
+        }
+      },
     }
 });
 
