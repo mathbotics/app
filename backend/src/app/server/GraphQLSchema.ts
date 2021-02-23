@@ -329,15 +329,9 @@ const LessonPlan = new GraphQLObjectType({
         resolve(lessonPlan) {
           return lessonPlan.id
         }
-      },
-      lessons: {
-        type: Lesson,
-        resolve(lessonPlan){
-          return lessonPlan.lessons.id
       }
     }
   }
-}
 });
 
 
