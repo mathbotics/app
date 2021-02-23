@@ -34,7 +34,7 @@ export const logIn = {
               admin: true,
               guardian: true,
               instructor: true,
-              student: true,
+              student: true
             },
           }),
         'User not found',
@@ -45,10 +45,7 @@ export const logIn = {
       }
       const { admin, guardian, instructor, student } = user;
       console.log(user, " Successfully logged in")
-      return nullthrows(
-        admin ?? guardian ?? instructor ?? student,
-        'User relationship is null.',
-      );
+      return user
     } catch (e) {
       // eslint-disable-next-line no-console
       console.warn(e);

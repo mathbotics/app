@@ -58,6 +58,10 @@ export const User = new GraphQLInterfaceType({
         }
       },
     }
+  },
+  resolveType: (data) => {
+    if(data.gradeLevel) return Student;
+    else return Admin;
   }
 });
 
@@ -128,10 +132,6 @@ export const Student = new GraphQLObjectType({
       //}
       }
     }
-  },
-  isTypeOf: (value, info) => {
-    console.log(value)
-    return "gradeLevel" in value
   }
 });
 
@@ -235,10 +235,6 @@ const Admin = new GraphQLObjectType({
         }
       }
     }
-  },
-  isTypeOf: (value, info) => {
-    console.log(value)
-    return value.length === 6;
   }
 });
 
