@@ -14,14 +14,11 @@ import {
 } from 'graphql';
 import prisma from '../data/prisma';
 import { Mutations } from '../graphql/mutations/Mutations';
-<<<<<<< HEAD
-=======
 //import { Slide } from '../graphql/objects';
->>>>>>> e830c5bb647651e64c12832be9e7493a49c496ef
 //import { Lesson, Slide } from '../graphql/objects'; 
 
 
-export const User = new GraphQLInterfaceType({
+export const User : any = new GraphQLInterfaceType({
   name: "User",
   description: "This represents the user model",
   fields: () => {
@@ -133,12 +130,9 @@ export const Student: any  = new GraphQLObjectType({
         }
       }
     }
-<<<<<<< HEAD
-=======
   },
   isTypeOf: (value, info) => {
      return "gradeLevel" in value
->>>>>>> e830c5bb647651e64c12832be9e7493a49c496ef
   }
 });
 
@@ -332,11 +326,6 @@ const LessonPlan = new GraphQLObjectType({
     return {
       id: {
         type: GraphQLString,
-<<<<<<< HEAD
-        resolve(LessonPlan) {
-          return LessonPlan.id
-        }
-=======
         resolve(lessonPlan) {
           return lessonPlan.id
         }
@@ -344,9 +333,7 @@ const LessonPlan = new GraphQLObjectType({
       lessons: {
         type: Lesson,
         resolve(lessonPlan){
-          //return lessonPlan.lessons.id
-          return prisma.lessonPlan.findUnique(Lesson.id);
->>>>>>> e830c5bb647651e64c12832be9e7493a49c496ef
+          return lessonPlan.lessons.id
       }
     }
   }
@@ -354,12 +341,7 @@ const LessonPlan = new GraphQLObjectType({
 });
 
 
-<<<<<<< HEAD
-
-const Slide = new GraphQLObjectType({
-=======
 const Slide : any = new GraphQLObjectType({
->>>>>>> e830c5bb647651e64c12832be9e7493a49c496ef
   name: "Slide",
   description: "This represents the Slide",
   fields: () => {
