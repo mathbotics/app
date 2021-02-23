@@ -1,13 +1,13 @@
-import { GraphQLNonNull, GraphQLObjectType } from "graphql";
-import { CreateStudentPayload } from "../payloads/CreateStudentPayload";
-import { CreateStudentInput, createStudentMutation } from "./createStudent";
-import prisma from '../../data/prisma';
-import bcrypt from 'bcrypt';
-import nullthrows from 'nullthrows';
+import { GraphQLObjectType } from "graphql";
+import {createStudentMutation } from "./createStudent";
+import {createCourseMutation } from "./createCourse";
+import { logIn } from "./logIn"
 
 export const Mutations = new GraphQLObjectType({
     name: "Mutation",
     fields:{
-      createStudentMutation
+      createStudentMutation,
+      logIn,
+      createCourseMutation
     } 
   })

@@ -1,19 +1,21 @@
+import GraphSchema from '../../GraphQLSchema';
 import { IMiddlewareFieldMap } from 'graphql-middleware';
 import jwt from 'jsonwebtoken';
 import nullthrows from 'nullthrows';
-
+import {logIn , LoginInput} from '../../../graphql/mutations/logIn'
 import { Context } from '../../../graphql/context';
+import { User } from '@prisma/client';
 
 const { JWT_SECRET, NODE_ENV } = process.env;
 
-type Mutation = NexusGen['fieldTypes']['Mutation'];
-type LogInArgs = { input: NexusGen['inputTypes']['LogInInput'] };
+type Mutation = typeof logIn;
+type LogInArgs = { input: typeof LoginInput};
 type LogInResolver = (
   parent: Mutation,
   args: LogInArgs,
   context: Context,
   info: any,
-) => Promise<NexusGen['fieldTypes']['User']>;
+) => User;
 
 export default {
   Mutation: {
@@ -24,6 +26,7 @@ export default {
       context: Context,
       info: {},
     ) {
+      console.log("entered")
       const { id, ...user } = await resolve(parent, args, context, info);
       const token = jwt.sign(
         {
@@ -36,6 +39,7 @@ export default {
           httpOnly: true,
         });
       }
+      console.log(token)
       return { id, ...user };
     },
   },

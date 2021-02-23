@@ -8,16 +8,15 @@ import {
   GraphQLSchema,
   GraphQLNonNull, 
   GraphQLEnumType,
-  GraphQLInterfaceType
+  GraphQLInterfaceType,
+  FieldsOnCorrectTypeRule
 } from 'graphql';
 import prisma from '../data/prisma';
-import { mutation } from '../graphql/mutations';
 import { Mutations } from '../graphql/mutations/Mutations';
-import { Slide } from '../graphql/objects';
 //import { Lesson, Slide } from '../graphql/objects'; 
 
 
-const User = new GraphQLInterfaceType({
+export const User = new GraphQLInterfaceType({
   name: "User",
   description: "This represents the user model",
   fields: () => {
@@ -59,6 +58,10 @@ const User = new GraphQLInterfaceType({
         }
       },
     }
+  },
+  resolveType: (data) => {
+    if(data.gradeLevel) return Student;
+    else return Admin;
   }
 });
 
@@ -129,9 +132,6 @@ export const Student = new GraphQLObjectType({
       //}
       }
     }
-  },
-  isTypeOf: (value, info) => {
-    return "gradeLevel" in value
   }
 });
 
@@ -195,6 +195,7 @@ const Guardian = new GraphQLObjectType({
 const Admin = new GraphQLObjectType({
   name: "Admin",
   description: "This represents the Admin",
+  interfaces: [User],
   fields: () => {
     return {
       id: {
@@ -203,17 +204,41 @@ const Admin = new GraphQLObjectType({
           return Admin.id
         }
       },
+      username: {
+        type: GraphQLString,
+        resolve(Admin){
+          return Admin.user.username
+        }
+      },
+      firstName: {
+        type: GraphQLString,
+        resolve(Admin){
+          return Admin.user.firstName;
+        }
+      },
+      lastName: {
+        type: GraphQLString,
+        resolve(Admin){
+          return Admin.user.lastName
+        }
+      },
       email: {
         type: GraphQLString,
         resolve(Admin){
-          return Admin.email
+          return Admin.user.email
+        }
+      },
+      password: {          
+        type: GraphQLString,
+        resolve(Admin){
+          return Admin.user.password
         }
       }
     }
   }
 });
 
-const Course = new GraphQLObjectType({
+export const Course = new GraphQLObjectType({
   name: "Course",
   description: "This represents the Course",
   fields: () => {
@@ -237,7 +262,7 @@ const Course = new GraphQLObjectType({
         }
       },
       suggestedLevel: {
-        type: GraphQLString,
+        type: GradeLevel,
         resolve(Course){
           return Course.suggestedLevel
         }
@@ -257,7 +282,7 @@ const Course = new GraphQLObjectType({
       lessonPlan: {
         type: GraphQLString,
         resolve(Course){
-          return Course.lessonPlan
+          return Course.lessonPlan.id
         }
       }
     }
@@ -291,7 +316,6 @@ const Lesson = new GraphQLObjectType({
   }
 });
 
-
 const LessonPlan = new GraphQLObjectType({
   name: "LessonPlan",
   description: "This represents the LessonPlan",
@@ -299,19 +323,14 @@ const LessonPlan = new GraphQLObjectType({
     return {
       id: {
         type: GraphQLString,
-        resolve(lessonPlan) {
-          return lessonPlan.id
-        }
-      },
-      lessons: {
-        type: GraphQLString,
-        resolve(lessonPlan){
-          return lessonPlan.lessons
+        resolve(LessonPlan) {
+          return LessonPlan.id
         }
       }
     }
   }
 });
+
 
 
 const Slide = new GraphQLObjectType({
@@ -433,6 +452,17 @@ const RootQuery = new GraphQLObjectType({
         },
         resolve(root, args){
           return prisma.instructor.findMany({where: args});
+        }
+      },
+      courses: {
+        type: new GraphQLList(Course),
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        resolve(root, args){
+          return prisma.course.findMany({where: args, include: { lessonPlan: true}});
         }
       }
     }

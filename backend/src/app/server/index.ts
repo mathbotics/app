@@ -43,7 +43,8 @@ const apollo = new ApolloServer({
     console.warn(err);
     throw err;
   },
-  schema: GraphSchema});
+  schema: applySchemaMiddlewares(GraphSchema)
+});
 
 if (NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../../../../frontend/src')));
