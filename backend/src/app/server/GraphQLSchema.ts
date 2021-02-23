@@ -1,3 +1,4 @@
+import { ResolveType } from 'apollo-server-express';
 import {
   GraphQLObjectType,
   GraphQLID,
@@ -62,7 +63,9 @@ const User = new GraphQLInterfaceType({
   }
 });
 
-export const Student = new GraphQLObjectType({
+//type Student = ReturnType<typeof User>;
+
+export const Student: any  = new GraphQLObjectType({
   name: "Student",
   description: "This represents the student",
   interfaces: [User],
@@ -113,7 +116,7 @@ export const Student = new GraphQLObjectType({
       guardians: {
         type: Guardian,
         resolve(Student){
-          return Student.guardian
+          return Student.guardian.id
         }
       },
       courses: {
@@ -121,22 +124,16 @@ export const Student = new GraphQLObjectType({
         resolve(Student){
           return Student.courses
         }
-      //},
-      //authors: {        // user-student relation
-      //  type: new GraphQLList(Books),
-      //   resolve(author){
-      //    return author.getBooks();
-      //}
       }
     }
   },
   isTypeOf: (value, info) => {
-    return "gradeLevel" in value
+     return "gradeLevel" in value
   }
 });
 
 // add in istypeof declaration
-const Instructor = new GraphQLObjectType({
+const Instructor : any = new GraphQLObjectType({
   name: "Instructor",
   description: "This represents the instructor",
   interfaces: [User],
@@ -186,7 +183,7 @@ const Guardian = new GraphQLObjectType({
       students: {
         type: Student,
         resolve(Guardian){
-          return Guardian.students
+          return Guardian.students.id
         }
       }
     }
@@ -267,7 +264,7 @@ const Course = new GraphQLObjectType({
   }
 });
 
-const Lesson = new GraphQLObjectType({
+const Lesson : any = new GraphQLObjectType({
   name: "Lesson",
   description: "This represents the Lesson",
   fields: () => {
@@ -309,15 +306,16 @@ const LessonPlan = new GraphQLObjectType({
       lessons: {
         type: Lesson,
         resolve(lessonPlan){
-          return lessonPlan.lessons
-        }
+          //return lessonPlan.lessons.id
+          return prisma.lessonPlan.findUnique(Lesson.id);
       }
     }
   }
+}
 });
 
 
-const Slide = new GraphQLObjectType({
+const Slide : any = new GraphQLObjectType({
   name: "Slide",
   description: "This represents the Slide",
   fields: () => {
