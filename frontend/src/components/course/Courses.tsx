@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
 import { Typography, Layout, Tooltip, Button } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, PropertySafetyFilled } from '@ant-design/icons';
 import styled from 'styled-components';
 
-import { createFragmentContainer } from 'react-relay';
+import { createFragmentContainer, QueryRenderer } from 'react-relay'; //new QueryRenderer
 import { graphql } from 'babel-plugin-relay/macro';
 
 import { useHistory } from 'react-router-dom';
 import { Courses_query } from './__generated__/Courses_query.graphql';
+
+//import { Courses_user } from './__generated__/Courses_user.graphql';
+import { CoursesUserQueryResponse } from './__generated__/CoursesUserQuery.graphql'; //this was generated because of const UserQuery
+
+
 import CoursesList from './CoursesList';
 import CreateCourseModal from './CreateCourseModal';
 import { getRootQueryDataID } from '../../graphql/relay';
 
 import { CoursesPageQuery } from '../../pages/CoursesPage';
+import { environment } from '../../graphql/relay';
+
 
 const { Title } = Typography;
 
@@ -22,8 +29,11 @@ enum PageState {
   CreateCourseSuccess,
   CreateCourseError,
 }
-type Props = { query: Courses_query };
-const Courses = ({ query }: Props) => {
+
+
+
+type Props = { query: Courses_query, user: CoursesUserQueryResponse }; //user prop is new
+const Courses = ({ query, user }: Props) => {
   /*
   TODO
   history will probably be used in the future
@@ -31,6 +41,8 @@ const Courses = ({ query }: Props) => {
   // eslint-disable-next-line
   let history = useHistory();
   const [pageState, setPageState] = useState<PageState>(PageState.Default);
+  const [userState, setUserState] = useState<>(""); //find right type for holding the prop.viewer
+
   return (
     <Layout style={{ backgroundColor: 'white', maxHeight: '95vh' }}>
       <HeaderWrapper>
@@ -61,11 +73,40 @@ const Courses = ({ query }: Props) => {
         onCancel={() => setPageState(PageState.Default)}
       />
 
+      {/* loading query for the user below */}
+      <QueryRenderer
+      environment={environment}
+      query={UserQuery}
+      variables={{
+      /* handle the typename maybe?*/
+      }}
+      render={
+        (queryResponse: { 
+          error?: Error; 
+          props?: CoursesUserQueryResponse; 
+        }) => {
+          if (queryResponse.error) {
+            console.log(queryResponse.error.message);
+            return <div>{queryResponse.error.message}</div>;
+          } else if (queryResponse.props) {
+            console.log("user related props sucessfully retrieved");
+            /* task for saving the result in viewer */
+            setUserState(queryResponse?.props?.viewer);
+          }
+          return (
+          <div>{queryResponse?.props?.viewer}</div>
+          );
+        }
+      }
+    />
+
       {/* Display list of courses */}
-      <CoursesList courses={query} />
+      <CoursesList courses={query} user={userState} />
     </Layout>
   );
 };
+
+//the user above is in that manner as an example of withSidebar.tsx
 
 export default createFragmentContainer(Courses, {
   query: graphql`
@@ -74,6 +115,76 @@ export default createFragmentContainer(Courses, {
     }
   `,
 });
+
+/*in case I need this above...
+
+user: graphql`
+    fragment Courses_user on User {
+      ...CoursesList_user
+    }
+  `,
+*/
+
+/* User related query render stuff , issues with this thing below... */
+
+const UserQuery = graphql`
+  query CoursesUserQuery {
+    viewer {
+      ...CoursesList_user
+    }
+  }
+`;
+
+/*
+const userRenderQuery = (queryResponse: { 
+  error?: Error; 
+  props?: CoursesUserQueryResponse; 
+}) => {
+  if (queryResponse.error) {
+    console.log(queryResponse.error.message);
+    return <div>{queryResponse.error.message}</div>;
+  } else if (queryResponse.props) {
+    console.log("user related props sucessfully retrieved");
+    /* task for saving the result in viewer */
+    /*
+    setUserState(queryResponse.props?.viewer);
+  }
+  return (
+  <CoursesList courses={query} user={queryResponse.props?.viewer} />
+  );
+}
+*/
+
+//try making a query on this manner
+/*
+  export const CoursePageQuery = graphql`
+  query CoursePageQuery($where: CourseWhereUniqueInput!) {
+    course(where: $where) {
+      ...Course_course
+    }
+  }
+`;
+*/
+
+/* 
+const ViewerQuery = graphql`
+  query withSidebarQuery {
+    viewer {
+      ...withSidebar_viewer
+    }
+  }
+`;
+*/
+
+/*
+const CoursePageUserQuery = graphql`
+  query CoursePageUserQuery($where: UserWhereUniqueInput!) {
+    user(where: $where) {
+      __typename
+    }
+  }
+`;
+*/
 
 const HeaderWrapper = styled.div`
   display: flex;

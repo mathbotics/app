@@ -1,12 +1,26 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { ExportOutlined, EditOutlined } from '@ant-design/icons';
+import { ExportOutlined, EditOutlined, PropertySafetyFilled } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 import { useHistory } from 'react-router-dom';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
+import { CourseCard_user } from './__generated__/CourseCard_user.graphql';
 
 import { CourseCard_course } from './__generated__/CourseCard_course.graphql';
+
+/*Special note:
+If I try doing another props by using the same file but different prop approach (user)
+then I will be forced to create the user prop for EVERY class before this.
+This means CourseList.tsx and Courses.tsx and beyond will need to include the props user
+and pass it down to others in front of them 
+
+NEED TO FIND A WAY TO CALL THIS INFO ONLY FOR THIS FILE
+OR
+create a new file that handles the User but returning no other react js output?
+or maybe pass down the things to the new file and CourseCard just calls down
+this new file just to hide the content?
+*/
 
 const Card = styled.div`
   border-radius: 5px;
@@ -62,7 +76,19 @@ const EditButton = styled.div`
   }
 `;
 
-type Props = { course: CourseCard_course };
+//new
+/*
+const UserRole = graphql`
+  query User_Role {
+    user {
+      ...User_role
+    }
+  }
+`;
+*/
+type Props = { course: CourseCard_course;
+ user: CourseCard_user; //new line
+ };
 const CourseCard = ({
   course: {
     id,
@@ -71,6 +97,8 @@ const CourseCard = ({
     suggestedLevel,
     lessonPlan: { lessons },
   },
+  user: { role },
+
 }: Props) => {
   const lessonCount = lessons.length;
   // console.log(instructors);
@@ -81,6 +109,22 @@ const CourseCard = ({
 
   // console.log("UserId" + query.viewer.id);
   const [edit, setEdit] = useState(false);
+
+
+  //fragment of code needed
+  /* the thing below is used in withSidebar.tsx
+
+
+  {
+    viewer: graphql`
+      fragment withSidebar_viewer on User {
+        role: __typename
+      }
+    `,
+  },
+
+  */
+
 
   function openEditPage(edit: boolean) {
     if (edit) {
@@ -96,6 +140,36 @@ const CourseCard = ({
     history.push(`/courses/${id}`);
   }
 
+  function displayEditButton() {
+
+    /*Role handling here*/
+    /*
+    Access props from Sidebar.tsx , the role
+    OR GraphQL query this thing.
+    */
+    var role = '';
+
+    if(role === 'Admin' || role === 'Instructor' ) {
+      //EditButton fragment
+      return(
+        <>
+          <EditButton
+            onMouseEnter={() => setEdit(true)}
+            onMouseLeave={() => setEdit(false)}
+          >
+            <EditOutlined style={{ fontSize: '18px' }} />
+          </EditButton> 
+        </>
+      );
+    }
+    else {
+      //empty fragment
+      return(
+        <></>
+      );
+    }
+  }
+
   return (
     <Card onClick={() => openEditPage(edit)}>
       <div
@@ -108,12 +182,7 @@ const CourseCard = ({
         <CardTitle>{name}</CardTitle>
 
         <Tooltip title="Edit course">
-          <EditButton
-            onMouseEnter={() => setEdit(true)}
-            onMouseLeave={() => setEdit(false)}
-          >
-            <EditOutlined style={{ fontSize: '18px' }} />
-          </EditButton>
+          {displayEditButton()}
         </Tooltip>
       </div>
       <CourseLevel>
@@ -135,7 +204,10 @@ const CourseCard = ({
       </CardFooter>
     </Card>
   );
+
 };
+
+/*add another fragment with the query in line 105*/ 
 
 export default createFragmentContainer(CourseCard, {
   course: graphql`
@@ -156,4 +228,27 @@ export default createFragmentContainer(CourseCard, {
       }
     }
   `,
+  user: graphql`
+    fragment CourseCard_user on User {
+      role: __typename
+    }
+  `,
 });
+
+/*
+default property means:
+
+React.ComponentType<MappedFragmentProps<Pick<Props, "course">> & {
+    componentRef?: ((ref: any) => void) | undefined;
+}>
+*/
+/*
+export const createRoleFragmentContainer( CourseCard, {
+  user: graphql`
+    fragment User_role on User {
+      role: __typename
+    }
+  `,
+
+});
+*/
