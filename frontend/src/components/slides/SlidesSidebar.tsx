@@ -14,12 +14,6 @@ that specific slide type file, then edit the preview font size. and the spcific 
 "Outlined" name on it*/
 
 
-/* original
-  width: 100% !important; //now at 150px 
-  height: 100% !important;
-  padding: 5px 15px !important;
-  background-color: #ffffff !important;
-*/
 const MenuItem = styled(Menu.Item)`
   width: 150px !important;
   height: 100% !important;
@@ -27,23 +21,6 @@ const MenuItem = styled(Menu.Item)`
   background-color: #ffffff !important;
 `;
 
-/*original
-
-height: 190px; **
-  background-color: white;
-  border-radius: 5px;
-  font-weight: 600;
-  color: #646464;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  :hover {
-    color: #40a9ff;
-    border: 1px solid #40a9ff;
-    cursor: pointer;
-  }
-*/
 const SlideCard = styled(Layout.Content)`
   height: 100px;
   background-color: white;
@@ -118,7 +95,7 @@ const SlidesSidebar = ({
     lesson.slides[0]?.id,
   );
 
-  /* changed sider width={300} to 200 (this is also the width of the aside menu item blocks) */
+  
   return (
     <Sider width={200} theme="light" style={{ overflow: 'auto' }}>
       <SidebarHeader title={lesson.title} />

@@ -10,6 +10,11 @@ import { EditMultipleChoiceQuestionBlockForm_block } from './__generated__/EditM
 import { commit as commitUpdateBlockToMultipleChoiceBlock } from '../../../graphql/mutations/UpdateBlockToMultipleChoiceBlockMutation';
 
 const SpecialDiv = styled.div`
+margin-bottom: .80em;
+margin-top: .80em;
+`;
+
+const TitleDiv = styled.div`
 margin-bottom: .75em;
 margin-top: .75em;
 `;
@@ -83,7 +88,8 @@ const EditMultipleChoiceQuestionBlockForm = ({
 
   return (
     <>
-    <SpecialDiv>
+    <TitleDiv>
+      <h1>Question Title:</h1>
       <Input
         name="text"
         value={text}
@@ -91,9 +97,10 @@ const EditMultipleChoiceQuestionBlockForm = ({
         onChange={({ target: { value } }) => setText(value)}
         placeholder="Question Text"
       />
-    </SpecialDiv>
+    </TitleDiv>
       {choices.map(({ text, id, correct }) => (
         <SpecialDiv>
+          <h1>Option: {text}</h1>
           <Button onClick={() => onClickSetCorrect(id)} disabled={correct}>
             Set as correct
           </Button>
