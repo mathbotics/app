@@ -596,6 +596,83 @@ export const GradeLevel = new GraphQLEnumType({
   }
 })
 
+const Page : any = new GraphQLObjectType({
+  name: "Page",
+  description: "This represents the Page",
+  fields: () => {
+    return {
+      createdAt: {
+        type: GraphQLString, //should be DateTime data type
+        resolve(Page){
+          return Page.createdAt
+        }
+      },
+      data: {
+        type: GraphQLString ,
+        resolve(Page){
+          return Page.data
+        }
+      },
+      id: {
+        type: GraphQLString,
+        resolve(Page){
+          return Page.id
+        }
+      },
+      content:{
+        type: Content,
+        resolve(Page){
+          return Page.content
+        }
+      }
+    }
+  }
+});
+
+const Content : any = new GraphQLObjectType({
+  name: "Content",
+  description: "This represents the Content",
+  fields: () => {
+    return {
+      id: {
+        type: GraphQLString,
+        resolve(Content) {
+          return Content.id
+        }
+      },
+      author: {
+        type: User,
+        resolve(Content){
+          return Content.author
+        }
+      },
+      createdAt: {
+        type: GraphQLString, //should be DateTime data type
+        resolve(Content){
+          return Content.createdAt
+        }
+      },
+      title: {
+        type: GraphQLString,
+        resolve(Content){
+          return Content.title
+        }
+      },
+      course:{
+        type: GraphQLString,
+        resolve(Content){
+          return Content.course
+        }
+      },
+      pages:{
+        type: new GraphQLList(Page),
+        resolve(Cotent){
+          return Content.pages
+        }
+      }
+    }
+  }
+});
 
 const RootQuery = new GraphQLObjectType({
   name: 'RootQuery',
