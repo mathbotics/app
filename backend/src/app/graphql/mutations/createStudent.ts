@@ -14,8 +14,8 @@ export const CreateStudentInput = new GraphQLInputObjectType({
     firstName: { type: GraphQLString},
     lastName: { type: GraphQLString},
     gradeLevel: { type: GradeLevel},
-    email: {type: GraphQLString}
-    // courseId: { type: GraphQLString},
+    email: {type: GraphQLString},
+    courseId: { type: GraphQLString}
   })
 });
 
@@ -27,7 +27,7 @@ export const createStudentMutation = {
       }
     },
    async resolve(root, args){
-     const { username, firstName, lastName, gradeLevel} = args.input 
+     const { username, firstName, lastName, gradeLevel, courseId} = args.input 
     const student = nullthrows(
       await prisma.student.create({
         data: {
@@ -47,10 +47,17 @@ export const createStudentMutation = {
           //   connect: { id: courseId },
           // },
         },
-        include: { user: true },
+        include: { user: true, studentTo: true },
       }),
       'Could not create instructor',
     );
+    await prisma.courseToStudent.create({
+      data: {
+        courseId: courseId,
+        studentId: student.id,
+        grade: .8
+      }
+    })
     console.log(student, "student")
     return {student};
    }

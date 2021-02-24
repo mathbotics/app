@@ -45,7 +45,7 @@ export const logIn = {
       }
       const { admin, guardian, instructor, student } = user;
       console.log(user, " Successfully logged in")
-      return user
+      return {user}
     } catch (e) {
       // eslint-disable-next-line no-console
       console.warn(e);

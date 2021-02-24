@@ -11,9 +11,6 @@ const mutation = graphql`
         firstName
         lastName
         username
-        ... on Instructor {
-          email
-        }
       }
     }
   }

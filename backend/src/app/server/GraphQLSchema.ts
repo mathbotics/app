@@ -65,10 +65,9 @@ export const User : any = new GraphQLInterfaceType({
       },
     }
   },
-  resolveType: (data) => {
-    if(data.gradeLevel) return Student;
-    else return Admin;
-  }
+  // resolveType: (data) => {
+  //   const 
+  // }
 });
 
 export const Student: any  = new GraphQLObjectType({
@@ -125,10 +124,16 @@ export const Student: any  = new GraphQLObjectType({
           return Student.guardian.id
         }
       },
+<<<<<<< HEAD
+      studentTo: {
+        type: new GraphQLList(CourseToStudent),
+=======
       courses: {
         type: Course,
+>>>>>>> da0093149b95cdc0d8d33149a18f121f65f7daa9
         resolve(Student){
-          return Student.courses
+          console.log(Student)
+          return Student.studentTo
         }
       }
     }
@@ -289,6 +294,45 @@ const Admin = new GraphQLObjectType({
   }
 });
 
+export const CourseToStudent = new GraphQLObjectType({
+  name: "CourseToStudent",
+  description: "This represents the Course to Student relations",
+  fields: () => {
+    return {
+      course: {
+        type: Course,
+        resolve(CourseToStudent){
+          return CourseToStudent.course
+        }
+      },
+      courseId: {
+        type: GraphQLString,
+        resolve(CourseToStudent){
+          return CourseToStudent.courseId
+        }
+      },
+      student: {
+        type: Student,
+        resolve(CourseToStudent){
+          return CourseToStudent.student
+        }
+      },
+      studentId: {
+        type: GraphQLString,
+        resolve(CourseToStudent){
+          return CourseToStudent.studentId
+        }
+      },
+      grade: {
+        type: GraphQLFloat,
+        resolve(CourseToStudent){
+          return CourseToStudent.grade
+        }
+      }
+    }
+  }
+})
+
 export const Course = new GraphQLObjectType({
   name: "Course",
   description: "This represents the Course",
@@ -324,16 +368,21 @@ export const Course = new GraphQLObjectType({
           return Course.instructors
         }
       },
+<<<<<<< HEAD
+      courseTo: {
+        type: new GraphQLList(CourseToStudent),
+=======
       students: {
         type: Student,
+>>>>>>> da0093149b95cdc0d8d33149a18f121f65f7daa9
         resolve(Course){
-          return Course.students
+          return Course.courseTo
         }
       },
       lessonPlan: {
         type: LessonPlan,
         resolve(Course){
-          return Course.lessonPlan.id
+          return Course.lessonPlan
         }
       }
     }
@@ -697,9 +746,13 @@ const RootQuery = new GraphQLObjectType({
           }
         },
         resolve(root, args){
+
           return prisma.student.findMany({
             where: args,
-            include: { user: true}
+            include: { 
+              user: true,
+              studentTo: true
+            }
         });
         }
       },
@@ -732,8 +785,12 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLID
           }
         },
-        resolve(root, args){
-          return prisma.course.findMany({where: args, include: { lessonPlan: true}});
+        async resolve(root, args){
+          const courses = await prisma.course.findMany({
+            where: args, 
+            include: { lessonPlan: true}});
+          console.log(courses)
+          return courses
         }
       },
       lessons: {

@@ -4,25 +4,25 @@ import prisma from '../../../../data/prisma';
 
 const possibleImplementations = (id: string, includeUser: boolean = false) =>
   Promise.all([
-    prisma.admin.findOne({
+    prisma.admin.findUnique({
       where: { id },
       include: {
         user: includeUser,
       },
     }),
-    prisma.guardian.findOne({
+    prisma.guardian.findUnique({
       where: { id },
       include: {
         user: includeUser,
       },
     }),
-    prisma.instructor.findOne({
+    prisma.instructor.findUnique({
       where: { id },
       include: {
         user: includeUser,
       },
     }),
-    prisma.student.findOne({
+    prisma.student.findUnique({
       where: { id },
       include: {
         user: includeUser,
