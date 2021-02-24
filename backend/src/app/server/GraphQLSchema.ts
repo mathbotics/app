@@ -124,13 +124,8 @@ export const Student: any  = new GraphQLObjectType({
           return Student.guardian.id
         }
       },
-<<<<<<< HEAD
       studentTo: {
         type: new GraphQLList(CourseToStudent),
-=======
-      courses: {
-        type: Course,
->>>>>>> da0093149b95cdc0d8d33149a18f121f65f7daa9
         resolve(Student){
           console.log(Student)
           return Student.studentTo
@@ -368,13 +363,8 @@ export const Course = new GraphQLObjectType({
           return Course.instructors
         }
       },
-<<<<<<< HEAD
       courseTo: {
         type: new GraphQLList(CourseToStudent),
-=======
-      students: {
-        type: Student,
->>>>>>> da0093149b95cdc0d8d33149a18f121f65f7daa9
         resolve(Course){
           return Course.courseTo
         }
