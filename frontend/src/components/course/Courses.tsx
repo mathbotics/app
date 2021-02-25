@@ -3,14 +3,16 @@ import { Typography, Layout, Tooltip, Button } from 'antd';
 import { PlusOutlined, PropertySafetyFilled } from '@ant-design/icons';
 import styled from 'styled-components';
 
-import { createFragmentContainer, QueryRenderer } from 'react-relay'; //new QueryRenderer
+import { createFragmentContainer, GraphQLTaggedNode } from 'react-relay';
+import { useLazyLoadQuery } from 'react-relay/hooks'; //new
+import { useRelayEnvironment } from 'react-relay/hooks'; //new
 import { graphql } from 'babel-plugin-relay/macro';
 
 import { useHistory } from 'react-router-dom';
 import { Courses_query } from './__generated__/Courses_query.graphql';
 
 //import { Courses_user } from './__generated__/Courses_user.graphql';
-import { CoursesUserQueryResponse } from './__generated__/CoursesUserQuery.graphql'; //this was generated because of const UserQuery
+import { CoursesUserQuery } from './__generated__/CoursesUserQuery.graphql'; //this was generated because of const UserQuery
 
 
 import CoursesList from './CoursesList';
@@ -18,7 +20,7 @@ import CreateCourseModal from './CreateCourseModal';
 import { getRootQueryDataID } from '../../graphql/relay';
 
 import { CoursesPageQuery } from '../../pages/CoursesPage';
-import { environment } from '../../graphql/relay';
+//import { environment } from '../../graphql/relay';
 
 
 const { Title } = Typography;
@@ -32,8 +34,11 @@ enum PageState {
 
 
 
-type Props = { query: Courses_query, user: CoursesUserQueryResponse }; //user prop is new
-const Courses = ({ query, user }: Props) => {
+type Props = { query: Courses_query };
+
+type UserProp = { viewer: CoursesUserQuery };
+//no viewer, second props... that is the original
+const Courses = ({ query }: Props, { viewer }: UserProp) => {
   /*
   TODO
   history will probably be used in the future
@@ -41,7 +46,22 @@ const Courses = ({ query, user }: Props) => {
   // eslint-disable-next-line
   let history = useHistory();
   const [pageState, setPageState] = useState<PageState>(PageState.Default);
-  const [userState, setUserState] = useState<>(""); //find right type for holding the prop.viewer
+
+/* Data const with query info creation. */
+  const environment = useRelayEnvironment();
+
+  const UserQuery = graphql`
+  query CoursesUserQuery {
+    viewer {
+      ...CoursesList_user
+    }
+  }
+  `; //need to find a way to make a constant with GraphQLTaggedNode
+
+ const data = useLazyLoadQuery<CoursesUserQuery>(UserQuery, {viewer}
+ ); //for some reason viewer is undefined... and crashes the app...
+
+  //this has to be some runtime bs error...
 
   return (
     <Layout style={{ backgroundColor: 'white', maxHeight: '95vh' }}>
@@ -74,34 +94,10 @@ const Courses = ({ query, user }: Props) => {
       />
 
       {/* loading query for the user below */}
-      <QueryRenderer
-      environment={environment}
-      query={UserQuery}
-      variables={{
-      /* handle the typename maybe?*/
-      }}
-      render={
-        (queryResponse: { 
-          error?: Error; 
-          props?: CoursesUserQueryResponse; 
-        }) => {
-          if (queryResponse.error) {
-            console.log(queryResponse.error.message);
-            return <div>{queryResponse.error.message}</div>;
-          } else if (queryResponse.props) {
-            console.log("user related props sucessfully retrieved");
-            /* task for saving the result in viewer */
-            setUserState(queryResponse?.props?.viewer);
-          }
-          return (
-          <div>{queryResponse?.props?.viewer}</div>
-          );
-        }
-      }
-    />
+
 
       {/* Display list of courses */}
-      <CoursesList courses={query} user={userState} />
+      <CoursesList courses={query} user={data?.viewer} />
     </Layout>
   );
 };
@@ -126,7 +122,7 @@ user: graphql`
 */
 
 /* User related query render stuff , issues with this thing below... */
-
+/*
 const UserQuery = graphql`
   query CoursesUserQuery {
     viewer {
@@ -134,6 +130,9 @@ const UserQuery = graphql`
     }
   }
 `;
+*/
+
+
 
 /*
 const userRenderQuery = (queryResponse: { 
