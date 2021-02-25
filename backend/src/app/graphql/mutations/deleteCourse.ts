@@ -1,30 +1,65 @@
-import { mutationField, inputObjectType, arg } from 'nexus';
+// // import { mutationField, inputObjectType, arg } from 'nexus';
+// // import nullthrows from 'nullthrows';
+// // import prisma from '../../data/prisma';
+
 import nullthrows from 'nullthrows';
 
 import prisma from '../../data/prisma';
+import { GraphQLInputObjectType, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
+import { DeleteCoursePayload } from '../payloads/DeleteCoursePayload';
+import { resolve } from 'path';
 
-export const DeleteCourseInput = inputObjectType({
-  name: 'DeleteCourseInput',
-  definition(t) {
-    t.string('courseId', {
-      required: true,
-    });
-  },
+export const DeleteCourseInput = new GraphQLInputObjectType({
+  name: "DeleteCourseInput",
+  fields: () => ({
+    courseId: { type: GraphQLString},
+  })
 });
-export const deleteCourse = mutationField('deleteCourse', {
-  type: 'Course',
+
+export const deleteCourseMutation = {
+  type: DeleteCoursePayload,
   args: {
-    input: arg({ type: 'DeleteCourseInput', required: true }),
+    input: {
+      type: new GraphQLNonNull(DeleteCourseInput),
+    }
   },
-  async resolve(_root, { input: { courseId } }) {
-    const { ...course } = nullthrows(
-      await prisma.course.delete({
-        where: {
-          id: courseId,
-        },
-      }),
-      'Could not delete course',
-    );
-    return { ...course };
-  },
-});
+ async resolve(root, args){
+   const {courseId} = args.input 
+  const course = nullthrows(
+    await prisma.course.delete({
+      where: {
+        id: courseId,
+      },              
+    }),
+    'Could not delete course',
+  );
+  return {course};
+ }
+
+}
+
+// // export const DeleteCourseInput = inputObjectType({
+// //   name: 'DeleteCourseInput',
+// //   definition(t) {
+// //     t.string('courseId', {
+// //       required: true,
+// //     });
+// //   },
+// // });
+// // export const deleteCourse = mutationField('deleteCourse', {
+// //   type: 'Course',
+// //   args: {
+// //     input: arg({ type: 'DeleteCourseInput', required: true }),
+// //   },
+// //   async resolve(_root, { input: { courseId } }) {
+// //     const { ...course } = nullthrows(
+// //       await prisma.course.delete({
+// //         where: {
+// //           id: courseId,
+// //         },
+// //       }),
+// //       'Could not delete course',
+// //     );
+// //     return { ...course };
+// //   },
+// // });

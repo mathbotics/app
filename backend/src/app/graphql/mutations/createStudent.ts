@@ -58,7 +58,7 @@ export const createStudentMutation = {
         grade: .8
       }
     })
-    console.log(student, "student")
+   
     return {student};
    }
   
