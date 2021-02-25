@@ -43,9 +43,6 @@ export const createStudentMutation = {
             },
           },
           gradeLevel,
-          // courses: {
-          //   connect: { id: courseId },
-          // },
         },
         include: { user: true, studentTo: true },
       }),
