@@ -16,11 +16,6 @@ import {
 } from 'graphql';
 import prisma from '../data/prisma';
 import { Mutations } from '../graphql/mutations/Mutations';
-//import { TextBlock } from '../graphql/objects';
-//import { EmptyBlock, MultipleChoiceQuestionBlock, TextBlock } from '../graphql/objects';
-//import { Block } from '../graphql/objects';
-//import { Slide } from '../graphql/objects';
-//import { Lesson, Slide } from '../graphql/objects'; 
 
 export const User : any = new GraphQLInterfaceType({
   name: "User",

@@ -1,6 +1,7 @@
 import { GraphQLObjectType } from "graphql";
 import {createStudentMutation } from "./createStudent";
 import {createCourseMutation } from "./createCourse";
+import { deleteSingleStudent } from "./deleteStudent"
 import { logIn } from "./logIn"
 
 export const Mutations = new GraphQLObjectType({
@@ -8,6 +9,7 @@ export const Mutations = new GraphQLObjectType({
     fields:{
       createStudentMutation,
       logIn,
-      createCourseMutation
+      createCourseMutation,
+      deleteSingleStudent
     } 
   })
