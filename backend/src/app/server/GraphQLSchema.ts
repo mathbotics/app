@@ -500,7 +500,7 @@ const MultipleChoiceQuestionResponse = new GraphQLObjectType({
   }
 });
 
-const MultipleChoiceQuestionBlock = new GraphQLObjectType({
+export const MultipleChoiceQuestionBlock = new GraphQLObjectType({
   name: "MultipleChoiceQuestionBlock",
   description: "This is the multiple choice question block",
   fields: () => {

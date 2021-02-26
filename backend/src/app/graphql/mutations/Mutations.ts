@@ -6,6 +6,7 @@ import { editStudent } from "./editStudent"
 import { logIn } from "./logIn"
 import { createSlide } from "./createSlide"
 import { updateBlockToTextBlock } from "./updateBlockToTextBlock"
+import { updateBlockToMultipleChoiceBlock } from "./updateBlockToMultipleChoiceBlock"
 
 export const Mutations = new GraphQLObjectType({
     name: "Mutation",
@@ -16,6 +17,7 @@ export const Mutations = new GraphQLObjectType({
       deleteSingleStudent,
       editStudent,
       createSlide,
-      updateBlockToTextBlock
+      updateBlockToTextBlock,
+      updateBlockToMultipleChoiceBlock
     } 
   })
