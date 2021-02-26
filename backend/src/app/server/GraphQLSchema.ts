@@ -724,8 +724,8 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLID
           }
         },
-        resolve(root, args){
-          return prisma.user.findMany({where: args});
+        async resolve(root, args){
+          return await prisma.user.findMany({where: args});
         }
       },
       admins: {
@@ -735,8 +735,26 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLID
           }
         },
-        resolve(root, args){
-          return prisma.admin.findMany({where: args, include: {user: true}});
+        async resolve(root, args){
+          return await prisma.admin.findMany({where: args, include: {user: true}});
+        }
+      },
+      student: {
+        type: Student,
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        async resolve(root, args){
+          return await prisma.student.findUnique({
+            where: args,
+            include: { 
+              user: true,
+              studentTo: true,
+              guardians: true,
+            }
+        });
         }
       },
       students: {
@@ -746,8 +764,8 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLID
           }
         },
-        resolve(root, args){
-          return prisma.student.findMany({
+        async resolve(root, args){
+          return await prisma.student.findMany({
             where: args,
             include: { 
               user: true,
@@ -764,8 +782,8 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLID
           }
         },
-        resolve(root, args){
-          return prisma.guardian.findMany({
+        async resolve(root, args){
+          return await prisma.guardian.findMany({
             where: args,
             include: { 
               user: true,
@@ -781,14 +799,33 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLID
           }
         },
-        resolve(root, args){
-          return prisma.instructor.findMany({
+        async resolve(root, args){
+          return await prisma.instructor.findMany({
             where: args,
             include: { 
               courses: true,
               user: true,
             }
         });
+        }
+      },
+      course: {
+        type: Course,
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        async resolve(root, args){
+          const courses = await prisma.course.findUnique({
+            where: args, 
+            include: { 
+              instructors: true,
+              lessonPlan: true,
+              courseTo: true,
+              contents: true
+            }
+          });
         }
       },
       courses: {
@@ -810,6 +847,17 @@ const RootQuery = new GraphQLObjectType({
           });
         }
       },
+      lesson: {
+        type: Lesson,
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        async resolve(root, args){
+          return await prisma.lesson.findUnique({where: args, include: {slides: true}});
+        }
+      },
       lessons: {
         type: new GraphQLList(Lesson),
         args: {
@@ -817,8 +865,8 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLID
           }
         },
-        resolve(root, args){
-          return prisma.lesson.findMany({where: args, include: {slides: true}});
+        async resolve(root, args){
+          return await prisma.lesson.findMany({where: args, include: {slides: true}});
         }
       },
       lessonPlans: {
@@ -828,8 +876,8 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLID
           }
         },
-        resolve(root, args){
-          return prisma.lessonPlan.findMany({where: args, include: {lessons: true}});
+        async resolve(root, args){
+          return await prisma.lessonPlan.findMany({where: args, include: {lessons: true}});
         }
       },
       courseToStudent: {
@@ -839,8 +887,8 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLID
           }
         },
-        resolve(root, args){
-          return prisma.courseToStudent.findMany({
+        async resolve(root, args){
+          return await prisma.courseToStudent.findMany({
             where: args, 
             include: {
               course: true, 
@@ -856,8 +904,8 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLID
           }
         },
-        resolve(root, args){
-          return prisma.multipleChoiceQuestionChoice.findMany({where: args});
+        async resolve(root, args){
+          return await prisma.multipleChoiceQuestionChoice.findMany({where: args});
         }
       },
       multipleChoiceQuestionResponse: {
@@ -867,8 +915,8 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLID
           }
         },
-        resolve(root, args){
-          return prisma.multipleChoiceQuestionResponse.findMany({where: args, include:{student: true}});
+        async resolve(root, args){
+          return await prisma.multipleChoiceQuestionResponse.findMany({where: args, include:{student: true}});
         }
       },
       multipleChoiceQuestionBlock: {
@@ -878,8 +926,8 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLID
           }
         },
-        resolve(root, args){
-          return prisma.multipleChoiceQuestionBlock.findMany({
+        async resolve(root, args){
+          return await prisma.multipleChoiceQuestionBlock.findMany({
             where: args, 
             include: {
               choices: true, 
@@ -895,8 +943,8 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLID
           }
         },
-        resolve(root, args){
-          return prisma.textBlock.findMany({where: args});
+        async resolve(root, args){
+          return await prisma.textBlock.findMany({where: args});
         }
       },
       block: {
@@ -906,8 +954,8 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLID
           }
         },
-        resolve(root, args){
-          return prisma.block.findMany({where: args});
+        async resolve(root, args){
+          return await prisma.block.findMany({where: args});
         }
       },
       slides: {
@@ -917,8 +965,8 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLID
           }
         },
-        resolve(root, args){
-          return prisma.slide.findMany({where: args});
+        async resolve(root, args){
+          return await prisma.slide.findMany({where: args});
         }
       },
       singleSlide: {
@@ -928,8 +976,8 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLID
           }
         },
-        resolve(root, args){
-          return prisma.singleSlide.findMany({where: args, include: {block: true}});
+        async resolve(root, args){
+          return await prisma.singleSlide.findMany({where: args, include: {block: true}});
         }
       },
       pages: {
@@ -939,8 +987,8 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLID
           }
         },
-        resolve(root, args){
-          return prisma.page.findMany({where: args, include: {content: true}});
+        async resolve(root, args){
+          return await prisma.page.findMany({where: args, include: {content: true}});
         }
       },
       content: {
@@ -950,8 +998,8 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLID
           }
         },
-        resolve(root, args){
-          return prisma.content.findMany({where: args, include: {pages: true}});
+        async resolve(root, args){
+          return await prisma.content.findMany({where: args, include: {pages: true}});
         }
       },
     }
