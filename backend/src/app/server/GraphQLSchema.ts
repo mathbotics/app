@@ -740,6 +740,24 @@ const RootQuery = new GraphQLObjectType({
         });
         }
       },
+      student: {
+        type: Student,
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        async resolve(root, args){
+          return await prisma.student.findUnique({
+            where: args,
+            include: { 
+              user: true,
+              studentTo: true,
+              guardians: true,
+            }
+        });
+        }
+      },
       guardian: {
         type: new GraphQLList(User),
         args: {
