@@ -27,10 +27,10 @@ export default {
       info: {},
     ) {
       console.log("entered")
-      const { id, ...user } = await resolve(parent, args, context, info);
+      const user = await resolve(parent, args, context, info);
       const token = jwt.sign(
         {
-          id: nullthrows(id, 'id cannot be null or undefined.'),
+          id: nullthrows(user.id, 'id cannot be null or undefined.'),
         },
         nullthrows(JWT_SECRET, 'JWT_SECRET cannot be null or undefined.'),
       );
@@ -40,7 +40,8 @@ export default {
         });
       }
       console.log(token)
-      return { id, ...user };
+      console.log("ussserr", {user: user})
+      return { user: user};
     },
   },
 } as IMiddlewareFieldMap;

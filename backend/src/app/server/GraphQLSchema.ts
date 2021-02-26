@@ -17,6 +17,45 @@ import {
 import prisma from '../data/prisma';
 import { Mutations } from '../graphql/mutations/Mutations';
 
+const resolveUserHelper = async (data) => {
+  console.log("resolver user", data)
+  const admin = await prisma.admin.findFirst({
+    where: {
+      userId: data.id
+    }
+  })
+
+  if(admin){
+    console.log("is admin", admin)
+    return "Admin";
+  } 
+
+  const guardian = await prisma.guardian.findFirst({
+    where: {
+      userId: data.id
+    }
+  })
+
+  if(guardian){
+    console.log("is guardian")
+    return "Guardian";
+  } 
+
+  const student = await prisma.student.findFirst({
+    where: {
+      userId: data.id
+    }
+  })
+
+  if(student){
+    console.log("is student")
+    return "Student";
+  } 
+
+  return "Instructor";
+}
+
+
 export const User : any = new GraphQLInterfaceType({
   name: "User",
   description: "This represents the user model",
@@ -46,12 +85,6 @@ export const User : any = new GraphQLInterfaceType({
           return user.lastName
         }
       },
-      email: {
-        type: GraphQLString,
-        resolve(user){
-          return user.email
-        }
-      },
       password: {          
         type: GraphQLString,
         resolve(user){
@@ -60,9 +93,7 @@ export const User : any = new GraphQLInterfaceType({
       },
     }
   },
-  // resolveType: (data) => {
-  //   const 
-  // }
+  resolveType: resolveUserHelper
 });
 
 export const Student: any  = new GraphQLObjectType({
@@ -86,6 +117,7 @@ export const Student: any  = new GraphQLObjectType({
       firstName: {
         type: GraphQLString,
         resolve(Student){
+          console.log(Student)
           return Student.user.firstName;
         }
       },
@@ -95,12 +127,12 @@ export const Student: any  = new GraphQLObjectType({
           return Student.user.lastName
         }
       },
-      email: {
-        type: GraphQLString,
-        resolve(Student){
-          return Student.user.email
-        }
-      },
+      // email: {
+      //   type: GraphQLString,
+      //   resolve(Student){
+      //     return Student.user.email
+      //   }
+      // },
       password: {          
         type: GraphQLString,
         resolve(Student){
@@ -116,7 +148,7 @@ export const Student: any  = new GraphQLObjectType({
       guardians: {
         type: Guardian,
         resolve(Student){
-          return Student.guardian.id
+          return Student.guardians
         }
       },
       studentTo: {
@@ -127,9 +159,6 @@ export const Student: any  = new GraphQLObjectType({
         }
       }
     }
-  },
-  isTypeOf: (value, info) => {
-     return "gradeLevel" in value
   }
 });
 
@@ -238,7 +267,7 @@ const Guardian = new GraphQLObjectType({
 });
 
 
-const Admin = new GraphQLObjectType({
+export const Admin = new GraphQLObjectType({
   name: "Admin",
   description: "This represents the Admin",
   interfaces: [User],
@@ -271,7 +300,7 @@ const Admin = new GraphQLObjectType({
       email: {
         type: GraphQLString,
         resolve(Admin){
-          return Admin.user.email
+          return Admin.email
         }
       },
       password: {          
@@ -504,7 +533,7 @@ const MultipleChoiceQuestionBlock = new GraphQLObjectType({
   }
 });
 
-const TextBlock = new GraphQLObjectType({
+export const TextBlock = new GraphQLObjectType({
   name: "TextBlock",
   description: "This represents the Text Block",
   fields: () => {
@@ -563,7 +592,7 @@ const Block = new GraphQLUnionType({
    } 
 });
 
-const Slide = new GraphQLInterfaceType({
+export const Slide = new GraphQLInterfaceType({
   name: "Slide",
   description: "This represents the Slide",
   fields: () => {
@@ -577,10 +606,23 @@ const Slide = new GraphQLInterfaceType({
       title: {
         type: GraphQLString,
         resolve(Slide){
-          return Slide.name
+          return Slide.title
         }
       }
     }
+  },
+  resolveType: async (data) => {
+    console.log("resolve", data)
+    const singleSlide = await prisma.singleSlide.findFirst({
+      where: {
+        id: data.singleSlideId
+      }
+    })
+    if(singleSlide){
+      return "SingleSlide"
+    } 
+    console.log("return null")
+    return null
   }
 });
 
@@ -599,7 +641,7 @@ const SingleSlide = new GraphQLObjectType({
       title: {
         type: GraphQLString,
         resolve(SingleSlide){
-          return SingleSlide.name
+          return SingleSlide.title
         }
       },
       block: {
@@ -719,8 +761,28 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLID
           }
         },
-        resolve(root, args){
-          return prisma.user.findMany({where: args});
+        async resolve(root, args){
+          const users = await prisma.user.findMany({
+            where: args
+          });
+          console.log(users)
+          return users
+        }
+      },
+      admin: {
+        type: new GraphQLList(Admin),
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        async resolve(root, args){
+          return await prisma.admin.findMany({
+            where: args,
+            include: {
+              user: true
+            }
+          })
         }
       },
       students: {
@@ -730,9 +792,9 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLID
           }
         },
-        resolve(root, args){
+        async resolve(root, args){
 
-          return prisma.student.findMany({
+          return await prisma.student.findMany({
             where: args,
             include: { 
               user: true,
@@ -741,15 +803,15 @@ const RootQuery = new GraphQLObjectType({
         });
         }
       },
-      guardian: {
+      guardians: {
         type: new GraphQLList(User),
         args: {
           id: {
             type: GraphQLID
           }
         },
-        resolve(root, args){
-          return prisma.guardian.findMany({where: args});
+        async resolve(root, args){
+          return await prisma.guardian.findMany({where: args});
         }
       },
       instructors: {
@@ -759,8 +821,8 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLID
           }
         },
-        resolve(root, args){
-          return prisma.instructor.findMany({where: args});
+        async resolve(root, args){
+          return await prisma.instructor.findMany({where: args});
         }
       },
       courses: {
@@ -785,10 +847,21 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLID
           }
         },
-        resolve(root, args){
-          return prisma.lesson.findMany({where: args, include: {slides: true}});
+        async resolve(root, args){
+          return await prisma.lesson.findMany({where: args, include: {slides: true}});
         }
       },
+      singleSlides: {
+        type: new GraphQLList(SingleSlide),
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        async resolve(root, args){
+          return await prisma.singleSlide.findMany({where: args, include: {block: true}});
+        }
+      }
     }
 });
 

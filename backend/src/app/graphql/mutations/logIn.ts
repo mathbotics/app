@@ -25,17 +25,19 @@ export const logIn = {
     }
   },
   async resolve(root, args) {
+    //TODO: fix the user login mutation. currently returns the user and resolves
+    //it at the user interface level but cannot query on its user implemented fields
     const {username, password } = args.input;
     try {
       const user = nullthrows(
         await prisma.user.findUnique({
           where: { username },
-            include: {
-              admin: true,
-              guardian: true,
-              instructor: true,
-              student: true
-            },
+          //   include: {
+          //     admin: true,
+          //     guardian: true,
+          //     instructor: true,
+          //     student: true
+          //   },
           }),
         'User not found',
       );
@@ -43,9 +45,8 @@ export const logIn = {
       if (!matched) {
         throw new AuthenticationError('Incorrect password.');
       }
-      const { admin, guardian, instructor, student } = user;
-      console.log(user, " Successfully logged in")
-      return {user}
+      console.log(" Successfully logged in", user)
+      return user
     } catch (e) {
       // eslint-disable-next-line no-console
       console.warn(e);
