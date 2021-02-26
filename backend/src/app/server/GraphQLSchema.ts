@@ -728,6 +728,17 @@ const RootQuery = new GraphQLObjectType({
           return prisma.user.findMany({where: args});
         }
       },
+      admins: {
+        type: new GraphQLList(Admin),
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        resolve(root, args){
+          return prisma.admin.findMany({where: args, include: {user: true}});
+        }
+      },
       students: {
         type: new GraphQLList(Student),
         args: {
@@ -736,17 +747,17 @@ const RootQuery = new GraphQLObjectType({
           }
         },
         resolve(root, args){
-
           return prisma.student.findMany({
             where: args,
             include: { 
               user: true,
-              studentTo: true
+              studentTo: true,
+              guardians: true,
             }
         });
         }
       },
-      guardian: {
+      guardians: {
         type: new GraphQLList(User),
         args: {
           id: {
@@ -754,7 +765,13 @@ const RootQuery = new GraphQLObjectType({
           }
         },
         resolve(root, args){
-          return prisma.guardian.findMany({where: args});
+          return prisma.guardian.findMany({
+            where: args,
+            include: { 
+              user: true,
+              students: true,
+            }
+        });
         }
       },
       instructors: {
@@ -765,7 +782,13 @@ const RootQuery = new GraphQLObjectType({
           }
         },
         resolve(root, args){
-          return prisma.instructor.findMany({where: args});
+          return prisma.instructor.findMany({
+            where: args,
+            include: { 
+              courses: true,
+              user: true,
+            }
+        });
         }
       },
       courses: {
@@ -778,9 +801,13 @@ const RootQuery = new GraphQLObjectType({
         async resolve(root, args){
           const courses = await prisma.course.findMany({
             where: args, 
-            include: { lessonPlan: true}});
-          console.log(courses)
-          return courses
+            include: { 
+              instructors: true,
+              lessonPlan: true,
+              courseTo: true,
+              contents: true
+            }
+          });
         }
       },
       lessons: {
@@ -792,6 +819,139 @@ const RootQuery = new GraphQLObjectType({
         },
         resolve(root, args){
           return prisma.lesson.findMany({where: args, include: {slides: true}});
+        }
+      },
+      lessonPlans: {
+        type: new GraphQLList(LessonPlan),
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        resolve(root, args){
+          return prisma.lessonPlan.findMany({where: args, include: {lessons: true}});
+        }
+      },
+      courseToStudent: {
+        type: new GraphQLList(CourseToStudent),
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        resolve(root, args){
+          return prisma.courseToStudent.findMany({
+            where: args, 
+            include: {
+              course: true, 
+              student: true
+            }
+          });
+        }
+      },
+      multipleChoiceQuestionChoice: {
+        type: new GraphQLList(MultipleChoiceQuestionChoice),
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        resolve(root, args){
+          return prisma.multipleChoiceQuestionChoice.findMany({where: args});
+        }
+      },
+      multipleChoiceQuestionResponse: {
+        type: new GraphQLList(MultipleChoiceQuestionResponse),
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        resolve(root, args){
+          return prisma.multipleChoiceQuestionResponse.findMany({where: args, include:{student: true}});
+        }
+      },
+      multipleChoiceQuestionBlock: {
+        type: new GraphQLList(MultipleChoiceQuestionBlock),
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        resolve(root, args){
+          return prisma.multipleChoiceQuestionBlock.findMany({
+            where: args, 
+            include: {
+              choices: true, 
+              responses: true
+            }
+          });
+        }
+      },
+      textBlock: {
+        type: new GraphQLList(TextBlock),
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        resolve(root, args){
+          return prisma.textBlock.findMany({where: args});
+        }
+      },
+      block: {
+        type: new GraphQLList(Block),
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        resolve(root, args){
+          return prisma.block.findMany({where: args});
+        }
+      },
+      slides: {
+        type: new GraphQLList(Slide),
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        resolve(root, args){
+          return prisma.slide.findMany({where: args});
+        }
+      },
+      singleSlide: {
+        type: new GraphQLList(SingleSlide),
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        resolve(root, args){
+          return prisma.singleSlide.findMany({where: args, include: {block: true}});
+        }
+      },
+      pages: {
+        type: new GraphQLList(Page),
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        resolve(root, args){
+          return prisma.page.findMany({where: args, include: {content: true}});
+        }
+      },
+      content: {
+        type: new GraphQLList(Content),
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        resolve(root, args){
+          return prisma.content.findMany({where: args, include: {pages: true}});
         }
       },
     }
