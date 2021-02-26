@@ -404,7 +404,7 @@ export const Course = new GraphQLObjectType({
   }
 });
 
-const Lesson = new GraphQLObjectType({
+export const Lesson = new GraphQLObjectType({
   name: "Lesson",
   description: "This represents the Lesson",
   fields: () => {

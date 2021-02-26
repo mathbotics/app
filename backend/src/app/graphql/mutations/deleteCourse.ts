@@ -16,7 +16,7 @@ export const DeleteCourseInput = new GraphQLInputObjectType({
   })
 });
 
-export const deleteCourseMutation = {
+export const deleteCourse = {
   type: DeleteCoursePayload,
   args: {
     input: {
