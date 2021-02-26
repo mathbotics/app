@@ -55,7 +55,7 @@ export const createStudent = {
         grade: .8
       }
     })
-    console.log(student, "student")
+   
     return {student};
    }
   

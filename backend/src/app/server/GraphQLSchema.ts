@@ -96,6 +96,7 @@ export const User : any = new GraphQLInterfaceType({
   resolveType: resolveUserHelper
 });
 
+
 export const Student: any  = new GraphQLObjectType({
   name: "Student",
   description: "This represents the student",
@@ -873,7 +874,7 @@ const RootQuery = new GraphQLObjectType({
           }
         },
         async resolve(root, args){
-          const courses = await prisma.course.findMany({
+          return await prisma.course.findMany({
             where: args, 
             include: { 
               instructors: true,
