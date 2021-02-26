@@ -1,30 +1,32 @@
-import { mutationField, inputObjectType, arg } from 'nexus';
 import nullthrows from 'nullthrows';
-
 import prisma from '../../data/prisma';
+import { GraphQLInputObjectType, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
+import { DeleteLessonPayload } from '../payloads/DeleteLessonPayload';
 
-export const DeleteLessonInput = inputObjectType({
-  name: 'DeleteLessonInput',
-  definition(t) {
-    t.string('lessonId', {
-      required: true,
-    });
-  },
+export const DeleteLessonInput = new GraphQLInputObjectType({
+  name: "DeleteLessonInput",
+  fields: () => ({
+    id: { type: GraphQLString},
+  })
 });
-export const deleteLesson = mutationField('deleteLesson', {
-  type: 'Lesson',
-  args: {
-    input: arg({ type: 'DeleteLessonInput', required: true }),
-  },
-  async resolve(_root, { input: { lessonId } }) {
-    const { ...lesson } = nullthrows(
+
+export const deleteLessonMutation = {
+    type: DeleteLessonPayload,
+    args: {
+      input: {
+        type: new GraphQLNonNull(DeleteLessonInput),
+      }
+    },
+   async resolve(root, args){
+    const {id} = args.input 
+
+    const lesson = nullthrows(
       await prisma.lesson.delete({
         where: {
-          id: lessonId,
+          id: id,
         },
-      }),
-      'Could not delete lesson',
-    );
-    return { ...lesson };
-  },
-});
+      })
+      , 'Could not delete lesson',);
+    return { lesson };
+   }
+}
