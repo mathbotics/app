@@ -7,58 +7,110 @@ import jwt from 'jsonwebtoken';
 import Handlebars from 'handlebars';
 
 import { sendMail } from '../../provider/mail/Mailer';
+import { GraphQLInputObjectType, GraphQLNonNull, GraphQLString } from 'graphql';
 
 const { JWT_SECRET } = process.env;
 
-export const SendResetPasswordEmailInput = inputObjectType({
-  name: 'SendResetPasswordEmailInput',
-  definition(t) {
-    t.string('email', {
-      required: true,
-    });
-    // t.string('role', {
-    //   required: true,
-    // });
-  },
-});
+export const SendResetPasswordEmailInput = new GraphQLInputObjectType({
+  name: "SendResetPasswordEmailInput",
+  fields: () => ({
+    email: { type: GraphQLString },
+    role: { type: GraphQLString }
+  })
+})
 
-export const sendResetPasswordEmail = mutationField('sendResetPasswordEmail', {
-  type: 'String',
+export const sendResetPasswordEmail = {
+  type: GraphQLString,
   args: {
-    input: arg({ type: 'SendResetPasswordEmailInput', required: true }),
-  },
-  async resolve(_root, { input: { email } }) {
-    try {
-      const { html } = mjml(
-        (
-          await fs.readFile(
-            path.join(
-              __dirname,
-              '../../provider/mail/templates/ResetPassword.mjml',
-            ),
-          )
-        ).toString('utf8'),
-      );
-      const template = Handlebars.compile(html);
-      // { email, role },
-      const url = `http://localhost:3000/resetPassword/${jwt.sign(
-        { email },
-        nullthrows(JWT_SECRET, 'JWT_SECRET is null or undefined'),
-      )}`;
-      const message = {
-        from: '"Mathbotics learning platform 🤖" <hello@mathbotics.io>',
-        to: email,
-        subject: 'You have requested to reset your password 🤖',
-        text: 'Mathbotics password reset',
-        html: template({ url }),
-      };
-
-      await sendMail(message);
-      return url;
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.warn(e);
-      throw e;
+    input: {
+      type: new GraphQLNonNull(SendResetPasswordEmailInput),
     }
   },
-});
+  async resolve(root, args){
+    const { email, role } = args.input
+    try {
+            const { html } = mjml(
+              (
+                await fs.readFile(
+                  path.join(
+                    __dirname,
+                    '../../provider/mail/templates/ResetPassword.mjml',
+                  ),
+                )
+              ).toString('utf8'),
+            );
+            const template = Handlebars.compile(html);
+            // { email, role },
+            const url = `http://localhost:3000/resetPassword/${jwt.sign(
+              { email },
+              nullthrows(JWT_SECRET, 'JWT_SECRET is null or undefined'),
+            )}`;
+            const message = {
+              from: '"Mathbotics learning platform 🤖" <hello@mathbotics.io>',
+              to: email,
+              subject: 'You have requested to reset your password 🤖',
+              text: 'Mathbotics password reset',
+              html: template({ url }),
+            };
+      
+            await sendMail(message);
+            return url;
+          } catch (e) {
+            // eslint-disable-next-line no-console
+            console.warn(e);
+            throw e;
+          }
+  }
+}
+// export const SendResetPasswordEmailInput = inputObjectType({
+//   name: 'SendResetPasswordEmailInput',
+//   definition(t) {
+//     t.string('email', {
+//       required: true,
+//     });
+//     // t.string('role', {
+//     //   required: true,
+//     // });
+//   },
+// });
+
+// export const sendResetPasswordEmail = mutationField('sendResetPasswordEmail', {
+//   type: 'String',
+//   args: {
+//     input: arg({ type: 'SendResetPasswordEmailInput', required: true }),
+//   },
+//   async resolve(_root, { input: { email } }) {
+//     try {
+//       const { html } = mjml(
+//         (
+//           await fs.readFile(
+//             path.join(
+//               __dirname,
+//               '../../provider/mail/templates/ResetPassword.mjml',
+//             ),
+//           )
+//         ).toString('utf8'),
+//       );
+//       const template = Handlebars.compile(html);
+//       // { email, role },
+//       const url = `http://localhost:3000/resetPassword/${jwt.sign(
+//         { email },
+//         nullthrows(JWT_SECRET, 'JWT_SECRET is null or undefined'),
+//       )}`;
+//       const message = {
+//         from: '"Mathbotics learning platform 🤖" <hello@mathbotics.io>',
+//         to: email,
+//         subject: 'You have requested to reset your password 🤖',
+//         text: 'Mathbotics password reset',
+//         html: template({ url }),
+//       };
+
+//       await sendMail(message);
+//       return url;
+//     } catch (e) {
+//       // eslint-disable-next-line no-console
+//       console.warn(e);
+//       throw e;
+//     }
+//   },
+// });

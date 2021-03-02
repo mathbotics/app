@@ -6,15 +6,16 @@ import { DeleteStudentInput } from './__generated__/DeleteStudentMutation.graphq
 
 const mutation = graphql`
 mutation DeleteStudentMutation(
-    $input: DeleteStudentInput!
+    $input: DeleteStudentsInput!
   ) {
       deleteStudents(input: $input) {
-      courses{
+      course{
         id
       }
     }
   }
 `;
+
 
 function commit(
   input: DeleteStudentInput,
@@ -31,7 +32,7 @@ function commit(
     onError,
     updater(store) {
       const { courseId } = variables.input;
-      const student = store.getRootField('deleteStudent');
+      const student = store.getRootField('deleteStudents');
       const course = store.get(courseId);
       const students = course?.getLinkedRecords('students') ?? [];
       course?.setLinkedRecords([...students, student], 'students');

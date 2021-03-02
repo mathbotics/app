@@ -7,10 +7,12 @@ import { EditStudentInput } from "./__generated__/EditStudentMutation.graphql";
 const mutation = graphql`
     mutation EditStudentMutation($input: EditStudentInput!) {
         editStudent(input: $input) {
-            username
-            firstName
-            lastName
-            gradeLevel
+            student {
+              username
+              firstName
+              lastName
+              gradeLevel
+            }
         }
     }
 `;

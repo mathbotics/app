@@ -16,6 +16,8 @@ import {
 } from 'graphql';
 import prisma from '../data/prisma';
 import { Mutations } from '../graphql/mutations/Mutations';
+import { CourseWhereUniqueInput } from '../graphql/queryinputs/CourseInput';
+import { LessonWhereUniqueInput } from '../graphql/queryinputs/LessonInput';
 
 const resolveUserHelper = async (data) => {
   console.log("resolver user", data)
@@ -112,20 +114,20 @@ export const Student: any  = new GraphQLObjectType({
       username: {
         type: GraphQLString,
         resolve(Student){
-          return Student.user.username
+          return Student.username
         }
       },
       firstName: {
         type: GraphQLString,
         resolve(Student){
           console.log(Student)
-          return Student.user.firstName;
+          return Student.firstName;
         }
       },
       lastName: {
         type: GraphQLString,
         resolve(Student){
-          return Student.user.lastName
+          return Student.lastName
         }
       },
       // email: {
@@ -137,7 +139,7 @@ export const Student: any  = new GraphQLObjectType({
       password: {          
         type: GraphQLString,
         resolve(Student){
-          return Student.user.password
+          return Student.password
         }
       },
       gradeLevel: {
@@ -283,19 +285,19 @@ export const Admin = new GraphQLObjectType({
       username: {
         type: GraphQLString,
         resolve(Admin){
-          return Admin.user.username
+          return Admin.username
         }
       },
       firstName: {
         type: GraphQLString,
         resolve(Admin){
-          return Admin.user.firstName;
+          return Admin.firstName;
         }
       },
       lastName: {
         type: GraphQLString,
         resolve(Admin){
-          return Admin.user.lastName
+          return Admin.lastName
         }
       },
       email: {
@@ -307,7 +309,7 @@ export const Admin = new GraphQLObjectType({
       password: {          
         type: GraphQLString,
         resolve(Admin){
-          return Admin.user.password
+          return Admin.password
         }
       }
     }
@@ -752,7 +754,7 @@ const Content : any = new GraphQLObjectType({
 });
 
 const RootQuery = new GraphQLObjectType({
-  name: 'RootQuery',
+  name: 'Query',
   description: 'This is the root query',
   fields: {
       users: {
@@ -774,7 +776,8 @@ const RootQuery = new GraphQLObjectType({
           }
         },
         async resolve(root, args){
-          return await prisma.admin.findMany({where: args, include: {user: true}});
+          const admins = await prisma.user.findMany({where: args, include: {admin: true}});
+          return admins;
         }
       },
       student: {
@@ -803,12 +806,11 @@ const RootQuery = new GraphQLObjectType({
           }
         },
         async resolve(root, args){
-          return await prisma.student.findMany({
+          return await prisma.user.findMany({
             where: args,
             include: { 
-              user: true,
-              studentTo: true,
-              guardians: true,
+              student: true,
+              
             }
         });
         }
@@ -851,7 +853,7 @@ const RootQuery = new GraphQLObjectType({
         type: Course,
         args: {
           id: {
-            type: GraphQLID
+            type: CourseWhereUniqueInput
           }
         },
         async resolve(root, args){
@@ -889,7 +891,7 @@ const RootQuery = new GraphQLObjectType({
         type: Lesson,
         args: {
           id: {
-            type: GraphQLID
+            type: LessonWhereUniqueInput
           }
         },
         async resolve(root, args){

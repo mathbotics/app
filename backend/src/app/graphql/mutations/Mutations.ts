@@ -13,6 +13,11 @@ import { createOneLesson } from "./createLesson"
 import { deleteLesson } from "./deleteLesson"
 import { updateOneLesson } from "./updateLesson" 
 import { updateOneCourse } from "./updateCourse"
+import { logOut } from "./logout"
+import { registerUser } from "./registerUser"
+import { sendInvitationEmail } from "./sendInvitationEmail"
+import { sendResetPasswordEmail } from "./sendResetPasswordEmail"
+import { resetPassword } from "./resetPassword"
 
 export const Mutations = new GraphQLObjectType({
     name: "Mutation",
@@ -30,6 +35,11 @@ export const Mutations = new GraphQLObjectType({
       createOneLesson,
       deleteLesson,
       updateOneLesson,
-      updateOneCourse
+      updateOneCourse,
+      logOut,
+      registerUser,
+      sendInvitationEmail,
+      sendResetPasswordEmail,
+      resetPassword
     } 
   })

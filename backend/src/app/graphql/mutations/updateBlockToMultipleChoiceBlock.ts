@@ -2,6 +2,7 @@ import nullthrows from 'nullthrows';
 import prisma from '../../data/prisma';
 import { GraphQLInputObjectType, GraphQLNonNull, GraphQLObjectType, GraphQLString, GraphQLBoolean, GraphQLList } from 'graphql';
 import { UpdateBlockToMultipleChoiceBlockPayload } from '../payloads/UpdateBlockToMultipleChoiceBlockPayload';
+import { MultipleChoiceQuestionBlock } from '../../server/GraphQLSchema';
 
 export const ChoiceInput = new GraphQLInputObjectType({
   name: "ChoiceInput",
@@ -21,7 +22,7 @@ export const UpdateBlockToMultipleChoiceBlockInput = new GraphQLInputObjectType(
 });
 
 export const updateBlockToMultipleChoiceBlock = {
-    type: UpdateBlockToMultipleChoiceBlockPayload,
+    type: MultipleChoiceQuestionBlock,
     args: {
       input: {
         type: new GraphQLNonNull(UpdateBlockToMultipleChoiceBlockInput),
