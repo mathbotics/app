@@ -2,7 +2,6 @@ import { GraphQLInputObjectType, GraphQLNonNull, GraphQLString } from 'graphql';
 import nullthrows from 'nullthrows';
 
 import prisma from '../../data/prisma';
-import { TextBlock } from '../../server/GraphQLSchema';
 import { UpdateBlockToTBPayload } from '../payloads/UpdateBlockToTBPayload';
 
 export const UpdateBlockToTextBlockInput = new GraphQLInputObjectType({
@@ -15,7 +14,7 @@ export const UpdateBlockToTextBlockInput = new GraphQLInputObjectType({
 })
 
 export const updateBlockToTextBlock = {
-  type: TextBlock,
+  type: UpdateBlockToTBPayload,
   args: {
     input: {
       type: new GraphQLNonNull(UpdateBlockToTextBlockInput)

@@ -7,7 +7,9 @@ import { DeleteLessonInput } from './__generated__/DeleteOneLessonMutation.graph
 const mutation = graphql`
     mutation DeleteOneLessonMutation($input: DeleteLessonInput!) {
         deleteLesson(input: $input) {
-            id
+            lesson{
+              id
+            }
         }
     }
 `;
