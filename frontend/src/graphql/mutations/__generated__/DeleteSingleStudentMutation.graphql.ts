@@ -1,18 +1,21 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 91397b7609a3af7c037c96f4ca665748 */
+/* @relayHash 62a60a93d2529e8d47443cafc8fcd7f0 */
 
 import { ConcreteRequest } from "relay-runtime";
-export type DeleteSingleStudentInput = {
-    studentId: string;
+export type DeleteStudentInput = {
+    studentId?: string | null;
+    courseId?: string | null;
 };
 export type DeleteSingleStudentMutationVariables = {
-    input: DeleteSingleStudentInput;
+    input: DeleteStudentInput;
 };
 export type DeleteSingleStudentMutationResponse = {
     readonly deleteSingleStudent: {
-        readonly id: string;
-    };
+        readonly student: {
+            readonly id: string | null;
+        };
+    } | null;
 };
 export type DeleteSingleStudentMutation = {
     readonly response: DeleteSingleStudentMutationResponse;
@@ -23,10 +26,12 @@ export type DeleteSingleStudentMutation = {
 
 /*
 mutation DeleteSingleStudentMutation(
-  $input: DeleteSingleStudentInput!
+  $input: DeleteStudentInput!
 ) {
   deleteSingleStudent(input: $input) {
-    id
+    student {
+      id
+    }
   }
 }
 */
@@ -36,7 +41,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "DeleteSingleStudentInput!",
+    "type": "DeleteStudentInput!",
     "defaultValue": null
   }
 ],
@@ -53,15 +58,26 @@ v1 = [
         "variableName": "input"
       }
     ],
-    "concreteType": "Student",
+    "concreteType": "DeleteStudentPayload",
     "plural": false,
     "selections": [
       {
-        "kind": "ScalarField",
+        "kind": "LinkedField",
         "alias": null,
-        "name": "id",
+        "name": "student",
+        "storageKey": null,
         "args": null,
-        "storageKey": null
+        "concreteType": "Student",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "id",
+            "args": null,
+            "storageKey": null
+          }
+        ]
       }
     ]
   }
@@ -86,10 +102,10 @@ return {
     "operationKind": "mutation",
     "name": "DeleteSingleStudentMutation",
     "id": null,
-    "text": "mutation DeleteSingleStudentMutation(\n  $input: DeleteSingleStudentInput!\n) {\n  deleteSingleStudent(input: $input) {\n    id\n  }\n}\n",
+    "text": "mutation DeleteSingleStudentMutation(\n  $input: DeleteStudentInput!\n) {\n  deleteSingleStudent(input: $input) {\n    student {\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '276216d3aa306c4a33f8d0c51ffdd614';
+(node as any).hash = '65b4d79029838e4ee14ca9c31f545b49';
 export default node;

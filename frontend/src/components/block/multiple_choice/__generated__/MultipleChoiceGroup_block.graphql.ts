@@ -5,10 +5,10 @@ import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type MultipleChoiceGroup_block = {
     readonly choices: ReadonlyArray<{
-        readonly id: string;
-        readonly text: string;
-        readonly correct: boolean;
-    }>;
+        readonly id: string | null;
+        readonly text: string | null;
+        readonly correct: string | null;
+    } | null> | null;
     readonly " $refType": "MultipleChoiceGroup_block";
 };
 export type MultipleChoiceGroup_block$data = MultipleChoiceGroup_block;

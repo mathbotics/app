@@ -38,13 +38,8 @@ type Course {
   suggestedLevel: GradeLevel
   instructors: Instructor
   courseTo: [CourseToStudent]
+  students: [Student]
   lessonPlan: LessonPlan
-}
-
-input CourseCreateInput {
-  name: String
-  description: String
-  suggestedLevel: GradeLevel
 }
 
 # This represents the Course to Student relations
@@ -68,9 +63,20 @@ input CourseWhereUniqueInput {
   id: String
 }
 
+input createCourseInput {
+  name: String
+  description: String
+  suggestedLevel: GradeLevel
+}
+
 # course type definition
 type CreateCoursePayload {
   course: Course!
+}
+
+input CreateLessonInput {
+  title: String
+  lessonPlanId: String
 }
 
 # Lesson type definition
@@ -121,7 +127,7 @@ type DeleteLessonPayload {
   lesson: Lesson!
 }
 
-input DeleteSingleStudentInput {
+input DeleteStudentInput {
   studentId: String
   courseId: String
 }
@@ -202,14 +208,10 @@ type Lesson {
   slides: [Slide]
 }
 
-input LessonCreateInput {
-  title: String
-  lessonPlanId: String
-}
-
 # This represents the LessonPlan
 type LessonPlan {
   id: String
+  lessons: [Lesson]
 }
 
 input LessonWhereUniqueInput {
@@ -251,8 +253,8 @@ type MultipleChoiceQuestionResponse {
 type Mutation {
   createStudent(input: CreateStudentInput!): CreateStudentPayload
   logIn(input: LoginInput!): LoginPayload
-  createOneCourse(input: CourseCreateInput!): CreateCoursePayload
-  deleteSingleStudent(input: DeleteSingleStudentInput!): DeleteStudentPayload
+  createOneCourse(input: createCourseInput!): CreateCoursePayload
+  deleteSingleStudent(input: DeleteStudentInput!): DeleteStudentPayload
   editStudent(input: EditStudentInput!): EditStudentPayload
   createSlide(input: CreateSlideInput!): CreateSlidePayload
   updateBlockToTextBlock(
@@ -263,7 +265,7 @@ type Mutation {
   ): UpdateBlockToMultipleChoiceBlockPayload
   deleteCourse(input: DeleteCourseInput!): DeleteCoursePayload
   deleteStudents(input: DeleteStudentsInput!): DeleteStudentsPayload
-  createOneLesson(input: LessonCreateInput!): CreateLessonPayload
+  createOneLesson(input: CreateLessonInput!): CreateLessonPayload
   deleteLesson(input: DeleteLessonInput!): DeleteLessonPayload
   updateOneLesson(input: UpdateLessonInput!): UpdateLessonPayload
   updateOneCourse(input: CourseUpdateInput!): UpdateCoursePayload
@@ -284,15 +286,16 @@ type Page {
 
 # This is the root query
 type Query {
+  viewer(id: ID): User
   users(id: ID): [User]
   admins(id: ID): [Admin]
   student(id: ID): Student
   students(id: ID): [Student]
   guardians(id: ID): [User]
   instructors(id: ID): [Instructor]
-  course(id: CourseWhereUniqueInput): Course
+  course(where: CourseWhereUniqueInput): Course
   courses(id: ID): [Course]
-  lesson(id: LessonWhereUniqueInput): Lesson
+  lesson(where: LessonWhereUniqueInput): Lesson
   lessons(id: ID): [Lesson]
   lessonPlans(id: ID): [LessonPlan]
   courseToStudent(id: ID): [CourseToStudent]

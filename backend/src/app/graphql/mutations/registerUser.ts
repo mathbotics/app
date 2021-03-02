@@ -5,7 +5,6 @@ import jwt from 'jsonwebtoken';
 import { Context } from '../context';
 import { GraphQLInputObjectType, GraphQLNonNull, GraphQLString } from 'graphql';
 import { RegisterUserPayload } from '../payloads/RegisterUserPayload';
-import { User } from '../../server/GraphQLSchema';
 
 const { JWT_SECRET } = process.env;
 
@@ -21,7 +20,7 @@ export const RegisterUserInput = new GraphQLInputObjectType({
 })
 
 export const registerUser = {
-  type: User,
+  type: RegisterUserPayload,
   args: {
     input: {
       type: new GraphQLNonNull(RegisterUserInput),

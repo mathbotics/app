@@ -4,7 +4,7 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type MultipleChoiceQuestionBlock_block = {
-    readonly text: string;
+    readonly text: string | null;
     readonly __typename: "MultipleChoiceQuestionBlock";
     readonly " $fragmentRefs": FragmentRefs<"MultipleChoiceGroup_block">;
     readonly " $refType": "MultipleChoiceQuestionBlock_block";

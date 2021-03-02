@@ -4,7 +4,7 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type EditCourseDetails_course = {
-    readonly id: string;
+    readonly id: string | null;
     readonly " $refType": "EditCourseDetails_course";
 };
 export type EditCourseDetails_course$data = EditCourseDetails_course;

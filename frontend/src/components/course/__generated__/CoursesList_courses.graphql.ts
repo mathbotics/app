@@ -5,9 +5,9 @@ import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type CoursesList_courses = {
     readonly courses: ReadonlyArray<{
-        readonly id: string;
+        readonly id: string | null;
         readonly " $fragmentRefs": FragmentRefs<"CourseCard_course">;
-    }>;
+    } | null> | null;
     readonly " $refType": "CoursesList_courses";
 };
 export type CoursesList_courses$data = CoursesList_courses;

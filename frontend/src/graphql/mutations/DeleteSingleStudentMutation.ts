@@ -5,9 +5,11 @@ import { environment } from "../relay";
 import { DeleteSingleStudentInput } from "./__generated__/DeleteSingleStudentMutation.graphql";
 
 const mutation = graphql`
-    mutation DeleteSingleStudentMutation($input: DeleteSingleStudentInput!) {
+    mutation DeleteSingleStudentMutation($input: DeleteStudentInput!) {
         deleteSingleStudent(input: $input) {
+          student{
             id
+          }
         }
     }
 `;

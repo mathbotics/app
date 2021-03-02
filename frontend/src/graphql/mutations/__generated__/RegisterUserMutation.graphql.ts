@@ -1,22 +1,24 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 448c31adf23dfd09ec68236fce53a510 */
+/* @relayHash 8917db074d38d28a53dcb637ee96d835 */
 
 import { ConcreteRequest } from "relay-runtime";
 export type RegisterUserInput = {
-    firstName: string;
-    lastName: string;
-    password: string;
-    token: string;
-    username: string;
+    username?: string | null;
+    token?: string | null;
+    password?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
 };
 export type RegisterUserMutationVariables = {
     input: RegisterUserInput;
 };
 export type RegisterUserMutationResponse = {
     readonly registerUser: {
-        readonly username: string;
-    };
+        readonly user: {
+            readonly username: string | null;
+        };
+    } | null;
 };
 export type RegisterUserMutation = {
     readonly response: RegisterUserMutationResponse;
@@ -30,8 +32,10 @@ mutation RegisterUserMutation(
   $input: RegisterUserInput!
 ) {
   registerUser(input: $input) {
-    __typename
-    username
+    user {
+      __typename
+      username
+    }
   }
 }
 */
@@ -74,10 +78,21 @@ return {
         "name": "registerUser",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": null,
+        "concreteType": "RegisterUserPayload",
         "plural": false,
         "selections": [
-          (v2/*: any*/)
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "user",
+            "storageKey": null,
+            "args": null,
+            "concreteType": null,
+            "plural": false,
+            "selections": [
+              (v2/*: any*/)
+            ]
+          }
         ]
       }
     ]
@@ -93,17 +108,28 @@ return {
         "name": "registerUser",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": null,
+        "concreteType": "RegisterUserPayload",
         "plural": false,
         "selections": [
           {
-            "kind": "ScalarField",
+            "kind": "LinkedField",
             "alias": null,
-            "name": "__typename",
+            "name": "user",
+            "storageKey": null,
             "args": null,
-            "storageKey": null
-          },
-          (v2/*: any*/)
+            "concreteType": null,
+            "plural": false,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "__typename",
+                "args": null,
+                "storageKey": null
+              },
+              (v2/*: any*/)
+            ]
+          }
         ]
       }
     ]
@@ -112,10 +138,10 @@ return {
     "operationKind": "mutation",
     "name": "RegisterUserMutation",
     "id": null,
-    "text": "mutation RegisterUserMutation(\n  $input: RegisterUserInput!\n) {\n  registerUser(input: $input) {\n    __typename\n    username\n  }\n}\n",
+    "text": "mutation RegisterUserMutation(\n  $input: RegisterUserInput!\n) {\n  registerUser(input: $input) {\n    user {\n      __typename\n      username\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '43a61fce27e0afc33450ed7f7bfa0a5c';
+(node as any).hash = 'f5aacb878b3529b054c4f50f33527754';
 export default node;

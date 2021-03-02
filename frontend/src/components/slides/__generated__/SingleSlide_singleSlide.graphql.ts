@@ -4,10 +4,10 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type SingleSlide_singleSlide = {
-    readonly id: string;
+    readonly id: string | null;
     readonly block: {
         readonly " $fragmentRefs": FragmentRefs<"EditBlockSidebar_block" | "Block_block">;
-    };
+    } | null;
     readonly " $refType": "SingleSlide_singleSlide";
 };
 export type SingleSlide_singleSlide$data = SingleSlide_singleSlide;

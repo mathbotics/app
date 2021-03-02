@@ -1,22 +1,24 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 94e5386576fa811748b9282f99806a6f */
+/* @relayHash 66e6b3b8c591bbc236e5fcec4cb13d5d */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type UpdateBlockToTextBlockInput = {
-    blockId: string;
-    body: string;
-    title: string;
+    blockId?: string | null;
+    title?: string | null;
+    body?: string | null;
 };
 export type UpdateBlockToTextBlockMutationVariables = {
     input: UpdateBlockToTextBlockInput;
 };
 export type UpdateBlockToTextBlockMutationResponse = {
     readonly updateBlockToTextBlock: {
-        readonly id: string;
-        readonly " $fragmentRefs": FragmentRefs<"TextBlock_block">;
-    };
+        readonly textBlock: {
+            readonly id: string | null;
+            readonly " $fragmentRefs": FragmentRefs<"TextBlock_block">;
+        };
+    } | null;
 };
 export type UpdateBlockToTextBlockMutation = {
     readonly response: UpdateBlockToTextBlockMutationResponse;
@@ -30,8 +32,10 @@ mutation UpdateBlockToTextBlockMutation(
   $input: UpdateBlockToTextBlockInput!
 ) {
   updateBlockToTextBlock(input: $input) {
-    id
-    ...TextBlock_block
+    textBlock {
+      id
+      ...TextBlock_block
+    }
   }
 }
 
@@ -80,14 +84,25 @@ return {
         "name": "updateBlockToTextBlock",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": "TextBlock",
+        "concreteType": "UpdateBlockToTBPayload",
         "plural": false,
         "selections": [
-          (v2/*: any*/),
           {
-            "kind": "FragmentSpread",
-            "name": "TextBlock_block",
-            "args": null
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "textBlock",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "TextBlock",
+            "plural": false,
+            "selections": [
+              (v2/*: any*/),
+              {
+                "kind": "FragmentSpread",
+                "name": "TextBlock_block",
+                "args": null
+              }
+            ]
           }
         ]
       }
@@ -104,23 +119,34 @@ return {
         "name": "updateBlockToTextBlock",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": "TextBlock",
+        "concreteType": "UpdateBlockToTBPayload",
         "plural": false,
         "selections": [
-          (v2/*: any*/),
           {
-            "kind": "ScalarField",
+            "kind": "LinkedField",
             "alias": null,
-            "name": "title",
+            "name": "textBlock",
+            "storageKey": null,
             "args": null,
-            "storageKey": null
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "body",
-            "args": null,
-            "storageKey": null
+            "concreteType": "TextBlock",
+            "plural": false,
+            "selections": [
+              (v2/*: any*/),
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "title",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "body",
+                "args": null,
+                "storageKey": null
+              }
+            ]
           }
         ]
       }
@@ -130,10 +156,10 @@ return {
     "operationKind": "mutation",
     "name": "UpdateBlockToTextBlockMutation",
     "id": null,
-    "text": "mutation UpdateBlockToTextBlockMutation(\n  $input: UpdateBlockToTextBlockInput!\n) {\n  updateBlockToTextBlock(input: $input) {\n    id\n    ...TextBlock_block\n  }\n}\n\nfragment TextBlock_block on TextBlock {\n  id\n  title\n  body\n}\n",
+    "text": "mutation UpdateBlockToTextBlockMutation(\n  $input: UpdateBlockToTextBlockInput!\n) {\n  updateBlockToTextBlock(input: $input) {\n    textBlock {\n      id\n      ...TextBlock_block\n    }\n  }\n}\n\nfragment TextBlock_block on TextBlock {\n  id\n  title\n  body\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '82429e1e355d9ecc9e7d80f4805da887';
+(node as any).hash = '400865c2d8fa224876bcd9e505a94467';
 export default node;

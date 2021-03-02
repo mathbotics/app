@@ -7,10 +7,12 @@ import { CreateStudentInput } from "./__generated__/CreateStudentMutation.graphq
 const mutation = graphql`
     mutation CreateStudentMutation($input: CreateStudentInput!) {
         createStudent(input: $input) {
+          student{
             username
             firstName
             lastName
             gradeLevel
+          }
         }
     }
 `;

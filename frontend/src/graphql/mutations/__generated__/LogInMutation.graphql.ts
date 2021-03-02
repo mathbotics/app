@@ -1,22 +1,23 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash a751f069b9dc73983d73443484c58222 */
+/* @relayHash 4a2b5c6fc59b209f267e61646bbae953 */
 
 import { ConcreteRequest } from "relay-runtime";
-export type LogInInput = {
-    password: string;
-    username: string;
+export type LoginInput = {
+    username?: string | null;
+    password?: string | null;
 };
 export type LogInMutationVariables = {
-    input: LogInInput;
+    input: LoginInput;
 };
 export type LogInMutationResponse = {
     readonly logIn: {
-        readonly firstName: string;
-        readonly lastName: string;
-        readonly username: string;
-        readonly email?: string;
-    };
+        readonly user: {
+            readonly firstName: string | null;
+            readonly lastName: string | null;
+            readonly username: string | null;
+        };
+    } | null;
 };
 export type LogInMutation = {
     readonly response: LogInMutationResponse;
@@ -27,15 +28,14 @@ export type LogInMutation = {
 
 /*
 mutation LogInMutation(
-  $input: LogInInput!
+  $input: LoginInput!
 ) {
   logIn(input: $input) {
-    __typename
-    firstName
-    lastName
-    username
-    ... on Instructor {
-      email
+    user {
+      __typename
+      firstName
+      lastName
+      username
     }
   }
 }
@@ -46,7 +46,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "LogInInput!",
+    "type": "LoginInput!",
     "defaultValue": null
   }
 ],
@@ -77,19 +77,6 @@ v4 = {
   "name": "username",
   "args": null,
   "storageKey": null
-},
-v5 = {
-  "kind": "InlineFragment",
-  "type": "Instructor",
-  "selections": [
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "email",
-      "args": null,
-      "storageKey": null
-    }
-  ]
 };
 return {
   "kind": "Request",
@@ -106,13 +93,23 @@ return {
         "name": "logIn",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": null,
+        "concreteType": "LoginPayload",
         "plural": false,
         "selections": [
-          (v2/*: any*/),
-          (v3/*: any*/),
-          (v4/*: any*/),
-          (v5/*: any*/)
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "user",
+            "storageKey": null,
+            "args": null,
+            "concreteType": null,
+            "plural": false,
+            "selections": [
+              (v2/*: any*/),
+              (v3/*: any*/),
+              (v4/*: any*/)
+            ]
+          }
         ]
       }
     ]
@@ -128,20 +125,30 @@ return {
         "name": "logIn",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": null,
+        "concreteType": "LoginPayload",
         "plural": false,
         "selections": [
           {
-            "kind": "ScalarField",
+            "kind": "LinkedField",
             "alias": null,
-            "name": "__typename",
+            "name": "user",
+            "storageKey": null,
             "args": null,
-            "storageKey": null
-          },
-          (v2/*: any*/),
-          (v3/*: any*/),
-          (v4/*: any*/),
-          (v5/*: any*/)
+            "concreteType": null,
+            "plural": false,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "__typename",
+                "args": null,
+                "storageKey": null
+              },
+              (v2/*: any*/),
+              (v3/*: any*/),
+              (v4/*: any*/)
+            ]
+          }
         ]
       }
     ]
@@ -150,10 +157,10 @@ return {
     "operationKind": "mutation",
     "name": "LogInMutation",
     "id": null,
-    "text": "mutation LogInMutation(\n  $input: LogInInput!\n) {\n  logIn(input: $input) {\n    __typename\n    firstName\n    lastName\n    username\n    ... on Instructor {\n      email\n    }\n  }\n}\n",
+    "text": "mutation LogInMutation(\n  $input: LoginInput!\n) {\n  logIn(input: $input) {\n    user {\n      __typename\n      firstName\n      lastName\n      username\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = 'dcfda32b7251108bf75298326f5a5bfc';
+(node as any).hash = 'ccee1dd9b93f8a87175e463c23377ed6';
 export default node;

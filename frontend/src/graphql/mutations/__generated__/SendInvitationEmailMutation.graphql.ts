@@ -1,17 +1,17 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 794d1c8b2b3c06140723ce2639a32aa3 */
+/* @relayHash 2c5035140602b51a1a23cb090745e200 */
 
 import { ConcreteRequest } from "relay-runtime";
 export type SendInvitationEmailInput = {
-    email: string;
-    role: string;
+    email?: string | null;
+    role?: string | null;
 };
 export type SendInvitationEmailMutationVariables = {
     input: SendInvitationEmailInput;
 };
 export type SendInvitationEmailMutationResponse = {
-    readonly sendInvitationEmail: string;
+    readonly sendInvitationEmail: string | null;
 };
 export type SendInvitationEmailMutation = {
     readonly response: SendInvitationEmailMutationResponse;

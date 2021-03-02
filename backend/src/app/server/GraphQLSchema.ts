@@ -396,6 +396,12 @@ export const Course = new GraphQLObjectType({
           return Course.courseTo
         }
       },
+      students: {
+        type: new GraphQLList(Student),
+        resolve(Course){
+          return Course.students
+        }
+      },
       lessonPlan: {
         type: LessonPlan,
         resolve(Course){
@@ -443,6 +449,12 @@ const LessonPlan = new GraphQLObjectType({
         type: GraphQLString,
         resolve(LessonPlan) {
           return LessonPlan.id
+        }
+      },
+      lessons: {
+        type: new GraphQLList(Lesson),
+        resolve(LessonPlan){
+          return LessonPlan.lessons
         }
       }
     }
@@ -757,6 +769,17 @@ const RootQuery = new GraphQLObjectType({
   name: 'Query',
   description: 'This is the root query',
   fields: {
+    viewer: {
+      type: User,
+      args: {
+        id: {
+          type: GraphQLID
+        }
+      },   
+      resolve(root, args, context) {
+        return context.viewer;
+      }
+    },
       users: {
         type: new GraphQLList(User),
         args: {
@@ -852,7 +875,7 @@ const RootQuery = new GraphQLObjectType({
       course: {
         type: Course,
         args: {
-          id: {
+          where: {
             type: CourseWhereUniqueInput
           }
         },
@@ -890,7 +913,7 @@ const RootQuery = new GraphQLObjectType({
       lesson: {
         type: Lesson,
         args: {
-          id: {
+          where: {
             type: LessonWhereUniqueInput
           }
         },

@@ -7,7 +7,6 @@ import { Context } from '../context';
 import { GraphQLInputObjectType, GraphQLNonNull, GraphQLString } from 'graphql';
 import { ResetPasswordPayload } from '../payloads/ResetPasswordPayload';
 import { resolve } from 'path';
-import { User } from '../../server/GraphQLSchema';
 
 const { JWT_SECRET } = process.env;
 
@@ -20,7 +19,7 @@ export const ResetPasswordInput = new GraphQLInputObjectType({
 })
 
 export const resetPassword = {
-  type: User,
+  type: ResetPasswordPayload,
   args: {
     input: {
       type: new GraphQLNonNull(ResetPasswordInput),

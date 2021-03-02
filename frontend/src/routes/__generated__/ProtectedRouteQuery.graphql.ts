@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 500c85559087f4a5f3a6633e30cc2a15 */
+/* @relayHash 9fbb21c22ed2212ab1ca1a1a504d0c07 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -8,7 +8,7 @@ export type ProtectedRouteQueryVariables = {};
 export type ProtectedRouteQueryResponse = {
     readonly viewer: {
         readonly " $fragmentRefs": FragmentRefs<"ProtectedRoute_viewer">;
-    };
+    } | null;
 };
 export type ProtectedRouteQuery = {
     readonly response: ProtectedRouteQueryResponse;

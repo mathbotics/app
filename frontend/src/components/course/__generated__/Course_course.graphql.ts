@@ -4,19 +4,19 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type Course_course = {
-    readonly id: string;
-    readonly name: string;
+    readonly id: string | null;
+    readonly name: string | null;
     readonly description: string | null;
     readonly lessonPlan: {
-        readonly id: string;
+        readonly id: string | null;
         readonly lessons: ReadonlyArray<{
-            readonly id: string;
-            readonly title: string;
+            readonly id: string | null;
+            readonly title: string | null;
             readonly slides: ReadonlyArray<{
-                readonly id: string;
-            }>;
-        }>;
-    };
+                readonly id: string | null;
+            } | null> | null;
+        } | null> | null;
+    } | null;
     readonly " $refType": "Course_course";
 };
 export type Course_course$data = Course_course;

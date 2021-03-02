@@ -4,8 +4,8 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type EditTextBlockForm_block = {
-    readonly title: string;
-    readonly body: string;
+    readonly title: string | null;
+    readonly body: string | null;
     readonly " $refType": "EditTextBlockForm_block";
 };
 export type EditTextBlockForm_block$data = EditTextBlockForm_block;

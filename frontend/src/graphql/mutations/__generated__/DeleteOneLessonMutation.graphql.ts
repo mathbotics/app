@@ -1,18 +1,20 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 7ae3f2c5dd435ae1ba35088b536608cd */
+/* @relayHash b91d23a1dcfe9b676b4a2de19a6d2640 */
 
 import { ConcreteRequest } from "relay-runtime";
 export type DeleteLessonInput = {
-    lessonId: string;
+    id?: string | null;
 };
 export type DeleteOneLessonMutationVariables = {
     input: DeleteLessonInput;
 };
 export type DeleteOneLessonMutationResponse = {
     readonly deleteLesson: {
-        readonly id: string;
-    };
+        readonly lesson: {
+            readonly id: string | null;
+        };
+    } | null;
 };
 export type DeleteOneLessonMutation = {
     readonly response: DeleteOneLessonMutationResponse;
@@ -26,7 +28,9 @@ mutation DeleteOneLessonMutation(
   $input: DeleteLessonInput!
 ) {
   deleteLesson(input: $input) {
-    id
+    lesson {
+      id
+    }
   }
 }
 */
@@ -53,15 +57,26 @@ v1 = [
         "variableName": "input"
       }
     ],
-    "concreteType": "Lesson",
+    "concreteType": "DeleteLessonPayload",
     "plural": false,
     "selections": [
       {
-        "kind": "ScalarField",
+        "kind": "LinkedField",
         "alias": null,
-        "name": "id",
+        "name": "lesson",
+        "storageKey": null,
         "args": null,
-        "storageKey": null
+        "concreteType": "Lesson",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "id",
+            "args": null,
+            "storageKey": null
+          }
+        ]
       }
     ]
   }
@@ -86,10 +101,10 @@ return {
     "operationKind": "mutation",
     "name": "DeleteOneLessonMutation",
     "id": null,
-    "text": "mutation DeleteOneLessonMutation(\n  $input: DeleteLessonInput!\n) {\n  deleteLesson(input: $input) {\n    id\n  }\n}\n",
+    "text": "mutation DeleteOneLessonMutation(\n  $input: DeleteLessonInput!\n) {\n  deleteLesson(input: $input) {\n    lesson {\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = 'b3ecec8c7c586ba3f965605c8041a1a5';
+(node as any).hash = 'f279ece77eb7673ea477c091222c24cf';
 export default node;

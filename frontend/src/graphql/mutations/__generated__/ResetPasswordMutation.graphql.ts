@@ -1,19 +1,21 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 196abecb5be7857d8390f814a149aabd */
+/* @relayHash bb452aeeda638f6fbfd1b9373fd6fd93 */
 
 import { ConcreteRequest } from "relay-runtime";
 export type ResetPasswordInput = {
-    password: string;
-    token: string;
+    password?: string | null;
+    token?: string | null;
 };
 export type ResetPasswordMutationVariables = {
     input: ResetPasswordInput;
 };
 export type ResetPasswordMutationResponse = {
     readonly resetPassword: {
-        readonly username: string;
-    };
+        readonly user: {
+            readonly username: string | null;
+        };
+    } | null;
 };
 export type ResetPasswordMutation = {
     readonly response: ResetPasswordMutationResponse;
@@ -27,8 +29,10 @@ mutation ResetPasswordMutation(
   $input: ResetPasswordInput!
 ) {
   resetPassword(input: $input) {
-    __typename
-    username
+    user {
+      __typename
+      username
+    }
   }
 }
 */
@@ -71,10 +75,21 @@ return {
         "name": "resetPassword",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": null,
+        "concreteType": "ResetPasswordPayload",
         "plural": false,
         "selections": [
-          (v2/*: any*/)
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "user",
+            "storageKey": null,
+            "args": null,
+            "concreteType": null,
+            "plural": false,
+            "selections": [
+              (v2/*: any*/)
+            ]
+          }
         ]
       }
     ]
@@ -90,17 +105,28 @@ return {
         "name": "resetPassword",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": null,
+        "concreteType": "ResetPasswordPayload",
         "plural": false,
         "selections": [
           {
-            "kind": "ScalarField",
+            "kind": "LinkedField",
             "alias": null,
-            "name": "__typename",
+            "name": "user",
+            "storageKey": null,
             "args": null,
-            "storageKey": null
-          },
-          (v2/*: any*/)
+            "concreteType": null,
+            "plural": false,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "__typename",
+                "args": null,
+                "storageKey": null
+              },
+              (v2/*: any*/)
+            ]
+          }
         ]
       }
     ]
@@ -109,10 +135,10 @@ return {
     "operationKind": "mutation",
     "name": "ResetPasswordMutation",
     "id": null,
-    "text": "mutation ResetPasswordMutation(\n  $input: ResetPasswordInput!\n) {\n  resetPassword(input: $input) {\n    __typename\n    username\n  }\n}\n",
+    "text": "mutation ResetPasswordMutation(\n  $input: ResetPasswordInput!\n) {\n  resetPassword(input: $input) {\n    user {\n      __typename\n      username\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '55f010d53262ac51e2a81080771ac325';
+(node as any).hash = '37124bde4b1d78f912f866f030e8bc46';
 export default node;

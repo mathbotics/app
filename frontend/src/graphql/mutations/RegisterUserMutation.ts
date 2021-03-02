@@ -7,7 +7,9 @@ import { RegisterUserInput } from './__generated__/RegisterUserMutation.graphql'
 const mutation = graphql`
   mutation RegisterUserMutation($input: RegisterUserInput!) {
     registerUser(input: $input) {
-      username
+      user{
+        username
+      }
     }
   }
 `;

@@ -1,20 +1,20 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 40f5079b62bb37b720c1a1c6e55ecf1e */
+/* @relayHash 604ec7fd1f9e21c906e4da3dde12aeb5 */
 
 import { ConcreteRequest } from "relay-runtime";
-export type DeleteStudentInput = {
-    courseId: string;
+export type DeleteStudentsInput = {
+    courseId?: string | null;
 };
 export type DeleteStudentMutationVariables = {
-    input: DeleteStudentInput;
+    input: DeleteStudentsInput;
 };
 export type DeleteStudentMutationResponse = {
     readonly deleteStudents: {
-        readonly courses: ReadonlyArray<{
-            readonly id: string;
-        }>;
-    };
+        readonly course: {
+            readonly id: string | null;
+        };
+    } | null;
 };
 export type DeleteStudentMutation = {
     readonly response: DeleteStudentMutationResponse;
@@ -25,10 +25,10 @@ export type DeleteStudentMutation = {
 
 /*
 mutation DeleteStudentMutation(
-  $input: DeleteStudentInput!
+  $input: DeleteStudentsInput!
 ) {
   deleteStudents(input: $input) {
-    courses {
+    course {
       id
     }
   }
@@ -40,7 +40,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "DeleteStudentInput!",
+    "type": "DeleteStudentsInput!",
     "defaultValue": null
   }
 ],
@@ -57,17 +57,17 @@ v1 = [
         "variableName": "input"
       }
     ],
-    "concreteType": "Student",
+    "concreteType": "DeleteStudentsPayload",
     "plural": false,
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "courses",
+        "name": "course",
         "storageKey": null,
         "args": null,
         "concreteType": "Course",
-        "plural": true,
+        "plural": false,
         "selections": [
           {
             "kind": "ScalarField",
@@ -101,10 +101,10 @@ return {
     "operationKind": "mutation",
     "name": "DeleteStudentMutation",
     "id": null,
-    "text": "mutation DeleteStudentMutation(\n  $input: DeleteStudentInput!\n) {\n  deleteStudents(input: $input) {\n    courses {\n      id\n    }\n  }\n}\n",
+    "text": "mutation DeleteStudentMutation(\n  $input: DeleteStudentsInput!\n) {\n  deleteStudents(input: $input) {\n    course {\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = 'b2bb2d990c11a3d68d591ae8c805da4d';
+(node as any).hash = '634cf2f55ba3fd93a7c8eaa8dea40e8c';
 export default node;

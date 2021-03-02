@@ -5,10 +5,10 @@ import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type Dashboard_dashboard = {
     readonly viewer: {
-        readonly firstName: string;
-        readonly lastName: string;
-        readonly email?: string;
-    };
+        readonly firstName: string | null;
+        readonly lastName: string | null;
+        readonly email?: string | null;
+    } | null;
     readonly " $refType": "Dashboard_dashboard";
 };
 export type Dashboard_dashboard$data = Dashboard_dashboard;

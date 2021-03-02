@@ -2,7 +2,6 @@ import nullthrows from 'nullthrows';
 import prisma from '../../data/prisma';
 import { GraphQLInputObjectType, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
 import { UpdateLessonPayload } from '../payloads/UpdateLessonPayload';
-import { Lesson } from '../../server/GraphQLSchema';
 
 export const UpdateLessonInput = new GraphQLInputObjectType({
   name: "UpdateLessonInput",
@@ -14,7 +13,7 @@ export const UpdateLessonInput = new GraphQLInputObjectType({
 });
 
 export const updateOneLesson = {
-    type: Lesson,
+    type: UpdateLessonPayload,
     args: {
       input: {
         type: new GraphQLNonNull(UpdateLessonInput),

@@ -11,8 +11,8 @@ const mutation = graphql`
     updateBlockToMultipleChoiceBlock(input: $input) {
       multipleChoiceQuestionBlock{
         id
-      }
       ...MultipleChoiceQuestionBlock_block
+      }
     }
   }
 `;

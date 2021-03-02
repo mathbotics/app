@@ -5,9 +5,11 @@ import { environment } from '../relay';
 import { CourseCreateInput } from './__generated__/CreateOneCourseMutation.graphql';
 
 const mutation = graphql`
-  mutation CreateOneCourseMutation($data: CourseCreateInput!) {
-    createOneCourse(data: $data) {
+  mutation CreateOneCourseMutation($input: createCourseInput!) {
+    createOneCourse(input: $input) {
+      course{
       ...CourseCard_course
+      }
     }
   }
 `;

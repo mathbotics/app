@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 2b1dc15b90c76707c3b5ce2f633bf8a7 */
+/* @relayHash 07779fa37796b127a295e4cd08d3a050 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -109,7 +109,7 @@ return {
             "storageKey": null,
             "args": null,
             "concreteType": "Instructor",
-            "plural": true,
+            "plural": false,
             "selections": [
               (v0/*: any*/),
               {

@@ -3,22 +3,22 @@
 
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type GradeLevel = "%future added value" | "%future added value" | "%future added value" | "%future added value" | "%future added value" | "%future added value" | "EIGHTH" | "ELEVENTH" | "FIFTH" | "FIRST" | "FOURTH" | "NINTH" | "SECOND" | "SEVENTH" | "SIXTH" | "TENTH" | "THIRD" | "TWELFTH" | "%future added value";
+export type GradeLevel = "%future added value" | "%future added value" | "%future added value" | "%future added value" | "EIGHTH" | "ELEVENTH" | "FIFTH" | "FIRST" | "FOURTH" | "NINTH" | "SECOND" | "SEVENTH" | "SIXTH" | "TENTH" | "THIRD" | "TWELFTH" | "%future added value";
 export type CourseCard_course = {
-    readonly id: string;
-    readonly name: string;
-    readonly suggestedLevel: GradeLevel;
-    readonly instructors: ReadonlyArray<{
-        readonly id: string;
-        readonly firstName: string;
-        readonly lastName: string;
-        readonly username: string;
-    }>;
+    readonly id: string | null;
+    readonly name: string | null;
+    readonly suggestedLevel: GradeLevel | null;
+    readonly instructors: {
+        readonly id: string | null;
+        readonly firstName: string | null;
+        readonly lastName: string | null;
+        readonly username: string | null;
+    } | null;
     readonly lessonPlan: {
         readonly lessons: ReadonlyArray<{
-            readonly title: string;
-        }>;
-    };
+            readonly title: string | null;
+        } | null> | null;
+    } | null;
     readonly " $refType": "CourseCard_course";
 };
 export type CourseCard_course$data = CourseCard_course;
@@ -66,7 +66,7 @@ return {
       "storageKey": null,
       "args": null,
       "concreteType": "Instructor",
-      "plural": true,
+      "plural": false,
       "selections": [
         (v0/*: any*/),
         {

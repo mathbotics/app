@@ -4,8 +4,8 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type LessonPreview_lesson = {
-    readonly id: string;
-    readonly title: string;
+    readonly id: string | null;
+    readonly title: string | null;
     readonly " $refType": "LessonPreview_lesson";
 };
 export type LessonPreview_lesson$data = LessonPreview_lesson;
