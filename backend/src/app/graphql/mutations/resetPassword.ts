@@ -19,7 +19,7 @@ export const ResetPasswordInput = new GraphQLInputObjectType({
 })
 
 export const resetPassword = {
-  type: User,
+  type: ResetPasswordPayload,
   args: {
     input: {
       type: new GraphQLNonNull(ResetPasswordInput),
