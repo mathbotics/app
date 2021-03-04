@@ -2,19 +2,17 @@ import { commitMutation } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 
 import { environment } from '../relay';
-import { LogInInput } from './__generated__/LogInMutation.graphql';
 
 const mutation = graphql`
-  mutation LogInMutation($input: LoginInput!) {
-    logIn(input: $input) {
-      user{
-        firstName
-        lastName
-        username
-      }
+mutation LogInMutation($input: LoginInput!) {
+  logIn(input: $input) {
+  user{
+    id
     }
   }
+}
 `;
+
 
 function commit(
   input: {username, password}, 

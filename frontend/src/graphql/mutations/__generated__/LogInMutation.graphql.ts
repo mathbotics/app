@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 4a2b5c6fc59b209f267e61646bbae953 */
+/* @relayHash 42233861c78bfada65b93677b121a3ac */
 
 import { ConcreteRequest } from "relay-runtime";
 export type LoginInput = {
@@ -13,9 +13,7 @@ export type LogInMutationVariables = {
 export type LogInMutationResponse = {
     readonly logIn: {
         readonly user: {
-            readonly firstName: string | null;
-            readonly lastName: string | null;
-            readonly username: string | null;
+            readonly id: string | null;
         };
     } | null;
 };
@@ -33,9 +31,7 @@ mutation LogInMutation(
   logIn(input: $input) {
     user {
       __typename
-      firstName
-      lastName
-      username
+      id
     }
   }
 }
@@ -60,21 +56,7 @@ v1 = [
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "firstName",
-  "args": null,
-  "storageKey": null
-},
-v3 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "lastName",
-  "args": null,
-  "storageKey": null
-},
-v4 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "username",
+  "name": "id",
   "args": null,
   "storageKey": null
 };
@@ -105,9 +87,7 @@ return {
             "concreteType": null,
             "plural": false,
             "selections": [
-              (v2/*: any*/),
-              (v3/*: any*/),
-              (v4/*: any*/)
+              (v2/*: any*/)
             ]
           }
         ]
@@ -144,9 +124,7 @@ return {
                 "args": null,
                 "storageKey": null
               },
-              (v2/*: any*/),
-              (v3/*: any*/),
-              (v4/*: any*/)
+              (v2/*: any*/)
             ]
           }
         ]
@@ -157,10 +135,10 @@ return {
     "operationKind": "mutation",
     "name": "LogInMutation",
     "id": null,
-    "text": "mutation LogInMutation(\n  $input: LoginInput!\n) {\n  logIn(input: $input) {\n    user {\n      __typename\n      firstName\n      lastName\n      username\n    }\n  }\n}\n",
+    "text": "mutation LogInMutation(\n  $input: LoginInput!\n) {\n  logIn(input: $input) {\n    user {\n      __typename\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = 'ccee1dd9b93f8a87175e463c23377ed6';
+(node as any).hash = '4368e42b2053a16671211143f142331a';
 export default node;

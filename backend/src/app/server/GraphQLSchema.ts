@@ -13,18 +13,29 @@ import {
   GraphQLUnionType,
   FieldsOnCorrectTypeRule,
   GraphQLScalarType,
-  GraphQLBoolean
+  GraphQLBoolean,
+  GraphQLError
 } from 'graphql';
 import prisma from '../data/prisma';
 import { Mutations } from '../graphql/mutations/Mutations';
 import { CourseWhereUniqueInput } from '../graphql/queryinputs/CourseInput';
 import { LessonWhereUniqueInput } from '../graphql/queryinputs/LessonInput';
 
-const resolveUserHelper = async (data) => {
-  console.log("resolver user", data)
+const resolveUserHelper = async (data : typeof User) => {
+
+  if(data == false)
+  {
+    throw new GraphQLError("No user found in resolve for user helper");
+  }
+
   const admin = await prisma.admin.findFirst({
     where: {
-      userId: data.id
+      userId:{ 
+        equals: data.userId,
+      },
+    },
+    include:{
+      user:true
     }
   })
 
@@ -35,7 +46,12 @@ const resolveUserHelper = async (data) => {
 
   const guardian = await prisma.guardian.findFirst({
     where: {
-      userId: data.id
+      userId:{ 
+        equals: data.userId,
+      },
+    },
+    include:{
+      user:true
     }
   })
 
@@ -46,7 +62,12 @@ const resolveUserHelper = async (data) => {
 
   const student = await prisma.student.findFirst({
     where: {
-      userId: data.id
+      userId:{ 
+        equals: data.userId,
+      },
+    },
+    include:{
+      user:true
     }
   })
 
@@ -55,7 +76,23 @@ const resolveUserHelper = async (data) => {
     return "Student";
   } 
 
-  return "Instructor";
+  const instructor = await prisma.instructor.findFirst({
+    where: {
+      userId:{ 
+        equals: data.userId,
+      },
+    },
+    include:{
+      user:true
+    }
+  })
+
+  if(instructor){
+    console.log("is instructor")
+    return "Instructor";
+  } 
+
+  throw new GraphQLError("No user found in resolve for user helper");
 }
 
 
@@ -98,7 +135,6 @@ export const User : any = new GraphQLInterfaceType({
   },
   resolveType: resolveUserHelper
 });
-
 
 export const Student: any  = new GraphQLObjectType({
   name: "Student",
@@ -152,7 +188,7 @@ export const Student: any  = new GraphQLObjectType({
       guardians: {
         type: Guardian,
         resolve(Student){
-          return Student.guardians
+          return Student.guardian.id
         }
       },
       studentTo: {
@@ -441,7 +477,7 @@ export const Lesson = new GraphQLObjectType({
   }
 });
 
-const LessonPlan = new GraphQLObjectType({
+export const LessonPlan = new GraphQLObjectType({
   name: "LessonPlan",
   description: "This represents the LessonPlan",
   fields: () => {
@@ -1075,6 +1111,34 @@ const RootQuery = new GraphQLObjectType({
         },
         async resolve(root, args){
           return await prisma.singleSlide.findMany({where: args, include: {block: true}});
+        }
+      },
+      mcblocks: {
+        type: new GraphQLList(MultipleChoiceQuestionBlock),
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        async resolve(root, args){
+          const mcblocks = await prisma.multipleChoiceQuestionBlock.findMany({
+            where: args, 
+            });
+          return mcblocks
+        }
+      },
+      blocks: {
+        type: new GraphQLList(Block),
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        async resolve(root, args){
+          const blocks = await prisma.block.findMany({
+            where: args, 
+            });
+          return blocks
         }
       }
     }

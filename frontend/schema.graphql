@@ -38,7 +38,6 @@ type Course {
   suggestedLevel: GradeLevel
   instructors: Instructor
   courseTo: [CourseToStudent]
-  students: [Student]
   lessonPlan: LessonPlan
 }
 
@@ -211,7 +210,6 @@ type Lesson {
 # This represents the LessonPlan
 type LessonPlan {
   id: String
-  lessons: [Lesson]
 }
 
 input LessonWhereUniqueInput {
@@ -240,7 +238,7 @@ type MultipleChoiceQuestionBlock {
 type MultipleChoiceQuestionChoice {
   id: String
   text: String
-  correct: Boolean
+  correct: String
 }
 
 # This represents the MultipleChoiceQuestionResponse
@@ -273,7 +271,6 @@ type Mutation {
   registerUser(input: RegisterUserInput!): RegisterUserPayload
   sendInvitationEmail(input: SendInvitationEmailInput!): String
   sendResetPasswordEmail(input: SendResetPasswordEmailInput!): String
-  resetPassword(input: ResetPasswordInput!): ResetPasswordPayload
 }
 
 # This represents the Page
@@ -286,16 +283,15 @@ type Page {
 
 # This is the root query
 type Query {
-  viewer(id: ID): User
   users(id: ID): [User]
   admins(id: ID): [Admin]
   student(id: ID): Student
   students(id: ID): [Student]
   guardians(id: ID): [User]
   instructors(id: ID): [Instructor]
-  course(where: CourseWhereUniqueInput): Course
+  course(id: CourseWhereUniqueInput): Course
   courses(id: ID): [Course]
-  lesson(where: LessonWhereUniqueInput): Lesson
+  lesson(id: LessonWhereUniqueInput): Lesson
   lessons(id: ID): [Lesson]
   lessonPlans(id: ID): [LessonPlan]
   courseToStudent(id: ID): [CourseToStudent]
@@ -311,6 +307,7 @@ type Query {
   singleSlides(id: ID): [SingleSlide]
   mcblocks(id: ID): [MultipleChoiceQuestionBlock]
   blocks(id: ID): [Block]
+  viewer(id: ID): User
 }
 
 input RegisterUserInput {
@@ -329,11 +326,6 @@ type RegisterUserPayload {
 input ResetPasswordInput {
   password: String
   token: String
-}
-
-# User type definition
-type ResetPasswordPayload {
-  user: User!
 }
 
 input SendInvitationEmailInput {
