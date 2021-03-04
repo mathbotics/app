@@ -39,11 +39,21 @@ export const LoginPage = (props: LogInProps): JSX.Element => {
     AuthState.DEFAULT,
   );
 
-  const onLoginSuccess = (response: LogInMutationResponse) =>
+  const onLoginSuccess = (response: LogInMutationResponse) =>{
+    console.log("The user has succesfully logged in with response: ", response)
+    if(response.logIn == null)
+    {
+      onLoginFailure(new Error("The user was null"))
+    }
+    else{
     setLoginState(AuthState.AUTHENTICATED);
+    }
+  }
 
-  const onLoginFailure = (error: Error) =>
+  const onLoginFailure = (error: Error) =>{
+    console.log("The user has error when logging in: ", error)
     setLoginState(AuthState.INVALID_ATTEMPT);
+  }
 
   const onSubmitHandler = ({ username, password }: Store): void => {
     setLoginState(AuthState.AUTHENTICATING);
