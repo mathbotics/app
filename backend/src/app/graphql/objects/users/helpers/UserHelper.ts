@@ -4,35 +4,39 @@ import prisma from '../../../../data/prisma';
 
 const possibleImplementations = (id: string, includeUser: boolean = false) =>
   Promise.all([
-    prisma.admin.findUnique({
-      where: { id },
+    prisma.admin.findFirst({
+      where: { userId: id },
       include: {
         user: includeUser,
       },
     }),
-    prisma.guardian.findUnique({
-      where: { id },
+    prisma.guardian.findFirst({
+      where: { userId: id },
       include: {
         user: includeUser,
       },
     }),
-    prisma.instructor.findUnique({
-      where: { id },
+    prisma.instructor.findFirst({
+      where: { userId: id },
       include: {
         user: includeUser,
       },
     }),
-    prisma.student.findUnique({
-      where: { id },
+    prisma.student.findFirst({
+      where: { userId: id },
       include: {
         user: includeUser,
       },
     }),
   ]);
+  // .catch(error => {   // Try this if still getting promise rejection error
+  //   console.error(error.message)
+  // });
 
 export default {
   async user(id: string) {
     const { user } = await this.implementation(id, true);
+
     return user;
   },
   async role(id: string) {
@@ -63,6 +67,11 @@ export default {
       instructor,
       student,
     ] = await possibleImplementations(id, includeUser);
+    console.log(admin, "This is admin");
+    console.log(guardian, "This is guardian");
+    console.log(instructor, "This is instructor");
+    console.log(student, "This is student");
+    console.log(id, "This is the id that is being passed")
     return nullthrows(
       admin ?? guardian ?? instructor ?? student,
       'User not found',

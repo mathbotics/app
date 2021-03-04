@@ -1,0 +1,419 @@
+# Exposes a URL that specifies the behaviour of this scalar.
+directive @specifiedBy(
+  # The URL that specifies the behaviour of this scalar.
+  url: String!
+) on SCALAR
+# This represents the Admin
+type Admin implements User {
+  id: String
+  username: String
+  firstName: String
+  lastName: String
+  email: String
+  password: String
+}
+
+# This represents the Block
+union Block = MultipleChoiceQuestionBlock | TextBlock | EmptyBlock
+input ChoiceInput {
+  text: String
+  correct: Boolean
+}
+
+# This represents the Content
+type Content {
+  id: String
+  author: User
+  createdAt: String
+  title: String
+  course: String
+  pages: [Page]
+}
+
+# This represents the Course
+type Course {
+  id: String
+  name: String
+  description: String
+  suggestedLevel: GradeLevel
+  instructors: Instructor
+  courseTo: [CourseToStudent]
+  lessonPlan: LessonPlan
+}
+
+# This represents the Course to Student relations
+type CourseToStudent {
+  course: Course
+  courseId: String
+  student: Student
+  studentId: String
+  grade: Float
+}
+
+input CourseUpdateInput {
+  id: String
+  name: String
+  description: String
+  suggestedLevel: GradeLevel
+  lessonPlanId: String
+}
+
+input CourseWhereUniqueInput {
+  id: String
+}
+
+input createCourseInput {
+  name: String
+  description: String
+  suggestedLevel: GradeLevel
+}
+
+# course type definition
+type CreateCoursePayload {
+  course: Course!
+}
+
+input CreateLessonInput {
+  title: String
+  lessonPlanId: String
+}
+
+# Lesson type definition
+type CreateLessonPayload {
+  lesson: Lesson!
+}
+
+input CreateSlideInput {
+  slideType: String
+  lessonId: String
+  title: String
+}
+
+# Slide type definition
+type CreateSlidePayload {
+  slide: Slide!
+}
+
+input CreateStudentInput {
+  username: String
+  firstName: String
+  lastName: String
+  gradeLevel: GradeLevel
+  email: String
+  courseId: String
+}
+
+# Student type definition
+type CreateStudentPayload {
+  student: Student!
+}
+
+input DeleteCourseInput {
+  courseId: String
+}
+
+# Course type definition
+type DeleteCoursePayload {
+  course: Course!
+}
+
+input DeleteLessonInput {
+  id: String
+}
+
+# Lesson type definition
+type DeleteLessonPayload {
+  lesson: Lesson!
+}
+
+input DeleteStudentInput {
+  studentId: String
+  courseId: String
+}
+
+# Student type definition
+type DeleteStudentPayload {
+  student: Student!
+}
+
+input DeleteStudentsInput {
+  courseId: String
+}
+
+# Deleting students
+type DeleteStudentsPayload {
+  course: Course!
+}
+
+input EditStudentInput {
+  username: String
+  firstName: String
+  lastName: String
+  studentId: String
+  gradeLevel: GradeLevel
+}
+
+# Student type definition
+type EditStudentPayload {
+  student: Student!
+}
+
+# This represents the Empty Block
+type EmptyBlock {
+  id: String
+}
+
+enum GradeLevel {
+  FIRST
+  SECOND
+  THIRD
+  FOURTH
+  FIFTH
+  SIXTH
+  SEVENTH
+  EIGHTH
+  NINTH
+  TENTH
+  ELEVENTH
+  TWELFTH
+}
+
+# This represents the Guardian
+type Guardian implements User {
+  id: String
+  email: String
+  firstName: String
+  lastName: String
+  username: String
+  password: String
+  students: Student
+}
+
+# This represents the instructor
+type Instructor implements User {
+  id: String
+  firstName: String
+  lastName: String
+  username: String
+  password: String
+  email: String
+  courses: Course
+}
+
+# This represents the Lesson
+type Lesson {
+  id: String
+  title: String
+  slides: [Slide]
+}
+
+# This represents the LessonPlan
+type LessonPlan {
+  id: String
+}
+
+input LessonWhereUniqueInput {
+  id: String
+}
+
+input LoginInput {
+  username: String
+  password: String
+}
+
+# User type definition
+type LoginPayload {
+  user: User!
+}
+
+# This is the multiple choice question block
+type MultipleChoiceQuestionBlock {
+  id: String
+  text: String
+  choices: [MultipleChoiceQuestionChoice]
+  responses: [MultipleChoiceQuestionResponse]
+}
+
+# This represents the MultipleChoiceQuestionChoice
+type MultipleChoiceQuestionChoice {
+  id: String
+  text: String
+  correct: String
+}
+
+# This represents the MultipleChoiceQuestionResponse
+type MultipleChoiceQuestionResponse {
+  id: String
+  choice: String
+  student: String
+}
+
+type Mutation {
+  createStudent(input: CreateStudentInput!): CreateStudentPayload
+  logIn(input: LoginInput!): LoginPayload
+  createOneCourse(input: createCourseInput!): CreateCoursePayload
+  deleteSingleStudent(input: DeleteStudentInput!): DeleteStudentPayload
+  editStudent(input: EditStudentInput!): EditStudentPayload
+  createSlide(input: CreateSlideInput!): CreateSlidePayload
+  updateBlockToTextBlock(
+    input: UpdateBlockToTextBlockInput!
+  ): UpdateBlockToTBPayload
+  updateBlockToMultipleChoiceBlock(
+    input: UpdateBlockToMultipleChoiceBlockInput!
+  ): UpdateBlockToMultipleChoiceBlockPayload
+  deleteCourse(input: DeleteCourseInput!): DeleteCoursePayload
+  deleteStudents(input: DeleteStudentsInput!): DeleteStudentsPayload
+  createOneLesson(input: CreateLessonInput!): CreateLessonPayload
+  deleteLesson(input: DeleteLessonInput!): DeleteLessonPayload
+  updateOneLesson(input: UpdateLessonInput!): UpdateLessonPayload
+  updateOneCourse(input: CourseUpdateInput!): UpdateCoursePayload
+  logOut: Boolean
+  registerUser(input: RegisterUserInput!): RegisterUserPayload
+  sendInvitationEmail(input: SendInvitationEmailInput!): String
+  sendResetPasswordEmail(input: SendResetPasswordEmailInput!): String
+}
+
+# This represents the Page
+type Page {
+  createdAt: String
+  data: String
+  id: String
+  content: Content
+}
+
+# This is the root query
+type Query {
+  users(id: ID): [User]
+  admins(id: ID): [Admin]
+  student(id: ID): Student
+  students(id: ID): [Student]
+  guardians(id: ID): [User]
+  instructors(id: ID): [Instructor]
+  course(id: CourseWhereUniqueInput): Course
+  courses(id: ID): [Course]
+  lesson(id: LessonWhereUniqueInput): Lesson
+  lessons(id: ID): [Lesson]
+  lessonPlans(id: ID): [LessonPlan]
+  courseToStudent(id: ID): [CourseToStudent]
+  multipleChoiceQuestionChoice(id: ID): [MultipleChoiceQuestionChoice]
+  multipleChoiceQuestionResponse(id: ID): [MultipleChoiceQuestionResponse]
+  multipleChoiceQuestionBlock(id: ID): [MultipleChoiceQuestionBlock]
+  textBlock(id: ID): [TextBlock]
+  block(id: ID): [Block]
+  slides(id: ID): [Slide]
+  singleSlide(id: ID): [SingleSlide]
+  pages(id: ID): [Page]
+  content(id: ID): [Content]
+  singleSlides(id: ID): [SingleSlide]
+  mcblocks(id: ID): [MultipleChoiceQuestionBlock]
+  blocks(id: ID): [Block]
+  viewer(id: ID): User
+}
+
+input RegisterUserInput {
+  username: String
+  token: String
+  password: String
+  firstName: String
+  lastName: String
+}
+
+# User type definition
+type RegisterUserPayload {
+  user: User!
+}
+
+input ResetPasswordInput {
+  password: String
+  token: String
+}
+
+input SendInvitationEmailInput {
+  email: String
+  role: String
+}
+
+input SendResetPasswordEmailInput {
+  email: String
+  role: String
+}
+
+# This represents the Single Slide
+type SingleSlide implements Slide {
+  id: String
+  title: String
+  block: Block
+}
+
+# This represents the Slide
+interface Slide {
+  id: String
+  title: String
+}
+
+# This represents the student
+type Student implements User {
+  id: String
+  username: String
+  firstName: String
+  lastName: String
+  password: String
+  gradeLevel: GradeLevel
+  guardians: Guardian
+  studentTo: [CourseToStudent]
+}
+
+# This represents the Text Block
+type TextBlock {
+  id: String
+  title: String
+  body: String
+}
+
+input UpdateBlockToMultipleChoiceBlockInput {
+  blockId: String
+  questionText: String
+  choices: [ChoiceInput]
+}
+
+# MC block type definition
+type UpdateBlockToMultipleChoiceBlockPayload {
+  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlock!
+}
+
+# Text Block type definition
+type UpdateBlockToTBPayload {
+  textBlock: TextBlock!
+}
+
+input UpdateBlockToTextBlockInput {
+  blockId: String
+  title: String
+  body: String
+}
+
+# Course type definition
+type UpdateCoursePayload {
+  course: Course!
+}
+
+input UpdateLessonInput {
+  id: String
+  title: String
+  lessonPlanId: String
+}
+
+# Lesson type definition
+type UpdateLessonPayload {
+  lesson: Lesson!
+}
+
+# This represents the user model
+interface User {
+  id: String
+  username: String
+  firstName: String
+  lastName: String
+  password: String
+}
+

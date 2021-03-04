@@ -3,12 +3,12 @@
 /* @relayHash a751f069b9dc73983d73443484c58222 */
 
 import { ConcreteRequest } from "relay-runtime";
-export type LogInInput = {
+export type LoginInput = {
     password: string;
     username: string;
 };
 export type LogInMutationVariables = {
-    input: LogInInput;
+    input: LoginInput;
 };
 export type LogInMutationResponse = {
     readonly logIn: {
@@ -46,7 +46,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "input",
-    "type": "LogInInput!",
+    "type": "LoginInput!",
     "defaultValue": null
   }
 ],
@@ -128,13 +128,13 @@ return {
         "name": "logIn",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": null,
+        "concreteType": "User",
         "plural": false,
         "selections": [
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "__typename",
+            "name": "id", //"name": "user"
             "args": null,
             "storageKey": null
           },
@@ -150,7 +150,7 @@ return {
     "operationKind": "mutation",
     "name": "LogInMutation",
     "id": null,
-    "text": "mutation LogInMutation(\n  $input: LogInInput!\n) {\n  logIn(input: $input) {\n    __typename\n    firstName\n    lastName\n    username\n    ... on Instructor {\n      email\n    }\n  }\n}\n",
+    "text": "mutation LogInMutation(\n  $input: LoginInput!\n) {\n  logIn(input: $input) {\n   user\n    {\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

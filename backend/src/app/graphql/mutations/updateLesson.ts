@@ -14,7 +14,7 @@ export const UpdateLessonInput = new GraphQLInputObjectType({
 });
 
 export const updateOneLesson = {
-    type: Lesson,
+    type: UpdateLessonPayload,
     args: {
       input: {
         type: new GraphQLNonNull(UpdateLessonInput),

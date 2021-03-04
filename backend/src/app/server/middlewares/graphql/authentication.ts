@@ -40,7 +40,7 @@ export default {
         });
       }
       console.log(token)
-      console.log("ussserr", {user: user})
+      console.log("user in authentication", {user: user})
       return { user: user};
     },
   },

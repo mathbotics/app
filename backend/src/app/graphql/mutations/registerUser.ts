@@ -21,7 +21,7 @@ export const RegisterUserInput = new GraphQLInputObjectType({
 })
 
 export const registerUser = {
-  type: User,
+  type: RegisterUserPayload,
   args: {
     input: {
       type: new GraphQLNonNull(RegisterUserInput),
