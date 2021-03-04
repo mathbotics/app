@@ -5,6 +5,7 @@ import nullthrows from 'nullthrows';
 import {logIn , LoginInput} from '../../../graphql/mutations/logIn'
 import { Context } from '../../../graphql/context';
 import { User } from '@prisma/client';
+import { GraphQLError } from 'graphql';
 
 const { JWT_SECRET, NODE_ENV } = process.env;
 
@@ -28,6 +29,12 @@ export default {
     ) {
       console.log("entered")
       const user = await resolve(parent, args, context, info);
+      // If statement below might not be needed.  Check back later
+      if(user == null)
+      {
+        throw new GraphQLError("User not found in authentication");
+        
+      }
       const token = jwt.sign(
         {
           id: nullthrows(user.id, 'id cannot be null or undefined.'),

@@ -55,7 +55,6 @@ export default (props: Omit<Props, 'viewer'>) => (
       props?: ProtectedRouteQueryResponse;
       error?: Error;
     }) => {
-      console.log(queryResponse.error, "This is the error I am getting in the query response")
       if (!queryResponse?.props && !queryResponse.error) {
         return (
           <Spin
@@ -68,6 +67,9 @@ export default (props: Omit<Props, 'viewer'>) => (
             }}
           />
         );
+      }
+      if (queryResponse.props?.viewer == null) {
+        return <Redirect to="/login" />;
       }
       if (queryResponse.error) {
         return <Redirect to="/login" />;
