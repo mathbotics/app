@@ -240,7 +240,7 @@ type MultipleChoiceQuestionBlock {
 type MultipleChoiceQuestionChoice {
   id: String
   text: String
-  correct: String
+  correct: Boolean
 }
 
 # This represents the MultipleChoiceQuestionResponse

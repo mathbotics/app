@@ -7,7 +7,7 @@ export type MultipleChoiceGroup_block = {
     readonly choices: ReadonlyArray<{
         readonly id: string | null;
         readonly text: string | null;
-        readonly correct: string | null;
+        readonly correct: boolean | null;
     } | null> | null;
     readonly " $refType": "MultipleChoiceGroup_block";
 };

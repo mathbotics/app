@@ -12,7 +12,8 @@ import {
   GraphQLInterfaceType,
   GraphQLUnionType,
   FieldsOnCorrectTypeRule,
-  GraphQLScalarType
+  GraphQLScalarType,
+  GraphQLBoolean
 } from 'graphql';
 import prisma from '../data/prisma';
 import { Mutations } from '../graphql/mutations/Mutations';
@@ -479,7 +480,7 @@ const MultipleChoiceQuestionChoice = new GraphQLObjectType({
         }
       },
       correct: {
-        type: GraphQLString,
+        type: GraphQLBoolean,
         resolve(MultipleChoiceQuestionChoice) {
           return MultipleChoiceQuestionChoice.correct
         }
