@@ -68,6 +68,9 @@ export default (props: Omit<Props, 'viewer'>) => (
           />
         );
       }
+      if (queryResponse.props?.viewer == null) {
+        return <Redirect to="/login" />;
+      }
       if (queryResponse.error) {
         return <Redirect to="/login" />;
       }

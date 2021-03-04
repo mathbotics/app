@@ -1,53 +1,54 @@
+import { GraphQLInputObjectType, GraphQLNonNull, GraphQLString } from 'graphql';
 import { mutationField, inputObjectType, arg } from 'nexus';
 import nullthrows from 'nullthrows';
-
+import { GradeLevel } from '../../server/GraphQLSchema';
 import prisma from '../../data/prisma';
+import { EditStudentPayload } from '../payloads/EditStudentPayload';
+import { resolve } from 'path';
 
-export const EditStudentInput = inputObjectType({
-  name: 'EditStudentInput',
-  definition(t) {
-    t.string('username', {
-      required: true,
-    });
-    t.string('firstName', {
-      required: true,
-    });
-    t.string('lastName', {
-      required: true,
-    });
-    t.string('studentId', {
-      required: true,
-    });
-    t.field('gradeLevel', {
-      type: 'GradeLevel',
-      required: true,
-    });
-  },
-});
 
-export const editStudent = mutationField('editStudent', {
-  type: 'Student',
+export const EditStudentInput = new GraphQLInputObjectType({
+  name: "EditStudentInput",
+  fields: () => ({
+    username: { type: GraphQLString },
+    firstName: { type: GraphQLString },
+    lastName: { type: GraphQLString },
+    studentId: { type: GraphQLString },
+    gradeLevel: { type: GradeLevel}
+  })
+})
+
+export const editStudent = {
+  type: EditStudentPayload,
   args: {
-    input: arg({ type: 'EditStudentInput', required: true }),
+    input: {
+      type: new GraphQLNonNull(EditStudentInput),
+    }
   },
-  async resolve(
-    _root,
-    { input: { username, firstName, lastName, studentId, gradeLevel } },
-  ) {
-    const { user, ...student } = await prisma.student.update({
-      where: { id: studentId },
-      data: {
-        user: {
-          update: {
-            username,
-            firstName,
-            lastName,
-          },
+  async resolve(root, args) {
+    const { username, firstName, lastName, studentId, gradeLevel } = args.input;
+    const student = nullthrows(
+      await prisma.student.update({
+        where: {
+          id: studentId,
         },
-        gradeLevel,
-      },
-      include: { user: true },
-    });
-    return { ...user, ...student };
-  },
-});
+        data: {
+          user: {
+            update: {
+              username,
+              firstName,
+              lastName,
+            }
+          },
+          gradeLevel,
+        },
+        include: {
+          user: true,
+        }
+      }),
+      "Student could not be updated"
+    );
+    
+    return {student: student}
+  }
+}

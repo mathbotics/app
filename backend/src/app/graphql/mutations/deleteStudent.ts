@@ -54,33 +54,9 @@ export const deleteSingleStudent = {
       }),
       "Could not delete student from User table"
     )
-    console.log("successfully deleted student from coursetostudent, student and user table", student)
-    return {"student" : {...student}}
+    console.log("successfully deleted student from coursetostudent, student and user table",student)
+    return {"student": {...student}}
   }
 }
 
 
-
-// export const DeleteStudentInput = inputObjectType({
-//   name: 'DeleteStudentInput',
-//   definition(t) {
-//     t.string('courseId', {
-//       required: true,
-//     });
-//   },
-// });
-// export const deleteStudent = mutationField('deleteStudent', {
-//   type: 'Student',
-//   args: {
-//     input: arg({ type: 'DeleteStudentInput', required: true }),
-//   },
-//   async resolve(_root, { input: { courseId } }) {
-//     const { count } = await prisma.student.deleteMany({
-//       where: {
-//         courses: {
-//           every: { id: courseId },
-//         },
-//       },
-//     });
-//   },
-// });

@@ -5,6 +5,7 @@ import nullthrows from 'nullthrows';
 import {logIn , LoginInput} from '../../../graphql/mutations/logIn'
 import { Context } from '../../../graphql/context';
 import { User } from '@prisma/client';
+import { GraphQLError } from 'graphql';
 
 const { JWT_SECRET, NODE_ENV } = process.env;
 
@@ -27,10 +28,16 @@ export default {
       info: {},
     ) {
       console.log("entered")
-      const { id, ...user } = await resolve(parent, args, context, info);
+      const user = await resolve(parent, args, context, info);
+      // If statement below might not be needed.  Check back later
+      if(user == null)
+      {
+        throw new GraphQLError("User not found in authentication");
+        
+      }
       const token = jwt.sign(
         {
-          id: nullthrows(id, 'id cannot be null or undefined.'),
+          id: nullthrows(user.id, 'id cannot be null or undefined.'),
         },
         nullthrows(JWT_SECRET, 'JWT_SECRET cannot be null or undefined.'),
       );
@@ -40,7 +47,8 @@ export default {
         });
       }
       console.log(token)
-      return { id, ...user };
+      console.log("user in authentication", {user: user})
+      return { user: user};
     },
   },
 } as IMiddlewareFieldMap;

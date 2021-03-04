@@ -15,7 +15,7 @@ export const createCourseInput = new GraphQLInputObjectType({
     })
 });
 
-export const createCourseMutation = {
+export const createOneCourse = {
     type: CreateCoursePayload,
     args: {
       input: {

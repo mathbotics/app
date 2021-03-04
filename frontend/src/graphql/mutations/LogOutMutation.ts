@@ -2,7 +2,7 @@ import { commitMutation } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 
 import { environment } from '../relay';
-import { LogInInput } from './__generated__/LogInMutation.graphql';
+//import { LogInInput } from './__generated__/LogInMutation.graphql';
 
 const mutation = graphql`
   mutation LogOutMutation {

@@ -41,12 +41,6 @@ type Course {
   lessonPlan: LessonPlan
 }
 
-input CourseCreateInput {
-  name: String
-  description: String
-  suggestedLevel: GradeLevel
-}
-
 # This represents the Course to Student relations
 type CourseToStudent {
   course: Course
@@ -68,9 +62,20 @@ input CourseWhereUniqueInput {
   id: String
 }
 
+input createCourseInput {
+  name: String
+  description: String
+  suggestedLevel: GradeLevel
+}
+
 # course type definition
 type CreateCoursePayload {
   course: Course!
+}
+
+input CreateLessonInput {
+  title: String
+  lessonPlanId: String
 }
 
 # Lesson type definition
@@ -121,7 +126,7 @@ type DeleteLessonPayload {
   lesson: Lesson!
 }
 
-input DeleteSingleStudentInput {
+input DeleteStudentInput {
   studentId: String
   courseId: String
 }
@@ -202,11 +207,6 @@ type Lesson {
   slides: [Slide]
 }
 
-input LessonCreateInput {
-  title: String
-  lessonPlanId: String
-}
-
 # This represents the LessonPlan
 type LessonPlan {
   id: String
@@ -251,8 +251,8 @@ type MultipleChoiceQuestionResponse {
 type Mutation {
   createStudent(input: CreateStudentInput!): CreateStudentPayload
   logIn(input: LoginInput!): LoginPayload
-  createOneCourse(input: CourseCreateInput!): CreateCoursePayload
-  deleteSingleStudent(input: DeleteSingleStudentInput!): DeleteStudentPayload
+  createOneCourse(input: createCourseInput!): CreateCoursePayload
+  deleteSingleStudent(input: DeleteStudentInput!): DeleteStudentPayload
   editStudent(input: EditStudentInput!): EditStudentPayload
   createSlide(input: CreateSlideInput!): CreateSlidePayload
   updateBlockToTextBlock(
@@ -263,7 +263,7 @@ type Mutation {
   ): UpdateBlockToMultipleChoiceBlockPayload
   deleteCourse(input: DeleteCourseInput!): DeleteCoursePayload
   deleteStudents(input: DeleteStudentsInput!): DeleteStudentsPayload
-  createOneLesson(input: LessonCreateInput!): CreateLessonPayload
+  createOneLesson(input: CreateLessonInput!): CreateLessonPayload
   deleteLesson(input: DeleteLessonInput!): DeleteLessonPayload
   updateOneLesson(input: UpdateLessonInput!): UpdateLessonPayload
   updateOneCourse(input: CourseUpdateInput!): UpdateCoursePayload
@@ -271,7 +271,6 @@ type Mutation {
   registerUser(input: RegisterUserInput!): RegisterUserPayload
   sendInvitationEmail(input: SendInvitationEmailInput!): String
   sendResetPasswordEmail(input: SendResetPasswordEmailInput!): String
-  resetPassword(input: ResetPasswordInput!): ResetPasswordPayload
 }
 
 # This represents the Page
@@ -306,6 +305,9 @@ type Query {
   pages(id: ID): [Page]
   content(id: ID): [Content]
   singleSlides(id: ID): [SingleSlide]
+  mcblocks(id: ID): [MultipleChoiceQuestionBlock]
+  blocks(id: ID): [Block]
+  viewer(id: ID): User
 }
 
 input RegisterUserInput {
@@ -324,11 +326,6 @@ type RegisterUserPayload {
 input ResetPasswordInput {
   password: String
   token: String
-}
-
-# User type definition
-type ResetPasswordPayload {
-  user: User!
 }
 
 input SendInvitationEmailInput {
