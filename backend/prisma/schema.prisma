@@ -23,8 +23,9 @@ model Course {
   suggestedLevel GradeLevel
   contents       Content[]
   instructors    Instructor[]
-  lessonPlan     LessonPlan
+  //lessonPlan     LessonPlan
   courseTo       CourseToStudent[]
+  courses       CourseToLesson[]
 }
 
 model Guardian {
@@ -58,6 +59,7 @@ model Student {
   guardians  Guardian[]
   user       User
   studentTo  CourseToStudent[]
+  //students   Grade[]
 }
 
 enum GradeLevel {
@@ -156,19 +158,48 @@ model Lesson {
   id     String  @id @default(cuid())
   title  String
   slides Slide[]
+  lessons CourseToLesson[]
+  //lessonTo CourseToStudent[]
 }
 
-model LessonPlan {
-  id      String   @id @default(cuid())
-  lessons Lesson[]
-  course  Course?
-}
+//model LessonPlan {
+//  id      String   @id @default(cuid())
+//  lessons Lesson[]
+//  course  Course?
+//}
 
 model CourseToStudent {
   course     Course     @relation(fields: [courseId], references: [id])
   courseId   String       // relation scalar field (used in the @relation attribute above)
   student    Student    @relation(fields: [studentId], references: [id])
   studentId  String      // relation scalar field (used in the @relation attribute above)
-  grade      Float
+  //lesson     Lesson     @relation(fields: [lessonId], references: [id])
+  //lessonId   String      // relation scalar field (used in the @relation attribute above) 
+  //grade      Float
+  //courses    Grade[]
   @@id([courseId, studentId])
+}
+
+
+
+model CourseToLesson {
+  course     Course     @relation(fields: [courseId], references: [id])
+  courseId   String       // relation scalar field (used in the @relation attribute above)
+  lesson     Lesson     @relation(fields: [lessonId], references: [id])
+  lessonId   String      // relation scalar field (used in the @relation attribute above)
+  //lessons    Grade []  
+  //grade      Float
+  @@id([courseId, lessonId])
+}
+
+
+model Grade{
+  course     Course     @relation(fields: [courseId], references: [id])
+  courseId   String       // relation scalar field (used in the @relation attribute above)
+  lesson     Lesson     @relation(fields: [lessonId], references: [id])
+  lessonId   String      // relation scalar field (used in the @relation attribute above)
+  student    Student    @relation(fields: [studentId], references: [id])
+  studentId  String      // relation scalar field (used in the @relation attribute above)
+  grade      Float
+  @@id([courseId, lessonId, studentId])
 }
