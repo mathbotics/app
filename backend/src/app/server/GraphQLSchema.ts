@@ -432,21 +432,12 @@ export const Course = new GraphQLObjectType({
         resolve(Course){
           return Course.courseTo
         }
-<<<<<<< HEAD
-=======
       },
       students: {
         type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(Student))),
         resolve(Course){
           return Course.students
         }
-      },
-      lessonPlan: {
-        type: new GraphQLNonNull(LessonPlan),
-        resolve(Course){
-          return Course.lessonPlan
-        }
->>>>>>> 60a785eae2e6a8abd3baf6d950f4b24888020e8b
       }
       // lessonPlan: {
       //   type: LessonPlan,
@@ -486,7 +477,6 @@ export const Lesson = new GraphQLObjectType({
   }
 });
 
-<<<<<<< HEAD
 // export const LessonPlan = new GraphQLObjectType({
 //   name: "LessonPlan",
 //   description: "This represents the LessonPlan",
@@ -501,28 +491,6 @@ export const Lesson = new GraphQLObjectType({
 //     }
 //   }
 // });
-=======
-export const LessonPlan = new GraphQLObjectType({
-  name: "LessonPlan",
-  description: "This represents the LessonPlan",
-  fields: () => {
-    return {
-      id: {
-        type: new GraphQLNonNull(GraphQLString),
-        resolve(LessonPlan) {
-          return LessonPlan.id
-        }
-      },
-      lessons: {
-        type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(Lesson))),
-        resolve(LessonPlan){
-          return LessonPlan.lessons
-        }
-      }
-    }
-  }
-});
->>>>>>> 60a785eae2e6a8abd3baf6d950f4b24888020e8b
 
 const MultipleChoiceQuestionChoice = new GraphQLObjectType({
   name: "MultipleChoiceQuestionChoice",
@@ -1139,25 +1107,6 @@ const RootQuery = new GraphQLObjectType({
           return await prisma.singleSlide.findMany({where: args, include: {block: true}});
         }
       },
-<<<<<<< HEAD
-      courses: {
-        type: new GraphQLList(Course),
-        args: {
-          id: {
-            type: GraphQLID
-          }
-        },
-        async resolve(root, args){
-          const courses = await prisma.course.findMany({
-            where: args 
-            //include: { lessonPlan: true}
-          });
-          console.log(courses)
-          return courses
-        }
-      },
-=======
->>>>>>> 60a785eae2e6a8abd3baf6d950f4b24888020e8b
       mcblocks: {
         type: new GraphQLList(MultipleChoiceQuestionBlock),
         args: {
