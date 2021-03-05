@@ -24,22 +24,22 @@ export const createOneCourse = {
     },
    async resolve(root, args){
      const { name, description, suggestedLevel} = args.input 
-     const lessonPlan = nullthrows(
-        await prisma.lessonPlan.create({
-            data: {}
-        })
-     )
+    //  const lessonPlan = nullthrows(
+    //     await prisma.lessonPlan.create({
+    //         data: {}
+    //     })
+     //)
     const  course = nullthrows(
       await prisma.course.create({
         data: {
             name,
             description,
             suggestedLevel,
-            lessonPlan: { 
-                connect: { 
-                    id: lessonPlan.id 
-                } 
-            }
+            // lessonPlan: { 
+            //     connect: { 
+            //         id: lessonPlan.id 
+            //     } 
+            // }
         }
       }),
       'Could not create course',

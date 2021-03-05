@@ -10,8 +10,7 @@ export const CourseUpdateInput = new GraphQLInputObjectType({
     id: { type: GraphQLString},
     name: { type: GraphQLString},
     description: { type: GraphQLString},
-    suggestedLevel: { type: GradeLevel},
-    lessonPlanId: { type: GraphQLString},
+    suggestedLevel: { type: GradeLevel}
   })
 });
 
@@ -23,7 +22,7 @@ export const updateOneCourse = {
       }
     },
    async resolve(root, args){
-    const {id, name, description, suggestedLevel, lessonPlanId} = args.input 
+    const {id, name, description, suggestedLevel} = args.input 
 
     const course = nullthrows(
         await prisma.course.update({
@@ -33,8 +32,7 @@ export const updateOneCourse = {
           data: {
             name: name, 
             description: description, 
-            suggestedLevel: suggestedLevel, 
-            lessonPlanId: lessonPlanId
+            suggestedLevel: suggestedLevel
           },
         }),
         'Could not update course',

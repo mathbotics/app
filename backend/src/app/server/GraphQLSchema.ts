@@ -431,13 +431,13 @@ export const Course = new GraphQLObjectType({
         resolve(Course){
           return Course.courseTo
         }
-      },
-      lessonPlan: {
-        type: LessonPlan,
-        resolve(Course){
-          return Course.lessonPlan
-        }
       }
+      // lessonPlan: {
+      //   type: LessonPlan,
+      //   resolve(Course){
+      //     return Course.lessonPlan
+      //   }
+      //}
     }
   }
 });
@@ -470,20 +470,20 @@ export const Lesson = new GraphQLObjectType({
   }
 });
 
-export const LessonPlan = new GraphQLObjectType({
-  name: "LessonPlan",
-  description: "This represents the LessonPlan",
-  fields: () => {
-    return {
-      id: {
-        type: GraphQLString,
-        resolve(LessonPlan) {
-          return LessonPlan.id
-        }
-      }
-    }
-  }
-});
+// export const LessonPlan = new GraphQLObjectType({
+//   name: "LessonPlan",
+//   description: "This represents the LessonPlan",
+//   fields: () => {
+//     return {
+//       id: {
+//         type: GraphQLString,
+//         resolve(LessonPlan) {
+//           return LessonPlan.id
+//         }
+//       }
+//     }
+//   }
+// });
 
 const MultipleChoiceQuestionChoice = new GraphQLObjectType({
   name: "MultipleChoiceQuestionChoice",
@@ -897,7 +897,7 @@ const RootQuery = new GraphQLObjectType({
             where: args, 
             include: { 
               instructors: true,
-              lessonPlan: true,
+              //lessonPlan: true,
               courseTo: true,
               contents: true
             }
@@ -916,7 +916,7 @@ const RootQuery = new GraphQLObjectType({
             where: args, 
             include: { 
               instructors: true,
-              lessonPlan: true,
+              //lessonPlan: true,
               courseTo: true,
               contents: true
             }
@@ -945,17 +945,17 @@ const RootQuery = new GraphQLObjectType({
           return await prisma.lesson.findMany({where: args, include: {slides: true}});
         }
       },
-      lessonPlans: {
-        type: new GraphQLList(LessonPlan),
-        args: {
-          id: {
-            type: GraphQLID
-          }
-        },
-        async resolve(root, args){
-          return await prisma.lessonPlan.findMany({where: args, include: {lessons: true}});
-        }
-      },
+      // lessonPlans: {
+      //   type: new GraphQLList(LessonPlan),
+      //   args: {
+      //     id: {
+      //       type: GraphQLID
+      //     }
+      //   },
+      //   async resolve(root, args){
+      //     return await prisma.lessonPlan.findMany({where: args, include: {lessons: true}});
+      //   }
+      // },
       courseToStudent: {
         type: new GraphQLList(CourseToStudent),
         args: {
@@ -1098,8 +1098,9 @@ const RootQuery = new GraphQLObjectType({
         },
         async resolve(root, args){
           const courses = await prisma.course.findMany({
-            where: args, 
-            include: { lessonPlan: true}});
+            where: args 
+            //include: { lessonPlan: true}
+          });
           console.log(courses)
           return courses
         }

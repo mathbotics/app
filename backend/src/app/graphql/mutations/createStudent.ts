@@ -52,7 +52,7 @@ export const createStudent = {
       data: {
         courseId: courseId,
         studentId: student.id,
-        grade: .8
+        //grade: .8
       }
     })
    

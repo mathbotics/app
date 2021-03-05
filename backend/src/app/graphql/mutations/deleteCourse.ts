@@ -23,20 +23,50 @@ export const deleteCourse = {
       type: new GraphQLNonNull(DeleteCourseInput),
     }
   },
- async resolve(root, args){
-   const {courseId} = args.input 
-  const course = nullthrows(
-    await prisma.course.delete({
-      where: {
-        id: courseId,
-      },              
-    }),
-    'Could not delete course',
-  );
-  return {course};
- }
+  async resolve(root, args){
+    const {courseId } = args.input
+    const coursetostudent = nullthrows(
+      await prisma.courseToLesson.deleteMany({
+        where: {
+          courseId: courseId,
+          },
+        }),
+        'Could not delete course',
+        ); 
 
+    const student = nullthrows(
+      await prisma.course.delete({
+        where: {
+          id: courseId
+        }
+      }), 
+      "Could not delete student from Student table",
+    )
+    return {courseId}
 }
+}
+//  async resolve(root, args){
+//    const {courseId} = args.input 
+//   const courseToLesson = nullthrows(
+//     await prisma.courseToLesson.deleteMany({
+//       where: {
+//         courseId: courseId,
+//       },              
+//     }),
+//     'Could not delete course',
+//   ); 
+//   const course = nullthrows(
+//     await prisma.course.delete({
+//       where: {
+//         id: courseId,
+//       },              
+//     }) 
+//     "Could not delete student from Student table",
+//   )
+//   return {course};
+//  }
+
+// }
 
 // // export const DeleteCourseInput = inputObjectType({
 // //   name: 'DeleteCourseInput',
@@ -62,4 +92,4 @@ export const deleteCourse = {
 // //     );
 // //     return { ...course };
 // //   },
-// // });
+// // })
