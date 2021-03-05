@@ -26,7 +26,7 @@ const EditCourseDetails = ({
 }: Props) => {
   const onSubmit = ({ name, description }: Store) =>
     commitUpdateOneCourseMutation(
-      { data: { name, description }, where: { id } },
+      { input: { name, description, id }},
       onSubmitSuccess,
       onSubmitError,
     );

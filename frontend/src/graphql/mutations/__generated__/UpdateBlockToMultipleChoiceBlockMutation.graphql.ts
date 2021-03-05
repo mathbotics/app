@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 1aabc49275c7478d3348104c076ac861 */
+/* @relayHash 2691cbaed9655d68bff7dcabd3b23ae7 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -19,7 +19,7 @@ export type UpdateBlockToMultipleChoiceBlockMutationVariables = {
 export type UpdateBlockToMultipleChoiceBlockMutationResponse = {
     readonly updateBlockToMultipleChoiceBlock: {
         readonly multipleChoiceQuestionBlock: {
-            readonly id: string | null;
+            readonly id: string;
             readonly " $fragmentRefs": FragmentRefs<"MultipleChoiceQuestionBlock_block">;
         };
     } | null;

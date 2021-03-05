@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash bb452aeeda638f6fbfd1b9373fd6fd93 */
+/* @relayHash e7c8608316769d30dda717eb58fcc390 */
 
 import { ConcreteRequest } from "relay-runtime";
 export type ResetPasswordInput = {
@@ -13,7 +13,7 @@ export type ResetPasswordMutationVariables = {
 export type ResetPasswordMutationResponse = {
     readonly resetPassword: {
         readonly user: {
-            readonly username: string | null;
+            readonly username: string;
         };
     } | null;
 };

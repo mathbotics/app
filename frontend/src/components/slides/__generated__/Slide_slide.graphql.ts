@@ -5,7 +5,7 @@ import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type Slide_slide = {
     readonly __typename: string;
-    readonly title: string | null;
+    readonly title: string;
     readonly " $fragmentRefs": FragmentRefs<"SingleSlide_singleSlide">;
     readonly " $refType": "Slide_slide";
 };

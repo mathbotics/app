@@ -4,12 +4,12 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type Slides_lesson = {
-    readonly id: string | null;
-    readonly title: string | null;
+    readonly id: string;
+    readonly title: string;
     readonly slides: ReadonlyArray<{
-        readonly id: string | null;
+        readonly id: string;
         readonly " $fragmentRefs": FragmentRefs<"EditorSlidePreview_slide">;
-    } | null> | null;
+    }>;
     readonly " $fragmentRefs": FragmentRefs<"SlidesSidebar_lesson">;
     readonly " $refType": "Slides_lesson";
 };

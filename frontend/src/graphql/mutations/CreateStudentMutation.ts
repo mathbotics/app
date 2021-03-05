@@ -33,7 +33,7 @@ function commit(
     updater(store) {
       const { courseId } = variables.input;
       const student = store.getRootField("createStudent");
-      const course = store.get(courseId);
+      const course = store.get(courseId!);
       const students = course?.getLinkedRecords("students") ?? [];
       course?.setLinkedRecords([...students, student], "students");
     },

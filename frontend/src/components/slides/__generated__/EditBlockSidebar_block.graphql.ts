@@ -5,17 +5,17 @@ import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type EditBlockSidebar_block = {
     readonly __typename: "MultipleChoiceQuestionBlock";
-    readonly id: string | null;
+    readonly id: string;
     readonly " $fragmentRefs": FragmentRefs<"EditMultipleChoiceQuestionBlockForm_block">;
     readonly " $refType": "EditBlockSidebar_block";
 } | {
     readonly __typename: "TextBlock";
-    readonly id: string | null;
+    readonly id: string;
     readonly " $fragmentRefs": FragmentRefs<"EditTextBlockForm_block">;
     readonly " $refType": "EditBlockSidebar_block";
 } | {
     readonly __typename: "EmptyBlock";
-    readonly id: string | null;
+    readonly id: string;
     readonly " $refType": "EditBlockSidebar_block";
 } | {
     /*This will never be '%other', but we need some

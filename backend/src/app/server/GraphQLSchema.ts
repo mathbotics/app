@@ -102,31 +102,31 @@ export const User : any = new GraphQLInterfaceType({
   fields: () => {
     return {
       id: {
-        type: GraphQLString, 
+        type: new GraphQLNonNull(GraphQLString), 
         resolve(user){
           return user.id
         }
       },
       username: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(user){
           return user.username
         }
       },
       firstName: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(user){
           return user.firstName
         }
       },
       lastName: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(user){
           return user.lastName
         }
       },
       password: {          
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(user){
           return user.password
         }
@@ -143,26 +143,26 @@ export const Student: any  = new GraphQLObjectType({
   fields: () => {
     return {
       id: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Student){
           return Student.id
         }
       },
       username: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Student){
           return Student.username
         }
       },
       firstName: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Student){
           console.log(Student)
           return Student.firstName;
         }
       },
       lastName: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Student){
           return Student.lastName
         }
@@ -174,19 +174,19 @@ export const Student: any  = new GraphQLObjectType({
       //   }
       // },
       password: {          
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Student){
           return Student.password
         }
       },
       gradeLevel: {
-        type: GradeLevel,
+        type: new GraphQLNonNull(GradeLevel),
         resolve(Student){
           return Student.gradeLevel
         }
       },
       guardians: {
-        type: Guardian,
+        type: new GraphQLNonNull(Guardian),
         resolve(Student){
           return Student.guardian.id
         }
@@ -209,43 +209,43 @@ const Instructor : any = new GraphQLObjectType({
   fields: () => {
     return {
       id: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Instructor){
           return Instructor.id
         }
       },
       firstName: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Instructor){
           return Instructor.user.firstName;
         }
       },
       lastName: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Instructor){
           return Instructor.user.lastName
         }
       },
       username: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Instructor){
           return Instructor.user.username
         }
       },
       password: {          
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Instructor){
           return Instructor.user.password
         }
       },
       email : {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Instructor){
           return Instructor.email
         }
       },
       courses: {
-        type: Course,
+        type: new GraphQLNonNull(Course),
         resolve(Instructor){
           return Instructor.courses
         }
@@ -261,43 +261,43 @@ const Guardian = new GraphQLObjectType({
   fields: () => {
     return {
       id: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Guardian){
           return Guardian.id
         }
       },
       email: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Guardian){
           return Guardian.email
         }
       },
       firstName: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Guardian){
           return Guardian.user.firstName;
         }
       },
       lastName: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Guardian){
           return Guardian.user.lastName
         }
       },
       username: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Guardian){
           return Guardian.user.username
         }
       },
       password: {          
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Guardian){
           return Guardian.user.password
         }
       },
       students: {
-        type: Student,
+        type: new GraphQLNonNull(Student),
         resolve(Guardian){
           return Guardian.students.id
         }
@@ -314,37 +314,37 @@ export const Admin = new GraphQLObjectType({
   fields: () => {
     return {
       id: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Admin){
           return Admin.id
         }
       },
       username: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Admin){
           return Admin.username
         }
       },
       firstName: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Admin){
           return Admin.firstName;
         }
       },
       lastName: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Admin){
           return Admin.lastName
         }
       },
       email: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Admin){
           return Admin.email
         }
       },
       password: {          
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Admin){
           return Admin.password
         }
@@ -398,13 +398,13 @@ export const Course = new GraphQLObjectType({
   fields: () => {
     return {
       id: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Course) {
           return Course.id
         }
       },
       name: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Course){
           return Course.name
         }
@@ -416,13 +416,13 @@ export const Course = new GraphQLObjectType({
         }
       },
       suggestedLevel: {
-        type: GradeLevel,
+        type: new GraphQLNonNull(GradeLevel),
         resolve(Course){
           return Course.suggestedLevel
         }
       },
       instructors: {
-        type: Instructor,
+        type: new GraphQLNonNull(Instructor),
         resolve(Course){
           return Course.instructors
         }
@@ -434,13 +434,13 @@ export const Course = new GraphQLObjectType({
         }
       },
       students: {
-        type: new GraphQLList(Student),
+        type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(Student))),
         resolve(Course){
           return Course.students
         }
       },
       lessonPlan: {
-        type: LessonPlan,
+        type: new GraphQLNonNull(LessonPlan),
         resolve(Course){
           return Course.lessonPlan
         }
@@ -455,19 +455,19 @@ export const Lesson = new GraphQLObjectType({
   fields: () => {
     return {
       id: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Lesson) {
           return Lesson.id
         }
       },
       title: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Lesson){
           return Lesson.title
         }
       },
       slides: {
-        type: new GraphQLList(Slide),
+        type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(Slide))),
         resolve(Lesson){
           console.log(Lesson)
           return Lesson.slides
@@ -483,13 +483,13 @@ export const LessonPlan = new GraphQLObjectType({
   fields: () => {
     return {
       id: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(LessonPlan) {
           return LessonPlan.id
         }
       },
       lessons: {
-        type: new GraphQLList(Lesson),
+        type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(Lesson))),
         resolve(LessonPlan){
           return LessonPlan.lessons
         }
@@ -504,19 +504,19 @@ const MultipleChoiceQuestionChoice = new GraphQLObjectType({
   fields: () => {
     return {
       id: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(MultipleChoiceQuestionChoice) {
           return MultipleChoiceQuestionChoice.id
         }
       },
       text: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(MultipleChoiceQuestionChoice) {
           return MultipleChoiceQuestionChoice.text
         }
       },
       correct: {
-        type: GraphQLBoolean,
+        type: new GraphQLNonNull(GraphQLBoolean),
         resolve(MultipleChoiceQuestionChoice) {
           return MultipleChoiceQuestionChoice.correct
         }
@@ -558,25 +558,25 @@ export const MultipleChoiceQuestionBlock = new GraphQLObjectType({
   fields: () => {
     return {
       id: {
-        type: GraphQLString, 
+        type: new GraphQLNonNull(GraphQLString), 
         resolve(MultipleChoiceQuestionBlock){
           return MultipleChoiceQuestionBlock.id
         }
       },
       text: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(MultipleChoiceQuestionBlock){
           return MultipleChoiceQuestionBlock.text
         }
       },
       choices: {
-        type: new GraphQLList(MultipleChoiceQuestionChoice),
+        type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(MultipleChoiceQuestionChoice))),
         resolve(MultipleChoiceQuestionBlock){
           return MultipleChoiceQuestionBlock.choices
         }
       },
       responses: {
-        type: new GraphQLList(MultipleChoiceQuestionResponse),
+        type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(MultipleChoiceQuestionResponse))),
         resolve(MultipleChoiceQuestionBlock){
           return MultipleChoiceQuestionBlock.responses
         }
@@ -591,19 +591,19 @@ export const TextBlock = new GraphQLObjectType({
   fields: () => {
     return {
       id: {
-        type: GraphQLString, 
+        type: new GraphQLNonNull(GraphQLString), 
         resolve(TextBlock){
           return TextBlock.id
         }
       },
       title: {
-        type: GraphQLString, 
+        type: new GraphQLNonNull(GraphQLString), 
         resolve(TextBlock){
           return TextBlock.title
         }
       },
       body: {
-        type: GraphQLString, 
+        type: new GraphQLNonNull(GraphQLString), 
         resolve(TextBlock){
           return TextBlock.body
         }
@@ -618,7 +618,7 @@ const EmptyBlock = new GraphQLObjectType({
   fields: () => {
     return {
       id: {
-        type: GraphQLString, 
+        type: new GraphQLNonNull(GraphQLString), 
         resolve(EmptyBlock){
           return EmptyBlock.id
         }
@@ -650,13 +650,13 @@ export const Slide = new GraphQLInterfaceType({
   fields: () => {
     return {
       id: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Slide) {
           return Slide.id
         }
       },
       title: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Slide){
           return Slide.title
         }
@@ -685,19 +685,19 @@ const SingleSlide = new GraphQLObjectType({
   fields: () => {
     return {
       id: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(SingleSlide) {
           return SingleSlide.id
         }
       },
       title: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(SingleSlide){
           return SingleSlide.title
         }
       },
       block: {
-        type: Block,
+        type: new GraphQLNonNull(Block),
         resolve(SingleSlide) {
           return SingleSlide.block
         }
@@ -763,13 +763,13 @@ const Content : any = new GraphQLObjectType({
   fields: () => {
     return {
       id: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Content) {
           return Content.id
         }
       },
       author: {
-        type: User,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Content){
           return Content.author
         }
@@ -781,13 +781,13 @@ const Content : any = new GraphQLObjectType({
         }
       },
       title: {
-        type: GraphQLString,
+        type: new GraphQLNonNull(GraphQLString),
         resolve(Content){
           return Content.title
         }
       },
       course:{
-        type: GraphQLString,
+        type: new GraphQLNonNull(Course),
         resolve(Content){
           return Content.course
         }
@@ -807,7 +807,7 @@ const RootQuery = new GraphQLObjectType({
   description: 'This is the root query',
   fields: {
     viewer: {
-      type: User,
+      type: new GraphQLNonNull(User),
       args: {
         id: {
           type: GraphQLID
@@ -859,7 +859,7 @@ const RootQuery = new GraphQLObjectType({
         }
       },
       students: {
-        type: new GraphQLList(Student),
+        type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(Student))),
         args: {
           id: {
             type: GraphQLID
@@ -929,7 +929,7 @@ const RootQuery = new GraphQLObjectType({
         }
       },
       courses: {
-        type: new GraphQLList(Course),
+        type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(Course))),
         args: {
           id: {
             type: GraphQLID
@@ -959,7 +959,7 @@ const RootQuery = new GraphQLObjectType({
         }
       },
       lessons: {
-        type: new GraphQLList(Lesson),
+        type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(Lesson))),
         args: {
           id: {
             type: GraphQLID

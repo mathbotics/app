@@ -4,10 +4,10 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type LessonPlanCatalogue_lessonPlan = {
-    readonly id: string | null;
+    readonly id: string;
     readonly lessons: ReadonlyArray<{
-        readonly id: string | null;
-    } | null> | null;
+        readonly id: string;
+    }>;
     readonly " $refType": "LessonPlanCatalogue_lessonPlan";
 };
 export type LessonPlanCatalogue_lessonPlan$data = LessonPlanCatalogue_lessonPlan;

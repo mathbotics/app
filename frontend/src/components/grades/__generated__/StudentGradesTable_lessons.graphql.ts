@@ -5,12 +5,12 @@ import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type StudentGradesTable_lessons = {
     readonly lessons: ReadonlyArray<{
-        readonly id: string | null;
-        readonly title: string | null;
+        readonly id: string;
+        readonly title: string;
         readonly slides: ReadonlyArray<{
-            readonly id: string | null;
-        } | null> | null;
-    } | null> | null;
+            readonly id: string;
+        }>;
+    }>;
     readonly " $refType": "StudentGradesTable_lessons";
 };
 export type StudentGradesTable_lessons$data = StudentGradesTable_lessons;

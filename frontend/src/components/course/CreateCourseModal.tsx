@@ -24,7 +24,7 @@ export default ({
 }: ModalProps) => {
   const onSubmit = ({ name, suggestedLevel }: Store) =>
     commitCreateOneCourseMutation(
-      { name, suggestedLevel, lessonPlan: { create: {} } },
+      { name, suggestedLevel },
       onSubmitSuccess,
       onSubmitError,
       rootDataID,

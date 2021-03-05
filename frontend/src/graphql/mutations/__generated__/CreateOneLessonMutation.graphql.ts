@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash df6ba0bdc7f8e7ef01bf47e9963bfacb */
+/* @relayHash 9dca05574b10a0f347350a942cce1a44 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -14,11 +14,11 @@ export type CreateOneLessonMutationVariables = {
 export type CreateOneLessonMutationResponse = {
     readonly createOneLesson: {
         readonly lesson: {
-            readonly id: string | null;
-            readonly title: string | null;
+            readonly id: string;
+            readonly title: string;
             readonly slides: ReadonlyArray<{
-                readonly id: string | null;
-            } | null> | null;
+                readonly id: string;
+            }>;
             readonly " $fragmentRefs": FragmentRefs<"LessonPreview_lesson">;
         };
     } | null;

@@ -4,12 +4,12 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type EditMultipleChoiceQuestionBlockForm_block = {
-    readonly text: string | null;
+    readonly text: string;
     readonly choices: ReadonlyArray<{
-        readonly id: string | null;
-        readonly text: string | null;
-        readonly correct: boolean | null;
-    } | null> | null;
+        readonly id: string;
+        readonly text: string;
+        readonly correct: boolean;
+    }>;
     readonly " $refType": "EditMultipleChoiceQuestionBlockForm_block";
 };
 export type EditMultipleChoiceQuestionBlockForm_block$data = EditMultipleChoiceQuestionBlockForm_block;

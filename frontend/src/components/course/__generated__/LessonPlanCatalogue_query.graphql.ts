@@ -5,13 +5,13 @@ import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type LessonPlanCatalogue_query = {
     readonly lessons: ReadonlyArray<{
-        readonly id: string | null;
-        readonly title: string | null;
+        readonly id: string;
+        readonly title: string;
         readonly slides: ReadonlyArray<{
-            readonly id: string | null;
-            readonly title: string | null;
-        } | null> | null;
-    } | null> | null;
+            readonly id: string;
+            readonly title: string;
+        }>;
+    }>;
     readonly " $refType": "LessonPlanCatalogue_query";
 };
 export type LessonPlanCatalogue_query$data = LessonPlanCatalogue_query;

@@ -5,11 +5,11 @@ import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type GradeLevel = "%future added value" | "%future added value" | "%future added value" | "%future added value" | "%future added value" | "%future added value" | "EIGHTH" | "ELEVENTH" | "FIFTH" | "FIRST" | "FOURTH" | "NINTH" | "SECOND" | "SEVENTH" | "SIXTH" | "TENTH" | "THIRD" | "TWELFTH" | "%future added value";
 export type EditStudentForm_student = {
-    readonly username: string | null;
-    readonly firstName: string | null;
-    readonly lastName: string | null;
-    readonly gradeLevel: GradeLevel | null;
-    readonly id: string | null;
+    readonly username: string;
+    readonly firstName: string;
+    readonly lastName: string;
+    readonly gradeLevel: GradeLevel;
+    readonly id: string;
     readonly " $refType": "EditStudentForm_student";
 };
 export type EditStudentForm_student$data = EditStudentForm_student;

@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 42233861c78bfada65b93677b121a3ac */
+/* @relayHash f97bf6986562da0ff9e3a3ee228d399d */
 
 import { ConcreteRequest } from "relay-runtime";
 export type LoginInput = {
@@ -13,7 +13,7 @@ export type LogInMutationVariables = {
 export type LogInMutationResponse = {
     readonly logIn: {
         readonly user: {
-            readonly id: string | null;
+            readonly id: string;
         };
     } | null;
 };

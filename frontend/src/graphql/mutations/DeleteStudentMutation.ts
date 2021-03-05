@@ -2,7 +2,7 @@ import { commitMutation } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 
 import { environment } from '../relay';
-import { DeleteStudentInput } from './__generated__/DeleteStudentMutation.graphql';
+import { DeleteStudentsInput } from './__generated__/DeleteStudentMutation.graphql';
 
 const mutation = graphql`
 mutation DeleteStudentMutation(
@@ -18,7 +18,7 @@ mutation DeleteStudentMutation(
 
 
 function commit(
-  input: DeleteStudentInput,
+  input: DeleteStudentsInput,
   onCompleted: (response: any) => void,
   onError: (error: Error) => void,
 ) {
@@ -33,7 +33,7 @@ function commit(
     updater(store) {
       const { courseId } = variables.input;
       const student = store.getRootField('deleteStudents');
-      const course = store.get(courseId);
+      const course = store.get(courseId!);
       const students = course?.getLinkedRecords('students') ?? [];
       course?.setLinkedRecords([...students, student], 'students');
     },

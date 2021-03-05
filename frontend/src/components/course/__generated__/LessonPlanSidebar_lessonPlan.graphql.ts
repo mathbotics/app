@@ -4,14 +4,14 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type LessonPlanSidebar_lessonPlan = {
-    readonly id: string | null;
+    readonly id: string;
     readonly lessons: ReadonlyArray<{
-        readonly id: string | null;
-        readonly title: string | null;
+        readonly id: string;
+        readonly title: string;
         readonly slides: ReadonlyArray<{
-            readonly id: string | null;
-        } | null> | null;
-    } | null> | null;
+            readonly id: string;
+        }>;
+    }>;
     readonly " $refType": "LessonPlanSidebar_lessonPlan";
 };
 export type LessonPlanSidebar_lessonPlan$data = LessonPlanSidebar_lessonPlan;

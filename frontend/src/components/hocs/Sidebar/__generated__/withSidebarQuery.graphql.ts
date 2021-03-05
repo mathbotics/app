@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 22a80cdcd8a07eba1ba49ab98470b85d */
+/* @relayHash acabde4ddb588e20d5586599be1e75d6 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -8,7 +8,7 @@ export type withSidebarQueryVariables = {};
 export type withSidebarQueryResponse = {
     readonly viewer: {
         readonly " $fragmentRefs": FragmentRefs<"withSidebar_viewer">;
-    } | null;
+    };
 };
 export type withSidebarQuery = {
     readonly response: withSidebarQueryResponse;

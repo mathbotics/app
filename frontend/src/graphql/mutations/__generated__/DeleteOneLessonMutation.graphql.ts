@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash b91d23a1dcfe9b676b4a2de19a6d2640 */
+/* @relayHash 46cee594937125f44eae97e5d6a30bda */
 
 import { ConcreteRequest } from "relay-runtime";
 export type DeleteLessonInput = {
@@ -12,7 +12,7 @@ export type DeleteOneLessonMutationVariables = {
 export type DeleteOneLessonMutationResponse = {
     readonly deleteLesson: {
         readonly lesson: {
-            readonly id: string | null;
+            readonly id: string;
         };
     } | null;
 };

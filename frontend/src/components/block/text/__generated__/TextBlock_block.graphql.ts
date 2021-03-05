@@ -4,9 +4,9 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type TextBlock_block = {
-    readonly id: string | null;
-    readonly title: string | null;
-    readonly body: string | null;
+    readonly id: string;
+    readonly title: string;
+    readonly body: string;
     readonly " $refType": "TextBlock_block";
 };
 export type TextBlock_block$data = TextBlock_block;

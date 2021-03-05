@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 8917db074d38d28a53dcb637ee96d835 */
+/* @relayHash 4ad995e8cc0f1272411e49da6b301b3b */
 
 import { ConcreteRequest } from "relay-runtime";
 export type RegisterUserInput = {
@@ -16,7 +16,7 @@ export type RegisterUserMutationVariables = {
 export type RegisterUserMutationResponse = {
     readonly registerUser: {
         readonly user: {
-            readonly username: string | null;
+            readonly username: string;
         };
     } | null;
 };

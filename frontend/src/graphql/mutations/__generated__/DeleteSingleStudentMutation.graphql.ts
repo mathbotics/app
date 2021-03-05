@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 62a60a93d2529e8d47443cafc8fcd7f0 */
+/* @relayHash aa04faaa64add986724494f61f51e3b7 */
 
 import { ConcreteRequest } from "relay-runtime";
 export type DeleteStudentInput = {
@@ -13,7 +13,7 @@ export type DeleteSingleStudentMutationVariables = {
 export type DeleteSingleStudentMutationResponse = {
     readonly deleteSingleStudent: {
         readonly student: {
-            readonly id: string | null;
+            readonly id: string;
         };
     } | null;
 };

@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 66e6b3b8c591bbc236e5fcec4cb13d5d */
+/* @relayHash e227413a75d424ad12c6104f2cf1a015 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -15,7 +15,7 @@ export type UpdateBlockToTextBlockMutationVariables = {
 export type UpdateBlockToTextBlockMutationResponse = {
     readonly updateBlockToTextBlock: {
         readonly textBlock: {
-            readonly id: string | null;
+            readonly id: string;
             readonly " $fragmentRefs": FragmentRefs<"TextBlock_block">;
         };
     } | null;

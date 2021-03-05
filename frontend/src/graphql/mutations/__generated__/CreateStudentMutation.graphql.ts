@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 90ac382d9f16f21d12e417c5200a95b7 */
+/* @relayHash b4599ddb4f92593eb76301ace05b5f30 */
 
 import { ConcreteRequest } from "relay-runtime";
 export type GradeLevel = "%future added value" | "%future added value" | "EIGHTH" | "ELEVENTH" | "FIFTH" | "FIRST" | "FOURTH" | "NINTH" | "SECOND" | "SEVENTH" | "SIXTH" | "TENTH" | "THIRD" | "TWELFTH" | "%future added value";
@@ -18,10 +18,10 @@ export type CreateStudentMutationVariables = {
 export type CreateStudentMutationResponse = {
     readonly createStudent: {
         readonly student: {
-            readonly username: string | null;
-            readonly firstName: string | null;
-            readonly lastName: string | null;
-            readonly gradeLevel: GradeLevel | null;
+            readonly username: string;
+            readonly firstName: string;
+            readonly lastName: string;
+            readonly gradeLevel: GradeLevel;
         };
     } | null;
 };
