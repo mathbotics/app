@@ -21,18 +21,16 @@ const EditMultipleChoiceQuestionBlockForm = ({
 
   const onChangeChoiceText = (changedId: string, text: string) => {
     setChoices(
-      choices.map(({ id, ...choice }) =>
+      choices.map(( {id, ...choice} : any) =>
         (id === changedId ? { ...choice, id, text } : { ...choice, id }),
       ),
     );
   };
 
   const onClickRemoveChoice = (idToRemove: string) => {
-    const { correct } = nullthrows(choices.find(({ id }) => id === idToRemove));
+    const { correct } = nullthrows(choices.find(({ id } : any) => id === idToRemove));
     setChoices(
-      choices
-        .filter(({ id }) => id !== idToRemove)
-        .map((choice, i) =>
+      choices.filter(({ id } : any) => id !== idToRemove).map((choice : any, i) =>
           (correct && i === 0 ? { ...choice, correct: true } : choice),
         ),
     );
@@ -40,7 +38,7 @@ const EditMultipleChoiceQuestionBlockForm = ({
 
   const onClickSetCorrect = (idToSetCorrect: string) => {
     setChoices(
-      choices.map(({ id, ...choice }) => ({
+      choices.map(({ id, ...choice } : any) => ({
         ...choice,
         id,
         correct: id === idToSetCorrect,
@@ -55,7 +53,7 @@ const EditMultipleChoiceQuestionBlockForm = ({
         input: {
           blockId,
           questionText: text,
-          choices: [...choices.map(({ id, ...choice }) => ({ ...choice }))],
+          choices: [...choices.map(({ id, ...choice } : any) => ({ ...choice }))],
         },
       },
       onSaveSuccess,
@@ -77,7 +75,7 @@ const EditMultipleChoiceQuestionBlockForm = ({
         onChange={({ target: { value } }) => setText(value)}
         placeholder="Question Text"
       />
-      {choices.map(({ text, id, correct }) => (
+      {choices.map(({ text, id, correct } : any) => (
         <div>
           <Button onClick={() => onClickSetCorrect(id)} disabled={correct}>
             Set as correct

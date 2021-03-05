@@ -1,16 +1,17 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash def8297dae7d4a92e147259582b50d5c */
+/* @relayHash cf18d496ef36c91c7289a9fd0d98e96e */
 
 import { ConcreteRequest } from "relay-runtime";
 export type SendResetPasswordEmailInput = {
-    email: string;
+    email?: string | null;
+    role?: string | null;
 };
 export type SendResetPasswordEmailMutationVariables = {
     input: SendResetPasswordEmailInput;
 };
 export type SendResetPasswordEmailMutationResponse = {
-    readonly sendResetPasswordEmail: string;
+    readonly sendResetPasswordEmail: string | null;
 };
 export type SendResetPasswordEmailMutation = {
     readonly response: SendResetPasswordEmailMutationResponse;

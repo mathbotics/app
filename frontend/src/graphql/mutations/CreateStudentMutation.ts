@@ -7,10 +7,12 @@ import { CreateStudentInput } from "./__generated__/CreateStudentMutation.graphq
 const mutation = graphql`
     mutation CreateStudentMutation($input: CreateStudentInput!) {
         createStudent(input: $input) {
+          student{
             username
             firstName
             lastName
             gradeLevel
+          }
         }
     }
 `;
@@ -31,7 +33,7 @@ function commit(
     updater(store) {
       const { courseId } = variables.input;
       const student = store.getRootField("createStudent");
-      const course = store.get(courseId);
+      const course = store.get(courseId!);
       const students = course?.getLinkedRecords("students") ?? [];
       course?.setLinkedRecords([...students, student], "students");
     },

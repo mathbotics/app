@@ -6,11 +6,12 @@ import { UpdateOneCourseMutationVariables } from './__generated__/UpdateOneCours
 
 const mutation = graphql`
   mutation UpdateOneCourseMutation(
-    $data: CourseUpdateInput!
-    $where: CourseWhereUniqueInput!
+    $input: CourseUpdateInput!
   ) {
-    updateOneCourse(data: $data, where: $where) {
-      ...EditCourse_course
+    updateOneCourse(input: $input) {
+      course{
+        ...EditCourse_course
+      }
     }
   }
 `;

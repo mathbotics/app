@@ -26,7 +26,7 @@ const Question = ({ text }: { text: string }) => (
 export type MultipleChoiceProps = { block: MultipleChoiceQuestionBlock_block };
 const MultipleChoiceQuestionBlock = ({ block }: MultipleChoiceProps) => (
   <Wrapper>
-    <Question text={block.text} />
+    <Question text={block.text ?? "None"} />
     <MultipleChoiceGroup block={block} />
   </Wrapper>
 );

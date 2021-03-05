@@ -1,22 +1,21 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash a751f069b9dc73983d73443484c58222 */
+/* @relayHash f97bf6986562da0ff9e3a3ee228d399d */
 
 import { ConcreteRequest } from "relay-runtime";
 export type LoginInput = {
-    password: string;
-    username: string;
+    username?: string | null;
+    password?: string | null;
 };
 export type LogInMutationVariables = {
     input: LoginInput;
 };
 export type LogInMutationResponse = {
     readonly logIn: {
-        readonly firstName: string;
-        readonly lastName: string;
-        readonly username: string;
-        readonly email?: string;
-    };
+        readonly user: {
+            readonly id: string;
+        };
+    } | null;
 };
 export type LogInMutation = {
     readonly response: LogInMutationResponse;
@@ -27,15 +26,12 @@ export type LogInMutation = {
 
 /*
 mutation LogInMutation(
-  $input: LogInInput!
+  $input: LoginInput!
 ) {
   logIn(input: $input) {
-    __typename
-    firstName
-    lastName
-    username
-    ... on Instructor {
-      email
+    user {
+      __typename
+      id
     }
   }
 }
@@ -60,36 +56,9 @@ v1 = [
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "firstName",
+  "name": "id",
   "args": null,
   "storageKey": null
-},
-v3 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "lastName",
-  "args": null,
-  "storageKey": null
-},
-v4 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "username",
-  "args": null,
-  "storageKey": null
-},
-v5 = {
-  "kind": "InlineFragment",
-  "type": "Instructor",
-  "selections": [
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "email",
-      "args": null,
-      "storageKey": null
-    }
-  ]
 };
 return {
   "kind": "Request",
@@ -106,13 +75,21 @@ return {
         "name": "logIn",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": null,
+        "concreteType": "LoginPayload",
         "plural": false,
         "selections": [
-          (v2/*: any*/),
-          (v3/*: any*/),
-          (v4/*: any*/),
-          (v5/*: any*/)
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "user",
+            "storageKey": null,
+            "args": null,
+            "concreteType": null,
+            "plural": false,
+            "selections": [
+              (v2/*: any*/)
+            ]
+          }
         ]
       }
     ]
@@ -128,20 +105,28 @@ return {
         "name": "logIn",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": "User",
+        "concreteType": "LoginPayload",
         "plural": false,
         "selections": [
           {
-            "kind": "ScalarField",
+            "kind": "LinkedField",
             "alias": null,
-            "name": "id", //"name": "user"
+            "name": "user",
+            "storageKey": null,
             "args": null,
-            "storageKey": null
-          },
-          (v2/*: any*/),
-          (v3/*: any*/),
-          (v4/*: any*/),
-          (v5/*: any*/)
+            "concreteType": null,
+            "plural": false,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "__typename",
+                "args": null,
+                "storageKey": null
+              },
+              (v2/*: any*/)
+            ]
+          }
         ]
       }
     ]
@@ -150,10 +135,10 @@ return {
     "operationKind": "mutation",
     "name": "LogInMutation",
     "id": null,
-    "text": "mutation LogInMutation(\n  $input: LoginInput!\n) {\n  logIn(input: $input) {\n   user\n    {\n      id\n    }\n  }\n}\n",
+    "text": "mutation LogInMutation(\n  $input: LoginInput!\n) {\n  logIn(input: $input) {\n    user {\n      __typename\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = 'dcfda32b7251108bf75298326f5a5bfc';
+(node as any).hash = '4368e42b2053a16671211143f142331a';
 export default node;

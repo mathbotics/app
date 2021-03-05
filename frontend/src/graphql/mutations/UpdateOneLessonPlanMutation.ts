@@ -2,7 +2,7 @@ import { commitMutation } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 
 import { environment } from '../relay';
-import { UpdateOneLessonPlanMutationVariables } from './__generated__/UpdateOneLessonPlanMutation.graphql';
+// import { UpdateOneLessonPlanMutationVariables } from './__generated__/UpdateOneLessonPlanMutation.graphql';
     // TODO: Comment out when update lesson plan mutation is completed. Need to test frontend first
 
 // const mutation = graphql`

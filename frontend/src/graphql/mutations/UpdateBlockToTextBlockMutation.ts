@@ -9,8 +9,10 @@ const mutation = graphql`
     $input: UpdateBlockToTextBlockInput!
   ) {
     updateBlockToTextBlock(input: $input) {
-      id
-      ...TextBlock_block
+      textBlock{
+        id
+        ...TextBlock_block
+      }
     }
   }
 `;

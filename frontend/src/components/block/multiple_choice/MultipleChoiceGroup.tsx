@@ -41,10 +41,10 @@ export type MultipleChoiceGroupProps = {
   selected: number;
 };
 
-type Props = { block: MultipleChoiceGroup_block };
+type Props = { block: MultipleChoiceGroup_block};
 const MultipleChoiceGroup = ({ block }: Props) => (
   <Radio.Group onChange={(e: any) => console.log(e.target.value)} value="">
-    {block.choices.map(({ id, text }, index: number) => (
+    {block.choices!.map(({ id, text } : any, index: number) => (
       <MultipleChoiceChoice key={id} id={id} value={id} text={text} />
       ))}
   </Radio.Group>

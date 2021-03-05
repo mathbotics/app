@@ -1,19 +1,21 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 4ae781f5bbbadc6987e8992fe50bf74b */
+/* @relayHash c5c83cc4e17c3d2af7154351c0664727 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type DeleteCourseInput = {
-    courseId: string;
+    courseId?: string | null;
 };
 export type DeleteCourseMutationVariables = {
     input: DeleteCourseInput;
 };
 export type DeleteCourseMutationResponse = {
     readonly deleteCourse: {
-        readonly " $fragmentRefs": FragmentRefs<"EditCourse_course">;
-    };
+        readonly course: {
+            readonly " $fragmentRefs": FragmentRefs<"EditCourse_course">;
+        };
+    } | null;
 };
 export type DeleteCourseMutation = {
     readonly response: DeleteCourseMutationResponse;
@@ -27,7 +29,9 @@ mutation DeleteCourseMutation(
   $input: DeleteCourseInput!
 ) {
   deleteCourse(input: $input) {
-    ...EditCourse_course
+    course {
+      ...EditCourse_course
+    }
   }
 }
 
@@ -135,13 +139,24 @@ return {
         "name": "deleteCourse",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": "Course",
+        "concreteType": "DeleteCoursePayload",
         "plural": false,
         "selections": [
           {
-            "kind": "FragmentSpread",
-            "name": "EditCourse_course",
-            "args": null
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "course",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Course",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "FragmentSpread",
+                "name": "EditCourse_course",
+                "args": null
+              }
+            ]
           }
         ]
       }
@@ -158,101 +173,112 @@ return {
         "name": "deleteCourse",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": "Course",
+        "concreteType": "DeleteCoursePayload",
         "plural": false,
         "selections": [
-          (v2/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "students",
+            "name": "course",
             "storageKey": null,
             "args": null,
-            "concreteType": "Student",
-            "plural": true,
-            "selections": [
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "username",
-                "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "firstName",
-                "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "lastName",
-                "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "gradeLevel",
-                "args": null,
-                "storageKey": null
-              },
-              (v2/*: any*/)
-            ]
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "name",
-            "args": null,
-            "storageKey": null
-          },
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "lessonPlan",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "LessonPlan",
+            "concreteType": "Course",
             "plural": false,
             "selections": [
               (v2/*: any*/),
               {
                 "kind": "LinkedField",
                 "alias": null,
-                "name": "lessons",
+                "name": "students",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "Lesson",
+                "concreteType": "Student",
                 "plural": true,
                 "selections": [
-                  (v2/*: any*/),
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "name": "title",
+                    "name": "username",
                     "args": null,
                     "storageKey": null
                   },
                   {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "firstName",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "lastName",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "gradeLevel",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  (v2/*: any*/)
+                ]
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "name",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "lessonPlan",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "LessonPlan",
+                "plural": false,
+                "selections": [
+                  (v2/*: any*/),
+                  {
                     "kind": "LinkedField",
                     "alias": null,
-                    "name": "slides",
+                    "name": "lessons",
                     "storageKey": null,
                     "args": null,
-                    "concreteType": null,
+                    "concreteType": "Lesson",
                     "plural": true,
                     "selections": [
+                      (v2/*: any*/),
                       {
                         "kind": "ScalarField",
                         "alias": null,
-                        "name": "__typename",
+                        "name": "title",
                         "args": null,
                         "storageKey": null
                       },
-                      (v2/*: any*/)
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "name": "slides",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": null,
+                        "plural": true,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "name": "__typename",
+                            "args": null,
+                            "storageKey": null
+                          },
+                          (v2/*: any*/)
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -267,10 +293,10 @@ return {
     "operationKind": "mutation",
     "name": "DeleteCourseMutation",
     "id": null,
-    "text": "mutation DeleteCourseMutation(\n  $input: DeleteCourseInput!\n) {\n  deleteCourse(input: $input) {\n    ...EditCourse_course\n  }\n}\n\nfragment EditCourseDetails_course on Course {\n  id\n}\n\nfragment EditCourseLessonPlan_lessonPlan on LessonPlan {\n  id\n  lessons {\n    id\n  }\n  ...LessonPlanSidebar_lessonPlan\n  ...LessonPlanCatalogue_lessonPlan\n}\n\nfragment EditCourseStudents_course on Course {\n  id\n  students {\n    username\n    firstName\n    lastName\n    gradeLevel\n    id\n  }\n  ...StudentsTable_course\n}\n\nfragment EditCourse_course on Course {\n  ...EditCourseStudents_course\n  ...EditCourseDetails_course\n  id\n  name\n  lessonPlan {\n    ...EditCourseLessonPlan_lessonPlan\n    ...LessonPlanCatalogue_lessonPlan\n  }\n}\n\nfragment LessonPlanCatalogue_lessonPlan on LessonPlan {\n  id\n  lessons {\n    id\n  }\n}\n\nfragment LessonPlanSidebar_lessonPlan on LessonPlan {\n  id\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n    }\n  }\n}\n\nfragment StudentsTable_course on Course {\n  students {\n    username\n    firstName\n    lastName\n    gradeLevel\n    id\n  }\n}\n",
+    "text": "mutation DeleteCourseMutation(\n  $input: DeleteCourseInput!\n) {\n  deleteCourse(input: $input) {\n    course {\n      ...EditCourse_course\n    }\n  }\n}\n\nfragment EditCourseDetails_course on Course {\n  id\n}\n\nfragment EditCourseLessonPlan_lessonPlan on LessonPlan {\n  id\n  lessons {\n    id\n  }\n  ...LessonPlanSidebar_lessonPlan\n  ...LessonPlanCatalogue_lessonPlan\n}\n\nfragment EditCourseStudents_course on Course {\n  id\n  students {\n    username\n    firstName\n    lastName\n    gradeLevel\n    id\n  }\n  ...StudentsTable_course\n}\n\nfragment EditCourse_course on Course {\n  ...EditCourseStudents_course\n  ...EditCourseDetails_course\n  id\n  name\n  lessonPlan {\n    ...EditCourseLessonPlan_lessonPlan\n    ...LessonPlanCatalogue_lessonPlan\n  }\n}\n\nfragment LessonPlanCatalogue_lessonPlan on LessonPlan {\n  id\n  lessons {\n    id\n  }\n}\n\nfragment LessonPlanSidebar_lessonPlan on LessonPlan {\n  id\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n    }\n  }\n}\n\nfragment StudentsTable_course on Course {\n  students {\n    username\n    firstName\n    lastName\n    gradeLevel\n    id\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '178b3245265cf10328414ee13634a513';
+(node as any).hash = 'b682b32d597d6cc4d40478e1955b1977';
 export default node;

@@ -1,26 +1,28 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 8e555dbeefcdb5b098a51777b2a54a7d */
+/* @relayHash bea3e8014ae111e11506219957986842 */
 
 import { ConcreteRequest } from "relay-runtime";
 export type GradeLevel = "EIGHTH" | "ELEVENTH" | "FIFTH" | "FIRST" | "FOURTH" | "NINTH" | "SECOND" | "SEVENTH" | "SIXTH" | "TENTH" | "THIRD" | "TWELFTH" | "%future added value";
 export type EditStudentInput = {
-    firstName: string;
-    gradeLevel: GradeLevel;
-    lastName: string;
-    studentId: string;
-    username: string;
+    username?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    studentId?: string | null;
+    gradeLevel?: GradeLevel | null;
 };
 export type EditStudentMutationVariables = {
     input: EditStudentInput;
 };
 export type EditStudentMutationResponse = {
     readonly editStudent: {
-        readonly username: string;
-        readonly firstName: string;
-        readonly lastName: string;
-        readonly gradeLevel: GradeLevel;
-    };
+        readonly student: {
+            readonly username: string;
+            readonly firstName: string;
+            readonly lastName: string;
+            readonly gradeLevel: GradeLevel;
+        };
+    } | null;
 };
 export type EditStudentMutation = {
     readonly response: EditStudentMutationResponse;
@@ -34,10 +36,12 @@ mutation EditStudentMutation(
   $input: EditStudentInput!
 ) {
   editStudent(input: $input) {
-    username
-    firstName
-    lastName
-    gradeLevel
+    student {
+      username
+      firstName
+      lastName
+      gradeLevel
+    }
   }
 }
 */
@@ -64,36 +68,47 @@ v1 = [
         "variableName": "input"
       }
     ],
-    "concreteType": "Student",
+    "concreteType": "EditStudentPayload",
     "plural": false,
     "selections": [
       {
-        "kind": "ScalarField",
+        "kind": "LinkedField",
         "alias": null,
-        "name": "username",
+        "name": "student",
+        "storageKey": null,
         "args": null,
-        "storageKey": null
-      },
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "firstName",
-        "args": null,
-        "storageKey": null
-      },
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "lastName",
-        "args": null,
-        "storageKey": null
-      },
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "gradeLevel",
-        "args": null,
-        "storageKey": null
+        "concreteType": "Student",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "username",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "firstName",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "lastName",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "gradeLevel",
+            "args": null,
+            "storageKey": null
+          }
+        ]
       }
     ]
   }
@@ -118,10 +133,10 @@ return {
     "operationKind": "mutation",
     "name": "EditStudentMutation",
     "id": null,
-    "text": "mutation EditStudentMutation(\n  $input: EditStudentInput!\n) {\n  editStudent(input: $input) {\n    username\n    firstName\n    lastName\n    gradeLevel\n  }\n}\n",
+    "text": "mutation EditStudentMutation(\n  $input: EditStudentInput!\n) {\n  editStudent(input: $input) {\n    student {\n      username\n      firstName\n      lastName\n      gradeLevel\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '8fe84524a3fa77622c6ff35acf1c4ee4';
+(node as any).hash = '3aec530eb0c884102e15e1413710d8ec';
 export default node;

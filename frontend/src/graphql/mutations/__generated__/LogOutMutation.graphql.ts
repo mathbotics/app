@@ -1,11 +1,11 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 19eeaeb3d15ba81610f0d2462b516e3e */
+/* @relayHash 02d02527179a0c7df6dacbfad6735a0b */
 
 import { ConcreteRequest } from "relay-runtime";
 export type LogOutMutationVariables = {};
 export type LogOutMutationResponse = {
-    readonly logOut: boolean;
+    readonly logOut: boolean | null;
 };
 export type LogOutMutation = {
     readonly response: LogOutMutationResponse;

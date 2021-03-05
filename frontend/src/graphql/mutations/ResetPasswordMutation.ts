@@ -7,7 +7,9 @@ import { ResetPasswordInput } from './__generated__/ResetPasswordMutation.graphq
 const mutation = graphql`
   mutation ResetPasswordMutation($input: ResetPasswordInput!) {
     resetPassword(input: $input) {
+      user{
       username
+      }
     }
   }
 `;

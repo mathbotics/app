@@ -6,7 +6,7 @@ import { FragmentRefs } from "relay-runtime";
 export type Slide_slide = {
     readonly __typename: string;
     readonly title: string;
-    readonly " $fragmentRefs": FragmentRefs<"SingleSlide_singleSlide" | "HalfSlide_halfSlide">;
+    readonly " $fragmentRefs": FragmentRefs<"SingleSlide_singleSlide">;
     readonly " $refType": "Slide_slide";
 };
 export type Slide_slide$data = Slide_slide;
@@ -48,19 +48,8 @@ const node: ReaderFragment = {
           "args": null
         }
       ]
-    },
-    {
-      "kind": "InlineFragment",
-      "type": "HalfSlide",
-      "selections": [
-        {
-          "kind": "FragmentSpread",
-          "name": "HalfSlide_halfSlide",
-          "args": null
-        }
-      ]
     }
   ]
 };
-(node as any).hash = 'ba227f89a122facb48062c032786f35c';
+(node as any).hash = '79da4702b9af89fbd55ad64cc6bfaaab';
 export default node;

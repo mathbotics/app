@@ -2,18 +2,20 @@ import { commitMutation, DataID } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 
 import { environment } from '../relay';
-import { CourseCreateInput } from './__generated__/CreateOneCourseMutation.graphql';
+import { createCourseInput } from './__generated__/CreateOneCourseMutation.graphql';
 
 const mutation = graphql`
-  mutation CreateOneCourseMutation($data: CourseCreateInput!) {
-    createOneCourse(data: $data) {
+  mutation CreateOneCourseMutation($input: createCourseInput!) {
+    createOneCourse(input: $input) {
+      course{
       ...CourseCard_course
+      }
     }
   }
 `;
 
 function commit(
-  input: CourseCreateInput,
+  input: createCourseInput,
   onSuccess: (response: any) => void,
   onFailure: (error: Error) => void,
   rootDataID?: DataID,

@@ -2,18 +2,20 @@ import { commitMutation } from "react-relay";
 import { graphql } from "babel-plugin-relay/macro";
 
 import { environment } from "../relay";
-import { DeleteSingleStudentInput } from "./__generated__/DeleteSingleStudentMutation.graphql";
+import { DeleteStudentInput } from "./__generated__/DeleteSingleStudentMutation.graphql";
 
 const mutation = graphql`
-    mutation DeleteSingleStudentMutation($input: DeleteSingleStudentInput!) {
+    mutation DeleteSingleStudentMutation($input: DeleteStudentInput!) {
         deleteSingleStudent(input: $input) {
+          student{
             id
+          }
         }
     }
 `;
 
 function commit(
-  input: DeleteSingleStudentInput,
+  input: DeleteStudentInput,
   onCompleted: (response: any) => void,
   onError: (error: Error) => void,
 ) {

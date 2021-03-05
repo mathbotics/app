@@ -5,14 +5,16 @@ import { environment } from '../relay';
 import { CreateOneLessonMutationVariables } from './__generated__/CreateOneLessonMutation.graphql';
 
 const mutation = graphql`
-  mutation CreateOneLessonMutation($data: LessonCreateInput!) {
-    createOneLesson(data: $data) {
+  mutation CreateOneLessonMutation($input: CreateLessonInput!) {
+    createOneLesson(input: $input) {
+      lesson{
       id
       title
       slides {
         id
       }
       ...LessonPreview_lesson
+    }
     }
   }
 `;

@@ -3,7 +3,7 @@ import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 import styled from 'styled-components';
 import SingleSlide from './SingleSlide';
-import HalfSlide from './HalfSlide';
+// import HalfSlide from './HalfSlide';
 import { Slide_slide } from './__generated__/Slide_slide.graphql';
 import { Block } from '../../types/Block';
 
@@ -49,17 +49,17 @@ const Slide = ({
           />
         </Wrapper>
       );
-    case 'HalfSlide':
-      return (
-        <Wrapper preview={preview}>
-          <HalfSlide
-            onSelectBlock={onSelectBlock}
-            halfSlide={slide}
-            preview={preview}
-            selected={selected}
-          />
-        </Wrapper>
-      );
+    // case 'HalfSlide':
+    //   return (
+    //     <Wrapper preview={preview}>
+    //       <HalfSlide
+    //         onSelectBlock={onSelectBlock}
+    //         halfSlide={slide}
+    //         preview={preview}
+    //         selected={selected}
+    //       />
+    //     </Wrapper>
+    //   );
     default:
       return (
         <div>
@@ -77,9 +77,6 @@ export default createFragmentContainer(Slide, {
       title
       ... on SingleSlide {
         ...SingleSlide_singleSlide
-      }
-      ... on HalfSlide {
-        ...HalfSlide_halfSlide
       }
     }
   `,
