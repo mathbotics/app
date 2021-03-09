@@ -71,7 +71,6 @@ export default createFragmentContainer(Dashboard, {
     fragment Dashboard_dashboard on Query {
       viewer {
         firstName
-        lastName
         ... on Instructor {
           email
         }

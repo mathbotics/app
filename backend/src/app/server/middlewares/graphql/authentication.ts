@@ -27,7 +27,7 @@ export default {
       context: Context,
       info: {},
     ) {
-      console.log("entered")
+      console.log("entered authentication")
       const user = await resolve(parent, args, context, info);
       // If statement below might not be needed.  Check back later
       if(user == null)
@@ -48,7 +48,7 @@ export default {
       }
       console.log(token)
       console.log("user in authentication", {user: user})
-      return { user: user};
+      return { user};
     },
   },
 } as IMiddlewareFieldMap;

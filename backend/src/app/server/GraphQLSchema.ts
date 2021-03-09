@@ -25,8 +25,41 @@ const resolveUserHelper = async (data : typeof User) => {
 
   if(data == false)
   {
-    throw new GraphQLError("No user found in resolve for user helper");
+    throw new GraphQLError("No user found in resolve for user helper becuase false");
   }
+
+  if(data.createdAt == null || data.createdAt == undefined || data.createdAt == false){
+    const resolveUser = await prisma.user.findUnique({
+      where: { id: data.id },
+        include: {
+          admin: true,
+          guardian: true,
+          instructor: true,
+          student: true
+        },
+    })
+
+    const { admin, guardian, instructor, student } : any = resolveUser
+
+    if(admin)
+    {
+      return "Admin"
+    }
+    if(student)
+    {
+      return "Student"
+    }
+    if(instructor)
+    {
+      return "Instructor"
+    }
+    if(guardian)
+    {
+      return "Guardian"
+    }
+    
+  }
+
 
   const admin = await prisma.admin.findFirst({
     where: {
@@ -40,7 +73,7 @@ const resolveUserHelper = async (data : typeof User) => {
   })
 
   if(admin){
-    console.log("is admin", admin)
+    console.log("Resolve user chose admin", admin)
     return "Admin";
   } 
 
@@ -56,7 +89,7 @@ const resolveUserHelper = async (data : typeof User) => {
   })
 
   if(guardian){
-    console.log("is guardian")
+    console.log("Resolve user chose guardian", guardian)
     return "Guardian";
   } 
 
@@ -72,7 +105,7 @@ const resolveUserHelper = async (data : typeof User) => {
   })
 
   if(student){
-    console.log("is student")
+    console.log("Resolve user chose student", student)
     return "Student";
   } 
 
@@ -88,7 +121,7 @@ const resolveUserHelper = async (data : typeof User) => {
   })
 
   if(instructor){
-    console.log("is instructor")
+    console.log("Resolve user chose instructor", instructor)
     return "Instructor";
   } 
 
@@ -151,20 +184,30 @@ export const Student: any  = new GraphQLObjectType({
       username: {
         type: new GraphQLNonNull(GraphQLString),
         resolve(Student){
+          if(Student.user){
+            return Student.user.username
+          }
           return Student.username
         }
       },
       firstName: {
         type: new GraphQLNonNull(GraphQLString),
-        resolve(Student){
-          console.log(Student)
-          return Student.firstName;
+        async resolve(Student){
+          console.log("Inside student resolve", Student)
+          if(Student.user){
+            return Student.user.firstName
+          }
+          return Student.firstName
         }
       },
       lastName: {
         type: new GraphQLNonNull(GraphQLString),
-        resolve(Student){
-          return Student.lastName
+        async resolve(Student){
+          console.log("Inside student resolve", Student)
+          if(Student.user){
+            return Student.user.lastName
+          }
+          return Student.lastName          
         }
       },
       // email: {
@@ -176,6 +219,9 @@ export const Student: any  = new GraphQLObjectType({
       password: {          
         type: new GraphQLNonNull(GraphQLString),
         resolve(Student){
+          if(Student.user){
+            return Student.user.password
+          }
           return Student.password
         }
       },
@@ -217,24 +263,37 @@ const Instructor : any = new GraphQLObjectType({
       firstName: {
         type: new GraphQLNonNull(GraphQLString),
         resolve(Instructor){
-          return Instructor.user.firstName;
+          console.log("Inside instructor resolve", Instructor)
+          if(Instructor.user){
+            return Instructor.user.firstName
+          }
+          return Instructor.firstName;
         }
       },
       lastName: {
         type: new GraphQLNonNull(GraphQLString),
         resolve(Instructor){
-          return Instructor.user.lastName
+          if(Instructor.user){
+            return Instructor.user.lastName
+          }
+          return Instructor.lastName
         }
       },
       username: {
         type: new GraphQLNonNull(GraphQLString),
         resolve(Instructor){
-          return Instructor.user.username
+          if(Instructor.user){
+            return Instructor.user.username
+          }
+          return Instructor.username
         }
       },
       password: {          
         type: new GraphQLNonNull(GraphQLString),
         resolve(Instructor){
+          if(Instructor.user){
+            return Instructor.user.password
+          }
           return Instructor.user.password
         }
       },
@@ -275,24 +334,36 @@ const Guardian = new GraphQLObjectType({
       firstName: {
         type: new GraphQLNonNull(GraphQLString),
         resolve(Guardian){
-          return Guardian.user.firstName;
+          if(Guardian.user){
+            return Guardian.user.firstName
+          }
+          return Guardian.firstName;
         }
       },
       lastName: {
         type: new GraphQLNonNull(GraphQLString),
         resolve(Guardian){
-          return Guardian.user.lastName
+          if(Guardian.user){
+            return Guardian.user.lastName
+          }
+          return Guardian.lastName
         }
       },
       username: {
         type: new GraphQLNonNull(GraphQLString),
         resolve(Guardian){
+          if(Guardian.user){
+            return Guardian.user.username
+          }
           return Guardian.user.username
         }
       },
       password: {          
         type: new GraphQLNonNull(GraphQLString),
         resolve(Guardian){
+          if(Guardian.user){
+            return Guardian.user.password
+          }
           return Guardian.user.password
         }
       },
@@ -322,18 +393,28 @@ export const Admin = new GraphQLObjectType({
       username: {
         type: new GraphQLNonNull(GraphQLString),
         resolve(Admin){
+          if(Admin.user){
+            return Admin.user.username
+          }
           return Admin.username
         }
       },
       firstName: {
         type: new GraphQLNonNull(GraphQLString),
         resolve(Admin){
+          console.log("Inside admin resolve", Admin)
+          if(Admin.user){
+            return Admin.user.firstName
+          }
           return Admin.firstName;
         }
       },
       lastName: {
         type: new GraphQLNonNull(GraphQLString),
         resolve(Admin){
+          if(Admin.user){
+            return Admin.user.lastName
+          }
           return Admin.lastName
         }
       },
@@ -346,6 +427,9 @@ export const Admin = new GraphQLObjectType({
       password: {          
         type: new GraphQLNonNull(GraphQLString),
         resolve(Admin){
+          if(Admin.user){
+            return Admin.user.password
+          }
           return Admin.password
         }
       }
@@ -808,6 +892,8 @@ const RootQuery = new GraphQLObjectType({
         }
       },   
       resolve(root, args, context) {
+        console.log("In viewer root resolve (args)", args)
+        console.log("In viewer root resolve (viewer)", context.viewer)
         return context.viewer;
       }
     },
@@ -819,6 +905,7 @@ const RootQuery = new GraphQLObjectType({
           }
         },
         async resolve(root, args){
+          console.log(await prisma.user.findMany({where: args}))
           return await prisma.user.findMany({where: args});
         }
       },
@@ -830,7 +917,8 @@ const RootQuery = new GraphQLObjectType({
           }
         },
         async resolve(root, args){
-          const admins = await prisma.user.findMany({where: args, include: {admin: true}});
+          const admins = await prisma.admin.findMany({where: args, include: {user: true}});
+          console.log(admins)
           return admins;
         }
       },
@@ -860,10 +948,18 @@ const RootQuery = new GraphQLObjectType({
           }
         },
         async resolve(root, args){
-          return await prisma.user.findMany({
+          const students = await prisma.student.findMany({
             where: args,
             include: { 
-              student: true,
+              user: true,
+              
+            }
+        });
+        console.log(students)
+          return await prisma.student.findMany({
+            where: args,
+            include: { 
+              user: true,
               
             }
         });

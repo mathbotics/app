@@ -5,7 +5,7 @@ import prisma from '../../../../data/prisma';
 const possibleImplementations = (id: string, includeUser: boolean = false) =>
   Promise.all([
     prisma.admin.findFirst({
-      where: { userId: id },
+      where: { id },
       include: {
         user: includeUser,
       },
@@ -17,13 +17,13 @@ const possibleImplementations = (id: string, includeUser: boolean = false) =>
       },
     }),
     prisma.instructor.findFirst({
-      where: { userId: id },
+      where: { id },
       include: {
         user: includeUser,
       },
     }),
     prisma.student.findFirst({
-      where: { userId: id },
+      where: { id },
       include: {
         user: includeUser,
       },
@@ -60,7 +60,7 @@ export default {
     }
     throw new Error('Role not implemented');
   },
-  async implementation(id: string, includeUser: boolean = false) {
+  async implementation(id: string, includeUser: boolean = true) {
     const [
       admin,
       guardian,
@@ -72,6 +72,21 @@ export default {
     console.log(instructor, "This is instructor");
     console.log(student, "This is student");
     console.log(id, "This is the id that is being passed")
+
+    if(admin){
+      const {username, firstName, lastName, password} = admin.user
+      return {...admin, username, password, firstName, lastName}
+    }
+
+    if(student){
+      const {username, firstName, lastName, password} = student.user
+      return {...student, username, password, firstName, lastName}
+    }
+
+    if(instructor){
+      const {username, firstName, lastName, password} = instructor.user
+      return {...instructor, username, password, firstName, lastName}
+    }
     return nullthrows(
       admin ?? guardian ?? instructor ?? student,
       'User not found',

@@ -56,7 +56,23 @@ export const logIn = {
         throw new AuthenticationError('Incorrect password.');
       }
       console.log(" Successfully logged in", user)
-      return user
+      console.log(user.admin)
+      if(user.admin){
+        const {username, firstName, lastName, password} = user
+        return {...user.admin, username, password, firstName, lastName}
+      }
+      if(user.guardian)
+        return user.guardian
+      if(user.student){
+        const {username, firstName, lastName, password} = user
+        return {...user.student, username, password, firstName, lastName}
+      }
+      if(user.instructor){
+        const {username, firstName, lastName, password} = user
+        return {...user.instructor, username, password, firstName, lastName}
+      }
+      else
+        return null
     } catch (e) {
       // eslint-disable-next-line no-console
       console.warn(e);
