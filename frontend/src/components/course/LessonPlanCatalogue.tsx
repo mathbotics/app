@@ -117,9 +117,8 @@ const LessonPlanCatalogue = ({
                 >
                 <ButtonWrapper>
                 <Tooltip title="Add Lesson">
-                  <Button
+                  <PlusButton
                     disabled={selectedLessons.includes(id) ?? false}
-                    style={{ height: "100%"} }
                     type="primary"
                     icon={<PlusOutlined />}
                     size="middle"
@@ -139,7 +138,7 @@ const LessonPlanCatalogue = ({
                       // console.log("LessonPlan Lesson", lessonPlan.lessons);
                   }}
                   >
-                  </Button>
+                  </PlusButton>
                   </Tooltip>
                 </ButtonWrapper>
                 </LessonCardCatalogueColumn>
@@ -170,9 +169,8 @@ const LessonPlanCatalogue = ({
               >
               <ButtonWrapper>
                 <Tooltip title="Add Lesson">
-                <Button
+                <PlusButton
                   disabled={selectedLessons.includes(id) ?? false}
-                  style={{ height: "100%"} }
                   type="primary"
                   icon={<PlusOutlined />}
                   size="middle"
@@ -192,7 +190,7 @@ const LessonPlanCatalogue = ({
                     // console.log("LessonPlan Lesson", lessonPlan.lessons);
                 }}
                 >
-                </Button>
+                </PlusButton>
                 </Tooltip>
               </ButtonWrapper>
               </LessonCardCatalogueColumn>
@@ -232,6 +230,10 @@ export default createFragmentContainer(LessonPlanCatalogue, {
 const ButtonWrapper = styled.div`
   float: left;
   height: 100%;
+`;
+
+const PlusButton = styled(Button)`
+height: 125px;
 `;
 
 const LessonCardCatalogueRow = styled(Row)`
