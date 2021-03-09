@@ -34,7 +34,7 @@ export const deleteCourse = {
         'Could not delete course',
         ); 
 
-    const student = nullthrows(
+    const course = nullthrows(
       await prisma.course.delete({
         where: {
           id: courseId
@@ -42,7 +42,7 @@ export const deleteCourse = {
       }), 
       "Could not delete student from Student table",
     )
-    return {courseId}
+    return {course}
 }
 }
 //  async resolve(root, args){
