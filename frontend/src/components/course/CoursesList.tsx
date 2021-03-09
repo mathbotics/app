@@ -6,7 +6,7 @@ import { graphql } from 'babel-plugin-relay/macro';
 
 import styled from 'styled-components';
 import { CoursesList_courses } from './__generated__/CoursesList_courses.graphql';
-import { CoursesList_user } from './__generated__/CoursesList_user.graphql';
+import { CoursesList_viewer } from './__generated__/CoursesList_viewer.graphql';
 import CourseCard from './CourseCard';
 
 // import { useHistory } from "react-router-dom";
@@ -31,11 +31,11 @@ const CardWrapper = styled.div`
 type Props = { courses: CoursesList_courses };
 */
 type Props = { courses: CoursesList_courses;
-  user: CoursesList_user;
+  viewer: CoursesList_viewer;
  };
  
  //original: no user
-const CoursesList = ({ courses, user }: Props) =>
+const CoursesList = ({ courses, viewer }: Props) =>
   // const history = useHistory();
    (
      <Wrapper>
@@ -52,7 +52,7 @@ const CoursesList = ({ courses, user }: Props) =>
          <CardWrapper
            key={course.id}
          >
-           <CourseCard key={course.id} course={course} user={user} />
+           <CourseCard key={course.id} course={course} viewer={viewer} />
          </CardWrapper>
       ))}
      </Wrapper>
@@ -68,9 +68,10 @@ export default createFragmentContainer(CoursesList, {
       }
     }
   `,
-  user: graphql`
-    fragment CoursesList_user on User {
-      ...CourseCard_user
+  viewer: graphql`
+    fragment CoursesList_viewer on User {
+      __typename
+      ...CourseCard_viewer
     }
   `,
 });

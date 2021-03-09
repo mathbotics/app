@@ -13,7 +13,7 @@ import { Courses_query } from './__generated__/Courses_query.graphql';
 
 //import { Courses_user } from './__generated__/Courses_user.graphql';
 import { CoursesUserQuery } from './__generated__/CoursesUserQuery.graphql'; //this was generated because of const UserQuery
-import { CoursesList_user } from './__generated__/CoursesList_user.graphql'; //new
+import { CoursesList_viewer } from './__generated__/CoursesList_viewer.graphql'; //new
 
 import CoursesList from './CoursesList';
 import CreateCourseModal from './CreateCourseModal';
@@ -32,7 +32,9 @@ enum PageState {
   CreateCourseError,
 }
 
-
+type FetchPolicy = { 
+  
+}; //new
 
 type Props = { query: Courses_query };
 
@@ -54,7 +56,8 @@ const environment = useRelayEnvironment();
 const UserQuery = graphql`
 query CoursesUserQuery {
   viewer {
-    ...CoursesList_user
+    __typename
+    ...CoursesList_viewer
   }
 }
 `; //need to find a way to make a constant with GraphQLTaggedNode
@@ -63,13 +66,20 @@ const variables = {
   
 }; 
 
+/*
 const options = {
-  fetchPolicy: network-only, // no cached data mdoe.. Also to fix issue, I need to call a Network Type?
+  fetchPolicy: "network-only", // no cached data mdoe.. Also to fix issue, I need to call a Network Type?
 };
+*/
 
-let data = useLazyLoadQuery<CoursesUserQuery>(UserQuery, variables, options ); //for some reason viewer is undefined... and crashes the app...
+let data = useLazyLoadQuery<CoursesUserQuery>(UserQuery, variables, ); //for some reason viewer is undefined... and crashes the app...
 //what if the issue is about how or where I'm assigning data
 //this has to be some runtime bs error...
+
+/* I believe the error is due to having a previous cache from courses prop but not from viewer and the default fetchPolicy is to
+use cache if it exist at first. If no cache data is in there, go through the fetch process and retrieve it.
+*/
+
 
   return (
     <Layout style={{ backgroundColor: 'white', maxHeight: '95vh' }}>
@@ -105,7 +115,7 @@ let data = useLazyLoadQuery<CoursesUserQuery>(UserQuery, variables, options ); /
           
 
       {/* Display list of courses */}
-      <CoursesList courses={query} user={data?.viewer} />
+      <CoursesList courses={query} viewer={data?.viewer} />
     </Layout>
   );
 };

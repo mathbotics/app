@@ -5,7 +5,7 @@ import { Tooltip } from 'antd';
 import { useHistory } from 'react-router-dom';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
-import { CourseCard_user } from './__generated__/CourseCard_user.graphql';
+import { CourseCard_viewer } from './__generated__/CourseCard_viewer.graphql';
 
 import { CourseCard_course } from './__generated__/CourseCard_course.graphql';
 
@@ -87,7 +87,7 @@ const UserRole = graphql`
 `;
 */
 type Props = { course: CourseCard_course;
- user: CourseCard_user; //new line
+ viewer: CourseCard_viewer; //new line
  };
 const CourseCard = ({
   course: {
@@ -97,7 +97,7 @@ const CourseCard = ({
     suggestedLevel,
     lessonPlan: { lessons },
   },
-  user: { role },
+  viewer: { __typename },
 
 }: Props) => {
   const lessonCount = lessons.length;
@@ -228,9 +228,9 @@ export default createFragmentContainer(CourseCard, {
       }
     }
   `,
-  user: graphql`
-    fragment CourseCard_user on User {
-      role: __typename
+  viewer: graphql`
+    fragment CourseCard_viewer on User {
+      __typename
     }
   `,
 });
