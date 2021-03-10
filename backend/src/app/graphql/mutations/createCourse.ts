@@ -34,12 +34,7 @@ export const createOneCourse = {
         data: {
             name,
             description,
-            suggestedLevel,
-            // lessonPlan: { 
-            //     connect: { 
-            //         id: lessonPlan.id 
-            //     } 
-            // }
+            suggestedLevel
         }
       }),
       'Could not create course',

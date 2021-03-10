@@ -14,11 +14,6 @@ export type CourseCard_course = {
         readonly lastName: string;
         readonly username: string;
     };
-    readonly lessonPlan: {
-        readonly lessons: ReadonlyArray<{
-            readonly title: string;
-        }>;
-    };
     readonly " $refType": "CourseCard_course";
 };
 export type CourseCard_course$data = CourseCard_course;
@@ -91,38 +86,9 @@ return {
           "storageKey": null
         }
       ]
-    },
-    {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "lessonPlan",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "LessonPlan",
-      "plural": false,
-      "selections": [
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "lessons",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "Lesson",
-          "plural": true,
-          "selections": [
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "title",
-              "args": null,
-              "storageKey": null
-            }
-          ]
-        }
-      ]
     }
   ]
 };
 })();
-(node as any).hash = 'a4c51b0fee2189cf794344d6e79d8d4a';
+(node as any).hash = '0277468ebe605e3c325fb16f3c9dadb9';
 export default node;

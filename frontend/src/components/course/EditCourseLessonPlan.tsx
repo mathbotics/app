@@ -77,16 +77,6 @@ const Wrapper = styled(Layout)`
 `;
 
 export default createFragmentContainer(EditCourseLessonPlan, {
-  lessonPlan: graphql`
-    fragment EditCourseLessonPlan_lessonPlan on LessonPlan {
-      id
-      lessons {
-        id
-      }
-      ...LessonPlanSidebar_lessonPlan
-      ...LessonPlanCatalogue_lessonPlan
-    }
-  `,
   query: graphql`
     fragment EditCourseLessonPlan_query on Query {
       ...LessonPlanCatalogue_query

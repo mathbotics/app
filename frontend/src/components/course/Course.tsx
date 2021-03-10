@@ -28,16 +28,16 @@ const Course = ({ course }: Props) => {
         </Title>
 
         <h1 style={{ fontWeight: 400, color: 'white', margin: '5px 0px' }}>
-          {course!.lessonPlan!.lessons!.length}
+          {course}
           {' '}
           Lessons
         </h1>
 
         <Button
           onClick={() =>
-            course!.lessonPlan!.lessons!.length > 0 &&
+            true &&
             history.push(
-              `/courses/${course.id}/lessons/${course!.lessonPlan!.lessons![0]!.id}`,
+              `/courses/${course.id}/lessons/${course}`,
             )}
           size="large"
           type="primary"
@@ -55,7 +55,7 @@ const Course = ({ course }: Props) => {
       </Banner>
 
       <LessonsWrapper>
-        {course!.lessonPlan!.lessons!.map((lesson) => (
+        {course!.lessons!.map((lesson) => (
           <LessonCardWrapper key={lesson!.id}>
             <LessonCard
               id={lesson!.id}
@@ -105,16 +105,6 @@ export default createFragmentContainer(Course, {
       id
       name
       description
-      lessonPlan {
-        id
-        lessons {
-          id
-          title
-          slides {
-            id
-          }
-        }
-      }
     }
   `,
 });

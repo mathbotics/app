@@ -85,10 +85,6 @@ export default createFragmentContainer(EditCourse, {
       ...EditCourseDetails_course
       id
       name
-      lessonPlan {
-        ...EditCourseLessonPlan_lessonPlan
-        ...LessonPlanCatalogue_lessonPlan
-      }
     }
   `,
   query: graphql`

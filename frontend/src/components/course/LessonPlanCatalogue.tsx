@@ -195,14 +195,14 @@ export default createFragmentContainer(LessonPlanCatalogue, {
       }
     }
   `,
-  lessonPlan: graphql`
-    fragment LessonPlanCatalogue_lessonPlan on LessonPlan {
-      id
-      lessons {
-        id
-      }
-    }
-  `,
+  // lessonPlan: graphql`
+  //   fragment LessonPlanCatalogue_lessonPlan on LessonPlan {
+  //     id
+  //     lessons {
+  //       id
+  //     }
+  //   }
+  // `,
 });
 
 const ButtonWrapper = styled.div`

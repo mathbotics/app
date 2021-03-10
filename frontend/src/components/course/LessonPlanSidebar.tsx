@@ -122,16 +122,5 @@ const LessonPlanSidebar = ({
 };
 
 export default createFragmentContainer(LessonPlanSidebar, {
-  lessonPlan: graphql`
-    fragment LessonPlanSidebar_lessonPlan on LessonPlan {
-      id
-      lessons {
-        id
-        title
-        slides {
-          id
-        }
-      }
-    }
-  `,
+  
 });

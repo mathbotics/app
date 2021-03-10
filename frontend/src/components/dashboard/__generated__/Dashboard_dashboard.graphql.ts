@@ -6,7 +6,6 @@ import { FragmentRefs } from "relay-runtime";
 export type Dashboard_dashboard = {
     readonly viewer: {
         readonly firstName: string;
-        readonly lastName: string;
         readonly email?: string;
     };
     readonly " $refType": "Dashboard_dashboard";
@@ -53,13 +52,6 @@ return {
           "storageKey": null
         },
         {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "lastName",
-          "args": null,
-          "storageKey": null
-        },
-        {
           "kind": "InlineFragment",
           "type": "Instructor",
           "selections": (v0/*: any*/)
@@ -74,5 +66,5 @@ return {
   ]
 };
 })();
-(node as any).hash = '1ca1b6604c70994110028b9bcef8690a';
+(node as any).hash = '3fade5616d284764daf81e58b8f20ace';
 export default node;

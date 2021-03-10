@@ -39,7 +39,6 @@ type Course {
   instructors: Instructor!
   courseTo: [CourseToStudent]
   students: [Student!]!
-  lessonPlan: LessonPlan!
 }
 
 # This represents the Course to Student relations
@@ -56,7 +55,6 @@ input CourseUpdateInput {
   name: String
   description: String
   suggestedLevel: GradeLevel
-  lessonPlanId: String
 }
 
 input CourseWhereUniqueInput {
@@ -76,7 +74,6 @@ type CreateCoursePayload {
 
 input CreateLessonInput {
   title: String
-  lessonPlanId: String
 }
 
 # Lesson type definition
@@ -208,12 +205,6 @@ type Lesson {
   slides: [Slide!]!
 }
 
-# This represents the LessonPlan
-type LessonPlan {
-  id: String!
-  lessons: [Lesson!]!
-}
-
 input LessonWhereUniqueInput {
   id: String
 }
@@ -297,7 +288,6 @@ type Query {
   courses(id: ID): [Course!]!
   lesson(where: LessonWhereUniqueInput): Lesson
   lessons(id: ID): [Lesson!]!
-  lessonPlans(id: ID): [LessonPlan]
   courseToStudent(id: ID): [CourseToStudent]
   multipleChoiceQuestionChoice(id: ID): [MultipleChoiceQuestionChoice]
   multipleChoiceQuestionResponse(id: ID): [MultipleChoiceQuestionResponse]

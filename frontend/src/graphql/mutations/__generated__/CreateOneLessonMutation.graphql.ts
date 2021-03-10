@@ -1,12 +1,11 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 9dca05574b10a0f347350a942cce1a44 */
+/* @relayHash 3057b00c73de5932d36e6d9c11da435e */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type CreateLessonInput = {
     title?: string | null;
-    lessonPlanId?: string | null;
 };
 export type CreateOneLessonMutationVariables = {
     input: CreateLessonInput;

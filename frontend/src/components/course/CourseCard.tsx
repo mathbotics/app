@@ -149,11 +149,6 @@ export default createFragmentContainer(CourseCard, {
         lastName
         username
       }
-      lessonPlan {
-        lessons {
-          title
-        }
-      }
     }
   `,
 });

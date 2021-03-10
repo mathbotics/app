@@ -7,16 +7,6 @@ export type Course_course = {
     readonly id: string;
     readonly name: string;
     readonly description: string | null;
-    readonly lessonPlan: {
-        readonly id: string;
-        readonly lessons: ReadonlyArray<{
-            readonly id: string;
-            readonly title: string;
-            readonly slides: ReadonlyArray<{
-                readonly id: string;
-            }>;
-        }>;
-    };
     readonly " $refType": "Course_course";
 };
 export type Course_course$data = Course_course;
@@ -27,22 +17,20 @@ export type Course_course$key = {
 
 
 
-const node: ReaderFragment = (function(){
-var v0 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-};
-return {
+const node: ReaderFragment = {
   "kind": "Fragment",
   "name": "Course_course",
   "type": "Course",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
-    (v0/*: any*/),
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "id",
+      "args": null,
+      "storageKey": null
+    },
     {
       "kind": "ScalarField",
       "alias": null,
@@ -56,52 +44,8 @@ return {
       "name": "description",
       "args": null,
       "storageKey": null
-    },
-    {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "lessonPlan",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "LessonPlan",
-      "plural": false,
-      "selections": [
-        (v0/*: any*/),
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "lessons",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "Lesson",
-          "plural": true,
-          "selections": [
-            (v0/*: any*/),
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "title",
-              "args": null,
-              "storageKey": null
-            },
-            {
-              "kind": "LinkedField",
-              "alias": null,
-              "name": "slides",
-              "storageKey": null,
-              "args": null,
-              "concreteType": null,
-              "plural": true,
-              "selections": [
-                (v0/*: any*/)
-              ]
-            }
-          ]
-        }
-      ]
     }
   ]
 };
-})();
-(node as any).hash = '2b7d69bd7e24c7f58fc7d4d748e53f48';
+(node as any).hash = '4873ad7123d63a0e7bb31728ddbefc6c';
 export default node;

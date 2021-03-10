@@ -21,7 +21,7 @@ function commit(
   rootDataID?: DataID,
 ) {
   const variables = {
-    data: input,
+    input: input,
   };
   commitMutation(environment, {
     mutation,

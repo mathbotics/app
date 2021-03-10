@@ -28,8 +28,7 @@ export const updateOneLesson = {
           id: id
         },
         data: {
-          title: title,
-          lessonPlanId: lessonPlanId
+          title: title
         },
       }),
       'Could not update lesson',
