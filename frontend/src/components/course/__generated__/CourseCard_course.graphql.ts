@@ -8,12 +8,6 @@ export type CourseCard_course = {
     readonly id: string;
     readonly name: string;
     readonly suggestedLevel: GradeLevel;
-    readonly instructors: {
-        readonly id: string;
-        readonly firstName: string;
-        readonly lastName: string;
-        readonly username: string;
-    };
     readonly " $refType": "CourseCard_course";
 };
 export type CourseCard_course$data = CourseCard_course;
@@ -24,22 +18,20 @@ export type CourseCard_course$key = {
 
 
 
-const node: ReaderFragment = (function(){
-var v0 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-};
-return {
+const node: ReaderFragment = {
   "kind": "Fragment",
   "name": "CourseCard_course",
   "type": "Course",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
-    (v0/*: any*/),
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "id",
+      "args": null,
+      "storageKey": null
+    },
     {
       "kind": "ScalarField",
       "alias": null,
@@ -53,42 +45,8 @@ return {
       "name": "suggestedLevel",
       "args": null,
       "storageKey": null
-    },
-    {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "instructors",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "Instructor",
-      "plural": false,
-      "selections": [
-        (v0/*: any*/),
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "firstName",
-          "args": null,
-          "storageKey": null
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "lastName",
-          "args": null,
-          "storageKey": null
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "username",
-          "args": null,
-          "storageKey": null
-        }
-      ]
     }
   ]
 };
-})();
-(node as any).hash = '0277468ebe605e3c325fb16f3c9dadb9';
+(node as any).hash = 'c30b9f2a9c81c9231f483d0128759964';
 export default node;

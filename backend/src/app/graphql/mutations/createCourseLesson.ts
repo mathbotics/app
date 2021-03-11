@@ -31,7 +31,26 @@ export const createCourseLesson = {
       }),
       'Could not create course',
     );
-    return {courseToLesson};
+
+    const course = nullthrows(
+      await prisma.course.findUnique({
+        where: {
+          id: courseId
+        }
+      }),
+      'Could not create course',
+    )
+
+    const lesson = nullthrows(
+      await prisma.lesson.findUnique({
+        where: {
+          id: lessonId
+        }
+      }),
+      'Could not create course',
+    )
+
+    return {course, lesson};
    }
   
 }

@@ -39,6 +39,15 @@ type Course {
   instructors: Instructor!
   courseTo: [CourseToStudent]
   students: [Student!]!
+  courses: [CourseToLesson!]!
+}
+
+# This represents the course to lesson relation
+type CourseToLesson {
+  courseId: String!
+  lessonId: String!
+  course: Course!
+  lesson: Lesson!
 }
 
 # This represents the Course to Student relations
@@ -65,6 +74,17 @@ input createCourseInput {
   name: String
   description: String
   suggestedLevel: GradeLevel
+}
+
+input createCourseLessonInput {
+  courseId: String
+  lessonId: String
+}
+
+# course type definition
+type CreateCourseLessonPayload {
+  course: Course!
+  lesson: Lesson!
 }
 
 # course type definition
@@ -265,6 +285,7 @@ type Mutation {
   sendInvitationEmail(input: SendInvitationEmailInput!): String
   sendResetPasswordEmail(input: SendResetPasswordEmailInput!): String
   resetPassword(input: ResetPasswordInput!): ResetPasswordPayload
+  createCourseLesson(input: createCourseLessonInput!): CreateCourseLessonPayload
 }
 
 # This represents the Page
@@ -284,6 +305,7 @@ type Query {
   students(id: ID): [Student!]!
   guardians(id: ID): [User]
   instructors(id: ID): [Instructor]
+  courseToLessons(id: ID): [Lesson]
   course(where: CourseWhereUniqueInput): Course
   courses(id: ID): [Course!]!
   lesson(where: LessonWhereUniqueInput): Lesson

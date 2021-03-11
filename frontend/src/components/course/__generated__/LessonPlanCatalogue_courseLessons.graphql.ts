@@ -3,10 +3,8 @@
 
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type Course_course = {
+export type LessonPlanCatalogue_courseLessons = {
     readonly id: string;
-    readonly name: string;
-    readonly description: string | null;
     readonly courses: ReadonlyArray<{
         readonly lesson: {
             readonly id: string;
@@ -17,12 +15,12 @@ export type Course_course = {
             }>;
         };
     }>;
-    readonly " $refType": "Course_course";
+    readonly " $refType": "LessonPlanCatalogue_courseLessons";
 };
-export type Course_course$data = Course_course;
-export type Course_course$key = {
-    readonly " $data"?: Course_course$data;
-    readonly " $fragmentRefs": FragmentRefs<"Course_course">;
+export type LessonPlanCatalogue_courseLessons$data = LessonPlanCatalogue_courseLessons;
+export type LessonPlanCatalogue_courseLessons$key = {
+    readonly " $data"?: LessonPlanCatalogue_courseLessons$data;
+    readonly " $fragmentRefs": FragmentRefs<"LessonPlanCatalogue_courseLessons">;
 };
 
 
@@ -44,26 +42,12 @@ v1 = {
 };
 return {
   "kind": "Fragment",
-  "name": "Course_course",
+  "name": "LessonPlanCatalogue_courseLessons",
   "type": "Course",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
     (v0/*: any*/),
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "name",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "description",
-      "args": null,
-      "storageKey": null
-    },
     {
       "kind": "LinkedField",
       "alias": null,
@@ -104,5 +88,5 @@ return {
   ]
 };
 })();
-(node as any).hash = 'efbd9d6e4e7c74b63e605463c7cd4028';
+(node as any).hash = '7775732c35c1bda50bfd31f541f3d6da';
 export default node;

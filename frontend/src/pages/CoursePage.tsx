@@ -15,8 +15,9 @@ export const CoursePageQuery = graphql`
   }
 `;
 
+
 export const CoursePage = (): JSX.Element => {
-  const { courseId } = useParams();
+  const { courseId }:any = useParams();
 
   return (
     <QueryRenderer

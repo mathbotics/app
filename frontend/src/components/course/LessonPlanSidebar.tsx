@@ -5,9 +5,10 @@ import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 import { DeleteOutlined } from '@ant-design/icons';
 // import { commit as commitUpdateOneLessonPlanMutation } from '../../graphql/mutations/UpdateOneLessonPlanMutation';
-import { LessonPlanSidebar_lessonPlan } from './__generated__/LessonPlanSidebar_lessonPlan.graphql';
+// import { LessonPlanSidebar_lessonPlan } from './__generated__/LessonPlanSidebar_lessonPlan.graphql';
 
 import { LessonCard } from '../lessons/LessonCard';
+import { LessonPlanSidebar_courseLessons } from './__generated__/LessonPlanSidebar_courseLessons.graphql';
 
 const MenuItem = styled(Menu.Item)`
   width: 100% !important;
@@ -31,17 +32,17 @@ I believe it will be used in the future
 // eslint-disable-next-line
 const { Sider, Content } = Layout;
 type Props = {
-  lessonPlan: LessonPlanSidebar_lessonPlan;
+  courseLessons: LessonPlanSidebar_courseLessons;
   setCourseToBeDeleted: (id) => void;
   setCourseToBeDeletedArray: (lessons) => void;
 };
 const LessonPlanSidebar = ({
-  lessonPlan,
+  courseLessons,
   setCourseToBeDeleted,
   setCourseToBeDeletedArray,
 }: Props) => {
   const [selected, setSelected] = useState<string | undefined>(
-    lessonPlan.lessons?.[0]?.id,
+    courseLessons.courses[0].lesson.id,
   );
 
   const removeLessonFromLessonPlan = (id: string) => {
@@ -60,21 +61,21 @@ const LessonPlanSidebar = ({
     // );
   };
 
-  const { lessons } = lessonPlan;
+  const { courses } = courseLessons;
 
   useEffect(() => {
     const lessonIds: string[] = [];
-    console.log(`LessonPlanSidebar - useEffect: current lessons `, lessons);
-    lessons.map((lesson, index) => lessonIds.push(lesson.id));
+    console.log(`LessonPlanSidebar - useEffect: current lessons `, courses);
+    courses.map((lesson:any, index) => lessonIds.push(lesson.id));
     console.log(`LessonPlanSidebar - useEffect: current lessonIds `, lessonIds);
     setCourseToBeDeletedArray(lessonIds);
-  }, [lessons]);
+  }, [courses]);
 
   return (
     <Sider width={350} theme="light">
-      {lessonPlan.lessons.length > 0 && (
+      {courseLessons.courses.length > 0 && (
         <Menu defaultSelectedKeys={[selected?.toString() ?? '']} mode="inline">
-          {lessons.map((lesson, index) => (
+          {courses.map((lesson:any, index) => (
             <MenuItem key={lesson.id} style={{ display: 'flex' }}>
               <h1
                 style={{
@@ -122,5 +123,19 @@ const LessonPlanSidebar = ({
 };
 
 export default createFragmentContainer(LessonPlanSidebar, {
-  
+  courseLessons: graphql`
+  fragment LessonPlanSidebar_courseLessons on Course {
+    id
+    courses{
+      lesson{
+        id
+        title
+        slides{
+          id
+          title
+        }
+      }
+    }
+  }
+`,
 });

@@ -10,7 +10,7 @@ import { LessonCard } from '../lessons/LessonCard';
 
 const { Title } = Typography;
 
-type Props = { course: Course_course };
+type Props = { course: Course_course};
 const Course = ({ course }: Props) => {
   const history = useHistory();
 
@@ -55,7 +55,7 @@ const Course = ({ course }: Props) => {
       </Banner>
 
       <LessonsWrapper>
-        {course!.lessons!.map((lesson) => (
+        {course!.courses!.map((lesson:any) => (
           <LessonCardWrapper key={lesson!.id}>
             <LessonCard
               id={lesson!.id}
@@ -105,6 +105,16 @@ export default createFragmentContainer(Course, {
       id
       name
       description
+      courses{
+        lesson{
+          id
+          title
+          slides{
+            id
+            title
+          }
+        }
+      }
     }
   `,
 });

@@ -66,13 +66,11 @@ type Props = { course: CourseCard_course };
 const CourseCard = ({
   course: {
     id,
-    instructors,
     name,
-    suggestedLevel,
-    lessonPlan: { lessons },
+    suggestedLevel
   },
 }: Props) => {
-  const lessonCount = lessons.length;
+  // const lessonCount = lessons.length;
   // console.log(instructors);
   const history = useHistory();
   // const isAdmin: boolean = query.viewer.__typename == "Admin";
@@ -124,7 +122,7 @@ const CourseCard = ({
       <CardDescription>
         <p style={{ fontSize: '16px' }} />
       </CardDescription>
-      <CardFooter>
+      {/* <CardFooter>
         <CardSlideCount>
           <ExportOutlined style={{ marginRight: '10px' }} />
           {lessonCount}
@@ -132,7 +130,7 @@ const CourseCard = ({
           Lesson
           {lessonCount !== 1 && 's'}
         </CardSlideCount>
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   );
 };
@@ -143,12 +141,6 @@ export default createFragmentContainer(CourseCard, {
       id
       name
       suggestedLevel
-      instructors {
-        id
-        firstName
-        lastName
-        username
-      }
     }
   `,
 });

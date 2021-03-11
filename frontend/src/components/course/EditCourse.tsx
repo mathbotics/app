@@ -33,12 +33,12 @@ const EditCourse = ({ course, query }: Props) => {
     PageState.UpdateCourseSuccess,
   );
   const tabs: Tab[] = [
-    {
-      title: 'Lesson Plan',
-      Component: (
-        <EditCourseLessonPlan lessonPlan={course.lessonPlan} query={query} />
-      ),
-    },
+    // {
+    //   title: 'Lesson Plan',
+    //   Component: (
+    //     <EditCourseLessonPlan lessonPlan={course.lessonPlan} query={query} />
+    //   ),
+    // },
     {
       title: 'Students',
       Component: <EditCourseStudents course={course} />,

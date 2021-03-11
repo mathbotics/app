@@ -7,20 +7,21 @@ import { PlusOutlined } from '@ant-design/icons';
 import { LessonPlanCatalogue_query } from './__generated__/LessonPlanCatalogue_query.graphql';
 import { LessonCard } from '../lessons/LessonCard';
 // import { commit as commitUpdateOneLessonPlanMutation } from '../../graphql/mutations/UpdateOneLessonPlanMutation';
-import { LessonPlanCatalogue_lessonPlan } from './__generated__/LessonPlanCatalogue_lessonPlan.graphql';
+// import { LessonPlanCatalogue_lessonPlan } from './__generated__/LessonPlanCatalogue_lessonPlan.graphql';
+import { LessonPlanCatalogue_courseLessons } from './__generated__/LessonPlanCatalogue_courseLessons.graphql';
 
 const { Search } = Input;
 const { Title } = Typography;
 
 type Props = {
   query: LessonPlanCatalogue_query;
-  lessonPlan: LessonPlanCatalogue_lessonPlan;
+  courseLessons: LessonPlanCatalogue_courseLessons;
   courseToDelete: String;
   lessonIdsInLessonPlan: String[];
 };
 
 const LessonPlanCatalogue = ({
-  lessonPlan,
+  courseLessons,
   query,
   courseToDelete,
   lessonIdsInLessonPlan,
@@ -62,7 +63,7 @@ const LessonPlanCatalogue = ({
     Graphql logic to add lessons to LessonPlan
  */
   const connectLessonToLessonPlan = (id: string) => {
-    const lessonIds = lessonPlan.lessons.map((lesson) => ({ id: lesson.id }));
+    const lessonIds = courseLessons.courses.map((lesson:any) => ({ id: lesson.id}));
     console.log('connecting lesson to lesson plan', id);
     // TODO: Comment out when update lesson plan mutation is completed. Need to test frontend first
     // commitUpdateOneLessonPlanMutation(
@@ -195,14 +196,21 @@ export default createFragmentContainer(LessonPlanCatalogue, {
       }
     }
   `,
-  // lessonPlan: graphql`
-  //   fragment LessonPlanCatalogue_lessonPlan on LessonPlan {
-  //     id
-  //     lessons {
-  //       id
-  //     }
-  //   }
-  // `,
+  courseLessons: graphql`
+    fragment LessonPlanCatalogue_courseLessons on Course {
+      id
+      courses{
+        lesson{
+          id
+          title
+          slides{
+            id
+            title
+          }
+        }
+      }
+    }
+  `,
 });
 
 const ButtonWrapper = styled.div`

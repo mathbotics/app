@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 69f06d622a243438da15e42916c1d13b */
+/* @relayHash f40c294c49363f9e62ebf78e77dffff5 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -42,12 +42,6 @@ fragment CourseCard_course on Course {
   id
   name
   suggestedLevel
-  instructors {
-    id
-    firstName
-    lastName
-    username
-  }
 }
 */
 
@@ -66,14 +60,7 @@ v1 = [
     "name": "input",
     "variableName": "input"
   }
-],
-v2 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-};
+];
 return {
   "kind": "Request",
   "fragment": {
@@ -135,7 +122,13 @@ return {
             "concreteType": "Course",
             "plural": false,
             "selections": [
-              (v2/*: any*/),
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "id",
+                "args": null,
+                "storageKey": null
+              },
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -149,39 +142,6 @@ return {
                 "name": "suggestedLevel",
                 "args": null,
                 "storageKey": null
-              },
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "instructors",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "Instructor",
-                "plural": false,
-                "selections": [
-                  (v2/*: any*/),
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "firstName",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "lastName",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "username",
-                    "args": null,
-                    "storageKey": null
-                  }
-                ]
               }
             ]
           }
@@ -193,7 +153,7 @@ return {
     "operationKind": "mutation",
     "name": "CreateOneCourseMutation",
     "id": null,
-    "text": "mutation CreateOneCourseMutation(\n  $input: createCourseInput!\n) {\n  createOneCourse(input: $input) {\n    course {\n      ...CourseCard_course\n    }\n  }\n}\n\nfragment CourseCard_course on Course {\n  id\n  name\n  suggestedLevel\n  instructors {\n    id\n    firstName\n    lastName\n    username\n  }\n}\n",
+    "text": "mutation CreateOneCourseMutation(\n  $input: createCourseInput!\n) {\n  createOneCourse(input: $input) {\n    course {\n      ...CourseCard_course\n    }\n  }\n}\n\nfragment CourseCard_course on Course {\n  id\n  name\n  suggestedLevel\n}\n",
     "metadata": {}
   }
 };

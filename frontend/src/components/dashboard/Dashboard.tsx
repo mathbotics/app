@@ -66,11 +66,13 @@ const Banner = styled.div`
   line-height: 30px;
 `;
 
+
 export default createFragmentContainer(Dashboard, {
   dashboard: graphql`
     fragment Dashboard_dashboard on Query {
       viewer {
         firstName
+        lastName
         ... on Instructor {
           email
         }

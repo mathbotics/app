@@ -522,16 +522,49 @@ export const Course = new GraphQLObjectType({
         resolve(Course){
           return Course.students
         }
+      },
+      courses: {
+        type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(CourseToLesson))),
+        resolve(Course){
+          return Course.courses
+        }
       }
-      // lessonPlan: {
-      //   type: LessonPlan,
-      //   resolve(Course){
-      //     return Course.lessonPlan
-      //   }
-      //}
     }
   }
 });
+
+export const CourseToLesson = new GraphQLObjectType({
+name: "CourseToLesson",
+description: "This represents the course to lesson relation",
+fields: () => {
+  return {
+    courseId: {
+      type: new GraphQLNonNull(GraphQLString),
+      resolve(CourseToLesson){
+        return CourseToLesson.courseId
+      }
+    },
+    lessonId: {
+      type: new GraphQLNonNull(GraphQLString),
+      resolve(CourseToLesson){
+        return CourseToLesson.lessonId
+      }
+    },
+    course: {
+      type: new GraphQLNonNull(Course),
+      resolve(CourseToLesson){
+        return CourseToLesson.course
+      }
+    },
+    lesson: {
+      type: new GraphQLNonNull(Lesson),
+      resolve(CourseToLesson){
+        return CourseToLesson.lesson
+      }
+    }
+  }
+}
+})
 
 export const Lesson = new GraphQLObjectType({
   name: "Lesson",
@@ -690,7 +723,7 @@ export const TextBlock = new GraphQLObjectType({
    } 
 });
 
-const EmptyBlock = new GraphQLObjectType({
+export const EmptyBlock = new GraphQLObjectType({
   name: "EmptyBlock",
   description: "This represents the Empty Block",
   fields: () => {
@@ -999,6 +1032,36 @@ const RootQuery = new GraphQLObjectType({
         });
         }
       },
+      courseToLessons: {
+        type: new GraphQLList(Lesson),
+        args: {
+          id: {
+            type: GraphQLID,
+          }
+        },
+        async resolve(root, args){
+          const coursetolessons = await prisma.courseToLesson.findMany({
+            where: {
+              courseId: args.id
+            },
+            include: {
+              lesson: {
+                include: {
+                  slides: true
+                }
+              }
+            }
+          });
+          
+          const lessons = coursetolessons.map(coursetolesson => {
+              return {...coursetolesson.lesson}
+          })
+
+          console.log(lessons)
+          return lessons
+        }
+
+      },
       course: {
         type: Course,
         args: {
@@ -1007,15 +1070,29 @@ const RootQuery = new GraphQLObjectType({
           }
         },
         async resolve(root, args){
-          const courses = await prisma.course.findUnique({
-            where: args, 
+          const id = args.where.id
+          const course = await prisma.course.findUnique({
+            where: {
+              id: id
+            }, 
             include: { 
               instructors: true,
               //lessonPlan: true,
               courseTo: true,
-              contents: true
+              contents: true,
+              courses: {
+                include: {
+                  lesson: {
+                    include: {
+                      slides: true
+                    }
+                  }
+                }
+              }
             }
           });
+          console.log(course)
+          return course
         }
       },
       courses: {
@@ -1026,15 +1103,16 @@ const RootQuery = new GraphQLObjectType({
           }
         },
         async resolve(root, args){
-          return await prisma.course.findMany({
+          const courses = await prisma.course.findMany({
             where: args, 
             include: { 
-              instructors: true,
               //lessonPlan: true,
               courseTo: true,
               contents: true
             }
           });
+          console.log(courses)
+          return courses
         }
       },
       lesson: {
@@ -1045,7 +1123,13 @@ const RootQuery = new GraphQLObjectType({
           }
         },
         async resolve(root, args){
-          return await prisma.lesson.findUnique({where: args, include: {slides: true}});
+          console.log(args)
+          const id = args.where.id
+          return await prisma.lesson.findUnique({
+            where: {
+              id: id,
+            }, 
+            include: {slides: true}});
         }
       },
       lessons: {

@@ -30,7 +30,9 @@ const Courses = ({ query }: Props) => {
   */
   // eslint-disable-next-line
   let history = useHistory();
+  
   const [pageState, setPageState] = useState<PageState>(PageState.Default);
+  
   return (
     <Layout style={{ backgroundColor: 'white', maxHeight: '95vh' }}>
       <HeaderWrapper>

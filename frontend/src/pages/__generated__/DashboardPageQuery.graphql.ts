@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash b573e8267c2abf1cf611ad0c5002848b */
+/* @relayHash 4387e5b41937134fa6bb174b6b6bfdd0 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -24,6 +24,7 @@ fragment Dashboard_dashboard on Query {
   viewer {
     __typename
     firstName
+    lastName
     ... on Instructor {
       email
     }
@@ -89,6 +90,13 @@ return {
             "storageKey": null
           },
           {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "lastName",
+            "args": null,
+            "storageKey": null
+          },
+          {
             "kind": "InlineFragment",
             "type": "Instructor",
             "selections": (v0/*: any*/)
@@ -106,7 +114,7 @@ return {
     "operationKind": "query",
     "name": "DashboardPageQuery",
     "id": null,
-    "text": "query DashboardPageQuery {\n  ...Dashboard_dashboard\n}\n\nfragment Dashboard_dashboard on Query {\n  viewer {\n    __typename\n    firstName\n    ... on Instructor {\n      email\n    }\n    ... on Admin {\n      email\n    }\n  }\n}\n",
+    "text": "query DashboardPageQuery {\n  ...Dashboard_dashboard\n}\n\nfragment Dashboard_dashboard on Query {\n  viewer {\n    __typename\n    firstName\n    lastName\n    ... on Instructor {\n      email\n    }\n    ... on Admin {\n      email\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

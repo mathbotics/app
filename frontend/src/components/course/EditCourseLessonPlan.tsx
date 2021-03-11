@@ -3,18 +3,20 @@ import { Layout } from 'antd';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 import styled from 'styled-components';
-import { EditCourseLessonPlan_lessonPlan } from './__generated__/EditCourseLessonPlan_lessonPlan.graphql';
+// import { EditCourseLessonPlan_lessonPlan } from './__generated__/EditCourseLessonPlan_lessonPlan.graphql';
 import LessonPlanSidebar from './LessonPlanSidebar';
 import { EditCourseLessonPlan_query } from './__generated__/EditCourseLessonPlan_query.graphql';
 import LessonPlanCatalogue from './LessonPlanCatalogue';
+import { EditCourseLessonPlan_courseLessons } from './__generated__/EditCourseLessonPlan_courseLessons.graphql';
 
 type Props = {
-  lessonPlan: EditCourseLessonPlan_lessonPlan;
+  courseLessons: EditCourseLessonPlan_courseLessons;
   query: EditCourseLessonPlan_query;
 };
 const { Sider, Content } = Layout;
 
-export const EditCourseLessonPlan = ({ lessonPlan, query }: Props) => {
+//take out lessonplan
+export const EditCourseLessonPlan = ({ courseLessons, query }: Props) => {
   // course id to be deleted gets sent here
   const [courseToDelete, setCourseToBeDeleted] = useState<String>("");
   const [courseToDeleteArray, setCourseToBeDeletedArray] = useState<String[]>([]);
@@ -26,7 +28,7 @@ export const EditCourseLessonPlan = ({ lessonPlan, query }: Props) => {
   return (
     <Wrapper>
 
-      {lessonPlan.lessons.length > 0 && (
+      {courseLessons.courses.length > 0 && (
         <Sider
           width={350}
           theme="light"
@@ -49,7 +51,7 @@ export const EditCourseLessonPlan = ({ lessonPlan, query }: Props) => {
               Lesson Plan
             </h1>
             <LessonPlanSidebar
-              lessonPlan={lessonPlan}
+              courseLessons={courseLessons}
               setCourseToBeDeleted={(id) => setCourseToBeDeleted(id)}
               setCourseToBeDeletedArray={
                 (lessons) => setCourseToBeDeletedArray([...courseToDeleteArray, ...lessons])
@@ -61,7 +63,7 @@ export const EditCourseLessonPlan = ({ lessonPlan, query }: Props) => {
 
       <LessonPlanCatalogue
         query={query}
-        lessonPlan={lessonPlan}
+        courseLessons={courseLessons}
         courseToDelete={courseToDelete}
         lessonIdsInLessonPlan={courseToDeleteArray}
       />
@@ -82,4 +84,22 @@ export default createFragmentContainer(EditCourseLessonPlan, {
       ...LessonPlanCatalogue_query
     }
   `,
+  courseLessons: graphql`
+    fragment EditCourseLessonPlan_courseLessons on Course {
+      id
+      courses{
+        lesson{
+          id
+          title
+          slides{
+            id
+            title
+          }
+        }
+      }
+      ...LessonPlanSidebar_courseLessons
+      ...LessonPlanCatalogue_courseLessons
+    }
+  
+  `
 });
