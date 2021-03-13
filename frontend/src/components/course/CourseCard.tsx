@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { ExportOutlined, EditOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 import { useHistory } from 'react-router-dom';
-import { createFragmentContainer } from 'react-relay';
+import { createFragmentContainer, createRefetchContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 
 import { CourseCard_course } from './__generated__/CourseCard_course.graphql';
@@ -93,6 +93,7 @@ const CourseCard = ({
     console.log('Go to course page');
     history.push(`/courses/${id}`);
   }
+
 
   return (
     <Card onClick={() => openEditPage(edit)}>

@@ -1,5 +1,5 @@
 import { GraphQLNonNull, GraphQLObjectType } from "graphql";
-import { Course } from "../../server/GraphQLSchema";
+import { Course } from "../../server/objects";
 
 export const UpdateCoursePayload = new GraphQLObjectType({
     name: "UpdateCoursePayload",

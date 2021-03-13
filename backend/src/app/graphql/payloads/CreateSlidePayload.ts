@@ -1,5 +1,5 @@
 import { GraphQLNonNull, GraphQLObjectType } from "graphql";
-import { Slide } from "../../server/GraphQLSchema";
+import { Slide } from "../../server/objects";
 
 export const CreateSlidePayload = new GraphQLObjectType({
     name: "CreateSlidePayload",

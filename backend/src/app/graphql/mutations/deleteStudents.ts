@@ -6,7 +6,7 @@ import nullthrows from 'nullthrows';
 import { resolve } from 'path';
 
 import prisma from '../../data/prisma';
-import { Course } from '../../server/GraphQLSchema';
+import { Course } from '../../server/objects';
 
 export const DeleteStudentsInput = new GraphQLInputObjectType({
   name: "DeleteStudentsInput",

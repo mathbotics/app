@@ -1,7 +1,7 @@
 import { GraphQLInputObjectType, GraphQLNonNull, GraphQLString } from 'graphql';
 import { mutationField, inputObjectType, arg } from 'nexus';
 import nullthrows from 'nullthrows';
-import { GradeLevel } from '../../server/GraphQLSchema';
+import { GradeLevel } from '../../server/objects';
 import prisma from '../../data/prisma';
 import { EditStudentPayload } from '../payloads/EditStudentPayload';
 import { resolve } from 'path';

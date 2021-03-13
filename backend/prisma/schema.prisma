@@ -22,7 +22,8 @@ model Course {
   description    String?
   suggestedLevel GradeLevel
   contents       Content[]
-  instructors    Instructor[]
+  instructor     Instructor    @relation(fields: [instructorId], references: [id])
+  instructorId   String      // relation scalar field (used in the @relation attribute above)
   //lessonPlan     LessonPlan
   courseTo       CourseToStudent[]
   courses       CourseToLesson[]

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import { Layout, Result } from 'antd';
-import { createFragmentContainer } from 'react-relay';
+import { createFragmentContainer, createRefetchContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 
 import styled from 'styled-components';
@@ -26,10 +26,20 @@ const CardWrapper = styled.div`
   margin: 10px;
 `;
 
-type Props = { courses: CoursesList_courses };
-const CoursesList = ({ courses }: Props) =>
+
+type Props = { courses: CoursesList_courses, retry };
+const CoursesList = ({ courses, retry }: Props) => {
   // const history = useHistory();
-   (
+
+
+  // useEffect(() => {
+  //   console.log(courses.courses[courses.courses.length - 1].id)
+  //   retry()
+
+  // }, [courses.courses[courses.courses.length - 1].id === undefined])
+
+  
+   return (
      <Wrapper>
        {courses.courses.length === 0 && (
        <Result
@@ -49,6 +59,8 @@ const CoursesList = ({ courses }: Props) =>
       ))}
      </Wrapper>
   );
+
+}
 export default createFragmentContainer(CoursesList, {
   courses: graphql`
     fragment CoursesList_courses on Query {
@@ -59,3 +71,4 @@ export default createFragmentContainer(CoursesList, {
     }
   `,
 });
+

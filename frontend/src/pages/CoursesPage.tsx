@@ -18,7 +18,7 @@ export const CoursesPage = () => (
     environment={environment}
     variables={{}}
     query={CoursesPageQuery}
-    render={({ props, error }) =>
-      !error && props && <Courses query={props as CoursesPageQueryResponse} />}
+    render={({ props, error, retry }) =>
+      !error && props && <Courses retry={retry} query={props as CoursesPageQueryResponse} />}
   />
 );

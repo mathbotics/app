@@ -1,9 +1,9 @@
 import nullthrows from 'nullthrows';
 import prisma from '../../data/prisma';
-import { GraphQLInputObjectType, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
-import { GradeLevel } from '../../server/GraphQLSchema';
-import {CreateCoursePayload} from '../payloads/CreateCoursePayload';
-import { resolve } from 'path';
+import { GraphQLEnumType, GraphQLInputObjectType, 
+  GraphQLNonNull, GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql';
+import { GradeLevel, Instructor, Course } from '../../server/objects';
+
 
 
 export const createCourseInput = new GraphQLInputObjectType({
@@ -11,19 +11,40 @@ export const createCourseInput = new GraphQLInputObjectType({
     fields: () => ({
         name: { type: GraphQLString},
         description: { type: GraphQLString},
-        suggestedLevel: { type: GradeLevel}
+        suggestedLevel: { type: GradeLevel},
+        instructorId: {type: GraphQLString}
     })
 });
 
+
+export const TestType = new GraphQLObjectType({
+  name: "TestType",
+  fields: () => ({
+    something: { type: GraphQLString} 
+  }),
+})
+
+export const CreateCourseType = new GraphQLObjectType({
+  name: "CreateCourseType",
+  description: "course type definition",
+  fields: {
+    id: { type: new GraphQLNonNull(GraphQLString) },
+    name: { type: new GraphQLNonNull(GraphQLString) }, 
+    description: { type: GraphQLString },
+    test: { type: TestType },
+    instructor: { type: Instructor } 
+  }
+})
+
 export const createOneCourse = {
-    type: CreateCoursePayload,
+    type: Course,
     args: {
       input: {
         type: new GraphQLNonNull(createCourseInput),
       }
     },
-   async resolve(root, args){
-     const { name, description, suggestedLevel} = args.input 
+   async resolve(root : any, args : any){
+     const { name, description, suggestedLevel, instructorId} = args.input 
     //  const lessonPlan = nullthrows(
     //     await prisma.lessonPlan.create({
     //         data: {}
@@ -34,12 +55,21 @@ export const createOneCourse = {
         data: {
             name,
             description,
-            suggestedLevel
+            suggestedLevel,
+            instructorId: "ckm5fontj0108lgo6qvpsv32r"
+        },
+        include: {
+          instructor: {
+            include: {
+              user: true
+            }
+          }
         }
       }),
       'Could not create course',
     );
-    return {course};
+    console.log(course)
+    return course;
    }
   
 }

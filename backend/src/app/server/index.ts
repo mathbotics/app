@@ -8,7 +8,7 @@ import applyExpressMiddlewares from './middlewares/express';
 import applySchemaMiddlewares from './middlewares/graphql';
 import prisma from '../data/prisma';
 import types from '../graphql';
-import GraphSchema from './GraphQLSchema'; // Added to mimic const GraphSchema = require('./src/models/GraphQLSchema');
+import {GraphSchema} from './GraphQLSchema'; // Added to mimic const GraphSchema = require('./src/models/GraphQLSchema');
 
 const { PORT, NODE_ENV } = process.env;
 

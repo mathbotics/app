@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Typography, Layout, Tooltip, Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
@@ -22,8 +22,8 @@ enum PageState {
   CreateCourseSuccess,
   CreateCourseError,
 }
-type Props = { query: Courses_query };
-const Courses = ({ query }: Props) => {
+type Props = { query: Courses_query, retry };
+const Courses = ({ query, retry }: Props) => {
   /*
   TODO
   history will probably be used in the future
@@ -32,6 +32,8 @@ const Courses = ({ query }: Props) => {
   let history = useHistory();
   
   const [pageState, setPageState] = useState<PageState>(PageState.Default);
+  
+  console.log(query)
   
   return (
     <Layout style={{ backgroundColor: 'white', maxHeight: '95vh' }}>
@@ -64,7 +66,7 @@ const Courses = ({ query }: Props) => {
       />
 
       {/* Display list of courses */}
-      <CoursesList courses={query} />
+      <CoursesList retry={retry} courses={query} />
     </Layout>
   );
 };

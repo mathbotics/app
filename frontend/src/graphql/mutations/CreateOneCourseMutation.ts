@@ -7,9 +7,7 @@ import { createCourseInput } from './__generated__/CreateOneCourseMutation.graph
 const mutation = graphql`
   mutation CreateOneCourseMutation($input: createCourseInput!) {
     createOneCourse(input: $input) {
-      course{
       ...CourseCard_course
-      }
     }
   }
 `;
@@ -29,10 +27,13 @@ function commit(
     onCompleted: onSuccess,
     onError: onFailure,
     updater(store) {
+      console.log(rootDataID)
       if (rootDataID) {
         const course = store.getRootField('createOneCourse');
+        console.log(course)
         const query = store.get(rootDataID);
         const courses = query?.getLinkedRecords('courses') ?? [];
+        console.log(courses)
         query?.setLinkedRecords([...courses, course], 'courses');
       }
     },
