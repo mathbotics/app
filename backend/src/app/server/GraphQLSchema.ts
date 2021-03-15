@@ -20,7 +20,7 @@ import prisma from '../data/prisma';
 import { Mutations } from '../graphql/mutations/Mutations';
 import { CourseWhereUniqueInput } from '../graphql/queryinputs/CourseInput';
 import { LessonWhereUniqueInput } from '../graphql/queryinputs/LessonInput';
-import { Course, CourseToStudent, Instructor, Lesson, Slide, Student, User } from './objects';
+import { Course, CourseToStudent, GradeLevel, Instructor, Lesson, Slide, Student, User } from './objects';
 
 // const resolveUserHelper = async (data : typeof User) => {
 
@@ -170,213 +170,213 @@ import { Course, CourseToStudent, Instructor, Lesson, Slide, Student, User } fro
 //   resolveType: resolveUserHelper
 // });
 
-// export const Student: any  = new GraphQLObjectType({
-//   name: "Student",
-//   description: "This represents the student",
-//   interfaces: [User],
-//   fields: () => {
-//     return {
-//       id: {
-//         type: new GraphQLNonNull(GraphQLString),
-//         resolve(Student){
-//           return Student.id
-//         }
-//       },
-//       username: {
-//         type: new GraphQLNonNull(GraphQLString),
-//         resolve(Student){
-//           if(Student.user){
-//             return Student.user.username
-//           }
-//           return Student.username
-//         }
-//       },
-//       firstName: {
-//         type: new GraphQLNonNull(GraphQLString),
-//         async resolve(Student){
-//           console.log("Inside student resolve", Student)
-//           if(Student.user){
-//             return Student.user.firstName
-//           }
-//           return Student.firstName
-//         }
-//       },
-//       lastName: {
-//         type: new GraphQLNonNull(GraphQLString),
-//         async resolve(Student){
-//           console.log("Inside student resolve", Student)
-//           if(Student.user){
-//             return Student.user.lastName
-//           }
-//           return Student.lastName          
-//         }
-//       },
-//       // email: {
-//       //   type: GraphQLString,
-//       //   resolve(Student){
-//       //     return Student.user.email
-//       //   }
-//       // },
-//       password: {          
-//         type: new GraphQLNonNull(GraphQLString),
-//         resolve(Student){
-//           if(Student.user){
-//             return Student.user.password
-//           }
-//           return Student.password
-//         }
-//       },
-//       gradeLevel: {
-//         type: new GraphQLNonNull(GradeLevel),
-//         resolve(Student){
-//           return Student.gradeLevel
-//         }
-//       },
-//       guardians: {
-//         type: new GraphQLNonNull(Guardian),
-//         resolve(Student){
-//           return Student.guardian.id
-//         }
-//       },
-//       studentTo: {
-//         type: new GraphQLList(CourseToStudent),
-//         resolve(Student){
-//           console.log(Student)
-//           return Student.studentTo
-//         }
-//       }
-//     }
-//   }
-// });
+export const Student: any  = new GraphQLObjectType({
+  name: "Student",
+  description: "This represents the student",
+  interfaces: [User],
+  fields: () => {
+    return {
+      id: {
+        type: new GraphQLNonNull(GraphQLString),
+        resolve(Student){
+          return Student.id
+        }
+      },
+      username: {
+        type: new GraphQLNonNull(GraphQLString),
+        resolve(Student){
+          if(Student.user){
+            return Student.user.username
+          }
+          return Student.username
+        }
+      },
+      firstName: {
+        type: new GraphQLNonNull(GraphQLString),
+        async resolve(Student){
+          console.log("Inside student resolve", Student)
+          if(Student.user){
+            return Student.user.firstName
+          }
+          return Student.firstName
+        }
+      },
+      lastName: {
+        type: new GraphQLNonNull(GraphQLString),
+        async resolve(Student){
+          console.log("Inside student resolve", Student)
+          if(Student.user){
+            return Student.user.lastName
+          }
+          return Student.lastName          
+        }
+      },
+      // email: {
+      //   type: GraphQLString,
+      //   resolve(Student){
+      //     return Student.user.email
+      //   }
+      // },
+      password: {          
+        type: new GraphQLNonNull(GraphQLString),
+        resolve(Student){
+          if(Student.user){
+            return Student.user.password
+          }
+          return Student.password
+        }
+      },
+      gradeLevel: {
+        type: new GraphQLNonNull(GradeLevel),
+        resolve(Student){
+          return Student.gradeLevel
+        }
+      },
+      guardians: {
+        type: new GraphQLNonNull(Guardian),
+        resolve(Student){
+          return Student.guardian.id
+        }
+      },
+      studentTo: {
+        type: new GraphQLList(CourseToStudent),
+        resolve(Student){
+          console.log(Student)
+          return Student.studentTo
+        }
+      }
+    }
+  }
+});
 
-// export const Instructor : any = new GraphQLObjectType({
-//   name: "Instructor",
-//   description: "This represents the instructor",
-//   interfaces: [User],
-//   fields: () => {
-//     return {
-//       id: {
-//         type: new GraphQLNonNull(GraphQLString),
-//         resolve(Instructor){
-//           return Instructor.id
-//         }
-//       },
-//       firstName: {
-//         type: new GraphQLNonNull(GraphQLString),
-//         resolve(Instructor){
-//           console.log("Inside instructor resolve", Instructor)
-//           if(Instructor.user){
-//             return Instructor.user.firstName
-//           }
-//           return Instructor.firstName;
-//         }
-//       },
-//       lastName: {
-//         type: new GraphQLNonNull(GraphQLString),
-//         resolve(Instructor){
-//           if(Instructor.user){
-//             return Instructor.user.lastName
-//           }
-//           return Instructor.lastName
-//         }
-//       },
-//       username: {
-//         type: new GraphQLNonNull(GraphQLString),
-//         resolve(Instructor){
-//           if(Instructor.user){
-//             return Instructor.user.username
-//           }
-//           return Instructor.username
-//         }
-//       },
-//       password: {          
-//         type: new GraphQLNonNull(GraphQLString),
-//         resolve(Instructor){
-//           if(Instructor.user){
-//             return Instructor.user.password
-//           }
-//           return Instructor.user.password
-//         }
-//       },
-//       email : {
-//         type: new GraphQLNonNull(GraphQLString),
-//         resolve(Instructor){
-//           return Instructor.email
-//         }
-//       },
-//       courses: {
-//         type: new GraphQLNonNull(Course),
-//         resolve(Instructor){
-//           return Instructor.courses
-//         }
-//       }
-//     }
-//   }
-// });
+export const Instructor : any = new GraphQLObjectType({
+  name: "Instructor",
+  description: "This represents the instructor",
+  interfaces: [User],
+  fields: () => {
+    return {
+      id: {
+        type: new GraphQLNonNull(GraphQLString),
+        resolve(Instructor){
+          return Instructor.id
+        }
+      },
+      firstName: {
+        type: new GraphQLNonNull(GraphQLString),
+        resolve(Instructor){
+          console.log("Inside instructor resolve", Instructor)
+          if(Instructor.user){
+            return Instructor.user.firstName
+          }
+          return Instructor.firstName;
+        }
+      },
+      lastName: {
+        type: new GraphQLNonNull(GraphQLString),
+        resolve(Instructor){
+          if(Instructor.user){
+            return Instructor.user.lastName
+          }
+          return Instructor.lastName
+        }
+      },
+      username: {
+        type: new GraphQLNonNull(GraphQLString),
+        resolve(Instructor){
+          if(Instructor.user){
+            return Instructor.user.username
+          }
+          return Instructor.username
+        }
+      },
+      password: {          
+        type: new GraphQLNonNull(GraphQLString),
+        resolve(Instructor){
+          if(Instructor.user){
+            return Instructor.user.password
+          }
+          return Instructor.user.password
+        }
+      },
+      email : {
+        type: new GraphQLNonNull(GraphQLString),
+        resolve(Instructor){
+          return Instructor.email
+        }
+      },
+      courses: {
+        type: new GraphQLNonNull(Course),
+        resolve(Instructor){
+          return Instructor.courses
+        }
+      }
+    }
+  }
+});
 
-// const Guardian = new GraphQLObjectType({
-//   name: "Guardian",
-//   description: "This represents the Guardian",
-//   interfaces: [User],
-//   fields: () => {
-//     return {
-//       id: {
-//         type: new GraphQLNonNull(GraphQLString),
-//         resolve(Guardian){
-//           return Guardian.id
-//         }
-//       },
-//       email: {
-//         type: new GraphQLNonNull(GraphQLString),
-//         resolve(Guardian){
-//           return Guardian.email
-//         }
-//       },
-//       firstName: {
-//         type: new GraphQLNonNull(GraphQLString),
-//         resolve(Guardian){
-//           if(Guardian.user){
-//             return Guardian.user.firstName
-//           }
-//           return Guardian.firstName;
-//         }
-//       },
-//       lastName: {
-//         type: new GraphQLNonNull(GraphQLString),
-//         resolve(Guardian){
-//           if(Guardian.user){
-//             return Guardian.user.lastName
-//           }
-//           return Guardian.lastName
-//         }
-//       },
-//       username: {
-//         type: new GraphQLNonNull(GraphQLString),
-//         resolve(Guardian){
-//           if(Guardian.user){
-//             return Guardian.user.username
-//           }
-//           return Guardian.user.username
-//         }
-//       },
-//       password: {          
-//         type: new GraphQLNonNull(GraphQLString),
-//         resolve(Guardian){
-//           if(Guardian.user){
-//             return Guardian.user.password
-//           }
-//           return Guardian.user.password
-//         }
-//       },
-//       students: {
-//         type: new GraphQLNonNull(Student),
-//         resolve(Guardian){
-//           return Guardian.students.id
-//         }
-//       }
-//     }
-//   }
-// });
+export const Guardian = new GraphQLObjectType({
+  name: "Guardian",
+  description: "This represents the Guardian",
+  interfaces: [User],
+  fields: () => {
+    return {
+      id: {
+        type: new GraphQLNonNull(GraphQLString),
+        resolve(Guardian){
+          return Guardian.id
+        }
+      },
+      email: {
+        type: new GraphQLNonNull(GraphQLString),
+        resolve(Guardian){
+          return Guardian.email
+        }
+      },
+      firstName: {
+        type: new GraphQLNonNull(GraphQLString),
+        resolve(Guardian){
+          if(Guardian.user){
+            return Guardian.user.firstName
+          }
+          return Guardian.firstName;
+        }
+      },
+      lastName: {
+        type: new GraphQLNonNull(GraphQLString),
+        resolve(Guardian){
+          if(Guardian.user){
+            return Guardian.user.lastName
+          }
+          return Guardian.lastName
+        }
+      },
+      username: {
+        type: new GraphQLNonNull(GraphQLString),
+        resolve(Guardian){
+          if(Guardian.user){
+            return Guardian.user.username
+          }
+          return Guardian.user.username
+        }
+      },
+      password: {          
+        type: new GraphQLNonNull(GraphQLString),
+        resolve(Guardian){
+          if(Guardian.user){
+            return Guardian.user.password
+          }
+          return Guardian.user.password
+        }
+      },
+      students: {
+        type: new GraphQLNonNull(Student),
+        resolve(Guardian){
+          return Guardian.students.id
+        }
+      }
+    }
+  }
+});
 
 
 export const Admin = new GraphQLObjectType({
@@ -746,9 +746,9 @@ const Block = new GraphQLUnionType({
     
     //COME BACK IF IT BREAKSSSS
     if (value.body !=null){
-      return TextBlock;
+      return "TextBlock";
     }
-    return EmptyBlock;
+    return "EmptyBlock";
    } 
 });
 
@@ -1075,7 +1075,15 @@ const RootQuery = new GraphQLObjectType({
             include: { 
               instructor: true,
               //lessonPlan: true,
-              courseTo: true,
+              courseTo: {
+                include: {
+                  student: {
+                  include: {
+                    user: true
+                  }
+                  }
+                }
+              },
               contents: true,
               courses: {
                 include: {
@@ -1088,12 +1096,15 @@ const RootQuery = new GraphQLObjectType({
               }
             }
           });
-          console.log(course)
+
+          
+
+          console.log("editing specified course:",course)
           return course
         }
       },
       courses: {
-        type: new GraphQLList(Course),
+        type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(Course))),
         args: {
           id: {
             type: GraphQLID
@@ -1104,9 +1115,13 @@ const RootQuery = new GraphQLObjectType({
             where: args, 
             include: { 
               //lessonPlan: true,
-              courseTo: true,
+              courseTo: {
+                include: {
+                  student: true,
+                }
+              },
               contents: true,
-              instructor: true
+              instructor: true,
             }
           });
           console.log(courses)
@@ -1127,7 +1142,11 @@ const RootQuery = new GraphQLObjectType({
             where: {
               id: id,
             }, 
-            include: {slides: true}});
+            include: {
+              slides: true
+              
+            }
+          });
         }
       },
       lessons: {
@@ -1242,14 +1261,14 @@ const RootQuery = new GraphQLObjectType({
         }
       },
       singleSlide: {
-        type: new GraphQLList(SingleSlide),
+        type: SingleSlide,
         args: {
           id: {
             type: GraphQLID
           }
         },
         async resolve(root, args){
-          return await prisma.singleSlide.findMany({where: args, include: {block: true}});
+          return await prisma.singleSlide.findFirst({where: args, include: {block: true}});
         }
       },
       pages: {

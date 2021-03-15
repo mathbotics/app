@@ -23,6 +23,7 @@ enum PageState {
 type Tab = { title: string; Component: JSX.Element };
 type Props = { course: EditCourse_course; query: EditCourse_query };
 const EditCourse = ({ course, query }: Props) => {
+  console.log("edit the course", course)
   /*
   TODO
   pageState isn't being used but it updated...?

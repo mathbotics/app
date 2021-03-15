@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash f40c294c49363f9e62ebf78e77dffff5 */
+/* @relayHash dc53c555accc6fcebdb3791be81289cf */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -9,16 +9,15 @@ export type createCourseInput = {
     name?: string | null;
     description?: string | null;
     suggestedLevel?: GradeLevel | null;
+    instructorId?: string | null;
 };
 export type CreateOneCourseMutationVariables = {
     input: createCourseInput;
 };
 export type CreateOneCourseMutationResponse = {
     readonly createOneCourse: {
-        readonly course: {
-            readonly " $fragmentRefs": FragmentRefs<"CourseCard_course">;
-        };
-    } | null;
+        readonly " $fragmentRefs": FragmentRefs<"CourseCard_course">;
+    };
 };
 export type CreateOneCourseMutation = {
     readonly response: CreateOneCourseMutationResponse;
@@ -32,9 +31,7 @@ mutation CreateOneCourseMutation(
   $input: createCourseInput!
 ) {
   createOneCourse(input: $input) {
-    course {
-      ...CourseCard_course
-    }
+    ...CourseCard_course
   }
 }
 
@@ -76,24 +73,13 @@ return {
         "name": "createOneCourse",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": "CreateCoursePayload",
+        "concreteType": "Course",
         "plural": false,
         "selections": [
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "course",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "Course",
-            "plural": false,
-            "selections": [
-              {
-                "kind": "FragmentSpread",
-                "name": "CourseCard_course",
-                "args": null
-              }
-            ]
+            "kind": "FragmentSpread",
+            "name": "CourseCard_course",
+            "args": null
           }
         ]
       }
@@ -110,40 +96,29 @@ return {
         "name": "createOneCourse",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": "CreateCoursePayload",
+        "concreteType": "Course",
         "plural": false,
         "selections": [
           {
-            "kind": "LinkedField",
+            "kind": "ScalarField",
             "alias": null,
-            "name": "course",
-            "storageKey": null,
+            "name": "id",
             "args": null,
-            "concreteType": "Course",
-            "plural": false,
-            "selections": [
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "id",
-                "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "name",
-                "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "suggestedLevel",
-                "args": null,
-                "storageKey": null
-              }
-            ]
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "name",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "suggestedLevel",
+            "args": null,
+            "storageKey": null
           }
         ]
       }
@@ -153,10 +128,10 @@ return {
     "operationKind": "mutation",
     "name": "CreateOneCourseMutation",
     "id": null,
-    "text": "mutation CreateOneCourseMutation(\n  $input: createCourseInput!\n) {\n  createOneCourse(input: $input) {\n    course {\n      ...CourseCard_course\n    }\n  }\n}\n\nfragment CourseCard_course on Course {\n  id\n  name\n  suggestedLevel\n}\n",
+    "text": "mutation CreateOneCourseMutation(\n  $input: createCourseInput!\n) {\n  createOneCourse(input: $input) {\n    ...CourseCard_course\n  }\n}\n\nfragment CourseCard_course on Course {\n  id\n  name\n  suggestedLevel\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '668410f53c4dbc4b79f5e0c052f6fb17';
+(node as any).hash = '3fcabce3c8de3fc2db275ae055d7d93a';
 export default node;

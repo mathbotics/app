@@ -112,6 +112,7 @@ input CreateStudentInput {
   username: String
   firstName: String
   lastName: String
+  gradeLevel: GradeLevel
   email: String
   courseId: String
 }
@@ -192,7 +193,7 @@ enum GradeLevel {
 }
 
 # This represents the Guardian
-type Guardian {
+type Guardian implements User {
   id: String!
   email: String!
   firstName: String!
@@ -202,13 +203,15 @@ type Guardian {
   students: Student!
 }
 
-type Instructor {
+# This represents the instructor
+type Instructor implements User {
   id: String!
   firstName: String!
   lastName: String!
   username: String!
   password: String!
   email: String!
+  courses: Course!
 }
 
 # This represents the Lesson
@@ -257,7 +260,7 @@ type MultipleChoiceQuestionResponse {
 type Mutation {
   createStudent(input: CreateStudentInput!): CreateStudentPayload
   logIn(input: LoginInput!): LoginPayload
-  createOneCourse(input: createCourseInput!): Course
+  createOneCourse(input: createCourseInput!): Course!
   deleteSingleStudent(input: DeleteStudentInput!): DeleteStudentPayload
   editStudent(input: EditStudentInput!): EditStudentPayload
   createSlide(input: CreateSlideInput!): CreateSlidePayload
@@ -300,7 +303,7 @@ type Query {
   instructors(id: ID): [Instructor]
   courseToLessons(id: ID): [Lesson]
   course(where: CourseWhereUniqueInput): Course
-  courses(id: ID): [Course]
+  courses(id: ID): [Course!]!
   lesson(where: LessonWhereUniqueInput): Lesson
   lessons(id: ID): [Lesson!]!
   courseToStudent(id: ID): [CourseToStudent]
@@ -365,7 +368,7 @@ interface Slide {
 }
 
 # This represents the student
-type Student {
+type Student implements User {
   id: String!
   username: String!
   firstName: String!

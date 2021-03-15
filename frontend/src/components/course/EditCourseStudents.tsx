@@ -102,13 +102,15 @@ export default createFragmentContainer(EditCourseStudents, {
   course: graphql`
     fragment EditCourseStudents_course on Course {
       id
-      students {
-        username
-        firstName
-        lastName
-        gradeLevel
-        id
-      }
+      courseTo{
+    student{
+      username
+    firstName
+    lastName
+    gradeLevel
+    id
+    }
+  }
       ...StudentsTable_course
     }
   `,

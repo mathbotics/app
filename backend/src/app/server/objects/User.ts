@@ -108,7 +108,7 @@ const resolveUserHelper = async (data : typeof User) => {
     throw new GraphQLError("No user found in resolve for user helper");
   }
   
-export const User : any = new GraphQLInterfaceType({
+export const User : GraphQLInterfaceType = new GraphQLInterfaceType({
     name: "User",
     description: "This represents the user model",
     fields: () => {

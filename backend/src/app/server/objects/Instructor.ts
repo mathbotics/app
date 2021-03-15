@@ -3,9 +3,19 @@ import { Course, User } from ".";
 
 export const Instructor = new GraphQLObjectType({
     name: "Instructor",
+    description: "This represents the Instructor",
     interfaces: [User],
     fields: () => ({
         id: { type: new GraphQLNonNull(GraphQLString)},
+        username: {
+          type: new GraphQLNonNull(GraphQLString),
+          resolve(Instructor){
+            if(Instructor.user){
+              return Instructor.user.username
+            }
+            return Instructor.username
+          }
+        },
         firstName: {
           type: new GraphQLNonNull(GraphQLString),
           resolve(Instructor){
@@ -25,13 +35,10 @@ export const Instructor = new GraphQLObjectType({
             return Instructor.lastName
           }
         },
-        username: {
+        email : {
           type: new GraphQLNonNull(GraphQLString),
           resolve(Instructor){
-            if(Instructor.user){
-              return Instructor.user.username
-            }
-            return Instructor.username
+            return Instructor.email
           }
         },
         password: {          
@@ -41,12 +48,6 @@ export const Instructor = new GraphQLObjectType({
               return Instructor.user.password
             }
             return Instructor.user.password
-          }
-        },
-        email : {
-          type: new GraphQLNonNull(GraphQLString),
-          resolve(Instructor){
-            return Instructor.email
           }
         },
         courses: {

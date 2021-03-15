@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash f789eace3b129ca3d9f4fc557ea9a78c */
+/* @relayHash 6c586ce4a3deb17d02cbbf908418cb50 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -45,12 +45,14 @@ fragment EditCourseDetails_course on Course {
 
 fragment EditCourseStudents_course on Course {
   id
-  students {
-    username
-    firstName
-    lastName
-    gradeLevel
-    id
+  courseTo {
+    student {
+      username
+      firstName
+      lastName
+      gradeLevel
+      id
+    }
   }
   ...StudentsTable_course
 }
@@ -63,12 +65,14 @@ fragment EditCourse_course on Course {
 }
 
 fragment StudentsTable_course on Course {
-  students {
-    username
-    firstName
-    lastName
-    gradeLevel
-    id
+  courseTo {
+    student {
+      username
+      firstName
+      lastName
+      gradeLevel
+      id
+    }
   }
 }
 */
@@ -161,41 +165,52 @@ return {
               {
                 "kind": "LinkedField",
                 "alias": null,
-                "name": "students",
+                "name": "courseTo",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "Student",
+                "concreteType": "CourseToStudent",
                 "plural": true,
                 "selections": [
                   {
-                    "kind": "ScalarField",
+                    "kind": "LinkedField",
                     "alias": null,
-                    "name": "username",
+                    "name": "student",
+                    "storageKey": null,
                     "args": null,
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "firstName",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "lastName",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "gradeLevel",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  (v2/*: any*/)
+                    "concreteType": "Student",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "username",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "firstName",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "lastName",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "gradeLevel",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      (v2/*: any*/)
+                    ]
+                  }
                 ]
               },
               {
@@ -215,7 +230,7 @@ return {
     "operationKind": "mutation",
     "name": "UpdateOneCourseMutation",
     "id": null,
-    "text": "mutation UpdateOneCourseMutation(\n  $input: CourseUpdateInput!\n) {\n  updateOneCourse(input: $input) {\n    course {\n      ...EditCourse_course\n    }\n  }\n}\n\nfragment EditCourseDetails_course on Course {\n  id\n}\n\nfragment EditCourseStudents_course on Course {\n  id\n  students {\n    username\n    firstName\n    lastName\n    gradeLevel\n    id\n  }\n  ...StudentsTable_course\n}\n\nfragment EditCourse_course on Course {\n  ...EditCourseStudents_course\n  ...EditCourseDetails_course\n  id\n  name\n}\n\nfragment StudentsTable_course on Course {\n  students {\n    username\n    firstName\n    lastName\n    gradeLevel\n    id\n  }\n}\n",
+    "text": "mutation UpdateOneCourseMutation(\n  $input: CourseUpdateInput!\n) {\n  updateOneCourse(input: $input) {\n    course {\n      ...EditCourse_course\n    }\n  }\n}\n\nfragment EditCourseDetails_course on Course {\n  id\n}\n\nfragment EditCourseStudents_course on Course {\n  id\n  courseTo {\n    student {\n      username\n      firstName\n      lastName\n      gradeLevel\n      id\n    }\n  }\n  ...StudentsTable_course\n}\n\nfragment EditCourse_course on Course {\n  ...EditCourseStudents_course\n  ...EditCourseDetails_course\n  id\n  name\n}\n\nfragment StudentsTable_course on Course {\n  courseTo {\n    student {\n      username\n      firstName\n      lastName\n      gradeLevel\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

@@ -4,7 +4,8 @@ import {
     GraphQLList,
     GraphQLNonNull
   } from 'graphql';
-import { CourseToLesson, CourseToStudent, GradeLevel, Instructor, Student } from '.';
+import { CourseToLesson, CourseToStudent, GradeLevel } from '.';
+import { Instructor, Student } from '../GraphQLSchema';
 
 
   export const Course : any = new GraphQLObjectType({

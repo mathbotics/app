@@ -1,5 +1,7 @@
 import { GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
-import { CourseToStudent, GradeLevel, Guardian, User  } from "."
+import { CourseToStudent, GradeLevel, User  } from "."
+import { Guardian } from "../GraphQLSchema";
+
 
 export const Student: any  = new GraphQLObjectType({
     name: "Student",

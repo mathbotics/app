@@ -37,7 +37,7 @@ export const CreateCourseType = new GraphQLObjectType({
 })
 
 export const createOneCourse = {
-    type: Course,
+    type: new GraphQLNonNull(Course),
     args: {
       input: {
         type: new GraphQLNonNull(createCourseInput),

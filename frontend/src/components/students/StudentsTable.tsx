@@ -40,7 +40,7 @@ function onChange(pagination, filters, sorter, extra) {
 }
 
 const LessonsTable = ({
-  course: { students },
+  course: { courseTo },
   onClickEdit,
   onClickRemove,
 }: Props) => {
@@ -71,20 +71,20 @@ const LessonsTable = ({
     },
   ];
   const [data, setData] = useState<ColumnsType<TableItem>>();
-
+console.log(courseTo)
   useEffect(() => {
     setData(
-      students.map(
-        ({ firstName, lastName, gradeLevel, username, id }, index: number) => ({
+      courseTo?.map(
+        ({student} : any, index: number) => ({
           index: index + 1,
           key: index,
-          firstName,
-          lastName,
-          gradeLevel,
-          username,
+          firstName: student.firstName,
+          lastName: student.lastName,
+          gradeLevel: student.gradeLevel,
+          username: student.username,
           action: (
             <EditStudentTableButton
-              id={id}
+              id={student.id}
               onClickEdit={onClickEdit}
               onClickRemove={onClickRemove}
             />
@@ -92,7 +92,7 @@ const LessonsTable = ({
         }),
       ),
     );
-  }, [students]);
+  }, [courseTo]);
   return <Table columns={columns} dataSource={data} onChange={onChange} />;
 };
 
@@ -138,13 +138,15 @@ const EditStudentTableButton = ({
 export default createFragmentContainer(LessonsTable, {
   course: graphql`
     fragment StudentsTable_course on Course {
-      students {
-        username
-        firstName
-        lastName
-        gradeLevel
-        id
-      }
+      courseTo{
+    student{
+      username
+    firstName
+    lastName
+    gradeLevel
+    id
+    }
+  }
     }
   `,
 });

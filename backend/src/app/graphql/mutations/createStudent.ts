@@ -3,7 +3,7 @@ import nullthrows from 'nullthrows';
 
 import prisma from '../../data/prisma';
 import { GraphQLInputObjectType, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
-import { GradeLevel } from '../../server/GraphQLSchema';
+import { GradeLevel } from '../../server/objects/GradeLevel';
 import { CreateStudentPayload } from '../payloads/CreateStudentPayload';
 import { resolve } from 'path';
 

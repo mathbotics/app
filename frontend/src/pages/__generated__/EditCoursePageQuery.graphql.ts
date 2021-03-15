@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash fea25cfdbdc75553c9262e5c109eb016 */
+/* @relayHash 87f0b392e27e28ff3dc4bec54126d195 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -43,12 +43,14 @@ fragment EditCourseLessonPlan_query on Query {
 
 fragment EditCourseStudents_course on Course {
   id
-  students {
-    username
-    firstName
-    lastName
-    gradeLevel
-    id
+  courseTo {
+    student {
+      username
+      firstName
+      lastName
+      gradeLevel
+      id
+    }
   }
   ...StudentsTable_course
 }
@@ -77,12 +79,14 @@ fragment LessonPlanCatalogue_query on Query {
 }
 
 fragment StudentsTable_course on Course {
-  students {
-    username
-    firstName
-    lastName
-    gradeLevel
-    id
+  courseTo {
+    student {
+      username
+      firstName
+      lastName
+      gradeLevel
+      id
+    }
   }
 }
 */
@@ -167,41 +171,52 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "students",
+            "name": "courseTo",
             "storageKey": null,
             "args": null,
-            "concreteType": "Student",
+            "concreteType": "CourseToStudent",
             "plural": true,
             "selections": [
               {
-                "kind": "ScalarField",
+                "kind": "LinkedField",
                 "alias": null,
-                "name": "username",
+                "name": "student",
+                "storageKey": null,
                 "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "firstName",
-                "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "lastName",
-                "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "gradeLevel",
-                "args": null,
-                "storageKey": null
-              },
-              (v2/*: any*/)
+                "concreteType": "Student",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "username",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "firstName",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "lastName",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "gradeLevel",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  (v2/*: any*/)
+                ]
+              }
             ]
           },
           {
@@ -252,7 +267,7 @@ return {
     "operationKind": "query",
     "name": "EditCoursePageQuery",
     "id": null,
-    "text": "query EditCoursePageQuery(\n  $where: CourseWhereUniqueInput!\n) {\n  course(where: $where) {\n    ...EditCourse_course\n  }\n  ...EditCourse_query\n}\n\nfragment EditCourseDetails_course on Course {\n  id\n}\n\nfragment EditCourseLessonPlan_query on Query {\n  ...LessonPlanCatalogue_query\n}\n\nfragment EditCourseStudents_course on Course {\n  id\n  students {\n    username\n    firstName\n    lastName\n    gradeLevel\n    id\n  }\n  ...StudentsTable_course\n}\n\nfragment EditCourse_course on Course {\n  ...EditCourseStudents_course\n  ...EditCourseDetails_course\n  id\n  name\n}\n\nfragment EditCourse_query on Query {\n  ...EditCourseLessonPlan_query\n}\n\nfragment LessonPlanCatalogue_query on Query {\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n      title\n    }\n  }\n}\n\nfragment StudentsTable_course on Course {\n  students {\n    username\n    firstName\n    lastName\n    gradeLevel\n    id\n  }\n}\n",
+    "text": "query EditCoursePageQuery(\n  $where: CourseWhereUniqueInput!\n) {\n  course(where: $where) {\n    ...EditCourse_course\n  }\n  ...EditCourse_query\n}\n\nfragment EditCourseDetails_course on Course {\n  id\n}\n\nfragment EditCourseLessonPlan_query on Query {\n  ...LessonPlanCatalogue_query\n}\n\nfragment EditCourseStudents_course on Course {\n  id\n  courseTo {\n    student {\n      username\n      firstName\n      lastName\n      gradeLevel\n      id\n    }\n  }\n  ...StudentsTable_course\n}\n\nfragment EditCourse_course on Course {\n  ...EditCourseStudents_course\n  ...EditCourseDetails_course\n  id\n  name\n}\n\nfragment EditCourse_query on Query {\n  ...EditCourseLessonPlan_query\n}\n\nfragment LessonPlanCatalogue_query on Query {\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n      title\n    }\n  }\n}\n\nfragment StudentsTable_course on Course {\n  courseTo {\n    student {\n      username\n      firstName\n      lastName\n      gradeLevel\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
