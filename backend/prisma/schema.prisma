@@ -13,20 +13,23 @@ model Content {
   id        String   @id @default(cuid())
   title     String
   pages     Page[]
+  Course    Course?  @relation(fields: [courseId], references: [id])
+  courseId  String?
 }
 
 model Course {
-  createdAt      DateTime     @default(now())
-  id             String       @id @default(cuid())
+  createdAt      DateTime          @default(now())
+  id             String            @id @default(cuid())
   name           String
   description    String?
   suggestedLevel GradeLevel
   contents       Content[]
-  instructor     Instructor    @relation(fields: [instructorId], references: [id])
-  instructorId   String      // relation scalar field (used in the @relation attribute above)
+  instructor     Instructor        @relation(fields: [instructorId], references: [id])
+  instructorId   String // relation scalar field (used in the @relation attribute above)
   //lessonPlan     LessonPlan
   courseTo       CourseToStudent[]
-  courses       CourseToLesson[]
+  courses        CourseToLesson[]
+  Grade          Grade[]
 }
 
 model Guardian {
@@ -34,7 +37,8 @@ model Guardian {
   createdAt DateTime  @default(now())
   email     String    @unique
   students  Student[]
-  user      User
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String
 }
 
 model Instructor {
@@ -42,25 +46,30 @@ model Instructor {
   createdAt DateTime @default(now())
   email     String   @unique
   courses   Course[]
-  user      User
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
 }
 
 model Page {
   createdAt DateTime @default(now())
   data      String
   id        String   @id @default(cuid())
-  content   Content
+  content   Content  @relation(fields: [contentId], references: [id])
+  contentId String
 }
 
 model Student {
-  createdAt  DateTime   @default(now())
+  createdAt                      DateTime                         @default(now())
   //email      String     @unique //fixes bug with add student to course
-  gradeLevel GradeLevel
-  id         String     @id @default(cuid())
-  guardians  Guardian[]
-  user       User
-  studentTo  CourseToStudent[]
+  gradeLevel                     GradeLevel
+  id                             String                           @id @default(cuid())
+  guardians                      Guardian[]
+  user                           User                             @relation(fields: [userId], references: [id])
+  studentTo                      CourseToStudent[]
   //students   Grade[]
+  MultipleChoiceQuestionResponse MultipleChoiceQuestionResponse[]
+  Grade                          Grade[]
+  userId                         String
 }
 
 enum GradeLevel {
@@ -82,7 +91,8 @@ model Admin {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   email     String   @unique
-  user      User
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
 }
 
 model User {
@@ -98,35 +108,48 @@ model User {
 }
 
 model MultipleChoiceQuestionBlock {
-  id            String                   @id @default(cuid())
-  text          String
-  choices       MultipleChoiceQuestionChoice[]
-  responses     MultipleChoiceQuestionResponse[]
+  id        String                           @id @default(cuid())
+  text      String
+  choices   MultipleChoiceQuestionChoice[]
+  responses MultipleChoiceQuestionResponse[]
+  Block     Block[]
 }
 
 model MultipleChoiceQuestionResponse {
-  id      String               @id @default(cuid())
-  choice  MultipleChoiceQuestionChoice
-  student Student
+  id                             String                       @id @default(cuid())
+  choice                         MultipleChoiceQuestionChoice @relation(fields: [multipleChoiceQuestionChoiceId], references: [id])
+  student                        Student                      @relation(fields: [studentId], references: [id])
+  MultipleChoiceQuestionBlock    MultipleChoiceQuestionBlock? @relation(fields: [multipleChoiceQuestionBlockId], references: [id])
+  multipleChoiceQuestionBlockId  String?
+  multipleChoiceQuestionChoiceId String
+  studentId                      String
 }
 
 model MultipleChoiceQuestionChoice {
-  id        String                      @id @default(cuid())
-  text      String
-  correct   Boolean
+  id                             String                           @id @default(cuid())
+  text                           String
+  correct                        Boolean
+  MultipleChoiceQuestionBlock    MultipleChoiceQuestionBlock?     @relation(fields: [multipleChoiceQuestionBlockId], references: [id])
+  multipleChoiceQuestionBlockId  String?
+  MultipleChoiceQuestionResponse MultipleChoiceQuestionResponse[]
 }
 
 model Slide {
-  id           String        @id @default(cuid())
-  title        String
-  singleSlide  SingleSlide?
+  id            String       @id @default(cuid())
+  title         String
+  singleSlide   SingleSlide? @relation(fields: [singleSlideId], references: [id])
   //quarterSlide QuarterSlide?  // Commendeted out till quarter slides are fixed
   //halfSlide    HalfSlide?    // Commendeted out till half slides are fixed
+  Lesson        Lesson?      @relation(fields: [lessonId], references: [id])
+  lessonId      String?
+  singleSlideId String?
 }
 
 model SingleSlide {
-  id    String @id @default(cuid())
-  block Block
+  id      String  @id @default(cuid())
+  block   Block   @relation(fields: [blockId], references: [id])
+  Slide   Slide[]
+  blockId String
 }
 
 //model QuarterSlide {
@@ -137,30 +160,35 @@ model SingleSlide {
 
 //model HalfSlide {
 //  id              String @id @default(cuid())
-  //firstHalfBlock  Block  @relation("HalfSlideToFirstHalfBlock")  // Commented out due to error with conflicting relations
+//firstHalfBlock  Block  @relation("HalfSlideToFirstHalfBlock")  // Commented out due to error with conflicting relations
 //  secondHalfBlock Block
 //}
 
 model Block {
-  id                          String                       @id @default(cuid())
-  multipleChoiceQuestionBlock MultipleChoiceQuestionBlock?
-  textBlock                   TextBlock?
+  id                            String                       @id @default(cuid())
+  multipleChoiceQuestionBlock   MultipleChoiceQuestionBlock? @relation(fields: [multipleChoiceQuestionBlockId], references: [id])
+  textBlock                     TextBlock?                   @relation(fields: [textBlockId], references: [id])
   //halfSlidesImplementing      HalfSlide[]     // Commented out till half slides are fixed
   //quarterSlidesImplementing   QuarterSlide[]  // Commented out till quarter slides are fixed
+  SingleSlide                   SingleSlide[]
+  multipleChoiceQuestionBlockId String?
+  textBlockId                   String?
 }
 
 model TextBlock {
   id    String  @id @default(cuid())
   title String
   body  String
+  Block Block[]
 }
 
 model Lesson {
-  id     String  @id @default(cuid())
-  title  String
-  slides Slide[]
+  id      String           @id @default(cuid())
+  title   String
+  slides  Slide[]
   lessons CourseToLesson[]
   //lessonTo CourseToStudent[]
+  Grade   Grade[]
 }
 
 //model LessonPlan {
@@ -170,37 +198,37 @@ model Lesson {
 //}
 
 model CourseToStudent {
-  course     Course     @relation(fields: [courseId], references: [id])
-  courseId   String       // relation scalar field (used in the @relation attribute above)
-  student    Student    @relation(fields: [studentId], references: [id])
-  studentId  String      // relation scalar field (used in the @relation attribute above)
+  course    Course  @relation(fields: [courseId], references: [id])
+  courseId  String // relation scalar field (used in the @relation attribute above)
+  student   Student @relation(fields: [studentId], references: [id])
+  studentId String // relation scalar field (used in the @relation attribute above)
   //lesson     Lesson     @relation(fields: [lessonId], references: [id])
-  //lessonId   String      // relation scalar field (used in the @relation attribute above) 
+  //lessonId   String      // relation scalar field (used in the @relation attribute above)
   //grade      Float
   //courses    Grade[]
+
   @@id([courseId, studentId])
 }
 
-
-
 model CourseToLesson {
-  course     Course     @relation(fields: [courseId], references: [id])
-  courseId   String       // relation scalar field (used in the @relation attribute above)
-  lesson     Lesson     @relation(fields: [lessonId], references: [id])
-  lessonId   String      // relation scalar field (used in the @relation attribute above)
-  //lessons    Grade []  
+  course   Course @relation(fields: [courseId], references: [id])
+  courseId String // relation scalar field (used in the @relation attribute above)
+  lesson   Lesson @relation(fields: [lessonId], references: [id])
+  lessonId String // relation scalar field (used in the @relation attribute above)
+  //lessons    Grade []
   //grade      Float
+
   @@id([courseId, lessonId])
 }
 
+model Grade {
+  course    Course  @relation(fields: [courseId], references: [id])
+  courseId  String // relation scalar field (used in the @relation attribute above)
+  lesson    Lesson  @relation(fields: [lessonId], references: [id])
+  lessonId  String // relation scalar field (used in the @relation attribute above)
+  student   Student @relation(fields: [studentId], references: [id])
+  studentId String // relation scalar field (used in the @relation attribute above)
+  grade     Float
 
-model Grade{
-  course     Course     @relation(fields: [courseId], references: [id])
-  courseId   String       // relation scalar field (used in the @relation attribute above)
-  lesson     Lesson     @relation(fields: [lessonId], references: [id])
-  lessonId   String      // relation scalar field (used in the @relation attribute above)
-  student    Student    @relation(fields: [studentId], references: [id])
-  studentId  String      // relation scalar field (used in the @relation attribute above)
-  grade      Float
   @@id([courseId, lessonId, studentId])
 }
