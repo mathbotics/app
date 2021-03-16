@@ -8,7 +8,6 @@ import React from 'react';
 // import { Block as BlockType } from '../../types/Block';
 // import Block from '../block/Block';
 
-<<<<<<< HEAD
 // type BlockWrapperProps = { preview?: boolean };
 // const FirstHalfBlockWrapper = styled.div`
 //   display: flex;
@@ -17,6 +16,7 @@ import React from 'react';
 //   height: 100%;
 //   width: 49.5%;
 //   overflow: hidden;
+//   padding-left: .5em;
 //   background-color: ${({ preview }: BlockWrapperProps) => !preview && 'white'};
 // `;
 
@@ -27,32 +27,9 @@ import React from 'react';
 //   overflow: hidden;
 //   height: 100%;
 //   width: 49.5%;
+//   padding-left: .5em;
 //   background-color: ${({ preview }: BlockWrapperProps) => !preview && 'white'};
 // `;
-=======
-type BlockWrapperProps = { preview?: boolean };
-const FirstHalfBlockWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 49.5%;
-  overflow: hidden;
-  padding-left: .5em;
-  background-color: ${({ preview }: BlockWrapperProps) => !preview && 'white'};
-`;
-
-const SecondHalfBlockWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  height: 100%;
-  width: 49.5%;
-  padding-left: .5em;
-  background-color: ${({ preview }: BlockWrapperProps) => !preview && 'white'};
-`;
->>>>>>> feature/student-progress-lesson-frontend
 
 // type WrapperProps = { preview?: boolean; selected?: boolean };
 // const Wrapper = styled.div`
@@ -72,112 +49,57 @@ const SecondHalfBlockWrapper = styled.div`
 //   }
 // `;
 
-<<<<<<< HEAD
+/*original preview font size was 50*/
+
 // type BlockComponent = React.ReactElement;
 // type Props = {
-// //   halfSlide?: HalfSlide_halfSlide;
+//   halfSlide?: HalfSlide_halfSlide;
 //   BlockA?: BlockComponent;
 //   BlockB?: BlockComponent;
 //   preview?: boolean;
 //   selected?: boolean;
 //   onSelectBlock?: (block: BlockType) => void;
 // };
-// // const HalfSlide = ({ onSelectBlock, halfSlide, preview, selected }: Props) => (
-// //   <Wrapper preview={preview} selected={selected}>
-// //     <FirstHalfBlockWrapper
-// //       preview={preview}
-// //       onClick={() =>
-// //         onSelectBlock && onSelectBlock(nullthrows(halfSlide?.firstHalfBlock))}
-// //     >
-// //       {preview ? (
-// //         <AlignLeftOutlined style={{ fontSize: 50 }} />
-// //       ) : (
-// //         <Block block={nullthrows(halfSlide?.firstHalfBlock)} />
-// //       )}
-// //     </FirstHalfBlockWrapper>
+// const HalfSlide = ({ onSelectBlock, halfSlide, preview, selected }: Props) => (
+//   <Wrapper preview={preview} selected={selected}>
+//     <FirstHalfBlockWrapper
+//       preview={preview}
+//       onClick={() =>
+//         onSelectBlock && onSelectBlock(nullthrows(halfSlide?.firstHalfBlock))}
+//     >
+//       {preview ? (
+//         <AlignLeftOutlined style={{ fontSize: 30 }} />
+//       ) : (
+//         <Block block={nullthrows(halfSlide?.firstHalfBlock)} />
+//       )}
+//     </FirstHalfBlockWrapper>
 
-// //     <SecondHalfBlockWrapper
-// //       preview={preview}
-// //       onClick={() =>
-// //         onSelectBlock && onSelectBlock(nullthrows(halfSlide?.secondHalfBlock))}
-// //     >
-// //       {preview ? (
-// //         <UnorderedListOutlined style={{ fontSize: 50 }} />
-// //       ) : (
-// //         <Block block={nullthrows(halfSlide?.secondHalfBlock)} />
-// //       )}
-// //     </SecondHalfBlockWrapper>
-// //   </Wrapper>
-// // );
-// // export default createFragmentContainer(HalfSlide, {
-// //   halfSlide: graphql`
-// //     fragment HalfSlide_halfSlide on HalfSlide {
-// //       id
-// //       firstHalfBlock {
-// //         ...EditBlockSidebar_block
-// //         ...Block_block
-// //       }
-// //       secondHalfBlock {
-// //         ...EditBlockSidebar_block
-// //         ...Block_block
-// //       }
-// //     }
-// //   `,
-// // });
-export {}
-=======
-/*original preview font size was 50*/
+//     <SecondHalfBlockWrapper
+//       preview={preview}
+//       onClick={() =>
+//         onSelectBlock && onSelectBlock(nullthrows(halfSlide?.secondHalfBlock))}
+//     >
+//       {preview ? (
+//         <UnorderedListOutlined style={{ fontSize: 30 }} />
+//       ) : (
+//         <Block block={nullthrows(halfSlide?.secondHalfBlock)} />
+//       )}
+//     </SecondHalfBlockWrapper>
+//   </Wrapper>
+// );
 
-type BlockComponent = React.ReactElement;
-type Props = {
-  halfSlide?: HalfSlide_halfSlide;
-  BlockA?: BlockComponent;
-  BlockB?: BlockComponent;
-  preview?: boolean;
-  selected?: boolean;
-  onSelectBlock?: (block: BlockType) => void;
-};
-const HalfSlide = ({ onSelectBlock, halfSlide, preview, selected }: Props) => (
-  <Wrapper preview={preview} selected={selected}>
-    <FirstHalfBlockWrapper
-      preview={preview}
-      onClick={() =>
-        onSelectBlock && onSelectBlock(nullthrows(halfSlide?.firstHalfBlock))}
-    >
-      {preview ? (
-        <AlignLeftOutlined style={{ fontSize: 30 }} />
-      ) : (
-        <Block block={nullthrows(halfSlide?.firstHalfBlock)} />
-      )}
-    </FirstHalfBlockWrapper>
-
-    <SecondHalfBlockWrapper
-      preview={preview}
-      onClick={() =>
-        onSelectBlock && onSelectBlock(nullthrows(halfSlide?.secondHalfBlock))}
-    >
-      {preview ? (
-        <UnorderedListOutlined style={{ fontSize: 30 }} />
-      ) : (
-        <Block block={nullthrows(halfSlide?.secondHalfBlock)} />
-      )}
-    </SecondHalfBlockWrapper>
-  </Wrapper>
-);
-
-export default createFragmentContainer(HalfSlide, {
-  halfSlide: graphql`
-    fragment HalfSlide_halfSlide on HalfSlide {
-      id
-      firstHalfBlock {
-        ...EditBlockSidebar_block
-        ...Block_block
-      }
-      secondHalfBlock {
-        ...EditBlockSidebar_block
-        ...Block_block
-      }
-    }
-  `,
-});
->>>>>>> feature/student-progress-lesson-frontend
+// export default createFragmentContainer(HalfSlide, {
+//   halfSlide: graphql`
+//     fragment HalfSlide_halfSlide on HalfSlide {
+//       id
+//       firstHalfBlock {
+//         ...EditBlockSidebar_block
+//         ...Block_block
+//       }
+//       secondHalfBlock {
+//         ...EditBlockSidebar_block
+//         ...Block_block
+//       }
+//     }
+//   `,
+// });

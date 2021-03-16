@@ -198,7 +198,6 @@ type Guardian implements User {
   students: Student!
 }
 
-<<<<<<< HEAD
 # This represents the instructor
 type Instructor implements User {
   id: String!
@@ -218,85 +217,6 @@ type Lesson {
 }
 
 input LessonWhereUniqueInput {
-=======
-input StudentCreateManyWithoutCoursesInput {
-  connect: [StudentWhereUniqueInput!]
-  create: [StudentCreateWithoutCoursesInput!]
-}
-
-input StudentCreateManyWithoutGuardiansInput {
-  connect: [StudentWhereUniqueInput!]
-  create: [StudentCreateWithoutGuardiansInput!]
-}
-
-input StudentCreateOneWithoutMultipleChoiceQuestionResponsesInput {
-  connect: StudentWhereUniqueInput
-  create: StudentCreateWithoutMultipleChoiceQuestionResponsesInput
-}
-
-input StudentCreateOneWithoutUserInput {
-  connect: StudentWhereUniqueInput
-  create: StudentCreateWithoutUserInput
-}
-
-input StudentCreateWithoutCoursesInput {
-  createdAt: DateTime
-  gradeLevel: GradeLevel!
-  guardians: GuardianCreateManyWithoutStudentsInput
-  id: String
-  multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseCreateManyWithoutStudentInput
-  user: UserCreateOneWithoutStudentInput!
-}
-
-input StudentCreateWithoutGuardiansInput {
-  courses: CourseCreateManyWithoutStudentsInput
-  createdAt: DateTime
-  gradeLevel: GradeLevel!
-  id: String
-  multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseCreateManyWithoutStudentInput
-  user: UserCreateOneWithoutStudentInput!
-}
-
-input StudentCreateWithoutMultipleChoiceQuestionResponsesInput {
-  courses: CourseCreateManyWithoutStudentsInput
-  createdAt: DateTime
-  gradeLevel: GradeLevel!
-  guardians: GuardianCreateManyWithoutStudentsInput
-  id: String
-  user: UserCreateOneWithoutStudentInput!
-}
-
-input StudentCreateWithoutUserInput {
-  courses: CourseCreateManyWithoutStudentsInput
-  createdAt: DateTime
-  gradeLevel: GradeLevel!
-  guardians: GuardianCreateManyWithoutStudentsInput
-  id: String
-  multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseCreateManyWithoutStudentInput
-}
-
-input StudentFilter {
-  every: StudentWhereInput
-  none: StudentWhereInput
-  some: StudentWhereInput
-}
-
-input StudentScalarWhereInput {
-  AND: [StudentScalarWhereInput!]
-  courses: CourseFilter
-  createdAt: DateTimeFilter
-  gradeLevel: GradeLevel
-  guardians: GuardianFilter
-  id: StringFilter
-  multipleChoiceQuestionResponses: MultipleChoiceQuestionResponseFilter
-  NOT: [StudentScalarWhereInput!]
-  OR: [StudentScalarWhereInput!]
-}
-
-input StudentUpdateManyDataInput {
-  createdAt: DateTime
-  gradeLevel: GradeLevel
->>>>>>> feature/student-progress-lesson-frontend
   id: String
 }
 
