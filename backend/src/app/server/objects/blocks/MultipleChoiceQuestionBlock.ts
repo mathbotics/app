@@ -11,8 +11,8 @@ export const MultipleChoiceQuestionBlock = new GraphQLObjectType({
         id: {
           type: new GraphQLNonNull(GraphQLString), 
           resolve(obj){
-            console.log("emptyblock id:", obj)
-            if(obj.block)
+            console.log("mcblock!!!!!!", obj)
+            if(obj.block && obj.block.multipleChoiceQuestionBlockId != null)
               return obj.block.id
             
             return obj.id
@@ -20,8 +20,18 @@ export const MultipleChoiceQuestionBlock = new GraphQLObjectType({
         },
         text: {
           type: new GraphQLNonNull(GraphQLString),
-          resolve(MultipleChoiceQuestionBlock){
-            return MultipleChoiceQuestionBlock.text
+          async resolve(obj){
+            console.log("text of obj:", obj)
+
+            //handles case where obj is of type slide containing block property
+            //this comes from resolving the blocks in Block object
+            if(obj.block && obj.block.multipleChoiceQuestionBlockId != null){
+              const mcQuestBlock = await prisma.multipleChoiceQuestionBlock.findUnique({
+                where: { id: obj.block.multipleChoiceQuestionBlockId }
+              })
+              return mcQuestBlock?.text
+            }
+            return obj.text
           }
         },
         choices: {

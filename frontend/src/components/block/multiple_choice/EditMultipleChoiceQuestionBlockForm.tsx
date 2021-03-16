@@ -19,6 +19,8 @@ const EditMultipleChoiceQuestionBlockForm = ({
   const [text, setText] = React.useState(block?.text ?? '');
   const [choices, setChoices] = React.useState(block?.choices ?? []);
 
+  console.log("block in editform", block)
+  console.log("block in editform", blockId)
   const onChangeChoiceText = (changedId: string, text: string) => {
     setChoices(
       choices.map(( {id, ...choice} : any) =>

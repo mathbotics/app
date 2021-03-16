@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash e227413a75d424ad12c6104f2cf1a015 */
+/* @relayHash b72b9b8b0ce2c3acb4a9ba4388e8d9a3 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -14,11 +14,9 @@ export type UpdateBlockToTextBlockMutationVariables = {
 };
 export type UpdateBlockToTextBlockMutationResponse = {
     readonly updateBlockToTextBlock: {
-        readonly textBlock: {
-            readonly id: string;
-            readonly " $fragmentRefs": FragmentRefs<"TextBlock_block">;
-        };
-    } | null;
+        readonly id: string;
+        readonly " $fragmentRefs": FragmentRefs<"TextBlock_block">;
+    };
 };
 export type UpdateBlockToTextBlockMutation = {
     readonly response: UpdateBlockToTextBlockMutationResponse;
@@ -32,10 +30,8 @@ mutation UpdateBlockToTextBlockMutation(
   $input: UpdateBlockToTextBlockInput!
 ) {
   updateBlockToTextBlock(input: $input) {
-    textBlock {
-      id
-      ...TextBlock_block
-    }
+    id
+    ...TextBlock_block
   }
 }
 
@@ -84,25 +80,14 @@ return {
         "name": "updateBlockToTextBlock",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": "UpdateBlockToTBPayload",
+        "concreteType": "TextBlock",
         "plural": false,
         "selections": [
+          (v2/*: any*/),
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "textBlock",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "TextBlock",
-            "plural": false,
-            "selections": [
-              (v2/*: any*/),
-              {
-                "kind": "FragmentSpread",
-                "name": "TextBlock_block",
-                "args": null
-              }
-            ]
+            "kind": "FragmentSpread",
+            "name": "TextBlock_block",
+            "args": null
           }
         ]
       }
@@ -119,34 +104,23 @@ return {
         "name": "updateBlockToTextBlock",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": "UpdateBlockToTBPayload",
+        "concreteType": "TextBlock",
         "plural": false,
         "selections": [
+          (v2/*: any*/),
           {
-            "kind": "LinkedField",
+            "kind": "ScalarField",
             "alias": null,
-            "name": "textBlock",
-            "storageKey": null,
+            "name": "title",
             "args": null,
-            "concreteType": "TextBlock",
-            "plural": false,
-            "selections": [
-              (v2/*: any*/),
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "title",
-                "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "body",
-                "args": null,
-                "storageKey": null
-              }
-            ]
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "body",
+            "args": null,
+            "storageKey": null
           }
         ]
       }
@@ -156,10 +130,10 @@ return {
     "operationKind": "mutation",
     "name": "UpdateBlockToTextBlockMutation",
     "id": null,
-    "text": "mutation UpdateBlockToTextBlockMutation(\n  $input: UpdateBlockToTextBlockInput!\n) {\n  updateBlockToTextBlock(input: $input) {\n    textBlock {\n      id\n      ...TextBlock_block\n    }\n  }\n}\n\nfragment TextBlock_block on TextBlock {\n  id\n  title\n  body\n}\n",
+    "text": "mutation UpdateBlockToTextBlockMutation(\n  $input: UpdateBlockToTextBlockInput!\n) {\n  updateBlockToTextBlock(input: $input) {\n    id\n    ...TextBlock_block\n  }\n}\n\nfragment TextBlock_block on TextBlock {\n  id\n  title\n  body\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '400865c2d8fa224876bcd9e505a94467';
+(node as any).hash = '82429e1e355d9ecc9e7d80f4805da887';
 export default node;
