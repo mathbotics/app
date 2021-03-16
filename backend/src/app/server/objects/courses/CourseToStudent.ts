@@ -1,6 +1,6 @@
 import { GraphQLFloat, GraphQLObjectType, GraphQLString } from "graphql"
 import { Course } from "."
-import { Student } from "../../server/GraphQLSchema"
+import { Student } from "../../GraphQLSchema"
 
 
 export const CourseToStudent : any = new GraphQLObjectType({

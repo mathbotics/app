@@ -7,9 +7,7 @@ import { CreateSlideMutationVariables } from './__generated__/CreateSlideMutatio
 const mutation = graphql`
   mutation CreateSlideMutation($input: CreateSlideInput!) {
     createSlide(input: $input) {
-      slide{
         ...Slide_slide
-      }  
       }
   }
 `;

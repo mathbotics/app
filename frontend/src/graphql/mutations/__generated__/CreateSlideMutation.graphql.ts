@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 9f140e34bcf60f6d8f0d3202984c09bf */
+/* @relayHash 60d0e307c8194fcdeb2a7852e1a3f820 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -14,10 +14,8 @@ export type CreateSlideMutationVariables = {
 };
 export type CreateSlideMutationResponse = {
     readonly createSlide: {
-        readonly slide: {
-            readonly " $fragmentRefs": FragmentRefs<"Slide_slide">;
-        };
-    } | null;
+        readonly " $fragmentRefs": FragmentRefs<"Slide_slide">;
+    };
 };
 export type CreateSlideMutation = {
     readonly response: CreateSlideMutationResponse;
@@ -31,10 +29,8 @@ mutation CreateSlideMutation(
   $input: CreateSlideInput!
 ) {
   createSlide(input: $input) {
-    slide {
-      __typename
-      ...Slide_slide
-    }
+    __typename
+    ...Slide_slide
   }
 }
 
@@ -179,24 +175,13 @@ return {
         "name": "createSlide",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": "CreateSlidePayload",
+        "concreteType": null,
         "plural": false,
         "selections": [
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "slide",
-            "storageKey": null,
-            "args": null,
-            "concreteType": null,
-            "plural": false,
-            "selections": [
-              {
-                "kind": "FragmentSpread",
-                "name": "Slide_slide",
-                "args": null
-              }
-            ]
+            "kind": "FragmentSpread",
+            "name": "Slide_slide",
+            "args": null
           }
         ]
       }
@@ -213,85 +198,74 @@ return {
         "name": "createSlide",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": "CreateSlidePayload",
+        "concreteType": null,
         "plural": false,
         "selections": [
+          (v2/*: any*/),
+          (v3/*: any*/),
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "slide",
-            "storageKey": null,
-            "args": null,
-            "concreteType": null,
-            "plural": false,
+            "kind": "InlineFragment",
+            "type": "SingleSlide",
             "selections": [
-              (v2/*: any*/),
-              (v3/*: any*/),
+              (v4/*: any*/),
               {
-                "kind": "InlineFragment",
-                "type": "SingleSlide",
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "block",
+                "storageKey": null,
+                "args": null,
+                "concreteType": null,
+                "plural": false,
                 "selections": [
-                  (v4/*: any*/),
+                  (v2/*: any*/),
                   {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "name": "block",
-                    "storageKey": null,
-                    "args": null,
-                    "concreteType": null,
-                    "plural": false,
+                    "kind": "InlineFragment",
+                    "type": "MultipleChoiceQuestionBlock",
                     "selections": [
-                      (v2/*: any*/),
+                      (v4/*: any*/),
+                      (v5/*: any*/),
                       {
-                        "kind": "InlineFragment",
-                        "type": "MultipleChoiceQuestionBlock",
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "name": "choices",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": "MultipleChoiceQuestionChoice",
+                        "plural": true,
                         "selections": [
                           (v4/*: any*/),
                           (v5/*: any*/),
                           {
-                            "kind": "LinkedField",
-                            "alias": null,
-                            "name": "choices",
-                            "storageKey": null,
-                            "args": null,
-                            "concreteType": "MultipleChoiceQuestionChoice",
-                            "plural": true,
-                            "selections": [
-                              (v4/*: any*/),
-                              (v5/*: any*/),
-                              {
-                                "kind": "ScalarField",
-                                "alias": null,
-                                "name": "correct",
-                                "args": null,
-                                "storageKey": null
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "kind": "InlineFragment",
-                        "type": "TextBlock",
-                        "selections": [
-                          (v4/*: any*/),
-                          (v3/*: any*/),
-                          {
                             "kind": "ScalarField",
                             "alias": null,
-                            "name": "body",
+                            "name": "correct",
                             "args": null,
                             "storageKey": null
                           }
                         ]
-                      },
-                      {
-                        "kind": "InlineFragment",
-                        "type": "EmptyBlock",
-                        "selections": [
-                          (v4/*: any*/)
-                        ]
                       }
+                    ]
+                  },
+                  {
+                    "kind": "InlineFragment",
+                    "type": "TextBlock",
+                    "selections": [
+                      (v4/*: any*/),
+                      (v3/*: any*/),
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "body",
+                        "args": null,
+                        "storageKey": null
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "InlineFragment",
+                    "type": "EmptyBlock",
+                    "selections": [
+                      (v4/*: any*/)
                     ]
                   }
                 ]
@@ -306,10 +280,10 @@ return {
     "operationKind": "mutation",
     "name": "CreateSlideMutation",
     "id": null,
-    "text": "mutation CreateSlideMutation(\n  $input: CreateSlideInput!\n) {\n  createSlide(input: $input) {\n    slide {\n      __typename\n      ...Slide_slide\n    }\n  }\n}\n\nfragment Block_block on Block {\n  __typename\n  ... on MultipleChoiceQuestionBlock {\n    id\n    ...MultipleChoiceQuestionBlock_block\n  }\n  ... on TextBlock {\n    id\n    ...TextBlock_block\n  }\n  ... on EmptyBlock {\n    id\n  }\n}\n\nfragment EditBlockSidebar_block on Block {\n  __typename\n  ... on MultipleChoiceQuestionBlock {\n    id\n    ...EditMultipleChoiceQuestionBlockForm_block\n  }\n  ... on TextBlock {\n    id\n    ...EditTextBlockForm_block\n  }\n  ... on EmptyBlock {\n    id\n  }\n}\n\nfragment EditMultipleChoiceQuestionBlockForm_block on MultipleChoiceQuestionBlock {\n  text\n  choices {\n    id\n    text\n    correct\n  }\n}\n\nfragment EditTextBlockForm_block on TextBlock {\n  title\n  body\n}\n\nfragment MultipleChoiceGroup_block on MultipleChoiceQuestionBlock {\n  choices {\n    id\n    text\n    correct\n  }\n}\n\nfragment MultipleChoiceQuestionBlock_block on MultipleChoiceQuestionBlock {\n  __typename\n  text\n  ...MultipleChoiceGroup_block\n}\n\nfragment SingleSlide_singleSlide on SingleSlide {\n  id\n  block {\n    __typename\n    ...EditBlockSidebar_block\n    ...Block_block\n  }\n}\n\nfragment Slide_slide on Slide {\n  __typename\n  title\n  ... on SingleSlide {\n    ...SingleSlide_singleSlide\n  }\n}\n\nfragment TextBlock_block on TextBlock {\n  id\n  title\n  body\n}\n",
+    "text": "mutation CreateSlideMutation(\n  $input: CreateSlideInput!\n) {\n  createSlide(input: $input) {\n    __typename\n    ...Slide_slide\n  }\n}\n\nfragment Block_block on Block {\n  __typename\n  ... on MultipleChoiceQuestionBlock {\n    id\n    ...MultipleChoiceQuestionBlock_block\n  }\n  ... on TextBlock {\n    id\n    ...TextBlock_block\n  }\n  ... on EmptyBlock {\n    id\n  }\n}\n\nfragment EditBlockSidebar_block on Block {\n  __typename\n  ... on MultipleChoiceQuestionBlock {\n    id\n    ...EditMultipleChoiceQuestionBlockForm_block\n  }\n  ... on TextBlock {\n    id\n    ...EditTextBlockForm_block\n  }\n  ... on EmptyBlock {\n    id\n  }\n}\n\nfragment EditMultipleChoiceQuestionBlockForm_block on MultipleChoiceQuestionBlock {\n  text\n  choices {\n    id\n    text\n    correct\n  }\n}\n\nfragment EditTextBlockForm_block on TextBlock {\n  title\n  body\n}\n\nfragment MultipleChoiceGroup_block on MultipleChoiceQuestionBlock {\n  choices {\n    id\n    text\n    correct\n  }\n}\n\nfragment MultipleChoiceQuestionBlock_block on MultipleChoiceQuestionBlock {\n  __typename\n  text\n  ...MultipleChoiceGroup_block\n}\n\nfragment SingleSlide_singleSlide on SingleSlide {\n  id\n  block {\n    __typename\n    ...EditBlockSidebar_block\n    ...Block_block\n  }\n}\n\nfragment Slide_slide on Slide {\n  __typename\n  title\n  ... on SingleSlide {\n    ...SingleSlide_singleSlide\n  }\n}\n\nfragment TextBlock_block on TextBlock {\n  id\n  title\n  body\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = 'ff1413b3b05ea7f8d2e0b6ec180c4ef5';
+(node as any).hash = '3d1574b7d063c6744290c2d87c03ada0';
 export default node;

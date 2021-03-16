@@ -1,8 +1,7 @@
 import { GraphQLInputObjectType, GraphQLNonNull, GraphQLString } from 'graphql';
-import { resolve } from 'path';
 import SlideHelper from '../objects/slides/helpers/SlideHelper';
-import { CreateSlidePayload } from '../payloads/CreateSlidePayload';
 import prisma from '../../data/prisma';
+import { Slide } from '../../server/objects';
 
 export const CreateSlideInput = new GraphQLInputObjectType({
   name: "CreateSlideInput",
@@ -14,7 +13,7 @@ export const CreateSlideInput = new GraphQLInputObjectType({
 })
 
 export const createSlide = {
-  type: CreateSlidePayload,
+  type: new GraphQLNonNull(Slide),
   args: {
     input: {
       type: new GraphQLNonNull(CreateSlideInput),
@@ -29,7 +28,7 @@ export const createSlide = {
         data: { slides: { connect: { id: slide.id } } },
       });
       console.log("return this mutation", slide)
-      return {slide: slide};
+      return slide;
     } catch (e) {
       // eslint-disable-next-line no-console
       console.warn(e);

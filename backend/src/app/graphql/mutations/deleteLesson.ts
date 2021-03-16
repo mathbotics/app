@@ -6,10 +6,11 @@ import { DeleteLessonPayload } from '../payloads/DeleteLessonPayload';
 export const DeleteLessonInput = new GraphQLInputObjectType({
   name: "DeleteLessonInput",
   fields: () => ({
-    id: { type: GraphQLString},
+    lessonId: { type: GraphQLString},
   })
 });
 
+//TODO: lesson doesnt delete slides and blocks made. delete unnecessary data that was once linked to it
 export const deleteLesson = {
     type: DeleteLessonPayload,
     args: {
@@ -18,12 +19,12 @@ export const deleteLesson = {
       }
     },
    async resolve(root, args){
-    const {id} = args.input 
+    const {lessonId} = args.input 
 
     const lesson = nullthrows(
       await prisma.lesson.delete({
         where: {
-          id: id,
+          id: lessonId,
         },
       })
       , 'Could not delete lesson',);
