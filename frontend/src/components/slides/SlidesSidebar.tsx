@@ -8,15 +8,21 @@ import nullthrows from 'nullthrows';
 import Slide from './Slide';
 import { SlidesSidebar_lesson } from './__generated__/SlidesSidebar_lesson.graphql';
 
+
+/*if you want to change the icon preview of the slides, you have to go into
+that specific slide type file, then edit the preview font size. and the spcific are with
+"Outlined" name on it*/
+
+
 const MenuItem = styled(Menu.Item)`
-  width: 100% !important;
+  width: 150px !important;
   height: 100% !important;
-  padding: 5px 15px !important;
+  padding: 5px 10px !important;
   background-color: #ffffff !important;
 `;
 
 const SlideCard = styled(Layout.Content)`
-  height: 190px;
+  height: 100px;
   background-color: white;
   border-radius: 5px;
   font-weight: 600;
@@ -89,8 +95,9 @@ const SlidesSidebar = ({
     lesson.slides[0]?.id,
   );
 
+  
   return (
-    <Sider width={300} theme="light" style={{ overflow: 'auto' }}>
+    <Sider width={200} theme="light" style={{ overflow: 'auto' }}>
       <SidebarHeader title={lesson.title} />
       <Menu defaultSelectedKeys={[selected?.toString() ?? '']} mode="inline">
         {/* This is the add slide which should always show up on top */}

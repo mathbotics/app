@@ -11,7 +11,7 @@ import { LessonCard } from '../lessons/LessonCard';
 import { LessonPlanSidebar_courseLessons } from './__generated__/LessonPlanSidebar_courseLessons.graphql';
 
 const MenuItem = styled(Menu.Item)`
-  width: 100% !important;
+  width: 95% !important;
   height: 128px !important;
   transition: all 0.15s ease-in-out;
   border-radius: 5px;
@@ -21,6 +21,7 @@ const MenuItem = styled(Menu.Item)`
 
 const RemoveLessonButton = styled.div`
   color: #ff4d4e;
+  width: 30px;
 `;
 
 export type SlideMenuItem = { id: string; component: JSX.Element };
@@ -99,7 +100,7 @@ const LessonPlanSidebar = ({
               <Tooltip title="Remove Lesson">
                 <RemoveLessonButton>
                   <DeleteOutlined
-                    style={{ fontSize: '18px', margin: '55px 0px 0px 1px' }}
+                    style={{ fontSize: '18px', margin: '55px 0px 0px 3px' }}
                     onClick={() => {
                       // sends to parent the course id
                       setCourseToBeDeleted(lesson.id);

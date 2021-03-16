@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FileImageOutlined } from '@ant-design/icons';
+import { FileImageOutlined, PicCenterOutlined } from '@ant-design/icons';
 import { graphql } from 'babel-plugin-relay/macro';
 import { createFragmentContainer } from 'react-relay';
 import nullthrows from 'nullthrows';
@@ -17,6 +17,7 @@ const Wrapper = styled.div`
   align-items: center;
   display: flex;
   transition: all 0.15s ease-in-out;
+  padding-left: .5em;
   background-color: ${({ selected, preview }: WrapperProps) =>
     (selected && preview ? '#1990ff' : '#fff')};
   color: ${({ selected, preview }: WrapperProps) =>
@@ -49,7 +50,7 @@ const SingleSlide = ({
         onSelectBlock && onSelectBlock(nullthrows(singleSlide?.block))}
     >
       {preview ? (
-        <FileImageOutlined style={{ fontSize: 50 }} />
+        <FileImageOutlined style={{ fontSize: 30 }} />
       ) : (
         <Block block={nullthrows(singleSlide?.block)} />
       )}

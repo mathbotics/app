@@ -2,13 +2,23 @@ import React from 'react';
 import { Layout, Select } from 'antd';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
+import styled from 'styled-components';
 
 import { EditBlockSidebar_block } from './__generated__/EditBlockSidebar_block.graphql';
 import EditTextBlockForm from '../block/text/EditTextBlockForm';
 import EditMultipleChoiceQuestionBlockForm from '../block/multiple_choice/EditMultipleChoiceQuestionBlockForm';
 
+
 const { Sider } = Layout;
 const { Option } = Select;
+
+const SelectionDiv = styled.div`
+border-bottom-style: solid;
+border-width: 2.5px;
+border-color: #40a9ff;
+padding-bottom: .5em;
+margin-bottom: .5em;
+`;
 
 enum EditingBlockTypename {
   MultipleChoiceQuestionBlock = 'MultipleChoiceQuestionBlock',
@@ -23,6 +33,7 @@ const EditBlockSidebar = ({ block }: Props) => {
 
   return (
     <Sider theme="light">
+      <SelectionDiv>
       <Select
         onChange={setEditingBlockTypename}
         defaultValue={block.__typename}
@@ -32,6 +43,7 @@ const EditBlockSidebar = ({ block }: Props) => {
         </Option>
         <Option value={EditingBlockTypename.TextBlock}>Text</Option>
       </Select>
+      </SelectionDiv>
       {/* Multiple Choice */}
       {editingBlockTypename ===
         EditingBlockTypename.MultipleChoiceQuestionBlock && (

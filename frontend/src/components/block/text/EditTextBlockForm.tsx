@@ -40,6 +40,7 @@ const EditTextBlockForm = ({ block, blockId }: Props): JSX.Element => {
       onFinishFailed={onSubmitError}
       layout="vertical"
     >
+      <h1>Title:</h1>
       <FormItem
         name="title"
         value={getFieldValue('title')}
@@ -47,7 +48,7 @@ const EditTextBlockForm = ({ block, blockId }: Props): JSX.Element => {
         input="text"
         placeholder="Title"
       />
-
+      <h1>Body:</h1>
       <FormItem
         name="body"
         value={getFieldValue('body')}
