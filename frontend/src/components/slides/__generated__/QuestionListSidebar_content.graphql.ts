@@ -10,7 +10,7 @@ export type QuestionListSidebar_content = {
         readonly id: string;
         readonly __typename: string;
         readonly title: string;
-        readonly " $fragmentRefs": FragmentRefs<"SingleSlide_singleSlide" | "HalfSlide_halfSlide">;
+        readonly " $fragmentRefs": FragmentRefs<"SingleSlide_singleSlide">;
     }>;
     readonly " $fragmentRefs": FragmentRefs<"Lesson_lesson">;
     readonly " $refType": "QuestionListSidebar_content";
@@ -75,17 +75,6 @@ return {
               "args": null
             }
           ]
-        },
-        {
-          "kind": "InlineFragment",
-          "type": "HalfSlide",
-          "selections": [
-            {
-              "kind": "FragmentSpread",
-              "name": "HalfSlide_halfSlide",
-              "args": null
-            }
-          ]
         }
       ]
     },
@@ -97,5 +86,5 @@ return {
   ]
 };
 })();
-(node as any).hash = 'feab60afea2c41f93a96f63904df2ab9';
+(node as any).hash = '7609c68d1121645739bb0cd7e1ba5de8';
 export default node;

@@ -17,7 +17,7 @@ type Props = {
 
 const Dashboard = ({
   dashboard: {
-    viewer: { firstName, lastName },
+    viewer: { id, firstName, lastName },
   },
 }: Props) => {
   const history = useHistory();
@@ -28,6 +28,7 @@ const Dashboard = ({
    */
   // eslint-disable-next-line
   const [selected, setSelected] = useState<number>(1);
+  console.log("id of user?", id)
   return (
     <>
       <Banner>
@@ -71,6 +72,7 @@ export default createFragmentContainer(Dashboard, {
   dashboard: graphql`
     fragment Dashboard_dashboard on Query {
       viewer {
+        id
         firstName
         lastName
         ... on Instructor {
