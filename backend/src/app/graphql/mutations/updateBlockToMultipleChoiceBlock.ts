@@ -2,6 +2,7 @@ import nullthrows from 'nullthrows';
 import prisma from '../../data/prisma';
 import { GraphQLInputObjectType, GraphQLNonNull, GraphQLObjectType, GraphQLString, GraphQLBoolean, GraphQLList } from 'graphql';
 import { UpdateBlockToMultipleChoiceBlockPayload } from '../payloads/UpdateBlockToMultipleChoiceBlockPayload';
+import { MultipleChoiceQuestionBlock } from '../../server/objects/blocks';
 
 export const ChoiceInput = new GraphQLInputObjectType({
   name: "ChoiceInput",
@@ -21,7 +22,7 @@ export const UpdateBlockToMultipleChoiceBlockInput = new GraphQLInputObjectType(
 });
 
 export const updateBlockToMultipleChoiceBlock = {
-    type: UpdateBlockToMultipleChoiceBlockPayload,
+    type: new GraphQLNonNull(MultipleChoiceQuestionBlock),
     args: {
       input: {
         type: new GraphQLNonNull(UpdateBlockToMultipleChoiceBlockInput),
@@ -29,7 +30,7 @@ export const updateBlockToMultipleChoiceBlock = {
     },
    async resolve(root, args){
     const {blockId, questionText, choices} = args.input;
-    console.log(blockId)
+    console.log("updating block to mc:", blockId)
       const { multipleChoiceQuestionBlock, textBlock, ...parentBlock } = await prisma.block.update({
         where: { id: blockId },
         data: {
@@ -58,12 +59,17 @@ export const updateBlockToMultipleChoiceBlock = {
       if (textBlock) {
         await prisma.textBlock.delete({ where: { id: textBlock.id } });
       }
-      return { multipleChoiceQuestionBlock: nullthrows(multipleChoiceQuestionBlock,'MultipleChoiceQuestionBlock not loaded.',
-        )
-      };
-   }
-  
+      return {
+                ...nullthrows(
+                  multipleChoiceQuestionBlock,
+                  'MultipleChoiceQuestionBlock not loaded.',
+                ),
+                ...parentBlock,
+              };
+      }
 }
+  
+
 
 // import { inputObjectType, mutationField, arg } from 'nexus';
 // import nullthrows from 'nullthrows';

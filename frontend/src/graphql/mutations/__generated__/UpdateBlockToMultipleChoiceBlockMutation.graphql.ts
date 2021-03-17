@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 2691cbaed9655d68bff7dcabd3b23ae7 */
+/* @relayHash c81759507e98631e113f56336ac3434c */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -18,11 +18,9 @@ export type UpdateBlockToMultipleChoiceBlockMutationVariables = {
 };
 export type UpdateBlockToMultipleChoiceBlockMutationResponse = {
     readonly updateBlockToMultipleChoiceBlock: {
-        readonly multipleChoiceQuestionBlock: {
-            readonly id: string;
-            readonly " $fragmentRefs": FragmentRefs<"MultipleChoiceQuestionBlock_block">;
-        };
-    } | null;
+        readonly id: string;
+        readonly " $fragmentRefs": FragmentRefs<"MultipleChoiceQuestionBlock_block">;
+    };
 };
 export type UpdateBlockToMultipleChoiceBlockMutation = {
     readonly response: UpdateBlockToMultipleChoiceBlockMutationResponse;
@@ -36,10 +34,8 @@ mutation UpdateBlockToMultipleChoiceBlockMutation(
   $input: UpdateBlockToMultipleChoiceBlockInput!
 ) {
   updateBlockToMultipleChoiceBlock(input: $input) {
-    multipleChoiceQuestionBlock {
-      id
-      ...MultipleChoiceQuestionBlock_block
-    }
+    id
+    ...MultipleChoiceQuestionBlock_block
   }
 }
 
@@ -103,25 +99,14 @@ return {
         "name": "updateBlockToMultipleChoiceBlock",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": "UpdateBlockToMultipleChoiceBlockPayload",
+        "concreteType": "MultipleChoiceQuestionBlock",
         "plural": false,
         "selections": [
+          (v2/*: any*/),
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "multipleChoiceQuestionBlock",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "MultipleChoiceQuestionBlock",
-            "plural": false,
-            "selections": [
-              (v2/*: any*/),
-              {
-                "kind": "FragmentSpread",
-                "name": "MultipleChoiceQuestionBlock_block",
-                "args": null
-              }
-            ]
+            "kind": "FragmentSpread",
+            "name": "MultipleChoiceQuestionBlock_block",
+            "args": null
           }
         ]
       }
@@ -138,46 +123,35 @@ return {
         "name": "updateBlockToMultipleChoiceBlock",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": "UpdateBlockToMultipleChoiceBlockPayload",
+        "concreteType": "MultipleChoiceQuestionBlock",
         "plural": false,
         "selections": [
+          (v2/*: any*/),
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "__typename",
+            "args": null,
+            "storageKey": null
+          },
+          (v3/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "multipleChoiceQuestionBlock",
+            "name": "choices",
             "storageKey": null,
             "args": null,
-            "concreteType": "MultipleChoiceQuestionBlock",
-            "plural": false,
+            "concreteType": "MultipleChoiceQuestionChoice",
+            "plural": true,
             "selections": [
               (v2/*: any*/),
+              (v3/*: any*/),
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "__typename",
+                "name": "correct",
                 "args": null,
                 "storageKey": null
-              },
-              (v3/*: any*/),
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "choices",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "MultipleChoiceQuestionChoice",
-                "plural": true,
-                "selections": [
-                  (v2/*: any*/),
-                  (v3/*: any*/),
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "correct",
-                    "args": null,
-                    "storageKey": null
-                  }
-                ]
               }
             ]
           }
@@ -189,10 +163,10 @@ return {
     "operationKind": "mutation",
     "name": "UpdateBlockToMultipleChoiceBlockMutation",
     "id": null,
-    "text": "mutation UpdateBlockToMultipleChoiceBlockMutation(\n  $input: UpdateBlockToMultipleChoiceBlockInput!\n) {\n  updateBlockToMultipleChoiceBlock(input: $input) {\n    multipleChoiceQuestionBlock {\n      id\n      ...MultipleChoiceQuestionBlock_block\n    }\n  }\n}\n\nfragment MultipleChoiceGroup_block on MultipleChoiceQuestionBlock {\n  choices {\n    id\n    text\n    correct\n  }\n}\n\nfragment MultipleChoiceQuestionBlock_block on MultipleChoiceQuestionBlock {\n  __typename\n  text\n  ...MultipleChoiceGroup_block\n}\n",
+    "text": "mutation UpdateBlockToMultipleChoiceBlockMutation(\n  $input: UpdateBlockToMultipleChoiceBlockInput!\n) {\n  updateBlockToMultipleChoiceBlock(input: $input) {\n    id\n    ...MultipleChoiceQuestionBlock_block\n  }\n}\n\nfragment MultipleChoiceGroup_block on MultipleChoiceQuestionBlock {\n  choices {\n    id\n    text\n    correct\n  }\n}\n\nfragment MultipleChoiceQuestionBlock_block on MultipleChoiceQuestionBlock {\n  __typename\n  text\n  ...MultipleChoiceGroup_block\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = 'bb0ddf6499cfda96715912b00e885225';
+(node as any).hash = '578ba187aea92501914804b3c63ea105';
 export default node;

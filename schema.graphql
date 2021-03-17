@@ -127,7 +127,7 @@ type DeleteCoursePayload {
 }
 
 input DeleteLessonInput {
-  id: String
+  lessonId: String
 }
 
 # Lesson type definition
@@ -259,12 +259,10 @@ type Mutation {
   deleteSingleStudent(input: DeleteStudentInput!): DeleteStudentPayload
   editStudent(input: EditStudentInput!): EditStudentPayload
   createSlide(input: CreateSlideInput!): Slide!
-  updateBlockToTextBlock(
-    input: UpdateBlockToTextBlockInput!
-  ): UpdateBlockToTBPayload
+  updateBlockToTextBlock(input: UpdateBlockToTextBlockInput!): TextBlock!
   updateBlockToMultipleChoiceBlock(
     input: UpdateBlockToMultipleChoiceBlockInput!
-  ): UpdateBlockToMultipleChoiceBlockPayload
+  ): MultipleChoiceQuestionBlock!
   deleteCourse(input: DeleteCourseInput!): DeleteCoursePayload
   deleteStudents(input: DeleteStudentsInput!): DeleteStudentsPayload
   createOneLesson(input: CreateLessonInput!): CreateLessonPayload
@@ -385,16 +383,6 @@ input UpdateBlockToMultipleChoiceBlockInput {
   blockId: String
   questionText: String
   choices: [ChoiceInput]
-}
-
-# MC block type definition
-type UpdateBlockToMultipleChoiceBlockPayload {
-  multipleChoiceQuestionBlock: MultipleChoiceQuestionBlock!
-}
-
-# Text Block type definition
-type UpdateBlockToTBPayload {
-  textBlock: TextBlock!
 }
 
 input UpdateBlockToTextBlockInput {

@@ -1,10 +1,10 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 46cee594937125f44eae97e5d6a30bda */
+/* @relayHash 6cf41143d146af91b6fd24b2207278f1 */
 
 import { ConcreteRequest } from "relay-runtime";
 export type DeleteLessonInput = {
-    id?: string | null;
+    lessonId?: string | null;
 };
 export type DeleteOneLessonMutationVariables = {
     input: DeleteLessonInput;
