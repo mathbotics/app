@@ -58,7 +58,7 @@ export const createOneCourse = {
             name,
             description,
             suggestedLevel,
-            instructorId: "ckm5fontj0108lgo6qvpsv32r"
+            instructorId: "ckmdtx4q50081mdmgstoyp9dy"
         },
         include: {
           instructor: {
