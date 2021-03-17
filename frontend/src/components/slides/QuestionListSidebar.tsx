@@ -133,6 +133,8 @@ __type like the one in Slide.tsx
 
   A mix of lesson and slide graphql parts all nested...
 */
+
+/*
 export default createFragmentContainer(QuestionListSidebar, {
   content: graphql`
     fragment QuestionListSidebar_content on Lesson {
@@ -153,3 +155,4 @@ export default createFragmentContainer(QuestionListSidebar, {
     }
   `,
 });
+*/
