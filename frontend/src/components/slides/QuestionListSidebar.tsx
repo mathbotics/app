@@ -3,7 +3,7 @@ import { Layout, Select, Card} from 'antd';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 import styled from 'styled-components';
-import { QuestionListSidebar_content } from './__generated__/QuestionListSidebar_content.graphql';
+// import { QuestionListSidebar_content } from './__generated__/QuestionListSidebar_content.graphql';
 import { Lesson_lesson } from '../lessons/__generated__/Lesson_lesson.graphql';
 import { Slide_slide } from './__generated__/Slide_slide.graphql';
 import { ContainerTwoTone } from '@ant-design/icons';
@@ -29,10 +29,12 @@ width: 100%;
 
 //will have to add props block until I figure out what to add, should be slide id and multiple choice block id/name
 type Props = { 
-  content?: QuestionListSidebar_content;
+  //content?: QuestionListSidebar_content;
   type?: Slide_slide['__typename']; //not sure if this is needed. but content has everything I need.
 };
-const QuestionListSidebar = ({ content, type }: Props) => {
+
+/* const QuestionListSidebar = ({ content, type }: Props) => { */
+const QuestionListSidebar = ({ type }: Props) => {
   /* //states below
   const [questionListTypename, setquestionListTypename] = React.useState(
     block.__typename,
@@ -44,7 +46,8 @@ const QuestionListSidebar = ({ content, type }: Props) => {
       <p>Item 1</p>
       <p>Item 2</p>
       {/* check functions */}
-      {multipleChoiceQuestionsHandler(content, type)}
+      {/* multipleChoiceQuestionsHandler(content, type) */}
+      {}
       </Card>
     </Sider>
   );
