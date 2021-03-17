@@ -19,25 +19,6 @@ export const createCourseInput = new GraphQLInputObjectType({
 });
 
 
-export const TestType = new GraphQLObjectType({
-  name: "TestType",
-  fields: () => ({
-    something: { type: GraphQLString} 
-  }),
-})
-
-export const CreateCourseType = new GraphQLObjectType({
-  name: "CreateCourseType",
-  description: "course type definition",
-  fields: {
-    id: { type: new GraphQLNonNull(GraphQLString) },
-    name: { type: new GraphQLNonNull(GraphQLString) }, 
-    description: { type: GraphQLString },
-    test: { type: TestType },
-    instructor: { type: Instructor } 
-  }
-})
-
 export const createOneCourse = {
     type: new GraphQLNonNull(Course),
     args: {
@@ -58,7 +39,7 @@ export const createOneCourse = {
             name,
             description,
             suggestedLevel,
-            instructorId: "ckmdtx4q50081mdmgstoyp9dy"
+            instructorId
         },
         include: {
           instructor: {

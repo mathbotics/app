@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Input, Typography, Tooltip, Button } from 'antd';
+import { Input, Typography, Tooltip, Button, Layout, Row, Col} from 'antd'; //new Layout import
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 import styled from 'styled-components';
@@ -103,14 +103,23 @@ const LessonPlanCatalogue = ({
             .filter((lesson) => lesson.title.toLowerCase().includes(searchValue.toLowerCase()))
             .map(({ id, title, slides }) => (
               <LessonCardWrapper>
+                <LessonCardCatalogueRow>
+                <LessonCardCatalogueColumn
+                  flex={"75%"}
+                >
                 <LessonCard
                   id={id}
                   key={id}
                   title={title}
                   slideCount={slides.length}
                 />
+                </LessonCardCatalogueColumn>
+                <LessonCardCatalogueColumn
+                  flex={"auto"}
+                >
                 <ButtonWrapper>
-                  <Button
+                <Tooltip title="Add Lesson">
+                  <PlusButton
                     disabled={selectedLessons.includes(id) ?? false}
                     type="primary"
                     icon={<PlusOutlined />}
@@ -131,9 +140,11 @@ const LessonPlanCatalogue = ({
                       // console.log("LessonPlan Lesson", lessonPlan.lessons);
                   }}
                   >
-                    Add Lesson
-                  </Button>
+                  </PlusButton>
+                  </Tooltip>
                 </ButtonWrapper>
+                </LessonCardCatalogueColumn>
+                </LessonCardCatalogueRow>
               </LessonCardWrapper>
             ))}
         </LessonsPreviewWrapper>
@@ -144,14 +155,23 @@ const LessonPlanCatalogue = ({
         <LessonsPreviewWrapper>
           {lessons.map(({ id, title, slides }) => (
             <LessonCardWrapper>
+              <LessonCardCatalogueRow>
+              <LessonCardCatalogueColumn
+                flex={"75%"}
+              >
               <LessonCard
                 id={id}
                 key={id}
                 title={title}
                 slideCount={slides.length}
               />
+              </LessonCardCatalogueColumn>
+              <LessonCardCatalogueColumn
+                flex={"auto"}
+              >
               <ButtonWrapper>
-                <Button
+                <Tooltip title="Add Lesson">
+                <PlusButton
                   disabled={selectedLessons.includes(id) ?? false}
                   type="primary"
                   icon={<PlusOutlined />}
@@ -172,9 +192,11 @@ const LessonPlanCatalogue = ({
                     // console.log("LessonPlan Lesson", lessonPlan.lessons);
                 }}
                 >
-                  Add Lesson
-                </Button>
+                </PlusButton>
+                </Tooltip>
               </ButtonWrapper>
+              </LessonCardCatalogueColumn>
+              </LessonCardCatalogueRow>
             </LessonCardWrapper>
           ))}
         </LessonsPreviewWrapper>
@@ -213,9 +235,24 @@ export default createFragmentContainer(LessonPlanCatalogue, {
   `,
 });
 
+
 const ButtonWrapper = styled.div`
-  float: right;
+  float: left;
+  height: 100%;
 `;
+
+const PlusButton = styled(Button)`
+height: 125px;
+`;
+
+const LessonCardCatalogueRow = styled(Row)`
+
+`;
+
+const LessonCardCatalogueColumn = styled(Col)`
+
+`;
+
 const LessonsCatalogueWrapper = styled.div`
   height: 100vh;
   width: 100%;

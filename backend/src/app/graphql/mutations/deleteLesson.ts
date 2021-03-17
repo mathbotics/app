@@ -11,7 +11,7 @@ export const DeleteLessonInput = new GraphQLInputObjectType({
 });
 
 //TODO: lesson doesnt delete slides and blocks made. delete unnecessary data that was once linked to it
-export const deleteLesson = {
+export const deleteLesson = { 
     type: DeleteLessonPayload,
     args: {
       input: {

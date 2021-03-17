@@ -2,7 +2,7 @@ import { GraphQLInputObjectType, GraphQLNonNull, GraphQLString } from 'graphql';
 import nullthrows from 'nullthrows';
 
 import prisma from '../../data/prisma';
-import { UpdateBlockToTBPayload } from '../payloads/UpdateBlockToTBPayload';
+import { TextBlock } from '../../server/objects/blocks';
 
 export const UpdateBlockToTextBlockInput = new GraphQLInputObjectType({
   name: "UpdateBlockToTextBlockInput",
@@ -14,7 +14,7 @@ export const UpdateBlockToTextBlockInput = new GraphQLInputObjectType({
 })
 
 export const updateBlockToTextBlock = {
-  type: UpdateBlockToTBPayload,
+  type: new GraphQLNonNull(TextBlock),
   args: {
     input: {
       type: new GraphQLNonNull(UpdateBlockToTextBlockInput)
@@ -48,7 +48,7 @@ export const updateBlockToTextBlock = {
           }
           console.log("textblock returned", textBlock)
           console.log("parentblock ", parentBlock)
-          return {textBlock: nullthrows(textBlock, 'TextBlock not loaded')};
+          return { ...nullthrows(textBlock, 'TextBlock not loaded'), ...parentBlock };
   }
 }
 

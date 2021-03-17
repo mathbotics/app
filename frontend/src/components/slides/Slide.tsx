@@ -8,6 +8,18 @@ import { Slide_slide } from './__generated__/Slide_slide.graphql';
 import { Block } from '../../types/Block';
 
 type WrapperProps = { preview?: boolean; selected?: boolean };
+
+/* Original
+height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  border: ${({ preview }: WrapperProps) => preview && '1px solid #ccc'};
+  :hover {
+    border: ${({ preview }: WrapperProps) => preview && '1px solid #f3f3f3cc'};
+  }
+`;
+*/
 const Wrapper = styled.div`
   height: 100%;
   width: 100%;

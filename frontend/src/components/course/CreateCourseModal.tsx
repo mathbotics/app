@@ -1,10 +1,20 @@
 import React from 'react';
-import { DataID } from 'react-relay';
+import { DataID, fetchQuery } from 'react-relay';
 import { Modal } from 'antd';
 import { Store } from 'rc-field-form/lib/interface';
-
+import { graphql } from 'babel-plugin-relay/macro';
 import { CreateCourseForm } from '../form/CreateCourseForm';
 import { commit as commitCreateOneCourseMutation } from '../../graphql/mutations/CreateOneCourseMutation';
+import { environment } from "../../graphql/relay";
+
+const query = graphql`
+  query CreateCourseModalQuery {
+    viewer {
+      id
+    }
+  }
+`;
+
 
 type ModalProps = {
   title: string;
@@ -22,16 +32,25 @@ export default ({
   onCancel,
   rootDataID,
 }: ModalProps) => {
-  const onSubmit = ({ name, suggestedLevel }: Store) =>
+  
+  const onSubmit = ({ name, suggestedLevel }: Store) => {
+    fetchQuery(environment, query, {}).then((data: any) => {
+      //get the currently logged in instructor that's creating the course
+    const instructorId = data.viewer.id
     commitCreateOneCourseMutation(
-      { name, suggestedLevel },
+      { name, suggestedLevel, instructorId },
       onSubmitSuccess,
       onSubmitError,
       rootDataID,
     );
+    })
+    
+  }
+    
   return (
     <Modal visible={visible} title={title} onCancel={onCancel} footer={[]}>
       <CreateCourseForm onSubmit={onSubmit} onSubmitError={onSubmitError} />
     </Modal>
   );
 };
+

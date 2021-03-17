@@ -5,6 +5,7 @@ import { graphql } from 'babel-plugin-relay/macro';
 import { Lesson_lesson } from './__generated__/Lesson_lesson.graphql';
 import SlidesSidebar from '../slides/SlidesSidebar';
 import EditorSlidePreview from '../slides/EditorSlidePreview';
+import QuestionListSidebar from '../slides/QuestionListSidebar';
 
 type Props = {
   lesson: Lesson_lesson;
@@ -22,6 +23,9 @@ const Lesson = (props) => {
       />
       <EditorSlidePreview
         slide={props.lesson.slides.find(({ id }) => id === selectedSlideId)}
+      />
+      <QuestionListSidebar 
+        
       />
     </Layout>
   );

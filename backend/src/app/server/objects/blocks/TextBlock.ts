@@ -1,4 +1,5 @@
 import { GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
+import prisma from "../../../data/prisma";
 
 export const TextBlock = new GraphQLObjectType({
     name: "TextBlock",
@@ -11,7 +12,7 @@ export const TextBlock = new GraphQLObjectType({
             console.log("emptyblock id:", obj)
 
             //handles case where blocks are being resolved
-            if(obj.block)
+            if(obj.block && obj.block.textBlockId != null)
               return obj.block.id
             
             return obj.id
@@ -19,14 +20,32 @@ export const TextBlock = new GraphQLObjectType({
         },
         title: {
           type: new GraphQLNonNull(GraphQLString), 
-          resolve(TextBlock){
-            return TextBlock.title
+          async resolve(obj){
+            //handles case where blocks are being resolved
+            if(obj.block && obj.block.textBlockId != null){
+              const textBlock = await prisma.textBlock.findUnique({
+                where: { id: obj.block.textBlockId }
+              })
+
+              return textBlock?.title
+            }
+            
+            return obj.title
           }
         },
         body: {
           type: new GraphQLNonNull(GraphQLString), 
-          resolve(TextBlock){
-            return TextBlock.body
+          async resolve(obj){
+            //handles case where blocks are being resolved
+            if(obj.block && obj.block.textBlockId != null){
+              const textBlock = await prisma.textBlock.findUnique({
+                where: { id: obj.block.textBlockId }
+              })
+
+              return textBlock?.body
+            }
+            
+            return obj.body
           }
         }
       }

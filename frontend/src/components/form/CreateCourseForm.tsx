@@ -3,11 +3,11 @@ import { Form, Button } from 'antd';
 import { Store, ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import { FormItem } from './FormItem';
 import { SelectFormItem } from './SelectFormItem';
-
 type FormProps = {
   onSubmit: (values: Store) => void;
   onSubmitError: (error: ValidateErrorEntity) => void;
 };
+
 
 enum GradeLevel {
   FIRST = 'FIRST',
