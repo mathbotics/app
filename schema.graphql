@@ -103,11 +103,6 @@ input CreateSlideInput {
   title: String
 }
 
-# Slide type definition
-type CreateSlidePayload {
-  slide: Slide!
-}
-
 input CreateStudentInput {
   username: String
   firstName: String
@@ -263,7 +258,7 @@ type Mutation {
   createOneCourse(input: createCourseInput!): Course!
   deleteSingleStudent(input: DeleteStudentInput!): DeleteStudentPayload
   editStudent(input: EditStudentInput!): EditStudentPayload
-  createSlide(input: CreateSlideInput!): CreateSlidePayload
+  createSlide(input: CreateSlideInput!): Slide!
   updateBlockToTextBlock(
     input: UpdateBlockToTextBlockInput!
   ): UpdateBlockToTBPayload
@@ -313,7 +308,7 @@ type Query {
   textBlock(id: ID): [TextBlock]
   block(id: ID): [Block]
   slides(id: ID): [Slide]
-  singleSlide(id: ID): [SingleSlide]
+  singleSlide(id: ID): SingleSlide
   pages(id: ID): [Page]
   content(id: ID): [Content]
   singleSlides(id: ID): [SingleSlide]

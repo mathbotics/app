@@ -1,5 +1,6 @@
 import { GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql"
-import { Course, Lesson } from "."
+import { Course } from "."
+import { Lesson } from ".."
 
 export const CourseToLesson : any = new GraphQLObjectType({
     name: "CourseToLesson",

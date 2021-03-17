@@ -20,7 +20,9 @@ import prisma from '../data/prisma';
 import { Mutations } from '../graphql/mutations/Mutations';
 import { CourseWhereUniqueInput } from '../graphql/queryinputs/CourseInput';
 import { LessonWhereUniqueInput } from '../graphql/queryinputs/LessonInput';
-import { Course, CourseToStudent, GradeLevel, Instructor, Lesson, Slide, Student, User } from './objects';
+import { GradeLevel, Lesson, SingleSlide, Slide,  User } from './objects';
+import { Block, MultipleChoiceQuestionBlock, MultipleChoiceQuestionChoice, MultipleChoiceQuestionResponse, TextBlock } from './objects/blocks';
+import { Course, CourseToStudent } from './objects/courses';
 
 // const resolveUserHelper = async (data : typeof User) => {
 
@@ -606,151 +608,14 @@ export const Admin = new GraphQLObjectType({
 //   }
 // });
 
-const MultipleChoiceQuestionChoice = new GraphQLObjectType({
-  name: "MultipleChoiceQuestionChoice",
-  description: "This represents the MultipleChoiceQuestionChoice",
-  fields: () => {
-    return {
-      id: {
-        type: new GraphQLNonNull(GraphQLString),
-        resolve(MultipleChoiceQuestionChoice) {
-          return MultipleChoiceQuestionChoice.id
-        }
-      },
-      text: {
-        type: new GraphQLNonNull(GraphQLString),
-        resolve(MultipleChoiceQuestionChoice) {
-          return MultipleChoiceQuestionChoice.text
-        }
-      },
-      correct: {
-        type: new GraphQLNonNull(GraphQLBoolean),
-        resolve(MultipleChoiceQuestionChoice) {
-          return MultipleChoiceQuestionChoice.correct
-        }
-      }
-    }
-  }
-});
 
-const MultipleChoiceQuestionResponse = new GraphQLObjectType({
-  name: "MultipleChoiceQuestionResponse",
-  description: "This represents the MultipleChoiceQuestionResponse",
-  fields: () => {
-    return {
-      id: {
-        type: GraphQLString,
-        resolve(MultipleChoiceQuestionResponse) {
-          return MultipleChoiceQuestionResponse.id
-        }
-      },
-      choice: {
-        type: GraphQLString,
-        resolve(MultipleChoiceQuestionResponse) {
-          return MultipleChoiceQuestionResponse.choice
-        }
-      },
-      student: {
-        type: GraphQLString,
-        resolve(MultipleChoiceQuestionChoice) {
-          return MultipleChoiceQuestionChoice.student
-        }
-      }
-    }
-  }
-});
 
-export const MultipleChoiceQuestionBlock = new GraphQLObjectType({
-  name: "MultipleChoiceQuestionBlock",
-  description: "This is the multiple choice question block",
-  fields: () => {
-    return {
-      id: {
-        type: new GraphQLNonNull(GraphQLString), 
-        resolve(MultipleChoiceQuestionBlock){
-          return MultipleChoiceQuestionBlock.id
-        }
-      },
-      text: {
-        type: new GraphQLNonNull(GraphQLString),
-        resolve(MultipleChoiceQuestionBlock){
-          return MultipleChoiceQuestionBlock.text
-        }
-      },
-      choices: {
-        type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(MultipleChoiceQuestionChoice))),
-        resolve(MultipleChoiceQuestionBlock){
-          return MultipleChoiceQuestionBlock.choices
-        }
-      },
-      responses: {
-        type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(MultipleChoiceQuestionResponse))),
-        resolve(MultipleChoiceQuestionBlock){
-          return MultipleChoiceQuestionBlock.responses
-        }
-      }
-    }
-  }
-});
 
-export const TextBlock = new GraphQLObjectType({
-  name: "TextBlock",
-  description: "This represents the Text Block",
-  fields: () => {
-    return {
-      id: {
-        type: new GraphQLNonNull(GraphQLString), 
-        resolve(TextBlock){
-          return TextBlock.id
-        }
-      },
-      title: {
-        type: new GraphQLNonNull(GraphQLString), 
-        resolve(TextBlock){
-          return TextBlock.title
-        }
-      },
-      body: {
-        type: new GraphQLNonNull(GraphQLString), 
-        resolve(TextBlock){
-          return TextBlock.body
-        }
-      }
-    }
-   } 
-});
 
-export const EmptyBlock = new GraphQLObjectType({
-  name: "EmptyBlock",
-  description: "This represents the Empty Block",
-  fields: () => {
-    return {
-      id: {
-        type: new GraphQLNonNull(GraphQLString), 
-        resolve(EmptyBlock){
-          return EmptyBlock.id
-        }
-      }
-    }
-   } 
-});
 
-const Block = new GraphQLUnionType({
-  name: "Block",
-  description: "This represents the Block",
-  types: [MultipleChoiceQuestionBlock, TextBlock, EmptyBlock],
-  resolveType(value){
-    if (value.choices){
-      return MultipleChoiceQuestionBlock;
-    }
-    
-    //COME BACK IF IT BREAKSSSS
-    if (value.body !=null){
-      return "TextBlock";
-    }
-    return "EmptyBlock";
-   } 
-});
+
+
+
 
 // export const Slide = new GraphQLInterfaceType({
 //   name: "Slide",
@@ -786,33 +651,7 @@ const Block = new GraphQLUnionType({
 //   }
 // });
 
-const SingleSlide = new GraphQLObjectType({
-  name: "SingleSlide",
-  description: "This represents the Single Slide",
-  interfaces : [Slide],
-  fields: () => {
-    return {
-      id: {
-        type: new GraphQLNonNull(GraphQLString),
-        resolve(SingleSlide) {
-          return SingleSlide.id
-        }
-      },
-      title: {
-        type: new GraphQLNonNull(GraphQLString),
-        resolve(SingleSlide){
-          return SingleSlide.title
-        }
-      },
-      block: {
-        type: new GraphQLNonNull(Block),
-        resolve(SingleSlide) {
-          return SingleSlide.block
-        }
-      }
-    }
-  }
-});
+
 
 // export const GradeLevel = new GraphQLEnumType({
 //   name: "GradeLevel",
@@ -1257,7 +1096,10 @@ const RootQuery = new GraphQLObjectType({
           }
         },
         async resolve(root, args){
-          return await prisma.slide.findMany({where: args});
+          console.log("slides:", args)
+          const slides = await prisma.slide.findMany({where: args})
+          console.log("slides to return!!!!!!!!!!1", slides)
+          return slides
         }
       },
       singleSlide: {
@@ -1268,6 +1110,7 @@ const RootQuery = new GraphQLObjectType({
           }
         },
         async resolve(root, args){
+          console.log("singleslide:", args)
           return await prisma.singleSlide.findFirst({where: args, include: {block: true}});
         }
       },

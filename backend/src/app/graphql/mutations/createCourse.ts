@@ -2,7 +2,9 @@ import nullthrows from 'nullthrows';
 import prisma from '../../data/prisma';
 import { GraphQLEnumType, GraphQLInputObjectType, 
   GraphQLNonNull, GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql';
-import { GradeLevel, Instructor, Course } from '../../server/objects';
+import { GradeLevel } from '../../server/objects';
+import { Course } from '../../server/objects/courses';
+import { Instructor } from '../../server/GraphQLSchema';
 
 
 

@@ -29,6 +29,7 @@ export const updateBlockToMultipleChoiceBlock = {
     },
    async resolve(root, args){
     const {blockId, questionText, choices} = args.input;
+    console.log(blockId)
       const { multipleChoiceQuestionBlock, textBlock, ...parentBlock } = await prisma.block.update({
         where: { id: blockId },
         data: {
@@ -42,7 +43,12 @@ export const updateBlockToMultipleChoiceBlock = {
           },
         },
         include: {
-          multipleChoiceQuestionBlock: true,
+          multipleChoiceQuestionBlock: {
+            include: {
+              choices: true,
+              responses: true
+            }
+          },
           textBlock: true,
         },
       });
