@@ -135,6 +135,7 @@ function updateQuestionStatus()
 __type like the one in Slide.tsx 
 
   A mix of lesson and slide graphql parts all nested...
+  TODO: edit this again to include half slide type
 */
 
 /*
@@ -150,9 +151,6 @@ export default createFragmentContainer(QuestionListSidebar, {
         title
         ... on SingleSlide {
           ...SingleSlide_singleSlide
-        }
-        ... on HalfSlide {
-          ...HalfSlide_halfSlide
         }
       }
     }

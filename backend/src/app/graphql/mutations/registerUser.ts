@@ -32,6 +32,7 @@ export const registerUser = {
             token,
             nullthrows(JWT_SECRET, 'JWT_SECRET is null or undefined.'),
           ) as { email?: string; role: "Admin" | "Guardian" | "Student" | "Instructor"  };
+          console.log(email)
           try {
             switch (role) {
               case 'Instructor':

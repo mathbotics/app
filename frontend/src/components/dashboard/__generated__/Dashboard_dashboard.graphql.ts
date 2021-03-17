@@ -5,6 +5,7 @@ import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type Dashboard_dashboard = {
     readonly viewer: {
+        readonly id: string;
         readonly firstName: string;
         readonly lastName: string;
         readonly email?: string;
@@ -48,6 +49,13 @@ return {
         {
           "kind": "ScalarField",
           "alias": null,
+          "name": "id",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
           "name": "firstName",
           "args": null,
           "storageKey": null
@@ -74,5 +82,5 @@ return {
   ]
 };
 })();
-(node as any).hash = '1ca1b6604c70994110028b9bcef8690a';
+(node as any).hash = '21b5306e4aa458f4587bc90a3d4d29ad';
 export default node;
