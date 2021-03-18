@@ -85,9 +85,7 @@ export default createFragmentContainer(EditCourseLessonPlan, {
     }
   `,
   courseLessons: graphql`
-    fragment EditCourseLessonPlan_courseLessons on Course {
-      id
-      courses{
+  fragment EditCourseLessonPlan_courseLessons on CourseToLesson{
         lesson{
           id
           title
@@ -96,7 +94,6 @@ export default createFragmentContainer(EditCourseLessonPlan, {
             title
           }
         }
-      }
       ...LessonPlanSidebar_courseLessons
       ...LessonPlanCatalogue_courseLessons
     }

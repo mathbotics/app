@@ -37,7 +37,7 @@ const EditCourse = ({ course, query }: Props) => {
     // {
     //   title: 'Lesson Plan',
     //   Component: (
-    //     <EditCourseLessonPlan lessonPlan={course.lessonPlan} query={query} />
+    //     <EditCourseLessonPlan courseLessons={course.id} query={query} />
     //   ),
     // },
     {
@@ -86,6 +86,9 @@ export default createFragmentContainer(EditCourse, {
       ...EditCourseDetails_course
       id
       name
+      courses{
+        ...EditCourseLessonPlan_courseLessons
+      }
     }
   `,
   query: graphql`

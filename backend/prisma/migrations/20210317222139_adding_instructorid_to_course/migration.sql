@@ -19,7 +19,7 @@ CREATE TABLE "Course" (
     "name" TEXT NOT NULL,
     "description" TEXT,
     "suggestedLevel" "GradeLevel" NOT NULL,
-    "lessonPlanId" TEXT NOT NULL,
+    "instructorId" TEXT NOT NULL,
 
     PRIMARY KEY ("id")
 );
@@ -153,14 +153,6 @@ CREATE TABLE "TextBlock" (
 CREATE TABLE "Lesson" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
-    "lessonPlanId" TEXT,
-
-    PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "LessonPlan" (
-    "id" TEXT NOT NULL,
 
     PRIMARY KEY ("id")
 );
@@ -169,15 +161,26 @@ CREATE TABLE "LessonPlan" (
 CREATE TABLE "CourseToStudent" (
     "courseId" TEXT NOT NULL,
     "studentId" TEXT NOT NULL,
-    "grade" DECIMAL(65,30) NOT NULL,
 
     PRIMARY KEY ("courseId","studentId")
 );
 
 -- CreateTable
-CREATE TABLE "_CourseToInstructor" (
-    "A" TEXT NOT NULL,
-    "B" TEXT NOT NULL
+CREATE TABLE "CourseToLesson" (
+    "courseId" TEXT NOT NULL,
+    "lessonId" TEXT NOT NULL,
+
+    PRIMARY KEY ("courseId","lessonId")
+);
+
+-- CreateTable
+CREATE TABLE "Grade" (
+    "courseId" TEXT NOT NULL,
+    "lessonId" TEXT NOT NULL,
+    "studentId" TEXT NOT NULL,
+    "grade" DECIMAL(65,30) NOT NULL,
+
+    PRIMARY KEY ("courseId","lessonId","studentId")
 );
 
 -- CreateTable
@@ -185,9 +188,6 @@ CREATE TABLE "_GuardianToStudent" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL
 );
-
--- CreateIndex
-CREATE UNIQUE INDEX "Course_lessonPlanId_unique" ON "Course"("lessonPlanId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Guardian.email_unique" ON "Guardian"("email");
@@ -214,12 +214,6 @@ CREATE UNIQUE INDEX "Admin_userId_unique" ON "Admin"("userId");
 CREATE UNIQUE INDEX "User.username_unique" ON "User"("username");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "_CourseToInstructor_AB_unique" ON "_CourseToInstructor"("A", "B");
-
--- CreateIndex
-CREATE INDEX "_CourseToInstructor_B_index" ON "_CourseToInstructor"("B");
-
--- CreateIndex
 CREATE UNIQUE INDEX "_GuardianToStudent_AB_unique" ON "_GuardianToStudent"("A", "B");
 
 -- CreateIndex
@@ -229,7 +223,7 @@ CREATE INDEX "_GuardianToStudent_B_index" ON "_GuardianToStudent"("B");
 ALTER TABLE "Content" ADD FOREIGN KEY ("courseId") REFERENCES "Course"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Course" ADD FOREIGN KEY ("lessonPlanId") REFERENCES "LessonPlan"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Course" ADD FOREIGN KEY ("instructorId") REFERENCES "Instructor"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Guardian" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -274,19 +268,25 @@ ALTER TABLE "Block" ADD FOREIGN KEY ("multipleChoiceQuestionBlockId") REFERENCES
 ALTER TABLE "Block" ADD FOREIGN KEY ("textBlockId") REFERENCES "TextBlock"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Lesson" ADD FOREIGN KEY ("lessonPlanId") REFERENCES "LessonPlan"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
 ALTER TABLE "CourseToStudent" ADD FOREIGN KEY ("courseId") REFERENCES "Course"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "CourseToStudent" ADD FOREIGN KEY ("studentId") REFERENCES "Student"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_CourseToInstructor" ADD FOREIGN KEY ("A") REFERENCES "Course"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "CourseToLesson" ADD FOREIGN KEY ("courseId") REFERENCES "Course"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_CourseToInstructor" ADD FOREIGN KEY ("B") REFERENCES "Instructor"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "CourseToLesson" ADD FOREIGN KEY ("lessonId") REFERENCES "Lesson"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Grade" ADD FOREIGN KEY ("courseId") REFERENCES "Course"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Grade" ADD FOREIGN KEY ("lessonId") REFERENCES "Lesson"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Grade" ADD FOREIGN KEY ("studentId") REFERENCES "Student"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_GuardianToStudent" ADD FOREIGN KEY ("A") REFERENCES "Guardian"("id") ON DELETE CASCADE ON UPDATE CASCADE;

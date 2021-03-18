@@ -4,17 +4,14 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type EditCourseLessonPlan_courseLessons = {
-    readonly id: string;
-    readonly courses: ReadonlyArray<{
-        readonly lesson: {
+    readonly lesson: {
+        readonly id: string;
+        readonly title: string;
+        readonly slides: ReadonlyArray<{
             readonly id: string;
             readonly title: string;
-            readonly slides: ReadonlyArray<{
-                readonly id: string;
-                readonly title: string;
-            }>;
-        };
-    }>;
+        }>;
+    };
     readonly " $fragmentRefs": FragmentRefs<"LessonPlanSidebar_courseLessons" | "LessonPlanCatalogue_courseLessons">;
     readonly " $refType": "EditCourseLessonPlan_courseLessons";
 };
@@ -44,44 +41,32 @@ v1 = {
 return {
   "kind": "Fragment",
   "name": "EditCourseLessonPlan_courseLessons",
-  "type": "Course",
+  "type": "CourseToLesson",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
-    (v0/*: any*/),
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "courses",
+      "name": "lesson",
       "storageKey": null,
       "args": null,
-      "concreteType": "CourseToLesson",
-      "plural": true,
+      "concreteType": "Lesson",
+      "plural": false,
       "selections": [
+        (v0/*: any*/),
+        (v1/*: any*/),
         {
           "kind": "LinkedField",
           "alias": null,
-          "name": "lesson",
+          "name": "slides",
           "storageKey": null,
           "args": null,
-          "concreteType": "Lesson",
-          "plural": false,
+          "concreteType": null,
+          "plural": true,
           "selections": [
             (v0/*: any*/),
-            (v1/*: any*/),
-            {
-              "kind": "LinkedField",
-              "alias": null,
-              "name": "slides",
-              "storageKey": null,
-              "args": null,
-              "concreteType": null,
-              "plural": true,
-              "selections": [
-                (v0/*: any*/),
-                (v1/*: any*/)
-              ]
-            }
+            (v1/*: any*/)
           ]
         }
       ]
@@ -99,5 +84,5 @@ return {
   ]
 };
 })();
-(node as any).hash = '74d5096dbd8ef05ae3f73edaa543ccf1';
+(node as any).hash = '7cae8522b6d7e9f818a5e33faebf12a5';
 export default node;

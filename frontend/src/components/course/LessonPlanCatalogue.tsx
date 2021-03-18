@@ -219,9 +219,8 @@ export default createFragmentContainer(LessonPlanCatalogue, {
     }
   `,
   courseLessons: graphql`
-    fragment LessonPlanCatalogue_courseLessons on Course {
-      id
-      courses{
+    fragment LessonPlanCatalogue_courseLessons on CourseToLesson {
+      courseId
         lesson{
           id
           title
@@ -231,7 +230,6 @@ export default createFragmentContainer(LessonPlanCatalogue, {
           }
         }
       }
-    }
   `,
 });
 
