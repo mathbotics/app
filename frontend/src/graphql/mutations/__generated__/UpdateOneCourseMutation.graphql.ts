@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 6c586ce4a3deb17d02cbbf908418cb50 */
+/* @relayHash fa08a08c6aef35e307f122167c0e2306 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -62,6 +62,17 @@ fragment EditCourse_course on Course {
   ...EditCourseDetails_course
   id
   name
+  courses {
+    lesson {
+      id
+      title
+      slides {
+        __typename
+        id
+        title
+      }
+    }
+  }
 }
 
 fragment StudentsTable_course on Course {
@@ -97,6 +108,13 @@ v2 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "title",
   "args": null,
   "storageKey": null
 };
@@ -219,6 +237,50 @@ return {
                 "name": "name",
                 "args": null,
                 "storageKey": null
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "courses",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "CourseToLesson",
+                "plural": true,
+                "selections": [
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "lesson",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "Lesson",
+                    "plural": false,
+                    "selections": [
+                      (v2/*: any*/),
+                      (v3/*: any*/),
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "name": "slides",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": null,
+                        "plural": true,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "name": "__typename",
+                            "args": null,
+                            "storageKey": null
+                          },
+                          (v2/*: any*/),
+                          (v3/*: any*/)
+                        ]
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
@@ -230,7 +292,7 @@ return {
     "operationKind": "mutation",
     "name": "UpdateOneCourseMutation",
     "id": null,
-    "text": "mutation UpdateOneCourseMutation(\n  $input: CourseUpdateInput!\n) {\n  updateOneCourse(input: $input) {\n    course {\n      ...EditCourse_course\n    }\n  }\n}\n\nfragment EditCourseDetails_course on Course {\n  id\n}\n\nfragment EditCourseStudents_course on Course {\n  id\n  courseTo {\n    student {\n      username\n      firstName\n      lastName\n      gradeLevel\n      id\n    }\n  }\n  ...StudentsTable_course\n}\n\nfragment EditCourse_course on Course {\n  ...EditCourseStudents_course\n  ...EditCourseDetails_course\n  id\n  name\n}\n\nfragment StudentsTable_course on Course {\n  courseTo {\n    student {\n      username\n      firstName\n      lastName\n      gradeLevel\n      id\n    }\n  }\n}\n",
+    "text": "mutation UpdateOneCourseMutation(\n  $input: CourseUpdateInput!\n) {\n  updateOneCourse(input: $input) {\n    course {\n      ...EditCourse_course\n    }\n  }\n}\n\nfragment EditCourseDetails_course on Course {\n  id\n}\n\nfragment EditCourseStudents_course on Course {\n  id\n  courseTo {\n    student {\n      username\n      firstName\n      lastName\n      gradeLevel\n      id\n    }\n  }\n  ...StudentsTable_course\n}\n\nfragment EditCourse_course on Course {\n  ...EditCourseStudents_course\n  ...EditCourseDetails_course\n  id\n  name\n  courses {\n    lesson {\n      id\n      title\n      slides {\n        __typename\n        id\n        title\n      }\n    }\n  }\n}\n\nfragment StudentsTable_course on Course {\n  courseTo {\n    student {\n      username\n      firstName\n      lastName\n      gradeLevel\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

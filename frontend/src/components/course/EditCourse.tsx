@@ -37,8 +37,8 @@ const EditCourse = ({ course, query }: Props) => {
     {
       title: 'Lesson Plan',
       Component: (
-         <EditCourseLessonPlan courseLessons = {course.courses} query={query} />
-        //<EditCourseStudents course={course} />
+        // <EditCourseLessonPlan courseLessons = {course.courses} query={query} />
+        <EditCourseStudents course={course} />
       ),
     },
     {
