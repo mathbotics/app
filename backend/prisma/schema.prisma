@@ -159,6 +159,8 @@ model Lesson {
   id     String  @id @default(cuid())
   title  String
   slides Slide[]
+  difficultyLevel String?
+  Time String?
   lessons CourseToLesson[]
   //lessonTo CourseToStudent[]
 }
