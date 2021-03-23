@@ -28,7 +28,6 @@ export const EditCourseLessonPlan = ({ courseLessons, query }: Props) => {
   return (
     <Wrapper>
 
-      {courseLessons.courses.length > 0 && (
         <Sider
           width={350}
           theme="light"
@@ -59,7 +58,7 @@ export const EditCourseLessonPlan = ({ courseLessons, query }: Props) => {
             />
           </div>
         </Sider>
-        )}
+        )
 
       <LessonPlanCatalogue
         query={query}
@@ -85,21 +84,11 @@ export default createFragmentContainer(EditCourseLessonPlan, {
     }
   `,
   courseLessons: graphql`
-    fragment EditCourseLessonPlan_courseLessons on Course {
-      id
-      courses{
-        lesson{
-          id
-          title
-          slides{
-            id
-            title
-          }
-        }
-      }
-      ...LessonPlanSidebar_courseLessons
-      ...LessonPlanCatalogue_courseLessons
-    }
+  fragment EditCourseLessonPlan_courseLessons on CourseToLesson {
+  	courseId 
+  ...LessonPlanSidebar_courseLessons
+  ...LessonPlanCatalogue_courseLessons
+}
   
   `
 });

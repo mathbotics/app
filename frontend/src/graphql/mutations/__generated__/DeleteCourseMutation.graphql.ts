@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 08074a4eeff45a69912039a045f6d968 */
+/* @relayHash c7a84ec5b7b4d4166c50dede1e2fc302 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -39,6 +39,12 @@ fragment EditCourseDetails_course on Course {
   id
 }
 
+fragment EditCourseLessonPlan_courseLessons on CourseToLesson {
+  courseId
+  ...LessonPlanSidebar_courseLessons
+  ...LessonPlanCatalogue_courseLessons
+}
+
 fragment EditCourseStudents_course on Course {
   id
   courseTo {
@@ -59,14 +65,30 @@ fragment EditCourse_course on Course {
   id
   name
   courses {
-    lesson {
+    ...EditCourseLessonPlan_courseLessons
+  }
+}
+
+fragment LessonPlanCatalogue_courseLessons on CourseToLesson {
+  lesson {
+    id
+    title
+    slides {
+      __typename
       id
       title
-      slides {
-        __typename
-        id
-        title
-      }
+    }
+  }
+}
+
+fragment LessonPlanSidebar_courseLessons on CourseToLesson {
+  lesson {
+    id
+    title
+    slides {
+      __typename
+      id
+      title
     }
   }
 }
@@ -244,6 +266,13 @@ return {
                 "plural": true,
                 "selections": [
                   {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "courseId",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
                     "kind": "LinkedField",
                     "alias": null,
                     "name": "lesson",
@@ -288,7 +317,7 @@ return {
     "operationKind": "mutation",
     "name": "DeleteCourseMutation",
     "id": null,
-    "text": "mutation DeleteCourseMutation(\n  $input: DeleteCourseInput!\n) {\n  deleteCourse(input: $input) {\n    course {\n      ...EditCourse_course\n    }\n  }\n}\n\nfragment EditCourseDetails_course on Course {\n  id\n}\n\nfragment EditCourseStudents_course on Course {\n  id\n  courseTo {\n    student {\n      username\n      firstName\n      lastName\n      gradeLevel\n      id\n    }\n  }\n  ...StudentsTable_course\n}\n\nfragment EditCourse_course on Course {\n  ...EditCourseStudents_course\n  ...EditCourseDetails_course\n  id\n  name\n  courses {\n    lesson {\n      id\n      title\n      slides {\n        __typename\n        id\n        title\n      }\n    }\n  }\n}\n\nfragment StudentsTable_course on Course {\n  courseTo {\n    student {\n      username\n      firstName\n      lastName\n      gradeLevel\n      id\n    }\n  }\n}\n",
+    "text": "mutation DeleteCourseMutation(\n  $input: DeleteCourseInput!\n) {\n  deleteCourse(input: $input) {\n    course {\n      ...EditCourse_course\n    }\n  }\n}\n\nfragment EditCourseDetails_course on Course {\n  id\n}\n\nfragment EditCourseLessonPlan_courseLessons on CourseToLesson {\n  courseId\n  ...LessonPlanSidebar_courseLessons\n  ...LessonPlanCatalogue_courseLessons\n}\n\nfragment EditCourseStudents_course on Course {\n  id\n  courseTo {\n    student {\n      username\n      firstName\n      lastName\n      gradeLevel\n      id\n    }\n  }\n  ...StudentsTable_course\n}\n\nfragment EditCourse_course on Course {\n  ...EditCourseStudents_course\n  ...EditCourseDetails_course\n  id\n  name\n  courses {\n    ...EditCourseLessonPlan_courseLessons\n  }\n}\n\nfragment LessonPlanCatalogue_courseLessons on CourseToLesson {\n  lesson {\n    id\n    title\n    slides {\n      __typename\n      id\n      title\n    }\n  }\n}\n\nfragment LessonPlanSidebar_courseLessons on CourseToLesson {\n  lesson {\n    id\n    title\n    slides {\n      __typename\n      id\n      title\n    }\n  }\n}\n\nfragment StudentsTable_course on Course {\n  courseTo {\n    student {\n      username\n      firstName\n      lastName\n      gradeLevel\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
