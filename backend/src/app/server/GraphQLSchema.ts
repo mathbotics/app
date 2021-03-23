@@ -25,7 +25,7 @@ import { Block, MultipleChoiceQuestionBlock, MultipleChoiceQuestionChoice, Multi
 import { Course, CourseToStudent } from './objects/courses';
 
 // const resolveUserHelper = async (data : typeof User) => {
-
+//
 //   if(data == false)
 //   {
 //     throw new GraphQLError("No user found in resolve for user helper becuase false");
