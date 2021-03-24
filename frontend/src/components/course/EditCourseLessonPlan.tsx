@@ -59,7 +59,7 @@ export const EditCourseLessonPlan = ({ course, query }: Props) => {
             />
           </div>
         </Sider>
-        )
+        )}
 
       <LessonPlanCatalogue
         query={query}
@@ -84,14 +84,6 @@ export default createFragmentContainer(EditCourseLessonPlan, {
       ...LessonPlanCatalogue_query
     }
   `,
-<<<<<<< HEAD
-  courseLessons: graphql`
-  fragment EditCourseLessonPlan_courseLessons on CourseToLesson {
-  	courseId 
-  ...LessonPlanSidebar_courseLessons
-  ...LessonPlanCatalogue_courseLessons
-}
-=======
   course: graphql`
     fragment EditCourseLessonPlan_course on Course {
       id
@@ -109,7 +101,6 @@ export default createFragmentContainer(EditCourseLessonPlan, {
       ...LessonPlanSidebar_course
       ...LessonPlanCatalogue_course
     }
->>>>>>> 1a2aaf0771c3343adace020b36c5f943380260e3
   
   `
 });
