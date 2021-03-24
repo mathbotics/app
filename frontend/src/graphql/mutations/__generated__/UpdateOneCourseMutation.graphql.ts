@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 4c42ee948776e6b8441f18da22b15e3a */
+/* @relayHash 3ad6dd8b7c4d70f2936623e4f00a1091 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -43,10 +43,28 @@ fragment EditCourseDetails_course on Course {
   id
 }
 
+<<<<<<< HEAD
 fragment EditCourseLessonPlan_courseLessons on CourseToLesson {
   courseId
   ...LessonPlanSidebar_courseLessons
   ...LessonPlanCatalogue_courseLessons
+=======
+fragment EditCourseLessonPlan_course on Course {
+  id
+  courses {
+    lesson {
+      id
+      title
+      slides {
+        __typename
+        id
+        title
+      }
+    }
+  }
+  ...LessonPlanSidebar_course
+  ...LessonPlanCatalogue_course
+>>>>>>> 1a2aaf0771c3343adace020b36c5f943380260e3
 }
 
 fragment EditCourseStudents_course on Course {
@@ -68,6 +86,27 @@ fragment EditCourse_course on Course {
   ...EditCourseDetails_course
   id
   name
+  ...EditCourseLessonPlan_course
+  ...LessonPlanCatalogue_course
+}
+
+fragment LessonPlanCatalogue_course on Course {
+  id
+  courses {
+    lesson {
+      id
+      title
+      slides {
+        __typename
+        id
+        title
+      }
+    }
+  }
+}
+
+fragment LessonPlanSidebar_course on Course {
+  id
   courses {
     ...EditCourseLessonPlan_courseLessons
   }
@@ -321,7 +360,11 @@ return {
     "operationKind": "mutation",
     "name": "UpdateOneCourseMutation",
     "id": null,
+<<<<<<< HEAD
     "text": "mutation UpdateOneCourseMutation(\n  $input: CourseUpdateInput!\n) {\n  updateOneCourse(input: $input) {\n    course {\n      ...EditCourse_course\n    }\n  }\n}\n\nfragment EditCourseDetails_course on Course {\n  id\n}\n\nfragment EditCourseLessonPlan_courseLessons on CourseToLesson {\n  courseId\n  ...LessonPlanSidebar_courseLessons\n  ...LessonPlanCatalogue_courseLessons\n}\n\nfragment EditCourseStudents_course on Course {\n  id\n  courseTo {\n    student {\n      username\n      firstName\n      lastName\n      gradeLevel\n      id\n    }\n  }\n  ...StudentsTable_course\n}\n\nfragment EditCourse_course on Course {\n  ...EditCourseStudents_course\n  ...EditCourseDetails_course\n  id\n  name\n  courses {\n    ...EditCourseLessonPlan_courseLessons\n  }\n}\n\nfragment LessonPlanCatalogue_courseLessons on CourseToLesson {\n  lesson {\n    id\n    title\n    slides {\n      __typename\n      id\n      title\n    }\n  }\n}\n\nfragment LessonPlanSidebar_courseLessons on CourseToLesson {\n  lesson {\n    id\n    title\n    slides {\n      __typename\n      id\n      title\n    }\n  }\n}\n\nfragment StudentsTable_course on Course {\n  courseTo {\n    student {\n      username\n      firstName\n      lastName\n      gradeLevel\n      id\n    }\n  }\n}\n",
+=======
+    "text": "mutation UpdateOneCourseMutation(\n  $input: CourseUpdateInput!\n) {\n  updateOneCourse(input: $input) {\n    course {\n      ...EditCourse_course\n    }\n  }\n}\n\nfragment EditCourseDetails_course on Course {\n  id\n}\n\nfragment EditCourseLessonPlan_course on Course {\n  id\n  courses {\n    lesson {\n      id\n      title\n      slides {\n        __typename\n        id\n        title\n      }\n    }\n  }\n  ...LessonPlanSidebar_course\n  ...LessonPlanCatalogue_course\n}\n\nfragment EditCourseStudents_course on Course {\n  id\n  courseTo {\n    student {\n      username\n      firstName\n      lastName\n      gradeLevel\n      id\n    }\n  }\n  ...StudentsTable_course\n}\n\nfragment EditCourse_course on Course {\n  ...EditCourseStudents_course\n  ...EditCourseDetails_course\n  id\n  name\n  ...EditCourseLessonPlan_course\n  ...LessonPlanCatalogue_course\n}\n\nfragment LessonPlanCatalogue_course on Course {\n  id\n  courses {\n    lesson {\n      id\n      title\n      slides {\n        __typename\n        id\n        title\n      }\n    }\n  }\n}\n\nfragment LessonPlanSidebar_course on Course {\n  id\n  courses {\n    lesson {\n      id\n      title\n      slides {\n        __typename\n        id\n        title\n      }\n    }\n  }\n}\n\nfragment StudentsTable_course on Course {\n  courseTo {\n    student {\n      username\n      firstName\n      lastName\n      gradeLevel\n      id\n    }\n  }\n}\n",
+>>>>>>> 1a2aaf0771c3343adace020b36c5f943380260e3
     "metadata": {}
   }
 };

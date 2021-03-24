@@ -3,7 +3,7 @@
 
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type LessonPlanCatalogue_courseLessons = {
+export type LessonPlanCatalogue_course = {
     readonly id: string;
     readonly courses: ReadonlyArray<{
         readonly lesson: {
@@ -15,12 +15,12 @@ export type LessonPlanCatalogue_courseLessons = {
             }>;
         };
     }>;
-    readonly " $refType": "LessonPlanCatalogue_courseLessons";
+    readonly " $refType": "LessonPlanCatalogue_course";
 };
-export type LessonPlanCatalogue_courseLessons$data = LessonPlanCatalogue_courseLessons;
-export type LessonPlanCatalogue_courseLessons$key = {
-    readonly " $data"?: LessonPlanCatalogue_courseLessons$data;
-    readonly " $fragmentRefs": FragmentRefs<"LessonPlanCatalogue_courseLessons">;
+export type LessonPlanCatalogue_course$data = LessonPlanCatalogue_course;
+export type LessonPlanCatalogue_course$key = {
+    readonly " $data"?: LessonPlanCatalogue_course$data;
+    readonly " $fragmentRefs": FragmentRefs<"LessonPlanCatalogue_course">;
 };
 
 
@@ -42,7 +42,7 @@ v1 = {
 };
 return {
   "kind": "Fragment",
-  "name": "LessonPlanCatalogue_courseLessons",
+  "name": "LessonPlanCatalogue_course",
   "type": "Course",
   "metadata": null,
   "argumentDefinitions": [],
@@ -88,5 +88,5 @@ return {
   ]
 };
 })();
-(node as any).hash = '7775732c35c1bda50bfd31f541f3d6da';
+(node as any).hash = 'd638d88ff3216324f9d3a6abf69853dc';
 export default node;

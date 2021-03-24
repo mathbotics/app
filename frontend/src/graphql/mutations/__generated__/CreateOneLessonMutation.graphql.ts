@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 3057b00c73de5932d36e6d9c11da435e */
+/* @relayHash a4ca208426d7645d1b468974d7db751b */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -12,15 +12,13 @@ export type CreateOneLessonMutationVariables = {
 };
 export type CreateOneLessonMutationResponse = {
     readonly createOneLesson: {
-        readonly lesson: {
+        readonly id: string;
+        readonly title: string;
+        readonly slides: ReadonlyArray<{
             readonly id: string;
-            readonly title: string;
-            readonly slides: ReadonlyArray<{
-                readonly id: string;
-            }>;
-            readonly " $fragmentRefs": FragmentRefs<"LessonPreview_lesson">;
-        };
-    } | null;
+        }>;
+        readonly " $fragmentRefs": FragmentRefs<"LessonPreview_lesson">;
+    };
 };
 export type CreateOneLessonMutation = {
     readonly response: CreateOneLessonMutationResponse;
@@ -34,15 +32,13 @@ mutation CreateOneLessonMutation(
   $input: CreateLessonInput!
 ) {
   createOneLesson(input: $input) {
-    lesson {
+    id
+    title
+    slides {
+      __typename
       id
-      title
-      slides {
-        __typename
-        id
-      }
-      ...LessonPreview_lesson
     }
+    ...LessonPreview_lesson
   }
 }
 
@@ -97,38 +93,27 @@ return {
         "name": "createOneLesson",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": "CreateLessonPayload",
+        "concreteType": "Lesson",
         "plural": false,
         "selections": [
+          (v2/*: any*/),
+          (v3/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "lesson",
+            "name": "slides",
             "storageKey": null,
             "args": null,
-            "concreteType": "Lesson",
-            "plural": false,
+            "concreteType": null,
+            "plural": true,
             "selections": [
-              (v2/*: any*/),
-              (v3/*: any*/),
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "slides",
-                "storageKey": null,
-                "args": null,
-                "concreteType": null,
-                "plural": true,
-                "selections": [
-                  (v2/*: any*/)
-                ]
-              },
-              {
-                "kind": "FragmentSpread",
-                "name": "LessonPreview_lesson",
-                "args": null
-              }
+              (v2/*: any*/)
             ]
+          },
+          {
+            "kind": "FragmentSpread",
+            "name": "LessonPreview_lesson",
+            "args": null
           }
         ]
       }
@@ -145,39 +130,28 @@ return {
         "name": "createOneLesson",
         "storageKey": null,
         "args": (v1/*: any*/),
-        "concreteType": "CreateLessonPayload",
+        "concreteType": "Lesson",
         "plural": false,
         "selections": [
+          (v2/*: any*/),
+          (v3/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "lesson",
+            "name": "slides",
             "storageKey": null,
             "args": null,
-            "concreteType": "Lesson",
-            "plural": false,
+            "concreteType": null,
+            "plural": true,
             "selections": [
-              (v2/*: any*/),
-              (v3/*: any*/),
               {
-                "kind": "LinkedField",
+                "kind": "ScalarField",
                 "alias": null,
-                "name": "slides",
-                "storageKey": null,
+                "name": "__typename",
                 "args": null,
-                "concreteType": null,
-                "plural": true,
-                "selections": [
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "__typename",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  (v2/*: any*/)
-                ]
-              }
+                "storageKey": null
+              },
+              (v2/*: any*/)
             ]
           }
         ]
@@ -188,10 +162,10 @@ return {
     "operationKind": "mutation",
     "name": "CreateOneLessonMutation",
     "id": null,
-    "text": "mutation CreateOneLessonMutation(\n  $input: CreateLessonInput!\n) {\n  createOneLesson(input: $input) {\n    lesson {\n      id\n      title\n      slides {\n        __typename\n        id\n      }\n      ...LessonPreview_lesson\n    }\n  }\n}\n\nfragment LessonPreview_lesson on Lesson {\n  id\n  title\n}\n",
+    "text": "mutation CreateOneLessonMutation(\n  $input: CreateLessonInput!\n) {\n  createOneLesson(input: $input) {\n    id\n    title\n    slides {\n      __typename\n      id\n    }\n    ...LessonPreview_lesson\n  }\n}\n\nfragment LessonPreview_lesson on Lesson {\n  id\n  title\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = 'bdae79d023cc4e6b947e4fdf98a22c76';
+(node as any).hash = 'e4991885bb6d06ba20fd0790da1ceb20';
 export default node;

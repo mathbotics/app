@@ -1,36 +1,35 @@
 import nullthrows from 'nullthrows';
 import prisma from '../../data/prisma';
 import { GraphQLInputObjectType, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
-import { CreateLessonPayload } from '../payloads/CreateLessonPayload';
+import { Lesson } from '../../server/objects/Lesson';
 
 export const CreateLessonInput = new GraphQLInputObjectType({
   name: "CreateLessonInput",
   fields: () => ({
-    title: { type: GraphQLString},
-    //lessonPlanId: { type: GraphQLString},
+    title: { type: GraphQLString}
   })
 });
 
 export const createOneLesson = {
-    type: CreateLessonPayload,
+    type: new GraphQLNonNull(Lesson),
     args: {
       input: {
         type: new GraphQLNonNull(CreateLessonInput),
       }
     },
-   async resolve(root, args){
+   async resolve(root:any, args:any){
     const {title} = args.input 
 
     const lesson = nullthrows(
       await prisma.lesson.create({
         data: {
-            title,
-            //lessonPlanId
-        }
+            title
+        },
+        include: {slides: true}
       }),
       'Could not create lesson',
     );
-    return { lesson };
+    return lesson;
    }
   
 }

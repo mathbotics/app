@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 69ac52603425bba340d8cf64524572d1 */
+/* @relayHash d1ec2280ab02d59290312448084f24f8 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -37,10 +37,28 @@ fragment EditCourseDetails_course on Course {
   id
 }
 
+<<<<<<< HEAD
 fragment EditCourseLessonPlan_courseLessons on CourseToLesson {
   courseId
   ...LessonPlanSidebar_courseLessons
   ...LessonPlanCatalogue_courseLessons
+=======
+fragment EditCourseLessonPlan_course on Course {
+  id
+  courses {
+    lesson {
+      id
+      title
+      slides {
+        __typename
+        id
+        title
+      }
+    }
+  }
+  ...LessonPlanSidebar_course
+  ...LessonPlanCatalogue_course
+>>>>>>> 1a2aaf0771c3343adace020b36c5f943380260e3
 }
 
 fragment EditCourseLessonPlan_query on Query {
@@ -66,11 +84,22 @@ fragment EditCourse_course on Course {
   ...EditCourseDetails_course
   id
   name
+  ...EditCourseLessonPlan_course
+  ...LessonPlanCatalogue_course
+}
+
+fragment EditCourse_query on Query {
+  ...EditCourseLessonPlan_query
+}
+
+fragment LessonPlanCatalogue_course on Course {
+  id
   courses {
     ...EditCourseLessonPlan_courseLessons
   }
 }
 
+<<<<<<< HEAD
 fragment EditCourse_query on Query {
   ...EditCourseLessonPlan_query
 }
@@ -87,6 +116,8 @@ fragment LessonPlanCatalogue_courseLessons on CourseToLesson {
   }
 }
 
+=======
+>>>>>>> 1a2aaf0771c3343adace020b36c5f943380260e3
 fragment LessonPlanCatalogue_query on Query {
   lessons {
     id
@@ -99,6 +130,7 @@ fragment LessonPlanCatalogue_query on Query {
   }
 }
 
+<<<<<<< HEAD
 fragment LessonPlanSidebar_courseLessons on CourseToLesson {
   lesson {
     id
@@ -107,6 +139,19 @@ fragment LessonPlanSidebar_courseLessons on CourseToLesson {
       __typename
       id
       title
+=======
+fragment LessonPlanSidebar_course on Course {
+  id
+  courses {
+    lesson {
+      id
+      title
+      slides {
+        __typename
+        id
+        title
+      }
+>>>>>>> 1a2aaf0771c3343adace020b36c5f943380260e3
     }
   }
 }
@@ -329,7 +374,11 @@ return {
     "operationKind": "query",
     "name": "EditCoursePageQuery",
     "id": null,
+<<<<<<< HEAD
     "text": "query EditCoursePageQuery(\n  $where: CourseWhereUniqueInput!\n) {\n  course(where: $where) {\n    ...EditCourse_course\n  }\n  ...EditCourse_query\n}\n\nfragment EditCourseDetails_course on Course {\n  id\n}\n\nfragment EditCourseLessonPlan_courseLessons on CourseToLesson {\n  courseId\n  ...LessonPlanSidebar_courseLessons\n  ...LessonPlanCatalogue_courseLessons\n}\n\nfragment EditCourseLessonPlan_query on Query {\n  ...LessonPlanCatalogue_query\n}\n\nfragment EditCourseStudents_course on Course {\n  id\n  courseTo {\n    student {\n      username\n      firstName\n      lastName\n      gradeLevel\n      id\n    }\n  }\n  ...StudentsTable_course\n}\n\nfragment EditCourse_course on Course {\n  ...EditCourseStudents_course\n  ...EditCourseDetails_course\n  id\n  name\n  courses {\n    ...EditCourseLessonPlan_courseLessons\n  }\n}\n\nfragment EditCourse_query on Query {\n  ...EditCourseLessonPlan_query\n}\n\nfragment LessonPlanCatalogue_courseLessons on CourseToLesson {\n  lesson {\n    id\n    title\n    slides {\n      __typename\n      id\n      title\n    }\n  }\n}\n\nfragment LessonPlanCatalogue_query on Query {\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n      title\n    }\n  }\n}\n\nfragment LessonPlanSidebar_courseLessons on CourseToLesson {\n  lesson {\n    id\n    title\n    slides {\n      __typename\n      id\n      title\n    }\n  }\n}\n\nfragment StudentsTable_course on Course {\n  courseTo {\n    student {\n      username\n      firstName\n      lastName\n      gradeLevel\n      id\n    }\n  }\n}\n",
+=======
+    "text": "query EditCoursePageQuery(\n  $where: CourseWhereUniqueInput!\n) {\n  course(where: $where) {\n    ...EditCourse_course\n  }\n  ...EditCourse_query\n}\n\nfragment EditCourseDetails_course on Course {\n  id\n}\n\nfragment EditCourseLessonPlan_course on Course {\n  id\n  courses {\n    lesson {\n      id\n      title\n      slides {\n        __typename\n        id\n        title\n      }\n    }\n  }\n  ...LessonPlanSidebar_course\n  ...LessonPlanCatalogue_course\n}\n\nfragment EditCourseLessonPlan_query on Query {\n  ...LessonPlanCatalogue_query\n}\n\nfragment EditCourseStudents_course on Course {\n  id\n  courseTo {\n    student {\n      username\n      firstName\n      lastName\n      gradeLevel\n      id\n    }\n  }\n  ...StudentsTable_course\n}\n\nfragment EditCourse_course on Course {\n  ...EditCourseStudents_course\n  ...EditCourseDetails_course\n  id\n  name\n  ...EditCourseLessonPlan_course\n  ...LessonPlanCatalogue_course\n}\n\nfragment EditCourse_query on Query {\n  ...EditCourseLessonPlan_query\n}\n\nfragment LessonPlanCatalogue_course on Course {\n  id\n  courses {\n    lesson {\n      id\n      title\n      slides {\n        __typename\n        id\n        title\n      }\n    }\n  }\n}\n\nfragment LessonPlanCatalogue_query on Query {\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n      title\n    }\n  }\n}\n\nfragment LessonPlanSidebar_course on Course {\n  id\n  courses {\n    lesson {\n      id\n      title\n      slides {\n        __typename\n        id\n        title\n      }\n    }\n  }\n}\n\nfragment StudentsTable_course on Course {\n  courseTo {\n    student {\n      username\n      firstName\n      lastName\n      gradeLevel\n      id\n    }\n  }\n}\n",
+>>>>>>> 1a2aaf0771c3343adace020b36c5f943380260e3
     "metadata": {}
   }
 };

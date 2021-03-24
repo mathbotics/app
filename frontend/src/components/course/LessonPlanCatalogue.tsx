@@ -8,20 +8,20 @@ import { LessonPlanCatalogue_query } from './__generated__/LessonPlanCatalogue_q
 import { LessonCard } from '../lessons/LessonCard';
 // import { commit as commitUpdateOneLessonPlanMutation } from '../../graphql/mutations/UpdateOneLessonPlanMutation';
 // import { LessonPlanCatalogue_lessonPlan } from './__generated__/LessonPlanCatalogue_lessonPlan.graphql';
-import { LessonPlanCatalogue_courseLessons } from './__generated__/LessonPlanCatalogue_courseLessons.graphql';
+import { LessonPlanCatalogue_course } from './__generated__/LessonPlanCatalogue_course.graphql';
 
 const { Search } = Input;
 const { Title } = Typography;
 
 type Props = {
   query: LessonPlanCatalogue_query;
-  courseLessons: LessonPlanCatalogue_courseLessons;
+  course: LessonPlanCatalogue_course;
   courseToDelete: String;
   lessonIdsInLessonPlan: String[];
 };
 
 const LessonPlanCatalogue = ({
-  courseLessons,
+  course,
   query,
   courseToDelete,
   lessonIdsInLessonPlan,
@@ -63,7 +63,7 @@ const LessonPlanCatalogue = ({
     Graphql logic to add lessons to LessonPlan
  */
   const connectLessonToLessonPlan = (id: string) => {
-    const lessonIds = courseLessons.courses.map((lesson:any) => ({ id: lesson.id}));
+    const lessonIds = course.courses.map((lesson:any) => ({ id: lesson.id}));
     console.log('connecting lesson to lesson plan', id);
     // TODO: Comment out when update lesson plan mutation is completed. Need to test frontend first
     // commitUpdateOneLessonPlanMutation(
@@ -218,8 +218,8 @@ export default createFragmentContainer(LessonPlanCatalogue, {
       }
     }
   `,
-  courseLessons: graphql`
-    fragment LessonPlanCatalogue_courseLessons on Course {
+  course: graphql`
+    fragment LessonPlanCatalogue_course on Course {
       id
       courses{
         lesson{
