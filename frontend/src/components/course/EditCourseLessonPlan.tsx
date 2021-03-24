@@ -7,16 +7,16 @@ import styled from 'styled-components';
 import LessonPlanSidebar from './LessonPlanSidebar';
 import { EditCourseLessonPlan_query } from './__generated__/EditCourseLessonPlan_query.graphql';
 import LessonPlanCatalogue from './LessonPlanCatalogue';
-import { EditCourseLessonPlan_courseLessons } from './__generated__/EditCourseLessonPlan_courseLessons.graphql';
+import { EditCourseLessonPlan_course } from './__generated__/EditCourseLessonPlan_course.graphql';
 
 type Props = {
-  courseLessons: EditCourseLessonPlan_courseLessons;
+  course: EditCourseLessonPlan_course;
   query: EditCourseLessonPlan_query;
 };
 const { Sider, Content } = Layout;
 
 //take out lessonplan
-export const EditCourseLessonPlan = ({ courseLessons, query }: Props) => {
+export const EditCourseLessonPlan = ({ course, query }: Props) => {
   // course id to be deleted gets sent here
   const [courseToDelete, setCourseToBeDeleted] = useState<String>("");
   const [courseToDeleteArray, setCourseToBeDeletedArray] = useState<String[]>([]);
@@ -28,7 +28,7 @@ export const EditCourseLessonPlan = ({ courseLessons, query }: Props) => {
   return (
     <Wrapper>
 
-      {courseLessons.courses.length > 0 && (
+      {course.courses.length > 0 && (
         <Sider
           width={350}
           theme="light"
@@ -51,7 +51,7 @@ export const EditCourseLessonPlan = ({ courseLessons, query }: Props) => {
               Lesson Plan
             </h1>
             <LessonPlanSidebar
-              courseLessons={courseLessons}
+              course={course}
               setCourseToBeDeleted={(id) => setCourseToBeDeleted(id)}
               setCourseToBeDeletedArray={
                 (lessons) => setCourseToBeDeletedArray([...courseToDeleteArray, ...lessons])
@@ -63,7 +63,7 @@ export const EditCourseLessonPlan = ({ courseLessons, query }: Props) => {
 
       <LessonPlanCatalogue
         query={query}
-        courseLessons={courseLessons}
+        course={course}
         courseToDelete={courseToDelete}
         lessonIdsInLessonPlan={courseToDeleteArray}
       />
@@ -84,8 +84,8 @@ export default createFragmentContainer(EditCourseLessonPlan, {
       ...LessonPlanCatalogue_query
     }
   `,
-  courseLessons: graphql`
-    fragment EditCourseLessonPlan_courseLessons on Course {
+  course: graphql`
+    fragment EditCourseLessonPlan_course on Course {
       id
       courses{
         lesson{
@@ -97,8 +97,9 @@ export default createFragmentContainer(EditCourseLessonPlan, {
           }
         }
       }
-      ...LessonPlanSidebar_courseLessons
-      ...LessonPlanCatalogue_courseLessons
+      
+      ...LessonPlanSidebar_course
+      ...LessonPlanCatalogue_course
     }
   
   `

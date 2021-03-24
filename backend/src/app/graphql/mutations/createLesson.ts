@@ -26,6 +26,9 @@ export const createOneLesson = {
         data: {
             title,
             //lessonPlanId
+        },
+        include: {
+          slides: true
         }
       }),
       'Could not create lesson',
