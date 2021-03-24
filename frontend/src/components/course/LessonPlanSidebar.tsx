@@ -8,7 +8,7 @@ import { DeleteOutlined } from '@ant-design/icons';
 // import { LessonPlanSidebar_lessonPlan } from './__generated__/LessonPlanSidebar_lessonPlan.graphql';
 
 import { LessonCard } from '../lessons/LessonCard';
-import { LessonPlanSidebar_courseLessons } from './__generated__/LessonPlanSidebar_courseLessons.graphql';
+import { LessonPlanSidebar_course } from './__generated__/LessonPlanSidebar_course.graphql';
 
 const MenuItem = styled(Menu.Item)`
   width: 95% !important;
@@ -33,17 +33,17 @@ I believe it will be used in the future
 // eslint-disable-next-line
 const { Sider, Content } = Layout;
 type Props = {
-  courseLessons: LessonPlanSidebar_courseLessons;
+  course: LessonPlanSidebar_course;
   setCourseToBeDeleted: (id) => void;
   setCourseToBeDeletedArray: (lessons) => void;
 };
 const LessonPlanSidebar = ({
-  courseLessons,
+  course,
   setCourseToBeDeleted,
   setCourseToBeDeletedArray,
 }: Props) => {
   const [selected, setSelected] = useState<string | undefined>(
-    courseLessons.courses[0].lesson.id,
+    course.courses[0].lesson.id,
   );
 
   const removeLessonFromLessonPlan = (id: string) => {
@@ -62,7 +62,7 @@ const LessonPlanSidebar = ({
     // );
   };
 
-  const { courses } = courseLessons;
+  const { courses } = course;
 
   useEffect(() => {
     const lessonIds: string[] = [];
@@ -72,12 +72,14 @@ const LessonPlanSidebar = ({
     setCourseToBeDeletedArray(lessonIds);
   }, [courses]);
 
+  console.log("courses in sidebar", courses)
+  console.log("courses slides in sidebar", courses[0].lesson.slides)
   return (
     <Sider width={350} theme="light">
-      {courseLessons.courses.length > 0 && (
+      {course.courses.length > 0 && (
         <Menu defaultSelectedKeys={[selected?.toString() ?? '']} mode="inline">
-          {courses.map((lesson:any, index) => (
-            <MenuItem key={lesson.id} style={{ display: 'flex' }}>
+          {courses.map((obj:any, index) => (
+            <MenuItem key={obj.lesson.id} style={{ display: 'flex' }}>
               <h1
                 style={{
                   margin: 'auto',
@@ -93,9 +95,9 @@ const LessonPlanSidebar = ({
                 {index + 1}
               </h1>
               <LessonCard
-                id={lesson.id}
-                title={lesson.title}
-                slideCount={lesson.slides.length}
+                id={obj.lesson.id}
+                title={obj.lesson.title}
+                slideCount={obj.lesson.slides.length}
               />
               <Tooltip title="Remove Lesson">
                 <RemoveLessonButton>
@@ -103,14 +105,14 @@ const LessonPlanSidebar = ({
                     style={{ fontSize: '18px', margin: '55px 0px 0px 3px' }}
                     onClick={() => {
                       // sends to parent the course id
-                      setCourseToBeDeleted(lesson.id);
+                      setCourseToBeDeleted(obj.lesson.id);
                       console.log(
                         `LessonPlanSidebar: set the current course to be deleted `,
-                        lesson.id,
+                        obj.lesson.id,
                       );
                       // setCourseToBeDeletedArray(lesson.id);
                       // console.log("Remove from lesson plan");
-                      removeLessonFromLessonPlan(lesson.id);
+                      removeLessonFromLessonPlan(obj.lesson.id);
                     }}
                   />
                 </RemoveLessonButton>
@@ -124,8 +126,8 @@ const LessonPlanSidebar = ({
 };
 
 export default createFragmentContainer(LessonPlanSidebar, {
-  courseLessons: graphql`
-  fragment LessonPlanSidebar_courseLessons on Course {
+  course: graphql`
+  fragment LessonPlanSidebar_course on Course {
     id
     courses{
       lesson{

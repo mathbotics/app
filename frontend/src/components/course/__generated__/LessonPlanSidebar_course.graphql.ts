@@ -3,7 +3,7 @@
 
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type EditCourseLessonPlan_courseLessons = {
+export type LessonPlanSidebar_course = {
     readonly id: string;
     readonly courses: ReadonlyArray<{
         readonly lesson: {
@@ -15,13 +15,12 @@ export type EditCourseLessonPlan_courseLessons = {
             }>;
         };
     }>;
-    readonly " $fragmentRefs": FragmentRefs<"LessonPlanSidebar_courseLessons" | "LessonPlanCatalogue_courseLessons">;
-    readonly " $refType": "EditCourseLessonPlan_courseLessons";
+    readonly " $refType": "LessonPlanSidebar_course";
 };
-export type EditCourseLessonPlan_courseLessons$data = EditCourseLessonPlan_courseLessons;
-export type EditCourseLessonPlan_courseLessons$key = {
-    readonly " $data"?: EditCourseLessonPlan_courseLessons$data;
-    readonly " $fragmentRefs": FragmentRefs<"EditCourseLessonPlan_courseLessons">;
+export type LessonPlanSidebar_course$data = LessonPlanSidebar_course;
+export type LessonPlanSidebar_course$key = {
+    readonly " $data"?: LessonPlanSidebar_course$data;
+    readonly " $fragmentRefs": FragmentRefs<"LessonPlanSidebar_course">;
 };
 
 
@@ -43,7 +42,7 @@ v1 = {
 };
 return {
   "kind": "Fragment",
-  "name": "EditCourseLessonPlan_courseLessons",
+  "name": "LessonPlanSidebar_course",
   "type": "Course",
   "metadata": null,
   "argumentDefinitions": [],
@@ -85,19 +84,9 @@ return {
           ]
         }
       ]
-    },
-    {
-      "kind": "FragmentSpread",
-      "name": "LessonPlanSidebar_courseLessons",
-      "args": null
-    },
-    {
-      "kind": "FragmentSpread",
-      "name": "LessonPlanCatalogue_courseLessons",
-      "args": null
     }
   ]
 };
 })();
-(node as any).hash = '74d5096dbd8ef05ae3f73edaa543ccf1';
+(node as any).hash = '2751ccb8b474eb858f5d46af9866e40d';
 export default node;

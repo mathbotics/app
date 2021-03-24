@@ -34,12 +34,13 @@ const EditCourse = ({ course, query }: Props) => {
     PageState.UpdateCourseSuccess,
   );
   const tabs: Tab[] = [
-    // {
-    //   title: 'Lesson Plan',
-    //   Component: (
-    //     <EditCourseLessonPlan lessonPlan={course.lessonPlan} query={query} />
-    //   ),
-    // },
+    {
+      title: 'Lesson Plan',
+      Component: (
+        <EditCourseLessonPlan course={course} query={query} />
+        // <EditCourseStudents course={course} />
+      ),
+    },
     {
       title: 'Students',
       Component: <EditCourseStudents course={course} />,
@@ -86,6 +87,9 @@ export default createFragmentContainer(EditCourse, {
       ...EditCourseDetails_course
       id
       name
+      ...EditCourseLessonPlan_course
+      ...LessonPlanCatalogue_course
+      
     }
   `,
   query: graphql`
