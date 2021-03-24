@@ -92,11 +92,6 @@ input CreateLessonInput {
   title: String
 }
 
-# Lesson type definition
-type CreateLessonPayload {
-  lesson: Lesson!
-}
-
 input CreateSlideInput {
   slideType: String
   lessonId: String
@@ -265,7 +260,7 @@ type Mutation {
   ): MultipleChoiceQuestionBlock!
   deleteCourse(input: DeleteCourseInput!): DeleteCoursePayload
   deleteStudents(input: DeleteStudentsInput!): DeleteStudentsPayload
-  createOneLesson(input: CreateLessonInput!): CreateLessonPayload
+  createOneLesson(input: CreateLessonInput!): Lesson!
   deleteLesson(input: DeleteLessonInput!): DeleteLessonPayload
   updateOneLesson(input: UpdateLessonInput!): UpdateLessonPayload
   updateOneCourse(input: CourseUpdateInput!): UpdateCoursePayload

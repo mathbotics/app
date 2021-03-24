@@ -7,14 +7,12 @@ import { CreateOneLessonMutationVariables } from './__generated__/CreateOneLesso
 const mutation = graphql`
   mutation CreateOneLessonMutation($input: CreateLessonInput!) {
     createOneLesson(input: $input) {
-      lesson{
       id
       title
       slides {
         id
       }
       ...LessonPreview_lesson
-    }
     }
   }
 `;
