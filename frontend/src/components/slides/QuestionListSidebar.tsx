@@ -18,7 +18,6 @@ Layout Sider is correct
 location placed at Lesson.tsx
 Read standup 6 of sprint 2...
 I may have to make a structure data for having id and status
-
 Objective: pass lesson.tsx props to QuestionListSidebar.tsx
 */
 
@@ -32,6 +31,8 @@ type Props = {
   content?: QuestionListSidebar_content;
   type?: Slide_slide['__typename']; //not sure if this is needed. but content has everything I need.
 };
+
+/* const QuestionListSidebar = ({ content, type }: Props) => { */
 const QuestionListSidebar = ({ content, type }: Props) => {
   /* //states below
   const [questionListTypename, setquestionListTypename] = React.useState(
@@ -44,7 +45,8 @@ const QuestionListSidebar = ({ content, type }: Props) => {
       <p>Item 1</p>
       <p>Item 2</p>
       {/* check functions */}
-      {multipleChoiceQuestionsHandler(content, type)}
+      {/* multipleChoiceQuestionsHandler(content, type) */}
+      {staticContent(content)}
       </Card>
     </Sider>
   );
@@ -68,15 +70,12 @@ function multipleChoiceQuestionsHandler(content, type)
   
     /* compare if current slide contains a MultipleChoice question in singleSlide
       and if current slide is a Halfslide containing a multiplechoice (you check twice, left and right side) 
-
       Check exactly Slide.tsx at line 53 for the specific comparison between slide types
-
       switch (slide?.__typename ?? type) {
     case 'SingleSlide':
     */
 /*  
 switch (slides[num].type ?? type) {
-
     case 'SingleSlide':
       {
 */
@@ -95,10 +94,8 @@ switch (slides[num].type ?? type) {
         
         break;
       }
-
     case 'HalfSlide':
       {
-
         break;
       }
     
@@ -119,6 +116,17 @@ switch (slides[num].type ?? type) {
   
 }
 
+function staticContent(content)
+{
+  //display items
+  return (
+    <>
+    <p>hey arnold</p>
+    </>
+  );
+}
+
+
 /* 
   if current question is answered, change icon and status
 */
@@ -130,10 +138,11 @@ function updateQuestionStatus()
 /*edit this once I figure out what I need, I think I need
  slide itself for id like the one in Lesson.tsx,
 __type like the one in Slide.tsx 
-
   A mix of lesson and slide graphql parts all nested...
   TODO: edit this again to include half slide type
 */
+
+
 export default createFragmentContainer(QuestionListSidebar, {
   content: graphql`
     fragment QuestionListSidebar_content on Lesson {

@@ -59,8 +59,9 @@ const LessonsTable = ({ onClickRemove, lessons: { lessons } }: Props) => {
   const history = useHistory();
   const [data, setData] = useState<ColumnsType<TableItem>>();
   useEffect(() => {
+    const lessonsList = lessons.filter(value => value != null)  
     setData(
-      lessons.map(({ id, title, slides }, index: number) => ({
+      lessonsList.map(({ id, title, slides }, index: number) => ({
         index: index + 1,
         key: index,
         title,
