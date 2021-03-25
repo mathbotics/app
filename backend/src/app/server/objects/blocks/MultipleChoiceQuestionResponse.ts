@@ -14,13 +14,13 @@ export const MultipleChoiceQuestionResponse = new GraphQLObjectType({
         choice: {
           type: GraphQLString,
           resolve(MultipleChoiceQuestionResponse) {
-            return MultipleChoiceQuestionResponse.choice
+            return MultipleChoiceQuestionResponse.multipleChoiceQuestionChoiceId
           }
         },
         student: {
           type: GraphQLString,
           resolve(MultipleChoiceQuestionChoice) {
-            return MultipleChoiceQuestionChoice.student
+            return MultipleChoiceQuestionChoice.studentId
           }
         }
       }

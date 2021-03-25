@@ -7,6 +7,8 @@ export const CreateLessonInput = new GraphQLInputObjectType({
   name: "CreateLessonInput",
   fields: () => ({
     title: { type: GraphQLString},
+    time: { type: GraphQLString},
+    difficultyLevel: { type: GraphQLString}
     //lessonPlanId: { type: GraphQLString},
   })
 });
@@ -19,12 +21,14 @@ export const createOneLesson = {
       }
     },
    async resolve(root, args){
-    const {title} = args.input 
+    const {title, time, difficultyLevel} = args.input 
 
     const lesson = nullthrows(
       await prisma.lesson.create({
         data: {
             title,
+            time,
+            difficultyLevel
             //lessonPlanId
         }
       }),
