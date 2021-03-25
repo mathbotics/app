@@ -2,6 +2,7 @@ import nullthrows from 'nullthrows';
 import prisma from '../../data/prisma';
 import { GraphQLInputObjectType, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
 import{CreateCourseLessonPayload} from '../payloads/CreateCourseLessonPayload';
+import { resolve } from 'path';
 
 
 export const createCourseLessonInput = new GraphQLInputObjectType({
@@ -12,7 +13,7 @@ export const createCourseLessonInput = new GraphQLInputObjectType({
     })
 });
 
-export const createCourseLesson = {
+export const removeLessonFromCourse = {
     type: CreateCourseLessonPayload,
     args: {
       input: {
@@ -22,10 +23,12 @@ export const createCourseLesson = {
    async resolve(root, args){
     const { courseId, lessonId} = args.input 
     const  courseToLesson  = nullthrows(
-      await prisma.courseToLesson.create({
-        data: {
-            courseId,
-            lessonId
+      await prisma.courseToLesson.delete({
+        where: {
+            courseId_lessonId: {
+                courseId: courseId,
+                lessonId: lessonId
+            }
         }
       }),
       'Could not create course',
