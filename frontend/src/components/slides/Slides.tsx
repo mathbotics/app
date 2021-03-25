@@ -4,7 +4,6 @@ import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 import nullthrows from 'nullthrows';
 import SlidesSidebar from './SlidesSidebar';
-//import QuestionListSidebar from './QuestionListSidebar';
 import { Slides_lesson } from './__generated__/Slides_lesson.graphql';
 import CreateSlideModal from './CreateSlideModal';
 import EditBlockSidebar from './EditBlockSidebar';
