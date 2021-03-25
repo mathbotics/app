@@ -4,10 +4,11 @@ import { GraphQLInputObjectType, GraphQLNonNull, GraphQLObjectType, GraphQLStrin
 import{CreateCourseLessonPayload} from '../payloads/CreateCourseLessonPayload';
 import { resolve } from 'path';
 import { Lesson } from '../../server/objects';
+import { Course } from '../../server/objects/courses';
 
 
 export const removeCourseLessonInput = new GraphQLInputObjectType({
-    name: "createCourseLessonInput",
+    name: "removeCourseLessonInput",
     fields: () => ({
         courseId: { type: GraphQLString},
         lessonId: { type: GraphQLString}
@@ -15,7 +16,7 @@ export const removeCourseLessonInput = new GraphQLInputObjectType({
 });
 
 export const removeCourseLesson = {
-    type: new GraphQLNonNull(Lesson),
+    type: new GraphQLNonNull(Course),
     args: {
       input: {
         type: new GraphQLNonNull(removeCourseLessonInput),
@@ -36,20 +37,27 @@ export const removeCourseLesson = {
       
     );
 
-    const lesson = nullthrows(
-      await prisma.courseToLesson.findUnique({
+    const course = nullthrows(
+      await prisma.course.findUnique({
         where: {
-            courseId_lessonId: {
-                courseId: courseId,
-                lessonId: lessonId
-            }
+          id: courseId
         }
       }),
+      'Could not create course',
+    )
+    
+    const lesson = nullthrows(
+      await prisma.lesson.findUnique({
+        where: {
+                id: lessonId
+            }
+        }
+      ),
       'Could not remove course lesson',
     )
 
-    return {lesson};
-   }
+    return course;
+    }
   
 }
 

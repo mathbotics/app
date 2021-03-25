@@ -4,6 +4,7 @@ import { GraphQLInputObjectType, GraphQLNonNull, GraphQLObjectType, GraphQLStrin
 import{CreateCourseLessonPayload} from '../payloads/CreateCourseLessonPayload';
 import { resolve } from 'path';
 import { Lesson } from '../../server/objects';
+import { Course } from '../../server/objects/courses';
 
 export const createCourseLessonInput = new GraphQLInputObjectType({
     name: "createCourseLessonInput",
@@ -14,7 +15,7 @@ export const createCourseLessonInput = new GraphQLInputObjectType({
 });
 
 export const createCourseLesson = {
-    type: new GraphQLNonNull(Lesson),
+    type: new GraphQLNonNull(Course),
     args: {
       input: {
         type: new GraphQLNonNull(createCourseLessonInput),
@@ -50,7 +51,7 @@ export const createCourseLesson = {
       'Could not create course',
     )
 
-    return {lesson};
+    return course;
    }
   
 }

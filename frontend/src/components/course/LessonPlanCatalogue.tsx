@@ -6,9 +6,10 @@ import styled from 'styled-components';
 import { PlusOutlined } from '@ant-design/icons';
 import { LessonPlanCatalogue_query } from './__generated__/LessonPlanCatalogue_query.graphql';
 import { LessonCard } from '../lessons/LessonCard';
-// import { commit as commitUpdateOneLessonPlanMutation } from '../../graphql/mutations/UpdateOneLessonPlanMutation';
+import { commit as commitCreateCourseLessonMutation } from '../../graphql/mutations/CreateCourseLessonMutation';
 // import { LessonPlanCatalogue_lessonPlan } from './__generated__/LessonPlanCatalogue_lessonPlan.graphql';
 import { LessonPlanCatalogue_course } from './__generated__/LessonPlanCatalogue_course.graphql';
+//import { commit } from '../../graphql/mutations/CreateCourseLessonMutation';
 
 const { Search } = Input;
 const { Title } = Typography;
@@ -65,15 +66,13 @@ const LessonPlanCatalogue = ({
   const connectLessonToLessonPlan = (id: string) => {
     const lessonIds = course.courses.map((lesson:any) => ({ id: lesson.id}));
     console.log('connecting lesson to lesson plan', id);
-    // TODO: Comment out when update lesson plan mutation is completed. Need to test frontend first
-    // commitUpdateOneLessonPlanMutation(
-    //   {
-    //     data: { lessons: { connect: [{ id }, ...lessonIds] } },
-    //     where: { id: lessonPlan.id },
-    //   },
-    //   () => console.log('GRAPHQL Success'),
-    //   (e) => console.log(`GRAPHQL Error ${e}`),
-    // );
+    commitCreateCourseLessonMutation(
+      {
+       input:{courseId: course.id, lessonId: id}
+      },
+      () => console.log('GRAPHQL Success'),
+      (e) => console.log(`GRAPHQL Error ${e}`),
+    );
   };
 
   return (

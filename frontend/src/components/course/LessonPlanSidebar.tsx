@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { createFragmentContainer } from 'react-relay';
 import { graphql } from 'babel-plugin-relay/macro';
 import { DeleteOutlined } from '@ant-design/icons';
-// import { commit as commitUpdateOneLessonPlanMutation } from '../../graphql/mutations/UpdateOneLessonPlanMutation';
+import { commit as commitRemoveCourseLessonMutation } from '../../graphql/mutations/RemoveCourseLessonMutation';
 // import { LessonPlanSidebar_lessonPlan } from './__generated__/LessonPlanSidebar_lessonPlan.graphql';
 
 import { LessonCard } from '../lessons/LessonCard';
@@ -47,19 +47,17 @@ const LessonPlanSidebar = ({
   );
 
   const removeLessonFromLessonPlan = (id: string) => {
-        // TODO: Comment out when update lesson plan mutation is completed. Need to test frontend first
 
-    // commitUpdateOneLessonPlanMutation(
-    //   {
-    //     data: { lessons: { disconnect: [{ id }] } },
-    //     where: { id: lessonPlan.id },
-    //   },
-    //   () => console.log('Successfully removed item from lesson plan - GRAPHQL'),
-    //   (e) =>
-    //     console.log(
-    //       `Error could not remove item from lesson plan - GRAPHQL: ${e}`,
-    //     ),
-    // );
+    commitRemoveCourseLessonMutation(
+      {
+        input:{courseId: course.id, lessonId: id}
+      },
+      () => console.log('Successfully removed item from lesson plan - GRAPHQL'),
+      (e) =>
+        console.log(
+          `Error could not remove item from lesson plan - GRAPHQL: ${e}`,
+        ),
+    );
   };
 
   const { courses } = course;
