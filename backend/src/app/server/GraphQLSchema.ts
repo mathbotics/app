@@ -23,6 +23,7 @@ import { LessonWhereUniqueInput } from '../graphql/queryinputs/LessonInput';
 import { GradeLevel, Lesson, SingleSlide, Slide,  User } from './objects';
 import { Block, MultipleChoiceQuestionBlock, MultipleChoiceQuestionChoice, MultipleChoiceQuestionResponse, TextBlock } from './objects/blocks';
 import { Course, CourseToStudent } from './objects/courses';
+import { Grade } from './objects/Grade';
 
 // const resolveUserHelper = async (data : typeof User) => {
 
@@ -1173,6 +1174,21 @@ const RootQuery = new GraphQLObjectType({
             where: args, 
             });
           return blocks
+        }
+      },
+      grades: {
+        type: new GraphQLList(Grade),
+        args: {
+          id: {
+            type: GraphQLString
+          }
+        },
+        async resolve(root, args){
+          const grades = await prisma.grade.findMany({
+            where: args, 
+            });
+            console.log("this is what a grade is", grades)
+          return grades
         }
       }
     }
