@@ -26,19 +26,18 @@ export const Lesson = new GraphQLObjectType({
           }
         },
         time: {
-          type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(GraphQLString))),
-          resolve(Lesson){
-            console.log(Lesson)
+          type: new GraphQLNonNull(GraphQLString),
+          resolve(Lesson) {
             return Lesson.time
           }
         },
         difficultyLevel: {
-          type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(GraphQLString))),
-          resolve(Lesson){
-            console.log(Lesson)
+          type: new GraphQLNonNull(GraphQLString),
+          resolve(Lesson) {
             return Lesson.difficultyLevel
           }
         }
+        
       }
     }
   });
