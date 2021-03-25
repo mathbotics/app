@@ -25,10 +25,12 @@ function onChange(pagination, filters, sorter, extra) {
 type Props = {
   lessons: InstructorGradebookTable_lessons;
   course: InstructorGradebookTable_course;
+  grades: InstructorGradebookTable_grades;
 };
 const InstructorGradebookTable = ({
   lessons: { lessons },
   course: { students },
+  grades: { grades },
 }: Props) => {
   const history = useHistory();
   const [data, setData] = useState<ColumnsType<TableItem>>();
@@ -57,7 +59,7 @@ const InstructorGradebookTable = ({
           index: index + 1,
           key: index,
           fullName: `${lastName} ${firstName}`,
-          grade: 'A',
+          grade: `${grades}`,
         }),
       ),
     );
@@ -98,6 +100,15 @@ export default createFragmentContainer(InstructorGradebookTable, {
         lastName
         gradeLevel
         id
+      }
+    }
+  `,
+  grades: graphql`
+    fragment InstructorGradebookTable_grades on Query {
+      grades{
+        courseId
+        lessonId
+        grade
       }
     }
   `,

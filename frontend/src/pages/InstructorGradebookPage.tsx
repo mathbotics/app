@@ -9,6 +9,7 @@ export const InstructorGradebookPageQuery = graphql`
   query InstructorGradebookPageQuery {
     ...InstructorGradebook_course
     ...InstructorGradebook_lessons
+    ...InstructorGradebook_grades
   }
 `;
 
@@ -23,6 +24,7 @@ export const InstructorGradebookPage = () => (
         <InstructorGradebook
           lessons={props as InstructorGradebookPageQueryResponse}
           course={props as InstructorGradebookPageQueryResponse}
+          grades={props as InstructorGradebookPageQueryResponse}
         />
       )}
   />

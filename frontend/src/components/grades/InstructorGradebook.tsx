@@ -12,14 +12,15 @@ const { Title } = Typography;
 type Props = {
   lessons: InstructorGradebook_lessons;
   course: InstructorGradebook_course;
+  grades: InstructorGradebook_grades;
 };
 
-const InstructorGradebook = ({ lessons, course }: Props): JSX.Element => (
+const InstructorGradebook = ({ lessons, course, grades }: Props): JSX.Element => (
   <Layout style={{ backgroundColor: 'white' }}>
     <Header />
 
     {/* Lessons table */}
-    <InstructorGradebookTable lessons={lessons} course={course} />
+    <InstructorGradebookTable lessons={lessons} course={course} grades={grades} />
   </Layout>
 );
 
@@ -46,6 +47,11 @@ export default createFragmentContainer(InstructorGradebook, {
   course: graphql`
     fragment InstructorGradebook_course on Query {
       ...InstructorGradebookTable_course
+    }
+  `,
+  grades: graphql`
+    fragment InstructorGradebook_grades on Query {
+      ...InstructorGradebookTable_grades
     }
   `,
 });
