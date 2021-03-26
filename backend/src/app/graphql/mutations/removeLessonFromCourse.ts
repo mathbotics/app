@@ -3,8 +3,7 @@ import prisma from '../../data/prisma';
 import { GraphQLInputObjectType, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
 import{CreateCourseLessonPayload} from '../payloads/CreateCourseLessonPayload';
 import { resolve } from 'path';
-import { Lesson } from '../../server/objects';
-import { Course } from '../../server/objects/courses';
+
 
 export const createCourseLessonInput = new GraphQLInputObjectType({
     name: "createCourseLessonInput",
@@ -14,8 +13,8 @@ export const createCourseLessonInput = new GraphQLInputObjectType({
     })
 });
 
-export const createCourseLesson = {
-    type: new GraphQLNonNull(Course),
+export const removeLessonFromCourse = {
+    type: CreateCourseLessonPayload,
     args: {
       input: {
         type: new GraphQLNonNull(createCourseLessonInput),
@@ -24,10 +23,12 @@ export const createCourseLesson = {
    async resolve(root, args){
     const { courseId, lessonId} = args.input 
     const  courseToLesson  = nullthrows(
-      await prisma.courseToLesson.create({
-        data: {
-            courseId,
-            lessonId
+      await prisma.courseToLesson.delete({
+        where: {
+            courseId_lessonId: {
+                courseId: courseId,
+                lessonId: lessonId
+            }
         }
       }),
       'Could not create course',
@@ -37,18 +38,7 @@ export const createCourseLesson = {
       await prisma.course.findUnique({
         where: {
           id: courseId
-        },
-        include: {
-          courses: {
-            include: {
-              lesson: {
-                include: {
-                  slides: true
-                }
-              }
-            }
         }
-      }
       }),
       'Could not create course',
     )
@@ -62,7 +52,7 @@ export const createCourseLesson = {
       'Could not create course',
     )
 
-    return course;
+    return {course, lesson};
    }
   
 }

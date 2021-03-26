@@ -1,7 +1,7 @@
 import { GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
 import { Student } from "../../GraphQLSchema";
-import { MultipleChoiceQuestionChoice } from "./MultipleChoiceQuestionChoice";
 import { MultipleChoiceQuestionBlock } from "./MultipleChoiceQuestionBlock";
+import { MultipleChoiceQuestionChoice } from "./MultipleChoiceQuestionChoice";
 
 export const MultipleChoiceQuestionResponse:GraphQLObjectType = new GraphQLObjectType({
     name: "MultipleChoiceQuestionResponse",
@@ -17,13 +17,13 @@ export const MultipleChoiceQuestionResponse:GraphQLObjectType = new GraphQLObjec
         choice: {
           type: new GraphQLNonNull(MultipleChoiceQuestionChoice),
           resolve(MultipleChoiceQuestionResponse) {
-            return MultipleChoiceQuestionResponse.multipleChoiceQuestionChoiceId
+            return MultipleChoiceQuestionResponse.choice
           }
         },
         student: {
           type: new GraphQLNonNull(Student),
           resolve(MultipleChoiceQuestionChoice) {
-            return MultipleChoiceQuestionChoice.studentId
+            return MultipleChoiceQuestionChoice.student
           }
         },
         MultipleChoiceQuestionBlock: {

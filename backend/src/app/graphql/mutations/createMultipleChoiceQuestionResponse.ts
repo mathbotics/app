@@ -62,21 +62,21 @@ export const createResponse = {
     /*NOTE: current version is student gets rewritten when the response just wants to write his studentId*/
 
     const  createMultipleChoiceQuestionResponse  = nullthrows(
-      await prisma.multipleChoiceQuestionResponse.create({
-        data: {
-          student: {connect: {id: studentId }},
-          MultipleChoiceQuestionBlock: {connect: {id: multipleChoiceQuestionBlockId}},
-          choice: { connect: { id: multipleChoiceQuestionChoiceId }}
-        },
-        include: { 
-          student: {include: { user : true}},
-           MultipleChoiceQuestionBlock: true, 
-           choice: true}
-      }),
-  );
+        await prisma.multipleChoiceQuestionResponse.create({
+          data: {
+            student: {connect: {id: studentId }},
+            MultipleChoiceQuestionBlock: {connect: {id: multipleChoiceQuestionBlockId}},
+            choice: { connect: { id: multipleChoiceQuestionChoiceId }}
+          },
+          include: { 
+            student: {include: { user : true}},
+             choice: true}
+        }),
+    );
     // console.log("this is the choice",multipleChoiceQuestionChoice)
     // console.log("this is the student",student)
     // console.log("this is the block ID:", blockId)
+    console.log(createMultipleChoiceQuestionResponse)
         return  createMultipleChoiceQuestionResponse;
       },
   }

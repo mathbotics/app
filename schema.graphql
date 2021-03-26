@@ -39,15 +39,7 @@ type Course {
   instructor: Instructor!
   courseTo: [CourseToStudent]
   students: [Student!]!
-  courses: [CourseToLesson!]!
-}
-
-# This represents the course to lesson relation
-type CourseToLesson {
-  courseId: String!
-  lessonId: String!
-  course: Course!
-  lesson: Lesson!
+  lessons: [Lesson!]!
 }
 
 # This represents the Course to Student relations
@@ -82,16 +74,16 @@ input createCourseLessonInput {
   lessonId: String
 }
 
-# course type definition
-type CreateCourseLessonPayload {
-  course: Course!
-  lesson: Lesson!
-}
-
 input CreateLessonInput {
   title: String
   time: String
   difficultyLevel: String
+}
+
+input createMultipleChoiceQuestionResponseInput {
+  multipleChoiceQuestionBlockId: String
+  studentId: String
+  multipleChoiceQuestionChoiceId: String
 }
 
 input createMultipleChoiceQuestionResponseInput {
@@ -263,8 +255,8 @@ type MultipleChoiceQuestionResponse {
   id: String
   choice: MultipleChoiceQuestionChoice!
   student: Student!
-  MultipleChoiceQuestionBlock: MultipleChoiceQuestionBlock!
   multipleChoiceQuestionBlockId: String!
+  MultipleChoiceQuestionBlock: MultipleChoiceQuestionBlock!
   multipleChoiceQuestionChoiceId: String!
   studentId: String!
 }
@@ -291,10 +283,11 @@ type Mutation {
   sendInvitationEmail(input: SendInvitationEmailInput!): String
   sendResetPasswordEmail(input: SendResetPasswordEmailInput!): String
   resetPassword(input: ResetPasswordInput!): ResetPasswordPayload
-  createCourseLesson(input: createCourseLessonInput!): CreateCourseLessonPayload
+  createCourseLesson(input: createCourseLessonInput!): Course!
   createResponse(
     input: createMultipleChoiceQuestionResponseInput!
   ): MultipleChoiceQuestionResponse
+  removeCourseLesson(input: removeCourseLessonInput!): Course!
 }
 
 # This represents the Page
@@ -346,6 +339,11 @@ input RegisterUserInput {
 # User type definition
 type RegisterUserPayload {
   user: User!
+}
+
+input removeCourseLessonInput {
+  courseId: String
+  lessonId: String
 }
 
 input ResetPasswordInput {

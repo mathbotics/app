@@ -1,40 +1,69 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 30c9de0bfc9d90443fafc59a7d1eccf0 */
+/* @relayHash 71c286f5a313065239784dcfc584becc */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type CourseWhereUniqueInput = {
-    id?: string | null;
+export type createCourseLessonInput = {
+    courseId?: string | null;
+    lessonId?: string | null;
 };
-export type CoursePageQueryVariables = {
-    where: CourseWhereUniqueInput;
+export type CreateCourseLessonMutationVariables = {
+    input: createCourseLessonInput;
 };
-export type CoursePageQueryResponse = {
-    readonly course: {
-        readonly " $fragmentRefs": FragmentRefs<"Course_course">;
-    } | null;
+export type CreateCourseLessonMutationResponse = {
+    readonly createCourseLesson: {
+        readonly id: string;
+        readonly " $fragmentRefs": FragmentRefs<"EditCourseLessonPlan_course">;
+    };
 };
-export type CoursePageQuery = {
-    readonly response: CoursePageQueryResponse;
-    readonly variables: CoursePageQueryVariables;
+export type CreateCourseLessonMutation = {
+    readonly response: CreateCourseLessonMutationResponse;
+    readonly variables: CreateCourseLessonMutationVariables;
 };
 
 
 
 /*
-query CoursePageQuery(
-  $where: CourseWhereUniqueInput!
+mutation CreateCourseLessonMutation(
+  $input: createCourseLessonInput!
 ) {
-  course(where: $where) {
-    ...Course_course
+  createCourseLesson(input: $input) {
+    id
+    ...EditCourseLessonPlan_course
   }
 }
 
-fragment Course_course on Course {
+fragment EditCourseLessonPlan_course on Course {
   id
-  name
-  description
+  lessons {
+    id
+    title
+    slides {
+      __typename
+      id
+      title
+    }
+  }
+  ...LessonPlanSidebar_course
+  ...LessonPlanCatalogue_course
+}
+
+fragment LessonPlanCatalogue_course on Course {
+  id
+  lessons {
+    id
+    title
+    slides {
+      __typename
+      id
+      title
+    }
+  }
+}
+
+fragment LessonPlanSidebar_course on Course {
+  id
   lessons {
     id
     title
@@ -51,16 +80,16 @@ const node: ConcreteRequest = (function(){
 var v0 = [
   {
     "kind": "LocalArgument",
-    "name": "where",
-    "type": "CourseWhereUniqueInput!",
+    "name": "input",
+    "type": "createCourseLessonInput!",
     "defaultValue": null
   }
 ],
 v1 = [
   {
     "kind": "Variable",
-    "name": "where",
-    "variableName": "where"
+    "name": "input",
+    "variableName": "input"
   }
 ],
 v2 = {
@@ -81,23 +110,24 @@ return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
-    "name": "CoursePageQuery",
-    "type": "Query",
+    "name": "CreateCourseLessonMutation",
+    "type": "Mutation",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "course",
+        "name": "createCourseLesson",
         "storageKey": null,
         "args": (v1/*: any*/),
         "concreteType": "Course",
         "plural": false,
         "selections": [
+          (v2/*: any*/),
           {
             "kind": "FragmentSpread",
-            "name": "Course_course",
+            "name": "EditCourseLessonPlan_course",
             "args": null
           }
         ]
@@ -106,33 +136,19 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "CoursePageQuery",
+    "name": "CreateCourseLessonMutation",
     "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "course",
+        "name": "createCourseLesson",
         "storageKey": null,
         "args": (v1/*: any*/),
         "concreteType": "Course",
         "plural": false,
         "selections": [
           (v2/*: any*/),
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "name",
-            "args": null,
-            "storageKey": null
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "description",
-            "args": null,
-            "storageKey": null
-          },
           {
             "kind": "LinkedField",
             "alias": null,
@@ -171,13 +187,13 @@ return {
     ]
   },
   "params": {
-    "operationKind": "query",
-    "name": "CoursePageQuery",
+    "operationKind": "mutation",
+    "name": "CreateCourseLessonMutation",
     "id": null,
-    "text": "query CoursePageQuery(\n  $where: CourseWhereUniqueInput!\n) {\n  course(where: $where) {\n    ...Course_course\n  }\n}\n\nfragment Course_course on Course {\n  id\n  name\n  description\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n      title\n    }\n  }\n}\n",
+    "text": "mutation CreateCourseLessonMutation(\n  $input: createCourseLessonInput!\n) {\n  createCourseLesson(input: $input) {\n    id\n    ...EditCourseLessonPlan_course\n  }\n}\n\nfragment EditCourseLessonPlan_course on Course {\n  id\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n      title\n    }\n  }\n  ...LessonPlanSidebar_course\n  ...LessonPlanCatalogue_course\n}\n\nfragment LessonPlanCatalogue_course on Course {\n  id\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n      title\n    }\n  }\n}\n\nfragment LessonPlanSidebar_course on Course {\n  id\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n      title\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '9e316199bacbaf9d5e0dad3585797d10';
+(node as any).hash = '048b889b469e8e19e27abaec7caa1d5f';
 export default node;

@@ -14,6 +14,7 @@ type Props = { course: Course_course};
 const Course = ({ course }: Props) => {
   const history = useHistory();
 
+  console.log("course in course.tsx", course)
   return (
     <>
       <Banner>
@@ -28,7 +29,7 @@ const Course = ({ course }: Props) => {
         </Title>
 
         <h1 style={{ fontWeight: 400, color: 'white', margin: '5px 0px' }}>
-          {course}
+          {course.lessons.length}
           {' '}
           Lessons
         </h1>
@@ -37,7 +38,7 @@ const Course = ({ course }: Props) => {
           onClick={() =>
             true &&
             history.push(
-              `/courses/${course.id}/lessons/${course}`,
+              `/courses/${course.id}/lessons/${course.lessons[0].id}`,
             )}
           size="large"
           type="primary"
@@ -55,13 +56,13 @@ const Course = ({ course }: Props) => {
       </Banner>
 
       <LessonsWrapper>
-        {course!.courses!.map((lesson:any) => (
-          <LessonCardWrapper key={lesson!.id}>
+        {course.lessons.map((obj:any) => (
+          <LessonCardWrapper key={obj.id}>
             <LessonCard
-              id={lesson!.id}
+              id={obj.id}
               courseId={course.id}
-              title={lesson!.title}
-              slideCount={lesson!.slides!.length}
+              title={obj.title}
+              slideCount={obj.slides.length}
               linkLesson
             />
           </LessonCardWrapper>
@@ -105,15 +106,14 @@ export default createFragmentContainer(Course, {
       id
       name
       description
-      courses{
-        lesson{
+      lessons{
           id
           title
           slides{
             id
             title
           }
-        }
+        
       }
     }
   `,
