@@ -25,12 +25,20 @@ const columns: ColumnsType<any> = [
     dataIndex: 'index',
   },
   {
-    title: 'Lessons Title',
+    title: 'Lesson Title',
     dataIndex: 'title',
   },
   {
     title: 'Number of slides',
     dataIndex: 'slide_count',
+  },
+  {
+    title: 'Difficulty Level',
+    dataIndex: 'level',
+  },
+  {
+    title: 'Time',
+    dataIndex: 'time',
   },
   {
     title: 'Action',
@@ -61,12 +69,12 @@ const LessonsTable = ({ onClickRemove, lessons: { lessons } }: Props) => {
   useEffect(() => {
     const lessonsList = lessons.filter(value => value != null)  
     setData(
-      lessonsList.map(({ id, title, slides }, index: number) => ({
+      lessonsList.map(({ id, title, time, difficultyLevel, slides }, index: number) => ({
         index: index + 1,
         key: index,
         title,
-        level: 9,
-        time: '15 min',
+        level: difficultyLevel,
+        time: time,
         slide_count: slides.length,
         action: (
           <EditLessonTableButtons
@@ -123,6 +131,8 @@ export default createFragmentContainer(LessonsTable, {
       lessons {
         id
         title
+        time
+        difficultyLevel
         slides {
           id
         }

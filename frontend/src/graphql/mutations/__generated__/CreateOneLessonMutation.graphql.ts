@@ -1,11 +1,13 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash a4ca208426d7645d1b468974d7db751b */
+/* @relayHash 48ba3a1e7e8b1d612b4e68c232197fea */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type CreateLessonInput = {
     title?: string | null;
+    time?: string | null;
+    difficultyLevel?: string | null;
 };
 export type CreateOneLessonMutationVariables = {
     input: CreateLessonInput;
@@ -14,6 +16,8 @@ export type CreateOneLessonMutationResponse = {
     readonly createOneLesson: {
         readonly id: string;
         readonly title: string;
+        readonly time: string;
+        readonly difficultyLevel: string;
         readonly slides: ReadonlyArray<{
             readonly id: string;
         }>;
@@ -34,6 +38,8 @@ mutation CreateOneLessonMutation(
   createOneLesson(input: $input) {
     id
     title
+    time
+    difficultyLevel
     slides {
       __typename
       id
@@ -77,6 +83,20 @@ v3 = {
   "name": "title",
   "args": null,
   "storageKey": null
+},
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "time",
+  "args": null,
+  "storageKey": null
+},
+v5 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "difficultyLevel",
+  "args": null,
+  "storageKey": null
 };
 return {
   "kind": "Request",
@@ -98,6 +118,8 @@ return {
         "selections": [
           (v2/*: any*/),
           (v3/*: any*/),
+          (v4/*: any*/),
+          (v5/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
@@ -135,6 +157,8 @@ return {
         "selections": [
           (v2/*: any*/),
           (v3/*: any*/),
+          (v4/*: any*/),
+          (v5/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
@@ -162,10 +186,10 @@ return {
     "operationKind": "mutation",
     "name": "CreateOneLessonMutation",
     "id": null,
-    "text": "mutation CreateOneLessonMutation(\n  $input: CreateLessonInput!\n) {\n  createOneLesson(input: $input) {\n    id\n    title\n    slides {\n      __typename\n      id\n    }\n    ...LessonPreview_lesson\n  }\n}\n\nfragment LessonPreview_lesson on Lesson {\n  id\n  title\n}\n",
+    "text": "mutation CreateOneLessonMutation(\n  $input: CreateLessonInput!\n) {\n  createOneLesson(input: $input) {\n    id\n    title\n    time\n    difficultyLevel\n    slides {\n      __typename\n      id\n    }\n    ...LessonPreview_lesson\n  }\n}\n\nfragment LessonPreview_lesson on Lesson {\n  id\n  title\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = 'e4991885bb6d06ba20fd0790da1ceb20';
+(node as any).hash = '398397a5531dd305172303fa5a5b219d';
 export default node;

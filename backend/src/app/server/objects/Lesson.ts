@@ -24,7 +24,20 @@ export const Lesson = new GraphQLObjectType({
             console.log(Lesson)
             return Lesson.slides
           }
+        },
+        time: {
+          type: new GraphQLNonNull(GraphQLString),
+          resolve(Lesson) {
+            return Lesson.time
+          }
+        },
+        difficultyLevel: {
+          type: new GraphQLNonNull(GraphQLString),
+          resolve(Lesson) {
+            return Lesson.difficultyLevel
+          }
         }
+        
       }
     }
   });
