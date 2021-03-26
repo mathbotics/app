@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 8098e3ac1ce6288159cd80ceeb5e3d39 */
+/* @relayHash cdae6ff85924494d892db0c3b8d06735 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -24,6 +24,8 @@ fragment LessonsTable_lessons on Query {
   lessons {
     id
     title
+    time
+    difficultyLevel
     slides {
       __typename
       id
@@ -83,6 +85,20 @@ return {
             "storageKey": null
           },
           {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "time",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "difficultyLevel",
+            "args": null,
+            "storageKey": null
+          },
+          {
             "kind": "LinkedField",
             "alias": null,
             "name": "slides",
@@ -109,7 +125,7 @@ return {
     "operationKind": "query",
     "name": "LessonsPageQuery",
     "id": null,
-    "text": "query LessonsPageQuery {\n  ...Lessons_lessons\n}\n\nfragment LessonsTable_lessons on Query {\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n    }\n  }\n}\n\nfragment Lessons_lessons on Query {\n  ...LessonsTable_lessons\n}\n",
+    "text": "query LessonsPageQuery {\n  ...Lessons_lessons\n}\n\nfragment LessonsTable_lessons on Query {\n  lessons {\n    id\n    title\n    time\n    difficultyLevel\n    slides {\n      __typename\n      id\n    }\n  }\n}\n\nfragment Lessons_lessons on Query {\n  ...LessonsTable_lessons\n}\n",
     "metadata": {}
   }
 };

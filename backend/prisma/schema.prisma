@@ -183,9 +183,11 @@ model TextBlock {
 }
 
 model Lesson {
-  id      String           @id @default(cuid())
-  title   String
-  slides  Slide[]
+  id     String  @id @default(cuid())
+  title  String
+  difficultyLevel String?
+  time String?
+  slides Slide[]
   lessons CourseToLesson[]
   //lessonTo CourseToStudent[]
   Grade   Grade[]

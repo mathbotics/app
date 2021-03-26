@@ -7,6 +7,8 @@ export type LessonsTable_lessons = {
     readonly lessons: ReadonlyArray<{
         readonly id: string;
         readonly title: string;
+        readonly time: string;
+        readonly difficultyLevel: string;
         readonly slides: ReadonlyArray<{
             readonly id: string;
         }>;
@@ -54,6 +56,20 @@ return {
           "storageKey": null
         },
         {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "time",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "difficultyLevel",
+          "args": null,
+          "storageKey": null
+        },
+        {
           "kind": "LinkedField",
           "alias": null,
           "name": "slides",
@@ -70,5 +86,5 @@ return {
   ]
 };
 })();
-(node as any).hash = 'e2641ab08f3f26008ba4579dac356562';
+(node as any).hash = '1538944818537848db21de47d90461e4';
 export default node;

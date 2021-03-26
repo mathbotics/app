@@ -90,6 +90,14 @@ type CreateCourseLessonPayload {
 
 input CreateLessonInput {
   title: String
+  time: String
+  difficultyLevel: String
+}
+
+input createMultipleChoiceQuestionResponseInput {
+  multipleChoiceQuestionBlockId: String
+  studentId: String
+  multipleChoiceQuestionChoiceId: String
 }
 
 input CreateSlideInput {
@@ -167,6 +175,14 @@ type EmptyBlock {
   id: String!
 }
 
+# This represents the grade
+type Grade {
+  courseId: String!
+  studentId: String!
+  lessonId: String!
+  grade: Float!
+}
+
 enum GradeLevel {
   FIRST
   SECOND
@@ -209,6 +225,8 @@ type Lesson {
   id: String!
   title: String!
   slides: [Slide!]!
+  time: String!
+  difficultyLevel: String!
 }
 
 input LessonWhereUniqueInput {
@@ -243,8 +261,12 @@ type MultipleChoiceQuestionChoice {
 # This represents the MultipleChoiceQuestionResponse
 type MultipleChoiceQuestionResponse {
   id: String
-  choice: String
-  student: String
+  choice: MultipleChoiceQuestionChoice!
+  student: Student!
+  MultipleChoiceQuestionBlock: MultipleChoiceQuestionBlock!
+  multipleChoiceQuestionBlockId: String!
+  multipleChoiceQuestionChoiceId: String!
+  studentId: String!
 }
 
 type Mutation {
@@ -270,6 +292,9 @@ type Mutation {
   sendResetPasswordEmail(input: SendResetPasswordEmailInput!): String
   resetPassword(input: ResetPasswordInput!): ResetPasswordPayload
   createCourseLesson(input: createCourseLessonInput!): CreateCourseLessonPayload
+  createResponse(
+    input: createMultipleChoiceQuestionResponseInput!
+  ): MultipleChoiceQuestionResponse
 }
 
 # This represents the Page
@@ -307,6 +332,7 @@ type Query {
   singleSlides(id: ID): [SingleSlide]
   mcblocks(id: ID): [MultipleChoiceQuestionBlock]
   blocks(id: ID): [Block]
+  grades(id: String): [Grade]
 }
 
 input RegisterUserInput {

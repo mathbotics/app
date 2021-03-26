@@ -9,6 +9,8 @@ const mutation = graphql`
     createOneLesson(input: $input) {
       id
       title
+      time
+      difficultyLevel
       slides {
         id
       }
