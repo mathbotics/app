@@ -3,7 +3,7 @@ import { Student } from "../../GraphQLSchema";
 import { MultipleChoiceQuestionChoice } from "./MultipleChoiceQuestionChoice";
 import { MultipleChoiceQuestionBlock } from "./MultipleChoiceQuestionBlock";
 
-export const MultipleChoiceQuestionResponse = new GraphQLObjectType({
+export const MultipleChoiceQuestionResponse:GraphQLObjectType = new GraphQLObjectType({
     name: "MultipleChoiceQuestionResponse",
     description: "This represents the MultipleChoiceQuestionResponse",
     fields: () => {
