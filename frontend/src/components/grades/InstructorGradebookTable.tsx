@@ -6,6 +6,8 @@ import { createFragmentContainer } from 'react-relay';
 import { useHistory } from 'react-router-dom';
 import { InstructorGradebookTable_lessons } from './__generated__/InstructorGradebookTable_lessons.graphql';
 import { InstructorGradebookTable_course } from './__generated__/InstructorGradebookTable_course.graphql';
+import { InstructorGradebookTable_grades } from './__generated__/InstructorGradebookTable_grades.graphql';
+
 
 type TableItem = {
   index: number;
@@ -59,7 +61,7 @@ const InstructorGradebookTable = ({
           index: index + 1,
           key: index,
           fullName: `${lastName} ${firstName}`,
-          grade: `${grades}`,
+          grades: `${grades}`,
         }),
       ),
     );

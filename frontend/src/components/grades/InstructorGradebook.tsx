@@ -6,6 +6,7 @@ import { createFragmentContainer } from 'react-relay';
 import InstructorGradebookTable from './InstructorGradebookTable';
 import { InstructorGradebook_lessons } from './__generated__/InstructorGradebook_lessons.graphql';
 import { InstructorGradebook_course } from './__generated__/InstructorGradebook_course.graphql';
+import { InstructorGradebook_grades } from './__generated__/InstructorGradebook_grades.graphql';
 
 const { Title } = Typography;
 
