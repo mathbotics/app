@@ -21,13 +21,14 @@ export const createOneLesson = {
     },
    async resolve(root:any, args:any){
     const {title, time, difficultyLevel} = args.input 
-
+    let timeAvoidEmpty:string = time ? time : "00:00";
+    let difficultyLevelAvoidEmpty:string = difficultyLevel ? difficultyLevel : "0";
     const lesson = nullthrows(
       await prisma.lesson.create({
         data: {
             title,
-            time,
-            difficultyLevel
+            time: timeAvoidEmpty,
+            difficultyLevel:difficultyLevelAvoidEmpty
         },
         include: {slides: true}
       }),
