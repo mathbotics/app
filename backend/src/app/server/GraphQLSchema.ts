@@ -767,7 +767,6 @@ const RootQuery = new GraphQLObjectType({
             }, 
             include: { 
               instructor: true,
-              //lessonPlan: true,
               courseTo: {
                 include: {
                   student: {

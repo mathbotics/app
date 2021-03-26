@@ -76,6 +76,8 @@ input createCourseLessonInput {
 
 input CreateLessonInput {
   title: String
+  time: String
+  difficultyLevel: String
 }
 
 input createMultipleChoiceQuestionResponseInput {
@@ -159,6 +161,14 @@ type EmptyBlock {
   id: String!
 }
 
+# This represents the grade
+type Grade {
+  courseId: String!
+  studentId: String!
+  lessonId: String!
+  grade: Float!
+}
+
 enum GradeLevel {
   FIRST
   SECOND
@@ -201,6 +211,8 @@ type Lesson {
   id: String!
   title: String!
   slides: [Slide!]!
+  time: String!
+  difficultyLevel: String!
 }
 
 input LessonWhereUniqueInput {
@@ -237,7 +249,6 @@ type MultipleChoiceQuestionResponse {
   id: String
   choice: MultipleChoiceQuestionChoice!
   student: Student!
-  multipleChoiceQuestionBlockId: String!
   MultipleChoiceQuestionBlock: MultipleChoiceQuestionBlock!
   multipleChoiceQuestionChoiceId: String!
   studentId: String!
@@ -307,6 +318,7 @@ type Query {
   singleSlides(id: ID): [SingleSlide]
   mcblocks(id: ID): [MultipleChoiceQuestionBlock]
   blocks(id: ID): [Block]
+  grades(id: String): [Grade]
 }
 
 input RegisterUserInput {
@@ -370,6 +382,7 @@ type Student implements User {
   gradeLevel: GradeLevel!
   guardians: Guardian!
   studentTo: [CourseToStudent]
+  grades: [Grade!]
 }
 
 # This represents the Text Block

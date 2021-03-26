@@ -8,6 +8,8 @@ import { commit as commitCreateOneLessonMutation } from '../../graphql/mutations
 
 type ModalProps = {
   title: string;
+  time?: string;
+  difficultyLevel?: string;
   visible: boolean;
   onSubmitSuccess: () => void;
   onSubmitError: (e: any) => void;
@@ -22,9 +24,9 @@ export default ({
   onCancel,
   rootDataID,
 }: ModalProps) => {
-  const onSubmit = ({ title }: Store) =>
+  const onSubmit = ({ title, time, difficultyLevel }: Store) =>
     commitCreateOneLessonMutation(
-      { input: { title } },
+      { input: { title, time, difficultyLevel } },
       onSubmitSuccess,
       onSubmitError,
       rootDataID,
