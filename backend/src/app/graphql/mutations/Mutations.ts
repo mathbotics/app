@@ -1,7 +1,7 @@
 import { GraphQLObjectType } from "graphql";
-import {createStudent } from "./createStudent";
-import {createOneCourse } from "./createCourse";
-import {deleteCourse} from "./deleteCourse"
+import { createStudent } from "./createStudent";
+import { createOneCourse } from "./createCourse";
+import { deleteCourse } from "./deleteCourse"
 import { deleteSingleStudent } from "./deleteStudent"
 import { editStudent } from "./editStudent"
 import { deleteStudents } from "./deleteStudents"

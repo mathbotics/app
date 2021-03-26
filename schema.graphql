@@ -257,8 +257,8 @@ type MultipleChoiceQuestionResponse {
   id: String
   choice: MultipleChoiceQuestionChoice!
   student: Student!
-  multipleChoiceQuestionBlockId: String!
   MultipleChoiceQuestionBlock: MultipleChoiceQuestionBlock!
+  multipleChoiceQuestionBlockId: String!
   multipleChoiceQuestionChoiceId: String!
   studentId: String!
 }
@@ -285,11 +285,10 @@ type Mutation {
   sendInvitationEmail(input: SendInvitationEmailInput!): String
   sendResetPasswordEmail(input: SendResetPasswordEmailInput!): String
   resetPassword(input: ResetPasswordInput!): ResetPasswordPayload
-  createCourseLesson(input: createCourseLessonInput!): Course!
+  createCourseLesson(input: createCourseLessonInput!): CreateCourseLessonPayload
   createResponse(
     input: createMultipleChoiceQuestionResponseInput!
   ): MultipleChoiceQuestionResponse
-  removeCourseLesson(input: removeCourseLessonInput!): Course!
 }
 
 # This represents the Page
