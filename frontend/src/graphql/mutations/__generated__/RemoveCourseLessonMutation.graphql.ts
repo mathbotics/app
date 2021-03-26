@@ -1,8 +1,9 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 2ce9a013d2887806bf20b08845a45791 */
+/* @relayHash fdd21c671ec49a13f50061a27e5ab3c3 */
 
 import { ConcreteRequest } from "relay-runtime";
+import { FragmentRefs } from "relay-runtime";
 export type removeCourseLessonInput = {
     courseId?: string | null;
     lessonId?: string | null;
@@ -13,6 +14,7 @@ export type RemoveCourseLessonMutationVariables = {
 export type RemoveCourseLessonMutationResponse = {
     readonly removeCourseLesson: {
         readonly id: string;
+        readonly " $fragmentRefs": FragmentRefs<"EditCourseLessonPlan_course">;
     };
 };
 export type RemoveCourseLessonMutation = {
@@ -28,6 +30,48 @@ mutation RemoveCourseLessonMutation(
 ) {
   removeCourseLesson(input: $input) {
     id
+    ...EditCourseLessonPlan_course
+  }
+}
+
+fragment EditCourseLessonPlan_course on Course {
+  id
+  lessons {
+    id
+    title
+    slides {
+      __typename
+      id
+      title
+    }
+  }
+  ...LessonPlanSidebar_course
+  ...LessonPlanCatalogue_course
+}
+
+fragment LessonPlanCatalogue_course on Course {
+  id
+  lessons {
+    id
+    title
+    slides {
+      __typename
+      id
+      title
+    }
+  }
+}
+
+fragment LessonPlanSidebar_course on Course {
+  id
+  lessons {
+    id
+    title
+    slides {
+      __typename
+      id
+      title
+    }
   }
 }
 */
@@ -43,30 +87,25 @@ var v0 = [
 ],
 v1 = [
   {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "removeCourseLesson",
-    "storageKey": null,
-    "args": [
-      {
-        "kind": "Variable",
-        "name": "input",
-        "variableName": "input"
-      }
-    ],
-    "concreteType": "Lesson",
-    "plural": false,
-    "selections": [
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "id",
-        "args": null,
-        "storageKey": null
-      }
-    ]
+    "kind": "Variable",
+    "name": "input",
+    "variableName": "input"
   }
-];
+],
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "title",
+  "args": null,
+  "storageKey": null
+};
 return {
   "kind": "Request",
   "fragment": {
@@ -75,22 +114,86 @@ return {
     "type": "Mutation",
     "metadata": null,
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "removeCourseLesson",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "Course",
+        "plural": false,
+        "selections": [
+          (v2/*: any*/),
+          {
+            "kind": "FragmentSpread",
+            "name": "EditCourseLessonPlan_course",
+            "args": null
+          }
+        ]
+      }
+    ]
   },
   "operation": {
     "kind": "Operation",
     "name": "RemoveCourseLessonMutation",
     "argumentDefinitions": (v0/*: any*/),
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "removeCourseLesson",
+        "storageKey": null,
+        "args": (v1/*: any*/),
+        "concreteType": "Course",
+        "plural": false,
+        "selections": [
+          (v2/*: any*/),
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "lessons",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Lesson",
+            "plural": true,
+            "selections": [
+              (v2/*: any*/),
+              (v3/*: any*/),
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "slides",
+                "storageKey": null,
+                "args": null,
+                "concreteType": null,
+                "plural": true,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "__typename",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  (v2/*: any*/),
+                  (v3/*: any*/)
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   "params": {
     "operationKind": "mutation",
     "name": "RemoveCourseLessonMutation",
     "id": null,
-    "text": "mutation RemoveCourseLessonMutation(\n  $input: removeCourseLessonInput!\n) {\n  removeCourseLesson(input: $input) {\n    id\n  }\n}\n",
+    "text": "mutation RemoveCourseLessonMutation(\n  $input: removeCourseLessonInput!\n) {\n  removeCourseLesson(input: $input) {\n    id\n    ...EditCourseLessonPlan_course\n  }\n}\n\nfragment EditCourseLessonPlan_course on Course {\n  id\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n      title\n    }\n  }\n  ...LessonPlanSidebar_course\n  ...LessonPlanCatalogue_course\n}\n\nfragment LessonPlanCatalogue_course on Course {\n  id\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n      title\n    }\n  }\n}\n\nfragment LessonPlanSidebar_course on Course {\n  id\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n      title\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '319a86fcc76bdb792cc20de8b70c1d37';
+(node as any).hash = 'c9258b9f73a4d2767e154e1ec3eeaffe';
 export default node;

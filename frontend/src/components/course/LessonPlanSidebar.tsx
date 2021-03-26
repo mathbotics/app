@@ -43,7 +43,7 @@ const LessonPlanSidebar = ({
   setCourseToBeDeletedArray,
 }: Props) => {
   const [selected, setSelected] = useState<string | undefined>(
-    course.courses[0].lesson.id,
+    course.lessons[0].id,
   );
 
   const removeLessonFromLessonPlan = (id: string) => {
@@ -60,24 +60,22 @@ const LessonPlanSidebar = ({
     );
   };
 
-  const { courses } = course;
+  const { lessons } = course;
 
   useEffect(() => {
     const lessonIds: string[] = [];
-    console.log(`LessonPlanSidebar - useEffect: current lessons `, courses);
-    courses.map((lesson:any, index) => lessonIds.push(lesson.id));
+    console.log(`LessonPlanSidebar - useEffect: current lessons `, lessons);
+    lessons.map((lesson:any, index) => lessonIds.push(lesson.id));
     console.log(`LessonPlanSidebar - useEffect: current lessonIds `, lessonIds);
     setCourseToBeDeletedArray(lessonIds);
-  }, [courses]);
+  }, [lessons]);
 
-  console.log("courses in sidebar", courses)
-  console.log("courses slides in sidebar", courses[0].lesson.slides)
   return (
     <Sider width={350} theme="light">
-      {course.courses.length > 0 && (
+      {course.lessons.length > 0 && (
         <Menu defaultSelectedKeys={[selected?.toString() ?? '']} mode="inline">
-          {courses.map((obj:any, index) => (
-            <MenuItem key={obj.lesson.id} style={{ display: 'flex' }}>
+          {lessons.map((obj:any, index) => (
+            <MenuItem key={obj.id} style={{ display: 'flex' }}>
               <h1
                 style={{
                   margin: 'auto',
@@ -93,9 +91,9 @@ const LessonPlanSidebar = ({
                 {index + 1}
               </h1>
               <LessonCard
-                id={obj.lesson.id}
-                title={obj.lesson.title}
-                slideCount={obj.lesson.slides.length}
+                id={obj.id}
+                title={obj.title}
+                slideCount={obj.slides.length}
               />
               <Tooltip title="Remove Lesson">
                 <RemoveLessonButton>
@@ -103,14 +101,14 @@ const LessonPlanSidebar = ({
                     style={{ fontSize: '18px', margin: '55px 0px 0px 3px' }}
                     onClick={() => {
                       // sends to parent the course id
-                      setCourseToBeDeleted(obj.lesson.id);
+                      setCourseToBeDeleted(obj.id);
                       console.log(
                         `LessonPlanSidebar: set the current course to be deleted `,
-                        obj.lesson.id,
+                        obj.id,
                       );
                       // setCourseToBeDeletedArray(lesson.id);
                       // console.log("Remove from lesson plan");
-                      removeLessonFromLessonPlan(obj.lesson.id);
+                      removeLessonFromLessonPlan(obj.id);
                     }}
                   />
                 </RemoveLessonButton>
@@ -127,15 +125,14 @@ export default createFragmentContainer(LessonPlanSidebar, {
   course: graphql`
   fragment LessonPlanSidebar_course on Course {
     id
-    courses{
-      lesson{
+    lessons{
         id
         title
         slides{
           id
           title
         }
-      }
+      
     }
   }
 `,

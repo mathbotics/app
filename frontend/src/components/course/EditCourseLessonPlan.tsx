@@ -9,6 +9,7 @@ import { EditCourseLessonPlan_query } from './__generated__/EditCourseLessonPlan
 import LessonPlanCatalogue from './LessonPlanCatalogue';
 import { EditCourseLessonPlan_course } from './__generated__/EditCourseLessonPlan_course.graphql';
 
+
 type Props = {
   course: EditCourseLessonPlan_course;
   query: EditCourseLessonPlan_query;
@@ -28,7 +29,7 @@ export const EditCourseLessonPlan = ({ course, query }: Props) => {
   return (
     <Wrapper>
 
-      {course.courses.length > 0 && (
+      {course.lessons.length > 0 && (
         <Sider
           width={350}
           theme="light"
@@ -87,15 +88,14 @@ export default createFragmentContainer(EditCourseLessonPlan, {
   course: graphql`
     fragment EditCourseLessonPlan_course on Course {
       id
-      courses{
-        lesson{
+      lessons{
           id
           title
           slides{
             id
             title
           }
-        }
+        
       }
       
       ...LessonPlanSidebar_course

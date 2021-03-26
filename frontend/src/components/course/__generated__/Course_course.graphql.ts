@@ -7,15 +7,13 @@ export type Course_course = {
     readonly id: string;
     readonly name: string;
     readonly description: string | null;
-    readonly courses: ReadonlyArray<{
-        readonly lesson: {
+    readonly lessons: ReadonlyArray<{
+        readonly id: string;
+        readonly title: string;
+        readonly slides: ReadonlyArray<{
             readonly id: string;
             readonly title: string;
-            readonly slides: ReadonlyArray<{
-                readonly id: string;
-                readonly title: string;
-            }>;
-        };
+        }>;
     }>;
     readonly " $refType": "Course_course";
 };
@@ -67,36 +65,25 @@ return {
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "courses",
+      "name": "lessons",
       "storageKey": null,
       "args": null,
-      "concreteType": "CourseToLesson",
+      "concreteType": "Lesson",
       "plural": true,
       "selections": [
+        (v0/*: any*/),
+        (v1/*: any*/),
         {
           "kind": "LinkedField",
           "alias": null,
-          "name": "lesson",
+          "name": "slides",
           "storageKey": null,
           "args": null,
-          "concreteType": "Lesson",
-          "plural": false,
+          "concreteType": null,
+          "plural": true,
           "selections": [
             (v0/*: any*/),
-            (v1/*: any*/),
-            {
-              "kind": "LinkedField",
-              "alias": null,
-              "name": "slides",
-              "storageKey": null,
-              "args": null,
-              "concreteType": null,
-              "plural": true,
-              "selections": [
-                (v0/*: any*/),
-                (v1/*: any*/)
-              ]
-            }
+            (v1/*: any*/)
           ]
         }
       ]
@@ -104,5 +91,5 @@ return {
   ]
 };
 })();
-(node as any).hash = 'efbd9d6e4e7c74b63e605463c7cd4028';
+(node as any).hash = '5d9ed416a1194195d8de1b44640101d6';
 export default node;
