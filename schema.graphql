@@ -86,12 +86,6 @@ input createMultipleChoiceQuestionResponseInput {
   multipleChoiceQuestionChoiceId: String
 }
 
-input createMultipleChoiceQuestionResponseInput {
-  multipleChoiceQuestionBlockId: String
-  studentId: String
-  multipleChoiceQuestionChoiceId: String
-}
-
 input CreateSlideInput {
   slideType: String
   lessonId: String
@@ -255,8 +249,8 @@ type MultipleChoiceQuestionResponse {
   id: String
   choice: MultipleChoiceQuestionChoice!
   student: Student!
-  multipleChoiceQuestionBlockId: String!
   MultipleChoiceQuestionBlock: MultipleChoiceQuestionBlock!
+  multipleChoiceQuestionBlockId: String!
   multipleChoiceQuestionChoiceId: String!
   studentId: String!
 }
