@@ -37,7 +37,18 @@ export const createCourseLesson = {
       await prisma.course.findUnique({
         where: {
           id: courseId
+        },
+        include: {
+          courses: {
+            include: {
+              lesson: {
+                include: {
+                  slides: true
+                }
+              }
+            }
         }
+      }
       }),
       'Could not create course',
     )

@@ -39,15 +39,7 @@ type Course {
   instructor: Instructor!
   courseTo: [CourseToStudent]
   students: [Student!]!
-  courses: [CourseToLesson!]!
-}
-
-# This represents the course to lesson relation
-type CourseToLesson {
-  courseId: String!
-  lessonId: String!
-  course: Course!
-  lesson: Lesson!
+  lessons: [Lesson!]!
 }
 
 # This represents the Course to Student relations
@@ -258,7 +250,6 @@ type MultipleChoiceQuestionResponse {
   choice: MultipleChoiceQuestionChoice!
   student: Student!
   MultipleChoiceQuestionBlock: MultipleChoiceQuestionBlock!
-  multipleChoiceQuestionBlockId: String!
   multipleChoiceQuestionChoiceId: String!
   studentId: String!
 }
@@ -285,10 +276,11 @@ type Mutation {
   sendInvitationEmail(input: SendInvitationEmailInput!): String
   sendResetPasswordEmail(input: SendResetPasswordEmailInput!): String
   resetPassword(input: ResetPasswordInput!): ResetPasswordPayload
-  createCourseLesson(input: createCourseLessonInput!): CreateCourseLessonPayload
+  createCourseLesson(input: createCourseLessonInput!): Course!
   createResponse(
     input: createMultipleChoiceQuestionResponseInput!
   ): MultipleChoiceQuestionResponse
+  removeCourseLesson(input: removeCourseLessonInput!): Course!
 }
 
 # This represents the Page

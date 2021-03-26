@@ -8,7 +8,7 @@ import { environment } from '../graphql/relay';
 import EditCourse from '../components/course/EditCourse';
 import { EditCoursePageQueryResponse } from './__generated__/EditCoursePageQuery.graphql';
 
-const Query = graphql`
+export const Query = graphql`
   query EditCoursePageQuery($where: CourseWhereUniqueInput!) {
     course(where: $where) {
       ...EditCourse_course

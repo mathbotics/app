@@ -5,15 +5,13 @@ import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type LessonPlanSidebar_course = {
     readonly id: string;
-    readonly courses: ReadonlyArray<{
-        readonly lesson: {
+    readonly lessons: ReadonlyArray<{
+        readonly id: string;
+        readonly title: string;
+        readonly slides: ReadonlyArray<{
             readonly id: string;
             readonly title: string;
-            readonly slides: ReadonlyArray<{
-                readonly id: string;
-                readonly title: string;
-            }>;
-        };
+        }>;
     }>;
     readonly " $refType": "LessonPlanSidebar_course";
 };
@@ -51,36 +49,25 @@ return {
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "courses",
+      "name": "lessons",
       "storageKey": null,
       "args": null,
-      "concreteType": "CourseToLesson",
+      "concreteType": "Lesson",
       "plural": true,
       "selections": [
+        (v0/*: any*/),
+        (v1/*: any*/),
         {
           "kind": "LinkedField",
           "alias": null,
-          "name": "lesson",
+          "name": "slides",
           "storageKey": null,
           "args": null,
-          "concreteType": "Lesson",
-          "plural": false,
+          "concreteType": null,
+          "plural": true,
           "selections": [
             (v0/*: any*/),
-            (v1/*: any*/),
-            {
-              "kind": "LinkedField",
-              "alias": null,
-              "name": "slides",
-              "storageKey": null,
-              "args": null,
-              "concreteType": null,
-              "plural": true,
-              "selections": [
-                (v0/*: any*/),
-                (v1/*: any*/)
-              ]
-            }
+            (v1/*: any*/)
           ]
         }
       ]
@@ -88,5 +75,5 @@ return {
   ]
 };
 })();
-(node as any).hash = '2751ccb8b474eb858f5d46af9866e40d';
+(node as any).hash = '282e70925e023af98329b7365ec7bcfe';
 export default node;

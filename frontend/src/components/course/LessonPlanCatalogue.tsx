@@ -64,14 +64,14 @@ const LessonPlanCatalogue = ({
     Graphql logic to add lessons to LessonPlan
  */
   const connectLessonToLessonPlan = (id: string) => {
-    const lessonIds = course.courses.map((lesson:any) => ({ id: lesson.id}));
+    const lessonIds = course.lessons.map((lesson:any) => ({ id: lesson.id}));
     console.log('connecting lesson to lesson plan', id);
     commitCreateCourseLessonMutation(
       {
        input:{courseId: course.id, lessonId: id}
       },
       () => console.log('GRAPHQL Success'),
-      (e) => console.log(`GRAPHQL Error ${e}`),
+      (e) => console.log(`GRAPHQL Error ${e}`)
     );
   };
 
@@ -220,15 +220,14 @@ export default createFragmentContainer(LessonPlanCatalogue, {
   course: graphql`
     fragment LessonPlanCatalogue_course on Course {
       id
-      courses{
-        lesson{
+      lessons{
           id
           title
           slides{
             id
             title
           }
-        }
+        
       }
     }
   `,

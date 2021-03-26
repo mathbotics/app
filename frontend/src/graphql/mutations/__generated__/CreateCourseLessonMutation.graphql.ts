@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 520695f52cc73ae4b05d383738c1737f */
+/* @relayHash 71c286f5a313065239784dcfc584becc */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -36,15 +36,13 @@ mutation CreateCourseLessonMutation(
 
 fragment EditCourseLessonPlan_course on Course {
   id
-  courses {
-    lesson {
+  lessons {
+    id
+    title
+    slides {
+      __typename
       id
       title
-      slides {
-        __typename
-        id
-        title
-      }
     }
   }
   ...LessonPlanSidebar_course
@@ -53,30 +51,26 @@ fragment EditCourseLessonPlan_course on Course {
 
 fragment LessonPlanCatalogue_course on Course {
   id
-  courses {
-    lesson {
+  lessons {
+    id
+    title
+    slides {
+      __typename
       id
       title
-      slides {
-        __typename
-        id
-        title
-      }
     }
   }
 }
 
 fragment LessonPlanSidebar_course on Course {
   id
-  courses {
-    lesson {
+  lessons {
+    id
+    title
+    slides {
+      __typename
       id
       title
-      slides {
-        __typename
-        id
-        title
-      }
     }
   }
 }
@@ -158,43 +152,32 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "courses",
+            "name": "lessons",
             "storageKey": null,
             "args": null,
-            "concreteType": "CourseToLesson",
+            "concreteType": "Lesson",
             "plural": true,
             "selections": [
+              (v2/*: any*/),
+              (v3/*: any*/),
               {
                 "kind": "LinkedField",
                 "alias": null,
-                "name": "lesson",
+                "name": "slides",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "Lesson",
-                "plural": false,
+                "concreteType": null,
+                "plural": true,
                 "selections": [
-                  (v2/*: any*/),
-                  (v3/*: any*/),
                   {
-                    "kind": "LinkedField",
+                    "kind": "ScalarField",
                     "alias": null,
-                    "name": "slides",
-                    "storageKey": null,
+                    "name": "__typename",
                     "args": null,
-                    "concreteType": null,
-                    "plural": true,
-                    "selections": [
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "__typename",
-                        "args": null,
-                        "storageKey": null
-                      },
-                      (v2/*: any*/),
-                      (v3/*: any*/)
-                    ]
-                  }
+                    "storageKey": null
+                  },
+                  (v2/*: any*/),
+                  (v3/*: any*/)
                 ]
               }
             ]
@@ -207,7 +190,7 @@ return {
     "operationKind": "mutation",
     "name": "CreateCourseLessonMutation",
     "id": null,
-    "text": "mutation CreateCourseLessonMutation(\n  $input: createCourseLessonInput!\n) {\n  createCourseLesson(input: $input) {\n    id\n    ...EditCourseLessonPlan_course\n  }\n}\n\nfragment EditCourseLessonPlan_course on Course {\n  id\n  courses {\n    lesson {\n      id\n      title\n      slides {\n        __typename\n        id\n        title\n      }\n    }\n  }\n  ...LessonPlanSidebar_course\n  ...LessonPlanCatalogue_course\n}\n\nfragment LessonPlanCatalogue_course on Course {\n  id\n  courses {\n    lesson {\n      id\n      title\n      slides {\n        __typename\n        id\n        title\n      }\n    }\n  }\n}\n\nfragment LessonPlanSidebar_course on Course {\n  id\n  courses {\n    lesson {\n      id\n      title\n      slides {\n        __typename\n        id\n        title\n      }\n    }\n  }\n}\n",
+    "text": "mutation CreateCourseLessonMutation(\n  $input: createCourseLessonInput!\n) {\n  createCourseLesson(input: $input) {\n    id\n    ...EditCourseLessonPlan_course\n  }\n}\n\nfragment EditCourseLessonPlan_course on Course {\n  id\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n      title\n    }\n  }\n  ...LessonPlanSidebar_course\n  ...LessonPlanCatalogue_course\n}\n\nfragment LessonPlanCatalogue_course on Course {\n  id\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n      title\n    }\n  }\n}\n\nfragment LessonPlanSidebar_course on Course {\n  id\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n      title\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

@@ -5,15 +5,13 @@ import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type EditCourseLessonPlan_course = {
     readonly id: string;
-    readonly courses: ReadonlyArray<{
-        readonly lesson: {
+    readonly lessons: ReadonlyArray<{
+        readonly id: string;
+        readonly title: string;
+        readonly slides: ReadonlyArray<{
             readonly id: string;
             readonly title: string;
-            readonly slides: ReadonlyArray<{
-                readonly id: string;
-                readonly title: string;
-            }>;
-        };
+        }>;
     }>;
     readonly " $fragmentRefs": FragmentRefs<"LessonPlanSidebar_course" | "LessonPlanCatalogue_course">;
     readonly " $refType": "EditCourseLessonPlan_course";
@@ -52,36 +50,25 @@ return {
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "courses",
+      "name": "lessons",
       "storageKey": null,
       "args": null,
-      "concreteType": "CourseToLesson",
+      "concreteType": "Lesson",
       "plural": true,
       "selections": [
+        (v0/*: any*/),
+        (v1/*: any*/),
         {
           "kind": "LinkedField",
           "alias": null,
-          "name": "lesson",
+          "name": "slides",
           "storageKey": null,
           "args": null,
-          "concreteType": "Lesson",
-          "plural": false,
+          "concreteType": null,
+          "plural": true,
           "selections": [
             (v0/*: any*/),
-            (v1/*: any*/),
-            {
-              "kind": "LinkedField",
-              "alias": null,
-              "name": "slides",
-              "storageKey": null,
-              "args": null,
-              "concreteType": null,
-              "plural": true,
-              "selections": [
-                (v0/*: any*/),
-                (v1/*: any*/)
-              ]
-            }
+            (v1/*: any*/)
           ]
         }
       ]
@@ -99,5 +86,5 @@ return {
   ]
 };
 })();
-(node as any).hash = '7c4916dc73e68c9b627c615119fd5de4';
+(node as any).hash = '5bb9d58c0941a64363a35d0b5f2334a9';
 export default node;

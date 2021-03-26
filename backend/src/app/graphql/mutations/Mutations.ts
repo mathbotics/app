@@ -1,7 +1,7 @@
 import { GraphQLObjectType } from "graphql";
-import { createStudent } from "./createStudent";
-import { createOneCourse } from "./createCourse";
-import { deleteCourse } from "./deleteCourse"
+import {createStudent } from "./createStudent";
+import {createOneCourse } from "./createCourse";
+import {deleteCourse} from "./deleteCourse"
 import { deleteSingleStudent } from "./deleteStudent"
 import { editStudent } from "./editStudent"
 import { deleteStudents } from "./deleteStudents"
@@ -19,8 +19,8 @@ import { sendInvitationEmail } from "./sendInvitationEmail"
 import { sendResetPasswordEmail } from "./sendResetPasswordEmail"
 import { resetPassword } from "./resetPassword"
 import { createCourseLesson} from "./createCourseLesson"
-import { removeCourseLesson} from "./removeCourseLesson"
-import { createResponse } from "./createMultipleChoiceQuestionResponse"
+import {createResponse} from "./createMultipleChoiceResponse"
+import { removeCourseLesson } from "./removeCourseLesson";
 
 export const Mutations = new GraphQLObjectType({
     name: "Mutation",

@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash dbc63e34c70508ab293b533b373fc11c */
+/* @relayHash 30c9de0bfc9d90443fafc59a7d1eccf0 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -35,15 +35,13 @@ fragment Course_course on Course {
   id
   name
   description
-  courses {
-    lesson {
+  lessons {
+    id
+    title
+    slides {
+      __typename
       id
       title
-      slides {
-        __typename
-        id
-        title
-      }
     }
   }
 }
@@ -138,43 +136,32 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "courses",
+            "name": "lessons",
             "storageKey": null,
             "args": null,
-            "concreteType": "CourseToLesson",
+            "concreteType": "Lesson",
             "plural": true,
             "selections": [
+              (v2/*: any*/),
+              (v3/*: any*/),
               {
                 "kind": "LinkedField",
                 "alias": null,
-                "name": "lesson",
+                "name": "slides",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "Lesson",
-                "plural": false,
+                "concreteType": null,
+                "plural": true,
                 "selections": [
-                  (v2/*: any*/),
-                  (v3/*: any*/),
                   {
-                    "kind": "LinkedField",
+                    "kind": "ScalarField",
                     "alias": null,
-                    "name": "slides",
-                    "storageKey": null,
+                    "name": "__typename",
                     "args": null,
-                    "concreteType": null,
-                    "plural": true,
-                    "selections": [
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "__typename",
-                        "args": null,
-                        "storageKey": null
-                      },
-                      (v2/*: any*/),
-                      (v3/*: any*/)
-                    ]
-                  }
+                    "storageKey": null
+                  },
+                  (v2/*: any*/),
+                  (v3/*: any*/)
                 ]
               }
             ]
@@ -187,7 +174,7 @@ return {
     "operationKind": "query",
     "name": "CoursePageQuery",
     "id": null,
-    "text": "query CoursePageQuery(\n  $where: CourseWhereUniqueInput!\n) {\n  course(where: $where) {\n    ...Course_course\n  }\n}\n\nfragment Course_course on Course {\n  id\n  name\n  description\n  courses {\n    lesson {\n      id\n      title\n      slides {\n        __typename\n        id\n        title\n      }\n    }\n  }\n}\n",
+    "text": "query CoursePageQuery(\n  $where: CourseWhereUniqueInput!\n) {\n  course(where: $where) {\n    ...Course_course\n  }\n}\n\nfragment Course_course on Course {\n  id\n  name\n  description\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n      title\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

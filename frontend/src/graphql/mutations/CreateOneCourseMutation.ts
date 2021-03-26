@@ -27,7 +27,7 @@ function commit(
     onCompleted: onSuccess,
     onError: onFailure,
     updater(store) {
-      console.log(rootDataID)
+      console.log("root data id", rootDataID)
       if (rootDataID) {
         const course = store.getRootField('createOneCourse');
         console.log(course)
