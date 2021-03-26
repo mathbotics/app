@@ -1,6 +1,7 @@
 import { GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
 import { CourseToStudent, GradeLevel, User  } from "."
 import { Guardian } from "../GraphQLSchema";
+import { Grade } from "./Grade";
 
 
 export const Student: any  = new GraphQLObjectType({
@@ -77,7 +78,14 @@ export const Student: any  = new GraphQLObjectType({
             console.log(Student)
             return Student.studentTo
           }
-        }
+        },
+        grade: {
+          type: new GraphQLNonNull(Grade),
+          resolve(Student){
+            console.log(Student)
+            return Student.grade
+          }
+        } 
       }
     }
   });
