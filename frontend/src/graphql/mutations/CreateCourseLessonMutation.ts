@@ -7,7 +7,7 @@ const mutation = graphql`
   mutation CreateCourseLessonMutation(
     $input: createCourseLessonInput!
   ) {
-    createCourseLesson(input: $createCourseLessonInput) {
+    createCourseLesson(input: $input) {
         id
         ...EditCourseLessonPlan_course
     }

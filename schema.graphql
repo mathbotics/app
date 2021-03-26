@@ -84,6 +84,14 @@ input createCourseLessonInput {
 
 input CreateLessonInput {
   title: String
+  time: String
+  difficultyLevel: String
+}
+
+input createMultipleChoiceQuestionResponseInput {
+  multipleChoiceQuestionBlockId: String
+  studentId: String
+  multipleChoiceQuestionChoiceId: String
 }
 
 input CreateSlideInput {
@@ -203,6 +211,8 @@ type Lesson {
   id: String!
   title: String!
   slides: [Slide!]!
+  time: String!
+  difficultyLevel: String!
 }
 
 input LessonWhereUniqueInput {
@@ -237,8 +247,12 @@ type MultipleChoiceQuestionChoice {
 # This represents the MultipleChoiceQuestionResponse
 type MultipleChoiceQuestionResponse {
   id: String
-  choice: String
-  student: String
+  choice: MultipleChoiceQuestionChoice!
+  student: Student!
+  multipleChoiceQuestionBlockId: String!
+  MultipleChoiceQuestionBlock: MultipleChoiceQuestionBlock!
+  multipleChoiceQuestionChoiceId: String!
+  studentId: String!
 }
 
 type Mutation {
@@ -263,8 +277,11 @@ type Mutation {
   sendInvitationEmail(input: SendInvitationEmailInput!): String
   sendResetPasswordEmail(input: SendResetPasswordEmailInput!): String
   resetPassword(input: ResetPasswordInput!): ResetPasswordPayload
-  createCourseLesson(input: createCourseLessonInput!): Lesson!
-  removeCourseLesson(input: removeCourseLessonInput!): Lesson!
+  createCourseLesson(input: createCourseLessonInput!): Course!
+  createResponse(
+    input: createMultipleChoiceQuestionResponseInput!
+  ): MultipleChoiceQuestionResponse
+  removeCourseLesson(input: removeCourseLessonInput!): Course!
 }
 
 # This represents the Page
