@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash aab8ff4c5cf4696713941e2fbc9cf2b5 */
+/* @relayHash 4d6a8a780d4a0c33c1b1be0baa8fc77b */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -28,6 +28,10 @@ fragment InstructorGradebookTable_course on Query {
     lastName
     gradeLevel
     id
+    grades {
+      lessonId
+      grade
+    }
   }
 }
 
@@ -122,7 +126,32 @@ return {
             "args": null,
             "storageKey": null
           },
-          (v0/*: any*/)
+          (v0/*: any*/),
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "grades",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Grade",
+            "plural": true,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "lessonId",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "grade",
+                "args": null,
+                "storageKey": null
+              }
+            ]
+          }
         ]
       },
       {
@@ -169,7 +198,7 @@ return {
     "operationKind": "query",
     "name": "InstructorGradebookPageQuery",
     "id": null,
-    "text": "query InstructorGradebookPageQuery {\n  ...InstructorGradebook_course\n  ...InstructorGradebook_lessons\n}\n\nfragment InstructorGradebookTable_course on Query {\n  students {\n    username\n    firstName\n    lastName\n    gradeLevel\n    id\n  }\n}\n\nfragment InstructorGradebookTable_lessons on Query {\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n    }\n  }\n}\n\nfragment InstructorGradebook_course on Query {\n  ...InstructorGradebookTable_course\n}\n\nfragment InstructorGradebook_lessons on Query {\n  ...InstructorGradebookTable_lessons\n}\n",
+    "text": "query InstructorGradebookPageQuery {\n  ...InstructorGradebook_course\n  ...InstructorGradebook_lessons\n}\n\nfragment InstructorGradebookTable_course on Query {\n  students {\n    username\n    firstName\n    lastName\n    gradeLevel\n    id\n    grades {\n      lessonId\n      grade\n    }\n  }\n}\n\nfragment InstructorGradebookTable_lessons on Query {\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n    }\n  }\n}\n\nfragment InstructorGradebook_course on Query {\n  ...InstructorGradebookTable_course\n}\n\nfragment InstructorGradebook_lessons on Query {\n  ...InstructorGradebookTable_lessons\n}\n",
     "metadata": {}
   }
 };

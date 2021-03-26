@@ -98,7 +98,7 @@ export const Student: any  = new GraphQLObjectType({
         type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(Grade))),
         resolve(Student){
           console.log(Student)
-          return Student.grades
+          return Student.Grade
         }
       }
     }

@@ -11,6 +11,10 @@ export type InstructorGradebookTable_course = {
         readonly lastName: string;
         readonly gradeLevel: GradeLevel;
         readonly id: string;
+        readonly grades: ReadonlyArray<{
+            readonly lessonId: string;
+            readonly grade: number;
+        }> | null;
     }>;
     readonly " $refType": "InstructorGradebookTable_course";
 };
@@ -72,10 +76,35 @@ const node: ReaderFragment = {
           "name": "id",
           "args": null,
           "storageKey": null
+        },
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "grades",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "Grade",
+          "plural": true,
+          "selections": [
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "lessonId",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "grade",
+              "args": null,
+              "storageKey": null
+            }
+          ]
         }
       ]
     }
   ]
 };
-(node as any).hash = '0e4ebc84c79192356f11ee72778fb9f9';
+(node as any).hash = '8e05f8d1f141de269f32aeab5ead2b3e';
 export default node;

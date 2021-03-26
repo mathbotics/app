@@ -50,16 +50,18 @@ const InstructorGradebookTable = ({
         })),
     },
   ];
+
   useEffect(() => {
     setData(
       students.map(
-        ({ firstName, lastName }, index: number) => ({
+        ({ firstName, lastName, grades}, index: number) => ({
           index: index + 1,
           key: index,
           fullName: `${lastName} ${firstName}`,
-          grade: 'A',
+          grade: grades![0].grade,
         }),
       ),
+      
     );
   }, [history, students]);
 
@@ -98,6 +100,10 @@ export default createFragmentContainer(InstructorGradebookTable, {
         lastName
         gradeLevel
         id
+        grades{
+          lessonId
+          grade
+        }
       }
     }
   `,
