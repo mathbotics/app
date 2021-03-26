@@ -59,7 +59,7 @@ import { Instructor, Student } from '../../GraphQLSchema';
             console.log("here is where the mutation goes to from frontend", root)
             const lessons = root.courses.map((obj:any) => {
               return {...obj.lesson}
-            })
+            }) 
             return lessons
           }
         }
