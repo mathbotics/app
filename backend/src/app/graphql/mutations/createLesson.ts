@@ -6,9 +6,9 @@ import { Lesson } from '../../server/objects/Lesson';
 export const CreateLessonInput = new GraphQLInputObjectType({
   name: "CreateLessonInput",
   fields: () => ({
-    title: { type: GraphQLString},
-    time: { type: GraphQLString},
-    difficultyLevel: { type: GraphQLString}
+    title: { type: GraphQLString },
+    time: { type: GraphQLString },
+    difficultyLevel: { type: GraphQLString }
   })
 });
 
