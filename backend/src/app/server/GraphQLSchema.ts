@@ -247,6 +247,13 @@ export const Student: any  = new GraphQLObjectType({
           console.log(Student)
           return Student.studentTo
         }
+      },
+      grades: {
+        type: new GraphQLList(new GraphQLNonNull(Grade)),
+        resolve(Student){
+          console.log(Student)
+          return Student.grades
+        }
       }
     }
   }
@@ -822,15 +829,15 @@ const RootQuery = new GraphQLObjectType({
             where: args,
             include: { 
               user: true,
-              
+              Grade: true,              
             }
         });
         console.log(students)
           return await prisma.student.findMany({
             where: args,
             include: { 
-              user: true,
-              
+              user:  true,
+              Grade: true,
             }
         });
         }
@@ -1179,6 +1186,7 @@ const RootQuery = new GraphQLObjectType({
       grades: {
         type: new GraphQLList(Grade),
         args: {
+          //fix this no id will break
           id: {
             type: GraphQLString
           }
@@ -1187,7 +1195,7 @@ const RootQuery = new GraphQLObjectType({
           const grades = await prisma.grade.findMany({
             where: args, 
             });
-            console.log("this is what a grade is", grades)
+
           return grades
         }
       }
