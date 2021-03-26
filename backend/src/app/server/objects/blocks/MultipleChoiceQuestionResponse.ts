@@ -1,4 +1,7 @@
-import { GraphQLObjectType, GraphQLString } from "graphql";
+import { GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
+import { Student } from "../../GraphQLSchema";
+import { MultipleChoiceQuestionBlock } from "./MultipleChoiceQuestionBlock";
+import { MultipleChoiceQuestionChoice } from "./MultipleChoiceQuestionChoice";
 
 export const MultipleChoiceQuestionResponse = new GraphQLObjectType({
     name: "MultipleChoiceQuestionResponse",
@@ -12,13 +15,37 @@ export const MultipleChoiceQuestionResponse = new GraphQLObjectType({
           }
         },
         choice: {
-          type: GraphQLString,
+          type: new GraphQLNonNull(MultipleChoiceQuestionChoice),
           resolve(MultipleChoiceQuestionResponse) {
             return MultipleChoiceQuestionResponse.multipleChoiceQuestionChoiceId
           }
         },
         student: {
-          type: GraphQLString,
+          type: new GraphQLNonNull(Student),
+          resolve(MultipleChoiceQuestionChoice) {
+            return MultipleChoiceQuestionChoice.studentId
+          }
+        },
+        multipleChoiceQuestionBlockId: {
+          type: new GraphQLNonNull(GraphQLString),
+          resolve(MultipleChoiceQuestionChoice) {
+            return MultipleChoiceQuestionChoice.multipleChoiceQuestionBlockId
+          }
+        },
+        MultipleChoiceQuestionBlock: {
+          type: new GraphQLNonNull(MultipleChoiceQuestionBlock),
+          resolve(MultipleChoiceQuestionChoice) {
+            return MultipleChoiceQuestionChoice.MultipleChoiceQuestionBlock
+          }
+        },
+        multipleChoiceQuestionChoiceId: {
+          type: new GraphQLNonNull(GraphQLString),
+          resolve(MultipleChoiceQuestionChoice) {
+            return MultipleChoiceQuestionChoice.multipleChoiceQuestionChoiceId
+          }
+        },
+        studentId: {
+          type: new GraphQLNonNull(GraphQLString),
           resolve(MultipleChoiceQuestionChoice) {
             return MultipleChoiceQuestionChoice.studentId
           }

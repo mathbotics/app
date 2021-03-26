@@ -14,6 +14,7 @@ type Props = { course: Course_course};
 const Course = ({ course }: Props) => {
   const history = useHistory();
 
+  console.log("course in course.tsx", course)
   return (
     <>
       <Banner>
@@ -28,7 +29,7 @@ const Course = ({ course }: Props) => {
         </Title>
 
         <h1 style={{ fontWeight: 400, color: 'white', margin: '5px 0px' }}>
-          {course}
+          {course.courses.length}
           {' '}
           Lessons
         </h1>
@@ -37,7 +38,7 @@ const Course = ({ course }: Props) => {
           onClick={() =>
             true &&
             history.push(
-              `/courses/${course.id}/lessons/${course}`,
+              `/courses/${course.id}/lessons/${course.courses[0].lesson.id}`,
             )}
           size="large"
           type="primary"
@@ -55,13 +56,13 @@ const Course = ({ course }: Props) => {
       </Banner>
 
       <LessonsWrapper>
-        {course!.courses!.map((lesson:any) => (
-          <LessonCardWrapper key={lesson!.id}>
+        {course.courses.map((obj:any) => (
+          <LessonCardWrapper key={obj.lesson.id}>
             <LessonCard
-              id={lesson!.id}
+              id={obj.lesson.id}
               courseId={course.id}
-              title={lesson!.title}
-              slideCount={lesson!.slides!.length}
+              title={obj.lesson.title}
+              slideCount={obj.lesson.slides.length}
               linkLesson
             />
           </LessonCardWrapper>
