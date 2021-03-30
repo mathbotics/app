@@ -17,19 +17,25 @@ export const MultipleChoiceQuestionResponse:GraphQLObjectType = new GraphQLObjec
         choice: {
           type: new GraphQLNonNull(MultipleChoiceQuestionChoice),
           resolve(MultipleChoiceQuestionResponse) {
-            return MultipleChoiceQuestionResponse.multipleChoiceQuestionChoiceId
+            return MultipleChoiceQuestionResponse.choice
           }
         },
         student: {
           type: new GraphQLNonNull(Student),
           resolve(MultipleChoiceQuestionChoice) {
-            return MultipleChoiceQuestionChoice.studentId
+            return MultipleChoiceQuestionChoice.student
           }
         },
         MultipleChoiceQuestionBlock: {
           type: new GraphQLNonNull(MultipleChoiceQuestionBlock),
           resolve(MultipleChoiceQuestionChoice) {
             return MultipleChoiceQuestionChoice.MultipleChoiceQuestionBlock
+          }
+        },
+        multipleChoiceQuestionBlockId: {
+          type: new GraphQLNonNull(GraphQLString),
+          resolve(MultipleChoiceQuestionChoice) {
+            return MultipleChoiceQuestionChoice.multipleChoiceQuestionBlockId
           }
         },
         multipleChoiceQuestionChoiceId: {

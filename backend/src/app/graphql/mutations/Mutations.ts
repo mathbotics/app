@@ -19,8 +19,8 @@ import { sendInvitationEmail } from "./sendInvitationEmail"
 import { sendResetPasswordEmail } from "./sendResetPasswordEmail"
 import { resetPassword } from "./resetPassword"
 import { createCourseLesson} from "./createCourseLesson"
-import {createResponse} from "./createMultipleChoiceResponse"
-import { removeCourseLesson } from "./removeCourseLesson";
+import { removeCourseLesson} from "./removeCourseLesson"
+import { createResponse } from "./createMultipleChoiceQuestionResponse"
 
 export const Mutations = new GraphQLObjectType({
     name: "Mutation",

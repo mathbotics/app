@@ -86,6 +86,12 @@ input createMultipleChoiceQuestionResponseInput {
   multipleChoiceQuestionChoiceId: String
 }
 
+input createMultipleChoiceQuestionResponseInput {
+  multipleChoiceQuestionBlockId: String
+  studentId: String
+  multipleChoiceQuestionChoiceId: String
+}
+
 input CreateSlideInput {
   slideType: String
   lessonId: String
@@ -249,6 +255,7 @@ type MultipleChoiceQuestionResponse {
   id: String
   choice: MultipleChoiceQuestionChoice!
   student: Student!
+  multipleChoiceQuestionBlockId: String!
   MultipleChoiceQuestionBlock: MultipleChoiceQuestionBlock!
   multipleChoiceQuestionChoiceId: String!
   studentId: String!
@@ -382,7 +389,6 @@ type Student implements User {
   gradeLevel: GradeLevel!
   guardians: Guardian!
   studentTo: [CourseToStudent]
-  grades: [Grade!]
 }
 
 # This represents the Text Block
