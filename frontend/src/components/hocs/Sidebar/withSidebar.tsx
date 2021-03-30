@@ -40,6 +40,7 @@ type Props = {
 };
 
 const menuItemsForViewer = ({ role }: withSidebar_viewer) => {
+  
   switch (role) {
     case 'Admin':
       return [
@@ -53,7 +54,7 @@ const menuItemsForViewer = ({ role }: withSidebar_viewer) => {
         { name: 'Courses', path: 'courses', icon: <BookOutlined /> },
         {
           name: 'Gradebook',
-          path: 'gradebook/instructor',
+          path: 'gradebook',
           icon: <SolutionOutlined />,
         },
       ];
@@ -72,6 +73,7 @@ const Sidebar = createFragmentContainer(
   ({ viewer, component: Component }: Props) => {
     const history = useHistory();
 
+    const instructorId = viewer?.id
     const [collapsed, setCollapsed] = React.useState<boolean>(false);
     const [items, setMenuItems] = React.useState<Array<SidebarItem>>([]);
 
@@ -88,7 +90,14 @@ const Sidebar = createFragmentContainer(
     };
 
     const onClickMenuItem = (item: SidebarItem) => {
-      history.push(`/${item.path}`);
+      if(item.path == 'gradebook'){
+        //passes instructor id. 
+        //TODO: is it ok to pass viewer id here and have it on path?
+        history.push(`/${item.path}/${viewer!.id}`)
+      }
+      else{
+        history.push(`/${item.path}`);
+      }      
     };
 
     function logOut() {
@@ -157,6 +166,7 @@ const Sidebar = createFragmentContainer(
     viewer: graphql`
       fragment withSidebar_viewer on User {
         role: __typename
+        id
       }
     `,
   },

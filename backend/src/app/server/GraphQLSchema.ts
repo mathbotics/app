@@ -794,6 +794,49 @@ const RootQuery = new GraphQLObjectType({
           return course
         }
       },
+      instructorGradeBookQuery: {
+        type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(Course))),
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        async resolve(root, args){
+          //return courses of this instructor
+          //with the students assigned to each and
+          //only their grades received for each
+          const courses = await prisma.course.findMany({
+            where: {
+              instructorId: args.id
+            }, 
+            include: { 
+              //lessonPlan: true, 
+              courseTo: {
+                include: {
+                  student: { 
+                    include: { 
+                      Grade: {
+                        include: {
+                          lesson: true
+                        }
+                      }, 
+                      user: true}
+                  },
+                }
+              },
+              courses: {
+                include: { 
+                  lesson: true
+                }
+              }
+            }
+          });
+
+          
+          console.log("Courses returned for instructor", courses)
+          return courses ?? []
+        }
+      },
       courses: {
         type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(Course))),
         args: {

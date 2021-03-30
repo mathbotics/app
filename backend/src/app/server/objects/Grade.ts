@@ -1,4 +1,5 @@
 import { GraphQLFloat, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
+import { Lesson } from "./Lesson";
 //import { Course, Student, Lesson  } from "."
 
 
@@ -24,6 +25,12 @@ export const Grade: any  = new GraphQLObjectType({
           type: new GraphQLNonNull(GraphQLString),
           resolve(Grade){
             return Grade.lessonId
+          }
+        },
+        lesson: {
+          type: new GraphQLNonNull(Lesson),
+          resolve(root){
+            return root.lesson
           }
         },
         grade: {
