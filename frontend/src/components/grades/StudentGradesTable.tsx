@@ -5,6 +5,7 @@ import { graphql } from 'babel-plugin-relay/macro';
 import { createFragmentContainer } from 'react-relay';
 import { useHistory } from 'react-router-dom';
 import { StudentGradesTable_lessons } from './__generated__/StudentGradesTable_lessons.graphql';
+import { StudentGradesTable_grades } from './__generated__/StudentGradesTable_grades.graphql';
 
 const columns: ColumnsType<any> = [
   {
@@ -37,8 +38,9 @@ function onChange(pagination, filters, sorter, extra) {
 
 type Props = {
   lessons: StudentGradesTable_lessons;
+  grades: StudentGradesTable_grades;
 };
-const StudentGradesTable = ({ lessons: { lessons } }: Props) => {
+const StudentGradesTable = ({ lessons: { lessons }, grades: {grades}}: Props) => {
   const history = useHistory();
   const [data, setData] = useState<ColumnsType<TableItem>>();
   useEffect(() => {
@@ -67,5 +69,15 @@ export default createFragmentContainer(StudentGradesTable, {
         }
       }
     }
+  `,
+  grades: graphql`
+    fragment StudentGradesTable_grades on Query {
+        grades{
+          courseId
+          lessonId
+          studentId
+          grade
+        }
+      }
   `,
 });

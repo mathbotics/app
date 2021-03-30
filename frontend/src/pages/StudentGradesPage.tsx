@@ -8,6 +8,7 @@ import StudentGrades from '../components/grades/StudentGrades';
 export const StudentGradesPageQuery = graphql`
   query StudentGradesPageQuery {
     ...StudentGrades_lessons
+    ...StudentGrades_grades
   }
 `;
 
@@ -17,6 +18,11 @@ export const StudentGradesPage = () => (
     variables={{}}
     query={StudentGradesPageQuery}
     render={({ props, error }) =>
-      !error && props && <StudentGrades lessons={props as StudentGradesPageQueryResponse} />}
+      !error && props && (
+      <StudentGrades 
+      lessons={props as StudentGradesPageQueryResponse} 
+      grades={props as StudentGradesPageQueryResponse}
+      />  
+    )}
   />
 );

@@ -5,22 +5,23 @@ import styled from 'styled-components';
 import { createFragmentContainer } from 'react-relay';
 import StudentGradesTable from './StudentGradesTable';
 import { StudentGrades_lessons } from './__generated__/StudentGrades_lessons.graphql';
+import { StudentGrades_grades } from './__generated__/StudentGrades_grades.graphql';
 
 const { Title } = Typography;
 
-type Props = { lessons: StudentGrades_lessons };
+type Props = { lessons: StudentGrades_lessons, grades: StudentGrades_grades };
 enum PageState {
   Default, // Initial/Normal state
   CreateLessonIntent,
   CreateLessonSuccess,
   CreateLessonError,
 }
-const StudentGrades = ({ lessons }: Props): JSX.Element => (
+const StudentGrades = ({ lessons, grades }: Props): JSX.Element => (
   <Layout style={{ backgroundColor: 'white' }}>
     <Header />
 
     {/* Lessons table */}
-    <StudentGradesTable lessons={lessons} />
+    <StudentGradesTable lessons={lessons} grades ={grades}/>
   </Layout>
 );
 
@@ -43,6 +44,11 @@ export default createFragmentContainer(StudentGrades, {
   lessons: graphql`
     fragment StudentGrades_lessons on Query {
       ...StudentGradesTable_lessons
+    }
+  `,
+  grades: graphql`
+    fragment StudentGrades_grades on Query {
+      ...StudentGradesTable_grades
     }
   `,
 });

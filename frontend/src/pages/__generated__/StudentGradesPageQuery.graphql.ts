@@ -1,12 +1,12 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 6ad089b681400146caf392b4f51a9a72 */
+/* @relayHash 5fc4baf09e0390ac60283df5201721cd */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type StudentGradesPageQueryVariables = {};
 export type StudentGradesPageQueryResponse = {
-    readonly " $fragmentRefs": FragmentRefs<"StudentGrades_lessons">;
+    readonly " $fragmentRefs": FragmentRefs<"StudentGrades_lessons" | "StudentGrades_grades">;
 };
 export type StudentGradesPageQuery = {
     readonly response: StudentGradesPageQueryResponse;
@@ -18,6 +18,16 @@ export type StudentGradesPageQuery = {
 /*
 query StudentGradesPageQuery {
   ...StudentGrades_lessons
+  ...StudentGrades_grades
+}
+
+fragment StudentGradesTable_grades on Query {
+  grades {
+    courseId
+    lessonId
+    studentId
+    grade
+  }
 }
 
 fragment StudentGradesTable_lessons on Query {
@@ -29,6 +39,10 @@ fragment StudentGradesTable_lessons on Query {
       id
     }
   }
+}
+
+fragment StudentGrades_grades on Query {
+  ...StudentGradesTable_grades
 }
 
 fragment StudentGrades_lessons on Query {
@@ -56,6 +70,11 @@ return {
       {
         "kind": "FragmentSpread",
         "name": "StudentGrades_lessons",
+        "args": null
+      },
+      {
+        "kind": "FragmentSpread",
+        "name": "StudentGrades_grades",
         "args": null
       }
     ]
@@ -102,6 +121,45 @@ return {
             ]
           }
         ]
+      },
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "grades",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "Grade",
+        "plural": true,
+        "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "courseId",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "lessonId",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "studentId",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "grade",
+            "args": null,
+            "storageKey": null
+          }
+        ]
       }
     ]
   },
@@ -109,10 +167,10 @@ return {
     "operationKind": "query",
     "name": "StudentGradesPageQuery",
     "id": null,
-    "text": "query StudentGradesPageQuery {\n  ...StudentGrades_lessons\n}\n\nfragment StudentGradesTable_lessons on Query {\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n    }\n  }\n}\n\nfragment StudentGrades_lessons on Query {\n  ...StudentGradesTable_lessons\n}\n",
+    "text": "query StudentGradesPageQuery {\n  ...StudentGrades_lessons\n  ...StudentGrades_grades\n}\n\nfragment StudentGradesTable_grades on Query {\n  grades {\n    courseId\n    lessonId\n    studentId\n    grade\n  }\n}\n\nfragment StudentGradesTable_lessons on Query {\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n    }\n  }\n}\n\nfragment StudentGrades_grades on Query {\n  ...StudentGradesTable_grades\n}\n\nfragment StudentGrades_lessons on Query {\n  ...StudentGradesTable_lessons\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '750f3731a313abf7a981d9d0b5300da0';
+(node as any).hash = 'ec4e2eda13b7456c8abf99b70882eab3';
 export default node;
