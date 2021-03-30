@@ -6,6 +6,7 @@ import { createFragmentContainer } from 'react-relay';
 import { useHistory } from 'react-router-dom';
 import { StudentGradesTable_lessons } from './__generated__/StudentGradesTable_lessons.graphql';
 import { StudentGradesTable_grades } from './__generated__/StudentGradesTable_grades.graphql';
+import { StudentGradesTable_course } from './__generated__/StudentGradesTable_course.graphql';
 
 const columns: ColumnsType<any> = [
   {
@@ -38,9 +39,14 @@ function onChange(pagination, filters, sorter, extra) {
 
 type Props = {
   lessons: StudentGradesTable_lessons;
+  course: StudentGradesTable_course;
   grades: StudentGradesTable_grades;
 };
-const StudentGradesTable = ({ lessons: { lessons }, grades: {grades}}: Props) => {
+const StudentGradesTable = ({ 
+  lessons: { lessons }, 
+  course: { students },
+  grades: { grades }
+}: Props) => {
   const history = useHistory();
   const [data, setData] = useState<ColumnsType<TableItem>>();
   useEffect(() => {
@@ -51,7 +57,7 @@ const StudentGradesTable = ({ lessons: { lessons }, grades: {grades}}: Props) =>
         title,
         level: 9,
         time: '15 min',
-        grade: 'A',
+        grade: grades,
       })),
     );
   }, [history, lessons]);
@@ -67,6 +73,17 @@ export default createFragmentContainer(StudentGradesTable, {
         slides {
           id
         }
+      }
+    }
+  `,
+  course: graphql`
+    fragment StudentGradesTable_course on Query {
+      students {
+        username
+        firstName
+        lastName
+        gradeLevel
+        id
       }
     }
   `,

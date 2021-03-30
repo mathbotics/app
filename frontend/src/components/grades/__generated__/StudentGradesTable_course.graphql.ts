@@ -3,8 +3,8 @@
 
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type GradeLevel = "%future added value" | "%future added value" | "%future added value" | "%future added value" | "%future added value" | "%future added value" | "EIGHTH" | "ELEVENTH" | "FIFTH" | "FIRST" | "FOURTH" | "NINTH" | "SECOND" | "SEVENTH" | "SIXTH" | "TENTH" | "THIRD" | "TWELFTH" | "%future added value";
-export type InstructorGradebookTable_course = {
+export type GradeLevel = "%future added value" | "%future added value" | "%future added value" | "%future added value" | "EIGHTH" | "ELEVENTH" | "FIFTH" | "FIRST" | "FOURTH" | "NINTH" | "SECOND" | "SEVENTH" | "SIXTH" | "TENTH" | "THIRD" | "TWELFTH" | "%future added value";
+export type StudentGradesTable_course = {
     readonly students: ReadonlyArray<{
         readonly username: string;
         readonly firstName: string;
@@ -12,19 +12,19 @@ export type InstructorGradebookTable_course = {
         readonly gradeLevel: GradeLevel;
         readonly id: string;
     }>;
-    readonly " $refType": "InstructorGradebookTable_course";
+    readonly " $refType": "StudentGradesTable_course";
 };
-export type InstructorGradebookTable_course$data = InstructorGradebookTable_course;
-export type InstructorGradebookTable_course$key = {
-    readonly " $data"?: InstructorGradebookTable_course$data;
-    readonly " $fragmentRefs": FragmentRefs<"InstructorGradebookTable_course">;
+export type StudentGradesTable_course$data = StudentGradesTable_course;
+export type StudentGradesTable_course$key = {
+    readonly " $data"?: StudentGradesTable_course$data;
+    readonly " $fragmentRefs": FragmentRefs<"StudentGradesTable_course">;
 };
 
 
 
 const node: ReaderFragment = {
   "kind": "Fragment",
-  "name": "InstructorGradebookTable_course",
+  "name": "StudentGradesTable_course",
   "type": "Query",
   "metadata": null,
   "argumentDefinitions": [],
@@ -77,5 +77,5 @@ const node: ReaderFragment = {
     }
   ]
 };
-(node as any).hash = '0e4ebc84c79192356f11ee72778fb9f9';
+(node as any).hash = 'b0b3c4d55949c5d7866c7979c4079b5c';
 export default node;
