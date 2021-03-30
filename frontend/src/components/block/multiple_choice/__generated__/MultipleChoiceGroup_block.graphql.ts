@@ -4,11 +4,13 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type MultipleChoiceGroup_block = {
+    readonly id: string;
     readonly choices: ReadonlyArray<{
         readonly id: string;
         readonly text: string;
         readonly correct: boolean;
     }>;
+    readonly __typename: "MultipleChoiceQuestionBlock";
     readonly " $refType": "MultipleChoiceGroup_block";
 };
 export type MultipleChoiceGroup_block$data = MultipleChoiceGroup_block;
@@ -19,13 +21,29 @@ export type MultipleChoiceGroup_block$key = {
 
 
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
+return {
   "kind": "Fragment",
   "name": "MultipleChoiceGroup_block",
   "type": "MultipleChoiceQuestionBlock",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
+    (v0/*: any*/),
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "__typename",
+      "args": null,
+      "storageKey": null
+    },
     {
       "kind": "LinkedField",
       "alias": null,
@@ -35,13 +53,7 @@ const node: ReaderFragment = {
       "concreteType": "MultipleChoiceQuestionChoice",
       "plural": true,
       "selections": [
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "id",
-          "args": null,
-          "storageKey": null
-        },
+        (v0/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
@@ -60,5 +72,6 @@ const node: ReaderFragment = {
     }
   ]
 };
-(node as any).hash = '8b0785b225333ea719ba7991fad2c8a9';
+})();
+(node as any).hash = '7cf0fd6482e5f5742fc66fecff54b835';
 export default node;

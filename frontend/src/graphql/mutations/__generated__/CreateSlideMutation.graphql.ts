@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 60d0e307c8194fcdeb2a7852e1a3f820 */
+/* @relayHash b09a6435499fd49d2168e0d1e5b33247 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -79,6 +79,8 @@ fragment EditTextBlockForm_block on TextBlock {
 }
 
 fragment MultipleChoiceGroup_block on MultipleChoiceQuestionBlock {
+  id
+  __typename
   choices {
     id
     text
@@ -280,7 +282,7 @@ return {
     "operationKind": "mutation",
     "name": "CreateSlideMutation",
     "id": null,
-    "text": "mutation CreateSlideMutation(\n  $input: CreateSlideInput!\n) {\n  createSlide(input: $input) {\n    __typename\n    ...Slide_slide\n  }\n}\n\nfragment Block_block on Block {\n  __typename\n  ... on MultipleChoiceQuestionBlock {\n    id\n    ...MultipleChoiceQuestionBlock_block\n  }\n  ... on TextBlock {\n    id\n    ...TextBlock_block\n  }\n  ... on EmptyBlock {\n    id\n  }\n}\n\nfragment EditBlockSidebar_block on Block {\n  __typename\n  ... on MultipleChoiceQuestionBlock {\n    id\n    ...EditMultipleChoiceQuestionBlockForm_block\n  }\n  ... on TextBlock {\n    id\n    ...EditTextBlockForm_block\n  }\n  ... on EmptyBlock {\n    id\n  }\n}\n\nfragment EditMultipleChoiceQuestionBlockForm_block on MultipleChoiceQuestionBlock {\n  text\n  choices {\n    id\n    text\n    correct\n  }\n}\n\nfragment EditTextBlockForm_block on TextBlock {\n  title\n  body\n}\n\nfragment MultipleChoiceGroup_block on MultipleChoiceQuestionBlock {\n  choices {\n    id\n    text\n    correct\n  }\n}\n\nfragment MultipleChoiceQuestionBlock_block on MultipleChoiceQuestionBlock {\n  __typename\n  text\n  ...MultipleChoiceGroup_block\n}\n\nfragment SingleSlide_singleSlide on SingleSlide {\n  id\n  block {\n    __typename\n    ...EditBlockSidebar_block\n    ...Block_block\n  }\n}\n\nfragment Slide_slide on Slide {\n  __typename\n  title\n  ... on SingleSlide {\n    ...SingleSlide_singleSlide\n  }\n}\n\nfragment TextBlock_block on TextBlock {\n  id\n  title\n  body\n}\n",
+    "text": "mutation CreateSlideMutation(\n  $input: CreateSlideInput!\n) {\n  createSlide(input: $input) {\n    __typename\n    ...Slide_slide\n  }\n}\n\nfragment Block_block on Block {\n  __typename\n  ... on MultipleChoiceQuestionBlock {\n    id\n    ...MultipleChoiceQuestionBlock_block\n  }\n  ... on TextBlock {\n    id\n    ...TextBlock_block\n  }\n  ... on EmptyBlock {\n    id\n  }\n}\n\nfragment EditBlockSidebar_block on Block {\n  __typename\n  ... on MultipleChoiceQuestionBlock {\n    id\n    ...EditMultipleChoiceQuestionBlockForm_block\n  }\n  ... on TextBlock {\n    id\n    ...EditTextBlockForm_block\n  }\n  ... on EmptyBlock {\n    id\n  }\n}\n\nfragment EditMultipleChoiceQuestionBlockForm_block on MultipleChoiceQuestionBlock {\n  text\n  choices {\n    id\n    text\n    correct\n  }\n}\n\nfragment EditTextBlockForm_block on TextBlock {\n  title\n  body\n}\n\nfragment MultipleChoiceGroup_block on MultipleChoiceQuestionBlock {\n  id\n  __typename\n  choices {\n    id\n    text\n    correct\n  }\n}\n\nfragment MultipleChoiceQuestionBlock_block on MultipleChoiceQuestionBlock {\n  __typename\n  text\n  ...MultipleChoiceGroup_block\n}\n\nfragment SingleSlide_singleSlide on SingleSlide {\n  id\n  block {\n    __typename\n    ...EditBlockSidebar_block\n    ...Block_block\n  }\n}\n\nfragment Slide_slide on Slide {\n  __typename\n  title\n  ... on SingleSlide {\n    ...SingleSlide_singleSlide\n  }\n}\n\nfragment TextBlock_block on TextBlock {\n  id\n  title\n  body\n}\n",
     "metadata": {}
   }
 };

@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash c81759507e98631e113f56336ac3434c */
+/* @relayHash 82be66d6a4caaa175bd7e4703bf3a1cc */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -40,6 +40,8 @@ mutation UpdateBlockToMultipleChoiceBlockMutation(
 }
 
 fragment MultipleChoiceGroup_block on MultipleChoiceQuestionBlock {
+  id
+  __typename
   choices {
     id
     text
@@ -163,7 +165,7 @@ return {
     "operationKind": "mutation",
     "name": "UpdateBlockToMultipleChoiceBlockMutation",
     "id": null,
-    "text": "mutation UpdateBlockToMultipleChoiceBlockMutation(\n  $input: UpdateBlockToMultipleChoiceBlockInput!\n) {\n  updateBlockToMultipleChoiceBlock(input: $input) {\n    id\n    ...MultipleChoiceQuestionBlock_block\n  }\n}\n\nfragment MultipleChoiceGroup_block on MultipleChoiceQuestionBlock {\n  choices {\n    id\n    text\n    correct\n  }\n}\n\nfragment MultipleChoiceQuestionBlock_block on MultipleChoiceQuestionBlock {\n  __typename\n  text\n  ...MultipleChoiceGroup_block\n}\n",
+    "text": "mutation UpdateBlockToMultipleChoiceBlockMutation(\n  $input: UpdateBlockToMultipleChoiceBlockInput!\n) {\n  updateBlockToMultipleChoiceBlock(input: $input) {\n    id\n    ...MultipleChoiceQuestionBlock_block\n  }\n}\n\nfragment MultipleChoiceGroup_block on MultipleChoiceQuestionBlock {\n  id\n  __typename\n  choices {\n    id\n    text\n    correct\n  }\n}\n\nfragment MultipleChoiceQuestionBlock_block on MultipleChoiceQuestionBlock {\n  __typename\n  text\n  ...MultipleChoiceGroup_block\n}\n",
     "metadata": {}
   }
 };
