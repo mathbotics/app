@@ -57,10 +57,11 @@ const StudentGradesTable = ({
         title,
         level: 9,
         time: '15 min',
-        grade: grades,
+        grade: 'A',
       })),
     );
   }, [history, lessons]);
+  //console.log("Grades? : ", grades![1].grade)
   return <Table columns={columns} dataSource={data} onChange={onChange} />;
 };
 

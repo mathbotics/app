@@ -5,8 +5,10 @@ import { graphql } from 'babel-plugin-relay/macro';
 import { createFragmentContainer } from 'react-relay';
 import { useHistory } from 'react-router-dom';
 import { InstructorGradebookTable_lessons } from './__generated__/InstructorGradebookTable_lessons.graphql';
-import { InstructorGradebookTable_course } from './__generated__/InstructorGradebookTable_course.graphql';
+import { InstructorGradebook_courses } from './__generated__/InstructorGradebook_courses.graphql';
 import { InstructorGradebookTable_grades } from './__generated__/InstructorGradebookTable_grades.graphql';
+import { InstructorGradebookTable_students } from './__generated__/InstructorGradebookTable_students.graphql';
+import { InstructorGradebookPageQueryResponse } from '../../pages/__generated__/InstructorGradebookPageQuery.graphql';
 
 
 type TableItem = {
@@ -25,18 +27,15 @@ function onChange(pagination, filters, sorter, extra) {
 }
 
 type Props = {
-  lessons: InstructorGradebookTable_lessons;
-  course: InstructorGradebookTable_course;
-  grades: InstructorGradebookTable_grades;
+  instructorGradeBookQuery: InstructorGradebookPageQueryResponse;
 };
 const InstructorGradebookTable = ({
-  lessons: { lessons },
-  course: { students },
-  grades: { grades },
+  instructorGradeBookQuery: { instructorGradeBookQuery },
 }: Props) => {
   const history = useHistory();
   const [data, setData] = useState<ColumnsType<TableItem>>();
-
+  const students = instructorGradeBookQuery[0].students
+  const lessons = instructorGradeBookQuery[0].lessons
   const columns: ColumnsType<any> = [
     {
       title: 'Student Name',
@@ -44,7 +43,7 @@ const InstructorGradebookTable = ({
       width: 150,
       key: 'fullName',
       fixed: 'left',
-    },
+    }, 
     {
       children: lessons.map((lesson) => ({
           title: lesson.title,
@@ -54,16 +53,18 @@ const InstructorGradebookTable = ({
         })),
     },
   ];
+
   useEffect(() => {
     setData(
-      students.map(
-        ({ firstName, lastName }, index: number) => ({
+      students!.map(
+        ({ firstName, lastName, grades}, index: number) => ({
           index: index + 1,
           key: index,
           fullName: `${lastName} ${firstName}`,
-          grades: `${grades}`,
+          grade: grades![0].grade,
         }),
       ),
+      
     );
   }, [history, students]);
 
@@ -84,7 +85,7 @@ const InstructorGradebookTable = ({
 
 export default createFragmentContainer(InstructorGradebookTable, {
   lessons: graphql`
-    fragment InstructorGradebookTable_lessons on Query {
+    fragment InstructorGradebookTable_lessons on Course {
       lessons {
         id
         title
@@ -94,14 +95,18 @@ export default createFragmentContainer(InstructorGradebookTable, {
       }
     }
   `,
-  course: graphql`
-    fragment InstructorGradebookTable_course on Query {
+  students: graphql`
+    fragment InstructorGradebookTable_students on Course {
       students {
         username
         firstName
         lastName
         gradeLevel
         id
+        grades{
+          lessonId
+          grade
+        }
       }
     }
   `,

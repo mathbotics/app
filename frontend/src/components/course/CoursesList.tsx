@@ -27,8 +27,8 @@ const CardWrapper = styled.div`
 `;
 
 
-type Props = { courses: CoursesList_courses, retry };
-const CoursesList = ({ courses, retry }: Props) => {
+type Props = { courses: CoursesList_courses };
+const CoursesList = ({ courses}: Props) => {
   // const history = useHistory();
 
 

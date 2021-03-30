@@ -4,24 +4,21 @@ import { graphql } from 'babel-plugin-relay/macro';
 import styled from 'styled-components';
 import { createFragmentContainer } from 'react-relay';
 import InstructorGradebookTable from './InstructorGradebookTable';
-import { InstructorGradebook_lessons } from './__generated__/InstructorGradebook_lessons.graphql';
-import { InstructorGradebook_course } from './__generated__/InstructorGradebook_course.graphql';
-import { InstructorGradebook_grades } from './__generated__/InstructorGradebook_grades.graphql';
+import { InstructorGradebook_courses } from './__generated__/InstructorGradebook_courses.graphql';
+import { InstructorGradebookPageQueryResponse } from '../../pages/__generated__/InstructorGradebookPageQuery.graphql';
 
 const { Title } = Typography;
 
 type Props = {
-  lessons: InstructorGradebook_lessons;
-  course: InstructorGradebook_course;
-  grades: InstructorGradebook_grades;
+  instructorGradeBookQuery: InstructorGradebookPageQueryResponse;
 };
 
-const InstructorGradebook = ({ lessons, course, grades }: Props): JSX.Element => (
+const InstructorGradebook = ({ instructorGradeBookQuery }: Props): JSX.Element => (
   <Layout style={{ backgroundColor: 'white' }}>
     <Header />
 
     {/* Lessons table */}
-    <InstructorGradebookTable lessons={lessons} course={course} grades={grades} />
+    <InstructorGradebookTable instructorGradeBookQuery={instructorGradeBookQuery}  />
   </Layout>
 );
 
@@ -40,16 +37,35 @@ const Header = (): JSX.Element => (
 );
 
 export default createFragmentContainer(InstructorGradebook, {
-  lessons: graphql`
-    fragment InstructorGradebook_lessons on Query {
-      ...InstructorGradebookTable_lessons
+  // lessons: graphql`
+  //   fragment InstructorGradebook_lessons on Query {
+  //     ...InstructorGradebookTable_lessons
+  //   }
+  // `,
+  // course: graphql`
+  //   fragment InstructorGradebook_course on Query {
+  //     ...InstructorGradebookTable_course
+  //   }
+  // `,
+  courses: graphql`
+  fragment InstructorGradebook_courses on Course {
+    id
+    name
+    lessons {
+      id
+      title
     }
-  `,
-  course: graphql`
-    fragment InstructorGradebook_course on Query {
-      ...InstructorGradebookTable_course
+    students {
+      firstName
+      lastName
+      grades{
+        lessonId
+        courseId
+        grade
+      }
     }
-  `,
+  }
+`,
   grades: graphql`
     fragment InstructorGradebook_grades on Query {
       ...InstructorGradebookTable_grades

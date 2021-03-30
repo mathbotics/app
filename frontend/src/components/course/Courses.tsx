@@ -22,8 +22,8 @@ enum PageState {
   CreateCourseSuccess,
   CreateCourseError,
 }
-type Props = { query: Courses_query, retry };
-const Courses = ({ query, retry }: Props) => {
+type Props = { query: Courses_query};
+const Courses = ({ query }: Props) => {
   /*
   TODO
   history will probably be used in the future
@@ -66,7 +66,7 @@ const Courses = ({ query, retry }: Props) => {
       />
 
       {/* Display list of courses */}
-      <CoursesList retry={retry} courses={query} />
+      <CoursesList courses={query} />
     </Layout>
   );
 };

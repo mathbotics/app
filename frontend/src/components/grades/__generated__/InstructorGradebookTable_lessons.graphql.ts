@@ -32,7 +32,7 @@ var v0 = {
 return {
   "kind": "Fragment",
   "name": "InstructorGradebookTable_lessons",
-  "type": "Query",
+  "type": "Course",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -70,5 +70,5 @@ return {
   ]
 };
 })();
-(node as any).hash = '340ce65dba6a228520470215523a530d';
+(node as any).hash = '7daf575b24398c509c5160adcda1dd50';
 export default node;
