@@ -4,16 +4,12 @@ import { graphql } from 'babel-plugin-relay/macro';
 import styled from 'styled-components';
 import { createFragmentContainer } from 'react-relay';
 import StudentGradesTable from './StudentGradesTable';
-import { StudentGrades_lessons } from './__generated__/StudentGrades_lessons.graphql';
-import { StudentGrades_grades } from './__generated__/StudentGrades_grades.graphql';
-import { StudentGrades_course } from './__generated__/StudentGrades_course.graphql';
+import { StudentGradesPageQueryResponse } from '../../pages/__generated__/StudentGradesPageQuery.graphql';
 
 const { Title } = Typography;
 
 type Props = { 
-  lessons: StudentGrades_lessons, 
-  course: StudentGrades_course;
-  grades: StudentGrades_grades 
+  studentGradesQuery: StudentGradesPageQueryResponse;
 };
 enum PageState {
   Default, // Initial/Normal state
@@ -21,12 +17,12 @@ enum PageState {
   CreateLessonSuccess,
   CreateLessonError,
 }
-const StudentGrades = ({ lessons, course, grades }: Props): JSX.Element => (
+const StudentGrades = ({ studentGradesQuery }: Props): JSX.Element => (
   <Layout style={{ backgroundColor: 'white' }}>
     <Header />
 
     {/* Lessons table */}
-    <StudentGradesTable lessons={lessons} course={course} grades ={grades}/>
+    <StudentGradesTable studentGradesQuery = {studentGradesQuery}/>
   </Layout>
 );
 
@@ -51,9 +47,9 @@ export default createFragmentContainer(StudentGrades, {
       ...StudentGradesTable_lessons
     }
   `,
-  course: graphql`
-    fragment StudentGrades_course on Query {
-      ...StudentGradesTable_course
+  students: graphql`
+    fragment StudentGrades_students on Query {
+      ...StudentGradesTable_students
     }
   `,
   grades: graphql`

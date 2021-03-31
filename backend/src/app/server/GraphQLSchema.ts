@@ -909,6 +909,36 @@ const RootQuery = new GraphQLObjectType({
       //     return await prisma.lessonPlan.findMany({where: args, include: {lessons: true}});
       //   }
       // },
+      studentGradesQuery: {
+        type: new GraphQLList(CourseToStudent),
+        args: {
+          id: {
+            type: GraphQLID
+          }
+        },
+        async resolve(root, args){
+          const courses = await prisma.courseToStudent.findMany({
+            where: {
+              studentId: args.id
+            }, 
+            include: {
+              course: {
+                include: { 
+                  courses:{
+                    include:{
+                      lesson: true
+                    }
+                  }
+                }
+              },
+              student: {
+                include: { user:true, Grade:true}
+              }
+            }
+          });
+          return courses ?? []
+        }
+      },
       courseToStudent: {
         type: new GraphQLList(CourseToStudent),
         args: {

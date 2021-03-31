@@ -4,9 +4,8 @@ import { ColumnsType } from 'antd/lib/table';
 import { graphql } from 'babel-plugin-relay/macro';
 import { createFragmentContainer } from 'react-relay';
 import { useHistory } from 'react-router-dom';
-import { StudentGradesTable_lessons } from './__generated__/StudentGradesTable_lessons.graphql';
-import { StudentGradesTable_grades } from './__generated__/StudentGradesTable_grades.graphql';
-import { StudentGradesTable_course } from './__generated__/StudentGradesTable_course.graphql';
+import { StudentGradesPageQueryResponse } from '../../pages/__generated__/StudentGradesPageQuery.graphql';
+import { StudentGradesPageQuery } from '../../pages/StudentGradesPage';
 
 const columns: ColumnsType<any> = [
   {
@@ -38,20 +37,18 @@ function onChange(pagination, filters, sorter, extra) {
 }
 
 type Props = {
-  lessons: StudentGradesTable_lessons;
-  course: StudentGradesTable_course;
-  grades: StudentGradesTable_grades;
+  studentGradesQuery: StudentGradesPageQueryResponse;
 };
 const StudentGradesTable = ({ 
-  lessons: { lessons }, 
-  course: { students },
-  grades: { grades }
+  studentGradesQuery: { studentGradesQuery },
 }: Props) => {
   const history = useHistory();
   const [data, setData] = useState<ColumnsType<TableItem>>();
+  console.log(studentGradesQuery)
+  const lessons = studentGradesQuery![0]!.course!.lessons
   useEffect(() => {
     setData(
-      lessons.map(({ id, title, slides }, index: number) => ({
+      lessons.map(({ id, title}, index: number) => ({
         index: index + 1,
         key: index,
         title,
@@ -61,7 +58,7 @@ const StudentGradesTable = ({
       })),
     );
   }, [history, lessons]);
-  //console.log("Grades? : ", grades![1].grade)
+
   return <Table columns={columns} dataSource={data} onChange={onChange} />;
 };
 
@@ -77,14 +74,18 @@ export default createFragmentContainer(StudentGradesTable, {
       }
     }
   `,
-  course: graphql`
-    fragment StudentGradesTable_course on Query {
+  students: graphql`
+    fragment StudentGradesTable_students on Query {
       students {
         username
         firstName
         lastName
         gradeLevel
         id
+        grades{
+          lessonId
+          grade
+        }
       }
     }
   `,

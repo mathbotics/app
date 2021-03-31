@@ -1,12 +1,28 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 5b520c78678f8480274614028587a625 */
+/* @relayHash d2d3e6dcaa11f8dfbb7ee9a17309018d */
 
 import { ConcreteRequest } from "relay-runtime";
-import { FragmentRefs } from "relay-runtime";
-export type StudentGradesPageQueryVariables = {};
+export type StudentGradesPageQueryVariables = {
+    id: string;
+};
 export type StudentGradesPageQueryResponse = {
-    readonly " $fragmentRefs": FragmentRefs<"StudentGrades_lessons" | "StudentGrades_course" | "StudentGrades_grades">;
+    readonly studentGradesQuery: ReadonlyArray<{
+        readonly course: {
+            readonly name: string;
+            readonly lessons: ReadonlyArray<{
+                readonly id: string;
+                readonly title: string;
+            }>;
+        } | null;
+        readonly student: {
+            readonly id: string;
+            readonly grades: ReadonlyArray<{
+                readonly courseId: string;
+                readonly grade: number;
+            }>;
+        } | null;
+    } | null> | null;
 };
 export type StudentGradesPageQuery = {
     readonly response: StudentGradesPageQueryResponse;
@@ -16,128 +32,93 @@ export type StudentGradesPageQuery = {
 
 
 /*
-query StudentGradesPageQuery {
-  ...StudentGrades_lessons
-  ...StudentGrades_course
-  ...StudentGrades_grades
-}
-
-fragment StudentGradesTable_course on Query {
-  students {
-    username
-    firstName
-    lastName
-    gradeLevel
-    id
-  }
-}
-
-fragment StudentGradesTable_grades on Query {
-  grades {
-    courseId
-    lessonId
-    studentId
-    grade
-  }
-}
-
-fragment StudentGradesTable_lessons on Query {
-  lessons {
-    id
-    title
-    slides {
-      __typename
+query StudentGradesPageQuery(
+  $id: ID!
+) {
+  studentGradesQuery(id: $id) {
+    course {
+      name
+      lessons {
+        id
+        title
+      }
+    }
+    student {
       id
+      grades {
+        courseId
+        grade
+      }
     }
   }
-}
-
-fragment StudentGrades_course on Query {
-  ...StudentGradesTable_course
-}
-
-fragment StudentGrades_grades on Query {
-  ...StudentGradesTable_grades
-}
-
-fragment StudentGrades_lessons on Query {
-  ...StudentGradesTable_lessons
 }
 */
 
 const node: ConcreteRequest = (function(){
-var v0 = {
+var v0 = [
+  {
+    "kind": "LocalArgument",
+    "name": "id",
+    "type": "ID!",
+    "defaultValue": null
+  }
+],
+v1 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
-};
-return {
-  "kind": "Request",
-  "fragment": {
-    "kind": "Fragment",
-    "name": "StudentGradesPageQuery",
-    "type": "Query",
-    "metadata": null,
-    "argumentDefinitions": [],
-    "selections": [
+},
+v2 = [
+  {
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "studentGradesQuery",
+    "storageKey": null,
+    "args": [
       {
-        "kind": "FragmentSpread",
-        "name": "StudentGrades_lessons",
-        "args": null
-      },
-      {
-        "kind": "FragmentSpread",
-        "name": "StudentGrades_course",
-        "args": null
-      },
-      {
-        "kind": "FragmentSpread",
-        "name": "StudentGrades_grades",
-        "args": null
+        "kind": "Variable",
+        "name": "id",
+        "variableName": "id"
       }
-    ]
-  },
-  "operation": {
-    "kind": "Operation",
-    "name": "StudentGradesPageQuery",
-    "argumentDefinitions": [],
+    ],
+    "concreteType": "CourseToStudent",
+    "plural": true,
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "lessons",
+        "name": "course",
         "storageKey": null,
         "args": null,
-        "concreteType": "Lesson",
-        "plural": true,
+        "concreteType": "Course",
+        "plural": false,
         "selections": [
-          (v0/*: any*/),
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "title",
+            "name": "name",
             "args": null,
             "storageKey": null
           },
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "slides",
+            "name": "lessons",
             "storageKey": null,
             "args": null,
-            "concreteType": null,
+            "concreteType": "Lesson",
             "plural": true,
             "selections": [
+              (v1/*: any*/),
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "__typename",
+                "name": "title",
                 "args": null,
                 "storageKey": null
-              },
-              (v0/*: any*/)
+              }
             ]
           }
         ]
@@ -145,92 +126,67 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "students",
+        "name": "student",
         "storageKey": null,
         "args": null,
         "concreteType": "Student",
-        "plural": true,
+        "plural": false,
         "selections": [
+          (v1/*: any*/),
           {
-            "kind": "ScalarField",
+            "kind": "LinkedField",
             "alias": null,
-            "name": "username",
+            "name": "grades",
+            "storageKey": null,
             "args": null,
-            "storageKey": null
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "firstName",
-            "args": null,
-            "storageKey": null
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "lastName",
-            "args": null,
-            "storageKey": null
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "gradeLevel",
-            "args": null,
-            "storageKey": null
-          },
-          (v0/*: any*/)
-        ]
-      },
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "grades",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "Grade",
-        "plural": true,
-        "selections": [
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "courseId",
-            "args": null,
-            "storageKey": null
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "lessonId",
-            "args": null,
-            "storageKey": null
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "studentId",
-            "args": null,
-            "storageKey": null
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "grade",
-            "args": null,
-            "storageKey": null
+            "concreteType": "Grade",
+            "plural": true,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "courseId",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "grade",
+                "args": null,
+                "storageKey": null
+              }
+            ]
           }
         ]
       }
     ]
+  }
+];
+return {
+  "kind": "Request",
+  "fragment": {
+    "kind": "Fragment",
+    "name": "StudentGradesPageQuery",
+    "type": "Query",
+    "metadata": null,
+    "argumentDefinitions": (v0/*: any*/),
+    "selections": (v2/*: any*/)
+  },
+  "operation": {
+    "kind": "Operation",
+    "name": "StudentGradesPageQuery",
+    "argumentDefinitions": (v0/*: any*/),
+    "selections": (v2/*: any*/)
   },
   "params": {
     "operationKind": "query",
     "name": "StudentGradesPageQuery",
     "id": null,
-    "text": "query StudentGradesPageQuery {\n  ...StudentGrades_lessons\n  ...StudentGrades_course\n  ...StudentGrades_grades\n}\n\nfragment StudentGradesTable_course on Query {\n  students {\n    username\n    firstName\n    lastName\n    gradeLevel\n    id\n  }\n}\n\nfragment StudentGradesTable_grades on Query {\n  grades {\n    courseId\n    lessonId\n    studentId\n    grade\n  }\n}\n\nfragment StudentGradesTable_lessons on Query {\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n    }\n  }\n}\n\nfragment StudentGrades_course on Query {\n  ...StudentGradesTable_course\n}\n\nfragment StudentGrades_grades on Query {\n  ...StudentGradesTable_grades\n}\n\nfragment StudentGrades_lessons on Query {\n  ...StudentGradesTable_lessons\n}\n",
+    "text": "query StudentGradesPageQuery(\n  $id: ID!\n) {\n  studentGradesQuery(id: $id) {\n    course {\n      name\n      lessons {\n        id\n        title\n      }\n    }\n    student {\n      id\n      grades {\n        courseId\n        grade\n      }\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = 'a9b29960a92c2671843df6d5f87edb83';
+(node as any).hash = '77291424b80e635757297249e67ff76c';
 export default node;
