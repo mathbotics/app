@@ -1,10 +1,10 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 54c2accde45bd3f3c80564d17cde9097 */
+/* @relayHash 3e3bf5c33a4c1aa77196f42d8d262911 */
 
 import { ConcreteRequest } from "relay-runtime";
 export type createMultipleChoiceQuestionResponseInput = {
-    multipleChoiceQuestionBlockId?: string | null;
+    blockId?: string | null;
     studentId?: string | null;
     multipleChoiceQuestionChoiceId?: string | null;
 };

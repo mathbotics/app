@@ -12,7 +12,7 @@ export const createMultipleChoiceQuestionResponseInput = new GraphQLInputObjectT
     name: "createMultipleChoiceQuestionResponseInput",
     fields: () => ({
         //blockId: { type: GraphQLString},
-        multipleChoiceQuestionBlockId: { type: GraphQLString}, //multipleChoiceQuestionBlockId
+        blockId: { type: GraphQLString},
         studentId: { type: GraphQLString}, //studentId
         multipleChoiceQuestionChoiceId: { type: GraphQLString} //multipleChoiceQuestionChoiceId
     })
@@ -27,7 +27,7 @@ export const createResponse = {
       }
     },
    async resolve(root, args){
-     const { multipleChoiceQuestionBlockId, multipleChoiceQuestionChoiceId, studentId } = args.input 
+     const { blockId, multipleChoiceQuestionChoiceId, studentId } = args.input 
 
     /*
     const multipleChoiceQuestionBlockIdResult = nullthrows(
@@ -60,7 +60,18 @@ export const createResponse = {
 
     */
     /*NOTE: current version is student gets rewritten when the response just wants to write his studentId*/
-
+    const block = nullthrows(
+      await prisma.block.findUnique({
+        where: {
+            id: blockId
+        },
+        include: {
+          multipleChoiceQuestionBlock: true
+        }
+      }),
+      'Could not create multipleChoiceQuestionBlockId'
+  )
+    const multipleChoiceQuestionBlockId = block.multipleChoiceQuestionBlock?.id;
     const  createMultipleChoiceQuestionResponse  = nullthrows(
         await prisma.multipleChoiceQuestionResponse.create({
           data: {

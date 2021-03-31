@@ -12,6 +12,7 @@ import RadioGroup from 'antd/lib/radio/group';
 import { Store } from 'rc-field-form/lib/interface';
 import { commit as commitCreateMultipleChoiceQuestionResponseMutation } from '../../../graphql/mutations/CreateMultipleChoiceQuestionResponseMutation';
 import { environment } from "../../../graphql/relay";
+import MultipleChoiceQuestionBlock from './MultipleChoiceQuestionBlock';
 
 
 type MultipleChoiceChoiceProps = {
@@ -89,6 +90,11 @@ const mainQuery = graphql`
         __typename
         id
       }
+    blocks {
+      ...on MultipleChoiceQuestionBlock {
+        id
+      }
+    }
   }
 `;
 
@@ -106,10 +112,10 @@ const MultipleChoiceQuestionBlockQuery = graphql`
 function fetchedBlockIdQuery() {
 fetchQuery(environment, mainQuery, {}).then((data: any) => {
 //get the currently logged in instructor that's creating the course
-const multipleChoiceQuestionBlockId = data.multipleChoiceQuestionBlock[0].id;
+const multipleChoiceQuestionBlockId = data;
 const viewerId = data.viewer.id;
 setBlockId(multipleChoiceQuestionBlockId);
-console.log("data inside the mainQuery, this should be block.id: ", multipleChoiceQuestionBlockId);
+console.log("data inside the mainQuery, this should be MultipleChoiceQuestion's block.id: ", multipleChoiceQuestionBlockId);
 //console.log("data inside block.__typename: ", data.mcblocks[0].__typename);
 })
 }
@@ -132,11 +138,11 @@ const onSubmit = ({ name, suggestedLevel }: Store) => {
 
 const onSubmit = ({ id, multipleChoiceQuestionBlockId, multipleChoiceQuestionChoiceId, studentId}: Store) => {
   fetchQuery(environment, mainQuery, {}).then((data: any) => {
-    studentId = data.viewer.id;
-
-    multipleChoiceQuestionChoiceId = choiceId;
+    studentId = data.viewer.id; //studentId
+    const blockId = block.id; //fix the naming of this blockId in the future, this isn't really multipleChoiceQuestionBlockId
+    multipleChoiceQuestionChoiceId = choiceId; //ChoiceId
     commitCreateMultipleChoiceQuestionResponseMutation(
-    {input: { multipleChoiceQuestionBlockId, multipleChoiceQuestionChoiceId, studentId}},
+    {input: { blockId, multipleChoiceQuestionChoiceId, studentId}},
     onSubmitSuccess,
     onSubmitError,
   );

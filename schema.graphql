@@ -81,7 +81,7 @@ input CreateLessonInput {
 }
 
 input createMultipleChoiceQuestionResponseInput {
-  multipleChoiceQuestionBlockId: String
+  blockId: String
   studentId: String
   multipleChoiceQuestionChoiceId: String
 }
