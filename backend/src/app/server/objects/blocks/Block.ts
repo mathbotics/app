@@ -13,10 +13,12 @@ export const Block = new GraphQLUnionType({
       console.log("resolve block:", value)
 
       //case 1: resolve value is a slide object with a block object property
-      if(value.block && value.block.multipleChoiceQuestionBlockId != null){
+      if((value.block && value.block.multipleChoiceQuestionBlockId != null) 
+          || value.multipleChoiceQuestionBlockId != null){
         return "MultipleChoiceQuestionBlock";
       }
-      else if(value.block && value.block.textBlockId != null){
+      else if((value.block && value.block.textBlockId != null)
+              || value.textBlockId != null){
         return "TextBlock";
       }
 
