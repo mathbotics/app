@@ -1020,6 +1020,15 @@ const RootQuery = new GraphQLObjectType({
         async resolve(root, args){
           const blocks = await prisma.block.findMany({
             where: args, 
+            include: {
+              multipleChoiceQuestionBlock: {
+                include: {
+                  choices: true,
+                  responses: true
+                }
+              },
+              textBlock: true
+            }
             });
           return blocks
         }
