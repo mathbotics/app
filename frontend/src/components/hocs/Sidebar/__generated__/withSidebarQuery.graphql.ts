@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash acabde4ddb588e20d5586599be1e75d6 */
+/* @relayHash 3a1e032270e9ac38e77460ed729b559a */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -27,6 +27,7 @@ query withSidebarQuery {
 
 fragment withSidebar_viewer on User {
   role: __typename
+  id
 }
 */
 
@@ -84,6 +85,13 @@ const node: ConcreteRequest = {
             "name": "__typename",
             "args": null,
             "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "id",
+            "args": null,
+            "storageKey": null
           }
         ]
       }
@@ -93,7 +101,7 @@ const node: ConcreteRequest = {
     "operationKind": "query",
     "name": "withSidebarQuery",
     "id": null,
-    "text": "query withSidebarQuery {\n  viewer {\n    __typename\n    ...withSidebar_viewer\n  }\n}\n\nfragment withSidebar_viewer on User {\n  role: __typename\n}\n",
+    "text": "query withSidebarQuery {\n  viewer {\n    __typename\n    ...withSidebar_viewer\n  }\n}\n\nfragment withSidebar_viewer on User {\n  role: __typename\n  id\n}\n",
     "metadata": {}
   }
 };

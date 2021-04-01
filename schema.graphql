@@ -166,6 +166,7 @@ type Grade {
   courseId: String!
   studentId: String!
   lessonId: String!
+  lesson: Lesson!
   grade: Float!
 }
 
@@ -303,9 +304,11 @@ type Query {
   instructors(id: ID): [Instructor]
   courseToLessons(id: ID): [Lesson]
   course(where: CourseWhereUniqueInput): Course
+  instructorGradeBookQuery(id: ID): [Course!]!
   courses(id: ID): [Course!]!
   lesson(where: LessonWhereUniqueInput): Lesson
   lessons(id: ID): [Lesson!]!
+  studentGradesQuery(id: ID): [CourseToStudent]
   courseToStudent(id: ID): [CourseToStudent]
   multipleChoiceQuestionChoice(id: ID): [MultipleChoiceQuestionChoice]
   multipleChoiceQuestionResponse(id: ID): [MultipleChoiceQuestionResponse]
@@ -383,6 +386,7 @@ type Student implements User {
   gradeLevel: GradeLevel!
   guardians: Guardian!
   studentTo: [CourseToStudent]
+  grades: [Grade!]!
 }
 
 # This represents the Text Block
