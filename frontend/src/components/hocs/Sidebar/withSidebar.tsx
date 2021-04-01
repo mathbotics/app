@@ -72,8 +72,6 @@ const menuItemsForViewer = ({ role }: withSidebar_viewer) => {
 const Sidebar = createFragmentContainer(
   ({ viewer, component: Component }: Props) => {
     const history = useHistory();
-
-    const instructorId = viewer?.id
     const [collapsed, setCollapsed] = React.useState<boolean>(false);
     const [items, setMenuItems] = React.useState<Array<SidebarItem>>([]);
 

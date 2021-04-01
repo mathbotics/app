@@ -17,7 +17,7 @@ export const MultipleChoiceQuestionResponse:GraphQLObjectType = new GraphQLObjec
         choice: {
           type: new GraphQLNonNull(MultipleChoiceQuestionChoice),
           resolve(MultipleChoiceQuestionResponse) {
-            return MultipleChoiceQuestionResponse.choice
+            return MultipleChoiceQuestionResponse.multipleChoiceQuestionChoiceId
           }
         },
         student: {

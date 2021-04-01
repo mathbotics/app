@@ -34,6 +34,7 @@ const InstructorGradebookTable = ({
 }: Props) => {
   const history = useHistory();
   const [data, setData] = useState<ColumnsType<TableItem>>();
+  const courses = { ...instructorGradeBookQuery };
   const students = instructorGradeBookQuery[0].students
   const lessons = instructorGradeBookQuery[0].lessons
   const columns: ColumnsType<any> = [
@@ -106,9 +107,10 @@ export default createFragmentContainer(InstructorGradebookTable, {
         grades{
           lessonId
           grade
-        }
+        } 
       }
     }
+    
   `,
   grades: graphql`
     fragment InstructorGradebookTable_grades on Query {
