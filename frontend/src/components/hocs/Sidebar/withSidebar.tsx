@@ -62,7 +62,7 @@ const menuItemsForViewer = ({ role }: withSidebar_viewer) => {
       return [
         { name: 'Dashboard', path: '', icon: <DashboardOutlined /> },
         { name: 'Courses', path: 'courses', icon: <BookOutlined /> },
-        { name: 'Grades', path: 'grades/student', icon: <SolutionOutlined /> },
+        { name: 'Grades', path: 'grades', icon: <SolutionOutlined /> },
       ];
     default:
       return [{ name: 'Dashboard', path: '', icon: <DashboardOutlined /> }];
@@ -91,6 +91,9 @@ const Sidebar = createFragmentContainer(
       if(item.path == 'gradebook'){
         //passes instructor id. 
         //TODO: is it ok to pass viewer id here and have it on path?
+        history.push(`/${item.path}/${viewer!.id}`)
+      }
+      else if (item.path == 'grades'){
         history.push(`/${item.path}/${viewer!.id}`)
       }
       else{
