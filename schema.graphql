@@ -170,6 +170,14 @@ type Grade {
   grade: Float!
 }
 
+# This represents the grade
+type Grade {
+  courseId: String!
+  studentId: String!
+  lessonId: String!
+  grade: Float!
+}
+
 enum GradeLevel {
   FIRST
   SECOND
@@ -251,6 +259,7 @@ type MultipleChoiceQuestionResponse {
   choice: MultipleChoiceQuestionChoice!
   student: Student!
   MultipleChoiceQuestionBlock: MultipleChoiceQuestionBlock!
+  multipleChoiceQuestionBlockId: String!
   multipleChoiceQuestionChoiceId: String!
   studentId: String!
 }
