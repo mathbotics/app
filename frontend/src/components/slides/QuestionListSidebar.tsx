@@ -110,7 +110,7 @@ switch (slides[num].type ?? type) {
   //display items
   return (
     <>
-    <p>hey arnold</p>
+    <p>Question 3</p>
     </>
   );
   
@@ -121,7 +121,7 @@ function staticContent(content)
   //display items
   return (
     <>
-    <p>hey arnold</p>
+    <p>Question 3</p>
     </>
   );
 }
