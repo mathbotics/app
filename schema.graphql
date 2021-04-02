@@ -160,7 +160,6 @@ type EditStudentPayload {
 type EmptyBlock {
   id: String!
 }
-
 # This represents the grade
 type Grade {
   courseId: String!

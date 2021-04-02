@@ -36,15 +36,6 @@ export const createResponse = {
         'Could not create student',
       )
 
-    //   const multipleChoiceQuestionChoice = nullthrows(
-    //     await prisma.multipleChoiceQuestionChoice.findUnique({
-    //       where: {
-    //         id: selectedChoiceId
-    //       }
-    //     }),
-    //     'Could not create multipleChoiceQuestionChoice',
-    //   )
-
     const  block  = nullthrows(
       await prisma.block.findUnique({
         where: {
@@ -57,7 +48,7 @@ export const createResponse = {
   );
 
   const multipleChoiceQuestionBlockId = block.multipleChoiceQuestionBlock!.id
-  console.log(block)
+
     const  multipleChoiceQuestionResponse  = nullthrows(
         await prisma.multipleChoiceQuestionResponse.create({
           data: {
@@ -68,9 +59,7 @@ export const createResponse = {
           }
         }),
     );
-    // console.log("this is the choice",multipleChoiceQuestionChoice)
-    // console.log("this is the student",student)
-    // console.log("this is the block ID:", blockId)
+
         return  multipleChoiceQuestionResponse ;
       },
   }

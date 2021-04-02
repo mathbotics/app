@@ -35,7 +35,6 @@ const InstructorGradebookTable = ({
   const history = useHistory();
   const [data, setData] = useState<ColumnsType<TableItem>>();
   const courses = { ...instructorGradeBookQuery };
-  console.log("in table ehre are courses", courses)
   const students = instructorGradeBookQuery[0].students
   const lessons = instructorGradeBookQuery[0].lessons
   const columns: ColumnsType<any> = [
@@ -111,6 +110,7 @@ export default createFragmentContainer(InstructorGradebookTable, {
         } 
       }
     }
+    
   `,
   grades: graphql`
     fragment InstructorGradebookTable_grades on Query {
