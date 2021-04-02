@@ -10,6 +10,12 @@ export type MultipleChoiceGroup_block = {
         readonly text: string;
         readonly correct: boolean;
     }>;
+    readonly responses: ReadonlyArray<{
+        readonly id: string | null;
+        readonly multipleChoiceQuestionBlockId: string;
+        readonly multipleChoiceQuestionChoiceId: string;
+        readonly studentId: string;
+    }>;
     readonly __typename: "MultipleChoiceQuestionBlock";
     readonly " $refType": "MultipleChoiceGroup_block";
 };
@@ -69,9 +75,42 @@ return {
           "storageKey": null
         }
       ]
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "responses",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "MultipleChoiceQuestionResponse",
+      "plural": true,
+      "selections": [
+        (v0/*: any*/),
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "multipleChoiceQuestionBlockId",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "multipleChoiceQuestionChoiceId",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "studentId",
+          "args": null,
+          "storageKey": null
+        }
+      ]
     }
   ]
 };
 })();
-(node as any).hash = '7cf0fd6482e5f5742fc66fecff54b835';
+(node as any).hash = '4857163406aa4d78ed19adbd5c002558';
 export default node;

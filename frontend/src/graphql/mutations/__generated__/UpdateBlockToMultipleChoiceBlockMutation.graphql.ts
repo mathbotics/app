@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 82be66d6a4caaa175bd7e4703bf3a1cc */
+/* @relayHash de28e40538f04d2e32c4cc06048da690 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -46,6 +46,12 @@ fragment MultipleChoiceGroup_block on MultipleChoiceQuestionBlock {
     id
     text
     correct
+  }
+  responses {
+    id
+    multipleChoiceQuestionBlockId
+    multipleChoiceQuestionChoiceId
+    studentId
   }
 }
 
@@ -156,6 +162,39 @@ return {
                 "storageKey": null
               }
             ]
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "responses",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "MultipleChoiceQuestionResponse",
+            "plural": true,
+            "selections": [
+              (v2/*: any*/),
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "multipleChoiceQuestionBlockId",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "multipleChoiceQuestionChoiceId",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "studentId",
+                "args": null,
+                "storageKey": null
+              }
+            ]
           }
         ]
       }
@@ -165,7 +204,7 @@ return {
     "operationKind": "mutation",
     "name": "UpdateBlockToMultipleChoiceBlockMutation",
     "id": null,
-    "text": "mutation UpdateBlockToMultipleChoiceBlockMutation(\n  $input: UpdateBlockToMultipleChoiceBlockInput!\n) {\n  updateBlockToMultipleChoiceBlock(input: $input) {\n    id\n    ...MultipleChoiceQuestionBlock_block\n  }\n}\n\nfragment MultipleChoiceGroup_block on MultipleChoiceQuestionBlock {\n  id\n  __typename\n  choices {\n    id\n    text\n    correct\n  }\n}\n\nfragment MultipleChoiceQuestionBlock_block on MultipleChoiceQuestionBlock {\n  __typename\n  text\n  ...MultipleChoiceGroup_block\n}\n",
+    "text": "mutation UpdateBlockToMultipleChoiceBlockMutation(\n  $input: UpdateBlockToMultipleChoiceBlockInput!\n) {\n  updateBlockToMultipleChoiceBlock(input: $input) {\n    id\n    ...MultipleChoiceQuestionBlock_block\n  }\n}\n\nfragment MultipleChoiceGroup_block on MultipleChoiceQuestionBlock {\n  id\n  __typename\n  choices {\n    id\n    text\n    correct\n  }\n  responses {\n    id\n    multipleChoiceQuestionBlockId\n    multipleChoiceQuestionChoiceId\n    studentId\n  }\n}\n\nfragment MultipleChoiceQuestionBlock_block on MultipleChoiceQuestionBlock {\n  __typename\n  text\n  ...MultipleChoiceGroup_block\n}\n",
     "metadata": {}
   }
 };

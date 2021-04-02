@@ -1,12 +1,13 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 85b9a13cbcf2f44042f320b1b3cd9ee2 */
+/* @relayHash e14ea5e4c1954e73f1e5374b5a925134 */
 
 import { ConcreteRequest } from "relay-runtime";
 export type MultipleChoiceGroupQueryVariables = {};
 export type MultipleChoiceGroupQueryResponse = {
     readonly viewer: {
         readonly id: string;
+        readonly __typename: string;
     };
     readonly mcblocks: ReadonlyArray<{
         readonly __typename: string;
@@ -26,8 +27,8 @@ export type MultipleChoiceGroupQuery = {
 /*
 query MultipleChoiceGroupQuery {
   viewer {
-    __typename
     id
+    __typename
   }
   mcblocks {
     __typename
@@ -50,21 +51,27 @@ var v0 = {
   "args": null,
   "storageKey": null
 },
-v1 = [
-  (v0/*: any*/)
-],
-v2 = {
+v1 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "__typename",
   "args": null,
   "storageKey": null
 },
-v3 = [
-  (v2/*: any*/),
-  (v0/*: any*/)
-],
-v4 = {
+v2 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "viewer",
+  "storageKey": null,
+  "args": null,
+  "concreteType": null,
+  "plural": false,
+  "selections": [
+    (v0/*: any*/),
+    (v1/*: any*/)
+  ]
+},
+v3 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "mcblocks",
@@ -72,12 +79,17 @@ v4 = {
   "args": null,
   "concreteType": "MultipleChoiceQuestionBlock",
   "plural": true,
-  "selections": (v3/*: any*/)
+  "selections": [
+    (v1/*: any*/),
+    (v0/*: any*/)
+  ]
 },
-v5 = {
+v4 = {
   "kind": "InlineFragment",
   "type": "MultipleChoiceQuestionBlock",
-  "selections": (v1/*: any*/)
+  "selections": [
+    (v0/*: any*/)
+  ]
 };
 return {
   "kind": "Request",
@@ -88,17 +100,8 @@ return {
     "metadata": null,
     "argumentDefinitions": [],
     "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "viewer",
-        "storageKey": null,
-        "args": null,
-        "concreteType": null,
-        "plural": false,
-        "selections": (v1/*: any*/)
-      },
-      (v4/*: any*/),
+      (v2/*: any*/),
+      (v3/*: any*/),
       {
         "kind": "LinkedField",
         "alias": null,
@@ -108,7 +111,7 @@ return {
         "concreteType": null,
         "plural": true,
         "selections": [
-          (v5/*: any*/)
+          (v4/*: any*/)
         ]
       }
     ]
@@ -118,17 +121,8 @@ return {
     "name": "MultipleChoiceGroupQuery",
     "argumentDefinitions": [],
     "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "viewer",
-        "storageKey": null,
-        "args": null,
-        "concreteType": null,
-        "plural": false,
-        "selections": (v3/*: any*/)
-      },
-      (v4/*: any*/),
+      (v2/*: any*/),
+      (v3/*: any*/),
       {
         "kind": "LinkedField",
         "alias": null,
@@ -138,8 +132,8 @@ return {
         "concreteType": null,
         "plural": true,
         "selections": [
-          (v2/*: any*/),
-          (v5/*: any*/)
+          (v1/*: any*/),
+          (v4/*: any*/)
         ]
       }
     ]
@@ -148,10 +142,10 @@ return {
     "operationKind": "query",
     "name": "MultipleChoiceGroupQuery",
     "id": null,
-    "text": "query MultipleChoiceGroupQuery {\n  viewer {\n    __typename\n    id\n  }\n  mcblocks {\n    __typename\n    id\n  }\n  blocks {\n    __typename\n    ... on MultipleChoiceQuestionBlock {\n      id\n    }\n  }\n}\n",
+    "text": "query MultipleChoiceGroupQuery {\n  viewer {\n    id\n    __typename\n  }\n  mcblocks {\n    __typename\n    id\n  }\n  blocks {\n    __typename\n    ... on MultipleChoiceQuestionBlock {\n      id\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '105bb6dde2350df9b50cb68c6cc968ea';
+(node as any).hash = 'dedfa14fa6c6341aecf8f1c4d169855b';
 export default node;
