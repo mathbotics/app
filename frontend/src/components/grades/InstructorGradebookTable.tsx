@@ -21,6 +21,7 @@ type TableItem = {
 function onChange(pagination, filters, sorter, extra) {
   console.log('params', pagination, filters, sorter, extra);
 }
+
 function gradeCalculation(grade:any):string {
   if(grade === undefined){
     return '-';
@@ -40,6 +41,7 @@ function gradeCalculation(grade:any):string {
   }
   return 'F';
 }
+
 type Props = {
   instructorGradeBookQuery: InstructorGradebookPageQueryResponse;
 };
