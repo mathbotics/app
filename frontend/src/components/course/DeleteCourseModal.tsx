@@ -22,7 +22,6 @@ export default ({
   courseId,
 }: ModalProps) => {
   const onSubmit = () => {
-    console.log('did we get here, pls say yes', onSubmitError);
     commitDeleteCourseMutation(
       { courseId } as DeleteCourseInput,
       onSubmitSuccess,

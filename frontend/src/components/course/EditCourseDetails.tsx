@@ -24,6 +24,7 @@ const EditCourseDetails = ({
   onSubmitError,
   course: { id },
 }: Props) => {
+  
   const onSubmit = ({ name, description }: Store) =>
     commitUpdateOneCourseMutation(
       { input: { name, description, id }},
@@ -50,7 +51,7 @@ const EditCourseDetails = ({
       Delete
     </Button>
   );
-  console.log('how about here?');
+  
   return (
     <Layout style={{ backgroundColor: 'white' }}>
       <FormWrapper>
@@ -61,10 +62,10 @@ const EditCourseDetails = ({
         />
 
         <DeleteCourseModal
-          title="Delete All Students"
+          title="Delete Course"
           visible={isDeleteCourseModalOpen}
           courseId={id}
-          onSubmitSuccess={() => console.log('deleteing')}
+          onSubmitSuccess={() => console.log('deleting')}
           onSubmitError={(e: Error) => console.log(e)}
           onCancel={() => toggleDeleteCourseModal(!isDeleteCourseModalOpen)}
         />

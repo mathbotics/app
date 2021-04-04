@@ -23,7 +23,7 @@ export const deleteCourse = {
       type: new GraphQLNonNull(DeleteCourseInput),
     }
   },
-  async resolve(root, args){
+  async resolve(root:any, args:any){
     const {courseId } = args.input
     const coursetostudent = nullthrows(
       await prisma.courseToLesson.deleteMany({
