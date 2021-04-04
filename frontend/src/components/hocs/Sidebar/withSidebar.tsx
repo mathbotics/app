@@ -166,8 +166,8 @@ const Sidebar = createFragmentContainer(
   {
     viewer: graphql`
       fragment withSidebar_viewer on User {
-        role: __typename
         id
+        role: __typename
       }
     `,
   },

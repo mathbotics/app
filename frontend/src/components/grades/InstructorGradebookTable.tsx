@@ -4,10 +4,6 @@ import { ColumnsType } from 'antd/lib/table';
 import { graphql } from 'babel-plugin-relay/macro';
 import { createFragmentContainer } from 'react-relay';
 import { useHistory } from 'react-router-dom';
-import { InstructorGradebookTable_lessons } from './__generated__/InstructorGradebookTable_lessons.graphql';
-import { InstructorGradebook_courses } from './__generated__/InstructorGradebook_courses.graphql';
-import { InstructorGradebookTable_grades } from './__generated__/InstructorGradebookTable_grades.graphql';
-import { InstructorGradebookTable_students } from './__generated__/InstructorGradebookTable_students.graphql';
 import { InstructorGradebookPageQueryResponse } from '../../pages/__generated__/InstructorGradebookPageQuery.graphql';
 
 
@@ -26,17 +22,36 @@ function onChange(pagination, filters, sorter, extra) {
   console.log('params', pagination, filters, sorter, extra);
 }
 
+function gradeCalculation(grade:any):string {
+  if(grade === undefined){
+    return '-';
+  }
+  let singleGrade = grade.grade*100;
+  if(singleGrade >= 90){
+    return 'A';
+  }
+  else if(singleGrade >= 80 && singleGrade < 90){
+    return 'B';
+  }
+  else if(singleGrade >= 70 && singleGrade < 80){
+    return 'C';
+  }
+  else if(singleGrade >= 60 && singleGrade < 70){
+    return 'D';
+  }
+  return 'F';
+}
+
 type Props = {
   instructorGradeBookQuery: InstructorGradebookPageQueryResponse;
 };
 const InstructorGradebookTable = ({
-  instructorGradeBookQuery: { instructorGradeBookQuery },
-}: Props) => {
+  instructorGradeBookQuery
+}: any) => {
   const history = useHistory();
   const [data, setData] = useState<ColumnsType<TableItem>>();
-  const courses = { ...instructorGradeBookQuery };
-  const students = instructorGradeBookQuery[0].students
-  const lessons = instructorGradeBookQuery[0].lessons
+  const students = instructorGradeBookQuery?.students ? instructorGradeBookQuery.students : [];
+  const lessons = instructorGradeBookQuery?.lessons ? instructorGradeBookQuery.lessons : [];
   const columns: ColumnsType<any> = [
     {
       title: 'Student Name',
@@ -62,7 +77,7 @@ const InstructorGradebookTable = ({
           index: index + 1,
           key: index,
           fullName: `${lastName} ${firstName}`,
-          grade: grades![0].grade,
+          grade: gradeCalculation(grades![0]),
         }),
       ),
       
