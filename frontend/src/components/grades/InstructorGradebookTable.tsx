@@ -94,7 +94,7 @@ const InstructorGradebookTable = ({
         grades: grades,
       }
       )));
-  }, [history, students]);
+  }, [students]);
 
   return (
     <Table
@@ -112,40 +112,40 @@ const InstructorGradebookTable = ({
 };
 
 export default createFragmentContainer(InstructorGradebookTable, {
-  lessons: graphql`
-    fragment InstructorGradebookTable_lessons on Course {
-      lessons {
-        id
-        title
-        slides {
-          id
-        }
-      }
-    }
-  `,
-  students: graphql`
-    fragment InstructorGradebookTable_students on Course {
-      students {
-        username
-        firstName
-        lastName
-        gradeLevel
-        id
-        grades{
-          lessonId
-          grade
-        } 
-      }
-    }
+  // lessons: graphql`
+  //   fragment InstructorGradebookTable_lessons on Course {
+  //     lessons {
+  //       id
+  //       title
+  //       slides {
+  //         id
+  //       }
+  //     }
+  //   }
+  // `,
+  // students: graphql`
+  //   fragment InstructorGradebookTable_students on Course {
+  //     students {
+  //       username
+  //       firstName
+  //       lastName
+  //       gradeLevel
+  //       id
+  //       grades{
+  //         lessonId
+  //         grade
+  //       } 
+  //     }
+  //   }
     
-  `,
-  grades: graphql`
-    fragment InstructorGradebookTable_grades on Query {
-      grades{
-        courseId
-        lessonId
-        grade
-      }
-    }
-  `,
+  // `,
+  // grades: graphql`
+  //   fragment InstructorGradebookTable_grades on Query {
+  //     grades{
+  //       courseId
+  //       lessonId
+  //       grade
+  //     }
+  //   }
+  // `,
 });
