@@ -50,6 +50,7 @@ const InstructorGradebookTable = ({
   instructorGradeBookQuery
 }: any) => {
   const history = useHistory();
+  const isEmpty = instructorGradeBookQuery === undefined ? true : false;
   const [data, setData] = useState<ColumnsType<TableItem>>();
   const students = instructorGradeBookQuery?.students ? instructorGradeBookQuery.students : [];
   const lessons = instructorGradeBookQuery?.lessons ? instructorGradeBookQuery.lessons : [];
@@ -85,16 +86,17 @@ const InstructorGradebookTable = ({
   ];
 
   useEffect(() => {
-    
-    setData(students!.map(
-      ({ firstName, lastName, grades}, index: number) => ({
-        index: index + 1,
-        key: index,
-        fullName: `${lastName} ${firstName}`,
-        grades: grades,
-      }
-      )));
-  }, [students]);
+    if(!isEmpty){
+      setData(students!.map(
+        ({ firstName, lastName, grades}, index: number) => ({
+          index: index + 1,
+          key: index,
+          fullName: `${lastName} ${firstName}`,
+          grades: grades,
+        }
+        )));
+    }
+  }, [!isEmpty]);
 
   return (
     <Table
