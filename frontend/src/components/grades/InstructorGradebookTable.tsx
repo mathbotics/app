@@ -13,7 +13,7 @@ type TableItem = {
   title: string;
   level?: number;
   time?: string;
-  grade?: string;
+  grade?: [string];
   firstName?: string;
   lastName?: string;
 };
@@ -26,7 +26,8 @@ function gradeCalculation(grade:any):string {
   if(grade === undefined){
     return '-';
   }
-  let singleGrade = grade.grade*100;
+
+  let singleGrade = grade*100;
   if(singleGrade >= 90){
     return 'A';
   }
@@ -57,31 +58,42 @@ const InstructorGradebookTable = ({
       title: 'Student Name',
       dataIndex: 'fullName',
       width: 150,
-      key: 'fullName',
+      key: '1',
       fixed: 'left',
     }, 
     {
-      children: lessons.map((lesson) => ({
-          title: lesson.title,
-          dataIndex: 'grade',
-          key: '1',
+      children: lessons.map(({title, id}, index:number) => ({
+          title: title,
+          dataIndex: 'grades',
+          key: 'grades',
           width: 100,
+          render: grades => (
+            <div>
+              {grades.length > 0 ?
+                grades.map(({grade, lessonId}, indexGrade:number) => {
+                  if (id === lessonId){
+                    return (<strong>{gradeCalculation(grade)}</strong>);
+                  } else if(id !== lessonId && index === indexGrade) {
+                    return (<strong>{gradeCalculation(undefined)}</strong>)
+                  }
+                }) : <strong>{gradeCalculation(undefined)}</strong>
+              }
+            </div>
+          )
         })),
     },
   ];
 
   useEffect(() => {
-    setData(
-      students!.map(
-        ({ firstName, lastName, grades}, index: number) => ({
-          index: index + 1,
-          key: index,
-          fullName: `${lastName} ${firstName}`,
-          grade: gradeCalculation(grades![0]),
-        }),
-      ),
-      
-    );
+    
+    setData(students!.map(
+      ({ firstName, lastName, grades}, index: number) => ({
+        index: index + 1,
+        key: index,
+        fullName: `${lastName} ${firstName}`,
+        grades: grades,
+      }
+      )));
   }, [history, students]);
 
   return (
