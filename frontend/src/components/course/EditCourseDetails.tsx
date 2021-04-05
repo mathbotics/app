@@ -10,6 +10,7 @@ import { commit as commitUpdateOneCourseMutation } from '../../graphql/mutations
 import { commit as commitDeleteCourseMutation } from '../../graphql/mutations/DeleteCourseMutation';
 import { EditCourseDetails_course } from './__generated__/EditCourseDetails_course.graphql';
 import { DeleteCourseInput } from '../../graphql/mutations/__generated__/DeleteCourseMutation.graphql';
+import { useHistory } from 'react-router';
 
 const FormWrapper = styled.div`
   width: 350px;
@@ -25,6 +26,7 @@ const EditCourseDetails = ({
   course: { id },
 }: Props) => {
   
+  const history = useHistory();
   const onSubmit = ({ name, description }: Store) =>
     commitUpdateOneCourseMutation(
       { input: { name, description, id }},
@@ -65,7 +67,11 @@ const EditCourseDetails = ({
           title="Delete Course"
           visible={isDeleteCourseModalOpen}
           courseId={id}
-          onSubmitSuccess={() => console.log('deleting')}
+          onSubmitSuccess={() => {
+            history.goBack();
+            console.log("deleting was success and history went back")
+          
+          }}
           onSubmitError={(e: Error) => console.log(e)}
           onCancel={() => toggleDeleteCourseModal(!isDeleteCourseModalOpen)}
         />

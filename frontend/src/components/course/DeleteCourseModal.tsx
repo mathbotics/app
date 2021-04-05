@@ -4,6 +4,7 @@ import { DeleteStudentModalContent } from '../students/Modals/DeleteStudentModal
 
 import { commit as commitDeleteCourseMutation } from '../../graphql/mutations/DeleteCourseMutation';
 import { DeleteCourseInput } from '../../graphql/mutations/__generated__/DeleteCourseMutation.graphql';
+import { useHistory } from 'react-router-dom';
 
 type ModalProps = {
   title: string;
@@ -21,6 +22,7 @@ export default ({
   onCancel,
   courseId,
 }: ModalProps) => {
+
   const onSubmit = () => {
     commitDeleteCourseMutation(
       { courseId } as DeleteCourseInput,
