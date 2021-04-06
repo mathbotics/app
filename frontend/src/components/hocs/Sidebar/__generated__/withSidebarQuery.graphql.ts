@@ -1,12 +1,13 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 92deb90527b2acb58caa10ca9056aa8a */
+/* @relayHash 64e3f0746376e0b851920d9dfa20e144 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type withSidebarQueryVariables = {};
 export type withSidebarQueryResponse = {
     readonly viewer: {
+        readonly id: string;
         readonly " $fragmentRefs": FragmentRefs<"withSidebar_viewer">;
     };
 };
@@ -21,17 +22,25 @@ export type withSidebarQuery = {
 query withSidebarQuery {
   viewer {
     __typename
+    id
     ...withSidebar_viewer
   }
 }
 
 fragment withSidebar_viewer on User {
-  id
   role: __typename
 }
 */
 
-const node: ConcreteRequest = {
+const node: ConcreteRequest = (function(){
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
+return {
   "kind": "Request",
   "fragment": {
     "kind": "Fragment",
@@ -49,6 +58,7 @@ const node: ConcreteRequest = {
         "concreteType": null,
         "plural": false,
         "selections": [
+          (v0/*: any*/),
           {
             "kind": "FragmentSpread",
             "name": "withSidebar_viewer",
@@ -79,13 +89,7 @@ const node: ConcreteRequest = {
             "args": null,
             "storageKey": null
           },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "id",
-            "args": null,
-            "storageKey": null
-          },
+          (v0/*: any*/),
           {
             "kind": "ScalarField",
             "alias": "role",
@@ -101,9 +105,10 @@ const node: ConcreteRequest = {
     "operationKind": "query",
     "name": "withSidebarQuery",
     "id": null,
-    "text": "query withSidebarQuery {\n  viewer {\n    __typename\n    ...withSidebar_viewer\n  }\n}\n\nfragment withSidebar_viewer on User {\n  id\n  role: __typename\n}\n",
+    "text": "query withSidebarQuery {\n  viewer {\n    __typename\n    id\n    ...withSidebar_viewer\n  }\n}\n\nfragment withSidebar_viewer on User {\n  role: __typename\n}\n",
     "metadata": {}
   }
 };
-(node as any).hash = '1cbb63b7227bdf305f28d5aa6d5b3177';
+})();
+(node as any).hash = '8cb271e442cd617f203714b78e309ad2';
 export default node;
