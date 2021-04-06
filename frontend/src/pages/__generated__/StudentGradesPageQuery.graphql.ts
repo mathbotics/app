@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash d2d3e6dcaa11f8dfbb7ee9a17309018d */
+/* @relayHash e107b35ad7c702cfb509cf2ca2b1132a */
 
 import { ConcreteRequest } from "relay-runtime";
 export type StudentGradesPageQueryVariables = {
@@ -18,7 +18,7 @@ export type StudentGradesPageQueryResponse = {
         readonly student: {
             readonly id: string;
             readonly grades: ReadonlyArray<{
-                readonly courseId: string;
+                readonly lessonId: string;
                 readonly grade: number;
             }>;
         } | null;
@@ -46,7 +46,7 @@ query StudentGradesPageQuery(
     student {
       id
       grades {
-        courseId
+        lessonId
         grade
       }
     }
@@ -145,7 +145,7 @@ v2 = [
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "courseId",
+                "name": "lessonId",
                 "args": null,
                 "storageKey": null
               },
@@ -183,10 +183,10 @@ return {
     "operationKind": "query",
     "name": "StudentGradesPageQuery",
     "id": null,
-    "text": "query StudentGradesPageQuery(\n  $id: ID!\n) {\n  studentGradesQuery(id: $id) {\n    course {\n      name\n      lessons {\n        id\n        title\n      }\n    }\n    student {\n      id\n      grades {\n        courseId\n        grade\n      }\n    }\n  }\n}\n",
+    "text": "query StudentGradesPageQuery(\n  $id: ID!\n) {\n  studentGradesQuery(id: $id) {\n    course {\n      name\n      lessons {\n        id\n        title\n      }\n    }\n    student {\n      id\n      grades {\n        lessonId\n        grade\n      }\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '77291424b80e635757297249e67ff76c';
+(node as any).hash = 'abd3742835c899906c03251f12d0b91a';
 export default node;
