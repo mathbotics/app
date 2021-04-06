@@ -1,7 +1,6 @@
 import nullthrows from 'nullthrows';
 import prisma from '../../data/prisma';
 import { GraphQLInputObjectType, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
-//import{ CreateMultipleChoiceQuestionResponsePayload} from '../payloads/createMultipleChoiceQuestionResponsePayload';
 import { MultipleChoiceQuestionResponse } from "../../server/objects/blocks";
 import { MultipleChoiceQuestionBlock } from "../../server/objects/blocks";
 import { Block } from "../../server/objects/blocks";
@@ -11,10 +10,9 @@ import { MultipleChoiceQuestionChoice } from '../objects';
 export const createMultipleChoiceQuestionResponseInput = new GraphQLInputObjectType({
     name: "createMultipleChoiceQuestionResponseInput",
     fields: () => ({
-        //blockId: { type: GraphQLString},
         blockId: { type: GraphQLString},
-        studentId: { type: GraphQLString}, //studentId
-        multipleChoiceQuestionChoiceId: { type: GraphQLString} //multipleChoiceQuestionChoiceId
+        studentId: { type: GraphQLString}, 
+        multipleChoiceQuestionChoiceId: { type: GraphQLString} 
     })
 });
 
@@ -29,36 +27,6 @@ export const createResponse = {
    async resolve(root, args){
      const { blockId, multipleChoiceQuestionChoiceId, studentId } = args.input 
 
-    /*
-    const multipleChoiceQuestionBlockIdResult = nullthrows(
-      await prisma.multipleChoiceQuestionBlock.findUnique({
-        where: {
-          id: multipleChoiceQuestionBlockId
-        }
-      }),
-      'Could not find multipleChoiceQuestionBlockId',
-    )
-
-    const studentIdResult = nullthrows(
-      await prisma.student.findUnique({
-        where: {
-          id: studentId
-        }
-      }),
-      'Could not find studentId',
-    )
-
-
-    const multipleChoiceQuestionChoiceIdResult = nullthrows(
-         await prisma.multipleChoiceQuestionChoice.findUnique({
-           where: {
-             id: multipleChoiceQuestionChoiceId
-           }
-         }),
-         'Could not create multipleChoiceQuestionChoice',
-       )
-
-    */
     /*NOTE: current version is student gets rewritten when the response just wants to write his studentId*/
     const block = nullthrows(
       await prisma.block.findUnique({
@@ -84,9 +52,6 @@ export const createResponse = {
              choice: true}
         }),
     );
-    // console.log("this is the choice",multipleChoiceQuestionChoice)
-    // console.log("this is the student",student)
-    // console.log("this is the block ID:", blockId)
     console.log(createMultipleChoiceQuestionResponse)
         return  createMultipleChoiceQuestionResponse;
       },

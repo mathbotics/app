@@ -55,33 +55,18 @@ export type MultipleChoiceGroupProps = {
 };
 
 type Props = { block: MultipleChoiceGroup_block };
-
-
 const MultipleChoiceGroup = ({ block }: Props) => {
-
-//choice
-const [choice, setchoice] = useState<String>(); //used to be RadioGroup type
+const [choice, setchoice] = useState<String>();
 const [choiceId, setChoiceId] = useState<String>();
 const [defaultChoice, setDefaultChoice] = useState<String>();
-
-//viewer
 const [viewer, setViewer] = useState<String>();
-
-//block
 const [blockId, setBlockId] = useState<String>();
 
-
 React.useEffect(() => {
-  //handle choiceId, technically this choiceId is the value of choice too...
-  //var temp = new RadioGroup(block.responses[0].multipleChoiceQuestionChoiceId);
-  //modify choice
   var responsesSize = block.responses.length;
-  //var currentViewer = fetchCurrentViewer();
   var indexOfStudentinResponses = 0;
-  console.log(viewer);
   
   if(responsesSize == 0) {
-    //setChoiceId('');
     setchoice('');
     setDefaultChoice('');
   }
@@ -92,11 +77,6 @@ React.useEffect(() => {
 
 }, [block]);
 
-/*
-viewer is the current user
-mcblocks is the array of all multipleChoiceQuestionBlockIds
-block down in fragment is the current BlockId, but not the multipleChoiceQuestionBlockId
-*/
 const mainQuery = graphql`
   query MultipleChoiceGroupQuery {
     viewer {
@@ -131,37 +111,11 @@ function fetchCurrentViewerTypename() {
     return viewerTypeName;
     }
 
-/*
-function fetchTestQuery() {
-fetchQuery(environment, mainQuery, {}).then((data: any) => {
-//get the currently logged in instructor that's creating the course
-//const data = data;
-const viewerId = data.viewer.id;
-const viewerTypename = data.viewer.__typename
-//setBlockId(multipleChoiceQuestionBlockId);
-//console.log("data inside the mainQuery:", data);
-//the thing above is from the mainQuery above
-console.log("query viewer typeName: ", viewerTypename);
-//the thing below is the fragment below
-block.responses.forEach(responses => {
-  console.log("fragment response id: ", responses.id);
-  console.log("fragment response studentId: ", responses.studentId);
-  console.log("fragment response multipleChoiceQuestionBlockId: ", responses.multipleChoiceQuestionBlockId);
-  console.log("fragment response multipleChoiceQuestionChoiceId: ", responses.multipleChoiceQuestionChoiceId);
-});
-
-
-//console.log("fragment reponses:", block.responses.id);
-
-})
-}
-*/
-
 const onSubmit = ({ id, multipleChoiceQuestionBlockId, multipleChoiceQuestionChoiceId, studentId}: Store) => {
   fetchQuery(environment, mainQuery, {}).then((data: any) => {
-    studentId = data.viewer.id; //studentId from query
-    const blockId = block.id; //fix the naming of this blockId in the future, this isn't really multipleChoiceQuestionBlockId, from fragment below
-    multipleChoiceQuestionChoiceId = choiceId; //ChoiceId from state
+    studentId = data.viewer.id; 
+    const blockId = block.id; 
+    multipleChoiceQuestionChoiceId = choiceId;
     commitCreateMultipleChoiceQuestionResponseMutation(
     {input: { blockId, multipleChoiceQuestionChoiceId, studentId}},
     onSubmitSuccess,
@@ -187,27 +141,12 @@ const onSubmit = ({ id, multipleChoiceQuestionBlockId, multipleChoiceQuestionCho
 );
 
   function radioTask(event){
-    console.log(event.target.value); //event.target.value is choiceId
     setchoice(event.target.value);
     setChoiceId(event.target.value.toString());
     setBlockId(block.id);
-    /*
-    console.log("Testing current fragment block id: ", block.id);
-    console.log("Testing current fragment block __typename: ", block.__typename);
-    */
-    //HERE
-    //fetchTestQuery();
-
   }
 };
 
-/*
-  MODIFY or CREATE a new mutation just to update the single response in responses. what happens is the database retrieves all
-  the responses in a particular block. so either the mutation updates the first entry or idk your problem...
-  I will call responses[last], you guys handle the updating that entry in the database.
-*/
-
-//adding id below gives me the Block blockId, but not the MultipleChoiceQuestionBlockId
 export default createFragmentContainer(MultipleChoiceGroup, {
   block: graphql`
     fragment MultipleChoiceGroup_block on MultipleChoiceQuestionBlock {
