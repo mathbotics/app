@@ -12,6 +12,7 @@ type ModalProps = {
   onSubmitError: (e: any) => void;
   onCancel: () => void;
   studentId: string;
+  courseId: string;
 };
 export default ({
   title,
@@ -20,11 +21,12 @@ export default ({
   onSubmitError,
   onCancel,
   studentId,
+  courseId
 }: ModalProps) => {
   const onSubmit =
   () =>
     commitDeleteSingleStudentMutation(
-      { studentId } as DeleteStudentInput,
+      { studentId, courseId } as DeleteStudentInput,
       onSubmitSuccess,
       onSubmitError,
     );

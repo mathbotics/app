@@ -4,6 +4,7 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type withSidebar_viewer = {
+    readonly id: string;
     readonly role: string;
     readonly " $refType": "withSidebar_viewer";
 };
@@ -24,6 +25,13 @@ const node: ReaderFragment = {
   "selections": [
     {
       "kind": "ScalarField",
+      "alias": null,
+      "name": "id",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
       "alias": "role",
       "name": "__typename",
       "args": null,
@@ -31,5 +39,5 @@ const node: ReaderFragment = {
     }
   ]
 };
-(node as any).hash = '164f4570054cc54ba031df8db724039b';
+(node as any).hash = 'b5ac0684e78c59bee0424e955a99edf4';
 export default node;

@@ -27,7 +27,7 @@ export const createOneLesson = {
       await prisma.lesson.create({
         data: {
             title,
-            time: timeAvoidEmpty,
+            time:timeAvoidEmpty,
             difficultyLevel:difficultyLevelAvoidEmpty
         },
         include: {slides: true}

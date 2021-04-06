@@ -19,7 +19,7 @@ export default ({
   onSubmitSuccess,
   onSubmitError,
   onCancel,
-  studentId,
+  studentId
 }: ModalProps) => {
   const onSubmit =
   (formData: Store) =>

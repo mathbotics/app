@@ -1,12 +1,29 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash aab8ff4c5cf4696713941e2fbc9cf2b5 */
+/* @relayHash edebc07ed16eb6f5f799d3b5e86ece79 */
 
 import { ConcreteRequest } from "relay-runtime";
-import { FragmentRefs } from "relay-runtime";
-export type InstructorGradebookPageQueryVariables = {};
+export type InstructorGradebookPageQueryVariables = {
+    id: string;
+};
 export type InstructorGradebookPageQueryResponse = {
-    readonly " $fragmentRefs": FragmentRefs<"InstructorGradebook_course" | "InstructorGradebook_lessons">;
+    readonly instructorGradeBookQuery: ReadonlyArray<{
+        readonly id: string;
+        readonly name: string;
+        readonly lessons: ReadonlyArray<{
+            readonly id: string;
+            readonly title: string;
+        }>;
+        readonly students: ReadonlyArray<{
+            readonly firstName: string;
+            readonly lastName: string;
+            readonly grades: ReadonlyArray<{
+                readonly lessonId: string;
+                readonly courseId: string;
+                readonly grade: number;
+            }>;
+        }>;
+    }>;
 };
 export type InstructorGradebookPageQuery = {
     readonly response: InstructorGradebookPageQueryResponse;
@@ -16,75 +33,88 @@ export type InstructorGradebookPageQuery = {
 
 
 /*
-query InstructorGradebookPageQuery {
-  ...InstructorGradebook_course
-  ...InstructorGradebook_lessons
-}
-
-fragment InstructorGradebookTable_course on Query {
-  students {
-    username
-    firstName
-    lastName
-    gradeLevel
+query InstructorGradebookPageQuery(
+  $id: ID!
+) {
+  instructorGradeBookQuery(id: $id) {
     id
-  }
-}
-
-fragment InstructorGradebookTable_lessons on Query {
-  lessons {
-    id
-    title
-    slides {
-      __typename
+    name
+    lessons {
       id
+      title
+    }
+    students {
+      firstName
+      lastName
+      grades {
+        lessonId
+        courseId
+        grade
+      }
     }
   }
-}
-
-fragment InstructorGradebook_course on Query {
-  ...InstructorGradebookTable_course
-}
-
-fragment InstructorGradebook_lessons on Query {
-  ...InstructorGradebookTable_lessons
 }
 */
 
 const node: ConcreteRequest = (function(){
-var v0 = {
+var v0 = [
+  {
+    "kind": "LocalArgument",
+    "name": "id",
+    "type": "ID!",
+    "defaultValue": null
+  }
+],
+v1 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
-};
-return {
-  "kind": "Request",
-  "fragment": {
-    "kind": "Fragment",
-    "name": "InstructorGradebookPageQuery",
-    "type": "Query",
-    "metadata": null,
-    "argumentDefinitions": [],
-    "selections": [
+},
+v2 = [
+  {
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "instructorGradeBookQuery",
+    "storageKey": null,
+    "args": [
       {
-        "kind": "FragmentSpread",
-        "name": "InstructorGradebook_course",
-        "args": null
+        "kind": "Variable",
+        "name": "id",
+        "variableName": "id"
+      }
+    ],
+    "concreteType": "Course",
+    "plural": true,
+    "selections": [
+      (v1/*: any*/),
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "name",
+        "args": null,
+        "storageKey": null
       },
       {
-        "kind": "FragmentSpread",
-        "name": "InstructorGradebook_lessons",
-        "args": null
-      }
-    ]
-  },
-  "operation": {
-    "kind": "Operation",
-    "name": "InstructorGradebookPageQuery",
-    "argumentDefinitions": [],
-    "selections": [
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "lessons",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "Lesson",
+        "plural": true,
+        "selections": [
+          (v1/*: any*/),
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "title",
+            "args": null,
+            "storageKey": null
+          }
+        ]
+      },
       {
         "kind": "LinkedField",
         "alias": null,
@@ -94,13 +124,6 @@ return {
         "concreteType": "Student",
         "plural": true,
         "selections": [
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "username",
-            "args": null,
-            "storageKey": null
-          },
           {
             "kind": "ScalarField",
             "alias": null,
@@ -116,63 +139,66 @@ return {
             "storageKey": null
           },
           {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "gradeLevel",
-            "args": null,
-            "storageKey": null
-          },
-          (v0/*: any*/)
-        ]
-      },
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "lessons",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "Lesson",
-        "plural": true,
-        "selections": [
-          (v0/*: any*/),
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "title",
-            "args": null,
-            "storageKey": null
-          },
-          {
             "kind": "LinkedField",
             "alias": null,
-            "name": "slides",
+            "name": "grades",
             "storageKey": null,
             "args": null,
-            "concreteType": null,
+            "concreteType": "Grade",
             "plural": true,
             "selections": [
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "__typename",
+                "name": "lessonId",
                 "args": null,
                 "storageKey": null
               },
-              (v0/*: any*/)
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "courseId",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "grade",
+                "args": null,
+                "storageKey": null
+              }
             ]
           }
         ]
       }
     ]
+  }
+];
+return {
+  "kind": "Request",
+  "fragment": {
+    "kind": "Fragment",
+    "name": "InstructorGradebookPageQuery",
+    "type": "Query",
+    "metadata": null,
+    "argumentDefinitions": (v0/*: any*/),
+    "selections": (v2/*: any*/)
+  },
+  "operation": {
+    "kind": "Operation",
+    "name": "InstructorGradebookPageQuery",
+    "argumentDefinitions": (v0/*: any*/),
+    "selections": (v2/*: any*/)
   },
   "params": {
     "operationKind": "query",
     "name": "InstructorGradebookPageQuery",
     "id": null,
-    "text": "query InstructorGradebookPageQuery {\n  ...InstructorGradebook_course\n  ...InstructorGradebook_lessons\n}\n\nfragment InstructorGradebookTable_course on Query {\n  students {\n    username\n    firstName\n    lastName\n    gradeLevel\n    id\n  }\n}\n\nfragment InstructorGradebookTable_lessons on Query {\n  lessons {\n    id\n    title\n    slides {\n      __typename\n      id\n    }\n  }\n}\n\nfragment InstructorGradebook_course on Query {\n  ...InstructorGradebookTable_course\n}\n\nfragment InstructorGradebook_lessons on Query {\n  ...InstructorGradebookTable_lessons\n}\n",
+    "text": "query InstructorGradebookPageQuery(\n  $id: ID!\n) {\n  instructorGradeBookQuery(id: $id) {\n    id\n    name\n    lessons {\n      id\n      title\n    }\n    students {\n      firstName\n      lastName\n      grades {\n        lessonId\n        courseId\n        grade\n      }\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
-(node as any).hash = '44f244e6a374e0993bd36226f49e549a';
+(node as any).hash = 'b24549e00cef4d1c7e54e9799ec4fcac';
 export default node;

@@ -24,9 +24,7 @@ const Lesson = (props) => {
       <EditorSlidePreview
         slide={props.lesson.slides.find(({ id }) => id === selectedSlideId)}
       />
-      {/* <QuestionListSidebar 
-        
-      /> */}
+     
       <QuestionListSidebar
         
         />
