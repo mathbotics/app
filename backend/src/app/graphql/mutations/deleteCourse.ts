@@ -6,8 +6,7 @@ import nullthrows from 'nullthrows';
 
 import prisma from '../../data/prisma';
 import { GraphQLInputObjectType, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
-import { DeleteCoursePayload } from '../payloads/DeleteCoursePayload';
-import { resolve } from 'path';
+import { Course } from '../../server/objects/courses';
 
 export const DeleteCourseInput = new GraphQLInputObjectType({
   name: "DeleteCourseInput",
@@ -17,32 +16,63 @@ export const DeleteCourseInput = new GraphQLInputObjectType({
 });
 
 export const deleteCourse = {
-  type: DeleteCoursePayload,
+  type: new GraphQLNonNull(Course),
   args: {
     input: {
       type: new GraphQLNonNull(DeleteCourseInput),
     }
   },
-  async resolve(root, args){
+  async resolve(root:any, args:any){
     const {courseId } = args.input
-    const coursetostudent = nullthrows(
+    nullthrows(
       await prisma.courseToLesson.deleteMany({
         where: {
           courseId: courseId,
           },
         }),
-        'Could not delete course',
-        ); 
+        'Could not delete lessons from course',
+    ); 
+
+    nullthrows(
+      await prisma.courseToStudent.deleteMany({
+        where: {
+          courseId: courseId,
+          },
+        }),
+        'Could not delete students from course',
+    ); 
 
     const course = nullthrows(
       await prisma.course.delete({
         where: {
           id: courseId
+        },
+        include: { 
+          instructor: true,
+          courseTo: {
+            include: {
+              student: {
+              include: {
+                user: true
+              }
+              }
+            }
+          },
+          contents: true,
+          courses: {
+            include: {
+              lesson: {
+                include: {
+                  slides: true
+                }
+              }
+            }
+          }
         }
       }), 
-      "Could not delete student from Student table",
+      "Could not delete course",
     )
-    return {course}
+    return course
 }
 }
 //  async resolve(root, args){

@@ -2,10 +2,10 @@ import bcrypt from 'bcrypt';
 import nullthrows from 'nullthrows';
 
 import prisma from '../../data/prisma';
-import { GraphQLInputObjectType, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
+import { GraphQLInputObjectType, GraphQLNonNull, GraphQLString } from 'graphql';
 import { GradeLevel } from '../../server/objects/GradeLevel';
 import { CreateStudentPayload } from '../payloads/CreateStudentPayload';
-import { resolve } from 'path';
+
 
 export const CreateStudentInput = new GraphQLInputObjectType({
   name: "CreateStudentInput",
@@ -26,7 +26,7 @@ export const createStudent = {
         type: new GraphQLNonNull(CreateStudentInput),
       }
     },
-   async resolve(root, args){
+   async resolve(root:any, args:any){
      const { username, firstName, lastName, gradeLevel, courseId} = args.input 
     const student = nullthrows(
       await prisma.student.create({
@@ -51,8 +51,7 @@ export const createStudent = {
     await prisma.courseToStudent.create({
       data: {
         courseId: courseId,
-        studentId: student.id,
-        //grade: .8
+        studentId: student.id
       }
     })
    

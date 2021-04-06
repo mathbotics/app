@@ -81,7 +81,7 @@ input CreateLessonInput {
 }
 
 input createMultipleChoiceQuestionResponseInput {
-  multipleChoiceQuestionBlockId: String
+  blockId: String
   studentId: String
   multipleChoiceQuestionChoiceId: String
 }
@@ -108,11 +108,6 @@ type CreateStudentPayload {
 
 input DeleteCourseInput {
   courseId: String
-}
-
-# Course type definition
-type DeleteCoursePayload {
-  course: Course!
 }
 
 input DeleteLessonInput {
@@ -267,7 +262,7 @@ type Mutation {
   updateBlockToMultipleChoiceBlock(
     input: UpdateBlockToMultipleChoiceBlockInput!
   ): MultipleChoiceQuestionBlock!
-  deleteCourse(input: DeleteCourseInput!): DeleteCoursePayload
+  deleteCourse(input: DeleteCourseInput!): Course!
   deleteStudents(input: DeleteStudentsInput!): DeleteStudentsPayload
   createOneLesson(input: CreateLessonInput!): Lesson!
   deleteLesson(input: DeleteLessonInput!): DeleteLessonPayload

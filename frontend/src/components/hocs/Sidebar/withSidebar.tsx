@@ -10,7 +10,7 @@ import {
 } from '@ant-design/icons';
 import { useHistory, Redirect } from 'react-router-dom';
 import { graphql } from 'babel-plugin-relay/macro';
-import { createFragmentContainer } from 'react-relay';
+import { createFragmentContainer, fetchQuery } from 'react-relay';
 import QueryLookupRenderer from 'relay-query-lookup-renderer';
 import { withSidebar_viewer } from './__generated__/withSidebar_viewer.graphql';
 import { withSidebarQueryResponse } from './__generated__/withSidebarQuery.graphql';
@@ -29,17 +29,20 @@ type SidebarItem = {
 const ViewerQuery = graphql`
   query withSidebarQuery {
     viewer {
+      id
       ...withSidebar_viewer
     }
   }
 `;
+
+
 
 type Props = {
   viewer: withSidebar_viewer | null | undefined;
   component: React.FC;
 };
 
-const menuItemsForViewer = ({ role }: withSidebar_viewer) => {
+const menuItemsForViewer = ({ role}: withSidebar_viewer) => {
   
   switch (role) {
     case 'Admin':
@@ -54,7 +57,7 @@ const menuItemsForViewer = ({ role }: withSidebar_viewer) => {
         { name: 'Courses', path: 'courses', icon: <BookOutlined /> },
         {
           name: 'Gradebook',
-          path: 'gradebook',
+          path: `gradebook`,
           icon: <SolutionOutlined />,
         },
       ];
@@ -72,8 +75,6 @@ const menuItemsForViewer = ({ role }: withSidebar_viewer) => {
 const Sidebar = createFragmentContainer(
   ({ viewer, component: Component }: Props) => {
     const history = useHistory();
-
-    const instructorId = viewer?.id
     const [collapsed, setCollapsed] = React.useState<boolean>(false);
     const [items, setMenuItems] = React.useState<Array<SidebarItem>>([]);
 
@@ -90,17 +91,37 @@ const Sidebar = createFragmentContainer(
     };
 
     const onClickMenuItem = (item: SidebarItem) => {
-      if(item.path == 'gradebook'){
-        //passes instructor id. 
-        //TODO: is it ok to pass viewer id here and have it on path?
-        history.push(`/${item.path}/${viewer!.id}`)
-      }
-      else if (item.path == 'grades'){
-        history.push(`/${item.path}/${viewer!.id}`)
-      }
-      else{
-        history.push(`/${item.path}`);
-      }      
+      // if(item.path == 'gradebook'){
+      //   //passes instructor id. 
+      //   //TODO: is it ok to pass viewer id here and have it on path?
+      //   history.push(`/${item.path}/${viewer!.id}`)
+      // }
+      // else if (item.path == 'grades'){
+      //   history.push(`/${item.path}/${viewer!.id}`)
+      // }
+      // else{
+        console.log("onclick on ", item)
+        if(item.name == 'Gradebook'){
+          console.log("in gradebook")
+          fetchQuery(environment, ViewerQuery, {}).then((data: any) => {
+            //get the currently logged in instructor that's creating the course
+          const instructorId = data.viewer.id
+          history.push(`/${item.path}/${instructorId}`)
+          })
+        }
+        else if(item.name == 'Grades'){
+          console.log("in gradebook")
+          fetchQuery(environment, ViewerQuery, {}).then((data: any) => {
+            //get the currently logged in instructor that's creating the course
+          const studentId = data.viewer.id
+          history.push(`/${item.path}/${studentId}`)
+          })
+        }
+        else{
+          history.push(`/${item.path}`);
+        }
+        
+      //}      
     };
 
     function logOut() {
@@ -169,7 +190,6 @@ const Sidebar = createFragmentContainer(
     viewer: graphql`
       fragment withSidebar_viewer on User {
         role: __typename
-        id
       }
     `,
   },
