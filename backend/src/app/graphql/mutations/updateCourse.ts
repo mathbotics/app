@@ -34,6 +34,28 @@ export const updateOneCourse = {
             description: description, 
             suggestedLevel: suggestedLevel
           },
+          include: { 
+            instructor: true,
+            courseTo: {
+              include: {
+                student: {
+                include: {
+                  user: true
+                }
+                }
+              }
+            },
+            contents: true,
+            courses: {
+              include: {
+                lesson: {
+                  include: {
+                    slides: true
+                  }
+                }
+              }
+            }
+          }
         }),
         'Could not update course',
       );
