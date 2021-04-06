@@ -11,10 +11,14 @@ export const TextBlock = new GraphQLObjectType({
           resolve(obj){
             console.log("emptyblock id:", obj)
 
-            //handles case where blocks are being resolved
+            //handles case where blocks are being resolved from textblocks query
             if(obj.block && obj.block.textBlockId != null)
               return obj.block.id
-            
+
+            //case when block is being resolved from the blocks query
+            if(obj.textBlock != null){
+              return obj.textBlock.id
+            }
             return obj.id
           }
         },
@@ -28,6 +32,11 @@ export const TextBlock = new GraphQLObjectType({
               })
 
               return textBlock?.title
+            }
+
+            //case when block is being resolved from the blocks query
+            if(obj.textBlock != null){
+              return obj.textBlock.title
             }
             
             return obj.title
@@ -45,6 +54,11 @@ export const TextBlock = new GraphQLObjectType({
               return textBlock?.body
             }
             
+            //case when block is being resolved from the blocks query
+            if(obj.textBlock != null){
+              return obj.textBlock.body
+            }
+
             return obj.body
           }
         }

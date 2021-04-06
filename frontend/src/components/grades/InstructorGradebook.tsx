@@ -62,28 +62,29 @@ const InstructorGradebook = ({ instructorGradeBookQuery }: Props)  => {
 
 
 export default createFragmentContainer(InstructorGradebook, {
-  courses: graphql`
-  fragment InstructorGradebook_courses on Course {
-    id
-    name
-    lessons {
-      id
-      title
-    }
-    students {
-      firstName
-      lastName
-      grades{
-        lessonId
-        courseId
-        grade
-      }
-    }
-  }
-`,
-  grades: graphql`
-    fragment InstructorGradebook_grades on Query {
-      ...InstructorGradebookTable_grades
-    }
-  `,
+  // courses: graphql`
+  // fragment InstructorGradebook_courses on Course {
+  //   id
+  //   name
+  //   lessons {
+  //     id
+  //     title
+  //   }
+  //   students {
+  //     firstName
+  //     lastName
+  //     grades{
+  //       lessonId
+  //       courseId
+  //       grade
+  //     }
+  //   }
+  // }
+  // `
+
+//   grades: graphql`
+//     fragment InstructorGradebook_grades on Query {
+//       ...InstructorGradebookTable_grades
+//     }
+//   `,
 });

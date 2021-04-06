@@ -11,17 +11,20 @@ export const MultipleChoiceQuestionBlock = new GraphQLObjectType({
         id: {
           type: new GraphQLNonNull(GraphQLString), 
           resolve(obj){
-            console.log("mcblock!!!!!!", obj)
+            //handles case where blocks are being resolved from mcblocks query
             if(obj.block && obj.block.multipleChoiceQuestionBlockId != null)
               return obj.block.id
             
+            //case when block is being resolved from the blocks query
+            if(obj.multipleChoiceQuestionBlockId != null){
+              return obj.multipleChoiceQuestionBlockId
+            }
             return obj.id
           }
         },
         text: {
           type: new GraphQLNonNull(GraphQLString),
           async resolve(obj){
-            console.log("text of obj:", obj)
 
             //handles case where obj is of type slide containing block property
             //this comes from resolving the blocks in Block object
@@ -31,13 +34,16 @@ export const MultipleChoiceQuestionBlock = new GraphQLObjectType({
               })
               return mcQuestBlock?.text
             }
+            //handles case when block is being resolved after the blocks query is executed
+            if(obj.multipleChoiceQuestionBlock != null){
+              return obj.multipleChoiceQuestionBlock.text
+            }
             return obj.text
           }
         },
         choices: {
           type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(MultipleChoiceQuestionChoice))),
           async resolve(obj){
-            console.log("mcblock obj:", obj)
 
             //handles case where obj is of type slide containing block property
             //comes from resolving blocks
@@ -47,6 +53,11 @@ export const MultipleChoiceQuestionBlock = new GraphQLObjectType({
                 include: { choices: true }
               })
               return mcQuestBlock?.choices
+            }
+
+            //handles case when block is being resolved after the blocks query is executed
+            if(obj.multipleChoiceQuestionBlock != null){
+              return obj.multipleChoiceQuestionBlock.choices
             }
             return obj.choices
           }
@@ -63,6 +74,11 @@ export const MultipleChoiceQuestionBlock = new GraphQLObjectType({
                 include: { responses: true }
               })
               return mcQuestBlock?.responses
+            }
+
+            //handles case when block is being resolved after the blocks query is executed
+            if(obj.multipleChoiceQuestionBlock != null){
+              return obj.multipleChoiceQuestionBlock.responses
             }
             return obj.responses
           }

@@ -1,22 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import { Layout, Menu, Tooltip } from 'antd';
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
-
 import { graphql } from 'babel-plugin-relay/macro';
 import { createFragmentContainer } from 'react-relay';
 import { TextBlock_block } from './__generated__/TextBlock_block.graphql';
 
-/* This is the page to start doing customizations to the Slide textblock content */
-
 type Props = { block: TextBlock_block };
-
-/* Other Display */
-
-/*Notes from edgar: if you guys ever plan to work on special text formatting and user selection of fonts, text position,
-or anything else, this would be the place... maybe making the Title and Body have dynamic styles. Those should be on
-the const Title and const Body */
 
 const Title = ({ text }: { text: string }) => (
   <>
@@ -30,7 +20,6 @@ const Title = ({ text }: { text: string }) => (
   </>
  ); 
 
-/* Main display */
 const TextBlock = ({ block }: Props) => (
   <>
   <SlideWrapper>
@@ -44,7 +33,6 @@ const TextBlock = ({ block }: Props) => (
   </>
 );
 
-/* CSS formats */
 const TitleWrapper = styled.div`
   position: relative;
   width: 100%;

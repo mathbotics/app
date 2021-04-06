@@ -50,6 +50,7 @@ const InstructorGradebookTable = ({
   instructorGradeBookQuery
 }: any) => {
   const history = useHistory();
+  const isEmpty = instructorGradeBookQuery === undefined ? true : false;
   const [data, setData] = useState<ColumnsType<TableItem>>();
   const students = instructorGradeBookQuery?.students ? instructorGradeBookQuery.students : [];
   const lessons = instructorGradeBookQuery?.lessons ? instructorGradeBookQuery.lessons : [];
@@ -85,16 +86,17 @@ const InstructorGradebookTable = ({
   ];
 
   useEffect(() => {
-    
-    setData(students!.map(
-      ({ firstName, lastName, grades}, index: number) => ({
-        index: index + 1,
-        key: index,
-        fullName: `${lastName} ${firstName}`,
-        grades: grades,
-      }
-      )));
-  }, [history, students]);
+    if(!isEmpty){
+      setData(students!.map(
+        ({ firstName, lastName, grades}, index: number) => ({
+          index: index + 1,
+          key: index,
+          fullName: `${lastName} ${firstName}`,
+          grades: grades,
+        }
+        )));
+    }
+  }, [!isEmpty]);
 
   return (
     <Table
@@ -112,40 +114,40 @@ const InstructorGradebookTable = ({
 };
 
 export default createFragmentContainer(InstructorGradebookTable, {
-  lessons: graphql`
-    fragment InstructorGradebookTable_lessons on Course {
-      lessons {
-        id
-        title
-        slides {
-          id
-        }
-      }
-    }
-  `,
-  students: graphql`
-    fragment InstructorGradebookTable_students on Course {
-      students {
-        username
-        firstName
-        lastName
-        gradeLevel
-        id
-        grades{
-          lessonId
-          grade
-        } 
-      }
-    }
+  // lessons: graphql`
+  //   fragment InstructorGradebookTable_lessons on Course {
+  //     lessons {
+  //       id
+  //       title
+  //       slides {
+  //         id
+  //       }
+  //     }
+  //   }
+  // `,
+  // students: graphql`
+  //   fragment InstructorGradebookTable_students on Course {
+  //     students {
+  //       username
+  //       firstName
+  //       lastName
+  //       gradeLevel
+  //       id
+  //       grades{
+  //         lessonId
+  //         grade
+  //       } 
+  //     }
+  //   }
     
-  `,
-  grades: graphql`
-    fragment InstructorGradebookTable_grades on Query {
-      grades{
-        courseId
-        lessonId
-        grade
-      }
-    }
-  `,
+  // `,
+  // grades: graphql`
+  //   fragment InstructorGradebookTable_grades on Query {
+  //     grades{
+  //       courseId
+  //       lessonId
+  //       grade
+  //     }
+  //   }
+  // `,
 });
