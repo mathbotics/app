@@ -19,7 +19,7 @@ query StudentGradesPageQuery($id: ID!){
     student{
       id
       grades{
-        courseId
+        lessonId
         grade
       }
     }

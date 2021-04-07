@@ -4,11 +4,19 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type MultipleChoiceGroup_block = {
+    readonly id: string;
     readonly choices: ReadonlyArray<{
         readonly id: string;
         readonly text: string;
         readonly correct: boolean;
     }>;
+    readonly responses: ReadonlyArray<{
+        readonly id: string | null;
+        readonly multipleChoiceQuestionBlockId: string;
+        readonly multipleChoiceQuestionChoiceId: string;
+        readonly studentId: string;
+    }>;
+    readonly __typename: "MultipleChoiceQuestionBlock";
     readonly " $refType": "MultipleChoiceGroup_block";
 };
 export type MultipleChoiceGroup_block$data = MultipleChoiceGroup_block;
@@ -19,13 +27,29 @@ export type MultipleChoiceGroup_block$key = {
 
 
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
+return {
   "kind": "Fragment",
   "name": "MultipleChoiceGroup_block",
   "type": "MultipleChoiceQuestionBlock",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
+    (v0/*: any*/),
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "__typename",
+      "args": null,
+      "storageKey": null
+    },
     {
       "kind": "LinkedField",
       "alias": null,
@@ -35,13 +59,7 @@ const node: ReaderFragment = {
       "concreteType": "MultipleChoiceQuestionChoice",
       "plural": true,
       "selections": [
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "id",
-          "args": null,
-          "storageKey": null
-        },
+        (v0/*: any*/),
         {
           "kind": "ScalarField",
           "alias": null,
@@ -57,8 +75,42 @@ const node: ReaderFragment = {
           "storageKey": null
         }
       ]
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "responses",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "MultipleChoiceQuestionResponse",
+      "plural": true,
+      "selections": [
+        (v0/*: any*/),
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "multipleChoiceQuestionBlockId",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "multipleChoiceQuestionChoiceId",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "studentId",
+          "args": null,
+          "storageKey": null
+        }
+      ]
     }
   ]
 };
-(node as any).hash = '8b0785b225333ea719ba7991fad2c8a9';
+})();
+(node as any).hash = '4857163406aa4d78ed19adbd5c002558';
 export default node;

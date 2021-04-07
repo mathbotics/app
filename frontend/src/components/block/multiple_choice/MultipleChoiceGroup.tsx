@@ -1,13 +1,19 @@
-import React from 'react';
-import { Radio } from 'antd';
+import React, { Component } from 'react';
+import { Radio, Button } from 'antd';
 import { RadioChangeEvent } from 'antd/lib/radio';
 import { graphql } from 'babel-plugin-relay/macro';
-import { createFragmentContainer } from 'react-relay';
+import { createFragmentContainer, DataID, fetchQuery } from 'react-relay';
 import style from 'styled-components';
 import { MultipleChoiceGroup_block } from './__generated__/MultipleChoiceGroup_block.graphql';
 import { setConstantValue } from 'typescript';
 import { useState } from 'react';
 import RadioGroup from 'antd/lib/radio/group';
+import { Store } from 'rc-field-form/lib/interface';
+import { commit as commitCreateMultipleChoiceQuestionResponseMutation } from '../../../graphql/mutations/CreateMultipleChoiceQuestionResponseMutation';
+import { environment } from "../../../graphql/relay";
+import MultipleChoiceQuestionBlock from './MultipleChoiceQuestionBlock';
+import EditMultipleChoiceQuestionBlockForm from './EditMultipleChoiceQuestionBlockForm';
+
 
 type MultipleChoiceChoiceProps = {
   id: string;
@@ -32,6 +38,10 @@ const MultipleChoiceChoice = ({
   return <RadioButton value={id}>{text}</RadioButton>;
 };
 
+const SubmitButton = style(Button)`
+background-color: #f0f2f5;
+`;
+
 export type MultipleChoiceGroupProps = {
   onChange: (e: RadioChangeEvent) => void;
   choices?: Array<{
@@ -45,34 +55,113 @@ export type MultipleChoiceGroupProps = {
 };
 
 type Props = { block: MultipleChoiceGroup_block };
-
 const MultipleChoiceGroup = ({ block }: Props) => {
-const [choice, setchoice] = useState<RadioGroup>();
+const [choice, setchoice] = useState<String>();
+const [choiceId, setChoiceId] = useState<String>();
+const [defaultChoice, setDefaultChoice] = useState<String>();
+const [viewer, setViewer] = useState<String>();
+const [blockId, setBlockId] = useState<String>();
+
+React.useEffect(() => {
+  var responsesSize = block.responses.length;
+  var indexOfStudentinResponses = 0;
+  
+  if(responsesSize == 0) {
+    setchoice('');
+    setDefaultChoice('');
+  }
+  else {
+    setchoice(block.responses[responsesSize-1].multipleChoiceQuestionChoiceId);
+    setDefaultChoice(block.responses[responsesSize-1].multipleChoiceQuestionChoiceId);
+  }
+
+}, [block]);
+
+const mainQuery = graphql`
+  query MultipleChoiceGroupQuery {
+    viewer {
+      id
+      __typename
+    }
+    mcblocks {
+        __typename
+        id
+      }
+    blocks {
+      ...on MultipleChoiceQuestionBlock {
+        id
+      }
+    }
+  }
+`;
+
+function fetchCurrentViewer() {
+  var viewerId = "";
+  fetchQuery(environment, mainQuery, {}).then((data: any) => {
+    viewerId = data.viewer.id;
+  })
+  return viewerId;
+  }
+
+function fetchCurrentViewerTypename() {
+    var viewerTypeName = "";
+    fetchQuery(environment, mainQuery, {}).then((data: any) => {
+      viewerTypeName = data.viewer.__typename;
+    })
+    return viewerTypeName;
+    }
+
+const onSubmit = ({ id, multipleChoiceQuestionBlockId, multipleChoiceQuestionChoiceId, studentId}: Store) => {
+  fetchQuery(environment, mainQuery, {}).then((data: any) => {
+    studentId = data.viewer.id; 
+    const blockId = block.id; 
+    multipleChoiceQuestionChoiceId = choiceId;
+    commitCreateMultipleChoiceQuestionResponseMutation(
+    {input: { blockId, multipleChoiceQuestionChoiceId, studentId}},
+    onSubmitSuccess,
+    onSubmitError,
+  );
+  })
+
+  }
+  const onSubmitSuccess = () => {console.log("Sucess on commitCreateMultipleChoiceQuestionResponseMutation")};
+  const onSubmitError = () => {console.log("Error on commitCreateMultipleChoiceQuestionResponseMutation")};
+
   return (
-  <Radio.Group onChange={(e: any) => radioTask(e)} value={choice}>
+    <>
+  <Radio.Group onChange={(e: any) => radioTask(e)} defaultValue={defaultChoice} value={choice}>
     {block.choices.map(({ id, text }, index: number) => (
       <MultipleChoiceChoice key={id} id={id} value={id} text={text} />
       ))}
   </Radio.Group>
+
+  <SubmitButton onClick={onSubmit}>Submit Answer</SubmitButton>
+  
+  </>
 );
 
   function radioTask(event){
-    console.log(event.target.value);
     setchoice(event.target.value);
-
-    /*do any call to the backend to save choices, submitting with a submit
-     button instead of calling after every radio option change will reduce
-     server load*/
-
+    setChoiceId(event.target.value.toString());
+    setBlockId(block.id);
   }
 };
+
 export default createFragmentContainer(MultipleChoiceGroup, {
   block: graphql`
     fragment MultipleChoiceGroup_block on MultipleChoiceQuestionBlock {
+      id
+      __typename
       choices {
         id
         text
         correct
+      }
+      responses {
+        id
+        multipleChoiceQuestionBlockId
+        multipleChoiceQuestionChoiceId
+        studentId
       }
     }
   `,

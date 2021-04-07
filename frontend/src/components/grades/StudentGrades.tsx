@@ -23,10 +23,10 @@ enum PageState {
 }
 const StudentGrades = ({ studentGradesQuery}: Props): JSX.Element => (
   <Layout style={{ backgroundColor: 'white' }}>
-    <Header />
+    <Header courseName={studentGradesQuery.studentGradesQuery![0]!.course?.name}/>
 
     {/* Lessons table */}
-    <StudentGradesTable studentGradesQuery = {studentGradesQuery}/>
+    <StudentGradesTable studentGradesQuery = {studentGradesQuery.studentGradesQuery![0]}/>
   </Layout>
 );
 
@@ -51,10 +51,10 @@ const HeaderWrappper = styled(Layout.Content)`
 `;
 
 type HeaderProps = { onAddLesson: () => void };
-const Header = (): JSX.Element => (
+const Header = (courseName:any): JSX.Element => (
   <HeaderWrappper>
     <Title level={3} style={{ fontWeight: 700 }}>
-      Grades
+      Grades for {courseName['courseName']}
     </Title>
     
     <Dropdown overlay={menu}>
