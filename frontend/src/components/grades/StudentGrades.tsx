@@ -31,19 +31,6 @@ const StudentGrades = ({ studentGradesQuery}: Props): JSX.Element => (
 );
 
 
-const onClick = ({ key }) => {
-  message.info(`You selected Course ${key}`);
-};
-
-const menu =  <Menu onClick={onClick}>
-  {/* {studentGradesQuery![0]!.course!.lessons.map((course) => (
-         <Menu.Item key ={course.id}>course.id</Menu.Item>
-      ))} */}
-      <Menu.Item key="1">Course 1</Menu.Item>
-    <Menu.Item key="2">Course 2</Menu.Item>
-    <Menu.Item key="3">Course 3</Menu.Item>
-  </Menu>
-
 const HeaderWrappper = styled(Layout.Content)`
   display: flex;
   justify-content: space-between;
@@ -56,12 +43,7 @@ const Header = (courseName:any): JSX.Element => (
     <Title level={3} style={{ fontWeight: 700 }}>
       Grades for {courseName['courseName']}
     </Title>
-    
-    <Dropdown overlay={menu}>
-  <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-    Grades by Course <DownOutlined />
-  </a>
-</Dropdown>
+  
   </HeaderWrappper>
 );
 
