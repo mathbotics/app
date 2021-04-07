@@ -42,6 +42,15 @@ export const deleteCourse = {
         'Could not delete students from course',
     ); 
 
+    nullthrows(
+      await prisma.grade.deleteMany({
+        where: {
+          courseId: courseId,
+          },
+        }),
+        'Could not delete students from course',
+    ); 
+
     const course = nullthrows(
       await prisma.course.delete({
         where: {
@@ -75,51 +84,3 @@ export const deleteCourse = {
     return course
 }
 }
-//  async resolve(root, args){
-//    const {courseId} = args.input 
-//   const courseToLesson = nullthrows(
-//     await prisma.courseToLesson.deleteMany({
-//       where: {
-//         courseId: courseId,
-//       },              
-//     }),
-//     'Could not delete course',
-//   ); 
-//   const course = nullthrows(
-//     await prisma.course.delete({
-//       where: {
-//         id: courseId,
-//       },              
-//     }) 
-//     "Could not delete student from Student table",
-//   )
-//   return {course};
-//  }
-
-// }
-
-// // export const DeleteCourseInput = inputObjectType({
-// //   name: 'DeleteCourseInput',
-// //   definition(t) {
-// //     t.string('courseId', {
-// //       required: true,
-// //     });
-// //   },
-// // });
-// // export const deleteCourse = mutationField('deleteCourse', {
-// //   type: 'Course',
-// //   args: {
-// //     input: arg({ type: 'DeleteCourseInput', required: true }),
-// //   },
-// //   async resolve(_root, { input: { courseId } }) {
-// //     const { ...course } = nullthrows(
-// //       await prisma.course.delete({
-// //         where: {
-// //           id: courseId,
-// //         },
-// //       }),
-// //       'Could not delete course',
-// //     );
-// //     return { ...course };
-// //   },
-// // })
