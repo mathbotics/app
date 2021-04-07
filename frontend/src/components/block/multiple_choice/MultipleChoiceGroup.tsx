@@ -124,7 +124,7 @@ const onSubmit = ({ id, multipleChoiceQuestionBlockId, multipleChoiceQuestionCho
   })
 
   }
-  const onSubmitSuccess = () => {console.log("Sucess on commitCreateMultipleChoiceQuestionResponseMutation")};
+  const onSubmitSuccess = () => {console.log("Sucess on commitCreateMultipleChoiceQuestionResponseMutation"); window.location.reload()};
   const onSubmitError = () => {console.log("Error on commitCreateMultipleChoiceQuestionResponseMutation")};
 
   return (

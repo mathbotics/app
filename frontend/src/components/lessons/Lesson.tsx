@@ -25,9 +25,9 @@ const Lesson = (props) => {
         slide={props.lesson.slides.find(({ id }) => id === selectedSlideId)}
       />
      
-      <QuestionListSidebar
+      {/*<QuestionListSidebar
         
-        />
+      />*/}
 
     </Layout>
   );
