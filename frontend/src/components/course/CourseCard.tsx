@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { ExportOutlined, EditOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 import { useHistory } from 'react-router-dom';
-import { createFragmentContainer, createRefetchContainer } from 'react-relay';
+import { createFragmentContainer, createRefetchContainer, fetchQuery } from 'react-relay';
+import { environment } from "../../graphql/relay";
 import { graphql } from 'babel-plugin-relay/macro';
 
 import { CourseCard_course } from './__generated__/CourseCard_course.graphql';
@@ -79,6 +80,8 @@ const CourseCard = ({
 
   // console.log("UserId" + query.viewer.id);
   const [edit, setEdit] = useState(false);
+  const [viewer, setViewer] = useState<String>();
+  const [role, setRole] = useState<String>();
 
   function openEditPage(edit: boolean) {
     if (edit) {
@@ -94,6 +97,60 @@ const CourseCard = ({
     history.push(`/courses/${id}`);
   }
 
+  const mainQuery = graphql`
+  query CourseCardQuery {
+    viewer {
+      id
+      __typename
+    }
+
+    }
+`;
+
+  function fetchCurrentViewer() {
+    var viewerId = "";
+    fetchQuery(environment, mainQuery, {}).then((data: any) => {
+    viewerId = data.viewer.id;
+    setViewer(viewerId);
+    })
+    }
+
+  function fetchCurrentViewerTypename() {
+      var viewerTypeName = "";
+      fetchQuery(environment, mainQuery, {}).then((data: any) => {
+        viewerTypeName = data.viewer.__typename;
+        setRole(viewerTypeName);
+      })
+      }
+
+
+    function displayEditButton() {
+      fetchCurrentViewerTypename();
+      const roleRetrieved = role;
+      switch(roleRetrieved)
+      {
+        case 'Instructor':
+          {
+          return (
+            <>
+            <Tooltip title="Edit course">
+              <EditButton
+              onMouseEnter={() => setEdit(true)}
+              onMouseLeave={() => setEdit(false)}
+              >
+              <EditOutlined style={{ fontSize: '18px' }} />
+              </EditButton>
+            </Tooltip>
+            </>
+          );
+          }  
+        default:
+          {
+            //nothing
+          }
+      }
+    }
+
 
   return (
     <Card onClick={() => openEditPage(edit)}>
@@ -106,14 +163,7 @@ const CourseCard = ({
       >
         <CardTitle>{name}</CardTitle>
 
-        <Tooltip title="Edit course">
-          <EditButton
-            onMouseEnter={() => setEdit(true)}
-            onMouseLeave={() => setEdit(false)}
-          >
-            <EditOutlined style={{ fontSize: '18px' }} />
-          </EditButton>
-        </Tooltip>
+        {displayEditButton()}
       </div>
       <CourseLevel>
         {suggestedLevel}
