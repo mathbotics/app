@@ -96,7 +96,7 @@ const InstructorGradebookTable = ({
         }
         )));
     }
-  }, [!isEmpty]);
+  }, [students]);
 
   return (
     <Table

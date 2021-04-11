@@ -67,7 +67,7 @@ const EditMultipleChoiceQuestionBlockForm = ({
   };
 
   const onClickSave = () => {
-    console.log({ choices, text });
+    console.log({ choices, text }, "blockid", blockId);
     commitUpdateBlockToMultipleChoiceBlock(
       {
         input: {
@@ -81,7 +81,7 @@ const EditMultipleChoiceQuestionBlockForm = ({
     );
   };
 
-  const onSaveSuccess = () => {};
+  const onSaveSuccess = () => {window.location.reload()};
   const onSaveError = (e: Error) => {
     console.warn(e);
   };

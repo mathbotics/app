@@ -3,7 +3,9 @@ import { Typography, Layout, Tooltip, Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 
-import { createFragmentContainer } from 'react-relay';
+import { createFragmentContainer, fetchQuery } from 'react-relay';
+import { environment } from "../../graphql/relay";
+/* import { environment } from "../../../graphql/relay"; */
 import { graphql } from 'babel-plugin-relay/macro';
 
 import { useHistory } from 'react-router-dom';
@@ -32,16 +34,46 @@ const Courses = ({ query }: Props) => {
   let history = useHistory();
   
   const [pageState, setPageState] = useState<PageState>(PageState.Default);
+  const [viewer, setViewer] = useState<String>();
+  const [role, setRole] = useState<String>();
   
   console.log(query)
+
+  const mainQuery = graphql`
+  query CoursesQuery {
+    viewer {
+      id
+      __typename
+    }
+  }
+`;
+
+function fetchCurrentViewer() {
+  var viewerId = "";
+  fetchQuery(environment, mainQuery, {}).then((data: any) => {
+  viewerId = data.viewer.id;
+  setViewer(viewerId);
+  })
+  }
+
+function fetchCurrentViewerTypename() {
+    var viewerTypeName = "";
+    fetchQuery(environment, mainQuery, {}).then((data: any) => {
+      viewerTypeName = data.viewer.__typename;
+      setRole(viewerTypeName);
+    })
+    }
   
-  return (
-    <Layout style={{ backgroundColor: 'white', maxHeight: '95vh' }}>
-      <HeaderWrapper>
-        <Title level={3} style={{ fontWeight: 700 }}>
-          Courses
-        </Title>
-        <Tooltip title="Add a course">
+    function displayEditButton() {
+      fetchCurrentViewerTypename();
+      const roleRetrieved = role;
+      switch(roleRetrieved)
+      {
+        case 'Instructor':
+          {
+          return (
+            <>
+            <Tooltip title="Add a course">
           <Button
             type="primary"
             shape="circle"
@@ -50,7 +82,24 @@ const Courses = ({ query }: Props) => {
             size="large"
             onClick={() => setPageState(PageState.CreateCourseIntent)}
           />
-        </Tooltip>
+            </Tooltip>
+            </>
+          );
+          }  
+        default:
+          {
+            //nothing
+          }
+      }
+    }
+  
+  return (
+    <Layout style={{ backgroundColor: 'white', maxHeight: '95vh' }}>
+      <HeaderWrapper>
+        <Title level={3} style={{ fontWeight: 700 }}>
+          Courses
+        </Title>
+        {displayEditButton()}
       </HeaderWrapper>
 
       <CreateCourseModal
