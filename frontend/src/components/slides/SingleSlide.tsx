@@ -41,7 +41,6 @@ const SingleSlide = ({
   preview,
   selected,
 }: Props) => {
-  console.log('Single blockID:', singleSlide?.id);
   return (
     <Wrapper
       preview={preview}

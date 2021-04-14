@@ -1,7 +1,3 @@
-// // import { mutationField, inputObjectType, arg } from 'nexus';
-// // import nullthrows from 'nullthrows';
-// // import prisma from '../../data/prisma';
-
 import nullthrows from 'nullthrows';
 
 import prisma from '../../data/prisma';
@@ -82,5 +78,5 @@ export const deleteCourse = {
       "Could not delete course",
     )
     return course
-}
+  }
 }

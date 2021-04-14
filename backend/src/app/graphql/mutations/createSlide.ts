@@ -27,7 +27,6 @@ export const createSlide = {
         where: { id: lessonId },
         data: { slides: { connect: { id: slide.id } } },
       });
-      console.log("return this mutation", slide)
       return slide;
     } catch (e) {
       // eslint-disable-next-line no-console

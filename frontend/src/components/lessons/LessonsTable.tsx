@@ -115,7 +115,6 @@ const EditLessonTableButtons = ({
     <Tooltip title="Delete Lesson">
       <DeleteButton
         onClick={() => {
-          console.log(id);
           onClickRemove(id);
         }}
       >

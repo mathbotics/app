@@ -52,6 +52,9 @@ function gradeCalculation(grades:any, id:any):string {
     }
   })
 
+  if(singleGrade === undefined){
+    return '-';
+  }
   singleGrade = singleGrade*100;
   if(singleGrade >= 90){
     return 'A';

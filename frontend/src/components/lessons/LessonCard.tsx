@@ -86,7 +86,6 @@ export const LessonCard = ({
   removeFromLessonPlan,
 }: Props) => {
   const history = useHistory();
-
   return (
     <Card>
 

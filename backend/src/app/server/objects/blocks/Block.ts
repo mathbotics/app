@@ -10,7 +10,6 @@ export const Block = new GraphQLUnionType({
     description: "This represents the Block",
     types: [MultipleChoiceQuestionBlock, TextBlock, EmptyBlock],
     resolveType(value){
-      console.log("resolve block:", value)
 
       //case 1: resolve value is a slide object with a block object property
       if((value.block && value.block.multipleChoiceQuestionBlockId != null) 

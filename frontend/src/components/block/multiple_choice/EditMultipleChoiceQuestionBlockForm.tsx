@@ -26,6 +26,14 @@ border-color: black;
 margin-bottom: 1em;
 `;
 
+const ButtonRow = styled.div`
+display: flex;
+justify-content: space-between;
+padding-top:2%;
+`;
+
+
+
 type Props = {
   block?: EditMultipleChoiceQuestionBlockForm_block;
   blockId: string;
@@ -89,21 +97,18 @@ const EditMultipleChoiceQuestionBlockForm = ({
   return (
     <>
     <TitleDiv>
-      <h1>Question Title:</h1>
-      <Input
+      <h1>{text === '' ? "Question" : text}</h1>
+      <Input.TextArea
         name="text"
         value={text}
-        type="text"
+        rows={4}
         onChange={({ target: { value } }) => setText(value)}
-        placeholder="Question Text"
+        placeholder="Question"
       />
     </TitleDiv>
       {choices.map(({ text, id, correct } : any ) => (
         <SpecialDiv>
-          <h1>Option: {text}</h1>
-          <Button onClick={() => onClickSetCorrect(id)} disabled={correct}>
-            Set as correct
-          </Button>
+          <h1>Answer: {text}</h1>
           <Input
             key={id}
             name="choice"
@@ -112,7 +117,12 @@ const EditMultipleChoiceQuestionBlockForm = ({
             onChange={({ target: { value } }) => onChangeChoiceText(id, value)}
             value={text}
           />
-          <Button onClick={() => onClickRemoveChoice(id)}>Remove</Button>
+          <ButtonRow>
+            <Button type="danger" onClick={() => onClickRemoveChoice(id)}>Remove</Button>
+            <Button type="primary" onClick={() => onClickSetCorrect(id)} disabled={correct}>
+              Set correct
+            </Button>
+          </ButtonRow>
           <br/>
         </SpecialDiv>
       ))}

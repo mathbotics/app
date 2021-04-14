@@ -5,14 +5,10 @@ import { graphql } from 'babel-plugin-relay/macro';
 import { createFragmentContainer, DataID, fetchQuery } from 'react-relay';
 import style from 'styled-components';
 import { MultipleChoiceGroup_block } from './__generated__/MultipleChoiceGroup_block.graphql';
-import { setConstantValue } from 'typescript';
 import { useState } from 'react';
-import RadioGroup from 'antd/lib/radio/group';
 import { Store } from 'rc-field-form/lib/interface';
 import { commit as commitCreateMultipleChoiceQuestionResponseMutation } from '../../../graphql/mutations/CreateMultipleChoiceQuestionResponseMutation';
 import { environment } from "../../../graphql/relay";
-import MultipleChoiceQuestionBlock from './MultipleChoiceQuestionBlock';
-import EditMultipleChoiceQuestionBlockForm from './EditMultipleChoiceQuestionBlockForm';
 
 
 type MultipleChoiceChoiceProps = {
@@ -117,15 +113,22 @@ const onSubmit = ({ id, multipleChoiceQuestionBlockId, multipleChoiceQuestionCho
     const blockId = block.id; 
     multipleChoiceQuestionChoiceId = choiceId;
     commitCreateMultipleChoiceQuestionResponseMutation(
-    {input: { blockId, multipleChoiceQuestionChoiceId, studentId}},
-    onSubmitSuccess,
-    onSubmitError,
-  );
+      {input: { blockId, multipleChoiceQuestionChoiceId, studentId}},
+      onSuccess,
+      onFailure,
+    );
   })
 
   }
-  const onSubmitSuccess = () => {console.log("Sucess on commitCreateMultipleChoiceQuestionResponseMutation"); window.location.reload()};
-  const onSubmitError = () => {console.log("Error on commitCreateMultipleChoiceQuestionResponseMutation")};
+  const onSuccess = (response) => {
+    if(response["createResponse"] !== null){
+      console.log("correct answer");
+    } else{
+      console.log("incorrect answer");
+    }
+    window.location.reload();
+  };
+  const onFailure = (error) => {console.log(`Error in submit: ${JSON.stringify(error)}`)};
 
   return (
     <>
@@ -165,4 +168,9 @@ export default createFragmentContainer(MultipleChoiceGroup, {
       }
     }
   `,
+  // grading: graphql`
+  //   fragment UpdateGradeFromAnswer on answerMultipleChoiceBlock {
+
+  //   }
+  // `,
 });
