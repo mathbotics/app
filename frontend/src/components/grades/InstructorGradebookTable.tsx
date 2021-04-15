@@ -41,7 +41,19 @@ function gradeCalculation(grade:any):string {
     return 'D';
   }
   return 'F';
-}
+};
+
+function gradeColumnRender(lessons, grades, id, index){
+  for(let n = 0; n < lessons.length; n++){
+    if (n >= grades.length) {
+      return (<strong>{gradeCalculation(undefined)}</strong>);
+    } else if (id === grades[n].lessonId){
+      return (<strong>{gradeCalculation(grades[n].grade)}</strong>);
+    } else if(id !== grades[n].lessonId && index === n) {
+      return (<strong>{gradeCalculation(undefined)}</strong>);
+    }
+  }
+};
 
 type Props = {
   instructorGradeBookQuery: InstructorGradebookPageQueryResponse;
@@ -58,7 +70,7 @@ const InstructorGradebookTable = ({
     {
       title: 'Student Name',
       dataIndex: 'fullName',
-      width: 150,
+      width: 75,
       key: '1',
       fixed: 'left',
     }, 
@@ -68,16 +80,12 @@ const InstructorGradebookTable = ({
           dataIndex: 'grades',
           key: 'grades',
           width: 100,
+          fixed: "right",
           render: grades => (
-            <div>
+            <div style={{textAlign: "center"}}>
               {grades.length > 0 ?
-                grades.map(({grade, lessonId}, indexGrade:number) => {
-                  if (id === lessonId){
-                    return (<strong>{gradeCalculation(grade)}</strong>);
-                  } else if(id !== lessonId && index === indexGrade) {
-                    return (<strong>{gradeCalculation(undefined)}</strong>)
-                  }
-                }) : <strong>{gradeCalculation(undefined)}</strong>
+                gradeColumnRender(lessons, grades, id, index)
+                : <strong>{gradeCalculation(undefined)}</strong>
               }
             </div>
           )
