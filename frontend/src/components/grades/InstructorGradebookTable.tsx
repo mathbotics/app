@@ -21,6 +21,16 @@ type TableItem = {
 function onChange(pagination, filters, sorter, extra) {
   console.log('params', pagination, filters, sorter, extra);
 }
+function maxWidth(students:any):number {
+  let max = 0;
+  students.map(({firstName, lastName}) => {
+    if (`${firstName} ${lastName}`.length > max){
+      max = `${firstName} ${lastName}`.length;
+    }
+  });
+
+  return max+15;
+}
 
 function gradeCalculation(grade:any):string {
   if(grade === undefined){
@@ -66,23 +76,23 @@ const InstructorGradebookTable = ({
   const [data, setData] = useState<ColumnsType<TableItem>>();
   const students = instructorGradeBookQuery?.students ? instructorGradeBookQuery.students : [];
   const lessons = instructorGradeBookQuery?.lessons ? instructorGradeBookQuery.lessons : [];
+  const columnWidth = maxWidth(students);
   const columns: ColumnsType<any> = [
     {
       title: 'Student Name',
       dataIndex: 'fullName',
-      width: 75,
+      width: columnWidth,
       key: '1',
       fixed: 'left',
     }, 
     {
       children: lessons.map(({title, id}, index:number) => ({
-          title: title,
+          title: <div style={{marginLeft:'auto', marginRight: 'auto', textAlign: 'center'}}>{title}</div>,
           dataIndex: 'grades',
           key: 'grades',
-          width: 100,
-          fixed: "right",
+          width: 70,
           render: grades => (
-            <div style={{textAlign: "center"}}>
+            <div style={{marginLeft:'auto', marginRight: 'auto', textAlign: 'center'}}>
               {grades.length > 0 ?
                 gradeColumnRender(lessons, grades, id, index)
                 : <strong>{gradeCalculation(undefined)}</strong>
@@ -99,7 +109,7 @@ const InstructorGradebookTable = ({
         ({ firstName, lastName, grades}, index: number) => ({
           index: index + 1,
           key: index,
-          fullName: `${lastName} ${firstName}`,
+          fullName: `${firstName} ${lastName}`,
           grades: grades,
         }
         )));
@@ -111,7 +121,7 @@ const InstructorGradebookTable = ({
       columns={columns}
       dataSource={data}
       onChange={onChange}
-      scroll={{ x: 1500, y: 500 }}
+      scroll={{ x: 1500, y: 600 }}
       pagination={{
         defaultPageSize: 10,
         showSizeChanger: true,
@@ -122,40 +132,5 @@ const InstructorGradebookTable = ({
 };
 
 export default createFragmentContainer(InstructorGradebookTable, {
-  // lessons: graphql`
-  //   fragment InstructorGradebookTable_lessons on Course {
-  //     lessons {
-  //       id
-  //       title
-  //       slides {
-  //         id
-  //       }
-  //     }
-  //   }
-  // `,
-  // students: graphql`
-  //   fragment InstructorGradebookTable_students on Course {
-  //     students {
-  //       username
-  //       firstName
-  //       lastName
-  //       gradeLevel
-  //       id
-  //       grades{
-  //         lessonId
-  //         grade
-  //       } 
-  //     }
-  //   }
-    
-  // `,
-  // grades: graphql`
-  //   fragment InstructorGradebookTable_grades on Query {
-  //     grades{
-  //       courseId
-  //       lessonId
-  //       grade
-  //     }
-  //   }
-  // `,
+  
 });
