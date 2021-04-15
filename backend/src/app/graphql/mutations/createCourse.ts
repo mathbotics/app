@@ -1,12 +1,9 @@
 import nullthrows from 'nullthrows';
 import prisma from '../../data/prisma';
-import { GraphQLEnumType, GraphQLInputObjectType, 
-  GraphQLNonNull, GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql';
+import { GraphQLInputObjectType, 
+  GraphQLNonNull, GraphQLString } from 'graphql';
 import { GradeLevel } from '../../server/objects';
 import { Course } from '../../server/objects/courses';
-import { Instructor } from '../../server/GraphQLSchema';
-
-
 
 export const createCourseInput = new GraphQLInputObjectType({
     name: "createCourseInput",
@@ -18,7 +15,6 @@ export const createCourseInput = new GraphQLInputObjectType({
     })
 });
 
-
 export const createOneCourse = {
     type: new GraphQLNonNull(Course),
     args: {
@@ -28,11 +24,6 @@ export const createOneCourse = {
     },
    async resolve(root : any, args : any){
      const { name, description, suggestedLevel, instructorId} = args.input 
-    //  const lessonPlan = nullthrows(
-    //     await prisma.lessonPlan.create({
-    //         data: {}
-    //     })
-     //)
     const  course = nullthrows(
       await prisma.course.create({
         data: {
@@ -56,26 +47,3 @@ export const createOneCourse = {
    }
   
 }
-
-// export const createCourseMutation = {
-//     type: CreateCoursePayload,
-//     args: {
-//         input: {
-//             type = new GraphQLNonNull(createCourseInput),
-//         }
-//     },
-//     async resolve(root, args){
-//         const{ name, description, suggestedLevel} = args.input
-//         const{ course } = nullthrows{
-//             await prisma.course.create({
-//                 data: {
-//                     name,
-//                     description,
-//                     suggestedLevel
-//                 }
-//             }),
-//             'Could not create Course',
-//         };
-//         return {course};
-//     }
-// }

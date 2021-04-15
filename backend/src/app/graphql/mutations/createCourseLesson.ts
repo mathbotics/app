@@ -1,9 +1,6 @@
 import nullthrows from 'nullthrows';
 import prisma from '../../data/prisma';
-import { GraphQLInputObjectType, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
-import{CreateCourseLessonPayload} from '../payloads/CreateCourseLessonPayload';
-import { resolve } from 'path';
-import { Lesson } from '../../server/objects';
+import { GraphQLInputObjectType, GraphQLNonNull, GraphQLString } from 'graphql';
 import { Course } from '../../server/objects/courses';
 
 export const createCourseLessonInput = new GraphQLInputObjectType({
@@ -21,7 +18,7 @@ export const createCourseLesson = {
         type: new GraphQLNonNull(createCourseLessonInput),
       }
     },
-   async resolve(root, args){
+   async resolve(root:any, args:any){
     const { courseId, lessonId} = args.input 
     const  courseToLesson  = nullthrows(
       await prisma.courseToLesson.create({

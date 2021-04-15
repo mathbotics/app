@@ -21,7 +21,6 @@ export const Slide = new GraphQLInterfaceType({
       }
     },
     resolveType: async (data) => {
-      console.log("resolve", data)
       const singleSlide = await prisma.singleSlide.findFirst({
         where: {
           id: data.singleSlideId
@@ -30,7 +29,6 @@ export const Slide = new GraphQLInterfaceType({
       if(singleSlide){
         return "SingleSlide"
       } 
-      console.log("return null")
       return null
     }
   });

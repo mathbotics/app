@@ -53,7 +53,6 @@ import { Instructor, Student } from '../../GraphQLSchema';
           type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(Student))),
           resolve(root){
             /* Destructure the CourseToLesson object list that's being returned when querying on a course */
-            console.log("students on a course", root.courseTo)
             const students = root.courseTo.map((obj:any) => {
               return {...obj.student}
             }) 

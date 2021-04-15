@@ -29,9 +29,6 @@ const possibleImplementations = (id: string, includeUser: boolean = false) =>
       },
     }),
   ]);
-  // .catch(error => {   // Try this if still getting promise rejection error
-  //   console.error(error.message)
-  // });
 
 export default {
   async user(id: string) {
@@ -67,11 +64,6 @@ export default {
       instructor,
       student,
     ] = await possibleImplementations(id, includeUser);
-    console.log(admin, "This is admin");
-    console.log(guardian, "This is guardian");
-    console.log(instructor, "This is instructor");
-    console.log(student, "This is student");
-    console.log(id, "This is the id that is being passed")
 
     if(admin){
       const {username, firstName, lastName, password} = admin.user

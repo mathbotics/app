@@ -53,7 +53,6 @@ const resolveUserHelper = async (data : typeof User) => {
     })
   
     if(admin){
-      console.log("Resolve user chose admin", admin)
       return "Admin";
     } 
   
@@ -69,7 +68,6 @@ const resolveUserHelper = async (data : typeof User) => {
     })
   
     if(guardian){
-      console.log("Resolve user chose guardian", guardian)
       return "Guardian";
     } 
   
@@ -85,7 +83,6 @@ const resolveUserHelper = async (data : typeof User) => {
     })
   
     if(student){
-      console.log("Resolve user chose student", student)
       return "Student";
     } 
   
@@ -101,7 +98,6 @@ const resolveUserHelper = async (data : typeof User) => {
     })
   
     if(instructor){
-      console.log("Resolve user chose instructor", instructor)
       return "Instructor";
     } 
   

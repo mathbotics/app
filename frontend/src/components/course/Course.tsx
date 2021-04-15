@@ -113,7 +113,6 @@ export default createFragmentContainer(Course, {
             id
             title
           }
-        
       }
     }
   `,

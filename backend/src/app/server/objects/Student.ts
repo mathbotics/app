@@ -28,7 +28,6 @@ export const Student: any  = new GraphQLObjectType({
         firstName: {
           type: new GraphQLNonNull(GraphQLString),
           async resolve(Student){
-            console.log("Inside student resolve", Student)
             if(Student.user){
               return Student.user.firstName
             }
@@ -38,7 +37,6 @@ export const Student: any  = new GraphQLObjectType({
         lastName: {
           type: new GraphQLNonNull(GraphQLString),
           async resolve(Student){
-            console.log("Inside student resolve", Student)
             if(Student.user){
               return Student.user.lastName
             }
@@ -75,14 +73,12 @@ export const Student: any  = new GraphQLObjectType({
         studentTo: {
           type: new GraphQLList(CourseToStudent),
           resolve(Student){
-            console.log(Student)
             return Student.studentTo
           }
         },
         grade: {
           type: new GraphQLNonNull(Grade),
           resolve(Student){
-            console.log(Student)
             return Student.grade
           }
         } 

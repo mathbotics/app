@@ -8,6 +8,7 @@ export type Lesson_lesson = {
     readonly title: string;
     readonly slides: ReadonlyArray<{
         readonly id: string;
+        readonly title: string;
         readonly " $fragmentRefs": FragmentRefs<"EditorSlidePreview_slide">;
     }>;
     readonly " $fragmentRefs": FragmentRefs<"SlidesSidebar_lesson">;
@@ -28,6 +29,13 @@ var v0 = {
   "name": "id",
   "args": null,
   "storageKey": null
+},
+v1 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "title",
+  "args": null,
+  "storageKey": null
 };
 return {
   "kind": "Fragment",
@@ -37,13 +45,7 @@ return {
   "argumentDefinitions": [],
   "selections": [
     (v0/*: any*/),
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "title",
-      "args": null,
-      "storageKey": null
-    },
+    (v1/*: any*/),
     {
       "kind": "LinkedField",
       "alias": null,
@@ -54,6 +56,7 @@ return {
       "plural": true,
       "selections": [
         (v0/*: any*/),
+        (v1/*: any*/),
         {
           "kind": "FragmentSpread",
           "name": "EditorSlidePreview_slide",
@@ -69,5 +72,5 @@ return {
   ]
 };
 })();
-(node as any).hash = '86fb4af73f4fcf40607c3438a4107d32';
+(node as any).hash = '1e381a3006a6980943c0e57e88d4d77e';
 export default node;

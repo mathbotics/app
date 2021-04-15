@@ -1,20 +1,10 @@
-import { ResolveType } from 'apollo-server-express';
 import {
   GraphQLObjectType,
   GraphQLID,
-  GraphQLInt,
-  GraphQLFloat,
   GraphQLString,
   GraphQLList,
   GraphQLSchema,
-  GraphQLNonNull, 
-  GraphQLEnumType,
-  GraphQLInterfaceType,
-  GraphQLUnionType,
-  FieldsOnCorrectTypeRule,
-  GraphQLScalarType,
-  GraphQLBoolean,
-  GraphQLError
+  GraphQLNonNull,
 } from 'graphql';
 import prisma from '../data/prisma';
 import { Mutations } from '../graphql/mutations/Mutations';
@@ -385,8 +375,6 @@ const RootQuery = new GraphQLObjectType({
         }
       },   
       resolve(root, args, context) {
-        console.log("In viewer root resolve (args)", args)
-        console.log("In viewer root resolve (viewer)", context.viewer)
         return context.viewer;
       }
     },
@@ -411,7 +399,6 @@ const RootQuery = new GraphQLObjectType({
         },
         async resolve(root, args){
           const admins = await prisma.admin.findMany({where: args, include: {user: true}});
-          console.log(admins)
           return admins;
         }
       },
@@ -809,7 +796,6 @@ const RootQuery = new GraphQLObjectType({
           }
         },
         async resolve(root, args){
-          console.log("singleslide:", args)
           return await prisma.singleSlide.findFirst({where: args, include: {block: true}});
         }
       },

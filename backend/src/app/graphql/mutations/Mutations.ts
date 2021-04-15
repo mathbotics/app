@@ -21,6 +21,7 @@ import { resetPassword } from "./resetPassword"
 import { createCourseLesson} from "./createCourseLesson"
 import {createResponse} from "./createMultipleChoiceQuestionResponse"
 import { removeCourseLesson } from "./removeCourseLesson";
+import { answerMultipleChoiceBlockForLesson } from './answerMultipleChoiceQuestionBlock';
 
 export const Mutations = new GraphQLObjectType({
     name: "Mutation",
@@ -46,6 +47,7 @@ export const Mutations = new GraphQLObjectType({
       resetPassword,
       createCourseLesson,
       createResponse,
-      removeCourseLesson
+      removeCourseLesson,
+      answerMultipleChoiceBlockForLesson,
     } 
   })
