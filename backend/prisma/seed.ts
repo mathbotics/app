@@ -1019,26 +1019,26 @@ async function main() {
     }
   })
 
-  const student3_grades1 = await prisma.grade.create({
-    data: {
-      grade: ((Math.floor(Math.random() * 41) + 60) * 0.01),
-      lesson: {
-        connect: {
-          id: lesson1.id
-        }
-      },
-      student: {
-        connect: {
-          id: student3.id
-        }
-      },
-      course: {
-        connect: {
-          id: course1.id
-        }
-      }
-    }
-  })
+  // const student3_grades1 = await prisma.grade.create({
+  //   data: {
+  //     grade: ((Math.floor(Math.random() * 41) + 60) * 0.01),
+  //     lesson: {
+  //       connect: {
+  //         id: lesson1.id
+  //       }
+  //     },
+  //     student: {
+  //       connect: {
+  //         id: student3.id
+  //       }
+  //     },
+  //     course: {
+  //       connect: {
+  //         id: course1.id
+  //       }
+  //     }
+  //   }
+  // })
 
   const student3_grades2 = await prisma.grade.create({
     data: {
@@ -1503,26 +1503,26 @@ const student11_grades1 = await prisma.grade.create({
   }
 })
 
-const student11_grades2 = await prisma.grade.create({
-  data: {
-    grade: ((Math.floor(Math.random() * 41) + 60) * 0.01),
-    lesson: {
-      connect: {
-        id: lesson7.id
-      }
-    },
-    student: {
-      connect: {
-        id: student11.id
-      }
-    },
-    course: {
-      connect: {
-        id: course2.id
-      }
-    }
-  }
-})
+// const student11_grades2 = await prisma.grade.create({
+//   data: {
+//     grade: ((Math.floor(Math.random() * 41) + 60) * 0.01),
+//     lesson: {
+//       connect: {
+//         id: lesson7.id
+//       }
+//     },
+//     student: {
+//       connect: {
+//         id: student11.id
+//       }
+//     },
+//     course: {
+//       connect: {
+//         id: course2.id
+//       }
+//     }
+//   }
+// })
 
 const student11_grades3 = await prisma.grade.create({
   data: {
